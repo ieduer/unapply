@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /$
+Allow: /#/about
+Disallow: /#/school/
+Disallow: /#/filter
+Disallow: /#/result
+Disallow: /#/contribute
+
+Sitemap: https://nope.bdfz.net/sitemap.xml

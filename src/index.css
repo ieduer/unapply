@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Noto Serif TC", "Songti TC", "Songti SC", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-sans: "Space Grotesk", "Noto Sans TC", system-ui, sans-serif;
+
+  --color-ink-950: #070a10;
+  --color-ink-900: #0c1019;
+  --color-ink-800: #141826;
+  --color-ink-700: #1e2435;
+  --color-fog-500: #6b7080;
+  --color-fog-300: #9ba0ad;
+  --color-fog-100: #dfe2ea;
+  --color-accent-500: #ff6b3d;
+  --color-accent-400: #ff8a63;
+  --color-accent-600: #d94f24;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--color-ink-950);
+  color: var(--color-fog-100);
+  font-family: var(--font-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100%;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+*::selection {
+  background: var(--color-accent-500);
+  color: var(--color-ink-950);
+}
+
+.scroll-fade-mask {
+  mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1, "zero" 1;
+}
+
+.sans {
+  font-family: var(--font-sans);
+}
+
+.serif {
+  font-family: var(--font-serif);
+}
+
+@keyframes blow-away {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(120px, -60px, 0) rotate(12deg);
+    filter: blur(4px);
+  }
+}
+
+.blow-away {
+  animation: blow-away 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--color-accent-500);
+  outline-offset: 2px;
+}
