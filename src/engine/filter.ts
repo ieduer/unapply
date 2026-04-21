@@ -5,6 +5,7 @@ import { allQuestions } from '../data/questions';
 import type { Question } from '../data/questions';
 import type { DimensionId } from '../data/dimensions';
 import type { School } from '../data/schools';
+import { getEnvironment } from '../data/environment';
 
 export type AnswerValue = string | string[] | 'skip' | null;
 export type AnswerMap = Partial<Record<DimensionId, AnswerValue>>;
@@ -30,13 +31,33 @@ export interface FilterResult {
   stats: FilterStats;
 }
 
-function getSchoolDimensionValue(school: School, dim: DimensionId): string | null {
+function formatSchoolValue(value: string | string[]): string {
+  return Array.isArray(value) ? value.join(' / ') : value;
+}
+
+export function getSchoolDimensionValue(school: School, dim: DimensionId): string | string[] | null {
   switch (dim) {
     case 'A1': return school.province ?? null;
     case 'A2': return school.cityTier ?? null;
     case 'A3': return school.level ?? null;
     case 'A4': return school.tuitionRange ?? null;
     case 'A5': return school.mainCampusType ?? null;
+    case 'E1': case 'E2': case 'E3': case 'E4':
+    case 'E5': case 'E6': case 'E7': case 'E8': {
+      const env = getEnvironment(school.province, school.city);
+      if (!env) return null;
+      switch (dim) {
+        case 'E1': return env.heating;
+        case 'E2': return env.summer;
+        case 'E3': return env.winter;
+        case 'E4': return env.haze;
+        case 'E5': return env.dialect;
+        case 'E6': return env.subwayCity;
+        case 'E7': return env.coastal;
+        case 'E8': return env.highland;
+      }
+      return null;
+    }
     default:   return school.quality?.[dim] ?? null;
   }
 }
@@ -72,12 +93,13 @@ function checkQuestion(
   for (const rule of excludes) {
     const val = getSchoolDimensionValue(school, rule.dim);
     if (val === null) continue; // 疑罪從無
-    if (rule.values.includes(val)) {
+    const values = Array.isArray(val) ? val : [val];
+    if (values.some((item) => rule.values.includes(item))) {
       return {
         questionId: question.id,
         questionTitle: question.title,
         userAnswerLabel: labels.join('、'),
-        schoolValue: val,
+        schoolValue: formatSchoolValue(val),
       };
     }
   }
@@ -85,12 +107,13 @@ function checkQuestion(
   for (const [dim, okValues] of requireByDim) {
     const val = getSchoolDimensionValue(school, dim);
     if (val === null) continue;
-    if (!okValues.has(val)) {
+    const values = Array.isArray(val) ? val : [val];
+    if (!values.some((item) => okValues.has(item))) {
       return {
         questionId: question.id,
         questionTitle: question.title,
         userAnswerLabel: labels.join('、'),
-        schoolValue: `（不含 ${Array.from(okValues).join('/')}）`,
+        schoolValue: `${formatSchoolValue(val)}（不含 ${Array.from(okValues).join('/')}）`,
       };
     }
   }
@@ -134,6 +157,7 @@ export function filterSchools(allSchools: School[], answers: AnswerMap): FilterR
 
 // 給結果頁用的：「你為什麼沒劃掉它」一句話
 export function explainKept(school: School, _answers: AnswerMap): string {
+  void _answers;
   const bits: string[] = [];
   if (school.level === 'C9') bits.push('C9');
   else if (school.level === '985非C9') bits.push('985');
@@ -163,14 +187,32 @@ export interface KeptDistribution {
   byCityTier: { label: string; count: number }[];
 }
 
+const levelDistLabel: Record<NonNullable<School['level']>, string> = {
+  C9: 'C9',
+  '985非C9': '985 非 C9',
+  '211非985': '211 非 985',
+  '雙一流非211': '雙一流非 211',
+  普通本科: '普通本科',
+  專科: '專科',
+};
+
+const cityTierDistLabel: Record<NonNullable<School['cityTier']>, string> = {
+  tier1: '一線',
+  newtier1: '新一線',
+  tier2: '二線',
+  tier3_below: '三線及以下',
+};
+
 export function distribute(kept: School[]): KeptDistribution {
   const prov = new Map<string, number>();
   const lvl = new Map<string, number>();
   const tier = new Map<string, number>();
   for (const s of kept) {
     prov.set(s.province, (prov.get(s.province) ?? 0) + 1);
-    lvl.set(s.level, (lvl.get(s.level) ?? 0) + 1);
-    tier.set(s.cityTier, (tier.get(s.cityTier) ?? 0) + 1);
+    const levelLabel = s.level ? levelDistLabel[s.level] : '未知層次';
+    const tierLabel = s.cityTier ? cityTierDistLabel[s.cityTier] : '未知城市等級';
+    lvl.set(levelLabel, (lvl.get(levelLabel) ?? 0) + 1);
+    tier.set(tierLabel, (tier.get(tierLabel) ?? 0) + 1);
   }
   const sortDesc = (m: Map<string, number>) =>
     Array.from(m.entries()).map(([label, count]) => ({ label, count })).sort((a, b) => b.count - a.count);

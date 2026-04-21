@@ -1,4 +1,4 @@
--- UnApply D1 schema v2（v1.1 啟用時執行）
+-- UnApply D1 schema v2（Worker + D1 啟用時執行）
 -- wrangler d1 execute unapply --file=./db/schema.sql
 
 CREATE TABLE IF NOT EXISTS schools (

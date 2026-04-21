@@ -2,22 +2,29 @@
   "name": "unapply",
   "private": true,
   "version": "1.0.0",
-  "description": "你一定不考哪所大學 — 用減法從中國 3000+ 高校中劃掉不能忍的那批",
+  "description": "你一定不考哪所大學 — 用減法從教育部 2025 普通高校名單中劃掉不能忍的那批",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "data:schools": "node scripts/build_official_schools.mjs",
+    "data:github-profiles": "node scripts/extract_github_school_profiles.mjs",
+    "data:campus-extract": "node scripts/extract_campus_locations.mjs",
+    "data:research": "node scripts/build_research_data.mjs && node scripts/build_campus_research.mjs",
+    "audit:questions": "node scripts/audit_question_rules.mjs",
+    "audit:data": "npm_config_cache=/tmp/npm-cache npx --yes tsx scripts/audit_data_coverage.mjs",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "pages:deploy": "npm run build && npx wrangler pages deploy dist --project-name unapply"
+    "pages:deploy": "npm run build && npx wrangler pages deploy dist --project-name unapply --branch master --commit-dirty=true"
   },
   "dependencies": {
-    "motion": "^12.38.0",
     "html-to-image": "^1.11.13",
+    "motion": "^12.38.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
+    "@e965/xlsx": "^0.20.3",
     "@eslint/js": "^9.39.4",
     "@tailwindcss/vite": "^4.2.2",
     "@types/node": "^24.12.0",

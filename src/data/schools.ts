@@ -1,26 +1,23 @@
-// 學校種子數據 v1.0
+// 學校數據聚合層
 //
-// 覆蓋範圍：
-// - C9 聯盟 9 所（教育部公開）
-// - 985 非 C9 院校 30 所（教育部「985 工程」名單）
-// - 211 非 985 院校（教育部「211 工程」名單，選主要 60 所）
-// - 雙一流非 211 院校（教育部 2022 雙一流名單，選 25 所）
-// 合計約 125 所。其餘 3000+ 院校在 v1.1 通過腳本從 edu.cn 導入。
+// 第一層：src/data/officialSchools.ts，來自教育部 2025 全國普通高等學校名單，2919 所。
+// 第二層：curatedSchools，人工補強少量主流院校的英文名、官網、校區與眾包樣本。
 //
-// 每所包含 authoritative 字段（level / city_tier / province / main_campus_type / tuition_range）
-// 生活質量維度 quality 字段整體留空，由眾包逐步補齊。
-//
-// 權威來源：
-// - 985 名單：http://www.moe.gov.cn/srcsite/A22/moe_843/200611/t20061122_87771.html
-// - 雙一流：https://www.moe.gov.cn/srcsite/A22/s7065/202202/t20220211_598710.html
-// - 城市等級：第一財經新一線城市研究所 2023
+// 原則：官方名單能確定的字段才全量填充；校區、生活質量、精確學費等缺失就保持 undefined，
+// 由 FilterEngine 疑罪從無處理。
 
 import type { DimensionId } from './dimensions';
+import { officialSchoolCatalogMeta } from './officialSchoolMeta';
+import { officialSchools } from './officialSchools';
+import { schoolResearchProfilesByMoeCode } from './researchData';
+import { normalizeSchoolName } from '../lib/schoolName';
 
 export type SchoolLevel = 'C9' | '985非C9' | '211非985' | '雙一流非211' | '普通本科' | '專科';
 export type CityTier = 'tier1' | 'newtier1' | 'tier2' | 'tier3_below';
 export type CampusType = 'main_city' | 'suburb_with_metro' | 'suburb' | 'separate_freshman';
-export type TuitionRange = '公辦' | '1-3萬' | '3-8萬' | '8萬+';
+export type TuitionRange = '公辦' | '1-3萬' | '3-8萬' | '8萬+' | '民辦/合作待核價';
+export type SchoolOwnership = 'public' | 'private' | 'cooperative' | 'unknown';
+export type SchoolType = '綜合' | '理工' | '師範' | '農林' | '醫藥' | '財經' | '政法' | '語言' | '民族' | '藝術' | '體育' | '軍事';
 
 export interface School {
   id: string;
@@ -29,15 +26,25 @@ export interface School {
   nameEn?: string;
   province: string;
   city: string;
-  cityTier: CityTier;
-  level: SchoolLevel;
-  type: '綜合' | '理工' | '師範' | '農林' | '醫藥' | '財經' | '政法' | '語言' | '民族' | '藝術' | '體育' | '軍事';
+  schoolAddress?: string;
+  cityTier?: CityTier;
+  level?: SchoolLevel;
+  type?: SchoolType;
   website?: string;
-  mainCampusType: CampusType;
-  tuitionRange: TuitionRange;
+  admissionWebsite?: string;
+  mainCampusType?: CampusType;
+  campusFreshmanPolicy?: 'yes' | 'no' | 'unknown';
+  tuitionRange?: TuitionRange;
+  ownership?: SchoolOwnership;
+  moeCode?: string;
+  department?: string;
+  moeLevel?: string;
+  sources?: string[];
+  sourceUrl?: string;
+  updatedAt?: string;
   tags?: string[];
   // 生活質量與學科維度：可部分覆蓋，未知為 undefined → 引擎疑罪從無
-  quality?: Partial<Record<DimensionId, string>>;
+  quality?: Partial<Record<DimensionId, string | string[]>>;
 }
 
 const mk = (
@@ -61,7 +68,7 @@ const mk = (
   ...extra,
 });
 
-export const schools: School[] = [
+export const curatedSchools: School[] = [
   // ============ C9 ============
   mk('北京大學', '北京', '北京', 'tier1', 'C9', '綜合', {
     website: 'https://www.pku.edu.cn', nameEn: 'Peking University',
@@ -219,10 +226,101 @@ export const schools: School[] = [
   mk('南京工業大學', '江蘇', '南京', 'newtier1', '普通本科', '理工', { website: 'https://www.njtech.edu.cn' }),
 ];
 
-// 用 sha1-like 簡化：為保證 id 唯一且穩定，直接用名稱作為 id（中文名無重名風險）
-// 若需與其他系統對接，可在 Worker 層映射到數字 id。
+function schoolNameKey(name: string): string {
+  return normalizeSchoolName(name);
+}
 
-export const totalKnownSchoolCount = 3306; // 教育部 2023 公開：本科 1275、專科 1545、獨立學院 241、其他 =
-// 實際本 MVP 實現中，我們先做 ~125 所的種子；其餘在 PROJECT_REPORT 的數據缺口中標出。
+function mergeDimensionValue(
+  left: string | string[] | undefined,
+  right: string | string[] | undefined,
+): string | string[] | undefined {
+  if (!left) return right;
+  if (!right) return left;
+  const values = Array.from(new Set([
+    ...(Array.isArray(left) ? left : [left]),
+    ...(Array.isArray(right) ? right : [right]),
+  ]));
+  return values.length === 1 ? values[0] : values;
+}
 
+function mergeQuality(
+  base: School['quality'],
+  extra: School['quality'],
+): School['quality'] {
+  if (!base) return extra;
+  if (!extra) return base;
+  const merged: School['quality'] = { ...base };
+  for (const [dimensionId, value] of Object.entries(extra) as [DimensionId, string | string[]][]) {
+    merged[dimensionId] = mergeDimensionValue(merged[dimensionId], value);
+  }
+  return merged;
+}
+
+function mergeOfficialWithCurated(official: School, curated?: School): School {
+  if (!curated) return official;
+  const sources = Array.from(new Set([...(official.sources ?? []), ...(curated.sources ?? ['curated'])]));
+  return {
+    ...official,
+    ...curated,
+    id: curated.id,
+    nameSimplified: official.nameSimplified ?? curated.nameSimplified,
+    moeCode: official.moeCode,
+    department: official.department,
+    moeLevel: official.moeLevel,
+    ownership: official.ownership ?? curated.ownership,
+    sources,
+    sourceUrl: official.sourceUrl ?? curated.sourceUrl,
+    updatedAt: official.updatedAt ?? curated.updatedAt,
+    quality: mergeQuality(official.quality, curated.quality),
+  };
+}
+
+const curatedByName = new Map(
+  curatedSchools.map((school) => [schoolNameKey(school.nameSimplified ?? school.name), school]),
+);
+
+const officialNameKeys = new Set<string>();
+export const schools: School[] = officialSchools.map((official) => {
+  const key = schoolNameKey(official.nameSimplified ?? official.name);
+  officialNameKeys.add(key);
+  const merged = mergeOfficialWithCurated(official, curatedByName.get(key));
+  const research = merged.moeCode ? schoolResearchProfilesByMoeCode[merged.moeCode] : undefined;
+  if (!research) return merged;
+
+  const sources = Array.from(new Set([
+    ...(merged.sources ?? []),
+    'research',
+  ]));
+
+  return {
+    ...merged,
+    website: research.website ?? merged.website,
+    admissionWebsite: research.admissionWebsite ?? merged.admissionWebsite,
+    schoolAddress: research.schoolAddress ?? merged.schoolAddress,
+    mainCampusType: research.mainCampusType ?? merged.mainCampusType,
+    campusFreshmanPolicy: research.campusFreshmanPolicy ?? merged.campusFreshmanPolicy,
+    ownership: research.ownership ?? merged.ownership,
+    tuitionRange: research.tuitionRange ?? merged.tuitionRange,
+    quality: mergeQuality(merged.quality, research.quality),
+    sources,
+  };
+});
+
+// 人工增強層只補官方主表，不擴張篩選主池。未匹配項保留作審計，避免把軍校、
+// 別名或不在教育部普通高校附件中的院校混進 2919 所官方口徑。
+export const curatedOnlySchools: School[] = curatedSchools
+  .filter((school) => !officialNameKeys.has(schoolNameKey(school.nameSimplified ?? school.name)))
+  .map((school) => ({
+    ...school,
+    sources: Array.from(new Set([...(school.sources ?? []), 'curated'])),
+  }));
+
+export const officialSchoolCount = officialSchoolCatalogMeta.ordinaryCount;
+export const officialUndergraduateCount = officialSchoolCatalogMeta.undergraduateCount;
+export const officialVocationalCount = officialSchoolCatalogMeta.vocationalCount;
+export const adultHigherEducationCount = officialSchoolCatalogMeta.adultCount;
+export const totalHigherEducationCount = officialSchoolCatalogMeta.totalHigherEducationCount;
+export const totalKnownSchoolCount = officialSchoolCatalogMeta.ordinaryCount;
+export const curatedSchoolCount = curatedSchools.length;
+export const curatedOnlySchoolCount = curatedOnlySchools.length;
 export const schoolCount = schools.length;

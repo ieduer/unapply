@@ -1,0 +1,10 @@
+moeCode,schoolName,campusName,mainCampusType,freshmanOnly,b9Value,nearestMetroStation,metroDistanceKm,sourceTitle,sourceUrl,sourceDate,confidence,notes
+4111010011,北京工商大学,良乡主校区,suburb_with_metro,,,,,北京工商大学良乡主校区交通路线参考,https://yjs.btbu.edu.cn/zhgl/swgl/83c3de4beb1a478485f352d488578de4.htm,,medium,官方交通页明确良乡主校区位于房山区良乡高教园区并通过房山线良乡大学城西站接驳
+4111010012,北京服装学院,一校三址,main_city,,,,,北京服装学院章程,https://www.bift.edu.cn/xxgk/xyzc/index.htm,2021-12,high,学校现有一校三址且三址均在北京主城区
+4111010017,北京石油化工学院,清源校区,suburb_with_metro,,步行15分鐘內,,,北京石油化工学院学校位置,https://www.bipt.edu.cn/xxgk/xxwz/index.htm,,high,学校位于大兴区新城并注明地铁4号线枣园或清源路站下车步行10分钟即到
+4111010031,北京第二外国语学院,主校区,main_city,,,,,北京第二外国语学院2025年本科招生计划,https://bkzs.bisu.edu.cn/mixmedia/a/202506/23/WS6858a0b2cf1efc5625c71dae.html,2025-06-23,high,本科招生网公布地址为北京市朝阳区定福庄南里1号
+4111010032,北京语言大学,主校区,main_city,,步行15分鐘內,学院桥站,1.0,北京语言大学来校交通,https://admission.blcu.edu.cn/67/list.htm,,high,官方交通页注明学院桥站A口出站步行约1公里到学校南门
+4111010037,北京物资学院,主校区,suburb_with_metro,,步行15分鐘內,物资学院路站,,北京物资学院地理位置,https://www.bwu.edu.cn/xxgk/dlwz.htm,,high,官方地理位置页注明地铁6号线物资学院路站A口出站到校
+4111010038,首都经济贸易大学,校本部/红庙校区,main_city,,步行15分鐘內,首经贸站,,首都经济贸易大学地理位置,https://news.cueb.edu.cn/publish/sjmzz2015/xxgk/dlwz/index.html,,high,校本部位于丰台并注明地铁10号线首经贸站下车即到 红庙校区位于朝阳主城区
+4111010042,国际关系学院,主校区,main_city,,,,,国际关系学院联系我们,https://www.uir.cn/xxgk/lxwm.htm,,high,官方页公布地址为北京市海淀区坡上村12号
+4111010043,北京体育大学,信息路48号校区,main_city,,,,,北京体育大学2024年本科招生章程,https://zs.bsu.edu.cn/bkzsw/zszc/c1123745bd344b1abbef5ddb464818cf.htm,2024-05-31,high,官方章程注明信息路48号校区承担主要本科教学任务

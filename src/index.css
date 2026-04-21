@@ -5,16 +5,19 @@
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
   --font-sans: "Space Grotesk", "Noto Sans TC", system-ui, sans-serif;
 
-  --color-ink-950: #070a10;
-  --color-ink-900: #0c1019;
-  --color-ink-800: #141826;
-  --color-ink-700: #1e2435;
-  --color-fog-500: #6b7080;
-  --color-fog-300: #9ba0ad;
-  --color-fog-100: #dfe2ea;
-  --color-accent-500: #ff6b3d;
-  --color-accent-400: #ff8a63;
-  --color-accent-600: #d94f24;
+  --color-ink-950: #0e1116;
+  --color-ink-900: #161b22;
+  --color-ink-800: #202733;
+  --color-ink-700: #2b3444;
+  --color-fog-500: #7d8797;
+  --color-fog-300: #b7c0d0;
+  --color-fog-100: #eef2f7;
+  --color-canvas-top: #1b2533;
+  --color-canvas-bottom: #0d1118;
+  --color-canvas-glow: #315d73;
+  --color-accent-500: #53d1b6;
+  --color-accent-400: #7ae2ca;
+  --color-accent-600: #2cb596;
 }
 
 html,
@@ -25,6 +28,8 @@ body {
   font-family: var(--font-serif);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 180ms ease, color 180ms ease;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 #root {
@@ -33,6 +38,14 @@ body {
 
 :root {
   color-scheme: dark;
+}
+
+.app-canvas {
+  background-color: var(--color-ink-950);
+  background-image:
+    radial-gradient(circle at top right, var(--color-canvas-glow) 0%, transparent 34%),
+    linear-gradient(180deg, var(--color-canvas-top) 0%, var(--color-ink-950) 42%, var(--color-canvas-bottom) 100%);
+  background-attachment: fixed;
 }
 
 *::selection {

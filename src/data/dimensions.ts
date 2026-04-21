@@ -3,6 +3,7 @@
 
 export type DimensionId =
   | 'A1' | 'A2' | 'A3' | 'A4' | 'A5'
+  | 'E1' | 'E2' | 'E3' | 'E4' | 'E5' | 'E6' | 'E7' | 'E8'
   | 'B1' | 'B2' | 'B3' | 'B4' | 'B5' | 'B6' | 'B7' | 'B8'
   | 'B9' | 'B10' | 'B11' | 'B12' | 'B13' | 'B14' | 'B15' | 'B16'
   | 'B17' | 'B18' | 'B19' | 'B20' | 'B21' | 'B22' | 'B23' | 'B24'
@@ -11,7 +12,7 @@ export type DimensionId =
 export interface DimensionMeta {
   id: DimensionId;
   label: string;
-  section: 'A_redline' | 'B_quality' | 'C_special';
+  section: 'A_redline' | 'E_environment' | 'B_quality' | 'C_special';
   // 該維度的可能值枚舉（null 表示未收錄）
   values: readonly string[];
   // 官方或權威數據來源，允許多個
@@ -34,7 +35,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
       '新疆', '香港', '澳門', '臺灣',
     ],
     authoritativeSources: [
-      { title: '教育部全國普通高等學校名單', url: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/A03/202306/t20230619_1064976.html' },
+      { title: '教育部全國普通高等學校名單（截至 2025-06-20）', url: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202506/t20250627_1195683.html' },
     ],
     coverage: 'authoritative',
   },
@@ -44,10 +45,10 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
     section: 'A_redline',
     values: ['tier1', 'newtier1', 'tier2', 'tier3_below'],
     authoritativeSources: [
-      { title: '第一財經新一線城市研究所（年度城市等級）', url: 'https://www.yicai.com/topic/100311963/' },
+      { title: '第一財經新一線城市研究所（2025 城市商業魅力榜）', url: 'https://www.yicai.com/topic/100311963/' },
     ],
-    coverage: 'authoritative',
-    notes: 'tier1 = 北上廣深；newtier1 = 第一財經新一線榜單 15 座；tier2 = 省會/計劃單列；tier3_below = 其他地級',
+    coverage: 'mixed',
+    notes: 'tier1 = 北上廣深；newtier1 = 第一財經 2025 新一線榜單 15 座；tier2 = 省會/計劃單列/重點城市映射；tier3_below = 其他地級',
   },
   A3: {
     id: 'A3',
@@ -56,7 +57,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
     values: ['C9', '985非C9', '211非985', '雙一流非211', '普通本科', '專科'],
     authoritativeSources: [
       { title: '教育部「雙一流」建設高校及建設學科名單', url: 'https://www.moe.gov.cn/srcsite/A22/s7065/202202/t20220211_598710.html' },
-      { title: '教育部「985 工程」名單', url: 'http://www.moe.gov.cn/srcsite/A22/moe_843/200611/t20061122_87771.html' },
+      { title: '教育部「985 工程」名單', url: 'https://www.moe.gov.cn/srcsite/A22/s7065/200612/t20061206_128833.html' },
       { title: 'C9 聯盟（北京大學、清華大學等 9 所）', url: 'https://www.edu.cn/' },
     ],
     coverage: 'authoritative',
@@ -65,12 +66,12 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
     id: 'A4',
     label: '學費區間',
     section: 'A_redline',
-    values: ['公辦', '1-3萬', '3-8萬', '8萬+'],
+    values: ['公辦', '1-3萬', '3-8萬', '8萬+', '民辦/合作待核價'],
     authoritativeSources: [
       { title: '教育部「陽光高考」信息公開平台（院校招生章程／學費）', url: 'https://gaokao.chsi.com.cn/' },
     ],
     coverage: 'mixed',
-    notes: '公辦本科按國家規定學費 ≤ 1 萬，民辦 1-8 萬，中外合作多 > 8 萬。具體學費需到各校當年招生簡章核對。',
+    notes: '官方名單能確認公辦/民辦/合作辦學；精確學費需到各校當年招生章程核對，未核價不硬填。',
   },
   A5: {
     id: 'A5',
@@ -82,6 +83,68 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
     ],
     coverage: 'mixed',
     notes: 'main_city = 主校區在主城；suburb_with_metro = 遠郊但有地鐵；suburb = 遠郊無地鐵；separate_freshman = 大一在分校',
+  },
+
+  // ============ E 環境／地理維度（由省份+城市推導） ============
+  E1: {
+    id: 'E1', label: '集中供暖', section: 'E_environment',
+    values: ['yes', 'no'],
+    authoritativeSources: [
+      { title: '秦嶺-淮河供暖分界線（1956 國務院）', url: 'https://www.gov.cn/' },
+      { title: '中國氣象局氣候分區', url: 'http://www.cma.gov.cn/' },
+    ],
+    coverage: 'authoritative',
+  },
+  E2: {
+    id: 'E2', label: '夏季體感', section: 'E_environment',
+    values: ['mild', 'hot', 'humid_hot', 'extreme_hot'],
+    authoritativeSources: [{ title: '中國氣象局《中國氣候公報》', url: 'https://www.cma.gov.cn/2011xzt/essay/' }],
+    coverage: 'authoritative',
+    notes: 'mild=涼爽；hot=乾熱；humid_hot=濕熱；extreme_hot=吐魯番/重慶級',
+  },
+  E3: {
+    id: 'E3', label: '冬季體感', section: 'E_environment',
+    values: ['warm', 'mild', 'cold', 'extreme_cold'],
+    authoritativeSources: [{ title: '中國氣象局《中國氣候公報》', url: 'https://www.cma.gov.cn/2011xzt/essay/' }],
+    coverage: 'authoritative',
+    notes: 'extreme_cold=東北/內蒙/新疆，最低 < -20°C',
+  },
+  E4: {
+    id: 'E4', label: '霧霾年均', section: 'E_environment',
+    values: ['low', 'medium', 'high', 'extreme'],
+    authoritativeSources: [{ title: '生態環境部《中國生態環境狀況公報》', url: 'https://www.mee.gov.cn/hjzl/sthjzk/zghjzkgb/' }],
+    coverage: 'authoritative',
+    notes: 'PM2.5 年均：low<35、medium 35-50、high 50-70、extreme>70',
+  },
+  E5: {
+    id: 'E5', label: '方言', section: 'E_environment',
+    values: ['官話-北方', '官話-西南', '官話-江淮', '吳語', '粵語', '閩南語', '閩東語', '客家話', '湘語', '贛語', '晉語', '藏語', '維吾爾語', '蒙古語', '其他'],
+    authoritativeSources: [
+      { title: '《中國語言地圖集》（商務印書館 / 中國社科院）', url: 'https://www.cssn.cn/' },
+    ],
+    coverage: 'authoritative',
+  },
+  E6: {
+    id: 'E6', label: '有地鐵', section: 'E_environment',
+    values: ['yes', 'no'],
+    authoritativeSources: [
+      { title: '中國城市軌道交通協會年度報告', url: 'https://www.camet.org.cn/tjxx/' },
+    ],
+    coverage: 'authoritative',
+    notes: '截至 2024 年，含已開通地鐵與輕軌的城市',
+  },
+  E7: {
+    id: 'E7', label: '沿海省份', section: 'E_environment',
+    values: ['yes', 'no'],
+    authoritativeSources: [{ title: '民政部《全國行政區劃》', url: 'https://www.mca.gov.cn/' }],
+    coverage: 'authoritative',
+  },
+  E8: {
+    id: 'E8', label: '高海拔省份', section: 'E_environment',
+    values: ['yes', 'no'],
+    authoritativeSources: [{ title: '中國地理常識（海拔>1500m 地區）', url: 'http://www.cma.gov.cn/' }],
+    coverage: 'authoritative',
+    notes: '含西藏、青海、雲南、貴州、內蒙古、甘肅、新疆',
   },
 
   // ============ B 生活質量維度（CollegesChat 24 條） ============
@@ -137,7 +200,8 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
     id: 'B9', label: '地鐵', section: 'B_quality',
     values: ['校門有', '步行15分鐘內', '地鐵＞3公里', '無地鐵'],
     authoritativeSources: [{ title: '各城市軌道交通公司官網', url: 'https://www.bjsubway.com/' }],
-    coverage: 'authoritative',
+    coverage: 'mixed',
+    notes: '城市是否有軌交可客觀推導；校區到站距離需要逐校區核驗。',
   },
   B10: {
     id: 'B10', label: '洗衣機', section: 'B_quality',
@@ -280,6 +344,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
 
 export const DIMENSION_GROUPS = {
   A: ['A1', 'A2', 'A3', 'A4', 'A5'] as DimensionId[],
+  E: ['E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8'] as DimensionId[],
   B: [
     'B1','B2','B3','B4','B5','B6','B7','B8',
     'B9','B10','B11','B12','B13','B14','B15','B16',

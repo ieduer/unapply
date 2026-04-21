@@ -6,3 +6,6 @@ dist
 *.log
 .env
 .env.*
+.playwright-cli/
+venv_temp/
+.tmp/

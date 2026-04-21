@@ -1,83 +1,129 @@
 # 數據採集 SOP
 
-本文檔描述 v1.1 把學校池從 125 擴到 3000+ 時的採集流程。
+本文檔描述 nope.bdfz.net 的數據層重建流程。原則是：教育部年度名單做主表，第三方/眾包只做增強；任何無來源或未核價字段保持空值，由篩選引擎「疑罪從無」處理。
 
-## 第一步：clone 參考源到 `scripts/raw/`
+更完整的 deep research 需求、字段格式、CSV/JSONL schema 見 `docs/DATA_RESEARCH_REQUEST.md`。
 
-```bash
-cd scripts
-mkdir -p raw && cd raw
-git clone https://github.com/CollegesChat/university-information
-git clone https://github.com/xioajiumi/Chinese_Universities
-git clone https://github.com/jorhelp/EDU_Website
-curl -L -o aurorai.json "https://gist.githubusercontent.com/Aurorai/dfe84b9ed58913e2b9cd/raw/school-data.json"
-```
+## 1. 官方學校主表
 
-## 第二步：建主表 `schools.json`
+權威口徑：
 
-優先級：`xioajiumi`（軟科 582 所，含 logo + 官網）＞ `Aurorai`（按省分組）＞ `jorhelp`（3300+ 網址）。
+- 教育部《全國高等學校名單》2025 版：<https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202506/t20250627_1195683.html>
+- 截至 2025-06-20，全國高等學校 3167 所。
+- 普通高等學校 2919 所：本科 1365 所，高職（專科）1554 所。
+- 成人高等學校 248 所只作口徑說明，暫不進入減法主池。
+- 名單不含港澳台地區高校。
 
-名稱歸一規則：
-- 去除括號註釋 → 「北京航空航天大學」而非「北京航空航天大學（北航）」
-- 統一繁體（本站繁體為主）
-- 別名映射：THU → 清華大學、THU → 清華 → 清華大學
-- id = sha1(normalized_name)[:12]
-
-合併輸出 `src/data/schools_full.ts`，取代當前的 seed `schools.ts`。
-
-## 第三步：CollegesChat yml → quality.json
-
-CollegesChat 的每所學校有一個 yml，形如：
-
-```yaml
-name: 北京大學
-answers:
-  上床下桌: 是
-  宿舍有空調: 是
-  獨立衛浴: 否
-  ...
-```
-
-寫 `parse_collegeschat.ts`：
-1. 遍歷 `raw/university-information/data/*.yml`
-2. 映射到結構化字段 B1..B24
-3. 輸出 `src/data/quality.json`，每條包含 `{ schoolId, dim, value, source, updated_at }`
-4. 至少 300 所應該有完整 24 維
-
-## 第四步：城市 tier 補全
-
-從第一財經 2023 年度城市等級表寫死 tier 映射：
-- tier1: 北京、上海、廣州、深圳
-- newtier1: 成都、重慶、杭州、武漢、蘇州、西安、南京、長沙、天津、鄭州、東莞、無錫、寧波、青島、合肥、佛山
-- tier2: 其他省會 + 計劃單列
-- tier3_below: 其他地級
-
-寫入 `src/data/cityTiers.ts`。
-
-## 第五步：學科評估數據
-
-1. 下載學位中心 PDF：<https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/>
-2. 用 `pdfplumber` 解析第四輪評估（2017）的表格
-3. 只取 A+、A、A- 三檔（B 檔以下不顯示）
-4. 輸出 `src/data/disciplines.json`
-
-## 第六步：校區定位
-
-手工整理，沒有權威結構化數據源。
-按 985 + 211 + 雙一流約 170 所優先處理，普通本科在 v2 再完善。
-
-## 第七步：合規校對
-
-- 每次新增數據必須帶 `source` + `updated_at`
-- 敏感維度（C3 LGBTQ+、B13 食堂負面）需人工審核後才入庫
-- 派生自 CollegesChat 的數據標註 CC BY-NC-SA 4.0
-
-## 運行
+重建命令：
 
 ```bash
-cd /Users/ylsuen/CF/unapply/scripts
-node --experimental-strip-types build_all.ts --dry-run  # 預覽
-node --experimental-strip-types build_all.ts            # 真跑
+cd /Users/ylsuen/CF/unapply
+npm run data:schools
 ```
 
-（v1.1 會補 `build_all.ts` 主腳本）
+輸出：
+
+- `src/data/officialSchools.ts`
+- 每條保留 `moeCode`、`department`、`moeLevel`、`ownership`、`sourceUrl`、`updatedAt`。
+- 生成腳本會校驗普通高校總數必須為 2919，且院校代碼不可重複。
+
+## 2. 層次標籤
+
+`scripts/build_official_schools.mjs` 在生成時按官方來源疊加：
+
+- C9：9 所。
+- 985：教育部「985 工程」名單。
+- 211：教育部「211 工程」名單。
+- 雙一流：教育部 2022 年第二輪「雙一流」建設高校名單。
+- 其餘按教育部名單中的本科 / 專科分類。
+
+軍校或不在普通高校附件中的學校不強行塞入教育部普通高校主表。若需要展示，只能在 `curatedSchools` 作額外補充，並保留來源標記。
+
+## 3. 人工增強層
+
+`src/data/schools.ts` 中的 `curatedSchools` 只補充官方名單不提供、且已有人工核對的字段：
+
+- 英文名、官網。
+- 主校區類型與備註。
+- 少量 B/C 維度樣本。
+- 兼容別名和繁簡匹配。
+
+禁止把人工增強字段反向覆蓋官方字段：
+
+- `moeCode`
+- `department`
+- `moeLevel`
+- `ownership`
+- `sourceUrl`
+- `updatedAt`
+
+未匹配到教育部普通高校附件的人工項只能保留在 `curatedOnlySchools` 審計清單，不進入 `schools` 篩選主池。
+
+## 4. 生活質量眾包
+
+CollegesChat 數據可作 B 維度增強，但必須保持來源和時間戳：
+
+```bash
+cd /Users/ylsuen/CF/unapply
+mkdir -p scripts/raw
+git clone https://github.com/CollegesChat/university-information scripts/raw/university-information
+```
+
+後續解析腳本應輸出 `data/research/quality_crowd.jsonl`，最小結構：
+
+```json
+{
+  "schema": "unapply.qualityContribution.v1",
+  "moeCode": "10001",
+  "schoolName": "北京大學",
+  "dimensionId": "B1",
+  "value": "四人間",
+  "source": {
+    "type": "github",
+    "title": "CollegesChat",
+    "url": "https://github.com/CollegesChat/university-information",
+    "date": "2026-04-21",
+    "confidence": "medium"
+  },
+  "reviewStatus": "pending"
+}
+```
+
+敏感維度或容易過時的數據不得直接入庫，需人工審核後合併。
+
+## 5. 校區與學費
+
+校區位置沒有統一權威結構化源，按優先級補：
+
+1. 學校官網本科招生章程。
+2. 學校官網校區介紹。
+3. 地圖距離與地鐵站點只作輔助判斷。
+
+學費：
+
+- 教育部名單只能穩定判斷公辦、民辦、中外合作/內地與港澳合作辦學。
+- 民辦/合作辦學精確金額需按當年招生章程或陽光高考專業計劃核對。
+- 未核價時填 `民辦/合作待核價`，不要估算成 `1-3萬`、`3-8萬` 或 `8萬+`。
+
+## 6. 驗證清單
+
+每次改動數據層後至少跑：
+
+```bash
+cd /Users/ylsuen/CF/unapply
+npm run data:schools
+npm run audit:questions
+npm run lint
+npm run build
+npm audit
+```
+
+部署前額外確認：
+
+```bash
+cd /Users/ylsuen/CF/unapply
+npx wrangler pages project list
+curl -I https://nope.bdfz.net/
+```
+
+部署成功不等於自定義域名已更新；最後必須以 `https://nope.bdfz.net/` 實際響應為準。
