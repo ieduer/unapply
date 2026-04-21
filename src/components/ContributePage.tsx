@@ -211,6 +211,7 @@ export function ContributePage({ schools, onBack }: Props) {
     })
     const title = `數據貢獻：${school?.name ?? schoolId} · ${dimensionLabel} = ${selectedValue}`
     const url = new URL(ISSUE_URL)
+    url.searchParams.set('template', 'data-contribution.md')
     url.searchParams.set('title', title)
     url.searchParams.set('body', body)
     url.searchParams.set('labels', 'data-contribution,needs-triage')
