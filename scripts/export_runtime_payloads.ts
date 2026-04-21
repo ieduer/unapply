@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -21,6 +22,14 @@ function toJson(value: unknown): string {
 
 function toTsJson(value: unknown): string {
   return JSON.stringify(value, null, 2)
+}
+
+function createStableVersion(parts: unknown[]): string {
+  const hash = createHash('sha256')
+  for (const part of parts) {
+    hash.update(JSON.stringify(part))
+  }
+  return hash.digest('hex').slice(0, 12)
 }
 
 function withDefinedEntries<T extends Record<string, unknown>>(value: T): T {
@@ -98,15 +107,18 @@ async function main() {
     await writeJson(path.join(campusesDir, fileName), bucket)
   }
 
-  const researchGeneratedAt = typeof researchPipelineMeta?.generatedAt === 'string' ? researchPipelineMeta.generatedAt : null
-  const campusGeneratedAt = typeof campusResearchMeta?.generatedAt === 'string' ? campusResearchMeta.generatedAt : null
-  const version = [researchGeneratedAt, campusGeneratedAt, new Date().toISOString()]
-    .filter((value): value is string => Boolean(value))
-    .sort()
-    .at(-1)!
+  const orderedProvincePortals = Object.fromEntries(
+    Object.entries(provincePortalsByProvince).sort(([left], [right]) => left.localeCompare(right, 'zh-Hans-CN')),
+  )
 
   const runtimeManifest = {
-    version,
+    version: createStableVersion([
+      runtimeSchools,
+      sortedProvinceBuckets.map(([province, bucket]) => [province, bucket]),
+      orderedProvincePortals,
+      researchPipelineMeta?.counts ?? null,
+      campusResearchMeta?.counts ?? null,
+    ]),
     schoolsPath: '/data/runtime/schools.json',
     campusesBasePath: '/data/runtime/campuses',
     counts: {
@@ -115,10 +127,6 @@ async function main() {
       campusRows: Number(campusResearchMeta?.counts?.campusRows ?? Object.keys(campusResearchByMoeCode).length),
     },
   }
-
-  const orderedProvincePortals = Object.fromEntries(
-    Object.entries(provincePortalsByProvince).sort(([left], [right]) => left.localeCompare(right, 'zh-Hans-CN')),
-  )
 
   await fs.writeFile(
     runtimeManifestPath,
