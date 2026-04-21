@@ -15,11 +15,12 @@ npm install
 npm run data:schools  # 從教育部 2025 名單重建 src/data/officialSchools.ts
 npm run data:github-profiles # 從 DaoSword 高等教育寬表提取 GitHub 補充的官網/校址
 npm run data:campus-extract # 從 GitHub 校區/POI 源生成 data/research/campus_locations.2026-04-21.csv
-npm run data:research # 從 data/research/ 與 CollegesChat 原始問卷重建 src/data/researchData.ts + src/data/campusResearch.ts
+npm run data:research # 重建研究聚合層，並同步輸出 public/data/runtime/*.json
+npm run data:runtime  # 只重導運行時 payload（schools.json + campus buckets）
 npm run audit:questions # 檢查題目規則與維度枚舉是否一致
 npm run audit:data   # 檢查每題實際覆蓋率與最大排除能力
 npm run dev    # Vite 本機啟動
-npm run build  # tsc + vite build → dist/
+npm run build  # 先 data:runtime，再 tsc + vite build → dist/
 npm run lint
 ```
 
@@ -35,7 +36,7 @@ npm run lint
 - `data/research/collegeschat_results_desensitized.csv`
 
 若項目內沒有 `collegeschat_results_desensitized.csv`，腳本會回退讀取本機 `/tmp/university-information/questionnaires/results_desensitized.csv`。
-目前項目中的 `quality_crowd.2026-04-21.jsonl` 不直接入庫，因為現有轉換結果存在列錯位。
+`quality_crowd*.jsonl` 目前不再提交進倉庫：現有轉換結果列錯位，且不進運行時；等後續基於原始問卷重新導出乾淨版本後再重新入庫。
 `github_school_profiles.2026-04-21.csv` 來自 `DaoSword/China-Education-Data` 的高等教育寬表，只作官網/校址補缺，不參與高風險篩選維度推導。
 `campus_locations.2026-04-21.csv` 目前由以下結構化源聚合生成：`Naptie/cn-university-geocoder`（主源）+ `ZsTs119/china-university-database` / `pg7go/The-Location-Data-of-Schools-in-China`（POI 校驗）+ `DaoSword/China-Education-Data`（校區地址補全）+ `GaoHR` 2021 全國大學信息表（僅補主校區近似坐標）。`jtchen2k/hcu` 與 `daxue.cgsop.com` 暫作人工校驗輔助，不直接入自動管線；`ramwin/china-public-data` 的高校名單基於 2017 年教育部附件，現已過時，只保留參考價值。
 `campus_official_overrides.2026-04-21.csv` 是校級官方覆蓋層，只收能安全進 A5/B9 硬篩選的條目；本輪先補了 9 所北京高校，讓 `A5` 覆蓋提升到 `127/2919`。
@@ -57,9 +58,13 @@ src/
   main.tsx
   data/
     officialSchools.ts      # 生成文件：教育部 2025 普通高校 2919 所
-    researchData.ts         # 生成文件：網站/招生入口/學科評估/眾包聚合
-    campusResearch.ts       # 生成文件：校區明細（詳情頁 lazy load）
-    schools.ts              # 官方全量名單 + curatedSchools 人工增強合併層
+    researchData.ts         # 生成文件：研究聚合層（構建/腳本用，不直接進前端 chunk）
+    campusResearch.ts       # 生成文件：校區底稿（構建/腳本用，不直接進前端 chunk）
+    provinceAdmissionPortals.ts # 生成文件：31 省官方招考入口小表
+    runtimeManifest.ts      # 生成文件：運行時 payload 版本與路徑
+    campusProvinceBuckets.ts # 生成文件：省份 → 校區 bucket 文件名
+    runtimeTypes.ts         # 運行時 payload 類型
+    schools.ts              # 類型 + build 側合併邏輯
     environment.ts          # 省份/城市 → 氣候、供暖、地鐵等推導
     dimensions.ts           # A/B/C/E 維度 + 權威來源鏈接
     questions.ts            # 42 題減法問卷
@@ -68,6 +73,7 @@ src/
     coverage.ts             # 每題覆蓋率 / 最大排除能力分析
   lib/
     bdfzIdentity.ts         # my.bdfz.net 集成
+    runtimeData.ts          # fetch schools.json / campus buckets 的運行時載入器
     schoolName.ts           # 官網 / 眾包 / 研究 CSV 共用名稱規範化
     share.ts                # html-to-image 分享圖
     theme.ts                # 本地色系狀態與 CSS 變量應用
@@ -84,6 +90,9 @@ docs/
   PROJECT_REPORT.md         # 目的、架構、數據缺口、合規
   DATA_RESEARCH_REQUEST.md  # deep research 所需資料與 CSV/JSONL 格式
   MAINTENANCE_MANUAL.md     # 接手維護、更新、審計、部署與回滾
+public/data/runtime/
+  schools.json              # 前端按需拉取的學校主 payload
+  campuses/*.json           # 按省份拆分的校區 payload
 db/
   schema.sql                # v2 引入 Worker + D1 時使用
 scripts/
@@ -91,6 +100,7 @@ scripts/
   extract_campus_locations.mjs # GitHub 校區/POI 數據 → campus_locations.csv
   build_research_data.mjs   # 研究資料 → researchData.ts 生成腳本
   build_campus_research.mjs # campus_locations.csv → campusResearch.ts 生成腳本
+  export_runtime_payloads.ts # researchData/campusResearch/schools → runtime JSON payload
   audit_data_coverage.mjs   # 42 題覆蓋率審計腳本
   fetch_sources.md          # 數據採集流程 SOP
 ```

@@ -1,4 +1,4 @@
-# nope.bdfz.net 維護手冊（v1.4）
+# nope.bdfz.net 維護手冊（v1.5）
 
 本手冊面向接手維護 `nope.bdfz.net` 的工程師。目標不是介紹產品，而是讓你能安全更新數據、核查覆蓋、發布上線並在必要時回滾。
 
@@ -20,15 +20,20 @@
 ### 1.2 當前模塊分工
 
 ```text
-src/data/officialSchools.ts   教育部 2025 普通高校主表（2919）
-src/data/researchData.ts      研究增強層：官網 / 招考入口 / 學科評估 / 眾包聚合 / 校級官方覆蓋
-src/data/campusResearch.ts    校區明細（地址 / 坐標 / 置信度；詳情頁 lazy load）
-src/data/schools.ts           主表 + curated + research 合併後的最終學校數據
+src/data/officialSchools.ts   教育部 2025 普通高校主表（2919，build 側）
+src/data/researchData.ts      研究增強層（build 側；不直接進前端 chunk）
+src/data/campusResearch.ts    校區底稿（build 側；不直接進前端 chunk）
+src/data/provinceAdmissionPortals.ts  31 省官方招考入口小表（runtime）
+src/data/runtimeManifest.ts   runtime payload 版本與路徑
+src/data/campusProvinceBuckets.ts  省份 → 校區 bucket 文件名
+public/data/runtime/          運行時實際拉取的 JSON payload
+src/data/schools.ts           類型 + build 側合併邏輯
 src/data/questions.ts         42 題減法問卷
 src/engine/filter.ts          排除引擎
 src/engine/coverage.ts        每題覆蓋率與最大排除能力分析
 src/components/*              路由頁面；已做 route-level lazy split
 src/lib/theme.ts              色系預設與本地自定義
+src/lib/runtimeData.ts        runtime payload 載入器
 ```
 
 ## 2. 日常命令
@@ -40,6 +45,7 @@ npm run data:schools
 npm run data:github-profiles
 npm run data:campus-extract
 npm run data:research
+npm run data:runtime
 npm run audit:questions
 npm run audit:data
 npm run lint
@@ -98,12 +104,12 @@ npm run build
 
 注意：
 
-1. `quality_crowd.2026-04-21.jsonl` 目前不直接入庫，因為現有文件存在列錯位。
+1. `quality_crowd*.jsonl` 目前不再提交進倉庫，因為現有轉換結果列錯位，且不直接進運行時。
 2. `city_environment.2026-04-21.csv` 與 `city_metro.2026-04-21.csv` 目前是空表。
 3. `github_school_profiles.2026-04-21.csv` 來自 `DaoSword/China-Education-Data`，只用於官網/校址補缺，不可直接拿它推導校區、地鐵距離或大一校區去向。
 4. `campus_locations.2026-04-21.csv` 由 `Naptie/cn-university-geocoder`（主源）+ `ZsTs119/china-university-database` / `pg7go/The-Location-Data-of-Schools-in-China`（POI 校驗）+ `DaoSword/China-Education-Data`（校區地址補全）+ `GaoHR` 2021 全國大學信息表（僅補主校區近似坐標）聚合生成。`jtchen2k/hcu` 與 `daxue.cgsop.com` 暫只作人工核驗參考；`ramwin/china-public-data` 的高校名單基於 2017 年教育部附件，現已不再入正式管線。
 5. `campus_official_overrides.2026-04-21.csv` 是校級官方覆蓋層，只收能安全進 A5/B9 硬篩選的條目；本輪已補 9 所北京高校。
-6. `researchData.ts` 與 `campusResearch.ts` 都是可提交的生成結果；原始抓取文件放在 `data/research/`。
+6. `researchData.ts` 與 `campusResearch.ts` 保留為 build 側生成結果；前端實際載入的是 `public/data/runtime/*.json`。
 
 若要重放校區抽取：
 
@@ -151,7 +157,7 @@ npm run audit:data
 
 1. 眾包生活數據目前是「按學校聚合」，還不是「按校區/年級聚合」。
 2. `B9` 目前混合了城市級和校區級資料；本輪只新增了 4 所有明確官方地鐵步行依據的北京高校，其餘仍需地鐵站距與本科生落點。
-3. `researchData.ts` 會形成單獨大 chunk；不要再把它靜態引回首頁首屏。
+3. 不要把 `researchData.ts` / `campusResearch.ts` 再直接 import 回 runtime；前端只能走 `src/lib/runtimeData.ts` → `public/data/runtime/*.json`。
 4. `db/schema.sql` 仍是 v2 預留，當前站點是純 SPA，別誤以為已有服務端數據校驗。
 
 ## 5. 前端與交互維護
@@ -159,7 +165,8 @@ npm run audit:data
 ### 5.1 色系
 
 - 全站顏色依賴 CSS 變量。
-- 用戶可通過底部居中的 `色系` dock 選擇預設或自定義 accent。
+- 用戶可通過右上角下方的 `色系` 面板選擇預設或自定義 accent。
+- 色系會同時管理畫布背景、卡片深淺與 accent，不再固定黑底。
 - 本地存儲鍵：`unapply.theme.v1`
 
 若要新增預設：
@@ -168,16 +175,12 @@ npm run audit:data
 2. 保證深色底與文字對比足夠
 3. `npm run build` 後目測首頁、問卷頁、結果頁
 
-### 5.2 問題頁的數據提示
+### 5.2 問題頁與結果頁
 
-`QuestionRunner` 現在會顯示：
-
-- 該題覆蓋率
-- 單選項最大排除量
-- 若 `maxExcluded=0`，直接提示數據補充中並引導去貢獻頁
-- 沒有實際刪減能力的題與限制選項會先暫時隱藏
-
-不要刪掉這類提示，否則用戶會把「排不掉」誤判為產品邏輯錯誤。
+- 問卷頁不再展示覆蓋率與排除量說明，避免打斷答題；這些方法論統一放到 About。
+- 沒有實際刪減能力的題與限制選項會先暫時隱藏。
+- 當剩餘學校 `<= 10` 時，問卷會直接結束並進結果頁，不再逼用戶做完整套題。
+- 結果頁應保留「清空重來」入口。
 
 ## 6. 部署與驗證
 
@@ -195,9 +198,9 @@ npm run audit:data
 
 1. `https://nope.bdfz.net/` 返回 200。
 2. 首頁可進入問卷。
-3. 問卷頁能看到覆蓋率提示。
+3. 問卷可正常進入，且當剩餘學校 `<=10` 時會直接出報告。
 4. 結果頁能看到學校官網 + 省級官方招考入口。
-5. 底部居中色系 dock 可用、縮放後不遮擋內容，且刷新後保留。
+5. 右上角色系面板可用、縮放後不遮擋內容，且刷新後保留。
 
 注意：Cloudflare Pages 顯示 deploy 成功不等於自定義域名健康，最後驗證以 `https://nope.bdfz.net/` 實際響應為準。
 
@@ -217,6 +220,7 @@ git push
 ```bash
 cd /Users/ylsuen/CF/unapply
 git checkout <GOOD_COMMIT> -- src/data/officialSchools.ts src/data/researchData.ts src/data/schools.ts
+npm run data:runtime
 npm run build
 ```
 

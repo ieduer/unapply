@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import type { School } from '../data/schools'
-import type { CampusResearchRecord } from '../data/campusResearch'
 import { DIMENSIONS, DIMENSION_GROUPS } from '../data/dimensions'
 import type { DimensionId } from '../data/dimensions'
+import type { CampusResearchRecord, ResearchEvidence } from '../data/runtimeTypes'
 import {
   candidateProvinceOptions,
   defaultCandidateProvince,
@@ -10,8 +10,7 @@ import {
   type CandidateProvince,
 } from '../data/admissionAuthorities'
 import { getEnvironment } from '../data/environment'
-import { schoolResearchProfilesByMoeCode } from '../data/researchData'
-import type { ResearchEvidence } from '../data/researchData'
+import { loadCampusesByProvince } from '../lib/runtimeData'
 
 interface Props {
   school: School
@@ -69,17 +68,17 @@ function contribHref(schoolId: string, dim: DimensionId): string {
 
 export function SchoolDetail({ school, onBack }: Props) {
   const [candidateProvince, setCandidateProvince] = useState<CandidateProvince>(defaultCandidateProvince)
-  const [campusCache, setCampusCache] = useState<Record<string, CampusResearchRecord[]>>({})
+  const [campusMap, setCampusMap] = useState<Record<string, CampusResearchRecord[]>>({})
   const qualityDims = DIMENSION_GROUPS.B
   const env = getEnvironment(school.province, school.city)
   const levelText = school.level ? (levelLabel[school.level] ?? school.level) : '層次待核'
   const tierText = school.cityTier ? (tierLabel[school.cityTier] ?? school.cityTier) : '城市等級待核'
   const typeText = school.type ?? school.moeLevel ?? '類型待補'
   const campusText = school.mainCampusType ? (campusLabel[school.mainCampusType] ?? school.mainCampusType) : '校區待補'
-  const campuses = school.moeCode ? (campusCache[school.moeCode] ?? null) : []
-  const researchProfile = school.moeCode ? schoolResearchProfilesByMoeCode[school.moeCode] : undefined
-  const officialA5Evidence = researchProfile?.evidence?.A5 ?? []
-  const officialB9Evidence = researchProfile?.evidence?.B9 ?? []
+  const hasCampusResolution = !school.moeCode || Object.hasOwn(campusMap, school.moeCode)
+  const campusList = school.moeCode ? (campusMap[school.moeCode] ?? []) : []
+  const officialA5Evidence = school.researchEvidence?.A5 ?? []
+  const officialB9Evidence = school.researchEvidence?.B9 ?? []
   const metroRaw = school.quality?.B9
   const metroText = Array.isArray(metroRaw) ? metroRaw.join(' / ') : metroRaw
   const officialMetroText = officialB9Evidence.length > 0 ? metroText : null
@@ -90,26 +89,32 @@ export function SchoolDetail({ school, onBack }: Props) {
   useEffect(() => {
     let cancelled = false
 
-    if (!school.moeCode || campusCache[school.moeCode]) return () => {
-      cancelled = true
+    if (!school.moeCode) {
+      return () => {
+        cancelled = true
+      }
+    }
+    if (Object.hasOwn(campusMap, school.moeCode)) {
+      return () => {
+        cancelled = true
+      }
     }
 
-    import('../data/campusResearch')
-      .then((module) => {
+    void loadCampusesByProvince(school.province)
+      .then((bucket) => {
         if (cancelled) return
-        const nextCampuses = module.campusResearchByMoeCode[school.moeCode!] ?? []
-        setCampusCache((current) => {
-          if (current[school.moeCode!]) return current
+        setCampusMap((current) => {
+          if (Object.hasOwn(current, school.moeCode!)) return current
           return {
             ...current,
-            [school.moeCode!]: nextCampuses,
+            [school.moeCode!]: bucket[school.moeCode!] ?? [],
           }
         })
       })
       .catch(() => {
-        if (cancelled || !school.moeCode) return
-        setCampusCache((current) => {
-          if (current[school.moeCode!]) return current
+        if (cancelled) return
+        setCampusMap((current) => {
+          if (Object.hasOwn(current, school.moeCode!)) return current
           return {
             ...current,
             [school.moeCode!]: [],
@@ -120,7 +125,7 @@ export function SchoolDetail({ school, onBack }: Props) {
     return () => {
       cancelled = true
     }
-  }, [campusCache, school.moeCode])
+  }, [campusMap, school.moeCode, school.province])
 
   return (
     <main className="min-h-screen app-canvas text-fog-100">
@@ -236,19 +241,19 @@ export function SchoolDetail({ school, onBack }: Props) {
             </div>
           )}
 
-          {campuses === null && (
+          {!hasCampusResolution && (
             <p className="text-xs text-fog-500 leading-relaxed">正在載入校區資料…</p>
           )}
 
-          {campuses !== null && campuses.length === 0 && (
+          {hasCampusResolution && campusList.length === 0 && (
             <p className="text-xs text-fog-500 leading-relaxed">
               校區資料補充中；當前只把已核到學校級官方依據的 A5/B9 條目拿去排除，其餘底稿只展示不誤殺。點上方入口可直接補充。
             </p>
           )}
 
-          {campuses && campuses.length > 0 && (
+          {hasCampusResolution && campusList.length > 0 && (
             <div className="grid gap-3">
-              {campuses.map((campus) => (
+              {campusList.map((campus) => (
                 <div
                   key={`${school.id}-${campus.campusName}-${campus.campusAddress ?? ''}`}
                   className="bg-ink-900 border border-ink-800 rounded-lg p-4 flex flex-col gap-2"

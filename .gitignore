@@ -9,3 +9,4 @@ dist
 .playwright-cli/
 venv_temp/
 .tmp/
+data/research/quality_crowd*.jsonl

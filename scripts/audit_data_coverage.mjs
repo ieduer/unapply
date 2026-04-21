@@ -1,13 +1,15 @@
+import fs from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const repoRoot = '/Users/ylsuen/CF/unapply';
 
-const schoolsModule = await import(pathToFileURL(path.join(repoRoot, 'src', 'data', 'schools.ts')).href);
 const questionsModule = await import(pathToFileURL(path.join(repoRoot, 'src', 'data', 'questions.ts')).href);
 const coverageModule = await import(pathToFileURL(path.join(repoRoot, 'src', 'engine', 'coverage.ts')).href);
+const schools = JSON.parse(await fs.readFile(path.join(repoRoot, 'public', 'data', 'runtime', 'schools.json'), 'utf8'));
+const schoolCount = schools.length;
 
-const coverage = coverageModule.analyzeQuestionCoverage(schoolsModule.schools);
+const coverage = coverageModule.analyzeQuestionCoverage(schools);
 
 const rows = questionsModule.allQuestions.map((question) => {
   const item = coverage[question.id];
@@ -16,7 +18,7 @@ const rows = questionsModule.allQuestions.map((question) => {
     section: question.section,
     dataStatus: question.dataStatus,
     active: item.active ? 'yes' : 'no',
-    covered: `${item.coveredSchoolCount}/${schoolsModule.schoolCount}`,
+    covered: `${item.coveredSchoolCount}/${schoolCount}`,
     coveredRate: `${(item.coveredRate * 100).toFixed(1)}%`,
     maxExcluded: item.maxExcludedCount,
     impactfulOptions: item.impactfulOptionCount,
@@ -37,7 +39,7 @@ const hiddenQuestions = questionsModule.allQuestions
   .map((question) => ({
     id: question.id,
     title: question.title,
-    covered: `${coverage[question.id].coveredSchoolCount}/${schoolsModule.schoolCount}`,
+    covered: `${coverage[question.id].coveredSchoolCount}/${schoolCount}`,
     coveredRate: `${(coverage[question.id].coveredRate * 100).toFixed(1)}%`,
   }));
 

@@ -1,5 +1,5 @@
 import type { School } from './schools'
-import { provincePortalsByProvince } from './researchData'
+import { provincePortalsByProvince } from './provinceAdmissionPortals'
 
 export interface AdmissionResourceLink {
   label: string

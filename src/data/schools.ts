@@ -7,6 +7,7 @@
 // 由 FilterEngine 疑罪從無處理。
 
 import type { DimensionId } from './dimensions';
+import type { SchoolResearchEvidenceMap } from './runtimeTypes';
 import { officialSchoolCatalogMeta } from './officialSchoolMeta';
 import { officialSchools } from './officialSchools';
 import { schoolResearchProfilesByMoeCode } from './researchData';
@@ -43,6 +44,7 @@ export interface School {
   sourceUrl?: string;
   updatedAt?: string;
   tags?: string[];
+  researchEvidence?: SchoolResearchEvidenceMap;
   // 生活質量與學科維度：可部分覆蓋，未知為 undefined → 引擎疑罪從無
   quality?: Partial<Record<DimensionId, string | string[]>>;
 }

@@ -4,6 +4,7 @@ import type { School } from './data/schools'
 import { filterSchools } from './engine/filter'
 import type { AnswerMap } from './engine/filter'
 import { recordUnapplyEvent } from './lib/bdfzIdentity'
+import { loadSchools } from './lib/runtimeData'
 
 const Landing = lazy(async () => ({ default: (await import('./components/Landing')).Landing }))
 const QuestionRunner = lazy(async () => ({ default: (await import('./components/QuestionRunner')).QuestionRunner }))
@@ -113,9 +114,9 @@ export default function App() {
   useEffect(() => {
     if (!routeNeedsSchools(route) || schools || schoolLoadError) return
     let alive = true
-    void import('./data/schools')
-      .then((mod) => {
-        if (alive) setSchools(mod.schools)
+    void loadSchools()
+      .then((loadedSchools) => {
+        if (alive) setSchools(loadedSchools)
       })
       .catch((err: unknown) => {
         if (!alive) return

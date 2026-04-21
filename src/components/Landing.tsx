@@ -13,7 +13,7 @@ export function Landing({ onStart, onAbout }: Props) {
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex flex-col items-center justify-between px-5 sm:px-6 py-8 sm:py-12">
       <div className="w-full max-w-2xl flex items-center justify-between text-[10px] sm:text-xs mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-fog-500">
-        <span>nope.bdfz.net · v1.4</span>
+        <span>nope.bdfz.net · v1.5</span>
         <button
           onClick={onAbout}
           className="hover:text-accent-500 transition-colors min-h-[44px] -my-3 py-3 px-2"
