@@ -31,12 +31,6 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
           <br />哪所大學
         </h1>
 
-        <p className="text-base sm:text-lg text-fog-300 leading-relaxed max-w-xl">
-          這裡不告訴你「該考哪所」。<br />
-          只陪你從教育部 2025 名單的 <span className="mono text-fog-100">{officialSchoolCount.toLocaleString()}</span> 所
-          中，用你自己的不能忍，劃掉一批。
-        </p>
-
         <div className="flex flex-col gap-2 text-sm text-fog-500 leading-relaxed">
           <p className="mono">
             本次目錄 / {officialSchoolCount.toLocaleString()} 所普通高校（本科 {officialUndergraduateCount.toLocaleString()} · 高職專科 {officialVocationalCount.toLocaleString()}）
@@ -74,9 +68,9 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
         <div className="rounded-2xl border border-ink-800 bg-ink-900/80 p-5 flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <p className="mono text-[11px] uppercase tracking-[0.24em] text-fog-500">用戶貢獻數據</p>
-            <h2 className="serif text-2xl">這個站靠大家把學校補準</h2>
+            <h2 className="serif text-2xl">無學生，不學校</h2>
             <p className="text-sm text-fog-400 leading-relaxed">
-              現在首頁就把真實校園數據放進來了。你熟悉哪所學校，就補哪一塊；提交先進 GitHub issue，審核後再入庫。
+              既然所謂官方信息向來少⋯⋯不如，一起來；辛苦提交先進 GitHub issue，審核後再入庫。
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -105,32 +99,36 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
         </div>
       </section>
 
-      <footer className="w-full max-w-2xl text-xs mono text-fog-500 leading-relaxed space-y-2 pt-6 border-t border-ink-800">
-        <div className="flex flex-wrap gap-x-3 gap-y-1">
-          <span className="text-fog-300">姊妹站：</span>
-          <a className="hover:text-accent-500" href="https://path.bdfz.net" target="_blank" rel="noreferrer noopener">path · 職業減法</a>
-          <span className="text-ink-700">·</span>
-          <a className="hover:text-accent-500" href="https://750.bdfz.net" target="_blank" rel="noreferrer noopener">750 · 北京高考</a>
-          <span className="text-ink-700">·</span>
-          <a className="hover:text-accent-500" href="https://my.bdfz.net" target="_blank" rel="noreferrer noopener">my · 用戶中心</a>
+      <footer className="w-full max-w-2xl pt-6 border-t border-ink-800">
+        <div className="grid gap-3 sm:gap-2">
+          <FooterGroup
+            label="姊妹站"
+            items={[
+              { href: 'https://path.bdfz.net', text: 'path · 職業減法' },
+              { href: 'https://750.bdfz.net', text: '750 · 北京高考' },
+              { href: 'https://my.bdfz.net', text: 'my · 用戶中心' },
+            ]}
+          />
+          <FooterGroup
+            label="權威數據"
+            items={[
+              { href: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202506/t20250627_1195683.html', text: '教育部' },
+              { href: 'https://www.cma.gov.cn/', text: '氣象局' },
+              { href: 'https://www.yicai.com/topic/100311963/', text: '第一財經' },
+              { href: 'https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/', text: '學科評估' },
+            ]}
+          />
+          <FooterGroup
+            label="開源與貢獻"
+            items={[
+              { href: 'https://github.com/ieduer/unapply', text: 'ieduer/unapply' },
+              { href: 'https://github.com/CollegesChat/university-information', text: 'CollegesChat' },
+            ]}
+          />
         </div>
-        <div className="flex flex-wrap gap-x-3 gap-y-1">
-          <span className="text-fog-300">權威數據：</span>
-          <a className="hover:text-accent-500" href="https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202506/t20250627_1195683.html" target="_blank" rel="noreferrer noopener">教育部</a>
-          <span className="text-ink-700">·</span>
-          <a className="hover:text-accent-500" href="https://www.cma.gov.cn/" target="_blank" rel="noreferrer noopener">氣象局</a>
-          <span className="text-ink-700">·</span>
-          <a className="hover:text-accent-500" href="https://www.yicai.com/topic/100311963/" target="_blank" rel="noreferrer noopener">第一財經</a>
-          <span className="text-ink-700">·</span>
-          <a className="hover:text-accent-500" href="https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/" target="_blank" rel="noreferrer noopener">學科評估</a>
+        <div className="mt-3 px-1 text-[11px] sm:text-xs mono text-fog-500 leading-relaxed opacity-70">
+          非商業公益 · CC BY-NC-SA 4.0 · 不提供志願填報建議
         </div>
-        <div className="flex flex-wrap gap-x-3 gap-y-1">
-          <span className="text-fog-300">開源 & 貢獻：</span>
-          <a className="hover:text-accent-500" href="https://github.com/ieduer/unapply" target="_blank" rel="noreferrer noopener">ieduer/unapply</a>
-          <span className="text-ink-700">·</span>
-          <a className="hover:text-accent-500" href="https://github.com/CollegesChat/university-information" target="_blank" rel="noreferrer noopener">CollegesChat</a>
-        </div>
-        <div className="opacity-70 pt-1">非商業公益 · CC BY-NC-SA 4.0 · 不提供志願填報建議</div>
       </footer>
     </main>
   )
@@ -143,5 +141,32 @@ function MetricCard({ label, value, detail }: { label: string; value: string; de
       <p className="serif text-3xl text-fog-100">{value}</p>
       <p className="text-xs text-fog-500 leading-relaxed">{detail}</p>
     </div>
+  )
+}
+
+function FooterGroup({
+  label,
+  items,
+}: {
+  label: string
+  items: { href: string; text: string }[]
+}) {
+  return (
+    <section className="rounded-2xl sm:rounded-none border border-ink-800 sm:border-0 bg-ink-900/70 sm:bg-transparent px-4 py-3 sm:px-0 sm:py-0">
+      <p className="mono text-[11px] uppercase tracking-[0.18em] text-fog-300">{label}</p>
+      <div className="mt-2 flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-x-3 sm:gap-y-1 text-xs mono text-fog-500 leading-relaxed">
+        {items.map((item) => (
+          <a
+            key={item.href}
+            className="hover:text-accent-500 break-all"
+            href={item.href}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            {item.text}
+          </a>
+        ))}
+      </div>
+    </section>
   )
 }
