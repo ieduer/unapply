@@ -271,12 +271,46 @@ function normalizeRunningQuota(answer) {
   return '40+公里';
 }
 
+function convertVacationUnitToDays(value, unit) {
+  const amount = Number(value);
+  if (!Number.isFinite(amount) || amount <= 0) return null;
+  if (/天|日|day/i.test(unit)) return amount;
+  if (/周|週/.test(unit)) return amount * 7;
+  if (/个月|個月|月/.test(unit)) return amount * 30;
+  return null;
+}
+
+function extractVacationDays(text, keywords) {
+  const escaped = keywords.join('|');
+  const patterns = [
+    new RegExp(`(?:${escaped})[^\\d]{0,6}(\\d+(?:\\.\\d+)?)(天|日|周|週|个月|個月|月|day|days)`, 'ig'),
+    new RegExp(`(\\d+(?:\\.\\d+)?)(天|日|周|週|个月|個月|月|day|days)[^\\d]{0,6}(?:${escaped})`, 'ig'),
+  ];
+
+  for (const pattern of patterns) {
+    const match = pattern.exec(text);
+    if (!match) continue;
+    const days = convertVacationUnitToDays(match[1], match[2]);
+    if (days !== null) return days;
+  }
+
+  return null;
+}
+
 function normalizeVacation(answer) {
-  const text = answer.replace(/\s+/g, '');
+  const raw = answer.trim();
+  const text = raw.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
-  if (/小学期/.test(text)) return '有小學期';
-  const dayMatches = Array.from(text.matchAll(/(\d+)(?:天|day)/g), (match) => Number(match[1])).filter(Number.isFinite);
-  if (dayMatches.some((day) => day > 0 && day < 42)) return '暑假＜6週';
+  if (/小学期|小學期/.test(text)) return '有小學期';
+  const summerDays = extractVacationDays(raw, ['暑假', '暑休', 'summer']);
+  if (summerDays !== null) {
+    if (summerDays < 28) return '暑假＜4週';
+    if (summerDays < 42) return '暑假4-6週';
+    return '標準';
+  }
+  if (/无小学期|無小學期|没有小学期|沒有小學期|正常双学期|正常兩學期|两学期制|兩學期制/.test(text)) {
+    return '標準';
+  }
   return null;
 }
 

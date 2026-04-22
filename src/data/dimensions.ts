@@ -2,7 +2,7 @@
 // 所有可驗證的維度都必須給出外部鏈接，不可驗證的放在 PROJECT_REPORT.md 的數據缺口節。
 
 export type DimensionId =
-  | 'A1' | 'A2' | 'A3' | 'A4' | 'A5'
+  | 'A1' | 'A2' | 'A3' | 'A4' | 'A5' | 'A6'
   | 'E1' | 'E2' | 'E3' | 'E4' | 'E5' | 'E6' | 'E7' | 'E8'
   | 'B1' | 'B2' | 'B3' | 'B4' | 'B5' | 'B6' | 'B7' | 'B8'
   | 'B9' | 'B10' | 'B11' | 'B12' | 'B13' | 'B14' | 'B15' | 'B16'
@@ -83,6 +83,18 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
     ],
     coverage: 'mixed',
     notes: 'main_city = 主校區在主城；suburb_with_metro = 遠郊但有地鐵；suburb = 遠郊無地鐵；separate_freshman = 大一在分校',
+  },
+  A6: {
+    id: 'A6',
+    label: '特殊招生門檻',
+    section: 'A_redline',
+    values: ['regular_gaokao', 'art_exam', 'sports_test', 'military_police', 'navigation_flight'],
+    authoritativeSources: [
+      { title: '教育部全國普通高等學校名單（院校類型 / 校名）', url: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202506/t20250627_1195683.html' },
+      { title: '陽光高考（藝術 / 體育 / 軍警等特殊招生信息）', url: 'https://gaokao.chsi.com.cn/' },
+    ],
+    coverage: 'mixed',
+    notes: '用院校類型、校名與公開招生方式保守推導：藝術/體育院校、軍警院校、航海/飛行等優先標記；拿不準的不硬貼。',
   },
 
   // ============ E 環境／地理維度（由省份+城市推導） ============
@@ -186,7 +198,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
   },
   B7: {
     id: 'B7', label: '假期', section: 'B_quality',
-    values: ['標準', '有小學期', '暑假＜6週'],
+    values: ['標準', '有小學期', '暑假＜4週', '暑假4-6週'],
     authoritativeSources: [{ title: '各校校曆', url: 'https://gaokao.chsi.com.cn/' }],
     coverage: 'mixed',
   },
@@ -343,7 +355,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
 };
 
 export const DIMENSION_GROUPS = {
-  A: ['A1', 'A2', 'A3', 'A4', 'A5'] as DimensionId[],
+  A: ['A1', 'A2', 'A3', 'A4', 'A5', 'A6'] as DimensionId[],
   E: ['E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8'] as DimensionId[],
   B: [
     'B1','B2','B3','B4','B5','B6','B7','B8',

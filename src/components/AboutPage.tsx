@@ -86,7 +86,6 @@ export function AboutPage({ onBack }: Props) {
             <li><b className="text-fog-100">權威層級推導是例外</b>：省份 → 氣候／方言／沿海這種地理事實來自權威機構，不是默認。</li>
             <li><b className="text-fog-100">中性展示</b>：所有維度以事實 + 時間戳 + 來源呈現。</li>
             <li><b className="text-fog-100">非商業</b>：本站非商業公益；派生自 CollegesChat 的數據繼承 CC BY-NC-SA 4.0。</li>
-            <li><b className="text-fog-100">允許申訴下架</b>：學校官方可通過 <a className="text-accent-500" href="mailto:nope@bdfz.net">nope@bdfz.net</a> 申訴，48 小時內處理。</li>
             <li><b className="text-fog-100">不提供志願填報建議</b>：本站不是教育機構，不對錄取結果負責。</li>
           </ul>
         </div>

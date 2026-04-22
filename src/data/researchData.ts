@@ -1340,8 +1340,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "查寢",
       "B3": "公共澡堂",
       "B11": "不計費",
-      "B7": "有小學期",
       "B22": "驛站在校內",
+      "B7": "有小學期",
       "B16": "400W內",
       "B18": "允許",
       "B20": "不強制",
@@ -1384,7 +1384,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B17": "有通宵自習",
       "B19": "強制校園卡",
       "B4": "早晚自習強制",
-      "B7": "有小學期",
       "B9": "無地鐵",
       "B12": "不斷",
       "B15": "允許",
@@ -1579,6 +1578,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "無",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
@@ -1588,7 +1588,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B17": "有通宵自習",
       "B19": "強制校園卡",
       "B24": "查寢",
-      "B7": "有小學期",
       "B18": "禁止",
       "B21": "大型超市",
       "B23": "無",
@@ -2034,6 +2033,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B4": "無",
       "B5": "無",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
@@ -2044,7 +2044,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B21": "大型超市",
       "B23": "無",
       "B24": "23點封寢",
-      "B7": "有小學期",
       "B11": "限速嚴重",
       "B13": "貴",
       "B19": "強制校園卡",
@@ -2214,7 +2213,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B21": "小賣部",
       "B6": "無",
       "B11": "無校園網",
-      "B22": "驛站在校內"
+      "B22": "驛站在校內",
+      "B7": "標準"
     }
   },
   "4111012566": {
@@ -2262,6 +2262,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -2272,7 +2273,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "覆蓋",
       "B11": "按流量計費",
       "B15": "允許",
-      "B7": "有小學期",
       "B16": "800W內",
       "B14": "24小時",
       "B20": "強制開戶"
@@ -2300,6 +2300,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B17": "無通宵自習",
       "B20": "強制開戶",
       "B23": "無",
+      "B7": "標準",
       "B12": "不斷",
       "B22": "送到宿舍"
     }
@@ -2422,7 +2423,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B13": "近年負面新聞",
       "B19": "強制校園卡",
       "B21": "無超市",
-      "B2": "都有"
+      "B2": "都有",
+      "B7": "暑假4-6週"
     }
   },
   "4111014075": {
@@ -3037,9 +3039,9 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B6": "無",
       "B13": "近年負面新聞",
       "B14": "限時段",
+      "B7": "有小學期",
       "B16": "不限",
       "B23": "覆蓋",
-      "B7": "有小學期",
       "B22": "驛站在校內",
       "B20": "不強制",
       "B21": "小賣部"
@@ -3064,6 +3066,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "覆蓋",
       "B24": "查寢",
+      "B7": "標準",
       "B13": "貴"
     }
   },
@@ -3142,12 +3145,12 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "查寢",
       "B1": "上床下桌",
       "B2": "都有",
+      "B7": "標準",
       "B9": "無地鐵",
       "B15": "允許",
       "B16": "不限",
       "B14": "24小時",
-      "B4": "早晚自習強制",
-      "B7": "有小學期"
+      "B4": "早晚自習強制"
     }
   },
   "4112011032": {
@@ -3183,6 +3186,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
       "B6": "20公里內",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B11": "不計費",
@@ -3194,7 +3198,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "無",
       "B24": "查寢",
-      "B7": "有小學期",
       "B9": "步行15分鐘內",
       "B22": "驛站在校內",
       "B16": "不限",
@@ -3468,6 +3471,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B10": "樓內/宿舍有",
       "B17": "無通宵自習",
       "B24": "查寢",
+      "B7": "標準",
       "B11": "限速嚴重",
       "B13": "近年負面新聞",
       "B15": "允許",
@@ -3549,6 +3553,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "23點封寢",
       "B2": "都有",
       "B6": "無",
+      "B7": "標準",
       "B15": "禁止",
       "B14": "限時段",
       "B16": "400W內"
@@ -3678,6 +3683,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
@@ -3693,7 +3699,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B11": "不計費",
       "B15": "允許",
       "B16": "400W內",
-      "B7": "有小學期",
       "B14": "限時段"
     }
   },
@@ -4122,10 +4127,10 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B6": "無",
       "B12": "不斷",
       "B4": "無",
-      "B7": "有小學期",
       "B21": "小賣部",
       "B11": "按流量計費",
       "B9": "步行15分鐘內",
+      "B7": "有小學期",
       "B20": "強制開戶"
     }
   },
@@ -4151,7 +4156,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B22": "驛站在校內",
       "B9": "無地鐵",
-      "B21": "大型超市"
+      "B21": "大型超市",
+      "B7": "標準"
     }
   },
   "4113010093": {
@@ -4232,8 +4238,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "公共澡堂",
       "B6": "40+公里",
       "B14": "24小時",
-      "B22": "驛站在校內",
-      "B7": "有小學期"
+      "B22": "驛站在校內"
     }
   },
   "4113010098": {
@@ -4333,7 +4338,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "23點封寢",
       "B9": "無地鐵",
       "B14": "限時段",
-      "B7": "有小學期",
       "B20": "不強制"
     }
   },
@@ -4605,8 +4609,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B21": "無超市",
       "B11": "不計費",
-      "B16": "400W內",
       "B7": "有小學期",
+      "B16": "400W內",
       "B14": "24小時",
       "B22": "驛站在校內",
       "B20": "強制開戶"
@@ -4761,9 +4765,9 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "查寢",
       "B6": "40+公里",
       "B14": "限時段",
+      "B7": "有小學期",
       "B15": "允許",
       "B17": "無通宵自習",
-      "B7": "有小學期",
       "B18": "允許",
       "B11": "限速嚴重",
       "B20": "不強制"
@@ -4835,6 +4839,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B24": "22點封寢",
+      "B7": "標準",
       "B15": "允許",
       "B6": "無",
       "B11": "按流量計費",
@@ -4884,7 +4889,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B19": "電子/現金",
       "B6": "40+公里",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B11": "限速嚴重",
       "B16": "800W內",
       "B22": "驛站在校內"
@@ -4946,6 +4951,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B21": "無超市",
       "B23": "無",
       "B24": "查寢",
+      "B7": "標準",
       "B9": "無地鐵",
       "B6": "40+公里",
       "B14": "24小時"
@@ -4958,7 +4964,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上下鋪",
       "B2": "都沒有",
       "B4": "無",
-      "B7": "有小學期",
       "B9": "無地鐵",
       "B12": "不斷",
       "B15": "允許",
@@ -5091,8 +5096,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B14": "24小時",
       "B6": "無",
       "B11": "限速嚴重",
-      "B18": "允許",
-      "B7": "有小學期"
+      "B18": "允許"
     }
   },
   "4113012884": {
@@ -5188,6 +5192,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上下鋪",
       "B3": "公共澡堂",
       "B6": "40+公里",
+      "B7": "有小學期",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
       "B14": "24小時",
@@ -5283,6 +5288,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "公共澡堂",
       "B5": "無",
       "B6": "無",
+      "B7": "有小學期",
       "B8": "校外取",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -5295,7 +5301,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "查寢",
       "B4": "無",
-      "B7": "有小學期",
       "B9": "無地鐵",
       "B13": "貴",
       "B14": "限時段",
@@ -5547,6 +5552,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上下鋪",
       "B5": "無",
       "B6": "無",
+      "B7": "標準",
       "B12": "不斷",
       "B13": "好評",
       "B16": "400W內",
@@ -6100,6 +6106,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     "quality": {
       "B1": "上下鋪",
       "B5": "每週1-2次",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -6167,7 +6174,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B10": "樓內/宿舍有",
       "B13": "貴",
       "B11": "不計費",
-      "B7": "有小學期",
       "B18": "允許"
     }
   },
@@ -6397,6 +6403,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "公共澡堂",
       "B4": "早晚自習強制",
       "B5": "每週1-2次",
+      "B7": "有小學期",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
       "B15": "允許",
@@ -6405,7 +6412,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "22點封寢",
       "B11": "限速嚴重",
       "B23": "無",
-      "B7": "有小學期",
       "B9": "無地鐵",
       "B6": "無",
       "B14": "24小時",
@@ -6567,6 +6573,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都沒有",
       "B5": "每週1-2次",
       "B6": "20-40公里",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -6582,8 +6589,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B19": "強制校園卡",
       "B4": "僅晚自習強制",
-      "B14": "24小時",
-      "B7": "有小學期"
+      "B14": "24小時"
     }
   },
   "4114010117": {
@@ -6606,8 +6612,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "23點封寢",
       "B9": "無地鐵",
       "B16": "400W內",
-      "B21": "無超市",
-      "B7": "有小學期"
+      "B21": "無超市"
     }
   },
   "4114010118": {
@@ -6689,8 +6694,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B11": "限速嚴重",
       "B19": "電子/現金",
       "B22": "驛站在校內",
-      "B21": "大型超市",
       "B7": "有小學期",
+      "B21": "大型超市",
       "B16": "400W內"
     }
   },
@@ -6716,9 +6721,9 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B15": "允許",
       "B18": "允許",
       "B22": "驛站在校內",
+      "B7": "有小學期",
       "B16": "800W內",
       "B14": "24小時",
-      "B7": "有小學期",
       "B20": "不強制"
     }
   },
@@ -6848,6 +6853,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B4": "早晚自習強制",
       "B14": "限時段",
+      "B7": "標準",
       "B21": "無超市",
       "B22": "菜鳥驛站遠"
     }
@@ -6897,7 +6903,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B21": "無超市",
       "B11": "不計費",
       "B18": "允許",
-      "B7": "有小學期",
       "B16": "400W內",
       "B20": "不強制"
     }
@@ -6936,6 +6941,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B10": "樓內/宿舍有",
       "B17": "有通宵自習",
       "B24": "查寢",
+      "B7": "標準",
       "B9": "地鐵＞3公里",
       "B12": "不斷",
       "B13": "近年負面新聞",
@@ -6980,6 +6986,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
       "B6": "20公里內",
+      "B7": "標準",
       "B10": "樓內/宿舍有",
       "B11": "限速嚴重",
       "B12": "21點前斷",
@@ -7616,6 +7623,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "無",
       "B6": "無",
+      "B7": "標準",
       "B8": "校外取",
       "B10": "無洗衣機",
       "B12": "不斷",
@@ -7910,6 +7918,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "查寢",
       "B6": "20公里內",
       "B12": "午夜後斷",
+      "B7": "有小學期",
       "B21": "大型超市"
     }
   },
@@ -8335,7 +8344,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上下鋪",
       "B2": "都沒有",
       "B3": "公共澡堂",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
       "B11": "限速嚴重",
@@ -8490,6 +8499,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "公共澡堂",
       "B4": "僅晚自習強制",
       "B5": "每週1-2次",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "午夜後斷",
@@ -8642,8 +8652,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B6": "無",
       "B19": "電子/現金",
       "B22": "驛站在校內",
-      "B11": "限速嚴重",
       "B7": "有小學期",
+      "B11": "限速嚴重",
       "B14": "24小時",
       "B21": "無超市"
     }
@@ -8743,6 +8753,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "查寢",
       "B3": "公共澡堂",
       "B4": "僅晚自習強制",
+      "B7": "有小學期",
       "B22": "驛站在校內",
       "B21": "小賣部"
     }
@@ -8959,9 +8970,9 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上下鋪",
       "B2": "都沒有",
       "B3": "公共澡堂",
+      "B7": "有小學期",
       "B17": "有通宵自習",
       "B24": "查寢",
-      "B7": "有小學期",
       "B15": "禁止",
       "B18": "允許",
       "B23": "覆蓋",
@@ -8977,7 +8988,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都沒有",
       "B3": "公共澡堂",
       "B5": "每週1-2次",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
@@ -8986,6 +8996,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B17": "無通宵自習",
       "B23": "無",
       "B4": "早晚自習強制",
+      "B7": "有小學期",
       "B15": "允許",
       "B16": "800W內",
       "B18": "允許",
@@ -9048,7 +9059,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "22點封寢",
       "B22": "驛站在校內",
       "B6": "無",
-      "B7": "有小學期",
       "B20": "強制開戶"
     }
   },
@@ -9157,8 +9167,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "電子/現金",
       "B23": "無",
       "B24": "查寢",
-      "B9": "步行15分鐘內",
       "B7": "有小學期",
+      "B9": "步行15分鐘內",
       "B18": "允許",
       "B16": "400W內",
       "B22": "驛站在校內",
@@ -9390,7 +9400,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     "quality": {
       "B3": "獨立衛浴",
       "B5": "無",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
@@ -9445,6 +9455,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "22點封寢",
       "B6": "無",
+      "B7": "有小學期",
       "B14": "限時段",
       "B17": "無通宵自習",
       "B18": "允許",
@@ -9503,7 +9514,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "電子/現金",
       "B2": "都沒有",
       "B4": "僅晚自習強制",
-      "B7": "暑假＜6週",
       "B12": "每晚斷電",
       "B15": "允許",
       "B22": "校門取",
@@ -9655,6 +9665,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
       "B6": "40+公里",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B12": "午夜後斷",
@@ -9664,7 +9675,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B22": "驛站在校內",
       "B24": "22點封寢",
-      "B7": "有小學期",
       "B10": "樓內/宿舍有",
       "B11": "按流量計費",
       "B18": "允許",
@@ -9714,8 +9724,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B24": "查寢",
-      "B2": "都沒有",
       "B7": "有小學期",
+      "B2": "都沒有",
       "B15": "允許"
     }
   },
@@ -9865,7 +9875,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "查寢",
       "B3": "公共澡堂",
-      "B7": "有小學期",
       "B13": "近年負面新聞",
       "B18": "允許",
       "B9": "步行15分鐘內",
@@ -9981,7 +9990,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B9": "無地鐵",
       "B16": "不限",
-      "B22": "驛站在校內"
+      "B22": "驛站在校內",
+      "B7": "標準"
     }
   },
   "4121012899": {
@@ -10056,6 +10066,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B11": "限速嚴重",
       "B19": "電子/現金",
       "B20": "強制開戶",
+      "B7": "標準",
       "B21": "大型超市"
     }
   },
@@ -10081,6 +10092,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B9": "無地鐵",
+      "B7": "標準",
       "B16": "800W內"
     }
   },
@@ -10258,6 +10270,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "僅宿舍有",
       "B4": "僅晚自習強制",
       "B5": "無",
+      "B7": "標準",
       "B8": "校外取",
       "B10": "樓內/宿舍有",
       "B11": "按流量計費",
@@ -10355,6 +10368,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "暑假4-6週",
       "B8": "禁止外賣",
       "B10": "樓內/宿舍有",
       "B15": "允許",
@@ -10401,7 +10415,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "公共澡堂",
       "B5": "無",
       "B6": "40+公里",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B15": "允許",
@@ -10411,6 +10424,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "電子/現金",
       "B23": "無",
       "B24": "查寢",
+      "B7": "有小學期",
       "B10": "樓內/宿舍有",
       "B2": "僅教室有",
       "B4": "早晚自習強制",
@@ -10562,7 +10576,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     "quality": {
       "B3": "公共澡堂",
       "B4": "僅晚自習強制",
-      "B7": "暑假＜6週",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B11": "不計費",
@@ -10983,7 +10996,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "僅晚自習強制",
       "B6": "無",
       "B16": "400W內",
-      "B7": "有小學期",
+      "B7": "標準",
       "B18": "允許",
       "B20": "強制開戶",
       "B11": "按流量計費",
@@ -11179,6 +11192,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "公共澡堂",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B13": "貴",
@@ -11188,7 +11202,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "無",
       "B24": "查寢",
-      "B7": "有小學期",
       "B9": "步行15分鐘內",
       "B20": "強制開戶",
       "B22": "驛站在校內",
@@ -11282,7 +11295,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上下鋪",
       "B2": "都沒有",
       "B4": "無",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -11309,6 +11321,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "每週1-2次",
       "B6": "無",
+      "B7": "標準",
       "B8": "校外取",
       "B10": "樓內/宿舍有",
       "B13": "貴",
@@ -11390,7 +11403,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B13": "近年負面新聞",
       "B9": "無地鐵",
       "B4": "早晚自習強制",
-      "B7": "暑假＜6週",
       "B21": "無超市",
       "B14": "24小時"
     }
@@ -11402,6 +11414,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
+      "B7": "標準",
       "B8": "校外取",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
@@ -11466,6 +11479,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B2": "都沒有",
+      "B7": "標準",
       "B20": "不強制"
     }
   },
@@ -11727,7 +11741,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "電子/現金",
       "B11": "限速嚴重",
       "B18": "允許",
-      "B7": "有小學期",
       "B21": "小賣部"
     }
   },
@@ -11738,6 +11751,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B4": "早晚自習強制",
       "B6": "40+公里",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "午夜後斷",
@@ -11887,7 +11901,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "公共澡堂",
       "B5": "每週1-2次",
       "B6": "無",
-      "B7": "暑假＜6週",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "22點前斷",
@@ -11926,7 +11939,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B9": "步行15分鐘內",
       "B17": "無通宵自習",
       "B22": "驛站在校內",
-      "B7": "有小學期",
       "B11": "按流量計費",
       "B18": "允許",
       "B14": "24小時"
@@ -12311,7 +12323,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "公共澡堂",
       "B22": "驛站在校內",
       "B9": "無地鐵",
-      "B7": "有小學期",
       "B14": "24小時"
     }
   },
@@ -12530,6 +12541,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "22點封寢",
       "B9": "無地鐵",
       "B16": "不限",
+      "B7": "標準",
       "B20": "強制開戶",
       "B22": "驛站在校內"
     }
@@ -12599,6 +12611,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都沒有",
       "B3": "公共澡堂",
       "B5": "每週1-2次",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -12794,7 +12807,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B8": "禁止外賣",
       "B9": "無地鐵",
       "B22": "驛站在校內",
-      "B3": "公共澡堂"
+      "B3": "公共澡堂",
+      "B7": "標準"
     }
   },
   "4123011046": {
@@ -12835,8 +12849,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B20": "強制開戶",
       "B23": "無",
       "B24": "22點封寢",
-      "B7": "有小學期",
       "B3": "公共澡堂",
+      "B7": "有小學期",
       "B9": "無地鐵",
       "B21": "小賣部",
       "B22": "驛站在校內",
@@ -12852,6 +12866,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "公共澡堂",
       "B4": "早晚自習強制",
       "B5": "每週1-2次",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -12864,8 +12879,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B15": "允許",
       "B17": "有通宵自習",
       "B22": "驛站在校內",
-      "B6": "無",
-      "B7": "有小學期"
+      "B6": "無"
     }
   },
   "4123011446": {
@@ -12889,8 +12903,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B9": "地鐵＞3公里",
       "B18": "允許",
-      "B16": "400W內",
       "B7": "有小學期",
+      "B16": "400W內",
       "B11": "限速嚴重",
       "B22": "驛站在校內"
     }
@@ -13026,6 +13040,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B12": "不斷",
       "B23": "覆蓋",
       "B24": "查寢",
+      "B7": "標準",
       "B11": "限速嚴重",
       "B13": "近年負面新聞",
       "B14": "限時段",
@@ -13305,7 +13320,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B15": "允許",
       "B22": "驛站在校內",
       "B11": "限速嚴重",
-      "B7": "有小學期",
       "B23": "覆蓋",
       "B14": "24小時"
     }
@@ -13356,6 +13370,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B11": "不計費",
       "B14": "24小時",
       "B4": "僅早自習強制",
+      "B7": "標準",
       "B9": "步行15分鐘內"
     }
   },
@@ -13370,6 +13385,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B2": "都沒有",
       "B5": "每週1-2次",
+      "B7": "標準",
       "B8": "校外取",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -13381,7 +13397,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "查寢",
       "B3": "獨立衛浴",
-      "B7": "有小學期",
       "B16": "400W內",
       "B4": "早晚自習強制",
       "B11": "按流量計費",
@@ -13404,6 +13419,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B24": "查寢",
+      "B7": "標準",
       "B14": "限時段",
       "B15": "禁止",
       "B20": "不強制"
@@ -13588,6 +13604,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都沒有",
       "B3": "獨立衛浴",
       "B4": "早晚自習強制",
+      "B7": "暑假4-6週",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -13731,6 +13748,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上下鋪",
       "B3": "公共澡堂",
       "B6": "無",
+      "B7": "標準",
       "B10": "樓內/宿舍有",
       "B11": "無校園網",
       "B12": "22點前斷",
@@ -14543,9 +14561,9 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B24": "查寢",
       "B23": "覆蓋",
+      "B7": "有小學期",
       "B14": "24小時",
       "B16": "不限",
-      "B7": "有小學期",
       "B9": "步行15分鐘內",
       "B22": "驛站在校內",
       "B18": "允許",
@@ -14561,7 +14579,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B4": "早晚自習強制",
       "B6": "20公里內",
-      "B7": "暑假＜6週",
+      "B7": "暑假＜4週",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -14640,6 +14658,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "每週1-2次",
       "B6": "20公里內",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
@@ -14651,7 +14670,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "覆蓋",
       "B24": "23點封寢",
-      "B7": "有小學期",
       "B3": "獨立衛浴",
       "B18": "允許",
       "B22": "驛站在校內",
@@ -14729,13 +14747,13 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B3": "公共澡堂",
       "B4": "早晚自習強制",
+      "B7": "有小學期",
       "B9": "無地鐵",
       "B22": "驛站在校內",
       "B23": "無",
       "B24": "查寢",
       "B11": "不計費",
-      "B21": "大型超市",
-      "B7": "有小學期"
+      "B21": "大型超市"
     }
   },
   "4131011835": {
@@ -14879,6 +14897,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "僅晚自習強制",
       "B5": "無",
       "B6": "無",
+      "B7": "標準",
       "B8": "校外取",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
@@ -15064,6 +15083,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "標準",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -15129,7 +15149,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B24": "查寢",
       "B4": "無",
-      "B7": "暑假＜6週",
       "B13": "貴",
       "B14": "24小時",
       "B16": "不限",
@@ -15470,7 +15489,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "僅晚自習強制",
       "B5": "無",
       "B6": "無",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B11": "不計費",
@@ -15480,6 +15498,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B21": "大型超市",
       "B23": "無",
+      "B7": "有小學期",
       "B9": "步行15分鐘內",
       "B12": "不斷",
       "B14": "24小時",
@@ -15844,6 +15863,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "每週1-2次",
       "B6": "20公里內",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -15856,7 +15876,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上下鋪",
       "B2": "都有",
       "B17": "無通宵自習",
-      "B7": "有小學期",
       "B16": "不限",
       "B14": "限時段",
       "B18": "允許",
@@ -15876,6 +15895,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "僅晚自習強制",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "有小學期",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -15884,7 +15904,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B15": "允許",
       "B19": "強制校園卡",
       "B24": "查寢",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B11": "不計費",
       "B16": "不限",
@@ -16215,7 +16234,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B6": "無",
       "B14": "24小時",
       "B4": "早晚自習強制",
-      "B7": "有小學期",
       "B16": "400W內",
       "B18": "允許",
       "B19": "強制校園卡",
@@ -16259,6 +16277,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
+      "B7": "暑假4-6週",
       "B8": "禁止外賣",
       "B10": "樓內/宿舍有",
       "B13": "近年負面新聞",
@@ -16441,7 +16460,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B23": "無",
       "B6": "20公里內",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B11": "按流量計費",
       "B14": "24小時",
       "B20": "強制開戶",
@@ -16493,8 +16512,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "查寢",
       "B4": "無",
-      "B6": "20公里內",
-      "B7": "有小學期"
+      "B6": "20公里內"
     }
   },
   "4132011049": {
@@ -16617,9 +16635,9 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B19": "強制校園卡",
       "B21": "無超市",
+      "B7": "標準",
       "B16": "800W內",
       "B17": "有通宵自習",
-      "B7": "有小學期",
       "B9": "步行15分鐘內"
     }
   },
@@ -16661,6 +16679,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B6": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -16832,7 +16851,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "公共澡堂",
       "B4": "僅晚自習強制",
       "B5": "每週1-2次",
-      "B7": "有小學期",
       "B8": "校外取",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -17124,6 +17142,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "僅晚自習強制",
       "B5": "每週1-2次",
       "B6": "20公里內",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B13": "近年負面新聞",
@@ -17314,7 +17333,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "查寢",
       "B9": "地鐵＞3公里",
       "B23": "無",
-      "B7": "有小學期",
       "B14": "24小時",
       "B20": "強制開戶"
     }
@@ -17659,7 +17677,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B2": "僅宿舍有",
       "B3": "公共澡堂",
-      "B6": "40+公里"
+      "B6": "40+公里",
+      "B7": "標準"
     }
   },
   "4132013102": {
@@ -17698,6 +17717,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "無",
       "B6": "20-40公里",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -17766,7 +17786,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B18": "允許",
       "B20": "不強制",
-      "B7": "暑假＜6週",
+      "B7": "暑假4-6週",
       "B21": "小賣部"
     }
   },
@@ -17839,7 +17859,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B16": "不限",
       "B20": "強制開戶",
       "B22": "驛站在校內",
-      "B1": "上下鋪"
+      "B1": "上下鋪",
+      "B7": "有小學期"
     }
   },
   "4132013113": {
@@ -17849,6 +17870,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B6": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B11": "不計費",
@@ -17940,6 +17962,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B6": "20公里內",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -17955,7 +17978,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B15": "允許",
       "B16": "不限",
       "B18": "允許",
-      "B7": "有小學期",
       "B14": "24小時"
     }
   },
@@ -18145,6 +18167,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B20": "不強制",
       "B23": "無",
       "B24": "22點封寢",
+      "B7": "標準",
       "B17": "有通宵自習",
       "B22": "驛站在校內"
     }
@@ -18176,7 +18199,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     "schoolAddress": "江苏省淮安市高教园区枚乘东路8号",
     "quality": {
       "B1": "上床下桌",
-      "B7": "暑假＜6週",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
       "B11": "限速嚴重",
@@ -18241,8 +18263,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "覆蓋",
       "B24": "23點封寢",
       "B4": "早晚自習強制",
-      "B6": "無",
-      "B7": "有小學期"
+      "B6": "無"
     }
   },
   "4132013843": {
@@ -18281,7 +18302,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "每週1-2次",
       "B6": "20公里內",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -18290,6 +18310,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "查寢",
       "B13": "近年負面新聞",
+      "B7": "有小學期",
       "B18": "允許",
       "B19": "強制校園卡",
       "B9": "步行15分鐘內"
@@ -18312,7 +18333,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "查寢",
       "B4": "早晚自習強制",
-      "B7": "有小學期",
       "B9": "無地鐵",
       "B14": "24小時",
       "B16": "不限",
@@ -18385,6 +18405,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "午夜後斷",
@@ -18467,6 +18488,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B6": "無",
       "B18": "允許",
       "B4": "早晚自習強制",
+      "B7": "標準",
       "B9": "地鐵＞3公里"
     }
   },
@@ -18639,7 +18661,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B14": "24小時",
       "B16": "不限",
       "B11": "不計費",
-      "B19": "強制校園卡"
+      "B19": "強制校園卡",
+      "B7": "暑假4-6週"
     }
   },
   "4132013992": {
@@ -18903,6 +18926,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B14": "24小時",
       "B16": "800W內",
       "B22": "驛站在校內",
+      "B7": "有小學期",
       "B20": "強制開戶"
     }
   },
@@ -18953,6 +18977,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -18968,7 +18993,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B22": "驛站在校內",
       "B13": "近年負面新聞",
-      "B7": "有小學期",
       "B20": "不強制",
       "B21": "大型超市"
     }
@@ -18991,7 +19015,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B24": "22點封寢",
-      "B7": "有小學期",
       "B14": "24小時",
       "B16": "800W內"
     }
@@ -19082,6 +19105,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "無",
       "B24": "查寢",
+      "B7": "標準",
       "B9": "無地鐵",
       "B3": "獨立衛浴",
       "B4": "早晚自習強制",
@@ -19155,7 +19179,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "無",
       "B24": "22點封寢",
-      "B7": "暑假＜6週",
       "B18": "允許",
       "B22": "驛站在校內"
     }
@@ -19641,8 +19664,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B11": "不計費",
       "B14": "24小時",
-      "B16": "不限",
-      "B7": "有小學期"
+      "B16": "不限"
     }
   },
   "4133010352": {
@@ -19721,7 +19743,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B3": "獨立衛浴",
       "B4": "早晚自習強制",
-      "B7": "暑假＜6週",
       "B18": "允許",
       "B21": "小賣部",
       "B22": "驛站在校內",
@@ -19852,6 +19873,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "標準",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
       "B11": "限速嚴重",
@@ -19871,6 +19893,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上下鋪",
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -19981,7 +20004,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "無",
       "B24": "23點封寢",
-      "B7": "有小學期",
+      "B7": "標準",
       "B9": "無地鐵",
       "B17": "無通宵自習",
       "B18": "允許",
@@ -20101,6 +20124,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B5": "無",
       "B6": "20-40公里",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B12": "每晚斷網",
@@ -20160,7 +20184,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B11": "限速嚴重",
       "B22": "驛站在校內",
-      "B7": "暑假＜6週"
+      "B7": "標準"
     }
   },
   "4133012789": {
@@ -20184,6 +20208,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "查寢",
       "B3": "獨立衛浴",
       "B20": "強制開戶",
+      "B7": "標準",
       "B18": "允許",
       "B11": "限速嚴重",
       "B14": "無熱水"
@@ -20345,7 +20370,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B20": "強制開戶",
       "B22": "驛站在校內",
-      "B23": "覆蓋"
+      "B23": "覆蓋",
+      "B7": "標準"
     }
   },
   "4133012865": {
@@ -20384,7 +20410,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "22點封寢",
       "B22": "驛站在校內",
-      "B7": "有小學期",
       "B9": "步行15分鐘內",
       "B11": "不計費",
       "B18": "允許",
@@ -20632,7 +20657,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B24": "查寢",
       "B2": "都有",
-      "B7": "暑假＜6週",
+      "B7": "有小學期",
       "B15": "允許",
       "B16": "800W內",
       "B22": "驛站在校內",
@@ -20796,7 +20821,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B20": "強制開戶",
       "B23": "覆蓋",
       "B4": "早晚自習強制",
-      "B7": "有小學期",
       "B14": "限時段"
     }
   },
@@ -20884,6 +20908,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B17": "無通宵自習",
       "B22": "驛站在校內",
       "B24": "查寢",
+      "B7": "標準",
       "B9": "無地鐵",
       "B12": "22點前斷",
       "B16": "不限",
@@ -21063,6 +21088,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B4": "早晚自習強制",
       "B5": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B18": "允許",
       "B22": "驛站在校內",
@@ -21109,6 +21135,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
       "B6": "40+公里",
+      "B7": "標準",
       "B8": "外賣牆遠",
       "B10": "樓內/宿舍有",
       "B11": "按流量計費",
@@ -21171,6 +21198,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B16": "不限",
       "B17": "有通宵自習",
       "B24": "23點封寢",
+      "B7": "有小學期",
       "B11": "限速嚴重",
       "B12": "不斷",
       "B18": "允許",
@@ -21178,7 +21206,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B22": "驛站在校內",
       "B23": "覆蓋",
-      "B7": "有小學期",
       "B21": "大型超市"
     }
   },
@@ -21216,7 +21243,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "無",
       "B6": "20-40公里",
-      "B7": "有小學期",
       "B8": "外賣牆遠",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -21243,6 +21269,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B4": "早晚自習強制",
       "B5": "每週1-2次",
+      "B7": "標準",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
       "B13": "近年負面新聞",
@@ -21359,7 +21386,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B14": "限時段",
       "B15": "允許",
       "B18": "允許",
-      "B7": "有小學期",
       "B22": "驛站在校內"
     }
   },
@@ -21602,6 +21628,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -21661,7 +21688,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B20": "強制開戶",
       "B22": "驛站在校內",
       "B23": "無",
-      "B24": "23點封寢"
+      "B24": "23點封寢",
+      "B7": "標準"
     }
   },
   "4133014626": {
@@ -21681,7 +21709,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B22": "驛站在校內",
       "B24": "查寢",
-      "B7": "有小學期",
       "B9": "地鐵＞3公里",
       "B11": "不計費",
       "B17": "有通宵自習",
@@ -21735,7 +21762,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B6": "40+公里",
       "B18": "允許",
       "B20": "不強制",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B14": "24小時",
       "B21": "無超市"
     }
@@ -21938,7 +21965,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
       "B6": "40+公里",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B13": "近年負面新聞",
@@ -21946,6 +21972,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B17": "有通宵自習",
       "B19": "強制校園卡",
       "B4": "早晚自習強制",
+      "B7": "有小學期",
       "B9": "無地鐵",
       "B12": "不斷",
       "B16": "不限",
@@ -22219,8 +22246,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "23點封寢",
       "B3": "公共澡堂",
       "B13": "貴",
-      "B18": "允許",
       "B7": "有小學期",
+      "B18": "允許",
       "B14": "限時段"
     }
   },
@@ -22271,8 +22298,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B10": "樓內/宿舍有",
       "B23": "覆蓋",
-      "B6": "20公里內",
-      "B7": "有小學期"
+      "B6": "20公里內"
     }
   },
   "4134010377": {
@@ -22336,6 +22362,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -22344,7 +22371,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B16": "800W內",
       "B17": "無通宵自習",
       "B19": "強制校園卡",
-      "B7": "有小學期",
       "B15": "允許",
       "B18": "允許",
       "B22": "驛站在校內",
@@ -22665,6 +22691,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B4": "早晚自習強制",
       "B5": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -22727,8 +22754,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B24": "查寢",
       "B6": "40+公里",
-      "B23": "覆蓋",
       "B7": "有小學期",
+      "B23": "覆蓋",
       "B2": "都有",
       "B21": "無超市"
     }
@@ -22941,7 +22968,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B18": "允許",
       "B19": "強制校園卡",
-      "B7": "暑假＜6週"
+      "B7": "暑假4-6週"
     }
   },
   "4134012814": {
@@ -22978,6 +23005,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "無",
       "B6": "20公里內",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -23284,7 +23312,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B22": "驛站在校內",
       "B6": "無",
-      "B7": "暑假＜6週",
+      "B7": "暑假4-6週",
       "B18": "允許"
     }
   },
@@ -23618,6 +23646,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B4": "早晚自習強制",
       "B5": "每週1-2次",
+      "B7": "標準",
       "B8": "禁止外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -23979,7 +24008,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "查寢",
       "B1": "上下鋪",
       "B6": "40+公里",
-      "B7": "暑假＜6週"
+      "B7": "標準"
     }
   },
   "4134014330": {
@@ -24305,7 +24334,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B3": "獨立衛浴",
       "B5": "無",
-      "B7": "有小學期",
+      "B7": "標準",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
       "B13": "好評",
@@ -24327,6 +24356,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "20公里內",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -24343,7 +24373,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B14": "24小時",
       "B16": "不限",
       "B22": "驛站在校內",
-      "B7": "有小學期",
       "B20": "不強制",
       "B11": "限速嚴重"
     }
@@ -24396,8 +24425,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B22": "驛站在校內",
       "B24": "23點封寢",
-      "B23": "覆蓋",
       "B7": "有小學期",
+      "B23": "覆蓋",
       "B11": "不計費",
       "B12": "不斷",
       "B18": "允許",
@@ -24733,7 +24762,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "40+公里",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -24849,7 +24877,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B9": "無地鐵",
       "B11": "限速嚴重",
       "B23": "無",
-      "B7": "有小學期",
       "B22": "驛站在校內",
       "B14": "24小時",
       "B21": "大型超市",
@@ -24925,7 +24952,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "無",
       "B24": "23點封寢",
-      "B7": "暑假＜6週",
       "B9": "無地鐵",
       "B15": "允許",
       "B18": "允許",
@@ -25009,7 +25035,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "22點封寢",
       "B22": "驛站在校內",
-      "B7": "有小學期",
       "B11": "不計費",
       "B13": "近年負面新聞",
       "B20": "強制開戶",
@@ -25100,7 +25125,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B22": "驛站在校內",
       "B23": "無",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B10": "樓內/宿舍有",
       "B20": "不強制"
     }
@@ -25125,7 +25150,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B10": "樓內/宿舍有",
       "B12": "不斷",
       "B16": "800W內",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B9": "地鐵＞3公里",
       "B11": "限速嚴重",
       "B20": "不強制"
@@ -25168,6 +25193,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "無",
       "B24": "23點封寢",
+      "B7": "標準",
       "B9": "無地鐵",
       "B13": "好評",
       "B15": "允許"
@@ -25196,8 +25222,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B21": "小賣部",
       "B22": "驛站在校內",
       "B23": "無",
-      "B24": "查寢",
-      "B7": "有小學期"
+      "B24": "查寢"
     }
   },
   "4135012710": {
@@ -25266,12 +25291,12 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "每週1-2次",
       "B6": "無",
+      "B7": "有小學期",
       "B10": "樓內/宿舍有",
       "B15": "允許",
       "B20": "不強制",
       "B23": "無",
       "B24": "查寢",
-      "B7": "有小學期",
       "B9": "無地鐵",
       "B11": "按流量計費",
       "B12": "不斷",
@@ -25321,7 +25346,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "無",
-      "B7": "暑假＜6週",
       "B10": "樓內/宿舍有",
       "B11": "限速嚴重",
       "B12": "不斷",
@@ -25433,7 +25457,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "公共澡堂",
       "B5": "無",
       "B6": "無",
-      "B7": "有小學期",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -25472,8 +25496,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B11": "限速嚴重",
       "B18": "允許",
       "B23": "覆蓋",
-      "B9": "無地鐵",
       "B7": "有小學期",
+      "B9": "無地鐵",
       "B22": "驛站在校內",
       "B6": "20公里內",
       "B21": "無超市"
@@ -25557,8 +25581,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B6": "20-40公里",
       "B9": "步行15分鐘內",
-      "B14": "24小時",
-      "B7": "有小學期"
+      "B14": "24小時"
     }
   },
   "4135013764": {
@@ -25625,7 +25648,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B19": "電子/現金",
       "B24": "查寢",
-      "B7": "有小學期",
       "B8": "禁止外賣",
       "B9": "無地鐵",
       "B13": "貴",
@@ -25660,6 +25682,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B21": "小賣部",
       "B14": "24小時",
       "B20": "不強制",
+      "B7": "標準",
       "B19": "電子/現金"
     }
   },
@@ -25756,7 +25779,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B11": "限速嚴重",
-      "B7": "有小學期",
       "B15": "允許",
       "B20": "強制開戶",
       "B18": "禁止"
@@ -25781,7 +25803,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B12": "不斷",
       "B16": "800W內",
       "B18": "允許",
-      "B7": "有小學期",
       "B9": "步行15分鐘內",
       "B13": "近年負面新聞",
       "B21": "小賣部",
@@ -25887,6 +25908,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B6": "20-40公里",
       "B11": "限速嚴重",
+      "B7": "標準",
       "B9": "無地鐵",
       "B14": "限時段"
     }
@@ -25966,7 +25988,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "無",
-      "B7": "暑假＜6週",
       "B8": "允許外賣",
       "B12": "不斷",
       "B13": "近年負面新聞",
@@ -26078,7 +26099,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
       "B18": "允許",
-      "B7": "有小學期",
       "B13": "近年負面新聞",
       "B16": "不限",
       "B14": "24小時"
@@ -26212,6 +26232,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
+      "B7": "標準",
       "B8": "校外取",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -26259,6 +26280,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B3": "獨立衛浴",
       "B6": "40+公里",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -26747,6 +26769,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "查寢",
       "B2": "都有",
+      "B7": "標準",
       "B14": "24小時",
       "B16": "不限"
     }
@@ -26799,8 +26822,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B15": "允許",
       "B11": "限速嚴重",
-      "B20": "不強制",
-      "B7": "有小學期"
+      "B20": "不強制"
     }
   },
   "4136010894": {
@@ -26819,7 +26841,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "23點封寢",
       "B4": "早晚自習強制",
-      "B7": "有小學期",
       "B9": "無地鐵",
       "B15": "禁止",
       "B21": "小賣部",
@@ -26845,6 +26866,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "無",
       "B24": "查寢",
+      "B7": "標準",
       "B16": "400W內",
       "B18": "允許",
       "B9": "無地鐵",
@@ -26938,6 +26960,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B6": "20-40公里",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -26946,7 +26969,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B15": "允許",
       "B17": "無通宵自習",
       "B19": "電子/現金",
-      "B7": "有小學期",
       "B14": "24小時",
       "B22": "驛站在校內",
       "B23": "無",
@@ -27048,6 +27070,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B21": "小賣部",
       "B24": "23點封寢",
       "B9": "地鐵＞3公里",
+      "B7": "標準",
       "B14": "限時段",
       "B20": "強制開戶",
       "B22": "驛站在校內",
@@ -27150,7 +27173,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B14": "限時段",
       "B18": "允許",
       "B15": "允許",
-      "B20": "強制開戶"
+      "B20": "強制開戶",
+      "B7": "標準"
     }
   },
   "4136012934": {
@@ -27220,6 +27244,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     "quality": {
       "B1": "上下鋪",
       "B2": "都有",
+      "B7": "標準",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
       "B11": "無校園網",
@@ -27331,6 +27356,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B20": "不強制",
       "B22": "菜鳥驛站遠",
+      "B7": "標準",
       "B4": "僅晚自習強制"
     }
   },
@@ -27356,7 +27382,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B15": "允許",
       "B14": "24小時",
       "B18": "允許",
-      "B7": "暑假＜6週",
       "B9": "步行15分鐘內"
     }
   },
@@ -27403,7 +27428,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B20": "不強制",
       "B22": "驛站在校內",
-      "B7": "暑假＜6週",
       "B14": "限時段",
       "B11": "限速嚴重"
     }
@@ -27426,6 +27450,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "校門取",
       "B23": "無",
       "B24": "查寢",
+      "B7": "標準",
       "B8": "允許外賣",
       "B12": "每晚斷電",
       "B20": "強制開戶"
@@ -27471,7 +27496,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B24": "查寢",
-      "B7": "有小學期",
       "B10": "樓內/宿舍有",
       "B14": "24小時",
       "B15": "允許",
@@ -27548,7 +27572,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B9": "無地鐵",
       "B16": "800W內",
       "B6": "無",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B13": "貴",
       "B14": "24小時",
       "B20": "不強制"
@@ -27648,6 +27672,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "覆蓋",
       "B24": "23點封寢",
+      "B7": "標準",
       "B9": "無地鐵",
       "B18": "允許",
       "B22": "驛站在校內",
@@ -27663,6 +27688,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B6": "無",
+      "B7": "標準",
       "B10": "樓內/宿舍有",
       "B13": "近年負面新聞",
       "B15": "允許",
@@ -27674,7 +27700,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B9": "無地鐵",
       "B11": "無校園網",
       "B20": "不強制",
-      "B7": "暑假＜6週",
       "B24": "查寢"
     }
   },
@@ -27700,7 +27725,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B14": "24小時",
       "B6": "40+公里",
       "B20": "強制開戶",
-      "B7": "有小學期",
       "B21": "小賣部",
       "B11": "限速嚴重"
     }
@@ -27794,6 +27818,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B3": "獨立衛浴",
       "B5": "無",
+      "B7": "標準",
       "B12": "不斷",
       "B14": "24小時",
       "B6": "20公里內",
@@ -27878,6 +27903,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "電子/現金",
       "B23": "無",
       "B24": "23點封寢",
+      "B7": "標準",
       "B22": "驛站在校內",
       "B21": "小賣部"
     }
@@ -28047,6 +28073,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B4": "無",
       "B5": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -28060,8 +28087,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B13": "貴",
       "B1": "上下鋪",
       "B14": "24小時",
-      "B18": "允許",
-      "B7": "暑假＜6週"
+      "B18": "允許"
     }
   },
   "4136013871": {
@@ -28170,6 +28196,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "電子/現金",
       "B22": "驛站在校內",
       "B23": "無",
+      "B7": "標準",
       "B9": "無地鐵",
       "B16": "不限",
       "B18": "允許",
@@ -28424,6 +28451,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "23點封寢",
       "B4": "僅晚自習強制",
       "B5": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -28585,6 +28613,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "標準",
       "B10": "樓內/宿舍有",
       "B17": "有通宵自習",
       "B19": "強制校園卡",
@@ -28972,6 +29001,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B17": "無通宵自習",
       "B19": "電子/現金",
       "B23": "無",
+      "B7": "暑假＜4週",
       "B14": "限時段",
       "B20": "不強制",
       "B24": "23點封寢"
@@ -29089,7 +29119,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B5": "每週1-2次",
       "B6": "40+公里",
-      "B7": "暑假＜6週",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B12": "不斷",
@@ -29099,6 +29128,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "電子/現金",
       "B24": "23點封寢",
       "B2": "都有",
+      "B7": "標準",
       "B10": "樓內/宿舍有",
       "B23": "無",
       "B11": "不計費",
@@ -29117,6 +29147,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "僅晚自習強制",
       "B5": "每週1-2次",
       "B6": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -29277,6 +29308,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都沒有",
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B11": "按流量計費",
@@ -29499,6 +29531,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "22點封寢",
       "B2": "都有",
+      "B7": "標準",
       "B9": "無地鐵",
       "B21": "無超市",
       "B6": "20公里內",
@@ -29717,6 +29750,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B17": "有通宵自習",
       "B22": "驛站在校內",
       "B16": "不限",
+      "B7": "暑假4-6週",
       "B18": "允許",
       "B6": "無"
     }
@@ -29771,12 +29805,12 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "覆蓋",
       "B24": "查寢",
+      "B7": "有小學期",
       "B13": "貴",
       "B16": "400W內",
       "B18": "允許",
       "B20": "強制開戶",
-      "B21": "小賣部",
-      "B7": "有小學期"
+      "B21": "小賣部"
     }
   },
   "4137011827": {
@@ -29825,7 +29859,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B11": "不計費",
       "B18": "允許",
-      "B6": "無"
+      "B6": "無",
+      "B7": "標準"
     }
   },
   "4137012070": {
@@ -29895,7 +29930,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B14": "24小時",
       "B23": "覆蓋",
       "B11": "限速嚴重",
-      "B20": "強制開戶"
+      "B20": "強制開戶",
+      "B7": "標準"
     }
   },
   "4137012328": {
@@ -29918,7 +29954,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B22": "驛站在校內",
       "B23": "無",
-      "B11": "限速嚴重"
+      "B11": "限速嚴重",
+      "B7": "有小學期"
     }
   },
   "4137012329": {
@@ -29960,6 +29997,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B24": "查寢",
+      "B7": "標準",
       "B9": "無地鐵"
     }
   },
@@ -30054,6 +30092,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "查寢",
       "B19": "電子/現金",
       "B4": "早晚自習強制",
+      "B7": "標準",
       "B22": "驛站在校內"
     }
   },
@@ -30126,7 +30165,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B6": "無",
       "B4": "僅晚自習強制",
-      "B7": "暑假＜6週"
+      "B7": "暑假4-6週"
     }
   },
   "4137012818": {
@@ -30258,6 +30297,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "僅晚自習強制",
       "B5": "每週1-2次",
       "B6": "無",
+      "B7": "標準",
       "B8": "校外取",
       "B10": "樓內/宿舍有",
       "B11": "按流量計費",
@@ -30332,10 +30372,10 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B2": "僅宿舍有",
+      "B7": "有小學期",
       "B9": "無地鐵",
       "B14": "限時段",
       "B24": "查寢",
-      "B7": "有小學期",
       "B21": "小賣部"
     }
   },
@@ -30486,6 +30526,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B6": "無",
+      "B7": "標準",
       "B11": "限速嚴重",
       "B13": "近年負面新聞",
       "B19": "強制校園卡"
@@ -30535,7 +30576,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B13": "貴",
       "B14": "24小時",
       "B24": "22點封寢",
-      "B20": "不強制"
+      "B20": "不強制",
+      "B7": "標準"
     }
   },
   "4137013316": {
@@ -30582,7 +30624,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B14": "限時段",
       "B15": "允許",
       "B18": "允許",
-      "B7": "有小學期",
       "B20": "不強制",
       "B21": "大型超市"
     }
@@ -30726,7 +30767,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B24": "查寢",
       "B6": "無",
-      "B7": "暑假＜6週",
+      "B7": "暑假4-6週",
       "B22": "菜鳥驛站遠"
     }
   },
@@ -30752,11 +30793,11 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "覆蓋",
       "B24": "查寢",
-      "B7": "暑假＜6週",
       "B13": "好評",
       "B14": "24小時",
       "B16": "400W內",
       "B6": "無",
+      "B7": "標準",
       "B20": "強制開戶"
     }
   },
@@ -31080,7 +31121,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B20": "強制開戶",
       "B21": "小賣部",
       "B2": "僅宿舍有",
-      "B7": "暑假＜6週",
       "B11": "不計費",
       "B18": "允許"
     }
@@ -31170,7 +31210,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "僅宿舍有",
       "B6": "40+公里",
       "B9": "無地鐵",
-      "B7": "有小學期",
       "B11": "限速嚴重"
     }
   },
@@ -31257,6 +31296,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     "quality": {
       "B3": "獨立衛浴",
       "B5": "無",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -31272,7 +31312,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "查寢",
       "B2": "都沒有",
       "B4": "無",
-      "B7": "有小學期",
       "B16": "400W內",
       "B6": "無",
       "B20": "強制開戶",
@@ -31392,7 +31431,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B6": "40+公里",
-      "B7": "有小學期",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
       "B15": "允許",
@@ -31417,6 +31455,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都沒有",
       "B4": "僅晚自習強制",
       "B5": "每週1-2次",
+      "B7": "標準",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
       "B15": "允許",
@@ -31442,6 +31481,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "公共澡堂",
       "B4": "早晚自習強制",
       "B5": "每週1-2次",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B11": "不計費",
@@ -31588,7 +31628,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "無",
       "B6": "無",
-      "B7": "暑假＜6週",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -31617,6 +31656,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "公共澡堂",
       "B4": "僅晚自習強制",
       "B5": "每週1-2次",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B11": "限速嚴重",
@@ -31630,7 +31670,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "22點封寢",
       "B9": "無地鐵",
       "B13": "近年負面新聞",
-      "B7": "有小學期",
       "B6": "無",
       "B21": "大型超市"
     }
@@ -31771,6 +31810,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
       "B16": "不限",
+      "B7": "標準",
       "B15": "允許"
     }
   },
@@ -31784,6 +31824,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "僅晚自習強制",
       "B5": "每週1-2次",
       "B6": "20公里內",
+      "B7": "標準",
       "B8": "校外取",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -31983,7 +32024,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B24": "查寢",
       "B15": "允許",
-      "B20": "不強制"
+      "B20": "不強制",
+      "B7": "有小學期"
     }
   },
   "4137014605": {
@@ -32111,7 +32153,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "22點封寢",
       "B3": "獨立衛浴",
-      "B7": "暑假＜6週"
+      "B7": "暑假4-6週"
     }
   },
   "4137014809": {
@@ -32184,6 +32226,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B4": "無",
       "B5": "無",
+      "B7": "標準",
       "B8": "校外取",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -32196,7 +32239,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B16": "不限",
       "B18": "允許",
       "B6": "無",
-      "B7": "有小學期",
       "B11": "按流量計費"
     }
   },
@@ -32362,8 +32404,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "23點封寢",
       "B22": "驛站在校內",
       "B14": "限時段",
-      "B16": "400W內",
       "B7": "有小學期",
+      "B16": "400W內",
       "B21": "小賣部"
     }
   },
@@ -32627,7 +32669,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B8": "允許外賣",
       "B18": "允許",
       "B9": "無地鐵",
-      "B16": "400W內"
+      "B16": "400W內",
+      "B7": "有小學期"
     }
   },
   "4141010479": {
@@ -32676,10 +32719,10 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "覆蓋",
       "B24": "23點封寢",
+      "B7": "有小學期",
       "B18": "允許",
       "B21": "大型超市",
-      "B22": "驛站在校內",
-      "B7": "有小學期"
+      "B22": "驛站在校內"
     }
   },
   "4141010481": {
@@ -32698,6 +32741,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B17": "有通宵自習",
       "B23": "覆蓋",
       "B24": "22點封寢",
+      "B7": "有小學期",
       "B9": "無地鐵",
       "B18": "允許",
       "B6": "40+公里",
@@ -32705,7 +32749,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B11": "限速嚴重",
       "B14": "24小時",
       "B22": "驛站在校內",
-      "B7": "有小學期",
       "B20": "不強制"
     }
   },
@@ -32843,6 +32886,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B17": "無通宵自習",
       "B18": "允許",
       "B4": "無",
+      "B7": "標準",
       "B23": "無",
       "B11": "按流量計費"
     }
@@ -33186,7 +33230,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B13": "貴",
       "B24": "23點封寢",
       "B2": "都有",
-      "B7": "有小學期",
       "B14": "24小時"
     }
   },
@@ -33385,8 +33428,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B20": "強制開戶",
       "B4": "無",
       "B6": "40+公里",
-      "B16": "不限",
-      "B7": "有小學期"
+      "B16": "不限"
     }
   },
   "4141012058": {
@@ -33404,6 +33446,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B12": "不斷",
       "B15": "允許",
       "B1": "上床下桌",
+      "B7": "標準",
       "B9": "無地鐵",
       "B13": "貴",
       "B14": "24小時",
@@ -33455,7 +33498,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B13": "貴",
       "B18": "允許",
       "B20": "強制開戶",
-      "B7": "暑假＜6週",
+      "B7": "暑假＜4週",
       "B9": "步行15分鐘內",
       "B16": "不限",
       "B22": "驛站在校內",
@@ -33492,7 +33535,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B2": "都有",
       "B4": "早晚自習強制",
-      "B7": "暑假＜6週"
+      "B7": "暑假4-6週"
     }
   },
   "4141012746": {
@@ -33544,7 +33587,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B22": "驛站在校內",
       "B24": "22點封寢",
-      "B7": "有小學期",
       "B4": "無"
     }
   },
@@ -33569,6 +33611,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B16": "不限",
       "B19": "電子/現金",
       "B20": "強制開戶",
+      "B7": "標準",
       "B9": "無地鐵"
     }
   },
@@ -33953,7 +33996,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B14": "24小時",
       "B9": "無地鐵",
       "B17": "有通宵自習",
-      "B7": "有小學期",
       "B22": "驛站在校內"
     }
   },
@@ -34038,7 +34080,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "22點封寢",
       "B6": "20-40公里",
-      "B7": "有小學期",
       "B18": "允許",
       "B21": "小賣部"
     }
@@ -34131,6 +34172,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B16": "不限",
       "B17": "無通宵自習",
       "B22": "驛站在校內",
+      "B7": "標準",
       "B13": "近年負面新聞",
       "B18": "允許",
       "B19": "電子/現金"
@@ -34299,7 +34341,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "查寢",
       "B2": "都有",
       "B6": "無",
-      "B7": "有小學期",
       "B9": "步行15分鐘內",
       "B16": "不限"
     }
@@ -34335,6 +34376,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "標準",
       "B8": "禁止外賣",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
@@ -34434,7 +34476,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B12": "不斷",
       "B15": "允許",
       "B18": "允許",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B8": "允許外賣",
       "B17": "無通宵自習",
       "B19": "電子/現金",
@@ -34463,7 +34505,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B22": "驛站在校內",
       "B24": "查寢",
-      "B7": "有小學期",
+      "B7": "標準",
       "B9": "無地鐵",
       "B4": "早晚自習強制",
       "B20": "不強制",
@@ -34538,6 +34580,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "無",
       "B6": "無",
+      "B7": "標準",
       "B4": "早晚自習強制",
       "B18": "允許",
       "B22": "驛站在校內",
@@ -34621,8 +34664,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B5": "每週1-2次",
       "B6": "40+公里",
       "B13": "近年負面新聞",
-      "B20": "不強制",
-      "B7": "有小學期"
+      "B20": "不強制"
     }
   },
   "4141014251": {
@@ -34736,6 +34778,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B21": "小賣部",
       "B23": "無",
       "B4": "僅晚自習強制",
+      "B7": "標準",
       "B14": "24小時",
       "B18": "允許",
       "B19": "強制校園卡",
@@ -34788,7 +34831,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B20": "強制開戶",
-      "B7": "暑假＜6週",
+      "B7": "暑假4-6週",
       "B14": "24小時",
       "B18": "允許"
     }
@@ -34811,7 +34854,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B12": "不斷",
       "B16": "不限",
       "B17": "無通宵自習",
-      "B7": "有小學期",
       "B14": "限時段",
       "B20": "不強制",
       "B22": "驛站在校內",
@@ -34900,6 +34942,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B4": "早晚自習強制",
       "B5": "每週1-2次",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -35081,6 +35124,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "23點封寢",
       "B3": "公共澡堂",
+      "B7": "標準",
       "B21": "小賣部",
       "B22": "驛站在校內",
       "B13": "貴",
@@ -35322,13 +35366,13 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B5": "無",
       "B6": "無",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
       "B14": "24小時",
       "B17": "有通宵自習",
       "B18": "允許",
-      "B7": "有小學期",
       "B13": "貴",
       "B22": "驛站在校內",
       "B21": "大型超市",
@@ -35459,6 +35503,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "覆蓋",
       "B24": "查寢",
+      "B7": "標準",
       "B8": "允許外賣",
       "B18": "允許",
       "B19": "強制校園卡"
@@ -35856,6 +35901,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "每週1-2次",
       "B6": "20-40公里",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B11": "不計費",
@@ -35870,7 +35916,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B17": "無通宵自習",
       "B18": "允許",
       "B16": "不限",
-      "B7": "有小學期",
       "B14": "24小時",
       "B21": "小賣部",
       "B20": "強制開戶"
@@ -36213,7 +36258,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
       "B6": "無",
-      "B7": "暑假＜6週",
       "B8": "校外取",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -36253,8 +36297,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B5": "每週1-2次",
       "B9": "無地鐵",
       "B2": "僅宿舍有",
-      "B21": "大型超市",
       "B7": "有小學期",
+      "B21": "大型超市",
       "B22": "驛站在校內"
     }
   },
@@ -36363,6 +36407,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B4": "早晚自習強制",
       "B5": "每週1-2次",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B11": "不計費",
@@ -36374,7 +36419,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "覆蓋",
       "B24": "23點封寢",
       "B2": "都有",
-      "B7": "有小學期",
       "B9": "地鐵＞3公里",
       "B18": "允許",
       "B6": "20公里內",
@@ -36390,6 +36434,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B5": "無",
       "B6": "20-40公里",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -36561,6 +36606,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B23": "無",
       "B24": "查寢",
+      "B7": "標準",
       "B9": "地鐵＞3公里",
       "B22": "驛站在校內"
     }
@@ -36676,6 +36722,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "午夜後斷",
@@ -36761,7 +36808,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "覆蓋",
       "B14": "24小時",
       "B18": "允許",
-      "B6": "20公里內"
+      "B6": "20公里內",
+      "B7": "標準"
     }
   },
   "4142011600": {
@@ -36834,7 +36882,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "查寢",
       "B11": "無校園網",
-      "B7": "有小學期",
       "B20": "強制開戶"
     }
   },
@@ -36934,7 +36981,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B9": "地鐵＞3公里",
       "B16": "400W內",
       "B22": "驛站在校內",
-      "B14": "24小時"
+      "B14": "24小時",
+      "B7": "標準"
     }
   },
   "4142012309": {
@@ -37104,6 +37152,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "無",
       "B24": "22點封寢",
+      "B7": "標準",
       "B9": "步行15分鐘內",
       "B14": "24小時",
       "B20": "強制開戶",
@@ -37129,6 +37178,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B9": "無地鐵",
       "B12": "不斷",
       "B18": "允許",
+      "B7": "標準",
       "B13": "近年負面新聞",
       "B22": "驛站在校內"
     }
@@ -37143,6 +37193,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "無",
       "B6": "無",
+      "B7": "標準",
       "B8": "校外取",
       "B10": "樓內/宿舍有",
       "B11": "限速嚴重",
@@ -37163,6 +37214,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -37409,6 +37461,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "僅晚自習強制",
       "B5": "每週1-2次",
       "B6": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "無洗衣機",
@@ -37486,7 +37539,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "22點封寢",
       "B4": "早晚自習強制",
-      "B7": "有小學期",
       "B13": "近年負面新聞",
       "B15": "允許"
     }
@@ -37578,7 +37630,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B10": "樓內/宿舍有",
       "B11": "限速嚴重",
       "B23": "無",
-      "B20": "強制開戶"
+      "B20": "強制開戶",
+      "B7": "標準"
     }
   },
   "4142013188": {
@@ -37590,6 +37643,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
       "B6": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B13": "貴",
@@ -37652,7 +37706,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B17": "無通宵自習",
       "B4": "早晚自習強制",
       "B11": "按流量計費",
-      "B16": "800W內"
+      "B16": "800W內",
+      "B7": "標準"
     }
   },
   "4142013236": {
@@ -37724,13 +37779,13 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "覆蓋",
       "B24": "23點封寢",
       "B9": "步行15分鐘內",
+      "B7": "有小學期",
       "B11": "限速嚴重",
       "B15": "允許",
       "B18": "允許",
       "B2": "都有",
       "B22": "驛站在校內",
-      "B21": "小賣部",
-      "B7": "有小學期"
+      "B21": "小賣部"
     }
   },
   "4142013239": {
@@ -37754,6 +37809,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B20": "強制開戶",
       "B22": "驛站在校內",
       "B24": "查寢",
+      "B7": "標準",
       "B10": "樓內/宿舍有",
       "B16": "不限",
       "B23": "無"
@@ -37802,7 +37858,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "查寢",
       "B6": "20-40公里",
-      "B7": "有小學期",
       "B9": "步行15分鐘內",
       "B16": "不限",
       "B14": "限時段",
@@ -37978,7 +38033,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "無",
       "B24": "23點封寢",
-      "B7": "有小學期",
       "B9": "地鐵＞3公里",
       "B22": "驛站在校內",
       "B1": "上床下桌",
@@ -38054,7 +38108,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "無",
       "B24": "查寢",
-      "B7": "有小學期",
       "B16": "800W內",
       "B15": "允許",
       "B21": "無超市"
@@ -38245,7 +38298,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B13": "貴",
       "B14": "24小時",
-      "B7": "有小學期",
+      "B7": "標準",
       "B9": "步行15分鐘內",
       "B11": "限速嚴重",
       "B15": "允許",
@@ -38274,11 +38327,11 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "查寢",
       "B12": "不斷",
       "B4": "早晚自習強制",
+      "B7": "標準",
       "B9": "步行15分鐘內",
       "B14": "限時段",
       "B21": "大型超市",
       "B11": "限速嚴重",
-      "B7": "有小學期",
       "B20": "不強制",
       "B23": "無"
     }
@@ -38501,6 +38554,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "僅晚自習強制",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -38518,8 +38572,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B16": "不限",
       "B20": "強制開戶",
-      "B21": "小賣部",
-      "B7": "有小學期"
+      "B21": "小賣部"
     }
   },
   "4142014119": {
@@ -38665,6 +38718,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "公共澡堂",
       "B4": "僅晚自習強制",
       "B6": "40+公里",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -39099,8 +39153,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "無",
       "B2": "都有",
-      "B24": "23點封寢",
       "B7": "有小學期",
+      "B24": "23點封寢",
       "B10": "樓內/宿舍有",
       "B13": "貴",
       "B14": "限時段",
@@ -39186,6 +39240,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "23點封寢",
       "B2": "都有",
       "B6": "無",
+      "B7": "標準",
       "B9": "無地鐵",
       "B14": "24小時",
       "B15": "允許",
@@ -39339,7 +39394,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B6": "40+公里",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -39438,7 +39493,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B13": "貴",
       "B24": "查寢",
       "B4": "僅晚自習強制",
-      "B7": "有小學期",
       "B20": "強制開戶"
     }
   },
@@ -39465,7 +39519,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B16": "不限",
       "B18": "允許",
       "B4": "早晚自習強制",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B20": "強制開戶",
       "B14": "限時段"
     }
@@ -39677,7 +39731,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "無",
       "B24": "查寢",
-      "B7": "暑假＜6週",
       "B11": "不計費",
       "B14": "24小時",
       "B18": "允許",
@@ -40019,6 +40072,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "22點封寢",
       "B13": "好評",
       "B16": "800W內",
+      "B7": "標準",
       "B18": "允許",
       "B14": "24小時"
     }
@@ -40130,6 +40184,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     "quality": {
       "B1": "上床下桌",
       "B5": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -40338,7 +40393,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "23點封寢",
       "B15": "允許",
       "B22": "驛站在校內",
-      "B4": "早晚自習強制"
+      "B4": "早晚自習強制",
+      "B7": "標準"
     }
   },
   "4143012739": {
@@ -40388,7 +40444,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B24": "查寢",
       "B4": "無",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B9": "地鐵＞3公里",
       "B11": "限速嚴重",
       "B16": "不限",
@@ -40438,7 +40494,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B24": "23點封寢",
-      "B7": "有小學期",
       "B21": "小賣部",
       "B11": "限速嚴重"
     }
@@ -40470,6 +40525,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B3": "獨立衛浴",
       "B6": "無",
+      "B7": "有小學期",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
       "B15": "允許",
@@ -40721,6 +40777,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "標準",
       "B8": "校外取",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
@@ -40823,10 +40880,10 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B12": "不斷",
       "B18": "允許",
       "B20": "強制開戶",
+      "B7": "標準",
       "B4": "早晚自習強制",
       "B21": "無超市",
-      "B15": "允許",
-      "B7": "有小學期"
+      "B15": "允許"
     }
   },
   "4143013807": {
@@ -40877,6 +40934,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B3": "獨立衛浴",
       "B5": "無",
+      "B7": "標準",
       "B8": "校外取",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -41093,12 +41151,12 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "僅晚自習強制",
       "B5": "無",
       "B6": "無",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B16": "800W內",
       "B19": "電子/現金",
       "B23": "無",
-      "B7": "有小學期",
       "B12": "不斷",
       "B13": "近年負面新聞",
       "B15": "允許",
@@ -41130,8 +41188,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B6": "40+公里",
       "B13": "貴",
       "B9": "無地鐵",
-      "B7": "暑假＜6週",
       "B19": "強制校園卡",
+      "B7": "暑假＜4週",
       "B14": "無熱水"
     }
   },
@@ -41248,7 +41306,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B4": "早晚自習強制",
       "B5": "無",
-      "B7": "暑假＜6週",
+      "B7": "暑假4-6週",
       "B8": "校外取",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
@@ -41490,7 +41548,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     "quality": {
       "B2": "僅宿舍有",
       "B4": "僅晚自習強制",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B8": "禁止外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -41720,6 +41778,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -41732,7 +41791,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B22": "驛站在校內",
       "B24": "查寢",
-      "B7": "有小學期",
       "B15": "允許",
       "B18": "允許",
       "B23": "覆蓋",
@@ -41861,6 +41919,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "無",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B12": "不斷",
@@ -41870,7 +41929,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B2": "都有",
       "B3": "獨立衛浴",
-      "B7": "有小學期",
       "B10": "樓內/宿舍有",
       "B14": "限時段",
       "B15": "允許",
@@ -41906,7 +41964,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B12": "不斷",
       "B14": "24小時",
       "B18": "允許",
-      "B7": "暑假＜6週",
       "B16": "不限"
     }
   },
@@ -41945,7 +42002,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B3": "獨立衛浴",
       "B5": "無",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -41959,6 +42015,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B2": "都有",
       "B4": "早晚自習強制",
+      "B7": "有小學期",
       "B16": "不限",
       "B24": "查寢",
       "B6": "無",
@@ -42048,7 +42105,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B21": "大型超市",
       "B11": "不計費",
-      "B7": "有小學期",
       "B20": "強制開戶"
     }
   },
@@ -42278,6 +42334,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B3": "獨立衛浴",
       "B5": "無",
+      "B7": "有小學期",
       "B9": "地鐵＞3公里",
       "B12": "午夜後斷",
       "B15": "允許",
@@ -42292,7 +42349,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B10": "樓內/宿舍有",
       "B13": "近年負面新聞",
       "B16": "800W內",
-      "B7": "有小學期",
       "B6": "無",
       "B20": "不強制"
     }
@@ -42309,6 +42365,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B3": "獨立衛浴",
       "B5": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B11": "不計費",
@@ -42338,6 +42395,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B12": "不斷",
       "B15": "允許",
       "B14": "24小時",
+      "B7": "標準",
       "B16": "800W內",
       "B21": "小賣部",
       "B18": "允許"
@@ -42359,7 +42417,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B15": "允許",
       "B16": "不限",
-      "B23": "無"
+      "B23": "無",
+      "B7": "標準"
     }
   },
   "4144010965": {
@@ -42421,6 +42480,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B3": "獨立衛浴",
       "B5": "無",
+      "B7": "標準",
       "B8": "校外取",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -42481,6 +42541,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B22": "驛站在校內",
       "B24": "查寢",
+      "B7": "標準",
       "B13": "貴",
       "B15": "禁止",
       "B18": "允許",
@@ -42512,7 +42573,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B13": "近年負面新聞",
       "B18": "允許",
       "B2": "僅宿舍有",
-      "B7": "有小學期",
       "B20": "強制開戶"
     }
   },
@@ -42539,7 +42599,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B10": "樓內/宿舍有",
       "B14": "24小時",
       "B4": "早晚自習強制",
-      "B7": "有小學期",
+      "B7": "標準",
       "B18": "允許",
       "B21": "小賣部"
     }
@@ -42553,7 +42613,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B4": "早晚自習強制",
       "B5": "無",
-      "B7": "暑假＜6週",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B12": "不斷",
@@ -42570,6 +42629,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B10": "樓內/宿舍有",
       "B23": "覆蓋",
+      "B7": "標準",
       "B11": "不計費"
     }
   },
@@ -42591,7 +42651,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "校門取",
       "B24": "查寢",
       "B12": "不斷",
-      "B7": "有小學期",
       "B10": "樓內/宿舍有",
       "B11": "無校園網",
       "B16": "不限",
@@ -42624,6 +42683,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "查寢",
       "B16": "800W內",
       "B18": "允許",
+      "B7": "有小學期",
       "B21": "小賣部",
       "B6": "20公里內",
       "B11": "不計費",
@@ -42640,6 +42700,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B12": "不斷",
@@ -42668,6 +42729,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B12": "不斷",
       "B13": "貴",
@@ -42681,7 +42743,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B10": "樓內/宿舍有",
       "B21": "小賣部",
       "B22": "驛站在校內",
-      "B7": "有小學期",
       "B11": "不計費"
     }
   },
@@ -42797,7 +42858,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B9": "地鐵＞3公里",
       "B15": "允許",
       "B17": "無通宵自習",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B6": "無",
       "B4": "早晚自習強制"
     }
@@ -42829,7 +42890,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B16": "不限",
       "B23": "覆蓋",
       "B6": "40+公里",
-      "B9": "地鐵＞3公里"
+      "B9": "地鐵＞3公里",
+      "B7": "標準"
     }
   },
   "4144012060": {
@@ -42937,7 +42999,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B9": "無地鐵",
       "B15": "允許",
       "B21": "小賣部",
-      "B7": "暑假＜6週",
       "B16": "不限"
     }
   },
@@ -42951,6 +43012,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "20公里內",
+      "B7": "標準",
       "B8": "校外取",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -42964,8 +43026,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "覆蓋",
       "B15": "禁止",
       "B16": "不限",
-      "B18": "允許",
-      "B7": "有小學期"
+      "B18": "允許"
     }
   },
   "4144012573": {
@@ -43047,7 +43108,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B6": "無",
       "B18": "允許",
       "B21": "大型超市",
-      "B4": "無"
+      "B4": "無",
+      "B7": "標準"
     }
   },
   "4144012577": {
@@ -43067,7 +43129,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B4": "早晚自習強制",
       "B5": "無",
-      "B7": "有小學期",
       "B8": "校外取",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -43161,7 +43222,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B9": "地鐵＞3公里",
       "B15": "允許",
       "B6": "20公里內",
-      "B7": "有小學期",
       "B14": "限時段"
     }
   },
@@ -43188,6 +43248,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B9": "無地鐵",
       "B11": "限速嚴重",
       "B22": "驛站在校內",
+      "B7": "標準",
       "B14": "24小時"
     }
   },
@@ -43261,7 +43322,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B6": "無",
       "B10": "樓內/宿舍有",
       "B24": "22點封寢",
-      "B7": "有小學期",
       "B21": "小賣部",
       "B14": "限時段"
     }
@@ -43289,7 +43349,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B11": "不計費",
       "B13": "貴",
       "B14": "24小時",
-      "B21": "小賣部"
+      "B21": "小賣部",
+      "B7": "標準"
     }
   },
   "4144012741": {
@@ -43356,7 +43417,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "23點封寢",
       "B4": "僅晚自習強制",
-      "B7": "有小學期",
       "B10": "樓內/宿舍有",
       "B13": "近年負面新聞",
       "B14": "限時段",
@@ -43514,7 +43574,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B13": "貴",
-      "B7": "有小學期",
       "B9": "無地鐵",
       "B11": "按流量計費"
     }
@@ -43526,6 +43585,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上下鋪",
       "B3": "獨立衛浴",
       "B6": "無",
+      "B7": "暑假4-6週",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B12": "不斷",
@@ -43587,6 +43647,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B15": "允許",
       "B9": "地鐵＞3公里",
       "B14": "限時段",
+      "B7": "標準",
       "B20": "強制開戶"
     }
   },
@@ -43610,6 +43671,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B19": "強制校園卡",
       "B22": "校門取",
+      "B7": "暑假4-6週",
       "B16": "不限",
       "B20": "強制開戶"
     }
@@ -43673,7 +43735,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "無",
-      "B7": "暑假＜6週",
       "B8": "允許外賣",
       "B12": "不斷",
       "B15": "允許",
@@ -43836,6 +43897,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B9": "地鐵＞3公里",
       "B15": "允許",
       "B16": "不限",
+      "B7": "標準",
       "B18": "允許"
     }
   },
@@ -43933,7 +43995,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B15": "允許",
       "B11": "限速嚴重",
-      "B22": "驛站在校內"
+      "B22": "驛站在校內",
+      "B7": "標準"
     }
   },
   "4144013713": {
@@ -43941,7 +44004,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     "schoolAddress": "广东省珠海市金湾区德城路680号",
     "quality": {
       "B2": "都有",
-      "B7": "暑假＜6週",
       "B11": "限速嚴重",
       "B15": "允許",
       "B21": "無超市",
@@ -44037,7 +44099,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "40+公里",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -44051,6 +44112,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "查寢",
       "B11": "限速嚴重",
       "B17": "無通宵自習",
+      "B7": "有小學期",
       "B15": "禁止",
       "B14": "24小時",
       "B20": "強制開戶",
@@ -44103,7 +44165,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B11": "不計費",
       "B21": "小賣部",
       "B22": "驛站在校內",
-      "B7": "有小學期",
       "B4": "早晚自習強制"
     }
   },
@@ -44311,6 +44372,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "23點封寢",
       "B6": "無",
+      "B7": "標準",
       "B14": "24小時",
       "B19": "強制校園卡",
       "B8": "允許外賣",
@@ -44372,6 +44434,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "標準",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -44469,7 +44532,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "僅早自習強制",
       "B5": "無",
       "B6": "無",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B8": "校外取",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
@@ -44537,7 +44600,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B6": "40+公里",
-      "B7": "有小學期",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
       "B14": "限時段",
@@ -44598,7 +44660,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B13": "近年負面新聞",
       "B14": "24小時",
       "B19": "強制特定銀行",
-      "B9": "地鐵＞3公里"
+      "B9": "地鐵＞3公里",
+      "B7": "標準"
     }
   },
   "4144014268": {
@@ -44665,10 +44728,10 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B24": "23點封寢",
+      "B7": "有小學期",
       "B13": "近年負面新聞",
       "B17": "無通宵自習",
       "B21": "無超市",
-      "B7": "有小學期",
       "B18": "允許"
     }
   },
@@ -44929,7 +44992,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B6": "20-40公里",
       "B12": "不斷",
-      "B18": "允許"
+      "B18": "允許",
+      "B7": "標準"
     }
   },
   "4144014587": {
@@ -45078,6 +45142,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B3": "獨立衛浴",
       "B5": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
@@ -45180,7 +45245,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "40+公里",
-      "B7": "暑假＜6週",
+      "B7": "暑假4-6週",
       "B8": "允許外賣",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
@@ -45218,7 +45283,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "查寢",
       "B6": "20公里內",
-      "B7": "有小學期",
       "B22": "驛站在校內",
       "B18": "允許",
       "B11": "限速嚴重"
@@ -45287,7 +45351,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B4": "無",
       "B5": "無",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -45628,6 +45691,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "查寢",
       "B3": "獨立衛浴",
+      "B7": "標準",
       "B9": "無地鐵",
       "B18": "允許",
       "B20": "強制開戶",
@@ -45642,7 +45706,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "僅宿舍有",
       "B3": "獨立衛浴",
       "B5": "無",
-      "B7": "暑假＜6週",
+      "B7": "暑假4-6週",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -45682,10 +45746,10 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B14": "24小時",
       "B23": "無",
       "B18": "允許",
+      "B7": "有小學期",
       "B13": "近年負面新聞",
       "B11": "不計費",
-      "B21": "小賣部",
-      "B7": "有小學期"
+      "B21": "小賣部"
     }
   },
   "4145010608": {
@@ -45765,8 +45829,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B15": "禁止",
       "B14": "限時段",
-      "B22": "菜鳥驛站遠",
-      "B7": "暑假＜6週"
+      "B22": "菜鳥驛站遠"
     }
   },
   "4145011350": {
@@ -45890,7 +45953,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B6": "20-40公里",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -45953,7 +46015,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B15": "允許",
       "B16": "800W內",
       "B6": "無",
-      "B7": "有小學期",
       "B22": "校門取"
     }
   },
@@ -46087,6 +46148,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B2": "都沒有",
       "B6": "無",
+      "B7": "標準",
       "B11": "不計費"
     }
   },
@@ -46128,7 +46190,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B15": "允許",
       "B19": "強制校園卡",
       "B20": "不強制",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B22": "驛站在校內"
     }
   },
@@ -46197,8 +46259,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B16": "不限",
       "B18": "允許",
       "B22": "驛站在校內",
-      "B6": "無",
-      "B7": "有小學期"
+      "B6": "無"
     }
   },
   "4145013520": {
@@ -46597,7 +46658,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B14": "24小時",
       "B15": "允許",
       "B6": "無",
-      "B7": "暑假＜6週",
+      "B7": "暑假＜4週",
       "B13": "貴",
       "B16": "不限",
       "B11": "不計費"
@@ -46639,6 +46700,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B5": "無",
       "B6": "無",
+      "B7": "標準",
       "B10": "樓內/宿舍有",
       "B11": "限速嚴重",
       "B18": "禁止",
@@ -46827,6 +46889,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -46854,7 +46917,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B1": "上下鋪",
       "B3": "獨立衛浴",
-      "B7": "有小學期",
       "B8": "校外取",
       "B12": "不斷",
       "B24": "23點封寢",
@@ -47145,8 +47207,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B13": "貴",
       "B15": "允許",
-      "B18": "允許",
       "B7": "有小學期",
+      "B18": "允許",
       "B20": "強制開戶",
       "B21": "無超市"
     }
@@ -47642,10 +47704,10 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B11": "限速嚴重",
       "B16": "不限",
+      "B7": "有小學期",
       "B14": "限時段",
       "B20": "強制開戶",
-      "B18": "允許",
-      "B7": "有小學期"
+      "B18": "允許"
     }
   },
   "4150010643": {
@@ -47787,6 +47849,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B4": "無",
       "B5": "無",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B11": "不計費",
@@ -47802,7 +47865,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "查寢",
       "B6": "無",
-      "B7": "有小學期",
       "B18": "允許",
       "B9": "步行15分鐘內",
       "B20": "不強制"
@@ -48136,6 +48198,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B9": "地鐵＞3公里",
       "B16": "800W內",
       "B20": "不強制",
+      "B7": "標準",
       "B18": "允許",
       "B11": "限速嚴重",
       "B21": "小賣部"
@@ -48206,7 +48269,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B4": "早晚自習強制",
       "B5": "無",
-      "B7": "暑假＜6週",
       "B9": "地鐵＞3公里",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -48284,7 +48346,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     "quality": {
       "B1": "上床下桌",
       "B5": "無",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -48618,6 +48679,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B6": "無",
       "B15": "允許",
       "B4": "早晚自習強制",
+      "B7": "標準",
       "B13": "好評",
       "B22": "驛站在校內"
     }
@@ -48813,6 +48875,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -48854,6 +48917,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B4": "僅晚自習強制",
       "B5": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -49058,6 +49122,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "有小學期",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
       "B11": "不計費",
@@ -49069,7 +49134,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "查寢",
       "B1": "上床下桌",
       "B2": "都有",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B12": "不斷",
       "B14": "24小時",
@@ -49245,7 +49309,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B15": "允許",
       "B22": "菜鳥驛站遠",
       "B11": "限速嚴重",
-      "B7": "暑假＜6週",
+      "B7": "暑假＜4週",
       "B16": "800W內",
       "B18": "允許",
       "B21": "小賣部"
@@ -49415,7 +49479,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B23": "覆蓋",
       "B22": "驛站在校內",
-      "B4": "早晚自習強制"
+      "B4": "早晚自習強制",
+      "B7": "標準"
     }
   },
   "4151010640": {
@@ -49481,7 +49546,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B3": "獨立衛浴",
       "B5": "無",
-      "B7": "有小學期",
+      "B7": "標準",
       "B8": "允許外賣",
       "B12": "不斷",
       "B13": "近年負面新聞",
@@ -49511,7 +49576,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B11": "限速嚴重",
       "B14": "24小時",
       "B17": "無通宵自習",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B8": "允許外賣",
       "B12": "不斷",
       "B15": "允許",
@@ -49601,6 +49666,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "每週1-2次",
       "B6": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -49634,7 +49700,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "23點封寢",
       "B2": "都有",
       "B6": "無",
-      "B7": "有小學期",
       "B11": "限速嚴重",
       "B19": "強制校園卡",
       "B21": "大型超市",
@@ -49754,7 +49819,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B24": "查寢",
       "B16": "800W內",
-      "B21": "小賣部"
+      "B21": "小賣部",
+      "B7": "暑假4-6週"
     }
   },
   "4151011552": {
@@ -49805,7 +49871,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B6": "無",
       "B15": "允許",
-      "B7": "暑假＜6週",
       "B14": "無熱水",
       "B16": "400W內",
       "B18": "允許",
@@ -49991,6 +50056,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B24": "查寢",
+      "B7": "有小學期",
       "B9": "無地鐵",
       "B19": "強制特定銀行"
     }
@@ -50023,7 +50089,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B21": "小賣部",
       "B22": "驛站在校內",
       "B18": "允許",
-      "B7": "暑假＜6週"
+      "B7": "標準"
     }
   },
   "4151012751": {
@@ -50071,7 +50137,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B11": "按流量計費",
       "B18": "允許",
       "B4": "早晚自習強制",
-      "B22": "菜鳥驛站遠"
+      "B22": "菜鳥驛站遠",
+      "B7": "標準"
     }
   },
   "4151012761": {
@@ -50158,7 +50225,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B23": "覆蓋",
       "B3": "獨立衛浴",
-      "B7": "暑假＜6週",
       "B21": "小賣部"
     }
   },
@@ -50294,6 +50360,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     "quality": {
       "B1": "上下鋪",
       "B3": "獨立衛浴",
+      "B7": "標準",
       "B9": "無地鐵",
       "B10": "無洗衣機",
       "B11": "限速嚴重",
@@ -50330,8 +50397,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B6": "無",
       "B14": "24小時",
-      "B18": "允許",
-      "B7": "有小學期"
+      "B18": "允許"
     }
   },
   "4151012970": {
@@ -50402,7 +50468,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B6": "20公里內",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "每晚斷電",
@@ -50453,7 +50518,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B6": "無",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B12": "不斷",
       "B13": "近年負面新聞",
@@ -50544,8 +50608,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B4": "早晚自習強制",
       "B18": "允許",
-      "B22": "驛站在校內",
-      "B7": "有小學期"
+      "B22": "驛站在校內"
     }
   },
   "4151013673": {
@@ -50566,7 +50629,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B4": "無",
-      "B7": "暑假＜6週",
+      "B7": "暑假4-6週",
       "B9": "無地鐵"
     }
   },
@@ -50828,6 +50891,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B4": "無",
       "B5": "無",
+      "B7": "標準",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
       "B13": "近年負面新聞",
@@ -50897,6 +50961,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B6": "40+公里",
       "B9": "無地鐵",
+      "B7": "標準",
       "B20": "不強制"
     }
   },
@@ -50923,7 +50988,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B17": "無通宵自習",
       "B18": "允許",
       "B22": "驛站在校內",
-      "B23": "無"
+      "B23": "無",
+      "B7": "標準"
     }
   },
   "4151014070": {
@@ -51066,6 +51132,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
       "B6": "20公里內",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -51075,7 +51142,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B2": "僅宿舍有",
       "B4": "僅早自習強制",
-      "B7": "有小學期",
       "B13": "貴",
       "B16": "800W內",
       "B18": "允許",
@@ -51113,6 +51179,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B4": "早晚自習強制",
       "B6": "無",
+      "B7": "標準",
       "B8": "禁止外賣",
       "B10": "樓內/宿舍有",
       "B13": "近年負面新聞",
@@ -51216,7 +51283,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     "quality": {
       "B3": "獨立衛浴",
       "B5": "無",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B8": "校外取",
       "B10": "樓內/宿舍有",
       "B11": "限速嚴重",
@@ -51384,7 +51451,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B15": "允許",
       "B2": "僅宿舍有",
       "B4": "早晚自習強制",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B13": "近年負面新聞",
       "B14": "限時段",
       "B18": "允許",
@@ -51425,7 +51492,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都沒有",
       "B5": "每週1-2次",
       "B6": "40+公里",
-      "B7": "暑假＜6週",
       "B10": "無洗衣機",
       "B13": "貴",
       "B16": "400W內",
@@ -51527,7 +51593,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B4": "早晚自習強制",
       "B5": "無",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B11": "按流量計費",
@@ -51714,6 +51780,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "每週1-2次",
       "B6": "40+公里",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -51727,7 +51794,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B13": "近年負面新聞",
       "B14": "24小時",
       "B20": "強制開戶",
-      "B7": "有小學期",
       "B18": "允許",
       "B11": "限速嚴重"
     }
@@ -51819,7 +51885,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B2": "都有",
       "B5": "無",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
@@ -51856,7 +51921,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B9": "無地鐵",
       "B17": "無通宵自習",
-      "B7": "有小學期",
       "B21": "小賣部"
     }
   },
@@ -52058,8 +52122,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "菜鳥驛站遠",
       "B23": "無",
       "B24": "查寢",
-      "B11": "不計費",
-      "B7": "暑假＜6週"
+      "B11": "不計費"
     }
   },
   "4152011663": {
@@ -52433,8 +52496,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "查寢",
       "B18": "允許",
-      "B20": "不強制",
-      "B7": "暑假＜6週"
+      "B7": "暑假4-6週",
+      "B20": "不強制"
     }
   },
   "4152014252": {
@@ -52633,6 +52696,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     "quality": {
       "B1": "上床下桌",
       "B3": "獨立衛浴",
+      "B7": "標準",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
       "B14": "24小時",
@@ -52741,11 +52805,11 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B12": "不斷",
       "B15": "允許",
       "B22": "驛站在校內",
-      "B7": "有小學期",
       "B9": "地鐵＞3公里",
       "B11": "限速嚴重",
       "B14": "24小時",
-      "B18": "允許"
+      "B18": "允許",
+      "B7": "有小學期"
     }
   },
   "4153010676": {
@@ -52823,11 +52887,11 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "查寢",
       "B1": "上床下桌",
+      "B7": "有小學期",
       "B13": "貴",
       "B14": "24小時",
       "B21": "小賣部",
-      "B22": "驛站在校內",
-      "B7": "有小學期"
+      "B22": "驛站在校內"
     }
   },
   "4153010679": {
@@ -52963,7 +53027,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都沒有",
       "B3": "獨立衛浴",
       "B5": "無",
-      "B7": "有小學期",
       "B8": "校外取",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -52975,6 +53038,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B1": "上床下桌",
+      "B7": "有小學期",
       "B17": "有通宵自習",
       "B24": "查寢",
       "B14": "限時段",
@@ -53088,7 +53152,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B6": "無",
       "B14": "24小時",
       "B11": "不計費",
-      "B7": "有小學期",
       "B21": "小賣部"
     }
   },
@@ -53166,7 +53229,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B15": "允許",
       "B24": "查寢",
       "B4": "早晚自習強制",
-      "B6": "20公里內"
+      "B6": "20公里內",
+      "B7": "標準"
     }
   },
   "4153011392": {
@@ -53442,11 +53506,11 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "驛站在校內",
       "B23": "無",
       "B24": "查寢",
+      "B7": "有小學期",
       "B9": "無地鐵",
       "B18": "允許",
       "B16": "800W內",
-      "B4": "早晚自習強制",
-      "B7": "有小學期"
+      "B4": "早晚自習強制"
     }
   },
   "4153013329": {
@@ -53492,6 +53556,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B16": "不限",
       "B4": "早晚自習強制",
+      "B7": "有小學期",
       "B18": "允許"
     }
   },
@@ -53509,6 +53574,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "23點封寢",
       "B1": "三層上下鋪",
+      "B7": "標準",
       "B14": "24小時",
       "B15": "允許",
       "B22": "驛站在校內"
@@ -53606,7 +53672,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "無",
       "B22": "驛站在校內",
-      "B7": "有小學期",
+      "B7": "標準",
       "B11": "限速嚴重"
     }
   },
@@ -53690,6 +53756,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
       "B6": "無",
+      "B7": "標準",
       "B10": "樓內/宿舍有",
       "B12": "午夜後斷",
       "B13": "近年負面新聞",
@@ -53776,7 +53843,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "無",
       "B6": "無",
-      "B7": "暑假＜6週",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B11": "不計費",
@@ -54005,7 +54071,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都沒有",
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
-      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -54069,7 +54134,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B22": "校門取",
       "B2": "都沒有",
       "B4": "早晚自習強制",
-      "B7": "暑假＜6週",
+      "B7": "暑假＜4週",
       "B10": "樓內/宿舍有"
     }
   },
@@ -54526,7 +54591,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B19": "強制校園卡",
       "B23": "無",
       "B24": "23點封寢",
-      "B7": "暑假＜6週",
+      "B7": "標準",
       "B15": "允許",
       "B16": "400W內",
       "B18": "允許",
@@ -54636,7 +54701,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B24": "查寢",
       "B3": "獨立衛浴",
-      "B7": "有小學期",
       "B22": "驛站在校內",
       "B20": "強制開戶",
       "B14": "限時段"
@@ -54664,7 +54728,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B23": "無",
       "B2": "僅宿舍有",
-      "B7": "暑假＜6週",
+      "B7": "暑假4-6週",
       "B9": "步行15分鐘內"
     }
   },
@@ -54704,6 +54768,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B3": "獨立衛浴",
       "B5": "無",
+      "B7": "有小學期",
       "B8": "校外取",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -54716,7 +54781,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "查寢",
       "B2": "都有",
-      "B7": "有小學期",
       "B12": "不斷",
       "B18": "允許",
       "B22": "驛站在校內",
@@ -54761,6 +54825,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "每週1-2次",
       "B6": "無",
+      "B7": "有小學期",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
       "B14": "24小時",
@@ -54771,7 +54836,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B24": "23點封寢",
       "B3": "獨立衛浴",
-      "B7": "有小學期",
       "B9": "地鐵＞3公里",
       "B13": "好評",
       "B11": "不計費",
@@ -54884,10 +54948,10 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B24": "查寢",
       "B5": "每週1-2次",
       "B6": "20-40公里",
-      "B7": "暑假＜6週",
       "B22": "驛站在校內",
       "B14": "24小時",
       "B16": "800W內",
+      "B7": "標準",
       "B21": "小賣部"
     }
   },
@@ -55313,6 +55377,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B21": "無超市",
       "B3": "公共澡堂",
       "B4": "早晚自習強制",
+      "B7": "標準",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
       "B11": "限速嚴重",
@@ -55440,7 +55505,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B15": "允許",
       "B19": "強制校園卡",
       "B2": "都沒有",
-      "B7": "暑假＜6週",
       "B18": "允許"
     }
   },
@@ -55452,6 +55516,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "僅宿舍有",
       "B3": "獨立衛浴",
       "B5": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -55575,6 +55640,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B3": "獨立衛浴",
       "B4": "早晚自習強制",
       "B5": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -55645,7 +55711,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B10": "樓內/宿舍有",
       "B12": "不斷",
       "B20": "強制開戶",
-      "B7": "暑假＜6週",
+      "B7": "暑假4-6週",
       "B11": "按流量計費",
       "B14": "限時段",
       "B15": "允許",
@@ -55682,6 +55748,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上下鋪",
       "B4": "早晚自習強制",
       "B6": "40+公里",
+      "B7": "有小學期",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
       "B17": "無通宵自習",
@@ -55844,6 +55911,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B2": "僅宿舍有",
       "B6": "40+公里",
+      "B7": "標準",
       "B22": "菜鳥驛站遠"
     }
   },
@@ -55964,6 +56032,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "早晚自習強制",
       "B5": "無",
       "B6": "40+公里",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -56181,6 +56250,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B13": "貴",
       "B15": "禁止",
+      "B7": "標準",
       "B11": "按流量計費",
       "B22": "菜鳥驛站遠"
     }
@@ -56195,6 +56265,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "無",
       "B5": "無",
       "B6": "無",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B10": "樓內/宿舍有",
       "B11": "限速嚴重",
@@ -56202,7 +56273,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B18": "允許",
       "B19": "強制校園卡",
       "B23": "無",
-      "B7": "有小學期",
       "B12": "不斷",
       "B13": "近年負面新聞",
       "B16": "不限",
@@ -56219,7 +56289,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上下鋪",
       "B5": "無",
       "B6": "無",
-      "B7": "暑假＜6週",
       "B8": "允許外賣",
       "B9": "步行15分鐘內",
       "B10": "樓內/宿舍有",
@@ -56254,7 +56323,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B17": "無通宵自習",
       "B23": "無",
       "B24": "23點封寢",
-      "B7": "暑假＜6週",
+      "B7": "暑假4-6週",
       "B18": "允許",
       "B19": "強制校園卡",
       "B6": "無",
@@ -56310,7 +56379,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B14": "24小時",
       "B24": "23點封寢",
       "B4": "早晚自習強制",
-      "B7": "暑假＜6週",
       "B11": "限速嚴重",
       "B19": "強制校園卡",
       "B22": "校門取",
@@ -56435,6 +56503,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上床下桌",
       "B5": "每週1-2次",
       "B6": "40+公里",
+      "B7": "有小學期",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -56544,7 +56613,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都沒有",
       "B3": "獨立衛浴",
       "B5": "無",
-      "B7": "有小學期",
       "B10": "樓內/宿舍有",
       "B11": "按流量計費",
       "B12": "不斷",
@@ -56729,7 +56797,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上下鋪",
       "B2": "都沒有",
       "B5": "每週1-2次",
-      "B7": "暑假＜6週",
       "B8": "校外取",
       "B10": "樓內/宿舍有",
       "B11": "按流量計費",
@@ -56837,6 +56904,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B6": "無",
       "B23": "無",
       "B4": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B12": "不斷",
       "B14": "24小時",
@@ -57149,8 +57217,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B14": "24小時",
       "B18": "允許",
       "B24": "23點封寢",
+      "B7": "標準",
       "B16": "800W內",
-      "B7": "暑假＜6週",
       "B22": "驛站在校內"
     }
   },
@@ -57403,8 +57471,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B16": "不限",
       "B9": "無地鐵",
       "B24": "查寢",
-      "B11": "不計費",
-      "B7": "有小學期"
+      "B11": "不計費"
     }
   },
   "4165010764": {
@@ -57457,7 +57524,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B9": "步行15分鐘內",
       "B15": "允許",
       "B18": "允許",
-      "B7": "有小學期",
       "B16": "800W內"
     }
   },
@@ -57529,7 +57595,8 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B23": "無",
       "B6": "40+公里",
       "B12": "每晚斷電",
-      "B22": "驛站在校內"
+      "B22": "驛站在校內",
+      "B7": "標準"
     }
   },
   "4165011565": {
@@ -57776,6 +57843,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B4": "僅晚自習強制",
       "B5": "每週1-2次",
       "B6": "無",
+      "B7": "標準",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -58038,6 +58106,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B1": "上下鋪",
       "B3": "獨立衛浴",
       "B4": "早晚自習強制",
+      "B7": "標準",
       "B10": "樓內/宿舍有",
       "B12": "不斷",
       "B14": "無熱水",
@@ -58071,7 +58140,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B11": "限速嚴重",
       "B12": "午夜後斷",
       "B13": "近年負面新聞",
-      "B7": "有小學期",
       "B18": "允許",
       "B22": "驛站在校內",
       "B6": "40+公里"
@@ -58135,7 +58203,6 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
       "B2": "都有",
       "B3": "獨立衛浴",
       "B5": "每週1-2次",
-      "B7": "暑假＜6週",
       "B8": "允許外賣",
       "B9": "無地鐵",
       "B10": "樓內/宿舍有",
@@ -58667,8 +58734,8 @@ export const researchCoverageByDimension: Partial<Record<DimensionId, { schoolCo
     "recordCount": 1703
   },
   "B7": {
-    "schoolCount": 1360,
-    "recordCount": 1360
+    "schoolCount": 1427,
+    "recordCount": 1427
   },
   "B8": {
     "schoolCount": 1928,
@@ -58685,7 +58752,7 @@ export const researchCoverageByDimension: Partial<Record<DimensionId, { schoolCo
 };
 
 export const researchPipelineMeta = {
-  "generatedAt": "2026-04-21T14:01:07.982Z",
+  "generatedAt": "2026-04-22T02:50:43.896Z",
   "inputs": {
     "websites": "data/research/school_websites.2026-04-21.csv",
     "githubProfiles": "data/research/github_school_profiles.2026-04-21.csv",
@@ -58708,7 +58775,7 @@ export const researchPipelineMeta = {
     "crowdMatchedAnswers": 24758,
     "crowdMatchedSchools": 2268,
     "crowdUnmatchedSchools": 2233,
-    "crowdValuesAccepted": 41763,
+    "crowdValuesAccepted": 41830,
     "disciplineRows": 4981,
     "disciplineSchools": 54,
     "cooperativeSchools": 3

@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, useRef } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { allQuestions } from '../data/questions'
 import type { Question } from '../data/questions'
@@ -17,7 +17,6 @@ interface Props {
 
 export function QuestionRunner({ allSchools, answers, onAnswerChange, onFinish, onBack }: Props) {
   const [idx, setIdx] = useState(0)
-  const autoFinishTriggered = useRef(false)
 
   const liveResult = useMemo(() => filterSchools(allSchools, answers), [allSchools, answers])
   const coverageByQuestion = useMemo(() => analyzeQuestionCoverage(allSchools), [allSchools])
@@ -33,20 +32,11 @@ export function QuestionRunner({ allSchools, answers, onAnswerChange, onFinish, 
     [coverageByQuestion, q],
   )
   const shortlistReached = liveResult.stats.keptCount <= 10 && liveResult.stats.answeredCount > 0
+  const showShortlistPanel = shortlistReached && liveResult.stats.keptCount > 0
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [activeIdx])
-
-  useEffect(() => {
-    if (!shortlistReached) {
-      autoFinishTriggered.current = false
-      return
-    }
-    if (autoFinishTriggered.current) return
-    autoFinishTriggered.current = true
-    onFinish()
-  }, [onFinish, shortlistReached])
 
   if (!q) {
     return (
@@ -194,6 +184,15 @@ export function QuestionRunner({ allSchools, answers, onAnswerChange, onFinish, 
             )
           })}
         </div>
+
+        {showShortlistPanel && (
+          <div className="rounded-2xl border border-accent-500/30 bg-ink-900/80 px-4 py-4 flex flex-col gap-2">
+            <p className="serif text-lg text-fog-100">這一題後只剩 {liveResult.stats.keptCount} 所了。</p>
+            <p className="text-sm text-fog-300 leading-relaxed">
+              這一輪先收束到報告頁，不再往後連做。你可以先看結果；如果想繼續調條件，也可以直接改上一題或清空重來。
+            </p>
+          </div>
+        )}
 
         <div className="hidden sm:flex items-center justify-between gap-3">
           <div className="mono text-xs text-fog-500">

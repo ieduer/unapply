@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from 'react'
-import type { FilterResult, AnswerMap } from '../engine/filter'
+import type { FilterResult, AnswerMap, ExcludeReason } from '../engine/filter'
 import { explainKept, suggestRelax, distribute } from '../engine/filter'
 import {
   candidateProvinceOptions,
@@ -7,6 +7,8 @@ import {
   getAdmissionResourceLinks,
   type CandidateProvince,
 } from '../data/admissionAuthorities'
+import { buildSchoolTags } from '../lib/schoolProfile'
+import { normalizeSchoolName } from '../lib/schoolName'
 import { generateShareImage } from '../lib/share'
 import { ShareCard } from './ShareCard'
 import { recordUnapplyDownload } from '../lib/bdfzIdentity'
@@ -21,6 +23,10 @@ interface Props {
   onContribute: () => void
 }
 
+type LookupEntry =
+  | { kind: 'kept'; school: FilterResult['kept'][number] }
+  | { kind: 'excluded'; school: FilterResult['excluded'][number]['school']; reasons: ExcludeReason[] }
+
 function cityTierBadge(tier: string | undefined): string {
   if (tier === 'tier1') return 'T1'
   if (tier === 'newtier1') return 'NT1'
@@ -29,14 +35,48 @@ function cityTierBadge(tier: string | undefined): string {
   return 'T?'
 }
 
+function formatReason(reason: ExcludeReason): string {
+  return `${reason.questionTitle} · 你選了「${reason.userAnswerLabel}」 · 該校是「${reason.schoolValue}」`
+}
+
 export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAbout, onContribute }: Props) {
   const shareRef = useRef<HTMLDivElement>(null)
   const [downloading, setDownloading] = useState(false)
   const [candidateProvince, setCandidateProvince] = useState<CandidateProvince>(defaultCandidateProvince)
+  const [schoolQuery, setSchoolQuery] = useState('')
 
   const dist = useMemo(() => distribute(result.kept), [result.kept])
   const relaxHints = useMemo(() => suggestRelax(result.stats, 3), [result.stats])
-  const topKept = result.kept.slice(0, 30)
+  const topKept = result.kept.slice(0, 24)
+
+  const lookupResults = useMemo(() => {
+    const query = schoolQuery.trim()
+    if (!query) return [] as LookupEntry[]
+    const normalizedQuery = normalizeSchoolName(query)
+    const keptMatches: LookupEntry[] = result.kept.map((school) => ({ kind: 'kept', school }))
+    const excludedMatches: LookupEntry[] = result.excluded.map(({ school, reasons }) => ({
+      kind: 'excluded',
+      school,
+      reasons,
+    }))
+
+    return [...keptMatches, ...excludedMatches]
+      .filter((entry) => {
+        const haystacks = [
+          entry.school.name,
+          entry.school.nameSimplified ?? '',
+          entry.school.province,
+          entry.school.city,
+        ].map((value) => normalizeSchoolName(value))
+        return haystacks.some((value) => value.includes(normalizedQuery))
+      })
+      .sort((left, right) => {
+        const leftExact = normalizeSchoolName(left.school.name) === normalizedQuery ? 1 : 0
+        const rightExact = normalizeSchoolName(right.school.name) === normalizedQuery ? 1 : 0
+        return rightExact - leftExact
+      })
+      .slice(0, 8)
+  }, [result.excluded, result.kept, schoolQuery])
 
   const share = async () => {
     if (!shareRef.current) return
@@ -53,7 +93,7 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
 
   const zero = result.kept.length === 0
   const shortlistReached = result.stats.answeredCount > 0 && result.stats.keptCount <= 10
-  const showRelaxAction = !zero && !shortlistReached
+  const showRelaxAction = !zero && result.stats.answeredCount > 0
 
   return (
     <main className="min-h-screen app-canvas text-fog-100">
@@ -68,7 +108,6 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
       </header>
 
       <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 pb-24 sm:pt-12 flex flex-col gap-10 sm:gap-14">
-        {/* 頭圖：大數字 */}
         <div className="flex flex-col gap-4">
           <p className="mono text-xs text-fog-500 uppercase tracking-[0.3em]">你的減法樣本</p>
           <h1 className="serif text-3xl sm:text-5xl leading-tight">
@@ -83,7 +122,7 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
             <div className="max-w-2xl rounded-2xl border border-accent-500/30 bg-ink-900/80 px-4 py-4 text-sm text-fog-300 leading-relaxed">
               {zero
                 ? '這一輪已經篩到 0 所，先停在報告頁。建議直接清空重來，換一組條件再做一輪。'
-                : `已經縮到 ${result.stats.keptCount} 所，先直接給你看報告。想換一套條件，可以隨時清空重來。`}
+                : `這一輪已經縮到 ${result.stats.keptCount} 所，所以先收束到報告。你仍然可以回去改條件，或直接清空重來。`}
             </div>
           )}
         </div>
@@ -93,8 +132,8 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
             <p className="serif text-lg">這一輪沒有保留下來的學校。</p>
             <p className="text-sm text-fog-300">
               你的條件目前和整個官方目錄都對不上。排除最多的幾題是：
-              {relaxHints.map((h, i) => (
-                <span key={i} className="block mt-1 text-fog-500">· {h}</span>
+              {relaxHints.map((hint, index) => (
+                <span key={index} className="block mt-1 text-fog-500">· {hint}</span>
               ))}
             </p>
             <button
@@ -106,7 +145,6 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
           </div>
         )}
 
-        {/* 分佈 */}
         {!zero && (
           <div className="grid sm:grid-cols-2 gap-6">
             <DistCard title="按省份" items={dist.byProvince.slice(0, 8)} />
@@ -114,14 +152,13 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
           </div>
         )}
 
-        {/* 保留的學校卡片 */}
         {!zero && (
           <div className="flex flex-col gap-5">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
               <div>
-                <h2 className="serif text-xl">你為什麼沒劃掉它們</h2>
+                <h2 className="serif text-xl">還在場的學校</h2>
                 <p className="mt-2 text-xs text-fog-500 leading-relaxed">
-                  每所學校都附帶官網、陽光高考院校庫，以及你所選考生地區的權威錄取查詢入口。
+                  每張卡都附帶核心標籤、官網、陽光高考院校庫，以及你所選考生地區的權威錄取查詢入口。
                 </p>
               </div>
               <div className="flex items-center gap-2">
@@ -138,28 +175,25 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
               </div>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              {topKept.map((s) => (
+              {topKept.map((school) => (
                 <div
-                  key={s.id}
+                  key={school.id}
                   className="bg-ink-900 border border-ink-700 rounded-xl p-4 flex flex-col gap-4 hover:border-accent-500 transition-colors"
                 >
-                  <button
-                    onClick={() => onSchool(s.id)}
-                    className="text-left"
-                  >
+                  <button onClick={() => onSchool(school.id)} className="text-left">
                     <div className="flex items-start justify-between gap-3">
-                      <span className="serif text-base">{s.name}</span>
+                      <span className="serif text-base">{school.name}</span>
                       <span className="mono text-[10px] text-fog-500 uppercase tracking-wider mt-1 shrink-0">
-                        {cityTierBadge(s.cityTier)}
+                        {cityTierBadge(school.cityTier)}
                       </span>
                     </div>
-                    <p className="mt-2 text-xs text-fog-500">{explainKept(s, answers)}</p>
-                    <p className="mt-1 text-xs text-fog-500">{s.province}·{s.city}</p>
+                    <p className="mt-2 text-xs text-fog-500">{explainKept(school, answers)}</p>
                   </button>
+                  <TagRail tags={buildSchoolTags(school)} />
                   <div className="flex flex-wrap gap-2 pt-3 border-t border-ink-800">
-                    {getAdmissionResourceLinks(s, candidateProvince).map((link) => (
+                    {getAdmissionResourceLinks(school, candidateProvince).map((link) => (
                       <a
-                        key={`${s.id}-${link.label}`}
+                        key={`${school.id}-${link.label}`}
                         href={link.url}
                         target="_blank"
                         rel="noreferrer noopener"
@@ -184,13 +218,83 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
           </div>
         )}
 
-        {/* 分享圖 & 行動 */}
+        <div className="bg-ink-900 border border-ink-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-4">
+          <div>
+            <h2 className="serif text-xl">查一所學校</h2>
+            <p className="mt-2 text-sm text-fog-500 leading-relaxed">
+              結果裡沒看到你的學校，或者想知道某所學校為什麼留下來／被排掉，就在這裡查名字。
+            </p>
+          </div>
+          <input
+            value={schoolQuery}
+            onChange={(e) => setSchoolQuery(e.target.value)}
+            placeholder="輸入學校名，例如：西安交通大學 / 中央音樂學院"
+            className="w-full bg-ink-950 border border-ink-700 rounded-xl px-4 py-3 text-sm text-fog-100 placeholder:text-fog-500"
+          />
+          {!schoolQuery.trim() && (
+            <p className="text-xs text-fog-500 leading-relaxed">
+              這裡會同時搜索保留名單和已排除學校，方便你核對「心儀的學校為什麼不在裡面」。
+            </p>
+          )}
+          {schoolQuery.trim() && lookupResults.length === 0 && (
+            <p className="text-sm text-fog-500 leading-relaxed">
+              沒找到匹配的學校。可以試試更短的名字，或者去掉校區/括號。
+            </p>
+          )}
+          {lookupResults.length > 0 && (
+            <div className="grid gap-3">
+              {lookupResults.map((entry) => (
+                <div
+                  key={`${entry.kind}-${entry.school.id}`}
+                  className="rounded-xl border border-ink-700 bg-ink-950/70 p-4 flex flex-col gap-3"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <button onClick={() => onSchool(entry.school.id)} className="text-left">
+                        <h3 className="serif text-lg break-words">{entry.school.name}</h3>
+                      </button>
+                      <p className="mt-1 text-xs text-fog-500">{entry.school.province} · {entry.school.city}</p>
+                    </div>
+                    <span
+                      className={[
+                        'shrink-0 rounded-full px-3 py-1 text-[11px] mono border',
+                        entry.kind === 'kept'
+                          ? 'border-accent-500/40 text-accent-400 bg-accent-500/10'
+                          : 'border-ink-700 text-fog-300 bg-ink-900',
+                      ].join(' ')}
+                    >
+                      {entry.kind === 'kept' ? '仍在場' : `已排除 · ${entry.reasons.length} 題`}
+                    </span>
+                  </div>
+                  <TagRail tags={buildSchoolTags(entry.school)} />
+                  {entry.kind === 'kept' ? (
+                    <p className="text-sm text-fog-300 leading-relaxed">
+                      還沒被你劃掉：{explainKept(entry.school, answers)}。
+                    </p>
+                  ) : (
+                    <div className="flex flex-col gap-2">
+                      <p className="text-sm text-fog-300 leading-relaxed">它這一輪被排掉的原因：</p>
+                      <ul className="flex flex-col gap-2">
+                        {entry.reasons.slice(0, 4).map((reason) => (
+                          <li key={`${entry.school.id}-${reason.questionId}-${reason.schoolValue}`} className="text-xs text-fog-500 leading-relaxed">
+                            · {formatReason(reason)}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
         <div className="flex flex-col gap-6">
           <div ref={shareRef}>
             <ShareCard result={result} />
           </div>
           <p className="text-sm text-fog-400 leading-relaxed">
-            如果這輪減法對你有幫助，歡迎把網站發給熟悉不同學校的學長學姐或在讀同學。人越多，能補上的校區、生活和招生數據就越完整。
+            如果這輪減法對你有幫助，歡迎把網站發給熟悉不同學校的學長學姐、在讀同學和校友。人越多，能補上的校區、生活和招生數據就越完整。
           </p>
           <div className="flex flex-wrap items-center gap-3">
             <button
@@ -205,7 +309,7 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
                 onClick={onRelax}
                 className="px-6 py-3 border border-fog-500 text-fog-100 rounded-full text-sm hover:border-accent-500 hover:text-accent-500 min-h-[48px]"
               >
-                再減一輪
+                回去改條件
               </button>
             )}
             <button
@@ -218,7 +322,7 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
               onClick={onRestart}
               className="px-6 py-3 border border-ink-700 text-fog-500 rounded-full text-sm hover:text-fog-100 min-h-[48px]"
             >
-              {shortlistReached ? '清空重來' : '重新開始'}
+              清空重來
             </button>
           </div>
         </div>
@@ -253,6 +357,22 @@ function DistCard({ title, items }: { title: string; items: { label: string; cou
           </li>
         ))}
       </ul>
+    </div>
+  )
+}
+
+function TagRail({ tags }: { tags: string[] }) {
+  if (tags.length === 0) return null
+  return (
+    <div className="flex flex-wrap gap-2">
+      {tags.map((tag) => (
+        <span
+          key={tag}
+          className="rounded-full border border-ink-700 bg-ink-950 px-3 py-1 text-[11px] text-fog-300"
+        >
+          {tag}
+        </span>
+      ))}
     </div>
   )
 }

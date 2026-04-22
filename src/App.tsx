@@ -155,7 +155,7 @@ export default function App() {
   let page: ReactNode = null
 
   if (route.name === 'landing') {
-    page = <Landing onStart={() => go({ name: 'filter' })} onAbout={() => go({ name: 'about' })} />
+    page = <Landing onStart={() => go({ name: 'filter' })} onAbout={() => go({ name: 'about' })} onContribute={() => go({ name: 'contribute' })} />
   } else if (route.name === 'filter') {
     if (schools) {
       page = (
@@ -194,7 +194,7 @@ export default function App() {
       const school = schools.find(s => s.id === route.id)
       page = school
         ? <SchoolDetail school={school} onBack={() => history.length > 1 ? history.back() : go({ name: 'result' })} />
-        : <Landing onStart={() => go({ name: 'filter' })} onAbout={() => go({ name: 'about' })} />
+        : <Landing onStart={() => go({ name: 'filter' })} onAbout={() => go({ name: 'about' })} onContribute={() => go({ name: 'contribute' })} />
     }
   }
 

@@ -1,5 +1,5 @@
-// 42 維減法問卷底表 v1.5
-//   A 紅線 5（權威）+ E 環境 8（省份+城市客觀推導）+ B 生活 24（CollegesChat／用戶貢獻）+ C 特殊 5
+// 43 維減法問卷底表 v1.6
+//   A 紅線 6（權威/保守推導）+ E 環境 8（省份+城市客觀推導）+ B 生活 24（CollegesChat／用戶貢獻）+ C 特殊 5
 // 每個選項帶 excludes 或 requires 規則，由 FilterEngine 套用。
 // 文案原則：中性描述，不做價值判斷；所有題都可跳過 = 不參與篩選。
 // 數據原則：缺失就缺失（疑罪從無），不默認。B/C crowdsourced 維度引導用戶貢獻。
@@ -31,7 +31,7 @@ export interface Question {
   dataStatus: 'authoritative' | 'mixed' | 'crowdsourced';
 }
 
-// ========== A 紅線（5 題） ==========
+// ========== A 紅線（6 題） ==========
 const sectionA: Question[] = [
   {
     id: 'A1',
@@ -42,20 +42,38 @@ const sectionA: Question[] = [
     type: 'multi',
     skippable: true,
     options: [
+      { key: 'jingjin', label: '北京／天津',
+        excludes: [{ dim: 'A1', values: ['北京', '天津'] }] },
+      { key: 'shanghai_jiangzhe', label: '上海／江蘇／浙江',
+        excludes: [{ dim: 'A1', values: ['上海', '江蘇', '浙江'] }] },
+      { key: 'guangdong', label: '廣東',
+        excludes: [{ dim: 'A1', values: ['廣東'] }] },
+      { key: 'fujian', label: '福建',
+        excludes: [{ dim: 'A1', values: ['福建'] }] },
       { key: 'northeast', label: '東三省（黑龍江／吉林／遼寧）',
         excludes: [{ dim: 'A1', values: ['黑龍江', '吉林', '遼寧'] }] },
-      { key: 'northwest', label: '西北（陝甘寧青新）',
-        excludes: [{ dim: 'A1', values: ['陝西', '甘肅', '寧夏', '青海', '新疆'] }] },
-      { key: 'southwest', label: '西南（川渝雲貴藏）',
-        excludes: [{ dim: 'A1', values: ['四川', '重慶', '雲南', '貴州', '西藏'] }] },
+      { key: 'north_plain', label: '河北／山東／河南',
+        excludes: [{ dim: 'A1', values: ['河北', '山東', '河南'] }] },
+      { key: 'shanxi_inner_mongolia', label: '山西／內蒙古',
+        excludes: [{ dim: 'A1', values: ['山西', '內蒙古'] }] },
+      { key: 'shaanxi', label: '陝西（西安／咸陽／楊凌）',
+        excludes: [{ dim: 'A1', values: ['陝西'] }] },
+      { key: 'gansu_ningxia', label: '甘肅／寧夏',
+        excludes: [{ dim: 'A1', values: ['甘肅', '寧夏'] }] },
+      { key: 'qinghai_tibet', label: '青海／西藏（高海拔）',
+        excludes: [{ dim: 'A1', values: ['青海', '西藏'] }] },
+      { key: 'xinjiang', label: '新疆',
+        excludes: [{ dim: 'A1', values: ['新疆'] }] },
+      { key: 'sichuan_chongqing', label: '川渝',
+        excludes: [{ dim: 'A1', values: ['四川', '重慶'] }] },
+      { key: 'yungui', label: '雲南／貴州',
+        excludes: [{ dim: 'A1', values: ['雲南', '貴州'] }] },
       { key: 'southisland', label: '海南／廣西',
         excludes: [{ dim: 'A1', values: ['海南', '廣西'] }] },
-      { key: 'central', label: '中部（湘鄂贛皖）',
-        excludes: [{ dim: 'A1', values: ['湖南', '湖北', '江西', '安徽'] }] },
-      { key: 'northplain', label: '華北華中平原（冀魯豫晉）',
-        excludes: [{ dim: 'A1', values: ['河北', '山東', '河南', '山西'] }] },
-      { key: 'inner_mongolia', label: '內蒙古',
-        excludes: [{ dim: 'A1', values: ['內蒙古'] }] },
+      { key: 'hubei_hunan', label: '湖北／湖南',
+        excludes: [{ dim: 'A1', values: ['湖北', '湖南'] }] },
+      { key: 'anhui_jiangxi', label: '安徽／江西',
+        excludes: [{ dim: 'A1', values: ['安徽', '江西'] }] },
       { key: 'none', label: '都可以' },
     ],
   },
@@ -134,6 +152,24 @@ const sectionA: Question[] = [
       { key: 'no_freshman_split', label: '不接受大一單獨分校區',
         excludes: [{ dim: 'A5', values: ['separate_freshman'] }] },
       { key: 'any', label: '不挑' },
+    ],
+  },
+  {
+    id: 'A6',
+    section: 'A_redline',
+    dataStatus: 'mixed',
+    title: '特殊招生／特長門檻？',
+    subtitle: '如果你只走普通高考常規統招，先把要校考、體測、政審或面試的院校排掉。',
+    type: 'single',
+    skippable: true,
+    options: [
+      { key: 'regular_only', label: '只看普通高考常規統招',
+        excludes: [{ dim: 'A6', values: ['art_exam', 'sports_test', 'military_police', 'navigation_flight'] }] },
+      { key: 'no_art_sports', label: '排掉藝術／體育特長類',
+        excludes: [{ dim: 'A6', values: ['art_exam', 'sports_test'] }] },
+      { key: 'no_screening', label: '排掉軍警／航海／飛行類',
+        excludes: [{ dim: 'A6', values: ['military_police', 'navigation_flight'] }] },
+      { key: 'any', label: '都看' },
     ],
   },
 ];
@@ -290,11 +326,14 @@ const sectionB: Question[] = [
     ],
   },
   {
-    id: 'B7', section: 'B_quality', dataStatus: 'crowdsourced', type: 'single', skippable: true,
-    title: '假期長度？',
+    id: 'B7', section: 'B_quality', dataStatus: 'mixed', type: 'single', skippable: true,
+    title: '假期節奏？',
+    subtitle: '只用明確能看懂的校曆或眾包描述；看不準的不會拿來誤排。',
     options: [
-      { key: 'strict', label: '必須寒暑假≥ 4 週 + 無小學期', excludes: [{ dim: 'B7', values: ['有小學期', '暑假＜6週'] }] },
+      { key: 'strict', label: '不接受小學期，且暑假至少 6 週', excludes: [{ dim: 'B7', values: ['有小學期', '暑假＜4週', '暑假4-6週'] }] },
       { key: 'no_summer', label: '不接受小學期', excludes: [{ dim: 'B7', values: ['有小學期'] }] },
+      { key: 'summer_6', label: '暑假至少 6 週', excludes: [{ dim: 'B7', values: ['暑假＜4週', '暑假4-6週'] }] },
+      { key: 'summer_4', label: '暑假至少 4 週', excludes: [{ dim: 'B7', values: ['暑假＜4週'] }] },
       { key: 'any', label: '都行' },
     ],
   },

@@ -6,6 +6,7 @@ import type { Question } from '../data/questions';
 import type { DimensionId } from '../data/dimensions';
 import type { School } from '../data/schools';
 import { getEnvironment } from '../data/environment';
+import { getSpecialAdmissionTracks } from '../lib/schoolProfile';
 
 export type AnswerValue = string | string[] | 'skip' | null;
 export type AnswerMap = Partial<Record<DimensionId, AnswerValue>>;
@@ -42,6 +43,7 @@ export function getSchoolDimensionValue(school: School, dim: DimensionId): strin
     case 'A3': return school.level ?? null;
     case 'A4': return school.tuitionRange ?? null;
     case 'A5': return school.mainCampusType ?? null;
+    case 'A6': return getSpecialAdmissionTracks(school);
     case 'E1': case 'E2': case 'E3': case 'E4':
     case 'E5': case 'E6': case 'E7': case 'E8': {
       const env = getEnvironment(school.province, school.city);
