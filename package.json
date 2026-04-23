@@ -8,6 +8,7 @@
     "dev": "vite",
     "data:schools": "node scripts/build_official_schools.mjs",
     "data:github-profiles": "node scripts/extract_github_school_profiles.mjs",
+    "data:laosheng-profiles": "node scripts/extract_laosheng_school_profiles.mjs",
     "data:campus-extract": "node scripts/extract_campus_locations.mjs",
     "data:research": "node scripts/build_research_data.mjs && node scripts/build_campus_research.mjs && tsx scripts/export_runtime_payloads.ts",
     "data:runtime": "tsx scripts/export_runtime_payloads.ts",

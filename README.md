@@ -14,6 +14,7 @@
 npm install
 npm run data:schools  # 從教育部 2025 名單重建 src/data/officialSchools.ts
 npm run data:github-profiles # 從 DaoSword 高等教育寬表提取 GitHub 補充的官網/校址
+npm run data:laosheng-profiles # 從 laosheng.top 高校頁抽取官網/本科招生網補充表
 npm run data:campus-extract # 從 GitHub 校區/POI 源生成 data/research/campus_locations.2026-04-21.csv
 npm run data:research # 重建研究聚合層，並同步輸出 public/data/runtime/*.json
 npm run data:runtime  # 只重導運行時 payload（schools.json + campus buckets）
@@ -27,6 +28,7 @@ npm run lint
 `npm run data:research` 會優先讀取：
 
 - `data/research/school_websites.2026-04-21.csv`
+- `data/research/laosheng_school_profiles.2026-04-22.csv`
 - `data/research/github_school_profiles.2026-04-21.csv`
 - `data/research/campus_locations.2026-04-21.csv`
 - `data/research/campus_official_overrides.2026-04-21.csv`
@@ -37,6 +39,7 @@ npm run lint
 
 若項目內沒有 `collegeschat_results_desensitized.csv`，腳本會回退讀取本機 `/tmp/university-information/questionnaires/results_desensitized.csv`。
 `quality_crowd*.jsonl` 目前不再提交進倉庫：現有轉換結果列錯位，且不進運行時；等後續基於原始問卷重新導出乾淨版本後再重新入庫。
+`laosheng_school_profiles.2026-04-22.csv` 來自 [`laosheng.top/fuwu/yuanxiao`](https://laosheng.top/fuwu/yuanxiao) 的人工維護高校名錄，只作學校官網與本科招生網補缺，不參與 A5/B9 等高風險硬篩選推導。
 `github_school_profiles.2026-04-21.csv` 來自 `DaoSword/China-Education-Data` 的高等教育寬表，只作官網/校址補缺，不參與高風險篩選維度推導。
 `campus_locations.2026-04-21.csv` 目前由以下結構化源聚合生成：`Naptie/cn-university-geocoder`（主源）+ `ZsTs119/china-university-database` / `pg7go/The-Location-Data-of-Schools-in-China`（POI 校驗）+ `DaoSword/China-Education-Data`（校區地址補全）+ `GaoHR` 2021 全國大學信息表（僅補主校區近似坐標）。`jtchen2k/hcu` 與 `daxue.cgsop.com` 暫作人工校驗輔助，不直接入自動管線；`ramwin/china-public-data` 的高校名單基於 2017 年教育部附件，現已過時，只保留參考價值。
 `campus_official_overrides.2026-04-21.csv` 是校級官方覆蓋層，只收能安全進 A5/B9 硬篩選的條目；本輪先補了 9 所北京高校，讓 `A5` 覆蓋提升到 `127/2919`。
@@ -110,7 +113,7 @@ scripts/
 1. `A5 校區位置`：校區底稿仍是 `3396` 條記錄、覆蓋 `2732` 所學校；真正進硬篩選的校級官方覆蓋目前只有 `127/2919`，仍需持續補 `campus_official_overrides.csv` 和 `campus_locations.csv` 的本科落點字段。
 2. `C1-C4`：飲食禁忌、無障礙、LGBTQ+、外省生源目前幾乎沒有正式可用數據。
 3. `province_portals.csv`：已接入 31 個省級官方入口，但除北京外仍缺少直達分數線/計劃查詢頁。
-4. `school_websites.csv`：目前只覆蓋 567 所學校官網，本科招生網覆蓋更低。
+4. `school_websites.csv` / `laosheng_school_profiles.csv`：官網覆蓋已能補到大多數學校，但本科招生網仍偏少，尤其普通本科與高職院校。
 
 詳見 [docs/MAINTENANCE_MANUAL.md](/Users/ylsuen/CF/unapply/docs/MAINTENANCE_MANUAL.md) 與 [docs/DATA_RESEARCH_REQUEST.md](/Users/ylsuen/CF/unapply/docs/DATA_RESEARCH_REQUEST.md)。
 

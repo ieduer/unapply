@@ -113,6 +113,7 @@ npm run data:schools
 `scripts/build_research_data.mjs` 會把 `data/research/*.csv` 與 CollegesChat 原始脫敏問卷聚合為 `src/data/researchData.ts`，`scripts/build_campus_research.mjs` 產出 `src/data/campusResearch.ts`，再由 `scripts/export_runtime_payloads.ts` 轉成 `public/data/runtime/*.json` 供前端按需 fetch。當前接入：
 
 - `school_websites.2026-04-21.csv`
+- `laosheng_school_profiles.2026-04-22.csv`
 - `github_school_profiles.2026-04-21.csv`
 - `campus_official_overrides.2026-04-21.csv`
 - `province_portals.2026-04-21.csv`
@@ -123,7 +124,7 @@ npm run data:schools
 效果：
 
 - 結果頁與詳情頁已接入 31 個省級官方招考入口。
-- 學校官網覆蓋已從 567 所提升到 2714 所，並新增 2709 所校址展示。
+- 學校官網覆蓋已從 567 所提升到 2867 所，並新增 31 所學校的本科招生網與 2709 所校址展示。
 - `A5` 校級官方覆蓋已從 119 所提升到 127 所；首批新增 9 所北京高校的官方校區結論。
 - `B1-B24` 大多數題從接近 0 覆蓋提升到 46% - 76%。
 - `C5` 從 3 所提升到 54 所。
@@ -160,6 +161,7 @@ if (schoolValue === null) continue
 - README 與採集 SOP 更新到官方主表優先的工作流。
 - `scripts/build_research_data.mjs` / `npm run data:research` 正式接管研究增強層。
 - `scripts/extract_github_school_profiles.mjs` / `npm run data:github-profiles` 可從 `DaoSword/China-Education-Data` 抽取官網/校址補充表。
+- `scripts/extract_laosheng_school_profiles.mjs` / `npm run data:laosheng-profiles` 可從 `https://laosheng.top/fuwu/yuanxiao` 抽取高校官網與本科招生網補充表。
 - `scripts/audit_data_coverage.mjs` / `npm run audit:data` 可直接輸出 42 題覆蓋率與最大排除能力。
 - 問卷頁不再展示覆蓋率說明；無效題與 0 效果限制項會直接隱藏，方法論統一收斂到 About。
 - 問卷現在只展示當前有實際刪減能力的題，且會隱藏 0 效果的限制選項，避免學生選了也沒有任何變化。

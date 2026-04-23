@@ -43,6 +43,7 @@ cd /Users/ylsuen/CF/unapply
 npm install
 npm run data:schools
 npm run data:github-profiles
+npm run data:laosheng-profiles
 npm run data:campus-extract
 npm run data:research
 npm run data:runtime
@@ -94,6 +95,7 @@ npm run build
 當前腳本會接入：
 
 - `school_websites.2026-04-21.csv`
+- `laosheng_school_profiles.2026-04-22.csv`
 - `github_school_profiles.2026-04-21.csv`
 - `campus_locations.2026-04-21.csv`
 - `campus_official_overrides.2026-04-21.csv`
@@ -106,10 +108,11 @@ npm run build
 
 1. `quality_crowd*.jsonl` 目前不再提交進倉庫，因為現有轉換結果列錯位，且不直接進運行時。
 2. `city_environment.2026-04-21.csv` 與 `city_metro.2026-04-21.csv` 目前是空表。
-3. `github_school_profiles.2026-04-21.csv` 來自 `DaoSword/China-Education-Data`，只用於官網/校址補缺，不可直接拿它推導校區、地鐵距離或大一校區去向。
-4. `campus_locations.2026-04-21.csv` 由 `Naptie/cn-university-geocoder`（主源）+ `ZsTs119/china-university-database` / `pg7go/The-Location-Data-of-Schools-in-China`（POI 校驗）+ `DaoSword/China-Education-Data`（校區地址補全）+ `GaoHR` 2021 全國大學信息表（僅補主校區近似坐標）聚合生成。`jtchen2k/hcu` 與 `daxue.cgsop.com` 暫只作人工核驗參考；`ramwin/china-public-data` 的高校名單基於 2017 年教育部附件，現已不再入正式管線。
-5. `campus_official_overrides.2026-04-21.csv` 是校級官方覆蓋層，只收能安全進 A5/B9 硬篩選的條目；本輪已補 9 所北京高校。
-6. `researchData.ts` 與 `campusResearch.ts` 保留為 build 側生成結果；前端實際載入的是 `public/data/runtime/*.json`。
+3. `laosheng_school_profiles.2026-04-22.csv` 來自 `https://laosheng.top/fuwu/yuanxiao`，只用於學校官網與本科招生網補缺；它是第三方人工維護頁，不可直接拿它推導校區、地鐵距離或本科落點。
+4. `github_school_profiles.2026-04-21.csv` 來自 `DaoSword/China-Education-Data`，只用於官網/校址補缺，不可直接拿它推導校區、地鐵距離或大一校區去向。
+5. `campus_locations.2026-04-21.csv` 由 `Naptie/cn-university-geocoder`（主源）+ `ZsTs119/china-university-database` / `pg7go/The-Location-Data-of-Schools-in-China`（POI 校驗）+ `DaoSword/China-Education-Data`（校區地址補全）+ `GaoHR` 2021 全國大學信息表（僅補主校區近似坐標）聚合生成。`jtchen2k/hcu` 與 `daxue.cgsop.com` 暫只作人工核驗參考；`ramwin/china-public-data` 的高校名單基於 2017 年教育部附件，現已不再入正式管線。
+6. `campus_official_overrides.2026-04-21.csv` 是校級官方覆蓋層，只收能安全進 A5/B9 硬篩選的條目；本輪已補 9 所北京高校。
+7. `researchData.ts` 與 `campusResearch.ts` 保留為 build 側生成結果；前端實際載入的是 `public/data/runtime/*.json`。
 
 若要重放校區抽取：
 
@@ -150,7 +153,7 @@ npm run audit:data
 - `A5 校區位置`：校區底稿已擴到 `2732` 所學校、`3396` 條記錄，但真正進硬篩選的校級官方覆蓋目前只有 `127/2919`；本輪新增北京 9 校後，`maxExcluded` 仍只有 `5`。
 - `C1-C4`：幾乎 0 覆蓋，網站必須繼續提示「數據補充中」並徵集。
 - `C5 學科評估`：已從 3 所提升到 54 所，但仍只適合明確有專業方向的用戶。
-- `school_websites.csv`：官方/手工主表只覆蓋 567 所；加上 GitHub 補充後，最終官網覆蓋已到 2714 所，但仍需持續做官方核驗。
+- `school_websites.csv` / `laosheng_school_profiles.csv`：最終官網覆蓋已到 `2867` 所，且已補出 `31` 所學校的本科招生網；剩下的缺口主要在普通本科與高職院校。
 - `province_portals.csv`：31 個省級招考入口已接，但除北京外大多還沒有分數線直達頁。
 
 ### 4.2 當前架構上仍需避免的坑
