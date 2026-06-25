@@ -1,28 +1,38 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: "Noto Serif TC", "Songti TC", "Songti SC", serif;
+  --font-serif: "HuWenMingChao", "Noto Serif TC", "Songti TC", "Songti SC", serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
   --font-sans: "Space Grotesk", "Noto Sans TC", system-ui, sans-serif;
 
-  --color-ink-950: #0e1116;
-  --color-ink-900: #161b22;
-  --color-ink-800: #202733;
-  --color-ink-700: #2b3444;
-  --color-fog-500: #7d8797;
-  --color-fog-300: #b7c0d0;
-  --color-fog-100: #eef2f7;
-  --color-canvas-top: #1b2533;
-  --color-canvas-bottom: #0d1118;
-  --color-canvas-glow: #315d73;
-  --color-accent-500: #53d1b6;
-  --color-accent-400: #7ae2ca;
-  --color-accent-600: #2cb596;
+  --color-ink-950: #fbfaf5;
+  --color-ink-900: #f4f0e8;
+  --color-ink-800: #d9d0c4;
+  --color-ink-700: #c5b7aa;
+  --color-fog-500: #8f8279;
+  --color-fog-300: #6e625b;
+  --color-fog-100: #4b433f;
+  --color-canvas-top: #fbfaf5;
+  --color-canvas-bottom: #efe9df;
+  --color-canvas-glow: #8aa3a3;
+  --color-accent-500: #8aa3a3;
+  --color-accent-400: #9eb6b5;
+  --color-accent-600: #708a8a;
+}
+
+@font-face {
+  font-family: "HuWenMingChao";
+  src:
+    url("https://mx.bdfz.net/data/fonts/HuWenMingChaoTi.woff2") format("woff2"),
+    url("https://mx.bdfz.net/data/fonts/HuWenMingChaoTi.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
 }
 
 html,
 body {
-  height: 100%;
+  min-height: 100%;
   background: var(--color-ink-950);
   color: var(--color-fog-100);
   font-family: var(--font-serif);
@@ -32,25 +42,45 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+body {
+  margin: 0;
+}
+
 #root {
   min-height: 100%;
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 .app-canvas {
   background-color: var(--color-ink-950);
   background-image:
-    radial-gradient(circle at top right, var(--color-canvas-glow) 0%, transparent 34%),
-    linear-gradient(180deg, var(--color-canvas-top) 0%, var(--color-ink-950) 42%, var(--color-canvas-bottom) 100%);
+    linear-gradient(90deg, rgba(251, 250, 245, 0.92) 0%, rgba(251, 250, 245, 0.78) 44%, rgba(251, 250, 245, 0.66) 100%),
+    url("/media/background.jpeg");
   background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.app-canvas::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(75, 67, 63, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(75, 67, 63, 0.03) 1px, transparent 1px);
+  background-size: 74px 74px;
+  mask-image: linear-gradient(90deg, black 0%, black 55%, transparent 100%);
+  opacity: 0.46;
 }
 
 *::selection {
-  background: var(--color-accent-500);
-  color: var(--color-ink-950);
+  background: rgba(138, 163, 163, 0.26);
+  color: #3f3935;
 }
 
 .scroll-fade-mask {
@@ -70,12 +100,17 @@ body {
   font-family: var(--font-serif);
 }
 
+.text-ink-950 {
+  color: #3f3935;
+}
+
 @keyframes blow-away {
   0% {
     opacity: 1;
     transform: translate3d(0, 0, 0) rotate(0);
     filter: blur(0);
   }
+
   100% {
     opacity: 0;
     transform: translate3d(120px, -60px, 0) rotate(12deg);
@@ -91,4 +126,19 @@ button:focus-visible,
 [role="button"]:focus-visible {
   outline: 2px solid var(--color-accent-500);
   outline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+  .app-canvas {
+    background-image:
+      linear-gradient(180deg, rgba(251, 250, 245, 0.96) 0%, rgba(251, 250, 245, 0.86) 62%, rgba(251, 250, 245, 0.76) 100%),
+      url("/media/background.jpeg");
+    background-attachment: scroll;
+    background-position: center top;
+  }
+
+  .app-canvas::before {
+    background-size: 52px 52px;
+    opacity: 0.26;
+  }
 }

@@ -12,6 +12,7 @@ import { normalizeSchoolName } from '../lib/schoolName'
 import { generateShareImage } from '../lib/share'
 import { ShareCard } from './ShareCard'
 import { recordUnapplyDownload } from '../lib/bdfzIdentity'
+import { allQuestions } from '../data/questions'
 
 interface Props {
   result: FilterResult
@@ -27,6 +28,28 @@ type LookupEntry =
   | { kind: 'kept'; school: FilterResult['kept'][number] }
   | { kind: 'excluded'; school: FilterResult['excluded'][number]['school']; reasons: ExcludeReason[] }
 
+interface NopeHandoffAnswer {
+  id: string;
+  title: string;
+  labels: string[];
+  dataStatus: (typeof allQuestions)[number]['dataStatus'];
+}
+
+interface NopeHandoffContext {
+  version: 'nope.v1';
+  source: 'https://nope.bdfz.net/';
+  createdAt: string;
+  stats: {
+    totalInput: number;
+    excludedCount: number;
+    keptCount: number;
+    answeredCount: number;
+  };
+  answers: NopeHandoffAnswer[];
+  keptSamples: string[];
+  excludedSamples: { name: string; reasons: string[] }[];
+}
+
 function cityTierBadge(tier: string | undefined): string {
   if (tier === 'tier1') return 'T1'
   if (tier === 'newtier1') return 'NT1'
@@ -37,6 +60,64 @@ function cityTierBadge(tier: string | undefined): string {
 
 function formatReason(reason: ExcludeReason): string {
   return `${reason.questionTitle} · 你選了「${reason.userAnswerLabel}」 · 該校是「${reason.schoolValue}」`
+}
+
+function encodeBase64Url(text: string): string {
+  const bytes = new TextEncoder().encode(text)
+  let binary = ''
+  for (const byte of bytes) binary += String.fromCharCode(byte)
+  return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '')
+}
+
+function answerLabels(questionId: string, value: AnswerMap[keyof AnswerMap]): string[] {
+  if (!value || value === 'skip') return []
+  const question = allQuestions.find((item) => item.id === questionId)
+  if (!question) return []
+  const keys = Array.isArray(value) ? value : [value]
+  return keys
+    .map((key) => question.options.find((option) => option.key === key)?.label)
+    .filter((label): label is string => Boolean(label))
+}
+
+function buildHandoffContext(result: FilterResult, answers: AnswerMap): NopeHandoffContext {
+  const compactAnswers: NopeHandoffAnswer[] = Object.entries(answers)
+    .flatMap(([id, value]) => {
+      const question = allQuestions.find((item) => item.id === id)
+      const labels = answerLabels(id, value)
+      if (!question || labels.length === 0) return []
+      return [{
+        id,
+        title: question.title,
+        labels,
+        dataStatus: question.dataStatus,
+      }]
+    })
+
+  return {
+    version: 'nope.v1',
+    source: 'https://nope.bdfz.net/',
+    createdAt: new Date().toISOString(),
+    stats: {
+      totalInput: result.stats.totalInput,
+      excludedCount: result.stats.excludedCount,
+      keptCount: result.stats.keptCount,
+      answeredCount: result.stats.answeredCount,
+    },
+    answers: compactAnswers,
+    keptSamples: result.kept.slice(0, 18).map((school) => school.name),
+    excludedSamples: result.excluded.slice(0, 12).map(({ school, reasons }) => ({
+      name: school.name,
+      reasons: reasons.slice(0, 3).map(formatReason),
+    })),
+  }
+}
+
+function buildHandoff(result: FilterResult, answers: AnswerMap) {
+  const encoded = encodeBase64Url(JSON.stringify(buildHandoffContext(result, answers)))
+  return {
+    gkUrl: `https://gk.rdfzer.com/?nope=${encoded}#advice-top`,
+    sevenFiftyUrl: `https://750.bdfz.net/?nope=${encoded}`,
+  }
 }
 
 export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAbout, onContribute }: Props) {
@@ -77,6 +158,7 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
       })
       .slice(0, 8)
   }, [result.excluded, result.kept, schoolQuery])
+  const handoff = useMemo(() => buildHandoff(result, answers), [answers, result])
 
   const share = async () => {
     if (!shareRef.current) return
@@ -287,6 +369,36 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
               ))}
             </div>
           )}
+        </div>
+
+        <div className="bg-ink-900 border border-ink-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-4">
+          <div>
+            <p className="mono text-[11px] uppercase tracking-[0.24em] text-fog-500">AI 志願</p>
+            <h2 className="serif text-xl">帶著這輪減法去報考分析</h2>
+            <p className="mt-2 text-sm text-fog-500 leading-relaxed">
+              將本輪排除條件作為負向偏好帶入，不替代位次、投檔線和招生章程核查。
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <a
+              href={handoff.gkUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="px-5 py-4 border border-accent-500/40 bg-accent-500/10 text-accent-600 rounded-xl text-sm hover:bg-accent-500/15 min-h-[56px] flex items-center justify-between gap-3"
+            >
+              <span>去 gk AI 志願</span>
+              <span className="mono text-[11px]">gk.rdfzer.com ↗</span>
+            </a>
+            <a
+              href={handoff.sevenFiftyUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="px-5 py-4 border border-ink-700 text-fog-300 rounded-xl text-sm hover:text-fog-100 min-h-[56px] flex items-center justify-between gap-3"
+            >
+              <span>去 750 對話</span>
+              <span className="mono text-[11px]">750.bdfz.net ↗</span>
+            </a>
+          </div>
         </div>
 
         <div className="flex flex-col gap-6">

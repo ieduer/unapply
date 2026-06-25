@@ -13,7 +13,7 @@ export interface ThemePalette {
 }
 
 export interface ThemePreset {
-  id: 'graphite' | 'ember' | 'tide' | 'orchard'
+  id: 'paper' | 'graphite' | 'ember' | 'tide' | 'orchard'
   label: string
   description: string
   palette: ThemePalette
@@ -24,9 +24,27 @@ export interface ThemeState {
   customAccent?: string
 }
 
-const STORAGE_KEY = 'unapply.theme.v1'
+const STORAGE_KEY = 'unapply.theme.v2'
 
 export const themePresets: ThemePreset[] = [
+  {
+    id: 'paper',
+    label: 'Paper',
+    description: '淡紙畫布 + 青灰點綴',
+    palette: {
+      canvasTop: '#fbfaf5',
+      canvasBottom: '#efe9df',
+      canvasGlow: '#8aa3a3',
+      ink950: '#fbfaf5',
+      ink900: '#f4f0e8',
+      ink800: '#d9d0c4',
+      ink700: '#c5b7aa',
+      fog500: '#8f8279',
+      fog300: '#6e625b',
+      fog100: '#4b433f',
+      accent500: '#8aa3a3',
+    },
+  },
   {
     id: 'graphite',
     label: 'Graphite',
@@ -102,7 +120,7 @@ export const themePresets: ThemePreset[] = [
 ]
 
 export const defaultThemeState: ThemeState = {
-  presetId: 'graphite',
+  presetId: 'paper',
 }
 
 function normalizeHex(input: string): string {

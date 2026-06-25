@@ -4,6 +4,7 @@ import {
   officialVocationalCount,
 } from '../data/schoolCatalogSummary'
 import { contributionHighlights, researchSummary } from '../data/researchSummary'
+import { motion } from 'motion/react'
 
 interface Props {
   onStart: () => void
@@ -13,8 +14,13 @@ interface Props {
 
 export function Landing({ onStart, onAbout, onContribute }: Props) {
   return (
-    <main className="min-h-screen app-canvas text-fog-100 flex flex-col items-center justify-between px-5 sm:px-6 py-8 sm:py-12">
-      <div className="w-full max-w-2xl flex items-center justify-between text-[10px] sm:text-xs mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-fog-500">
+    <main className="min-h-screen app-canvas text-fog-100 flex flex-col items-center justify-between px-5 sm:px-6 py-6 sm:py-10">
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full max-w-5xl flex items-center justify-between text-[10px] sm:text-xs mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-fog-500"
+      >
         <span>nope.bdfz.net · v1.6</span>
         <button
           onClick={onAbout}
@@ -22,32 +28,38 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
         >
           about
         </button>
-      </div>
+      </motion.div>
 
-      <section className="w-full max-w-2xl flex flex-col gap-8 sm:gap-12 py-10">
-        <h1 className="serif text-4xl sm:text-6xl leading-tight">
-          <span className="block text-fog-500 text-lg sm:text-2xl tracking-wider mb-4 sm:mb-6">減法人生 · 學校版</span>
-          你一定<span className="text-accent-500">不考</span>
-          <br />哪所大學
-        </h1>
-
-        <div className="flex flex-col gap-2 text-sm text-fog-500 leading-relaxed">
-          <p className="mono">
-            本次目錄 / {officialSchoolCount.toLocaleString()} 所普通高校（本科 {officialUndergraduateCount.toLocaleString()} · 高職專科 {officialVocationalCount.toLocaleString()}）
+      <section className="w-full max-w-5xl flex flex-1 flex-col justify-center gap-8 sm:gap-12 py-10 sm:py-16">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-3xl"
+        >
+          <p className="mono text-xs uppercase tracking-[0.28em] text-accent-500">減法人生 · 學校版</p>
+          <h1 className="mt-5 serif text-5xl sm:text-7xl leading-none text-fog-100">
+            你一定不考哪所大學
+          </h1>
+          <p className="mt-6 max-w-2xl text-base sm:text-lg text-fog-300 leading-relaxed">
+            不告訴你該考哪所，只幫你從官方目錄裡先劃掉不能忍的那批。
           </p>
-        </div>
+          <p className="mt-4 mono text-sm text-fog-500">
+            {officialSchoolCount.toLocaleString()} 所普通高校 · 本科 {officialUndergraduateCount.toLocaleString()} · 高職專科 {officialVocationalCount.toLocaleString()}
+          </p>
+        </motion.div>
 
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
           <button
             onClick={onStart}
-            className="px-7 py-4 sm:py-3 bg-accent-500 text-ink-950 rounded-full font-semibold text-base hover:bg-accent-400 transition-colors min-h-[52px]"
+            className="px-7 py-4 sm:py-3 bg-accent-500 text-ink-950 rounded-xl font-semibold text-base hover:bg-accent-400 transition-colors min-h-[52px]"
           >
-            開始減法 →
+            開始減法
           </button>
           <span className="text-xs mono text-fog-500">按當前有效數據動態出題 · 可隨時跳過</span>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid border-y border-ink-800 bg-ink-900/70 backdrop-blur-xl sm:grid-cols-3">
           <MetricCard
             label="眾包覆蓋學校"
             value={researchSummary.crowdMatchedSchools.toLocaleString()}
@@ -65,7 +77,7 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
           />
         </div>
 
-        <div className="rounded-2xl border border-ink-800 bg-ink-900/80 p-5 flex flex-col gap-4">
+        <div className="border border-ink-800 bg-ink-900/78 p-5 sm:p-6 flex flex-col gap-4 backdrop-blur-xl">
           <div className="flex flex-col gap-2">
             <p className="mono text-[11px] uppercase tracking-[0.24em] text-fog-500">用戶貢獻數據</p>
             <h2 className="serif text-2xl">無學生，不學校</h2>
@@ -83,7 +95,7 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={onContribute}
-              className="px-5 py-3 rounded-full border border-accent-500/40 bg-accent-500/10 text-accent-400 text-sm hover:bg-accent-500/15 min-h-[48px]"
+              className="px-5 py-3 rounded-xl border border-accent-500/40 bg-accent-500/10 text-accent-600 text-sm hover:bg-accent-500/15 min-h-[48px]"
             >
               去補我熟悉的學校
             </button>
@@ -99,7 +111,7 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
         </div>
       </section>
 
-      <footer className="w-full max-w-2xl pt-6 border-t border-ink-800">
+      <footer className="w-full max-w-5xl pt-6 border-t border-ink-800">
         <div className="grid gap-3 sm:gap-2">
           <FooterGroup
             label="姊妹站"
@@ -136,7 +148,7 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
 
 function MetricCard({ label, value, detail }: { label: string; value: string; detail: string }) {
   return (
-    <div className="rounded-2xl border border-ink-800 bg-ink-900/80 p-4 flex flex-col gap-2">
+    <div className="border-b border-ink-800 p-4 flex flex-col gap-2 sm:border-b-0 sm:border-r sm:last:border-r-0">
       <p className="mono text-[11px] uppercase tracking-[0.22em] text-fog-500">{label}</p>
       <p className="serif text-3xl text-fog-100">{value}</p>
       <p className="text-xs text-fog-500 leading-relaxed">{detail}</p>
@@ -152,7 +164,7 @@ function FooterGroup({
   items: { href: string; text: string }[]
 }) {
   return (
-    <section className="rounded-2xl sm:rounded-none border border-ink-800 sm:border-0 bg-ink-900/70 sm:bg-transparent px-4 py-3 sm:px-0 sm:py-0">
+    <section className="border border-ink-800 sm:border-0 bg-ink-900/65 sm:bg-transparent px-4 py-3 sm:px-0 sm:py-0">
       <p className="mono text-[11px] uppercase tracking-[0.18em] text-fog-300">{label}</p>
       <div className="mt-2 flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-x-3 sm:gap-y-1 text-xs mono text-fog-500 leading-relaxed">
         {items.map((item) => (
