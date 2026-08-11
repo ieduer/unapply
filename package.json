@@ -16,6 +16,8 @@
     "audit:data": "tsx scripts/audit_data_coverage.mjs",
     "build": "npm run data:runtime && tsc -b && vite build",
     "lint": "eslint .",
+    "test:evidence": "node --experimental-strip-types --test tests/learning-evidence.test.ts",
+    "test:trusted": "tsx --test tests/trusted-aplus-*.test.ts",
     "preview": "vite preview",
     "pages:deploy": "npm run build && npx wrangler pages deploy dist --project-name unapply --branch master --commit-dirty=true",
     "prepages:deploy": "bash /Users/ylsuen/CF/scripts/git-deploy-gate.sh"
