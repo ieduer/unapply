@@ -10,7 +10,7 @@ import { analyzeQuestionCoverage, getVisibleOptions } from '../engine/coverage'
 interface Props {
   allSchools: School[]
   answers: AnswerMap
-  onAnswerChange: (a: AnswerMap) => void
+  onAnswerChange: (a: AnswerMap, changedQuestionId: string) => void
   onFinish: () => void
   onBack: () => void
 }
@@ -60,7 +60,7 @@ export function QuestionRunner({ allSchools, answers, onAnswerChange, onFinish, 
   const current = answers[q.id]
 
   const setAnswer = (val: AnswerValue) => {
-    onAnswerChange({ ...answers, [q.id]: val })
+    onAnswerChange({ ...answers, [q.id]: val }, q.id)
   }
 
   const toggleMulti = (key: string) => {

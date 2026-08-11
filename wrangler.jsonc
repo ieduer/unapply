@@ -2,5 +2,12 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "unapply",
   "compatibility_date": "2026-04-20",
-  "pages_build_output_dir": "dist"
+  "pages_build_output_dir": "dist",
+  "services": [
+    {
+      "binding": "APLUS_EVIDENCE",
+      "service": "bdfz-user-center",
+      "entrypoint": "UnapplyAPlusEvidence"
+    }
+  ]
 }

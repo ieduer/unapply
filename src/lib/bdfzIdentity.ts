@@ -6,7 +6,10 @@ declare global {
       syncProgress?: (record: Record<string, unknown>) => Promise<unknown>;
       recordEvent?: (record: Record<string, unknown>) => Promise<unknown>;
       recordDownload?: (record: Record<string, unknown>) => Promise<unknown>;
-      getSession?: () => Promise<{ user?: { id: number; name?: string } | null }>;
+      getSession?: () => Promise<{
+        authenticated?: boolean;
+        user?: { id?: number; slug?: string; displayName?: string } | null;
+      }>;
     };
     __unapplyIdentityMounted?: boolean;
   }
@@ -44,39 +47,50 @@ export function getSessionKey() {
   return ensureSessionKey();
 }
 
-export function recordUnapplyEvent(record: Record<string, unknown>) {
-  return (
-    window.BdfzIdentity?.recordEvent?.({
-      siteKey: SITE_KEY,
-      sessionKey: ensureSessionKey(),
-      ...record,
-    }) ?? Promise.resolve(null)
-  );
+async function getAuthenticatedIdentity() {
+  const identity = window.BdfzIdentity;
+  if (!identity?.getSession) return null;
+  const session = await identity.getSession().catch(() => null);
+  return session?.authenticated && session.user ? identity : null;
 }
 
-export function recordUnapplyDownload(record: Record<string, unknown>) {
-  return (
-    window.BdfzIdentity?.recordDownload?.({
-      siteKey: SITE_KEY,
-      sourceSessionKey: ensureSessionKey(),
-      ...record,
-    }) ?? Promise.resolve(null)
-  );
+function skippedAnonymous() {
+  return { ok: false, skipped: true, reason: 'anonymous' };
 }
 
-export function syncUnapplyProgress(record: Record<string, unknown>) {
-  return (
-    window.BdfzIdentity?.syncProgress?.({
-      siteKey: SITE_KEY,
-      ...record,
-    }) ?? Promise.resolve(null)
-  );
+export async function recordUnapplyEvent(record: Record<string, unknown>) {
+  const identity = await getAuthenticatedIdentity();
+  if (!identity?.recordEvent) return skippedAnonymous();
+  return identity.recordEvent({
+    siteKey: SITE_KEY,
+    sessionKey: ensureSessionKey(),
+    ...record,
+  });
+}
+
+export async function recordUnapplyDownload(record: Record<string, unknown>) {
+  const identity = await getAuthenticatedIdentity();
+  if (!identity?.recordDownload) return skippedAnonymous();
+  return identity.recordDownload({
+    siteKey: SITE_KEY,
+    sourceSessionKey: ensureSessionKey(),
+    ...record,
+  });
+}
+
+export async function syncUnapplyProgress(record: Record<string, unknown>) {
+  const identity = await getAuthenticatedIdentity();
+  if (!identity?.syncProgress) return skippedAnonymous();
+  return identity.syncProgress({
+    siteKey: SITE_KEY,
+    ...record,
+  });
 }
 
 export async function getUnapplyUser() {
   try {
     const resp = await window.BdfzIdentity?.getSession?.();
-    return resp?.user ?? null;
+    return resp?.authenticated ? resp.user ?? null : null;
   } catch {
     return null;
   }

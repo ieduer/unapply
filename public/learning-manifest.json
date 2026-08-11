@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "siteKey": "unapply",
+  "manifestVersion": "unapply-result-v1",
+  "manifestDigest": "sha256:136c786802e02d452210574756f5bef291c120e5edd7beee0c30856826636a99",
+  "itemCount": 1,
+  "items": [
+    {
+      "resourceKey": "unapply:result:v1",
+      "title": "不考大学指南结果",
+      "completionKind": "result_generated"
+    }
+  ]
+}

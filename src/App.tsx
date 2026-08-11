@@ -1,10 +1,30 @@
-import { useMemo, useState, useCallback, useEffect, lazy, Suspense, type ReactNode } from 'react'
+import {
+  useMemo,
+  useState,
+  useCallback,
+  useEffect,
+  useSyncExternalStore,
+  lazy,
+  Suspense,
+  type ReactNode,
+} from 'react'
 import { ThemeCustomizer } from './components/ThemeCustomizer'
 import type { School } from './data/schools'
 import { filterSchools } from './engine/filter'
 import type { AnswerMap } from './engine/filter'
-import { recordUnapplyEvent } from './lib/bdfzIdentity'
+import { getSessionKey, recordUnapplyEvent, syncUnapplyProgress } from './lib/bdfzIdentity'
+import { buildUnapplyResultEvidence } from './lib/learningEvidence'
 import { loadSchools } from './lib/runtimeData'
+import {
+  beginUnapplyAPlusSession,
+  completeUnapplyAPlusSession,
+  getUnapplyAPlusStatus,
+  recordUnapplyAPlusAnswers,
+  resetUnapplyAPlusSession,
+  resumeUnapplyAPlusRecovery,
+  subscribeUnapplyAPlusStatus,
+} from './lib/trustedAPlus'
+import type { UnapplyAPlusSyncStatus } from './lib/trustedAPlus'
 
 const Landing = lazy(async () => ({ default: (await import('./components/Landing')).Landing }))
 const QuestionRunner = lazy(async () => ({ default: (await import('./components/QuestionRunner')).QuestionRunner }))
@@ -94,16 +114,56 @@ function PageLoading() {
   )
 }
 
+function EvidenceSyncNotice({ status }: { status: UnapplyAPlusSyncStatus }) {
+  if (status.phase === 'idle') return null
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className={`fixed bottom-4 left-1/2 z-50 w-[min(92vw,34rem)] -translate-x-1/2 rounded-xl border px-4 py-3 text-sm shadow-2xl backdrop-blur ${
+        status.phase === 'verified'
+          ? 'border-emerald-300/30 bg-emerald-950/90 text-emerald-100'
+          : status.phase === 'error'
+            ? 'border-rose-300/30 bg-rose-950/90 text-rose-100'
+            : 'border-accent-500/30 bg-ink-900/95 text-accent-400'
+      }`}
+    >
+      <span className="font-semibold">
+        {status.phase === 'verified'
+          ? '已核验'
+          : status.phase === 'error'
+            ? '核验未完成'
+            : '同步核验中'}
+      </span>
+      <span className="ml-2 opacity-80">{status.message}</span>
+    </div>
+  )
+}
+
 export default function App() {
   const [route, setRoute] = useState<Route>(() => parseRoute())
   const [answers, setAnswers] = useState<AnswerMap>({})
   const [schools, setSchools] = useState<School[] | null>(null)
   const [schoolLoadError, setSchoolLoadError] = useState<string | null>(null)
+  const evidenceStatus = useSyncExternalStore(
+    subscribeUnapplyAPlusStatus,
+    getUnapplyAPlusStatus,
+    getUnapplyAPlusStatus,
+  )
 
   useEffect(() => {
     const onHash = () => setRoute(parseRoute())
     window.addEventListener('hashchange', onHash)
     return () => window.removeEventListener('hashchange', onHash)
+  }, [])
+
+  useEffect(() => {
+    const recover = () => {
+      resumeUnapplyAPlusRecovery().then(() => undefined).catch(() => undefined)
+    }
+    recover()
+    window.addEventListener('online', recover)
+    return () => window.removeEventListener('online', recover)
   }, [])
 
   const go = useCallback((r: Route) => {
@@ -127,42 +187,57 @@ export default function App() {
     }
   }, [route, schoolLoadError, schools])
 
+  useEffect(() => {
+    if (route.name === 'filter') {
+      beginUnapplyAPlusSession().then(() => undefined).catch(() => undefined)
+    }
+  }, [route.name])
+
   const result = useMemo(() => schools ? filterSchools(schools, answers) : null, [answers, schools])
   const retrySchoolLoad = useCallback(() => {
     setSchoolLoadError(null)
     setSchools(null)
   }, [])
 
+  const handleAnswerChange = useCallback((nextAnswers: AnswerMap, changedQuestionId: string) => {
+    setAnswers(nextAnswers)
+    recordUnapplyAPlusAnswers(nextAnswers, changedQuestionId).then(() => undefined).catch(() => undefined)
+  }, [])
+
   const handleFinish = useCallback(() => {
     if (!result) return
-    void recordUnapplyEvent({
-      recordKind: 'event',
-      recordKey: `filter-${Date.now().toString(36)}`,
-      title: '不考大學指南 · 一輪減法完成',
-      summary: `從 ${result.stats.totalInput} 所中劃掉 ${result.stats.excludedCount} 所，剩 ${result.stats.keptCount} 所`,
-      payload: {
-        answers,
-        stats: result.stats,
-      },
-    })
+    const evidence = buildUnapplyResultEvidence(result.stats, getSessionKey(), window.location.href)
+    if (evidence) {
+      void syncUnapplyProgress(evidence.progress)
+      void recordUnapplyEvent(evidence.event)
+    }
+    completeUnapplyAPlusSession(answers).then(() => undefined).catch(() => undefined)
     go({ name: 'result' })
   }, [answers, result, go])
 
   if (routeNeedsSchools(route) && (!schools || schoolLoadError)) {
-    return <CatalogLoading error={schoolLoadError} onBack={() => go({ name: 'landing' })} onRetry={retrySchoolLoad} />
+    return (
+      <>
+        <CatalogLoading error={schoolLoadError} onBack={() => go({ name: 'landing' })} onRetry={retrySchoolLoad} />
+        <EvidenceSyncNotice status={evidenceStatus} />
+      </>
+    )
   }
 
   let page: ReactNode = null
 
   if (route.name === 'landing') {
-    page = <Landing onStart={() => go({ name: 'filter' })} onAbout={() => go({ name: 'about' })} onContribute={() => go({ name: 'contribute' })} />
+    page = <Landing onStart={() => {
+      beginUnapplyAPlusSession().then(() => undefined).catch(() => undefined)
+      go({ name: 'filter' })
+    }} onAbout={() => go({ name: 'about' })} onContribute={() => go({ name: 'contribute' })} />
   } else if (route.name === 'filter') {
     if (schools) {
       page = (
         <QuestionRunner
           allSchools={schools}
           answers={answers}
-          onAnswerChange={setAnswers}
+          onAnswerChange={handleAnswerChange}
           onFinish={handleFinish}
           onBack={() => go({ name: 'landing' })}
         />
@@ -175,6 +250,7 @@ export default function App() {
           result={result}
           answers={answers}
           onRestart={() => {
+            resetUnapplyAPlusSession()
             setAnswers({})
             go({ name: 'filter' })
           }}
@@ -204,6 +280,7 @@ export default function App() {
         {page}
       </Suspense>
       <ThemeCustomizer />
+      <EvidenceSyncNotice status={evidenceStatus} />
     </>
   )
 }
