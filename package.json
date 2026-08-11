@@ -17,7 +17,8 @@
     "build": "npm run data:runtime && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "pages:deploy": "npm run build && npx wrangler pages deploy dist --project-name unapply --branch master --commit-dirty=true"
+    "pages:deploy": "npm run build && npx wrangler pages deploy dist --project-name unapply --branch master --commit-dirty=true",
+    "prepages:deploy": "bash /Users/ylsuen/CF/scripts/git-deploy-gate.sh"
   },
   "dependencies": {
     "html-to-image": "^1.11.13",
