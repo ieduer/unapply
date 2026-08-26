@@ -16,3 +16,4 @@ Ownership status: no mutation authority is implied; consult reports/agent_action
 
 - Active sister-site and result handoffs now target `gk.rdfzer.com`; the duplicate 750 conversation action was removed.
 - The encoded `nope` context is preserved in the gk URL before `#advice-top`.
+- Live release: source `4be095d`, Pages `2700a82d-1239-4918-bc54-2938a585e8f8`.
