@@ -117,7 +117,7 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
             label="姊妹站"
             items={[
               { href: 'https://path.bdfz.net', text: 'path · 職業減法' },
-              { href: 'https://750.bdfz.net', text: '750 · 北京高考' },
+              { href: 'https://gk.rdfzer.com/#advice-top', text: 'gk · 高考報考' },
               { href: 'https://my.bdfz.net', text: 'my · 用戶中心' },
             ]}
           />

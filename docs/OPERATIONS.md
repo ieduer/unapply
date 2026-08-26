@@ -133,3 +133,7 @@ update `PROJECT_STATE.md` in the same task.
 Every AI closeout must record changed files, generated artifacts, tests, live
 version/deployment, rollback, dirty-tree state, unresolved follow-ups, and the
 manual/state updates in `reports/agent_action_log.jsonl`. Chat is not a durable handoff.
+
+## 2026-08-26 750 retirement
+
+All current handoff links use `https://gk.rdfzer.com/?nope=<encoded>#advice-top`; no runtime source may link directly to 750. Verify build output, encoded context, browser navigation and the target advice panel. Rollback is the predecessor Pages deployment.

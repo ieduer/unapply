@@ -116,7 +116,6 @@ function buildHandoff(result: FilterResult, answers: AnswerMap) {
   const encoded = encodeBase64Url(JSON.stringify(buildHandoffContext(result, answers)))
   return {
     gkUrl: `https://gk.rdfzer.com/?nope=${encoded}#advice-top`,
-    sevenFiftyUrl: `https://750.bdfz.net/?nope=${encoded}`,
   }
 }
 
@@ -379,7 +378,7 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
               將本輪排除條件作為負向偏好帶入，不替代位次、投檔線和招生章程核查。
             </p>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-3">
             <a
               href={handoff.gkUrl}
               target="_blank"
@@ -388,15 +387,6 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
             >
               <span>去 gk AI 志願</span>
               <span className="mono text-[11px]">gk.rdfzer.com ↗</span>
-            </a>
-            <a
-              href={handoff.sevenFiftyUrl}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="px-5 py-4 border border-ink-700 text-fog-300 rounded-xl text-sm hover:text-fog-100 min-h-[56px] flex items-center justify-between gap-3"
-            >
-              <span>去 750 對話</span>
-              <span className="mono text-[11px]">750.bdfz.net ↗</span>
             </a>
           </div>
         </div>

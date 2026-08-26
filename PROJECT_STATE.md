@@ -11,3 +11,8 @@ Deployment status: source-only convergence complete; no production deployment pe
 Rollback anchor: curl -sS -X POST -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" "https://api.cloudflare.com/client/v4/accounts/da810f08b63347a01d3db7fd42619972/pages/projects/unapply/deployments/4da416a0-8ea2-45ca-bf60-ac8011fa5776/rollback"
 Operations authority: /Users/ylsuen/CF/unapply/docs/OPERATIONS.md
 Ownership status: no mutation authority is implied; consult reports/agent_action_log.jsonl
+
+## 2026-08-26 gk handoff consolidation
+
+- Active sister-site and result handoffs now target `gk.rdfzer.com`; the duplicate 750 conversation action was removed.
+- The encoded `nope` context is preserved in the gk URL before `#advice-top`.

@@ -95,7 +95,7 @@ export function AboutPage({ onBack }: Props) {
           <ul className="flex flex-col gap-2 text-sm list-disc pl-5">
             <li><a className="text-accent-500 hover:text-accent-400" href="https://path.bdfz.net" target="_blank" rel="noreferrer noopener">path.bdfz.net</a> — 職業減法（先確定你要做什麼）</li>
             <li><a className="text-accent-500 hover:text-accent-400" href="https://nope.bdfz.net" target="_blank" rel="noreferrer noopener">nope.bdfz.net</a> — 學校減法（再確定你不去哪）</li>
-            <li><a className="text-accent-500 hover:text-accent-400" href="https://750.bdfz.net" target="_blank" rel="noreferrer noopener">750.bdfz.net</a> — 北京高考語料庫</li>
+            <li><a className="text-accent-500 hover:text-accent-400" href="https://gk.rdfzer.com/#advice-top" target="_blank" rel="noreferrer noopener">gk.rdfzer.com</a> — 高考報考與北京高考補充資料</li>
             <li><a className="text-accent-500 hover:text-accent-400" href="https://my.bdfz.net" target="_blank" rel="noreferrer noopener">my.bdfz.net</a> — 登錄後，減法結果自動同步</li>
           </ul>
         </div>
