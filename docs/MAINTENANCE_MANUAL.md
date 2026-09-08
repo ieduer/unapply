@@ -104,6 +104,12 @@ moeCode,schoolName,year,regularProvinces,comprehensiveProvinces,sourceTitle,sour
   章程說「另在部分省份試點普通本科批次錄取」但沒公布名單時寫 `unpublished_pilot`
   （南方科技大學 2026 即如此），這種情況只在卡片上提示、永不參與排除。
 - `comprehensiveProvinces`：只走綜合評價（須另行報名＋校測）的省份，同樣支援 `all` / `none`。
+- **省份必須寫成全站的繁體口徑**（`江蘇`／`廣東`／`山東`，取自教育部主表）。
+  章程原文是簡體，`build_admission_channels.mjs` 會用別名表歸一；
+  歸一不了的直接 exit 1。這條閘門是實測踩出來的：CSV 寫簡體「江苏」時，
+  逐省匹配永遠等不到「江蘇」，於是落到「收錄了但沒覆蓋該省」分支、悄悄回到 regular 先驗——
+  界面一切正常，規則其實整條沒生效。`tests/admission-channel.test.ts` 另有一條測試
+  直接拿考生地區下拉選單的 option value 去驗，避免測試和數據犯同一個錯。
 - 兩個列表都要以**官方招生章程**為準；聚合號、知乎、公眾號只能當「該去查哪一頁」的線索，不入庫。
 - 沒查全的省份就留空，引擎會回到 regular 先驗。寧可少排除，不誤殺。
 

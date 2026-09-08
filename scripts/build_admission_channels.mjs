@@ -47,11 +47,38 @@ function parseCsv(text) {
 // 也不能當成「全國都沒有」——所以單獨標出來，只提示不排除。
 const REGULAR_SENTINELS = new Set(['all', 'unpublished_pilot']);
 
-function parseProvinceList(raw) {
+// 全站的省份字串是繁體（'江蘇'、'廣東'、'山東'…），來自教育部主表。
+// 招生章程原文是簡體，兩邊不統一時逐省匹配會靜默失效：
+// '江苏' 永遠等不到 '江蘇'，於是落到「收錄了但沒覆蓋該省」分支、回到 regular 先驗，
+// 看起來一切正常，實際上整條規則沒生效。所以這裡做別名歸一 + 白名單硬校驗。
+const PROVINCE_ALIASES = {
+  江苏: '江蘇', 广东: '廣東', 广西: '廣西', 山东: '山東', 辽宁: '遼寧', 陕西: '陝西',
+  云南: '雲南', 贵州: '貴州', 甘肃: '甘肅', 重庆: '重慶', 内蒙古: '內蒙古', 宁夏: '寧夏',
+  黑龙江: '黑龍江', 台湾: '臺灣', 澳门: '澳門',
+};
+
+function canonicalProvince(name, canonicalSet) {
+  const trimmed = name.trim();
+  if (canonicalSet.has(trimmed)) return trimmed;
+  const aliased = PROVINCE_ALIASES[trimmed];
+  if (aliased && canonicalSet.has(aliased)) return aliased;
+  return null;
+}
+
+function parseProvinceList(raw, canonicalSet, problems, label) {
   const value = (raw ?? '').trim();
   if (!value || value === 'none') return [];
   if (REGULAR_SENTINELS.has(value)) return [value];
-  return value.split('|').map((item) => item.trim()).filter(Boolean);
+  const out = [];
+  for (const item of value.split('|').map((entry) => entry.trim()).filter(Boolean)) {
+    const canonical = canonicalProvince(item, canonicalSet);
+    if (!canonical) {
+      problems.push(`${label}：省份「${item}」不在教育部主表的省份集合里（全站用繁体，如「江蘇」「廣東」）`);
+      continue;
+    }
+    out.push(canonical);
+  }
+  return out;
 }
 
 async function resolveLatestCsv() {
@@ -70,6 +97,7 @@ async function main() {
   const officialModuleUrl = pathToFileURL(path.join(repoRoot, 'src', 'data', 'officialSchools.ts')).href;
   const { officialSchools } = await import(officialModuleUrl);
   const officialByCode = new Map(officialSchools.map((school) => [school.moeCode, school]));
+  const canonicalProvinces = new Set(officialSchools.map((school) => school.province).filter(Boolean));
 
   const records = {};
   const problems = [];
@@ -96,8 +124,9 @@ async function main() {
       continue;
     }
 
-    const regularProvinces = parseProvinceList(item.regularProvinces);
-    const comprehensiveProvinces = parseProvinceList(item.comprehensiveProvinces);
+    const label = `moeCode ${moeCode}（${officialName}）`;
+    const regularProvinces = parseProvinceList(item.regularProvinces, canonicalProvinces, problems, `${label} regularProvinces`);
+    const comprehensiveProvinces = parseProvinceList(item.comprehensiveProvinces, canonicalProvinces, problems, `${label} comprehensiveProvinces`);
     if (regularProvinces.length === 0 && comprehensiveProvinces.length === 0) {
       problems.push(`moeCode ${moeCode}（${officialName}）两个管道都为空，这条记录没有意义`);
       continue;

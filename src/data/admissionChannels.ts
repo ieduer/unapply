@@ -12,19 +12,19 @@ export const admissionChannelsByMoeCode: Record<string, SchoolAdmissionChannels>
     "year": 2026,
     "regularProvinces": [
       "北京",
-      "江苏",
+      "江蘇",
       "浙江",
-      "山东",
-      "陕西",
+      "山東",
+      "陝西",
       "湖南",
       "四川"
     ],
     "comprehensiveProvinces": [
       "北京",
-      "江苏",
+      "江蘇",
       "浙江",
-      "山东",
-      "陕西",
+      "山東",
+      "陝西",
       "湖南",
       "四川"
     ],
@@ -42,42 +42,42 @@ export const admissionChannelsByMoeCode: Record<string, SchoolAdmissionChannels>
     "regularProvinces": [
       "北京",
       "天津",
-      "辽宁",
+      "遼寧",
       "上海",
       "浙江",
       "福建",
       "江西",
-      "山东",
+      "山東",
       "河南",
       "湖北",
       "湖南",
-      "重庆",
+      "重慶",
       "四川",
-      "贵州",
-      "云南",
-      "陕西",
-      "甘肃",
+      "貴州",
+      "雲南",
+      "陝西",
+      "甘肅",
       "安徽"
     ],
     "comprehensiveProvinces": [
       "北京",
       "天津",
-      "辽宁",
+      "遼寧",
       "上海",
-      "江苏",
+      "江蘇",
       "浙江",
       "福建",
       "江西",
-      "山东",
+      "山東",
       "河南",
       "湖北",
       "湖南",
-      "重庆",
+      "重慶",
       "四川",
-      "贵州",
-      "云南",
-      "陕西",
-      "甘肃"
+      "貴州",
+      "雲南",
+      "陝西",
+      "甘肅"
     ],
     "source": {
       "title": "上海科技大学2026年本科招生常见问答",
@@ -109,8 +109,8 @@ export const admissionChannelsByMoeCode: Record<string, SchoolAdmissionChannels>
       "all"
     ],
     "comprehensiveProvinces": [
-      "江苏",
-      "广东"
+      "江蘇",
+      "廣東"
     ],
     "source": {
       "title": "西交利物浦大学2026年中国内地本科招生章程",
@@ -179,27 +179,27 @@ export const admissionChannelsByMoeCode: Record<string, SchoolAdmissionChannels>
       "北京",
       "河北",
       "山西",
-      "内蒙古",
-      "辽宁",
+      "內蒙古",
+      "遼寧",
       "吉林",
       "上海",
-      "江苏",
+      "江蘇",
       "浙江",
       "安徽",
       "福建",
       "江西",
-      "山东",
+      "山東",
       "河南",
       "湖北",
       "湖南",
-      "广东",
-      "广西",
+      "廣東",
+      "廣西",
       "海南",
-      "重庆",
+      "重慶",
       "四川",
-      "贵州",
-      "云南",
-      "陕西"
+      "貴州",
+      "雲南",
+      "陝西"
     ],
     "source": {
       "title": "南方科技大学2026年本科招生章程（阳光高考）",
@@ -231,7 +231,7 @@ export const admissionChannelsByMoeCode: Record<string, SchoolAdmissionChannels>
       "all"
     ],
     "comprehensiveProvinces": [
-      "广东"
+      "廣東"
     ],
     "source": {
       "title": "北师港浸大招生政策（综合评价录取仅针对广东考生）",
@@ -248,11 +248,11 @@ export const admissionChannelsByMoeCode: Record<string, SchoolAdmissionChannels>
       "all"
     ],
     "comprehensiveProvinces": [
-      "广东",
+      "廣東",
       "浙江",
       "上海",
-      "山东",
-      "江苏",
+      "山東",
+      "江蘇",
       "福建"
     ],
     "source": {
@@ -271,43 +271,43 @@ export const admissionChannelsByMoeCode: Record<string, SchoolAdmissionChannels>
       "天津",
       "河北",
       "山西",
-      "江苏",
+      "江蘇",
       "浙江",
       "安徽",
       "福建",
       "江西",
-      "山东",
+      "山東",
       "河南",
       "湖北",
       "湖南",
-      "广东",
+      "廣東",
       "四川",
-      "贵州",
-      "陕西"
+      "貴州",
+      "陝西"
     ],
     "comprehensiveProvinces": [
       "北京",
       "天津",
       "河北",
       "山西",
-      "内蒙古",
-      "辽宁",
+      "內蒙古",
+      "遼寧",
       "吉林",
-      "黑龙江",
+      "黑龍江",
       "上海",
-      "江苏",
+      "江蘇",
       "浙江",
       "安徽",
       "福建",
       "江西",
-      "山东",
+      "山東",
       "河南",
       "湖北",
       "湖南",
-      "广东",
-      "重庆",
+      "廣東",
+      "重慶",
       "四川",
-      "陕西"
+      "陝西"
     ],
     "source": {
       "title": "深圳北理莫斯科大学2026年夏季高考招生章程（阳光高考）",
@@ -350,7 +350,7 @@ export const admissionChannelsByMoeCode: Record<string, SchoolAdmissionChannels>
 }
 
 export const admissionChannelMeta = {
-  "generatedAt": "2026-09-08T09:06:29.369Z",
+  "generatedAt": "2026-09-08T09:15:11.781Z",
   "input": "data/research/admission_channels.2026-09-08.csv",
   "schoolCount": 14
 }

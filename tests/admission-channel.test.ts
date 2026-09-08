@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
+import { candidateProvinceOptions } from '../src/data/admissionAuthorities.ts'
 import { schools } from '../src/data/schools.ts'
 import { filterSchools } from '../src/engine/filter.ts'
 import { getRegularChannelState, getSpecialAdmissionTracks } from '../src/lib/schoolProfile.ts'
@@ -16,7 +17,7 @@ function keptNames(answers: Parameters<typeof filterSchools>[1], province?: stri
 }
 
 test('全程須申請+校園日的院校，任何省份都不算「填志願就能錄取」', () => {
-  for (const province of ['北京', '江苏', '安徽', '广东']) {
+  for (const province of ['北京', '江蘇', '安徽', '廣東']) {
     const kept = keptNames({ A6: 'regular_only' }, province)
     for (const name of ['上海纽约大学', '昆山杜克大学']) {
       assert.equal(kept.has(name), false, `${province} 考生的 ${name} 應被排除`)
@@ -26,8 +27,8 @@ test('全程須申請+校園日的院校，任何省份都不算「填志願就�
 
 test('上海科技大学只對江蘇考生是綜評專屬', () => {
   // 2026 常見問答原文：除江蘇外其他綜合評價招生省份的考生均可以裸分填報。
-  assert.equal(getRegularChannelState(bySimplifiedName('上海科技大学'), { candidateProvince: '江苏' }), 'comprehensive_only')
-  assert.equal(keptNames({ A6: 'regular_only' }, '江苏').has('上海科技大学'), false)
+  assert.equal(getRegularChannelState(bySimplifiedName('上海科技大学'), { candidateProvince: '江蘇' }), 'comprehensive_only')
+  assert.equal(keptNames({ A6: 'regular_only' }, '江蘇').has('上海科技大学'), false)
   for (const province of ['北京', '安徽', '上海', '浙江']) {
     assert.equal(
       getRegularChannelState(bySimplifiedName('上海科技大学'), { candidateProvince: province }),
@@ -42,7 +43,7 @@ test('深圳北理莫斯科大学逐省不同：上海只有綜評，北京有�
   const school = bySimplifiedName('深圳北理莫斯科大学')
   assert.equal(getRegularChannelState(school, { candidateProvince: '上海' }), 'comprehensive_only')
   assert.equal(keptNames({ A6: 'regular_only' }, '上海').has('深圳北理莫斯科大学'), false)
-  for (const province of ['北京', '广东', '江苏']) {
+  for (const province of ['北京', '廣東', '江蘇']) {
     assert.equal(getRegularChannelState(school, { candidateProvince: province }), 'regular')
   }
 })
@@ -51,7 +52,7 @@ test('南方科技大学只提示不排除：章程說有普通批試點但沒�
   const school = bySimplifiedName('南方科技大学')
   assert.equal(getRegularChannelState(school, { candidateProvince: '北京' }), 'comprehensive_dominant')
   assert.deepEqual(getSpecialAdmissionTracks(school, { candidateProvince: '北京' }), ['comprehensive_dominant'])
-  for (const province of ['北京', '广东', '江苏', '上海']) {
+  for (const province of ['北京', '廣東', '江蘇', '上海']) {
     assert.equal(
       keptNames({ A6: 'regular_only' }, province).has('南方科技大学'),
       true,
@@ -66,7 +67,7 @@ test('雙軌制與純普通批院校任何省份都不排除', () => {
     '广东以色列理工学院', '西交利物浦大学', '宁波诺丁汉大学', '温州肯恩大学',
     '北京师范大学-香港浸会大学联合国际学院',
   ]
-  for (const province of ['北京', '广东', '浙江', '江苏']) {
+  for (const province of ['北京', '廣東', '浙江', '江蘇']) {
     const kept = keptNames({ A6: 'regular_only' }, province)
     for (const name of names) {
       assert.equal(kept.has(name), true, `${province} 考生的 ${name} 不該被排除`)
@@ -100,6 +101,39 @@ test('每一條招生管道記錄都帶官方來源', () => {
     assert.ok(source.title.length > 0)
     assert.equal(school.admissionChannels!.year, 2026, `${school.name} 應以 2026 年度章程為準`)
   }
+})
+
+// 這一條是上一版數據出錯的直接原因：CSV 寫簡體「江苏」，但全站省份是繁體「江蘇」，
+// 於是逐省匹配全部落空、規則靜默失效，而測試因為用了和數據同一套錯誤寫法所以照樣綠。
+// 現在改成拿界面真正會送進來的值（考生地區下拉選單的 option value）來驗。
+test('招生管道記錄裡的省份必須是界面真的會送進來的值', () => {
+  const uiProvinces = new Set<string>(candidateProvinceOptions)
+  const sentinels = new Set(['all', 'unpublished_pilot'])
+  for (const school of schools) {
+    const channels = school.admissionChannels
+    if (!channels) continue
+    for (const province of [...channels.regularProvinces, ...channels.comprehensiveProvinces]) {
+      if (sentinels.has(province)) continue
+      assert.ok(
+        uiProvinces.has(province),
+        `${channels.schoolName} 的「${province}」不在考生地區選單裡，逐省匹配會永遠落空`,
+      )
+    }
+  }
+})
+
+test('逐省判定要走完整個考生地區選單而不報錯', () => {
+  const counts = candidateProvinceOptions.map((province) => {
+    const result = filterSchools(schools, { A6: 'regular_only' }, { candidateProvince: province })
+    return { province, excluded: result.stats.byQuestion.A6 ?? 0 }
+  })
+  // 藝體軍警航的基線是 156 所，逐省只在此之上增減幾所
+  for (const { province, excluded } of counts) {
+    assert.ok(excluded >= 156 && excluded <= 170, `${province} 排除數 ${excluded} 超出合理區間`)
+  }
+  const jiangsu = counts.find((item) => item.province === '江蘇')!
+  const beijing = counts.find((item) => item.province === '北京')!
+  assert.equal(jiangsu.excluded, beijing.excluded + 1, '江蘇應比北京多排除上海科技大學一所')
 })
 
 test('A6 選「都看」時不排除任何學校', () => {
