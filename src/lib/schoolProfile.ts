@@ -3,6 +3,7 @@ import type { School } from '../data/schools'
 export type SpecialAdmissionTrack =
   | 'regular_gaokao'
   | 'comprehensive_eval'
+  | 'comprehensive_dominant'
   | 'art_exam'
   | 'sports_test'
   | 'military_police'
@@ -49,6 +50,7 @@ const tuitionLabelMap: Record<string, string> = {
 const specialTrackLabelMap: Record<SpecialAdmissionTrack, string> = {
   regular_gaokao: '普通高考常規統招',
   comprehensive_eval: '綜評校測·無常規批',
+  comprehensive_dominant: '主要走綜評·普通批僅部分省份試點',
   art_exam: '藝術/校考門檻',
   sports_test: '體育/體測門檻',
   military_police: '軍警/政審體測',
@@ -71,14 +73,25 @@ function hasProvince(list: string[] | undefined, province: string | undefined): 
 //
 // 四個分支的共同性質：只要證據不足，一律回到 regular_gaokao 先驗。
 // 保守方向永遠是「留著讓用戶自己看」，不是「替他劃掉」。
+export type RegularChannelState = 'regular' | 'comprehensive_only' | 'comprehensive_dominant'
+
 export function getRegularChannelState(
   school: School,
   ctx?: AdmissionContext,
-): 'regular' | 'comprehensive_only' {
+): RegularChannelState {
   const channels = school.admissionChannels
   if (!channels) return 'regular'                                    // 未收錄 → 先驗
 
   const province = ctx?.candidateProvince
+
+  // 章程說有普通批試點但沒公布省份 —— 既不能說有，也不能說沒有。
+  // 標出來讓考生自己去查該省招生計劃，但絕不拿它做排除。
+  if (channels.regularProvinces.includes('unpublished_pilot')) {
+    return hasProvince(channels.comprehensiveProvinces, province) || !province
+      ? 'comprehensive_dominant'
+      : 'regular'
+  }
+
   if (hasProvince(channels.regularProvinces, province)) return 'regular'          // 該省有常規批
   if (hasProvince(channels.comprehensiveProvinces, province)) return 'comprehensive_only'  // 該省只有綜評
 
@@ -94,12 +107,18 @@ export function getRegularChannelState(
   return noRegularAnywhere && comprehensiveEverywhere ? 'comprehensive_only' : 'regular'
 }
 
+const channelStateTrack: Record<RegularChannelState, SpecialAdmissionTrack> = {
+  regular: 'regular_gaokao',
+  comprehensive_only: 'comprehensive_eval',
+  comprehensive_dominant: 'comprehensive_dominant',
+}
+
 export function getSpecialAdmissionTracks(
   school: School,
   ctx?: AdmissionContext,
 ): SpecialAdmissionTrack[] {
   const tracks = new Set<SpecialAdmissionTrack>([
-    getRegularChannelState(school, ctx) === 'comprehensive_only' ? 'comprehensive_eval' : 'regular_gaokao',
+    channelStateTrack[getRegularChannelState(school, ctx)],
   ])
   const name = school.name ?? ''
 

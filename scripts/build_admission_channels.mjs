@@ -42,10 +42,15 @@ function parseCsv(text) {
   return rows.filter((entry) => entry.some((cell) => cell.trim() !== ''));
 }
 
+// 'unpublished_pilot' 是一個刻意的第三態：學校章程說「另在部分省份試點普通本科批次錄取」，
+// 但名單既不在章程也不在簡章裡（只在各省招生計劃）。既不能當成「全國都有常規批」，
+// 也不能當成「全國都沒有」——所以單獨標出來，只提示不排除。
+const REGULAR_SENTINELS = new Set(['all', 'unpublished_pilot']);
+
 function parseProvinceList(raw) {
   const value = (raw ?? '').trim();
   if (!value || value === 'none') return [];
-  if (value === 'all') return ['all'];
+  if (REGULAR_SENTINELS.has(value)) return [value];
   return value.split('|').map((item) => item.trim()).filter(Boolean);
 }
 

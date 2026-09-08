@@ -34,12 +34,29 @@ export const admissionChannelsByMoeCode: Record<string, SchoolAdmissionChannels>
       "date": "2026-05-29",
       "confidence": "high"
     },
-    "notes": "这7个省市是综合评价（提前批）与普通高考（一批次）并行；普通批以100%比例调阅档案，因此不属于综评专属"
+    "notes": "这7个省市是综合评价（提前批）与普通高考（一批次）并行；普通批以100%比例调阅档案"
   },
   "4131014423": {
     "schoolName": "上海科技大学",
-    "year": 2025,
+    "year": 2026,
     "regularProvinces": [
+      "北京",
+      "天津",
+      "辽宁",
+      "上海",
+      "浙江",
+      "福建",
+      "江西",
+      "山东",
+      "河南",
+      "湖北",
+      "湖南",
+      "重庆",
+      "四川",
+      "贵州",
+      "云南",
+      "陕西",
+      "甘肃",
       "安徽"
     ],
     "comprehensiveProvinces": [
@@ -63,12 +80,12 @@ export const admissionChannelsByMoeCode: Record<string, SchoolAdmissionChannels>
       "甘肃"
     ],
     "source": {
-      "title": "上海科技大学2025年本科招生章程",
-      "url": "https://www.shanghaitech.edu.cn/2025/0519/c1001a1111080/page.htm",
-      "date": "2025-05-19",
+      "title": "上海科技大学2026年本科招生常见问答",
+      "url": "https://admission.shanghaitech.edu.cn/2026/0401/c917a1120428/page.htm",
+      "date": "2026-04-01",
       "confidence": "high"
     },
-    "notes": "18省以校园开放日为核心的综合评价招生；仅安徽在普通本科批按投档成绩排序录取"
+    "notes": "原文：除江苏外其他综合评价招生省份的考生均可以裸分填报；江苏为A类高水平综合评价，须获得校园开放日成绩方可报考；安徽在普通本科批招生不参加综合评价"
   },
   "4131016404": {
     "schoolName": "上海纽约大学",
@@ -83,7 +100,25 @@ export const admissionChannelsByMoeCode: Record<string, SchoolAdmissionChannels>
       "date": "2025-11-26",
       "confidence": "high"
     },
-    "notes": "招生计划不分省；须网申并参加校园日活动，不存在不申请即可录取的批次"
+    "notes": "招生计划不分省；须网申、初审、参加校园日活动方可获得录取资格，不存在不申请即可录取的批次"
+  },
+  "4132016403": {
+    "schoolName": "西交利物浦大学",
+    "year": 2026,
+    "regularProvinces": [
+      "all"
+    ],
+    "comprehensiveProvinces": [
+      "江苏",
+      "广东"
+    ],
+    "source": {
+      "title": "西交利物浦大学2026年中国内地本科招生章程",
+      "url": "https://www.xjtlu.edu.cn/wp-content/uploads/2026/05/8988b8e1529327ca85e0f611494aa080.pdf",
+      "date": "2026-05-01",
+      "confidence": "high"
+    },
+    "notes": "全国列入本科第一批次或本科批次；江苏广东另设综合评价，且未被综合评价录取者仍可填报本科批次参与投档"
   },
   "4132016406": {
     "schoolName": "昆山杜克大学",
@@ -98,27 +133,224 @@ export const admissionChannelsByMoeCode: Record<string, SchoolAdmissionChannels>
       "date": "2026-05-22",
       "confidence": "high"
     },
-    "notes": "高考60%+自主综合评估40%；须经Slate系统申请并参加校园日活动入围后方可在提前批填报"
+    "notes": "高考60%+自主综合评估40%；须经Slate系统申请并通过校园日活动入围后，方有资格在普通类本科提前批填报"
+  },
+  "4133016301": {
+    "schoolName": "宁波诺丁汉大学",
+    "year": 2026,
+    "regularProvinces": [
+      "all"
+    ],
+    "comprehensiveProvinces": [
+      "浙江"
+    ],
+    "source": {
+      "title": "宁波诺丁汉大学2026年普通高校招生章程",
+      "url": "https://www.nottingham.edu.cn/cn/study-with-us/undergraduate/entry-requirements/gaokao.aspx",
+      "date": "2026-05-01",
+      "confidence": "high"
+    },
+    "notes": "普通高考招生按分数优先遵循志愿投档；浙江另有三位一体综合评价，属并行通道"
+  },
+  "4133016405": {
+    "schoolName": "温州肯恩大学",
+    "year": 2026,
+    "regularProvinces": [
+      "all"
+    ],
+    "comprehensiveProvinces": [
+      "浙江"
+    ],
+    "source": {
+      "title": "温州肯恩大学2026年普通高校招生章程",
+      "url": "https://admission.wku.edu.cn/zh-hans/node/3298",
+      "date": "2026-05-01",
+      "confidence": "high"
+    },
+    "notes": "章程第十一条按平行志愿分数优先遵循志愿录取；浙江三位一体综合评价另有单独章程，属并行通道"
   },
   "4144014325": {
     "schoolName": "南方科技大学",
-    "year": 2025,
-    "regularProvinces": [],
+    "year": 2026,
+    "regularProvinces": [
+      "unpublished_pilot"
+    ],
     "comprehensiveProvinces": [
-      "all"
+      "北京",
+      "河北",
+      "山西",
+      "内蒙古",
+      "辽宁",
+      "吉林",
+      "上海",
+      "江苏",
+      "浙江",
+      "安徽",
+      "福建",
+      "江西",
+      "山东",
+      "河南",
+      "湖北",
+      "湖南",
+      "广东",
+      "广西",
+      "海南",
+      "重庆",
+      "四川",
+      "贵州",
+      "云南",
+      "陕西"
     ],
     "source": {
-      "title": "南方科技大学2025年本科招生章程",
-      "url": "https://sustech.edu.cn/uploads/files/2025/11/19155008_56838.pdf",
-      "date": "2025-11-19",
+      "title": "南方科技大学2026年本科招生章程（阳光高考）",
+      "url": "https://gaokao.chsi.com.cn/wap/zszc/viewZszc?schId=360427709&infoId=7622117708",
+      "date": "2026-04-29",
       "confidence": "high"
     },
-    "notes": "631综合评价是唯一入学途径；全部专业在提前批（综合评价批次）录取，须参加学校能力测试"
+    "notes": "章程第十四条：综合评价在提前批（或综合评价批次）录取，另在部分省份试点普通本科批次录取；试点省份名单未在章程或简章公布，以各省招生计划为准，因此只作提示不做排除"
+  },
+  "4144014851": {
+    "schoolName": "香港城市大学（东莞）",
+    "year": 2026,
+    "regularProvinces": [
+      "all"
+    ],
+    "comprehensiveProvinces": [],
+    "source": {
+      "title": "香港城市大学（东莞）2026年夏季高考招生章程",
+      "url": "https://uga.cityu-dg.edu.cn/admission-policy/3539",
+      "date": "2026-05-01",
+      "confidence": "high"
+    },
+    "notes": "面向13个省市在普通批次录取，分数优先，无综合评价与校测"
+  },
+  "4144016401": {
+    "schoolName": "北京师范大学-香港浸会大学联合国际学院",
+    "year": 2026,
+    "regularProvinces": [
+      "all"
+    ],
+    "comprehensiveProvinces": [
+      "广东"
+    ],
+    "source": {
+      "title": "北师港浸大招生政策（综合评价录取仅针对广东考生）",
+      "url": "https://admission.bnbu.edu.cn/CEA/policy.htm",
+      "date": "2026-03-10",
+      "confidence": "high"
+    },
+    "notes": "学校已更名为北师香港浸会大学；综合评价仅面向广东考生且在提前批特殊类型招生综合评价志愿栏，其余省份及广东本科批走普通高考录取"
+  },
+  "4144016407": {
+    "schoolName": "香港中文大学（深圳）",
+    "year": 2026,
+    "regularProvinces": [
+      "all"
+    ],
+    "comprehensiveProvinces": [
+      "广东",
+      "浙江",
+      "上海",
+      "山东",
+      "江苏",
+      "福建"
+    ],
+    "source": {
+      "title": "香港中文大学（深圳）招生问答：2026年的招生录取模式是什么？",
+      "url": "https://admissions.cuhk.edu.cn/node/919",
+      "date": "2026-04-01",
+      "confidence": "high"
+    },
+    "notes": "六省市实行双轨制：普通本科提前批+综合评价并行；普通提前批面向全国21个省市完全依据高考成绩"
+  },
+  "4144016409": {
+    "schoolName": "深圳北理莫斯科大学",
+    "year": 2026,
+    "regularProvinces": [
+      "北京",
+      "天津",
+      "河北",
+      "山西",
+      "江苏",
+      "浙江",
+      "安徽",
+      "福建",
+      "江西",
+      "山东",
+      "河南",
+      "湖北",
+      "湖南",
+      "广东",
+      "四川",
+      "贵州",
+      "陕西"
+    ],
+    "comprehensiveProvinces": [
+      "北京",
+      "天津",
+      "河北",
+      "山西",
+      "内蒙古",
+      "辽宁",
+      "吉林",
+      "黑龙江",
+      "上海",
+      "江苏",
+      "浙江",
+      "安徽",
+      "福建",
+      "江西",
+      "山东",
+      "河南",
+      "湖北",
+      "湖南",
+      "广东",
+      "重庆",
+      "四川",
+      "陕西"
+    ],
+    "source": {
+      "title": "深圳北理莫斯科大学2026年夏季高考招生章程（阳光高考）",
+      "url": "https://gaokao.chsi.com.cn/wap/zszc/viewZszc?schId=1783356075&infoId=7653817220",
+      "date": "2026-05-01",
+      "confidence": "high"
+    },
+    "notes": "章程第十四条：综合评价22省在提前批、普通高考17省在本科批；须注意双学籍专业仅通过综合评价招生，单学籍5个专业两种模式都招"
+  },
+  "4144016410": {
+    "schoolName": "广东以色列理工学院",
+    "year": 2026,
+    "regularProvinces": [
+      "all"
+    ],
+    "comprehensiveProvinces": [],
+    "source": {
+      "title": "广东以色列理工学院2026年夏季高考招生章程",
+      "url": "https://sites.gtiit.edu.cn/admissions/gtiit-gaokao-examination-2026/",
+      "date": "2026-05-01",
+      "confidence": "high"
+    },
+    "notes": "面向15个省市在本科普通批按普通高考录取模式，完全依据高考成绩择优录取"
+  },
+  "4144016412": {
+    "schoolName": "香港科技大学（广州）",
+    "year": 2026,
+    "regularProvinces": [
+      "all"
+    ],
+    "comprehensiveProvinces": [],
+    "source": {
+      "title": "香港科技大学（广州）2026年夏季高考招生章程",
+      "url": "https://ugadmissions.hkust-gz.edu.cn/article/AdmissionPolicies?zbid=16&student_type=MainlandStudents",
+      "date": "2026-05-01",
+      "confidence": "high"
+    },
+    "notes": "章程第十五条：面向17个省区市，录取批次为本科提前批，按普通高考录取模式完全依据高考成绩择优录取，不采用综合评价"
   }
 }
 
 export const admissionChannelMeta = {
-  "generatedAt": "2026-09-08T08:21:12.694Z",
+  "generatedAt": "2026-09-08T09:06:29.369Z",
   "input": "data/research/admission_channels.2026-09-08.csv",
-  "schoolCount": 5
+  "schoolCount": 14
 }

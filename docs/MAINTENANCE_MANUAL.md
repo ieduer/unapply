@@ -100,7 +100,9 @@ npm run build
 moeCode,schoolName,year,regularProvinces,comprehensiveProvinces,sourceTitle,sourceUrl,sourceDate,confidence,notes
 ```
 
-- `regularProvinces`：填志願即可投檔的省份，`|` 分隔；全國都有寫 `all`，一個都沒有寫 `none`。
+- `regularProvinces`：填志願即可投檔的省份，`|` 分隔；全國都有寫 `all`，一個都沒有寫 `none`；
+  章程說「另在部分省份試點普通本科批次錄取」但沒公布名單時寫 `unpublished_pilot`
+  （南方科技大學 2026 即如此），這種情況只在卡片上提示、永不參與排除。
 - `comprehensiveProvinces`：只走綜合評價（須另行報名＋校測）的省份，同樣支援 `all` / `none`。
 - 兩個列表都要以**官方招生章程**為準；聚合號、知乎、公眾號只能當「該去查哪一頁」的線索，不入庫。
 - 沒查全的省份就留空，引擎會回到 regular 先驗。寧可少排除，不誤殺。
@@ -114,13 +116,19 @@ npm run test:filters
 判定順序（`src/lib/schoolProfile.ts` 的 `getRegularChannelState`）：
 
 1. 未收錄 → `regular`。
-2. 考生省份在 `regularProvinces` → `regular`。
-3. 考生省份在 `comprehensiveProvinces` → `comprehensive_only`。
-4. 收錄了但沒覆蓋到該省 → `regular`（通常是不在該省招生）。
-5. 沒有考生省份時，只有「全國皆無常規批」才判 `comprehensive_only`。
+2. `regularProvinces` 含 `unpublished_pilot` → `comprehensive_dominant`（只提示，不排除）。
+3. 考生省份在 `regularProvinces` → `regular`。
+4. 考生省份在 `comprehensiveProvinces` → `comprehensive_only`。
+5. 收錄了但沒覆蓋到該省 → `regular`（通常是不在該省招生）。
+6. 沒有考生省份時，只有「全國皆無常規批」才判 `comprehensive_only`。
 
-反例務必記住：中國科學院大學在北京是**綜評提前批與普通一批並行**，寧波東方理工／
-福耀科技／大灣區／深圳理工 2026 走普通批。憑「新型研究型大學」的印象一刀切會誤殺這五所。
+**必須用當年章程，不能沿用上一年。** 2026 那一輪查證推翻了兩條依 2025 章程寫的數據：
+上海科技大學 2026 常見問答明寫「除江蘇外其他綜合評價招生省份的考生均可以裸分填報」，
+南方科技大學 2026 章程新增「另在部分省份試點普通本科批次錄取」。兩條都會直接改變排除結果。
+
+反例務必記住：中國科學院大學在北京是綜評提前批與普通一批並行；寧波東方理工／福耀科技／
+大灣區／深圳理工 2026 走普通批；**九所中外合作辦學大學沒有一所是綜評專屬**，
+它們的綜評都是普通批之外的並行通道。憑印象一刀切會誤殺一大片。
 
 ### 3.2 研究增強層
 

@@ -219,8 +219,11 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
             <div className="flex flex-col gap-3">
               <p className="text-sm text-fog-200 leading-relaxed">
                 {regularChannelState === 'comprehensive_only'
-                  ? `對${candidateProvince}考生：本科只走綜合評價，必須另行報名並參加校測，光填志願錄不進來。`
-                  : `對${candidateProvince}考生：有填志願即可投檔的常規批次。`}
+                  && `對${candidateProvince}考生：本科只走綜合評價，必須另行報名並參加校測，光填志願錄不進來。`}
+                {regularChannelState === 'comprehensive_dominant'
+                  && `對${candidateProvince}考生：主要走綜合評價（須另行報名+校測）。章程另寫「部分省份試點普通本科批次錄取」，但沒公布是哪些省，所以這裡不替你排除——要確認請查你所在省當年的招生計劃。`}
+                {regularChannelState === 'regular'
+                  && `對${candidateProvince}考生：有填志願即可投檔的常規批次。`}
               </p>
               {admissionChannels.notes && (
                 <p className="text-xs text-fog-500 leading-relaxed">{admissionChannels.notes}</p>
