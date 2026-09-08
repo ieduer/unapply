@@ -1,7 +1,7 @@
 # Project State
 
 Last updated: 2026-09-08 PDT
-Current version: e31a4da（已部署）
+Current version: 4925d96（已部署）
 Current objective: 修掉 A6 把綜合評價院校當成常規統招的誤判，並把「看起來在篩、實際沒在篩」這一類效度缺陷系統性堵住
 
 ## 本輪完成的工作
@@ -37,11 +37,14 @@ Current objective: 修掉 A6 把綜合評價院校當成常規統招的誤判，
   但逐省歸屬只寫「以各省教育考試院公布招生計劃為準」，拿不到一手依據），維持 regular 先驗。
 - 章程逐年變動：2026 那輪查證推翻了兩條依 2025 章程寫的數據（上科大裸分可填、南科大新增普通批試點），
   下一個招生季必須整表重查。
+- 省份字串全站用繁體（教育部主表口徑）。CSV 允許寫簡體但 build 會歸一，歸一不了直接 exit 1；
+  這是實測踩出來的（簡體「江苏」讓逐省匹配整條靜默失效），測試已改為從考生地區選單取值校驗。
 - A5 `separate_freshman` 與 C1-C4 仍無數據，題目/選項在界面上是隱藏的。
 - A4 精確學費區間（1-3萬/3-8萬/8萬+）待 `tuition_programs.csv`。
 - 眾包上游是活倉庫，本輪同時吃進了 2026-06-30 快照，值有增減屬正常。
 
-Deployment status: 已上線。Pages deployment `00cb3661-eb64-42a6-9371-1dbd592aacfc`（2026-09-08T08:43:12Z，source e31a4da）；前一版 `2700a82d-1239-4918-bc54-2938a585e8f8`（source 4be095d）
+Deployment status: 已上線。Pages deployment `ddbda44d-af57-4c7e-bc63-108188b63b88`（2026-09-08T13:15:42Z，source 4925d96）；
+前一版 `7bea1ce9-6cb8-4adb-99a0-973afbb73fa2`（source 56a6439），本輪首發 `00cb3661-eb64-42a6-9371-1dbd592aacfc`（source e31a4da）
 Rollback anchor: curl -sS -X POST -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" "https://api.cloudflare.com/client/v4/accounts/da810f08b63347a01d3db7fd42619972/pages/projects/unapply/deployments/2700a82d-1239-4918-bc54-2938a585e8f8/rollback"
 Operations authority: docs/OPERATIONS.md
 Ownership status: no mutation authority is implied; consult reports/agent_action_log.jsonl

@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/unapply`
 - Git authority: `ieduer/unapply`
-- Current local branch/HEAD: `master` / `e31a4da`
+- Current local branch/HEAD: `master` / `4925d96`
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -54,7 +54,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - External/local build inputs, archived paths, receipts, retention, and hydrate commands not stated below are `review_required` and block deletion.
 
 Catalog backup evidence:
-- Cloudflare immutable Pages deployments: current=00cb3661-eb64-42a6-9371-1dbd592aacfc (source e31a4da, 2026-09-08), previous=2700a82d-1239-4918-bc54-2938a585e8f8 (source 4be095d, 2026-08-26)
+- Cloudflare immutable Pages deployments: current=ddbda44d-af57-4c7e-bc63-108188b63b88 (source 4925d96, 2026-09-08T13:15Z), previous=7bea1ce9-6cb8-4adb-99a0-973afbb73fa2 (source 56a6439), last pre-change release=2700a82d-1239-4918-bc54-2938a585e8f8 (source 4be095d, 2026-08-26)
 
 Catalog restore evidence:
 - restore code/assets by rolling back to production deployment 2700a82d-1239-4918-bc54-2938a585e8f8
@@ -144,7 +144,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-09-08T08:45Z — live readback of https://nope.bdfz.net confirmed per-question titles advance, A6 excludes 160 for a Beijing candidate and 159 for an Anhui candidate, and the result page renders the comprehensive-evaluation exclusion reason in Chinese.
+8. Last verified: 2026-09-08T13:20Z — live readback of https://nope.bdfz.net confirmed per-question titles advance, and A6 excludes 158 for a Beijing candidate vs 159 for a Jiangsu candidate (the extra one being 上海科技大学, which only Jiangsu candidates cannot reach on raw score). Province strings across the app are traditional-form; the admission-channel build fails closed on any province it cannot canonicalize.
 
 ## Synchronized documentation and handoff
 
