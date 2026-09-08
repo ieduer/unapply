@@ -5,15 +5,18 @@ import type { DimensionId } from '../data/dimensions'
 import type { CampusResearchRecord, ResearchEvidence } from '../data/runtimeTypes'
 import {
   candidateProvinceOptions,
-  defaultCandidateProvince,
   getAdmissionResourceLinks,
   type CandidateProvince,
 } from '../data/admissionAuthorities'
 import { getEnvironment } from '../data/environment'
+import { isHardFilterableQuality } from '../engine/filter'
 import { loadCampusesByProvince } from '../lib/runtimeData'
+import { getRegularChannelState } from '../lib/schoolProfile'
 
 interface Props {
   school: School
+  candidateProvince: CandidateProvince
+  onCandidateProvinceChange: (province: CandidateProvince) => void
   onBack: () => void
 }
 
@@ -66,10 +69,11 @@ function contribHref(schoolId: string, dim: DimensionId): string {
   return `#/contribute?school=${encodeURIComponent(schoolId)}&dim=${dim}`
 }
 
-export function SchoolDetail({ school, onBack }: Props) {
-  const [candidateProvince, setCandidateProvince] = useState<CandidateProvince>(defaultCandidateProvince)
+export function SchoolDetail({ school, candidateProvince, onCandidateProvinceChange: setCandidateProvince, onBack }: Props) {
   const [campusMap, setCampusMap] = useState<Record<string, CampusResearchRecord[]>>({})
   const qualityDims = DIMENSION_GROUPS.B
+  const admissionChannels = school.admissionChannels
+  const regularChannelState = getRegularChannelState(school, { candidateProvince })
   const env = getEnvironment(school.province, school.city)
   const levelText = school.level ? (levelLabel[school.level] ?? school.level) : '層次待核'
   const tierText = school.cityTier ? (tierLabel[school.cityTier] ?? school.cityTier) : '城市等級待核'
@@ -210,6 +214,36 @@ export function SchoolDetail({ school, onBack }: Props) {
         </div>
 
         <div className="flex flex-col gap-4">
+          <h2 className="serif text-xl">招生管道 · 章程依據</h2>
+          {admissionChannels ? (
+            <div className="flex flex-col gap-3">
+              <p className="text-sm text-fog-200 leading-relaxed">
+                {regularChannelState === 'comprehensive_only'
+                  ? `對${candidateProvince}考生：本科只走綜合評價，必須另行報名並參加校測，光填志願錄不進來。`
+                  : `對${candidateProvince}考生：有填志願即可投檔的常規批次。`}
+              </p>
+              {admissionChannels.notes && (
+                <p className="text-xs text-fog-500 leading-relaxed">{admissionChannels.notes}</p>
+              )}
+              <a
+                href={admissionChannels.source.url}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="mono text-xs text-accent-500 hover:text-accent-400 break-all"
+              >
+                {admissionChannels.source.title}
+                {admissionChannels.year ? `（${admissionChannels.year} 年）` : ''} ↗
+              </a>
+            </div>
+          ) : (
+            <p className="text-xs text-fog-500 leading-relaxed">
+              未收錄本校的逐省招生管道，按普通高考常規統招處理。
+              這是先驗而不是結論——只有查到招生章程明確寫「本科只走綜合評價」時，才會改判並在此列出章程鏈接。
+            </p>
+          )}
+        </div>
+
+        <div className="flex flex-col gap-4">
           <div className="flex items-baseline justify-between gap-4">
             <div>
               <h2 className="serif text-xl">校區 · 研究補全</h2>
@@ -309,13 +343,17 @@ export function SchoolDetail({ school, onBack }: Props) {
             </a>
           </div>
           <p className="text-xs text-fog-500 leading-relaxed">
-            未填 = 眾包暫未覆蓋，引擎不會以該維度排除此校。點擊每張卡片補一條數據到 GitHub。
+            未填 = 眾包暫未覆蓋，引擎不會以該維度排除此校。
+            只有 1 個人填答的值標為橙色：它會展示，但不拿去做硬排除——1 票和 40 票一致不該有同樣的分量。
+            點擊每張卡片補一條數據到 GitHub。
           </p>
           <div className="grid sm:grid-cols-2 gap-3">
             {qualityDims.map(d => {
               const meta = DIMENSIONS[d]
               const rawValue = school.quality?.[d]
               const val = Array.isArray(rawValue) ? rawValue.join(' / ') : rawValue
+              const evidence = school.qualityEvidence?.[d]
+              const filterable = val != null && isHardFilterableQuality(school, d)
               return (
                 <a
                   key={d}
@@ -329,6 +367,18 @@ export function SchoolDetail({ school, onBack }: Props) {
                   <p className={['mt-2 text-sm', val ? 'text-fog-100' : 'text-fog-500 italic'].join(' ')}>
                     {val ?? '待補充 · 點此貢獻'}
                   </p>
+                  {val != null && evidence && (
+                    <span
+                      className={[
+                        'mt-2 inline-block text-[10px] mono',
+                        filterable ? 'text-fog-500' : 'text-amber-400/80',
+                      ].join(' ')}
+                    >
+                      {evidence.source === 'crowd'
+                        ? `${evidence.sampleSize} 人填答 · ${evidence.winningVotes} 票一致${filterable ? '' : ' · 證據不足，不參與排除'}`
+                        : '官方依據'}
+                    </span>
+                  )}
                   {meta.authoritativeSources[0] && (
                     <span className="mt-2 block text-[10px] mono text-fog-500 truncate">
                       {meta.authoritativeSources[0].title.slice(0, 20)}

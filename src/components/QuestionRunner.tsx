@@ -1,5 +1,6 @@
 import { useMemo, useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
+import { candidateProvinceOptions } from '../data/admissionAuthorities'
+import type { CandidateProvince } from '../data/admissionAuthorities'
 import { allQuestions } from '../data/questions'
 import type { Question } from '../data/questions'
 import type { School } from '../data/schools'
@@ -10,16 +11,33 @@ import { analyzeQuestionCoverage, getVisibleOptions } from '../engine/coverage'
 interface Props {
   allSchools: School[]
   answers: AnswerMap
+  candidateProvince: CandidateProvince
+  onCandidateProvinceChange: (province: CandidateProvince) => void
   onAnswerChange: (a: AnswerMap, changedQuestionId: string) => void
   onFinish: () => void
   onBack: () => void
 }
 
-export function QuestionRunner({ allSchools, answers, onAnswerChange, onFinish, onBack }: Props) {
+export function QuestionRunner({
+  allSchools,
+  answers,
+  candidateProvince,
+  onCandidateProvinceChange,
+  onAnswerChange,
+  onFinish,
+  onBack,
+}: Props) {
   const [idx, setIdx] = useState(0)
 
-  const liveResult = useMemo(() => filterSchools(allSchools, answers), [allSchools, answers])
-  const coverageByQuestion = useMemo(() => analyzeQuestionCoverage(allSchools), [allSchools])
+  const filterContext = useMemo(() => ({ candidateProvince }), [candidateProvince])
+  const liveResult = useMemo(
+    () => filterSchools(allSchools, answers, filterContext),
+    [allSchools, answers, filterContext],
+  )
+  const coverageByQuestion = useMemo(
+    () => analyzeQuestionCoverage(allSchools, filterContext),
+    [allSchools, filterContext],
+  )
   const visibleQuestions = useMemo(
     () => allQuestions.filter((question) => coverageByQuestion[question.id]?.active),
     [coverageByQuestion],
@@ -138,21 +156,27 @@ export function QuestionRunner({ allSchools, answers, onAnswerChange, onFinish, 
       </header>
 
       <section className="flex-1 max-w-2xl w-full mx-auto px-4 sm:px-6 pt-6 pb-32 sm:pt-10 sm:pb-10 flex flex-col gap-8 sm:gap-10">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={q.id}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}
-            className="flex flex-col gap-3 sm:gap-4"
-          >
+        <div key={q.id} className="question-enter flex flex-col gap-3 sm:gap-4">
             <h2 className="serif text-2xl sm:text-3xl leading-snug">{q.title}</h2>
             {q.subtitle && (
               <p className="text-sm text-fog-500 leading-relaxed">{q.subtitle}</p>
             )}
-          </motion.div>
-        </AnimatePresence>
+            {q.id === 'A6' && (
+              <label className="flex flex-wrap items-center gap-2 text-xs mono text-fog-500 border border-ink-700 bg-ink-900 rounded-xl px-3 py-3">
+                <span className="uppercase tracking-[0.2em] shrink-0">考生地區</span>
+                <select
+                  value={candidateProvince}
+                  onChange={(event) => onCandidateProvinceChange(event.target.value as CandidateProvince)}
+                  className="bg-ink-950 border border-ink-700 rounded-lg px-2 py-2 text-fog-200 min-h-[40px]"
+                >
+                  {candidateProvinceOptions.map((province) => (
+                    <option key={province} value={province}>{province}</option>
+                  ))}
+                </select>
+                <span className="text-fog-500">招生管道逐省不同，改這裡會即時重算</span>
+              </label>
+            )}
+        </div>
 
         <div className="flex flex-col gap-3">
           {visibleOptions.map((opt) => {

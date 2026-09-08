@@ -9,6 +9,8 @@ import {
   type ReactNode,
 } from 'react'
 import { ThemeCustomizer } from './components/ThemeCustomizer'
+import { candidateProvinceOptions, defaultCandidateProvince } from './data/admissionAuthorities'
+import type { CandidateProvince } from './data/admissionAuthorities'
 import type { School } from './data/schools'
 import { filterSchools } from './engine/filter'
 import type { AnswerMap } from './engine/filter'
@@ -140,9 +142,26 @@ function EvidenceSyncNotice({ status }: { status: UnapplyAPlusSyncStatus }) {
   )
 }
 
+const CANDIDATE_PROVINCE_STORAGE_KEY = 'unapply.candidateProvince.v1'
+
+function readStoredCandidateProvince(): CandidateProvince {
+  try {
+    const stored = window.localStorage.getItem(CANDIDATE_PROVINCE_STORAGE_KEY)
+    if (stored && (candidateProvinceOptions as string[]).includes(stored)) {
+      return stored as CandidateProvince
+    }
+  } catch {
+    // 隱私模式/禁用儲存時直接用預設，不讓它變成報錯
+  }
+  return defaultCandidateProvince
+}
+
 export default function App() {
   const [route, setRoute] = useState<Route>(() => parseRoute())
   const [answers, setAnswers] = useState<AnswerMap>({})
+  // 考生地區是篩選上下文，不是問卷答案：A6 的招生管道逐省不同，
+  // 但它不能進 AnswerMap，否則會污染學習證據契約。
+  const [candidateProvince, setCandidateProvinceState] = useState<CandidateProvince>(readStoredCandidateProvince)
   const [schools, setSchools] = useState<School[] | null>(null)
   const [schoolLoadError, setSchoolLoadError] = useState<string | null>(null)
   const evidenceStatus = useSyncExternalStore(
@@ -164,6 +183,15 @@ export default function App() {
     recover()
     window.addEventListener('online', recover)
     return () => window.removeEventListener('online', recover)
+  }, [])
+
+  const setCandidateProvince = useCallback((province: CandidateProvince) => {
+    setCandidateProvinceState(province)
+    try {
+      window.localStorage.setItem(CANDIDATE_PROVINCE_STORAGE_KEY, province)
+    } catch {
+      // 存不下就算了，本次會話仍然生效
+    }
   }, [])
 
   const go = useCallback((r: Route) => {
@@ -193,7 +221,11 @@ export default function App() {
     }
   }, [route.name])
 
-  const result = useMemo(() => schools ? filterSchools(schools, answers) : null, [answers, schools])
+  const filterContext = useMemo(() => ({ candidateProvince }), [candidateProvince])
+  const result = useMemo(
+    () => schools ? filterSchools(schools, answers, filterContext) : null,
+    [answers, filterContext, schools],
+  )
   const retrySchoolLoad = useCallback(() => {
     setSchoolLoadError(null)
     setSchools(null)
@@ -237,6 +269,8 @@ export default function App() {
         <QuestionRunner
           allSchools={schools}
           answers={answers}
+          candidateProvince={candidateProvince}
+          onCandidateProvinceChange={setCandidateProvince}
           onAnswerChange={handleAnswerChange}
           onFinish={handleFinish}
           onBack={() => go({ name: 'landing' })}
@@ -249,6 +283,8 @@ export default function App() {
         <ResultPage
           result={result}
           answers={answers}
+          candidateProvince={candidateProvince}
+          onCandidateProvinceChange={setCandidateProvince}
           onRestart={() => {
             resetUnapplyAPlusSession()
             setAnswers({})
@@ -269,7 +305,14 @@ export default function App() {
     if (schools) {
       const school = schools.find(s => s.id === route.id)
       page = school
-        ? <SchoolDetail school={school} onBack={() => history.length > 1 ? history.back() : go({ name: 'result' })} />
+        ? (
+          <SchoolDetail
+            school={school}
+            candidateProvince={candidateProvince}
+            onCandidateProvinceChange={setCandidateProvince}
+            onBack={() => history.length > 1 ? history.back() : go({ name: 'result' })}
+          />
+        )
         : <Landing onStart={() => go({ name: 'filter' })} onAbout={() => go({ name: 'about' })} onContribute={() => go({ name: 'contribute' })} />
     }
   }

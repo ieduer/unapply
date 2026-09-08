@@ -1,5 +1,14 @@
 import type { DimensionId } from './dimensions'
 
+export type QualitySourceKind = 'official' | 'authoritative' | 'crowd'
+
+export interface QualityEvidenceMeta {
+  source: QualitySourceKind
+  confidence: 'high' | 'medium' | 'low'
+  sampleSize: number
+  winningVotes: number
+}
+
 export interface ResearchEvidence {
   title: string
   url: string
@@ -41,3 +50,21 @@ export interface ProvinceAdmissionPortal {
 }
 
 export type SchoolResearchEvidenceMap = Partial<Record<DimensionId, ResearchEvidence[]>>
+
+export type SchoolQualityEvidenceMap = Partial<Record<DimensionId, QualityEvidenceMeta>>
+
+// 招生管道：「學校 × 省份 × 年度」，不是布林旗標。
+// 'all' 出現在列表裡代表該管道適用於該校全部招生省份。
+export interface SchoolAdmissionChannels {
+  schoolName: string
+  year: number | null
+  regularProvinces: string[]
+  comprehensiveProvinces: string[]
+  source: {
+    title: string
+    url: string
+    date?: string
+    confidence?: string
+  }
+  notes?: string
+}

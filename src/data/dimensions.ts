@@ -19,6 +19,10 @@ export interface DimensionMeta {
   authoritativeSources: { title: string; url: string }[];
   // 說明該維度數據當前的覆蓋來源與狀態
   coverage: 'authoritative' | 'crowdsourced' | 'mixed' | 'pending';
+  // 明確聲明「枚舉裡有、但目前主池沒有任何學校取這個值」的取值。
+  // 沒有這層聲明，任何引用該值的選項都會靜默退化成「看起來在篩、實際排除 0 所」。
+  // audit:values 會強制未聲明的死值報錯。
+  reservedValues?: readonly string[];
   notes?: string;
 }
 
@@ -34,6 +38,8 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
       '廣西', '海南', '四川', '貴州', '雲南', '西藏', '陝西', '甘肅', '青海', '寧夏',
       '新疆', '香港', '澳門', '臺灣',
     ],
+    // 教育部《全國普通高等學校名單》不含港澳台高校，主池永遠不會出現這三個值。
+    reservedValues: ['香港', '澳門', '臺灣'],
     authoritativeSources: [
       { title: '教育部全國普通高等學校名單（截至 2025-06-20）', url: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202506/t20250627_1195683.html' },
     ],
@@ -66,18 +72,25 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
     id: 'A4',
     label: '學費區間',
     section: 'A_redline',
-    values: ['公辦', '1-3萬', '3-8萬', '8萬+', '民辦/合作待核價'],
+    values: ['公辦', '1-3萬', '3-8萬', '8萬+', '民辦待核價', '中外合作待核價'],
+    reservedValues: ['1-3萬', '3-8萬', '8萬+'],
     authoritativeSources: [
       { title: '教育部「陽光高考」信息公開平台（院校招生章程／學費）', url: 'https://gaokao.chsi.com.cn/' },
     ],
     coverage: 'mixed',
-    notes: '官方名單能確認公辦/民辦/合作辦學；精確學費需到各校當年招生章程核對，未核價不硬填。',
+    notes: '教育部名單能權威區分公辦/民辦/中外合作三類辦學性質，因此學費先按這三檔走。'
+      + '民辦本科多在 1.5-3 萬，中外合作辦學機構 6-25 萬，兩者必須分桶。'
+      + '1-3萬/3-8萬/8萬+ 三檔是為 tuition_programs.csv 預留的精確區間，目前無數據支撐，已列入 reservedValues。',
   },
   A5: {
     id: 'A5',
     label: '主校區定位',
     section: 'A_redline',
     values: ['main_city', 'suburb_with_metro', 'suburb', 'separate_freshman'],
+    // campusFreshmanPolicy 目前 0/2919 有值，separate_freshman 沒有任何數據源，
+    // 「不接受大一單獨分校區」這個選項因此在界面上是隱藏的。
+    // 補數據的入口是 campus_official_overrides.csv 的 freshmanOnly 欄位。
+    reservedValues: ['separate_freshman'],
     authoritativeSources: [
       { title: '各校官網「校區概況」', url: 'https://gaokao.chsi.com.cn/' },
     ],
@@ -86,15 +99,18 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
   },
   A6: {
     id: 'A6',
-    label: '特殊招生門檻',
+    label: '額外報名與校測門檻',
     section: 'A_redline',
-    values: ['regular_gaokao', 'art_exam', 'sports_test', 'military_police', 'navigation_flight'],
+    values: ['regular_gaokao', 'comprehensive_eval', 'art_exam', 'sports_test', 'military_police', 'navigation_flight'],
     authoritativeSources: [
       { title: '教育部全國普通高等學校名單（院校類型 / 校名）', url: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202506/t20250627_1195683.html' },
       { title: '陽光高考（藝術 / 體育 / 軍警等特殊招生信息）', url: 'https://gaokao.chsi.com.cn/' },
+      { title: '南方科技大學 2025 年本科招生章程', url: 'https://sustech.edu.cn/uploads/files/2025/11/19155008_56838.pdf' },
+      { title: '上海科技大學 2025 年本科招生章程', url: 'https://www.shanghaitech.edu.cn/2025/0519/c1001a1111080/page.htm' },
+      { title: '中國科學院大學 2026 年本科招生章程', url: 'https://admission.ucas.ac.cn/ShowArticle/Article/4719aea6-edb5-4446-9f2d-cbcc771da521/3ecb7777-078d-42bd-b474-408693b74a94' },
     ],
     coverage: 'mixed',
-    notes: '用院校類型、校名與公開招生方式保守推導：藝術/體育院校、軍警院校、航海/飛行等優先標記；拿不準的不硬貼。',
+    notes: '藝術/體育/軍警/航海四類用院校類型與校名保守推導；comprehensive_eval（本科只走綜合評價、須另行報名+校測）只認各校招生章程，逐省逐年記錄在 data/research/admission_channels.*.csv，未收錄的學校一律回到 regular_gaokao 先驗。',
   },
 
   // ============ E 環境／地理維度（由省份+城市推導） ============
@@ -131,6 +147,8 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
   E5: {
     id: 'E5', label: '方言', section: 'E_environment',
     values: ['官話-北方', '官話-西南', '官話-江淮', '吳語', '粵語', '閩南語', '閩東語', '客家話', '湘語', '贛語', '晉語', '藏語', '維吾爾語', '蒙古語', '其他'],
+    // 方言區由省市客觀推導，現行推導表沒有落到這三檔（客家話沒有獨立成片的地級市口徑）。
+    reservedValues: ['閩東語', '客家話', '其他'],
     authoritativeSources: [
       { title: '《中國語言地圖集》（商務印書館 / 中國社科院）', url: 'https://www.cssn.cn/' },
     ],
@@ -229,6 +247,8 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
   },
   B12: {
     id: 'B12', label: '斷電斷網', section: 'B_quality',
+    // 眾包問卷的自由文本從未歸一化出這個取值。
+    reservedValues: ['週末不斷'],
     values: ['不斷', '午夜後斷', '22點前斷', '21點前斷', '每晚斷電', '每晚斷網', '週末不斷'],
     authoritativeSources: [{ title: 'CollegesChat 眾包問卷', url: 'https://github.com/CollegesChat/university-information' }],
     coverage: 'crowdsourced',
@@ -241,6 +261,8 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
   },
   B14: {
     id: 'B14', label: '熱水', section: 'B_quality',
+    // 眾包問卷的自由文本從未歸一化出這個取值。
+    reservedValues: ['僅晚間'],
     values: ['24小時', '限時段', '僅晚間', '無熱水'],
     authoritativeSources: [{ title: 'CollegesChat 眾包問卷', url: 'https://github.com/CollegesChat/university-information' }],
     coverage: 'crowdsourced',
@@ -295,6 +317,8 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
   },
   B23: {
     id: 'B23', label: '共享單車', section: 'B_quality',
+    // 眾包問卷的自由文本從未歸一化出這個取值。
+    reservedValues: ['限時段'],
     values: ['覆蓋', '限時段', '無'],
     authoritativeSources: [{ title: 'CollegesChat 眾包問卷', url: 'https://github.com/CollegesChat/university-information' }],
     coverage: 'crowdsourced',
@@ -310,6 +334,8 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
   C1: {
     id: 'C1', label: '飲食／宗教', section: 'C_special',
     values: ['有清真食堂', '有素食窗口', '普通食堂'],
+    // 該題 0/2919 覆蓋，全部取值都還沒有數據；題目在界面上是隱藏的。
+    reservedValues: ['有清真食堂', '有素食窗口', '普通食堂'],
     authoritativeSources: [
       { title: '中國伊斯蘭教協會清真食品認證', url: 'http://www.chinaislam.net.cn/' },
     ],
@@ -318,6 +344,8 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
   C2: {
     id: 'C2', label: '無障礙', section: 'C_special',
     values: ['無障礙完善', '視障輔助', '一般'],
+    // 該題 0/2919 覆蓋，全部取值都還沒有數據；題目在界面上是隱藏的。
+    reservedValues: ['無障礙完善', '視障輔助', '一般'],
     authoritativeSources: [
       { title: '中國殘疾人聯合會高校無障礙建設評估', url: 'https://www.cdpf.org.cn/' },
     ],
@@ -326,6 +354,8 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
   C3: {
     id: 'C3', label: 'LGBTQ+ 氛圍', section: 'C_special',
     values: ['無公開事件', '學生組織被整頓', '近年壓制事件'],
+    // 該題 0/2919 覆蓋，全部取值都還沒有數據；題目在界面上是隱藏的。
+    reservedValues: ['無公開事件', '學生組織被整頓', '近年壓制事件'],
     authoritativeSources: [],
     coverage: 'pending',
     notes: '此維度無權威數據源，僅以公開可查新聞為依據，需人工審核。',
@@ -333,6 +363,8 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
   C4: {
     id: 'C4', label: '外省生源比', section: 'C_special',
     values: ['外地≥50%', '本地50-70%', '本省生源＞70%'],
+    // 該題 0/2919 覆蓋，全部取值都還沒有數據；題目在界面上是隱藏的。
+    reservedValues: ['外地≥50%', '本地50-70%', '本省生源＞70%'],
     authoritativeSources: [
       { title: '各校本科招生章程（分省計劃）', url: 'https://gaokao.chsi.com.cn/' },
     ],

@@ -1061,7 +1061,7 @@ export const officialSchools = [
     "department": "北京市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -1137,7 +1137,7 @@ export const officialSchools = [
     "department": "北京市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -1156,7 +1156,7 @@ export const officialSchools = [
     "department": "北京市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -1175,7 +1175,7 @@ export const officialSchools = [
     "department": "北京市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -1194,7 +1194,7 @@ export const officialSchools = [
     "department": "北京市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -1232,7 +1232,7 @@ export const officialSchools = [
     "department": "北京市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -1479,7 +1479,7 @@ export const officialSchools = [
     "department": "北京市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -1498,7 +1498,7 @@ export const officialSchools = [
     "department": "北京市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -1517,7 +1517,7 @@ export const officialSchools = [
     "department": "北京市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -1555,7 +1555,7 @@ export const officialSchools = [
     "department": "北京市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -1574,7 +1574,7 @@ export const officialSchools = [
     "department": "北京市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -1593,7 +1593,7 @@ export const officialSchools = [
     "department": "北京市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -1612,7 +1612,7 @@ export const officialSchools = [
     "department": "北京市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -1669,7 +1669,7 @@ export const officialSchools = [
     "department": "北京市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -1745,7 +1745,7 @@ export const officialSchools = [
     "department": "北京市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -2106,7 +2106,7 @@ export const officialSchools = [
     "department": "天津市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -2144,7 +2144,7 @@ export const officialSchools = [
     "department": "天津市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -2163,7 +2163,7 @@ export const officialSchools = [
     "department": "天津市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -2182,7 +2182,7 @@ export const officialSchools = [
     "department": "天津市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -2201,7 +2201,7 @@ export const officialSchools = [
     "department": "天津市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -2220,7 +2220,7 @@ export const officialSchools = [
     "department": "天津市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -2239,7 +2239,7 @@ export const officialSchools = [
     "department": "天津市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -2258,7 +2258,7 @@ export const officialSchools = [
     "department": "天津市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -2277,7 +2277,7 @@ export const officialSchools = [
     "department": "天津市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -2296,7 +2296,7 @@ export const officialSchools = [
     "department": "天津市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -2315,7 +2315,7 @@ export const officialSchools = [
     "department": "天津市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -2809,7 +2809,7 @@ export const officialSchools = [
     "department": "天津市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3474,7 +3474,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3493,7 +3493,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3512,7 +3512,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3531,7 +3531,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3550,7 +3550,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3569,7 +3569,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3588,7 +3588,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3626,7 +3626,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3645,7 +3645,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3664,7 +3664,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3702,7 +3702,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3740,7 +3740,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3759,7 +3759,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3778,7 +3778,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3797,7 +3797,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3816,7 +3816,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3835,7 +3835,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3854,7 +3854,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3873,7 +3873,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3892,7 +3892,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -3911,7 +3911,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -4253,7 +4253,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -4272,7 +4272,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -4367,7 +4367,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -4595,7 +4595,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -4614,7 +4614,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -4633,7 +4633,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -4709,7 +4709,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -4728,7 +4728,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -4766,7 +4766,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -4823,7 +4823,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -5013,7 +5013,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -5051,7 +5051,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -5127,7 +5127,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -5146,7 +5146,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -5203,7 +5203,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -5222,7 +5222,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -5260,7 +5260,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -5279,7 +5279,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -5298,7 +5298,7 @@ export const officialSchools = [
     "department": "河北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -5678,7 +5678,7 @@ export const officialSchools = [
     "department": "山西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -5735,7 +5735,7 @@ export const officialSchools = [
     "department": "山西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -5773,7 +5773,7 @@ export const officialSchools = [
     "department": "山西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -5811,7 +5811,7 @@ export const officialSchools = [
     "department": "山西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -5830,7 +5830,7 @@ export const officialSchools = [
     "department": "山西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -5849,7 +5849,7 @@ export const officialSchools = [
     "department": "山西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -5887,7 +5887,7 @@ export const officialSchools = [
     "department": "山西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -6267,7 +6267,7 @@ export const officialSchools = [
     "department": "山西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -6419,7 +6419,7 @@ export const officialSchools = [
     "department": "山西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -6457,7 +6457,7 @@ export const officialSchools = [
     "department": "山西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -6514,7 +6514,7 @@ export const officialSchools = [
     "department": "山西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -6856,7 +6856,7 @@ export const officialSchools = [
     "department": "山西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -7122,7 +7122,7 @@ export const officialSchools = [
     "department": "内蒙古自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -7141,7 +7141,7 @@ export const officialSchools = [
     "department": "内蒙古自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -7274,7 +7274,7 @@ export const officialSchools = [
     "department": "内蒙古自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -7559,7 +7559,7 @@ export const officialSchools = [
     "department": "内蒙古自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -7578,7 +7578,7 @@ export const officialSchools = [
     "department": "内蒙古自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -7597,7 +7597,7 @@ export const officialSchools = [
     "department": "内蒙古自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -7616,7 +7616,7 @@ export const officialSchools = [
     "department": "内蒙古自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -7692,7 +7692,7 @@ export const officialSchools = [
     "department": "内蒙古自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -7749,7 +7749,7 @@ export const officialSchools = [
     "department": "内蒙古自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -7806,7 +7806,7 @@ export const officialSchools = [
     "department": "内蒙古自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8528,7 +8528,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8680,7 +8680,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8699,7 +8699,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8718,7 +8718,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8737,7 +8737,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8756,7 +8756,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8775,7 +8775,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8794,7 +8794,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8813,7 +8813,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8832,7 +8832,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8851,7 +8851,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8870,7 +8870,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8889,7 +8889,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8908,7 +8908,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8927,7 +8927,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8946,7 +8946,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8965,7 +8965,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -8984,7 +8984,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -9003,7 +9003,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -9022,7 +9022,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -9041,7 +9041,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -9060,7 +9060,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -9440,7 +9440,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -9497,7 +9497,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -9592,7 +9592,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -9611,7 +9611,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -9649,7 +9649,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -9763,7 +9763,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -9782,7 +9782,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -9801,7 +9801,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -9934,7 +9934,7 @@ export const officialSchools = [
     "department": "辽宁省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -10428,7 +10428,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -10542,7 +10542,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -10561,7 +10561,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -10580,7 +10580,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -10599,7 +10599,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -10618,7 +10618,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -10637,7 +10637,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -10656,7 +10656,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -10675,7 +10675,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -10694,7 +10694,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -10713,7 +10713,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -10732,7 +10732,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -10941,7 +10941,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11055,7 +11055,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11131,7 +11131,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11169,7 +11169,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11188,7 +11188,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11226,7 +11226,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11245,7 +11245,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11264,7 +11264,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11321,7 +11321,7 @@ export const officialSchools = [
     "department": "吉林省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11815,7 +11815,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11834,7 +11834,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11872,7 +11872,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11891,7 +11891,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11910,7 +11910,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11929,7 +11929,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11948,7 +11948,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11967,7 +11967,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -11986,7 +11986,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -12005,7 +12005,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -12024,7 +12024,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -12043,7 +12043,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -12442,7 +12442,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -12499,7 +12499,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -12537,7 +12537,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -12670,7 +12670,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -12765,7 +12765,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -12822,7 +12822,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -12841,7 +12841,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -12860,7 +12860,7 @@ export const officialSchools = [
     "department": "黑龙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13392,7 +13392,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13468,7 +13468,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13487,7 +13487,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13506,7 +13506,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13525,7 +13525,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13544,7 +13544,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13563,7 +13563,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13582,7 +13582,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13620,7 +13620,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "本科",
     "ownership": "cooperative",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "中外合作待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13658,7 +13658,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13677,7 +13677,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13810,7 +13810,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13829,7 +13829,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13848,7 +13848,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13867,7 +13867,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13905,7 +13905,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13924,7 +13924,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -13981,7 +13981,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -14000,7 +14000,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -14019,7 +14019,7 @@ export const officialSchools = [
     "department": "上海市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -14874,7 +14874,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15026,7 +15026,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15064,7 +15064,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15102,7 +15102,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15140,7 +15140,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15159,7 +15159,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15178,7 +15178,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15197,7 +15197,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15216,7 +15216,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15235,7 +15235,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15254,7 +15254,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15273,7 +15273,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15292,7 +15292,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15311,7 +15311,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15330,7 +15330,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15387,7 +15387,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15406,7 +15406,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15425,7 +15425,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15444,7 +15444,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15463,7 +15463,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15482,7 +15482,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15501,7 +15501,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15520,7 +15520,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15539,7 +15539,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15558,7 +15558,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15577,7 +15577,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15634,7 +15634,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "cooperative",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "中外合作待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15653,7 +15653,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "本科",
     "ownership": "cooperative",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "中外合作待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15786,7 +15786,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15957,7 +15957,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -15976,7 +15976,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -16071,7 +16071,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -16204,7 +16204,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -16394,7 +16394,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -16413,7 +16413,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -16451,7 +16451,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -16470,7 +16470,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -16489,7 +16489,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -16508,7 +16508,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -16527,7 +16527,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -16622,7 +16622,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -16736,7 +16736,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -16831,7 +16831,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -16926,7 +16926,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "cooperative",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "中外合作待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -16945,7 +16945,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -16964,7 +16964,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -17040,7 +17040,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -17116,7 +17116,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -17230,7 +17230,7 @@ export const officialSchools = [
     "department": "江苏省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18047,7 +18047,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18066,7 +18066,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18085,7 +18085,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18161,7 +18161,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18180,7 +18180,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18199,7 +18199,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18218,7 +18218,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18237,7 +18237,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18256,7 +18256,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18275,7 +18275,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18294,7 +18294,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18313,7 +18313,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18332,7 +18332,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18408,7 +18408,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18446,7 +18446,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18465,7 +18465,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18484,7 +18484,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18503,7 +18503,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18522,7 +18522,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18579,7 +18579,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18655,7 +18655,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "cooperative",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "中外合作待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18674,7 +18674,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "cooperative",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "中外合作待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -18731,7 +18731,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -19016,7 +19016,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -19130,7 +19130,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -19187,7 +19187,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -19263,7 +19263,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -19282,7 +19282,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -19301,7 +19301,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -19434,7 +19434,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -19453,7 +19453,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -19529,7 +19529,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -19548,7 +19548,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -19605,7 +19605,7 @@ export const officialSchools = [
     "department": "浙江省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -20099,7 +20099,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -20175,7 +20175,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -20194,7 +20194,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -20232,7 +20232,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -20251,7 +20251,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -20289,7 +20289,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -20308,7 +20308,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -20327,7 +20327,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -20346,7 +20346,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -20365,7 +20365,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -20384,7 +20384,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -20403,7 +20403,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -20422,7 +20422,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -20460,7 +20460,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -20688,7 +20688,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -20859,7 +20859,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21030,7 +21030,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21163,7 +21163,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21429,7 +21429,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21467,7 +21467,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21486,7 +21486,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21505,7 +21505,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21524,7 +21524,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21543,7 +21543,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21600,7 +21600,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21619,7 +21619,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21638,7 +21638,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21771,7 +21771,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21847,7 +21847,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21904,7 +21904,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21923,7 +21923,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21942,7 +21942,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21961,7 +21961,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -21980,7 +21980,7 @@ export const officialSchools = [
     "department": "安徽省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22398,7 +22398,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22436,7 +22436,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22455,7 +22455,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22474,7 +22474,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22493,7 +22493,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22512,7 +22512,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22531,7 +22531,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22550,7 +22550,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22569,7 +22569,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22588,7 +22588,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22607,7 +22607,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22626,7 +22626,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22645,7 +22645,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22683,7 +22683,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22702,7 +22702,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22721,7 +22721,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22759,7 +22759,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -22854,7 +22854,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23044,7 +23044,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23063,7 +23063,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23082,7 +23082,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23120,7 +23120,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23139,7 +23139,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23158,7 +23158,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23177,7 +23177,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23367,7 +23367,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23386,7 +23386,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23405,7 +23405,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23462,7 +23462,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23481,7 +23481,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23500,7 +23500,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23519,7 +23519,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23538,7 +23538,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23576,7 +23576,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23595,7 +23595,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23614,7 +23614,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23671,7 +23671,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -23690,7 +23690,7 @@ export const officialSchools = [
     "department": "福建省教育厅",
     "moeLevel": "专科",
     "ownership": "cooperative",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "中外合作待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24013,7 +24013,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24165,7 +24165,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24184,7 +24184,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24203,7 +24203,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24222,7 +24222,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24241,7 +24241,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24260,7 +24260,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24279,7 +24279,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24298,7 +24298,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24317,7 +24317,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24355,7 +24355,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24393,7 +24393,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24412,7 +24412,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24450,7 +24450,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24469,7 +24469,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24488,7 +24488,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24507,7 +24507,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24545,7 +24545,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -24640,7 +24640,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25020,7 +25020,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25267,7 +25267,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25305,7 +25305,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25343,7 +25343,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25362,7 +25362,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25381,7 +25381,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25457,7 +25457,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25476,7 +25476,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25571,7 +25571,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25609,7 +25609,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25723,7 +25723,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25742,7 +25742,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25799,7 +25799,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25818,7 +25818,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25856,7 +25856,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25913,7 +25913,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -25932,7 +25932,7 @@ export const officialSchools = [
     "department": "江西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -26521,7 +26521,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -26540,7 +26540,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -26730,7 +26730,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -26749,7 +26749,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -26768,7 +26768,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -26787,7 +26787,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -26806,7 +26806,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -26825,7 +26825,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -26844,7 +26844,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -26863,7 +26863,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -26882,7 +26882,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -26901,7 +26901,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -26920,7 +26920,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -26939,7 +26939,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -26958,7 +26958,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -26996,7 +26996,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -27015,7 +27015,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -27034,7 +27034,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -27053,7 +27053,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -27072,7 +27072,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -27091,7 +27091,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -27110,7 +27110,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -27129,7 +27129,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -27148,7 +27148,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -27224,7 +27224,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -27414,7 +27414,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -27680,7 +27680,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -27699,7 +27699,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -27718,7 +27718,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -27775,7 +27775,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -27984,7 +27984,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -28041,7 +28041,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -28212,7 +28212,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -28459,7 +28459,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -28554,7 +28554,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -28630,7 +28630,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -28687,7 +28687,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -28706,7 +28706,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -28820,7 +28820,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -28839,7 +28839,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -28858,7 +28858,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -28896,7 +28896,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -28915,7 +28915,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -28934,7 +28934,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -28953,7 +28953,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -29029,7 +29029,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -29048,7 +29048,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -29067,7 +29067,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -29086,7 +29086,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -29105,7 +29105,7 @@ export const officialSchools = [
     "department": "山东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -29808,7 +29808,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -29846,7 +29846,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -29865,7 +29865,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -29903,7 +29903,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -29922,7 +29922,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -29941,7 +29941,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -29960,7 +29960,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -29979,7 +29979,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -29998,7 +29998,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -30017,7 +30017,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -30036,7 +30036,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -30055,7 +30055,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -30074,7 +30074,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -30093,7 +30093,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -30112,7 +30112,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -30131,7 +30131,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -30150,7 +30150,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -30169,7 +30169,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -30188,7 +30188,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -30207,7 +30207,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -30226,7 +30226,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -30264,7 +30264,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -30777,7 +30777,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -30815,7 +30815,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31024,7 +31024,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31062,7 +31062,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31138,7 +31138,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31157,7 +31157,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31176,7 +31176,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31195,7 +31195,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31214,7 +31214,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31347,7 +31347,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31366,7 +31366,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31385,7 +31385,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31404,7 +31404,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31499,7 +31499,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31575,7 +31575,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31613,7 +31613,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31727,7 +31727,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31803,7 +31803,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "cooperative",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "中外合作待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31936,7 +31936,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31955,7 +31955,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31974,7 +31974,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -31993,7 +31993,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32069,7 +32069,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32088,7 +32088,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32202,7 +32202,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32221,7 +32221,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32240,7 +32240,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32259,7 +32259,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32278,7 +32278,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32297,7 +32297,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32316,7 +32316,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32354,7 +32354,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32373,7 +32373,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32392,7 +32392,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32411,7 +32411,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32430,7 +32430,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32449,7 +32449,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32468,7 +32468,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -32487,7 +32487,7 @@ export const officialSchools = [
     "department": "河南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33171,7 +33171,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33190,7 +33190,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33209,7 +33209,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33228,7 +33228,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33247,7 +33247,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33266,7 +33266,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33285,7 +33285,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33304,7 +33304,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33323,7 +33323,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33342,7 +33342,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33361,7 +33361,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33380,7 +33380,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33399,7 +33399,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33418,7 +33418,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33437,7 +33437,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33456,7 +33456,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33475,7 +33475,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33494,7 +33494,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33513,7 +33513,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33532,7 +33532,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33551,7 +33551,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33570,7 +33570,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33589,7 +33589,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33608,7 +33608,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33627,7 +33627,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33646,7 +33646,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33665,7 +33665,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33684,7 +33684,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33703,7 +33703,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33722,7 +33722,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33741,7 +33741,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33760,7 +33760,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -33817,7 +33817,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -34026,7 +34026,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -34349,7 +34349,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -34368,7 +34368,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -34387,7 +34387,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -34406,7 +34406,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -34425,7 +34425,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -34444,7 +34444,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -34615,7 +34615,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -34881,7 +34881,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -34938,7 +34938,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -34957,7 +34957,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -34976,7 +34976,7 @@ export const officialSchools = [
     "department": "湖北省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35432,7 +35432,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35641,7 +35641,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35660,7 +35660,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35679,7 +35679,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35698,7 +35698,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35717,7 +35717,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35736,7 +35736,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35774,7 +35774,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35793,7 +35793,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35812,7 +35812,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35831,7 +35831,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35850,7 +35850,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35869,7 +35869,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35888,7 +35888,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35907,7 +35907,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35926,7 +35926,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35964,7 +35964,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -35983,7 +35983,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -36002,7 +36002,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -36021,7 +36021,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -36059,7 +36059,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -36762,7 +36762,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -36781,7 +36781,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37142,7 +37142,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37180,7 +37180,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37199,7 +37199,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37237,7 +37237,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37256,7 +37256,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37275,7 +37275,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37351,7 +37351,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37579,7 +37579,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37598,7 +37598,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37617,7 +37617,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37636,7 +37636,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37655,7 +37655,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37712,7 +37712,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37731,7 +37731,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37750,7 +37750,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37769,7 +37769,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37788,7 +37788,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37807,7 +37807,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -37826,7 +37826,7 @@ export const officialSchools = [
     "department": "湖南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38282,7 +38282,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38415,7 +38415,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38529,7 +38529,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38567,7 +38567,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38586,7 +38586,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38605,7 +38605,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38624,7 +38624,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38643,7 +38643,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38662,7 +38662,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38681,7 +38681,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38700,7 +38700,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38719,7 +38719,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38738,7 +38738,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38757,7 +38757,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38776,7 +38776,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38795,7 +38795,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38814,7 +38814,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38833,7 +38833,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38852,7 +38852,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38871,7 +38871,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38890,7 +38890,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38909,7 +38909,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38928,7 +38928,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38947,7 +38947,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -38966,7 +38966,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -39042,7 +39042,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "cooperative",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "中外合作待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -39061,7 +39061,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "cooperative",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "中外合作待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -39080,7 +39080,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "cooperative",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "中外合作待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -39099,7 +39099,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "cooperative",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "中外合作待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -39118,7 +39118,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "cooperative",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "中外合作待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -39137,7 +39137,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "本科",
     "ownership": "cooperative",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "中外合作待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -39346,7 +39346,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -39384,7 +39384,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -39460,7 +39460,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -39536,7 +39536,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -39555,7 +39555,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -39688,7 +39688,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -39897,7 +39897,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40068,7 +40068,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40087,7 +40087,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40106,7 +40106,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40125,7 +40125,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40163,7 +40163,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40182,7 +40182,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40315,7 +40315,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40334,7 +40334,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40353,7 +40353,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40372,7 +40372,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40410,7 +40410,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40429,7 +40429,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40448,7 +40448,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40505,7 +40505,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40524,7 +40524,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40581,7 +40581,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40638,7 +40638,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40676,7 +40676,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40923,7 +40923,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -40961,7 +40961,7 @@ export const officialSchools = [
     "department": "广东省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -41360,7 +41360,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -41474,7 +41474,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -41512,7 +41512,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -41531,7 +41531,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -41550,7 +41550,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -41569,7 +41569,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -41588,7 +41588,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -41607,7 +41607,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -41626,7 +41626,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -41645,7 +41645,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -41664,7 +41664,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -41683,7 +41683,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -41778,7 +41778,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42025,7 +42025,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42082,7 +42082,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42120,7 +42120,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42177,7 +42177,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42196,7 +42196,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42234,7 +42234,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42272,7 +42272,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42310,7 +42310,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42348,7 +42348,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42367,7 +42367,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42386,7 +42386,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42462,7 +42462,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42576,7 +42576,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42633,7 +42633,7 @@ export const officialSchools = [
     "department": "广西壮族自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42766,7 +42766,7 @@ export const officialSchools = [
     "department": "海南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42804,7 +42804,7 @@ export const officialSchools = [
     "department": "海南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42823,7 +42823,7 @@ export const officialSchools = [
     "department": "海南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -42918,7 +42918,7 @@ export const officialSchools = [
     "department": "海南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43013,7 +43013,7 @@ export const officialSchools = [
     "department": "海南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43032,7 +43032,7 @@ export const officialSchools = [
     "department": "海南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43051,7 +43051,7 @@ export const officialSchools = [
     "department": "海南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43089,7 +43089,7 @@ export const officialSchools = [
     "department": "海南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43108,7 +43108,7 @@ export const officialSchools = [
     "department": "海南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43146,7 +43146,7 @@ export const officialSchools = [
     "department": "海南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43203,7 +43203,7 @@ export const officialSchools = [
     "department": "海南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43507,7 +43507,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43526,7 +43526,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43545,7 +43545,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43583,7 +43583,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43602,7 +43602,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43621,7 +43621,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43640,7 +43640,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43659,7 +43659,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43678,7 +43678,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43849,7 +43849,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43868,7 +43868,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43887,7 +43887,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -43944,7 +43944,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44020,7 +44020,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44115,7 +44115,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44153,7 +44153,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44172,7 +44172,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44210,7 +44210,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44286,7 +44286,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44305,7 +44305,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44324,7 +44324,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44343,7 +44343,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44362,7 +44362,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44419,7 +44419,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44438,7 +44438,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44457,7 +44457,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44476,7 +44476,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44495,7 +44495,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44514,7 +44514,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44571,7 +44571,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44590,7 +44590,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -44628,7 +44628,7 @@ export const officialSchools = [
     "department": "重庆市教委",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45274,7 +45274,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45293,7 +45293,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45312,7 +45312,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45331,7 +45331,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45350,7 +45350,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45369,7 +45369,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45388,7 +45388,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45407,7 +45407,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45426,7 +45426,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45464,7 +45464,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45483,7 +45483,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45502,7 +45502,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45521,7 +45521,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45540,7 +45540,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45559,7 +45559,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45578,7 +45578,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45616,7 +45616,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45635,7 +45635,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45711,7 +45711,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -45996,7 +45996,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46015,7 +46015,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46243,7 +46243,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46262,7 +46262,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46338,7 +46338,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46395,7 +46395,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46414,7 +46414,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46452,7 +46452,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46471,7 +46471,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46528,7 +46528,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46547,7 +46547,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46566,7 +46566,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46585,7 +46585,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46604,7 +46604,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46680,7 +46680,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46718,7 +46718,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46756,7 +46756,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46775,7 +46775,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46794,7 +46794,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46813,7 +46813,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46832,7 +46832,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46851,7 +46851,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46870,7 +46870,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46946,7 +46946,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46965,7 +46965,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -46984,7 +46984,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47003,7 +47003,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47041,7 +47041,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47060,7 +47060,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47079,7 +47079,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47098,7 +47098,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47136,7 +47136,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47155,7 +47155,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47193,7 +47193,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47212,7 +47212,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47231,7 +47231,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47269,7 +47269,7 @@ export const officialSchools = [
     "department": "四川省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47668,7 +47668,7 @@ export const officialSchools = [
     "department": "贵州省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47687,7 +47687,7 @@ export const officialSchools = [
     "department": "贵州省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47706,7 +47706,7 @@ export const officialSchools = [
     "department": "贵州省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47725,7 +47725,7 @@ export const officialSchools = [
     "department": "贵州省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47744,7 +47744,7 @@ export const officialSchools = [
     "department": "贵州省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47782,7 +47782,7 @@ export const officialSchools = [
     "department": "贵州省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47801,7 +47801,7 @@ export const officialSchools = [
     "department": "贵州省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -47858,7 +47858,7 @@ export const officialSchools = [
     "department": "贵州省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -48067,7 +48067,7 @@ export const officialSchools = [
     "department": "贵州省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -48238,7 +48238,7 @@ export const officialSchools = [
     "department": "贵州省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -48257,7 +48257,7 @@ export const officialSchools = [
     "department": "贵州省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -48409,7 +48409,7 @@ export const officialSchools = [
     "department": "贵州省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -48428,7 +48428,7 @@ export const officialSchools = [
     "department": "贵州省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -48485,7 +48485,7 @@ export const officialSchools = [
     "department": "贵州省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -48694,7 +48694,7 @@ export const officialSchools = [
     "department": "贵州省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -48770,7 +48770,7 @@ export const officialSchools = [
     "department": "贵州省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49245,7 +49245,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49264,7 +49264,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49283,7 +49283,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49302,7 +49302,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49321,7 +49321,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49340,7 +49340,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49359,7 +49359,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49378,7 +49378,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49397,7 +49397,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49663,7 +49663,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49701,7 +49701,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49815,7 +49815,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49834,7 +49834,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49891,7 +49891,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49929,7 +49929,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49948,7 +49948,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -49986,7 +49986,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -50005,7 +50005,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -50081,7 +50081,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -50328,7 +50328,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -50347,7 +50347,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -50575,7 +50575,7 @@ export const officialSchools = [
     "department": "云南省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51297,7 +51297,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51392,7 +51392,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51411,7 +51411,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51430,7 +51430,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51449,7 +51449,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51468,7 +51468,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51487,7 +51487,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51506,7 +51506,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51525,7 +51525,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51544,7 +51544,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51563,7 +51563,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51582,7 +51582,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51601,7 +51601,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51620,7 +51620,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51639,7 +51639,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51658,7 +51658,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51677,7 +51677,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51696,7 +51696,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51715,7 +51715,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51734,7 +51734,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51753,7 +51753,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51772,7 +51772,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -51791,7 +51791,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -52038,7 +52038,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -52057,7 +52057,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -52133,7 +52133,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -52171,7 +52171,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -52190,7 +52190,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -52437,7 +52437,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -52456,7 +52456,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -52532,7 +52532,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -52551,7 +52551,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -52570,7 +52570,7 @@ export const officialSchools = [
     "department": "陕西省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -52950,7 +52950,7 @@ export const officialSchools = [
     "department": "甘肃省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -52988,7 +52988,7 @@ export const officialSchools = [
     "department": "甘肃省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -53007,7 +53007,7 @@ export const officialSchools = [
     "department": "甘肃省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -53178,7 +53178,7 @@ export const officialSchools = [
     "department": "甘肃省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -53349,7 +53349,7 @@ export const officialSchools = [
     "department": "甘肃省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -53482,7 +53482,7 @@ export const officialSchools = [
     "department": "甘肃省教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -53596,7 +53596,7 @@ export const officialSchools = [
     "department": "青海省教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -53862,7 +53862,7 @@ export const officialSchools = [
     "department": "宁夏回族自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -53881,7 +53881,7 @@ export const officialSchools = [
     "department": "宁夏回族自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -53900,7 +53900,7 @@ export const officialSchools = [
     "department": "宁夏回族自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -53919,7 +53919,7 @@ export const officialSchools = [
     "department": "宁夏回族自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -54470,7 +54470,7 @@ export const officialSchools = [
     "department": "新疆维吾尔自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -54546,7 +54546,7 @@ export const officialSchools = [
     "department": "新疆维吾尔自治区教育厅",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -54660,7 +54660,7 @@ export const officialSchools = [
     "department": "新疆生产建设兵团教育局",
     "moeLevel": "本科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -54755,7 +54755,7 @@ export const officialSchools = [
     "department": "新疆维吾尔自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -54869,7 +54869,7 @@ export const officialSchools = [
     "department": "新疆维吾尔自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -55040,7 +55040,7 @@ export const officialSchools = [
     "department": "新疆维吾尔自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],
@@ -55173,7 +55173,7 @@ export const officialSchools = [
     "department": "新疆维吾尔自治区教育厅",
     "moeLevel": "专科",
     "ownership": "private",
-    "tuitionRange": "民辦/合作待核價",
+    "tuitionRange": "民辦待核價",
     "sources": [
       "MOE-2025-ordinary"
     ],

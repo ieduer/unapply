@@ -13,8 +13,8 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 - Current local branch/HEAD: `master` / `3158c44`
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
-- Workspace resource routing: [project resource index](../../reports/operations/project_resource_index.md)
-- Documentation standard: [project operations standard](../../runbooks/project_operations_documentation_standard.md)
+- Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
+- Documentation standard: [project operations standard](../../../../runbooks/project_operations_documentation_standard.md)
 - Production mutation is forbidden until exact owner, target, bindings, backup, verification, and rollback have fresh readback.
 
 ## Existing project documentation relationship
@@ -81,6 +81,24 @@ Detected package entrypoints (presence is not proof they currently pass):
 - `npm --prefix "/Users/ylsuen/CF/unapply" run preview`
 - `npm --prefix "/Users/ylsuen/CF/unapply" run test:evidence`
 - `npm --prefix "/Users/ylsuen/CF/unapply" run test:trusted`
+- `npm --prefix "/Users/ylsuen/CF/unapply" run test:filters`
+- `npm --prefix "/Users/ylsuen/CF/unapply" run audit:questions`
+- `npm --prefix "/Users/ylsuen/CF/unapply" run audit:values`
+- `npm --prefix "/Users/ylsuen/CF/unapply" run audit:data`
+
+Data-layer entrypoints and their preconditions:
+
+- `run data:schools` regenerates the MOE master table from `data/research/全国普通高等学校名单.xls`.
+- `run data:admission` regenerates `src/data/admissionChannels.ts` from
+  `data/research/admission_channels.*.csv`; it fails closed on an unknown `moeCode`,
+  a school-name mismatch against the MOE table, or a missing `sourceUrl`.
+- `run data:research` REQUIRES the CollegesChat desensitized questionnaire on disk:
+  `git clone --depth=1 https://github.com/CollegesChat/university-information.git /tmp/university-information`.
+  Without it the build now aborts instead of silently emptying the crowdsourced B-series
+  layer for ~2,400 schools. `ALLOW_MISSING_CROWD_SOURCE=1` is the explicit override.
+  The upstream commit is recorded in `researchPipelineMeta.inputs.collegesChatSnapshot`.
+- `run data:runtime` only re-exports the generated `.ts` layers into
+  `public/data/runtime/*.json`; it has no external input and is always safe to run.
 
 Run only commands supported by the current project toolchain and verify expected outputs in the project before using them as release evidence.
 
@@ -113,6 +131,12 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 
 ## Verification standard
 
+0. Filter-validity gates (blocking for any release that touches questions, dimensions,
+   or the data pipeline): `run audit:questions`, `run audit:values`, `run audit:data`,
+   `run test:filters`, `run test:evidence`, `run test:trusted`, `run lint`, `run build`.
+   `audit:values` fails when a dimension enum value has zero schools in the pool and is
+   not declared in `reservedValues`; that is the mechanism that used to let questionnaire
+   options silently disappear from the UI.
 1. Source of truth: local/Git/GitHub authority above, refreshed before mutation.
 2. Health probe: catalog probes above plus expected response semantics.
 3. Contract/business path: catalog checks plus auth/data/UI/device behavior.

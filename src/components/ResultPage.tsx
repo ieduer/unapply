@@ -3,7 +3,6 @@ import type { FilterResult, AnswerMap, ExcludeReason } from '../engine/filter'
 import { explainKept, suggestRelax, distribute } from '../engine/filter'
 import {
   candidateProvinceOptions,
-  defaultCandidateProvince,
   getAdmissionResourceLinks,
   type CandidateProvince,
 } from '../data/admissionAuthorities'
@@ -17,6 +16,8 @@ import { allQuestions } from '../data/questions'
 interface Props {
   result: FilterResult
   answers: AnswerMap
+  candidateProvince: CandidateProvince
+  onCandidateProvinceChange: (province: CandidateProvince) => void
   onRestart: () => void
   onRelax: () => void
   onSchool: (id: string) => void
@@ -119,10 +120,19 @@ function buildHandoff(result: FilterResult, answers: AnswerMap) {
   }
 }
 
-export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAbout, onContribute }: Props) {
+export function ResultPage({
+  result,
+  answers,
+  candidateProvince,
+  onCandidateProvinceChange: setCandidateProvince,
+  onRestart,
+  onRelax,
+  onSchool,
+  onAbout,
+  onContribute,
+}: Props) {
   const shareRef = useRef<HTMLDivElement>(null)
   const [downloading, setDownloading] = useState(false)
-  const [candidateProvince, setCandidateProvince] = useState<CandidateProvince>(defaultCandidateProvince)
   const [schoolQuery, setSchoolQuery] = useState('')
 
   const dist = useMemo(() => distribute(result.kept), [result.kept])
@@ -240,6 +250,7 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
                 <h2 className="serif text-xl">還在場的學校</h2>
                 <p className="mt-2 text-xs text-fog-500 leading-relaxed">
                   每張卡都附帶核心標籤、官網、陽光高考院校庫，以及你所選考生地區的權威錄取查詢入口。
+                  考生地區也決定 A6 的招生管道判定——換一個省，名單會即時重算。
                 </p>
               </div>
               <div className="flex items-center gap-2">
@@ -270,7 +281,7 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
                     </div>
                     <p className="mt-2 text-xs text-fog-500">{explainKept(school, answers)}</p>
                   </button>
-                  <TagRail tags={buildSchoolTags(school)} />
+                  <TagRail tags={buildSchoolTags(school, { candidateProvince })} />
                   <div className="flex flex-wrap gap-2 pt-3 border-t border-ink-800">
                     {getAdmissionResourceLinks(school, candidateProvince).map((link) => (
                       <a
@@ -347,7 +358,7 @@ export function ResultPage({ result, answers, onRestart, onRelax, onSchool, onAb
                       {entry.kind === 'kept' ? '仍在場' : `已排除 · ${entry.reasons.length} 題`}
                     </span>
                   </div>
-                  <TagRail tags={buildSchoolTags(entry.school)} />
+                  <TagRail tags={buildSchoolTags(entry.school, { candidateProvince })} />
                   {entry.kind === 'kept' ? (
                     <p className="text-sm text-fog-300 leading-relaxed">
                       還沒被你劃掉：{explainKept(entry.school, answers)}。

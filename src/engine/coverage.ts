@@ -3,6 +3,7 @@ import type { Question } from '../data/questions';
 import type { DimensionId } from '../data/dimensions';
 import type { School } from '../data/schools';
 import { filterSchools, getSchoolDimensionValue } from './filter';
+import type { FilterContext } from './filter';
 
 export interface QuestionOptionCoverageSummary {
   optionKey: string;
@@ -28,13 +29,16 @@ function answerForOption(question: Question, optionKey: string): string | string
   return question.type === 'multi' ? [optionKey] : optionKey;
 }
 
-export function analyzeQuestionCoverage(allSchools: School[]): Record<DimensionId, QuestionCoverageSummary> {
+export function analyzeQuestionCoverage(
+  allSchools: School[],
+  ctx?: FilterContext,
+): Record<DimensionId, QuestionCoverageSummary> {
   const total = allSchools.length || 1;
   const summary = {} as Record<DimensionId, QuestionCoverageSummary>;
 
   for (const question of allQuestions) {
     const coveredSchoolCount = allSchools.filter((school) => {
-      const value = getSchoolDimensionValue(school, question.id);
+      const value = getSchoolDimensionValue(school, question.id, ctx);
       return Array.isArray(value) ? value.length > 0 : value !== null;
     }).length;
 
@@ -48,7 +52,7 @@ export function analyzeQuestionCoverage(allSchools: School[]): Record<DimensionI
       const excludedCount = hasRule
         ? filterSchools(allSchools, {
             [question.id]: answerForOption(question, option.key),
-          }).stats.excludedCount
+          }, ctx).stats.excludedCount
         : 0;
       const impactful = excludedCount > 0;
       if (hasRule && impactful) impactfulOptionCount += 1;

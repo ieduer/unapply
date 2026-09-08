@@ -80,6 +80,8 @@ async function main() {
     moeLevel: school.moeLevel,
     tags: school.tags,
     quality: school.quality,
+    qualityEvidence: school.qualityEvidence,
+    admissionChannels: school.admissionChannels,
     researchEvidence: pickRuntimeEvidence(school.moeCode),
   }))
 

@@ -548,7 +548,11 @@ function inferOwnership(note) {
 
 function inferTuitionRange(ownership) {
   if (ownership === 'public') return '公辦';
-  if (ownership === 'private' || ownership === 'cooperative') return '民辦/合作待核價';
+  // 民辦與中外合作必須分開：民辦本科多在 1.5-3 萬，中外合作辦學機構動輒 6-25 萬。
+  // 之前兩者合成一個桶，導致 A4「≤ 3 萬（可接受民辦）」對上海紐約大學（約 20 萬/年）
+  // 完全不起作用——選項看起來在篩，實際排除數為 0。
+  if (ownership === 'cooperative') return '中外合作待核價';
+  if (ownership === 'private') return '民辦待核價';
   return undefined;
 }
 

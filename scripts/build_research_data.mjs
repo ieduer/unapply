@@ -173,6 +173,7 @@ function ensureProfile(profiles, moeCode) {
   if (!profiles.has(moeCode)) {
     profiles.set(moeCode, {
       quality: {},
+      qualityEvidence: {},
       evidence: {},
     });
   }
@@ -186,6 +187,20 @@ function addCoverage(coverage, dimensionId, moeCode) {
   const entry = coverage.get(dimensionId);
   entry.schoolCodes.add(moeCode);
   entry.recordCount += 1;
+}
+
+// 證據來源優先級：官方章程/校方頁面永遠壓過眾包投票。
+// 沒有這條，crowd 階段會靜默覆蓋掉 campus_official_overrides 寫入的 B9 官方結論。
+const qualitySourceRank = { official: 3, authoritative: 3, crowd: 1 };
+
+function setQuality(profile, dimensionId, value, meta) {
+  const existing = profile.qualityEvidence[dimensionId];
+  const incomingRank = qualitySourceRank[meta.source] ?? 0;
+  const existingRank = existing ? (qualitySourceRank[existing.source] ?? 0) : -1;
+  if (existingRank > incomingRank) return false;
+  profile.quality[dimensionId] = value;
+  profile.qualityEvidence[dimensionId] = meta;
+  return true;
 }
 
 function chooseCrowdValue(tallies) {
@@ -549,6 +564,23 @@ async function resolveCollegesChatPath() {
   return null;
 }
 
+// 記錄眾包上游的快照版本。眾包倉庫會持續變動，不釘住 commit 就無法解釋
+// 兩次 build 之間為什麼有幾千條值變了。
+async function resolveCollegesChatSnapshot(csvPath) {
+  if (!csvPath) return null;
+  const repoDir = path.resolve(path.dirname(csvPath), '..');
+  try {
+    const { execFile } = await import('node:child_process');
+    const { promisify } = await import('node:util');
+    const run = promisify(execFile);
+    const { stdout } = await run('git', ['-C', repoDir, 'log', '-1', '--format=%H %cI'], { timeout: 15000 });
+    const [commit, committedAt] = stdout.trim().split(' ');
+    return { repo: 'https://github.com/CollegesChat/university-information', commit, committedAt };
+  } catch {
+    return { repo: 'https://github.com/CollegesChat/university-information', commit: null, committedAt: null };
+  }
+}
+
 function formatJson(value) {
   return JSON.stringify(value, null, 2);
 }
@@ -583,6 +615,12 @@ async function main() {
     crowdMatchedSchools: 0,
     crowdUnmatchedSchools: 0,
     crowdValuesAccepted: 0,
+    crowdValuesHigh: 0,
+    crowdValuesMedium: 0,
+    crowdValuesLow: 0,
+    crowdValuesRejectedByOfficial: 0,
+    hardFilterableValues: 0,
+    displayOnlyValues: 0,
     disciplineRows: 0,
     disciplineSchools: 0,
     cooperativeSchools: 0,
@@ -631,7 +669,7 @@ async function main() {
     if (!matchedSchool?.moeCode) continue;
     const profile = ensureProfile(profiles, matchedSchool.moeCode);
     profile.ownership = 'cooperative';
-    profile.tuitionRange = '民辦/合作待核價';
+    profile.tuitionRange = '中外合作待核價';
       counts.cooperativeSchools += 1;
   }
 
@@ -695,7 +733,12 @@ async function main() {
     }
 
     if (b9Value) {
-      profile.quality.B9 = b9Value;
+      setQuality(profile, 'B9', b9Value, {
+        source: 'official',
+        confidence: 'high',
+        sampleSize: 1,
+        winningVotes: 1,
+      });
       appendEvidence(profile, 'B9', {
         title: sourceTitle,
         url: sourceUrl,
@@ -730,7 +773,12 @@ async function main() {
       .map(([prefix, grade]) => `${prefix}:${grade}`);
     if (values.length === 0) continue;
     const profile = ensureProfile(profiles, moeCode);
-    profile.quality.C5 = values;
+    setQuality(profile, 'C5', values, {
+      source: 'authoritative',
+      confidence: 'high',
+      sampleSize: 1,
+      winningVotes: 1,
+    });
     profile.evidence.C5 = [{
       title: '第四轮学科评估结果',
       url: 'https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/',
@@ -744,7 +792,17 @@ async function main() {
 
   const collegesChatPath = await resolveCollegesChatPath();
   if (!collegesChatPath) {
-    pipelineWarnings.push('未找到 CollegesChat 原始脱敏 CSV，B 系生活题仅保留现有人工样本。');
+    // Fail closed。以前這裡只推一條 warning 就繼續產出，結果是任何人照文檔跑一次
+    // `npm run data:research` 都會靜默清空 B 系全部眾包數據（約 2000 所學校），
+    // 而 researchData.ts 是生成物、看不出少了什麼。
+    if (process.env.ALLOW_MISSING_CROWD_SOURCE !== '1') {
+      throw new Error(
+        '找不到 CollegesChat 脱敏问卷 CSV，B 系生活题会被整层清空。\n'
+        + '先执行：git clone --depth=1 https://github.com/CollegesChat/university-information.git /tmp/university-information\n'
+        + '确实要产出不含众包层的数据时，显式设置 ALLOW_MISSING_CROWD_SOURCE=1。',
+      );
+    }
+    pipelineWarnings.push('未找到 CollegesChat 原始脱敏 CSV，B 系生活题仅保留现有人工样本（已显式放行）。');
   } else {
     const rawRows = parseCsv(await fs.readFile(collegesChatPath, 'utf8'));
     const crowdTallies = new Map();
@@ -788,8 +846,18 @@ async function main() {
       for (const [dimensionId, tallies] of schoolTallies.entries()) {
         const chosen = chooseCrowdValue(tallies);
         if (!chosen) continue;
-        profile.quality[dimensionId] = chosen.value;
+        const written = setQuality(profile, dimensionId, chosen.value, {
+          source: 'crowd',
+          confidence: chosen.confidence,
+          sampleSize: chosen.sampleSize,
+          winningVotes: chosen.winningVotes,
+        });
+        if (!written) {
+          counts.crowdValuesRejectedByOfficial += 1;
+          continue;
+        }
         counts.crowdValuesAccepted += 1;
+        counts[`crowdValues${chosen.confidence[0].toUpperCase()}${chosen.confidence.slice(1)}`] += 1;
         addCoverage(coverage, dimensionId, moeCode);
       }
     }
@@ -808,6 +876,7 @@ async function main() {
           ...('ownership' in profile ? { ownership: profile.ownership } : {}),
           ...('tuitionRange' in profile ? { tuitionRange: profile.tuitionRange } : {}),
           ...(Object.keys(profile.quality).length > 0 ? { quality: profile.quality } : {}),
+          ...(Object.keys(profile.qualityEvidence).length > 0 ? { qualityEvidence: profile.qualityEvidence } : {}),
           ...(Object.keys(profile.evidence).length > 0 ? { evidence: profile.evidence } : {}),
         },
       ])
@@ -834,6 +903,13 @@ async function main() {
     + `// Inputs: school_websites.2026-04-21.csv, laosheng_school_profiles.2026-04-22.csv, github_school_profiles.2026-04-21.csv, campus_official_overrides.2026-04-21.csv, province_portals.2026-04-21.csv, discipline_eval.4th.csv, sino_foreign_programs.2026-04-21.csv${collegesChatPath ? `, ${path.basename(collegesChatPath)}` : ''}\n\n`
     + `import type { DimensionId } from './dimensions';\n`
     + `import type { CampusType, SchoolOwnership, TuitionRange } from './schools';\n\n`
+    + `export type QualitySourceKind = 'official' | 'authoritative' | 'crowd';\n\n`
+    + `export interface QualityEvidenceMeta {\n`
+    + `  source: QualitySourceKind;\n`
+    + `  confidence: 'high' | 'medium' | 'low';\n`
+    + `  sampleSize: number;\n`
+    + `  winningVotes: number;\n`
+    + `}\n\n`
     + `export interface ResearchEvidence {\n`
     + `  title: string;\n`
     + `  url: string;\n`
@@ -850,6 +926,7 @@ async function main() {
     + `  ownership?: SchoolOwnership;\n`
     + `  tuitionRange?: TuitionRange;\n`
     + `  quality?: Partial<Record<DimensionId, string | string[]>>;\n`
+    + `  qualityEvidence?: Partial<Record<DimensionId, QualityEvidenceMeta>>;\n`
     + `  evidence?: Partial<Record<DimensionId, ResearchEvidence[]>>;\n`
     + `}\n\n`
     + `export interface ProvinceAdmissionPortal {\n`
@@ -877,6 +954,7 @@ async function main() {
         disciplineEval: 'data/research/discipline_eval.4th.csv',
         cooperativePrograms: 'data/research/sino_foreign_programs.2026-04-21.csv',
         collegesChatRaw: collegesChatPath ? path.relative(repoRoot, collegesChatPath) : null,
+        collegesChatSnapshot: await resolveCollegesChatSnapshot(collegesChatPath),
       },
       counts,
       warnings: [
@@ -898,6 +976,8 @@ async function main() {
   console.log(`official campus overrides (B9): ${counts.campusOfficialB9Schools}`);
   console.log(`province portals: ${counts.provincePortals}`);
   console.log(`crowd matched schools: ${counts.crowdMatchedSchools}`);
+  console.log(`crowd values accepted: ${counts.crowdValuesAccepted} (high ${counts.crowdValuesHigh} / medium ${counts.crowdValuesMedium} / low ${counts.crowdValuesLow})`);
+  console.log(`crowd values rejected by official precedence: ${counts.crowdValuesRejectedByOfficial}`);
   console.log(`discipline schools: ${counts.disciplineSchools}`);
 }
 

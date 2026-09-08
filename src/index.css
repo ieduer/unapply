@@ -142,3 +142,24 @@ button:focus-visible,
     opacity: 0.26;
   }
 }
+
+/* 題面進場動畫。
+   兩條刻意的約束：
+   1. 不用動畫庫的 AnimatePresence。舊寫法要等 exit 動畫跑完才換下一題的節點，
+      而那個動畫由 requestAnimationFrame 驅動——在被瀏覽器節流或暫停 rAF 的環境
+      （背景分頁、部分內嵌 webview、省電模式）裡它永遠跑不完，用戶就會一路看著
+      第 1 題的標題答完 39 題。改成 key 變更直接重新掛載，換題不依賴任何動畫。
+   2. 只動 transform，不動 opacity。題目標題和說明是必讀內容，
+      不能讓「動畫沒跑起來」變成「文字看不見」。最壞情況是它靜止在原位。 */
+@keyframes question-enter {
+  from { transform: translateY(12px); }
+  to   { transform: translateY(0); }
+}
+
+.question-enter {
+  animation: question-enter 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .question-enter { animation: none; }
+}

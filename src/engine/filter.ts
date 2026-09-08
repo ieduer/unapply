@@ -7,6 +7,26 @@ import type { DimensionId } from '../data/dimensions';
 import type { School } from '../data/schools';
 import { getEnvironment } from '../data/environment';
 import { getSpecialAdmissionTracks } from '../lib/schoolProfile';
+import type { AdmissionContext } from '../lib/schoolProfile';
+
+// 眾包生活數據的硬篩選門檻。
+//
+// chooseCrowdValue 的 'low' 等價於「該值只有 1 個匿名回答支持」（2 票平手會直接
+// 作廢）。在此之前，1 個人的回答和 40 個人的一致回答擁有完全相同的排除權力，
+// 而且因為缺失值走疑罪從無，結果是「被填答得越完整的學校越容易被劃掉」——
+// 這是系統性偏差，不是噪音。低置信度值一律降級為展示用，不進硬篩選。
+export const HARD_FILTER_MIN_CONFIDENCE = 'medium' as const;
+
+export function isHardFilterableQuality(school: School, dim: DimensionId): boolean {
+  const meta = school.qualityEvidence?.[dim];
+  if (!meta) return true;              // 人工精編樣本沒有 meta，維持現狀
+  if (meta.source !== 'crowd') return true;   // 官方/權威來源不受票數門檻限制
+  return meta.confidence !== 'low';
+}
+
+// 篩選上下文：目前只有考生省份，用來讓 A6 逐省判定招生管道。
+// 不放進 AnswerMap，因為它不是問卷答案，也不能污染學習證據契約。
+export type FilterContext = AdmissionContext;
 
 export type AnswerValue = string | string[] | 'skip' | null;
 export type AnswerMap = Partial<Record<DimensionId, AnswerValue>>;
@@ -32,18 +52,68 @@ export interface FilterResult {
   stats: FilterStats;
 }
 
-function formatSchoolValue(value: string | string[]): string {
-  return Array.isArray(value) ? value.join(' / ') : value;
+// 「每次排除都必須可追溯」是本站的硬約束，但可追溯的前提是看得懂。
+// 引擎內部的取值是機器標識（comprehensive_eval / tier1 / main_city），
+// 直接印在結果頁上等於沒有解釋。這裡把它們翻回人話。
+const dimensionValueLabels: Record<string, string> = {
+  // A2 城市等級
+  tier1: '一線城市',
+  newtier1: '新一線城市',
+  tier2: '二線城市',
+  tier3_below: '三線及以下',
+  // A5 校區
+  main_city: '主城主校區',
+  suburb_with_metro: '遠郊但有地鐵',
+  suburb: '遠郊校區',
+  separate_freshman: '大一單獨分校區',
+  // A6 招生管道
+  regular_gaokao: '填志願即可錄取',
+  comprehensive_eval: '本科只走綜合評價（須另行報名+校測）',
+  art_exam: '藝術類校考',
+  sports_test: '體育類體測',
+  military_police: '軍警類政審體測',
+  navigation_flight: '航海/飛行類面試',
+  // E 系列
+  yes: '是',
+  no: '否',
+  mild: '溫和',
+  hot: '乾熱',
+  humid_hot: '濕熱',
+  extreme_hot: '極端酷熱',
+  warm: '冬天溫暖',
+  cold: '結冰',
+  extreme_cold: '極寒',
+  low: '低',
+  medium: '中',
+  high: '高',
+  extreme: '極高',
+  coastal: '沿海',
+  inland: '內陸',
+  plain: '平原/丘陵',
+  highland: '高海拔',
+};
+
+function labelForValue(value: string): string {
+  return dimensionValueLabels[value] ?? value;
 }
 
-export function getSchoolDimensionValue(school: School, dim: DimensionId): string | string[] | null {
+function formatSchoolValue(value: string | string[]): string {
+  const values = Array.isArray(value) ? value : [value];
+  return values.map(labelForValue).join(' / ');
+}
+
+export function getSchoolDimensionValue(
+  school: School,
+  dim: DimensionId,
+  ctx?: FilterContext,
+): string | string[] | null {
   switch (dim) {
     case 'A1': return school.province ?? null;
     case 'A2': return school.cityTier ?? null;
     case 'A3': return school.level ?? null;
     case 'A4': return school.tuitionRange ?? null;
     case 'A5': return school.mainCampusType ?? null;
-    case 'A6': return getSpecialAdmissionTracks(school);
+    case 'A6': return getSpecialAdmissionTracks(school, ctx);
     case 'E1': case 'E2': case 'E3': case 'E4':
     case 'E5': case 'E6': case 'E7': case 'E8': {
       const env = getEnvironment(school.province, school.city);
@@ -60,7 +130,13 @@ export function getSchoolDimensionValue(school: School, dim: DimensionId): strin
       }
       return null;
     }
-    default:   return school.quality?.[dim] ?? null;
+    default: {
+      const value = school.quality?.[dim] ?? null;
+      if (value === null) return null;
+      // 證據不夠格 → 當成未知，交回疑罪從無
+      if (!isHardFilterableQuality(school, dim)) return null;
+      return value;
+    }
   }
 }
 
@@ -68,6 +144,7 @@ function checkQuestion(
   question: Question,
   answer: AnswerValue,
   school: School,
+  ctx?: FilterContext,
 ): ExcludeReason | null {
   if (!answer || answer === 'skip') return null;
   const keys = Array.isArray(answer) ? answer : [answer];
@@ -93,7 +170,7 @@ function checkQuestion(
   }
 
   for (const rule of excludes) {
-    const val = getSchoolDimensionValue(school, rule.dim);
+    const val = getSchoolDimensionValue(school, rule.dim, ctx);
     if (val === null) continue; // 疑罪從無
     const values = Array.isArray(val) ? val : [val];
     if (values.some((item) => rule.values.includes(item))) {
@@ -107,7 +184,7 @@ function checkQuestion(
   }
 
   for (const [dim, okValues] of requireByDim) {
-    const val = getSchoolDimensionValue(school, dim);
+    const val = getSchoolDimensionValue(school, dim, ctx);
     if (val === null) continue;
     const values = Array.isArray(val) ? val : [val];
     if (!values.some((item) => okValues.has(item))) {
@@ -115,7 +192,7 @@ function checkQuestion(
         questionId: question.id,
         questionTitle: question.title,
         userAnswerLabel: labels.join('、'),
-        schoolValue: `${formatSchoolValue(val)}（不含 ${Array.from(okValues).join('/')}）`,
+        schoolValue: `${formatSchoolValue(val)}（不含 ${Array.from(okValues).map(labelForValue).join('/')}）`,
       };
     }
   }
@@ -123,7 +200,11 @@ function checkQuestion(
   return null;
 }
 
-export function filterSchools(allSchools: School[], answers: AnswerMap): FilterResult {
+export function filterSchools(
+  allSchools: School[],
+  answers: AnswerMap,
+  ctx?: FilterContext,
+): FilterResult {
   const kept: School[] = [];
   const excluded: { school: School; reasons: ExcludeReason[] }[] = [];
   const byQuestion: Record<string, number> = {};
@@ -132,7 +213,7 @@ export function filterSchools(allSchools: School[], answers: AnswerMap): FilterR
     const reasons: ExcludeReason[] = [];
     for (const question of allQuestions) {
       const ans = answers[question.id] ?? null;
-      const reason = checkQuestion(question, ans, school);
+      const reason = checkQuestion(question, ans, school, ctx);
       if (reason) {
         reasons.push(reason);
         byQuestion[reason.questionId] = (byQuestion[reason.questionId] ?? 0) + 1;

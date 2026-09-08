@@ -7,7 +7,8 @@
 // 由 FilterEngine 疑罪從無處理。
 
 import type { DimensionId } from './dimensions';
-import type { SchoolResearchEvidenceMap } from './runtimeTypes';
+import type { SchoolAdmissionChannels, SchoolQualityEvidenceMap, SchoolResearchEvidenceMap } from './runtimeTypes';
+import { admissionChannelsByMoeCode } from './admissionChannels';
 import { officialSchoolCatalogMeta } from './officialSchoolMeta';
 import { officialSchools } from './officialSchools';
 import { schoolResearchProfilesByMoeCode } from './researchData';
@@ -16,7 +17,7 @@ import { normalizeSchoolName } from '../lib/schoolName';
 export type SchoolLevel = 'C9' | '985非C9' | '211非985' | '雙一流非211' | '普通本科' | '專科';
 export type CityTier = 'tier1' | 'newtier1' | 'tier2' | 'tier3_below';
 export type CampusType = 'main_city' | 'suburb_with_metro' | 'suburb' | 'separate_freshman';
-export type TuitionRange = '公辦' | '1-3萬' | '3-8萬' | '8萬+' | '民辦/合作待核價';
+export type TuitionRange = '公辦' | '1-3萬' | '3-8萬' | '8萬+' | '民辦待核價' | '中外合作待核價';
 export type SchoolOwnership = 'public' | 'private' | 'cooperative' | 'unknown';
 export type SchoolType = '綜合' | '理工' | '師範' | '農林' | '醫藥' | '財經' | '政法' | '語言' | '民族' | '藝術' | '體育' | '軍事';
 
@@ -45,8 +46,13 @@ export interface School {
   updatedAt?: string;
   tags?: string[];
   researchEvidence?: SchoolResearchEvidenceMap;
+  // 招生管道（逐省逐年，有官方章程佐證才有值）。undefined = 未收錄 → A6 落回 regular 先驗。
+  admissionChannels?: SchoolAdmissionChannels;
   // 生活質量與學科維度：可部分覆蓋，未知為 undefined → 引擎疑罪從無
   quality?: Partial<Record<DimensionId, string | string[]>>;
+  // 每個 quality 值的來源與證據強度。沒有這層，1 個人的匿名回答會和 40 個人的
+  // 一致回答擁有同樣的硬排除權力。引擎據此決定哪些值夠格進硬篩選。
+  qualityEvidence?: SchoolQualityEvidenceMap;
 }
 
 const mk = (
@@ -285,7 +291,9 @@ const officialNameKeys = new Set<string>();
 export const schools: School[] = officialSchools.map((official) => {
   const key = schoolNameKey(official.nameSimplified ?? official.name);
   officialNameKeys.add(key);
-  const merged = mergeOfficialWithCurated(official, curatedByName.get(key));
+  const mergedBase = mergeOfficialWithCurated(official, curatedByName.get(key));
+  const admissionChannels = mergedBase.moeCode ? admissionChannelsByMoeCode[mergedBase.moeCode] : undefined;
+  const merged = admissionChannels ? { ...mergedBase, admissionChannels } : mergedBase;
   const research = merged.moeCode ? schoolResearchProfilesByMoeCode[merged.moeCode] : undefined;
   if (!research) return merged;
 
@@ -304,6 +312,7 @@ export const schools: School[] = officialSchools.map((official) => {
     ownership: research.ownership ?? merged.ownership,
     tuitionRange: research.tuitionRange ?? merged.tuitionRange,
     quality: mergeQuality(merged.quality, research.quality),
+    qualityEvidence: research.qualityEvidence ?? merged.qualityEvidence,
     sources,
   };
 });

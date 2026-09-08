@@ -1,4 +1,4 @@
-# nope.bdfz.net 維護手冊（v1.5）
+# nope.bdfz.net 維護手冊（v1.6）
 
 本手冊面向接手維護 `nope.bdfz.net` 的工程師。目標不是介紹產品，而是讓你能安全更新數據、核查覆蓋、發布上線並在必要時回滾。
 
@@ -16,6 +16,10 @@
 2. 每次排除都必須可追溯到 `題目規則 + 用戶答案 + 學校字段`。
 3. 缺失數據不准猜，必須「疑罪從無」。
 4. 主觀或年度變動字段只能作增強層，不能污染官方主表。
+5. **證據強度決定是否有排除權**。眾包值帶樣本量；只有 1 個人填答的值照常展示，
+   但不參與硬篩選。官方章程/校方頁面的結論不受票數門檻限制，也不會被眾包覆蓋。
+6. **預設必須可被來源推翻**。「填志願就能錄取」是先驗不是結論；查到招生章程說
+   本科只走綜合評價時要能改判，且逐省逐年。
 
 ### 1.2 當前模塊分工
 
@@ -47,12 +51,17 @@ npm run data:laosheng-profiles
 npm run data:campus-extract
 npm run data:research
 npm run data:runtime
+npm run data:admission
 npm run audit:questions
+npm run audit:values
 npm run audit:data
+npm run test:filters
 npm run lint
 npm run build
 npm run dev
 ```
+
+`audit:values` 是 2026-09 新增的死值閘門，說明見 §4.3。
 
 部署：
 
@@ -81,13 +90,59 @@ npm run build
 - `schoolCount` 是否等於教育部普通高校數。
 - 未把成人高校、港澳台高校、軍校等額外混進主池。
 
+### 3.1a 招生管道表（A6）
+
+適用情況：某校招生章程變了，或要新增一所本科只走綜合評價的院校。
+
+編輯 `data/research/admission_channels.<日期>.csv`（腳本自動取字典序最後一個），欄位：
+
+```csv
+moeCode,schoolName,year,regularProvinces,comprehensiveProvinces,sourceTitle,sourceUrl,sourceDate,confidence,notes
+```
+
+- `regularProvinces`：填志願即可投檔的省份，`|` 分隔；全國都有寫 `all`，一個都沒有寫 `none`。
+- `comprehensiveProvinces`：只走綜合評價（須另行報名＋校測）的省份，同樣支援 `all` / `none`。
+- 兩個列表都要以**官方招生章程**為準；聚合號、知乎、公眾號只能當「該去查哪一頁」的線索，不入庫。
+- 沒查全的省份就留空，引擎會回到 regular 先驗。寧可少排除，不誤殺。
+
+```bash
+npm run data:admission   # 校名/代碼/來源三重校驗，任一不過直接 exit 1
+npm run data:runtime
+npm run test:filters
+```
+
+判定順序（`src/lib/schoolProfile.ts` 的 `getRegularChannelState`）：
+
+1. 未收錄 → `regular`。
+2. 考生省份在 `regularProvinces` → `regular`。
+3. 考生省份在 `comprehensiveProvinces` → `comprehensive_only`。
+4. 收錄了但沒覆蓋到該省 → `regular`（通常是不在該省招生）。
+5. 沒有考生省份時，只有「全國皆無常規批」才判 `comprehensive_only`。
+
+反例務必記住：中國科學院大學在北京是**綜評提前批與普通一批並行**，寧波東方理工／
+福耀科技／大灣區／深圳理工 2026 走普通批。憑「新型研究型大學」的印象一刀切會誤殺這五所。
+
 ### 3.2 研究增強層
 
 適用情況：你補充了 `data/research/*.csv`，或者重新抓取了 CollegesChat 原始問卷。
 
+**前置條件（硬性）**：眾包原始問卷必須在磁盤上。
+
+```bash
+git clone --depth=1 https://github.com/CollegesChat/university-information.git /tmp/university-information
+```
+
+沒有它時 `data:research` 會直接報錯退出。以前這裡只推一條 warning 就繼續產出，
+任何人照文檔跑一次就會靜默清空約 2,400 所學校的 B 系眾包數據，而 `researchData.ts`
+是生成物、看不出少了什麼。要刻意產出不含眾包層的數據，顯式設 `ALLOW_MISSING_CROWD_SOURCE=1`。
+
+上游是活的倉庫，每次 build 會把 commit 記進 `researchPipelineMeta.inputs.collegesChatSnapshot`；
+兩次 build 之間值變了幾千條時，先比這個 commit。
+
 ```bash
 cd /Users/ylsuen/CF/unapply
 npm run data:research
+npm run audit:values
 npm run audit:data
 npm run build
 ```
@@ -148,6 +203,27 @@ npm run audit:data
 2. `maxExcluded`：最狠的一個選項最多能排掉多少學校。
 3. `impactfulOptions`：有幾個選項真的在起作用。
 
+### 4.0 眾包證據門檻（2026-09 起）
+
+`chooseCrowdValue` 一直在算 `sampleSize` / `winningVotes` / `confidence`，但舊代碼只取
+`value`、把強度整個丟掉。後果是 1 個匿名回答和 40 個一致回答擁有完全相同的排除權力；
+又因為缺失值走疑罪從無，實際效果是**被填答得越完整的學校越容易被劃掉**——這是系統性
+偏差，不是噪音。
+
+現在強度會一路帶到前端：
+
+- 生成側：`profile.qualityEvidence[dim] = { source, confidence, sampleSize, winningVotes }`。
+- 引擎側：`isHardFilterableQuality()` 攔住 `source === 'crowd' && confidence === 'low'`
+  （等價於「贏的那個值只有 1 票」），`getSchoolDimensionValue` 對它回 `null`，走疑罪從無。
+- 展示側：學校詳情頁每張卡片顯示「N 人填答 · M 票一致」，單票的標橙色並註明不參與排除。
+
+當前分佈：44,929 條眾包值 = high 22,754 / medium 11,184 / **low 10,991（24.5%）**。
+門檻上線後 B 系覆蓋率整體下降（例：B24 從 1,886 降到 1,597 所），這是預期的：
+損失的是本來就不該有的排除權。
+
+`setQuality()` 同時修掉一個靜默覆蓋：眾包階段在官方階段之後跑，以前會直接蓋掉
+`campus_official_overrides.csv` 寫入的 B9 官方結論（實測 4 條）。現在官方 > 眾包，不可逆。
+
 ### 4.1 當前仍屬高風險缺口
 
 - `A5 校區位置`：校區底稿已擴到 `2732` 所學校、`3396` 條記錄，但真正進硬篩選的校級官方覆蓋目前只有 `127/2919`；本輪新增北京 9 校後，`maxExcluded` 仍只有 `5`。
@@ -162,6 +238,44 @@ npm run audit:data
 2. `B9` 目前混合了城市級和校區級資料；本輪只新增了 4 所有明確官方地鐵步行依據的北京高校，其餘仍需地鐵站距與本科生落點。
 3. 不要把 `researchData.ts` / `campusResearch.ts` 再直接 import 回 runtime；前端只能走 `src/lib/runtimeData.ts` → `public/data/runtime/*.json`。
 4. `db/schema.sql` 仍是 v2 預留，當前站點是純 SPA，別誤以為已有服務端數據校驗。
+5. **不要用動畫庫承載必讀內容。** 題面（標題＋說明）以前包在 `AnimatePresence mode="wait"`
+   裡，換題要等 exit 動畫跑完才掛載新節點，而那個動畫由 requestAnimationFrame 驅動。
+   在 rAF 被節流或暫停的環境（背景分頁、部分內嵌 webview、無頭/隱藏視窗）裡它永遠跑不完，
+   用戶會一路看著第 1 題的標題答完 39 題。現已改成 key 變更直接重新掛載＋純 CSS 進場動畫，
+   且動畫**只動 transform 不動 opacity**——最壞情況是它靜止在原位，文字仍然可讀。
+   任何新增的入場動畫都要守這條。
+
+### 4.3 死值閘門 `audit:values`
+
+這個站的失效模式不是報錯，是**靜默退化**：枚舉裡寫了一個取值，主池裡沒有任何學校
+取到它，引用它的選項排除數恆為 0，然後被 `getVisibleOptions` 從界面上悄悄拿掉。
+用戶看不到那個選項，維護者看不到任何錯誤。A4「≤ 3 萬（可接受民辦）」和
+「≤ 8 萬（含部分中外合作）」正是這樣消失的——線上用戶其實只有「公辦」和「不限」兩個選擇。
+
+`npm run audit:values` 把三種狀態分開：
+
+| 狀態 | 含義 | 處理 |
+| --- | --- | --- |
+| live | 有夠格進硬篩選的數據 | 正常 |
+| below_threshold | 有數據，但全是單票眾包 | 報告，不阻塞；樣本變多會自動恢復 |
+| absent | 主池裡完全沒有 | **必須**寫進該維度的 `reservedValues`，否則 exit 1 |
+
+`reservedValues` 過期（值有數據了還留在聲明裡）同樣報錯。當前 23 個聲明死值，
+分佈在 A1（港澳台不在教育部名單）、A4（精確學費區間待 tuition_programs.csv）、
+A5（`separate_freshman` 目前 0/2919，靠 campus_official_overrides 的 freshmanOnly 補）、
+E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4（整題 0 覆蓋）。
+
+### 4.4 A4 學費分桶
+
+教育部名單能權威分出公辦／民辦／中外合作三類，所以學費先按這三檔走：
+
+- `公辦`（2,076 所）
+- `民辦待核價`（829 所，本科多在 1.5-3 萬）
+- `中外合作待核價`（14 所，6-25 萬）
+
+以前民辦和中外合作合成一個 `民辦/合作待核價` 桶，導致「可接受民辦」這件事根本表達不了。
+`1-3萬` / `3-8萬` / `8萬+` 三個精確區間保留在枚舉裡但列入 `reservedValues`，
+等 `tuition_programs.csv` 逐校逐專業補完再啟用。
 
 ## 5. 前端與交互維護
 
@@ -197,7 +311,11 @@ cd /Users/ylsuen/CF/unapply
 npm run lint
 npm run build
 npm run audit:questions
+npm run audit:values
 npm run audit:data
+npm run test:filters
+npm run test:evidence
+npm run test:trusted
 ```
 
 部署後至少驗證：
@@ -208,6 +326,13 @@ npm run audit:data
 4. 當某題把結果壓到 `<=10` 所時，不應自動跳頁；要先出現收束提示，再由用戶主動進報告。
 5. 結果頁能看到學校官網 + 省級官方招考入口，且「查一所學校」能查到保留/排除原因。
 6. 右上角色系面板可用、縮放後不遮擋內容，且刷新後保留。
+7. **逐題翻頁時標題和說明要跟著換**（不是只有選項換）。這條要真的翻幾題看，
+   不能只看第一題——歷史上它壞過而且從界面上完全看不出來。
+8. **A6 的考生地區選單改省份時，實時計數要跟著變**：北京排除 160 所、安徽 159 所
+   （差的那一所是上海科技大學，它在安徽走普通本科批）。刷新後省份要保留。
+9. 學校詳情頁（如 `#/school/南方科技大學`）要能看到「招生管道 · 章程依據」區塊、
+   對應考生省份的結論和章程外鏈；B 系卡片要顯示「N 人填答 · M 票一致」。
+10. 結果頁的排除理由必須是人話，不能出現 `comprehensive_eval` / `tier1` 這類內部標識。
 
 注意：Cloudflare Pages 顯示 deploy 成功不等於自定義域名健康，最後驗證以 `https://nope.bdfz.net/` 實際響應為準。
 
