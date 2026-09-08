@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/unapply`
 - Git authority: `ieduer/unapply`
-- Current local branch/HEAD: `master` / `3158c44`
+- Current local branch/HEAD: `master` / `e31a4da`
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -54,10 +54,10 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - External/local build inputs, archived paths, receipts, retention, and hydrate commands not stated below are `review_required` and block deletion.
 
 Catalog backup evidence:
-- Cloudflare immutable Pages deployments: current=04e12b39-507c-4e41-86d4-e05c1a97e885, previous=4da416a0-8ea2-45ca-bf60-ac8011fa5776
+- Cloudflare immutable Pages deployments: current=00cb3661-eb64-42a6-9371-1dbd592aacfc (source e31a4da, 2026-09-08), previous=2700a82d-1239-4918-bc54-2938a585e8f8 (source 4be095d, 2026-08-26)
 
 Catalog restore evidence:
-- restore code/assets by rolling back to production deployment 4da416a0-8ea2-45ca-bf60-ac8011fa5776
+- restore code/assets by rolling back to production deployment 2700a82d-1239-4918-bc54-2938a585e8f8
 
 Before deleting any local resource, satisfy the workspace path-preserving archive, remote readback, isolated restore, receipt, handbook, and project-state gates.
 
@@ -118,7 +118,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- curl -sS -X POST -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" "https://api.cloudflare.com/client/v4/accounts/da810f08b63347a01d3db7fd42619972/pages/projects/unapply/deployments/4da416a0-8ea2-45ca-bf60-ac8011fa5776/rollback"
+- curl -sS -X POST -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" "https://api.cloudflare.com/client/v4/accounts/da810f08b63347a01d3db7fd42619972/pages/projects/unapply/deployments/2700a82d-1239-4918-bc54-2938a585e8f8/rollback"
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -144,7 +144,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-07-15T10:45:14.366Z.
+8. Last verified: 2026-09-08T08:45Z — live readback of https://nope.bdfz.net confirmed per-question titles advance, A6 excludes 160 for a Beijing candidate and 159 for an Anhui candidate, and the result page renders the comprehensive-evaluation exclusion reason in Chinese.
 
 ## Synchronized documentation and handoff
 

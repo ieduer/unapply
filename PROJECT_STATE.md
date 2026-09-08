@@ -1,7 +1,7 @@
 # Project State
 
 Last updated: 2026-09-08 PDT
-Current version: 6ff93d0 + working tree (未部署)
+Current version: e31a4da（已部署）
 Current objective: 修掉 A6 把綜合評價院校當成常規統招的誤判，並把「看起來在篩、實際沒在篩」這一類效度缺陷系統性堵住
 
 ## 本輪完成的工作
@@ -25,8 +25,11 @@ Current objective: 修掉 A6 把綜合評價院校當成常規統招的誤判，
 - `npm run lint` / `npx tsc -b` / `npm run build`：綠。
 - `npm run audit:questions`（43 題）/ `audit:values`（0 blocking）/ `audit:data`：綠。
 - `npm run test:filters`（11 條）/ `test:evidence`（2 條）/ `test:trusted`（7 條）：綠。
-- 瀏覽器實測：逐題標題正確切換；A6 省份切換即時重算（北京 160 / 安徽 159）；
+- 本機瀏覽器實測：逐題標題正確切換；A6 省份切換即時重算（北京 160 / 安徽 159）；
   詳情頁招生管道區塊與章程外鏈正常；排除理由已是人話。
+- 線上復驗（https://nope.bdfz.net，2026-09-08）：6 題標題逐題不同；
+  A6 北京排除 160 / 安徽 159；結果頁查「上海科技大學」在安徽為「仍在場」、
+  切到北京變「已排除」並給出「本科只走綜合評價（須另行報名+校測）」的理由。
 
 ## Known problems / Pending work
 
@@ -35,7 +38,7 @@ Current objective: 修掉 A6 把綜合評價院校當成常規統招的誤判，
 - A4 精確學費區間（1-3萬/3-8萬/8萬+）待 `tuition_programs.csv`。
 - 眾包上游是活倉庫，本輪同時吃進了 2026-06-30 快照，值有增減屬正常。
 
-Deployment status: 尚未部署；線上仍是舊版本
+Deployment status: 已上線。Pages deployment `00cb3661-eb64-42a6-9371-1dbd592aacfc`（2026-09-08T08:43:12Z，source e31a4da）；前一版 `2700a82d-1239-4918-bc54-2938a585e8f8`（source 4be095d）
 Rollback anchor: curl -sS -X POST -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" "https://api.cloudflare.com/client/v4/accounts/da810f08b63347a01d3db7fd42619972/pages/projects/unapply/deployments/2700a82d-1239-4918-bc54-2938a585e8f8/rollback"
 Operations authority: docs/OPERATIONS.md
 Ownership status: no mutation authority is implied; consult reports/agent_action_log.jsonl
