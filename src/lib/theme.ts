@@ -176,7 +176,7 @@ export function loadThemeState(): ThemeState {
 
 export function saveThemeState(state: ThemeState) {
   if (typeof window === 'undefined') return
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+  try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state)) } catch { /* The active theme and content remain usable without storage. */ }
 }
 
 export function applyThemeState(state: ThemeState) {

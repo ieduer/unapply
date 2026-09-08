@@ -127,9 +127,9 @@ test('逐省判定要走完整個考生地區選單而不報錯', () => {
     const result = filterSchools(schools, { A6: 'regular_only' }, { candidateProvince: province })
     return { province, excluded: result.stats.byQuestion.A6 ?? 0 }
   })
-  // 藝體軍警航的基線是 156 所，逐省只在此之上增減幾所
+  // 兩所全國綜評專屬；另兩所逐省不同。校名不構成整校排除證據。
   for (const { province, excluded } of counts) {
-    assert.ok(excluded >= 156 && excluded <= 170, `${province} 排除數 ${excluded} 超出合理區間`)
+    assert.ok(excluded >= 2 && excluded <= 4, `${province} 排除數 ${excluded} 超出合理區間`)
   }
   const jiangsu = counts.find((item) => item.province === '江蘇')!
   const beijing = counts.find((item) => item.province === '北京')!

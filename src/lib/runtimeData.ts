@@ -12,6 +12,7 @@ async function fetchRuntimeJson<T>(pathname: string): Promise<T> {
   const separator = pathname.includes('?') ? '&' : '?'
   const response = await fetch(`${pathname}${separator}v=${encodeURIComponent(runtimeDataManifest.version)}`, {
     credentials: 'same-origin',
+    signal: AbortSignal.timeout(15000),
   })
 
   if (!response.ok) {
@@ -23,7 +24,17 @@ async function fetchRuntimeJson<T>(pathname: string): Promise<T> {
 
 export function loadSchools(): Promise<School[]> {
   if (!schoolsPromise) {
-    schoolsPromise = fetchRuntimeJson<School[]>(runtimeDataManifest.schoolsPath)
+    schoolsPromise = fetchRuntimeJson<School[]>(runtimeDataManifest.schoolsPath).then((loaded) => {
+      if (!Array.isArray(loaded) || loaded.length !== runtimeDataManifest.counts.schools
+        || loaded.some((school) => !school || typeof school.moeCode !== 'string')
+        || new Set(loaded.map((school) => school.moeCode)).size !== loaded.length) {
+        throw new Error('學校目錄不完整，請重新載入')
+      }
+      return loaded
+    }).catch((error: unknown) => {
+      schoolsPromise = null
+      throw error
+    })
   }
   return schoolsPromise
 }
@@ -37,7 +48,7 @@ export function loadCampusesByProvince(province: string): Promise<CampusProvince
   if (!campusBucketPromises.has(key)) {
     const bucketPath = `${runtimeDataManifest.campusesBasePath}/${fileName}`
     const promise = fetchRuntimeJson<CampusProvinceBucket>(bucketPath).catch((error: unknown) => {
-      if (error instanceof Error && /404/.test(error.message)) return {}
+      campusBucketPromises.delete(key)
       throw error
     })
     campusBucketPromises.set(key, promise)

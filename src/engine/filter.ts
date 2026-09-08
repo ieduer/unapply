@@ -6,7 +6,7 @@ import type { Question } from '../data/questions';
 import type { DimensionId } from '../data/dimensions';
 import type { School } from '../data/schools';
 import { getEnvironment } from '../data/environment';
-import { getSpecialAdmissionTracks } from '../lib/schoolProfile';
+import { getVerifiedAdmissionTracks } from '../lib/schoolProfile';
 import type { AdmissionContext } from '../lib/schoolProfile';
 
 // 眾包生活數據的硬篩選門檻。
@@ -19,7 +19,7 @@ export const HARD_FILTER_MIN_CONFIDENCE = 'medium' as const;
 
 export function isHardFilterableQuality(school: School, dim: DimensionId): boolean {
   const meta = school.qualityEvidence?.[dim];
-  if (!meta) return true;              // 人工精編樣本沒有 meta，維持現狀
+  if (!meta) return false;             // 缺少證據的值只能展示
   if (meta.source !== 'crowd') return true;   // 官方/權威來源不受票數門檻限制
   return meta.confidence !== 'low';
 }
@@ -67,7 +67,8 @@ const dimensionValueLabels: Record<string, string> = {
   suburb: '遠郊校區',
   separate_freshman: '大一單獨分校區',
   // A6 招生管道
-  regular_gaokao: '填志願即可錄取',
+  regular_gaokao: '常規志願管道（未核實時保留）',
+  comprehensive_dominant: '綜評為主，普通批試點省份待公布',
   comprehensive_eval: '本科只走綜合評價（須另行報名+校測）',
   art_exam: '藝術類校考',
   sports_test: '體育類體測',
@@ -94,6 +95,9 @@ const dimensionValueLabels: Record<string, string> = {
 };
 
 function labelForValue(value: string): string {
+  const match = /^(CS|EE|Math|Med|Econ|Law|Chn|Hist):(A[+-]?)$/.exec(value);
+  const subjects: Record<string, string> = { CS: '計算機', EE: '電子／自動化', Math: '數學', Med: '臨床醫學', Econ: '經濟', Law: '法學', Chn: '中文', Hist: '歷史' };
+  if (match) return `${subjects[match[1]]} ${match[2]}`;
   return dimensionValueLabels[value] ?? value;
 }
 
@@ -112,8 +116,8 @@ export function getSchoolDimensionValue(
     case 'A2': return school.cityTier ?? null;
     case 'A3': return school.level ?? null;
     case 'A4': return school.tuitionRange ?? null;
-    case 'A5': return school.mainCampusType ?? null;
-    case 'A6': return getSpecialAdmissionTracks(school, ctx);
+    case 'A5': return school.campusFreshmanPolicy === 'yes' ? 'separate_freshman' : school.mainCampusType ?? null;
+    case 'A6': return getVerifiedAdmissionTracks(school, ctx);
     case 'E1': case 'E2': case 'E3': case 'E4':
     case 'E5': case 'E6': case 'E7': case 'E8': {
       const env = getEnvironment(school.province, school.city);

@@ -13,6 +13,7 @@ export type SpecialAdmissionTrack =
 // 上海科技大學 2025 年在 18 省只有綜合評價，但安徽考生走普通本科批。
 export interface AdmissionContext {
   candidateProvince?: string
+  admissionYear?: number
 }
 
 const levelLabelMap: Record<string, string> = {
@@ -51,10 +52,10 @@ const specialTrackLabelMap: Record<SpecialAdmissionTrack, string> = {
   regular_gaokao: '普通高考常規統招',
   comprehensive_eval: '綜評校測·無常規批',
   comprehensive_dominant: '主要走綜評·普通批僅部分省份試點',
-  art_exam: '藝術/校考門檻',
-  sports_test: '體育/體測門檻',
-  military_police: '軍警/政審體測',
-  navigation_flight: '航海/飛行/面試',
+  art_exam: '可能有藝術類專業·門檻待查',
+  sports_test: '可能有體育類專業·門檻待查',
+  military_police: '可能有軍警類專業·門檻待查',
+  navigation_flight: '可能有航海飛行專業·門檻待查',
 }
 
 const artAcademyPattern = /(音樂學院|音乐学院|美術學院|美术学院|戲劇學院|戏剧学院|戏曲学院|舞蹈学院|电影学院|電影學院|美院|美术职业学院|艺术职业学院)/
@@ -80,7 +81,7 @@ export function getRegularChannelState(
   ctx?: AdmissionContext,
 ): RegularChannelState {
   const channels = school.admissionChannels
-  if (!channels) return 'regular'                                    // 未收錄 → 先驗
+  if (!channels || channels.year !== (ctx?.admissionYear ?? new Date().getFullYear())) return 'regular'                                    // 未收錄 → 先驗
 
   const province = ctx?.candidateProvince
 
@@ -111,6 +112,11 @@ const channelStateTrack: Record<RegularChannelState, SpecialAdmissionTrack> = {
   regular: 'regular_gaokao',
   comprehensive_only: 'comprehensive_eval',
   comprehensive_dominant: 'comprehensive_dominant',
+}
+
+// Only the annual charter can remove a whole school. Name/type hints stay display-only.
+export function getVerifiedAdmissionTracks(school: School, ctx?: AdmissionContext): SpecialAdmissionTrack[] {
+  return [channelStateTrack[getRegularChannelState(school, ctx)]]
 }
 
 export function getSpecialAdmissionTracks(

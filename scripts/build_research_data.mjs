@@ -230,7 +230,7 @@ function chooseCrowdValue(tallies) {
 function normalizeDormLayout(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
-  if (/三层|三人/.test(text)) return '三層上下鋪';
+  if (/三层/.test(text)) return '三層上下鋪';
   if (/上床下桌|^是$|^是的$|大部分是|部分是/.test(text)) return '上床下桌';
   if (/不是|^否$|上下铺|双层/.test(text)) return '上下鋪';
   return null;
@@ -249,6 +249,7 @@ function normalizeAirConditioning(answer) {
 function normalizeBath(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
+  if (/没有独立|无独立|没有独卫|无独卫/.test(text)) return null;
   if (/独立卫浴|独卫|^有$|^是$|有的/.test(text)) return '獨立衛浴';
   if (/楼层|公共浴室|公共淋浴|楼道/.test(text)) return '樓層公共浴室';
   if (/澡堂|浴堂|洗浴中心|公共澡堂|没有/.test(text)) return '公共澡堂';
@@ -258,6 +259,7 @@ function normalizeBath(answer) {
 function normalizeStudy(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
+  if (/不强制|自愿/.test(text)) return null;
   if (/^无$|^没有$|^没$|无早自习无晚自习/.test(text)) return '無';
   if (/早.*晚|晚.*早|早晚自习/.test(text)) return '早晚自習強制';
   if (/晚自习|晚修/.test(text)) return '僅晚自習強制';
@@ -268,6 +270,7 @@ function normalizeStudy(answer) {
 function normalizeMorningRun(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
+  if (/(?:没有|无需|不用|不要求|不强制).*晨跑|晨跑.*(?:自愿|不强制)/.test(text)) return null;
   if (/^无$|^没有$|^没$|不跑/.test(text)) return '無';
   if (/每天|天天|一周[三四五六七天]|每周[34567]次|每星期[34567]次/.test(text)) return '每週3+次';
   if (/有|晨跑|每周[12]次|一周[12]次|大一有/.test(text)) return '每週1-2次';
@@ -277,6 +280,7 @@ function normalizeMorningRun(answer) {
 function normalizeRunningQuota(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
+  if (/米|每次|每天|每日|每周|每星期/.test(text)) return null;
   if (/^无$|^没有$|不用|不需要|免跑/.test(text)) return '無';
   const numbers = Array.from(text.matchAll(/(\d+(?:\.\d+)?)/g), (match) => Number(match[1])).filter(Number.isFinite);
   if (numbers.length === 0) return null;
@@ -316,7 +320,9 @@ function normalizeVacation(answer) {
   const raw = answer.trim();
   const text = raw.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
-  if (/小学期|小學期/.test(text)) return '有小學期';
+  if (/(?:无|無|没有|沒有)小[学學]期/.test(text)) {
+    if (!/暑假|暑休|summer/i.test(text)) return '標準';
+  } else if (/小学期|小學期/.test(text)) return '有小學期';
   const summerDays = extractVacationDays(raw, ['暑假', '暑休', 'summer']);
   if (summerDays !== null) {
     if (summerDays < 28) return '暑假＜4週';
@@ -332,6 +338,7 @@ function normalizeVacation(answer) {
 function normalizeTakeout(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
+  if (/不禁止|并非不能/.test(text)) return null;
   if (/禁止|不允许|不讓|不能点/.test(text)) return '禁止外賣';
   if (/校外|校门|大门口/.test(text)) return '校外取';
   if (/外卖柜|外卖点|驿站|较远|很远/.test(text)) return '外賣牆遠';
@@ -356,13 +363,14 @@ function normalizeMetro(answer) {
 
   if (/十五分钟|15分钟|十多分钟|12分钟|骑车三分钟|五分钟有地铁|不远处有地铁/.test(text)) return '步行15分鐘內';
   if (/公交.*地铁|最近的地铁需要坐车半个小时|地铁站五十分钟步行|公交车才能到地铁站|进城.*小时/.test(text)) return '地鐵＞3公里';
-  if (/有地铁|地铁在建|地铁口/.test(text)) return '步行15分鐘內';
+  // 有地鐵/在建/地鐵口均不能證明步行距離。
   return null;
 }
 
 function normalizeLaundry(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
+  if (/没有.*限制|不限制/.test(text)) return null;
   if (/^无$|^没有$|没有洗衣机|無洗衣機/.test(text)) return '無洗衣機';
   if (/有|洗衣机/.test(text)) return '樓內\/宿舍有';
   return null;
@@ -372,6 +380,8 @@ function normalizeCampusNetwork(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
   if (/无校.?园网|没有校园网/.test(text)) return '無校園網';
+  if (/^(?:不计费|不收费|免费|不限流量)$/.test(text)) return '不計費';
+  if (/不计费|不收费/.test(text)) return null;
   if (/流量|计费|收费/.test(text)) return '按流量計費';
   if (/限速|龟速|很慢|卡/.test(text)) return '限速嚴重';
   if (/免费|不限流|不计费|全覆盖|还行/.test(text)) return '不計費';
@@ -381,8 +391,8 @@ function normalizeCampusNetwork(answer) {
 function normalizePower(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
-  if (/不断|不斷|不断电不断网/.test(text)) return '不斷';
   if (/周末不断|周六不断|周日不断/.test(text)) return '週末不斷';
+  if (/不断|不斷|不断电不断网/.test(text)) return '不斷';
   if (/21[:：.]?00|9点|九点/.test(text)) return '21點前斷';
   if (/22[:：.]?00|10点|十点/.test(text)) return '22點前斷';
   if (/23[:：.]?00|11点|十一点|12\.00/.test(text)) return '午夜後斷';
@@ -396,6 +406,8 @@ function normalizeCanteen(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
   if (/异物|虫|食物中毒|拉肚子|不卫生/.test(text)) return '近年負面新聞';
+  if (/^不贵$|^不貴$/.test(text)) return '好評';
+  if (/不贵|不貴|不太贵|不算贵/.test(text)) return null;
   if (/贵|偏贵|很贵/.test(text)) return '貴';
   if (/不贵|便宜|还行|不错|好吃/.test(text)) return '好評';
   return null;
@@ -404,6 +416,7 @@ function normalizeCanteen(answer) {
 function normalizeHotWater(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
+  if (/没有热水限制|无热水限制/.test(text)) return null;
   if (/无热水|没有热水/.test(text)) return '無熱水';
   if (/24小时|全天|一直有/.test(text)) return '24小時';
   if (/仅晚|只在晚上|晚间/.test(text)) return '僅晚間';
@@ -414,6 +427,7 @@ function normalizeHotWater(answer) {
 function normalizeScooter(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
+  if (/不禁止|不限制/.test(text)) return null;
   if (/研究生/.test(text)) return '僅研究生允許';
   if (/禁止|不让|不能/.test(text)) return '禁止';
   if (/允许|可以|能骑|有充电/.test(text)) return '允許';
@@ -425,15 +439,17 @@ function normalizeWatt(answer) {
   if (!text || /不知道|不清楚/.test(text)) return null;
   if (/不限|无限制|无/.test(text)) return '不限';
   const watts = Array.from(text.matchAll(/(\d{3,4})\s*w?/gi), (match) => Number(match[1])).filter(Number.isFinite);
-  if (watts.some((value) => value >= 1500)) return '1500W+';
-  if (watts.some((value) => value >= 800)) return '800W內';
-  if (watts.some((value) => value <= 400)) return '400W內';
+  if (watts.length !== 1) return null;
+  if (watts[0] >= 1500) return '1500W+';
+  if (watts[0] <= 400) return '400W內';
+  if (watts[0] <= 800) return '800W內';
   return null;
 }
 
 function normalizeOvernightStudy(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
+  if (/没有限制|无限制|不限/.test(text)) return null;
   if (/无|没有|没/.test(text)) return '無通宵自習';
   if (/有|可以|能/.test(text)) return '有通宵自習';
   return null;
@@ -442,6 +458,7 @@ function normalizeOvernightStudy(answer) {
 function normalizeFreshmanComputer(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
+  if (/不禁止|不限制/.test(text)) return null;
   if (/禁止|不让|不能/.test(text)) return '禁止';
   if (/限时|限\.?期|大一上|军训后/.test(text)) return '限時禁止';
   if (/允许|可以|能带|可带/.test(text)) return '允許';
@@ -451,6 +468,7 @@ function normalizeFreshmanComputer(answer) {
 function normalizeCampusCard(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
+  if (/不强制|不要求|不必|不用/.test(text)) return null;
   if (/银行卡|指定银行/.test(text)) return '強制特定銀行';
   if (/饭卡|校园卡|一卡通/.test(text)) return '強制校園卡';
   if (/支付宝|微信|电子|现金|刷码/.test(text)) return '電子/現金';
@@ -460,6 +478,8 @@ function normalizeCampusCard(answer) {
 function normalizeBankCard(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
+  if (/^不强制(?:开户)?$|^不強制(?:開戶)?$|^自愿(?:开户)?$/.test(text)) return '不強制';
+  if (/不强制|不必须|自愿/.test(text)) return null;
   if (/强制|必须|统一发|统一办理|开户/.test(text)) return '強制開戶';
   if (/不发|没有|无|自愿/.test(text)) return '不強制';
   return null;
@@ -468,6 +488,7 @@ function normalizeBankCard(answer) {
 function normalizeStore(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
+  if (/没有.*但.*(?:有|小卖)/.test(text)) return null;
   if (/没有|无超市/.test(text)) return '無超市';
   if (/大型|超市多|大超市|罗森|全家/.test(text)) return '大型超市';
   if (/小卖部|小超市|便利店/.test(text)) return '小賣部';
@@ -477,6 +498,7 @@ function normalizeStore(answer) {
 function normalizeExpress(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
+  if (/不送|不能送/.test(text)) return null;
   if (/送到宿舍|送货上门/.test(text)) return '送到宿舍';
   if (/校门|门口/.test(text)) return '校門取';
   if (/驿站|校内/.test(text)) return '驛站在校內';
@@ -487,6 +509,7 @@ function normalizeExpress(answer) {
 function normalizeBike(answer) {
   const text = answer.replace(/\s+/g, '');
   if (!text || /不知道|不清楚/.test(text)) return null;
+  if (/没有限制|无限制|不限/.test(text)) return null;
   if (/无|没有/.test(text)) return '無';
   if (/限时|时间段/.test(text)) return '限時段';
   if (/有|哈啰|青桔|美团/.test(text)) return '覆蓋';
@@ -498,6 +521,8 @@ function normalizeCurfew(entranceAnswer, dormAnswer) {
   if (!text || /不知道|不清楚/.test(text)) return null;
   if (/22[:：.]?00|10点|十点/.test(text)) return '22點封寢';
   if (/23[:：.]?00|11点|十一点/.test(text)) return '23點封寢';
+  if (/^不查寝$|^不查寢$/.test(text)) return '寬鬆';
+  if (/不查寝|不查寢/.test(text)) return null;
   if (/查寝|会查|查/.test(text)) return '查寢';
   if (/无门禁|没有门禁|不封寝|不查寝|宽松|能回去|能回来/.test(text)) return '寬鬆';
   return null;
@@ -981,4 +1006,6 @@ async function main() {
   console.log(`discipline schools: ${counts.disciplineSchools}`);
 }
 
-await main();
+export { crowdNormalizers, normalizeCurfew };
+
+if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url) await main();

@@ -49,10 +49,13 @@ for (const dimensionId of Object.keys(DIMENSIONS)) {
 for (const [dimensionId, meta] of Object.entries(DIMENSIONS)) {
   const observed = observedByDimension.get(dimensionId);
   const reserved = new Set(meta.reservedValues ?? []);
+  for (const value of observed) {
+    if (!meta.values.includes(value)) issues.push(`${dimensionId}: 運行值 "${value}" 不在題目維度枚舉中`);
+  }
 
   for (const value of meta.values) {
     // C5 是 `${學科}:${等第}` 的複合值，枚舉裡放的是等第，不逐一比對。
-    if (dimensionId === 'C5') continue;
+
     if (observed.has(value)) {
       if (reserved.has(value)) {
         issues.push(`${dimensionId}: "${value}" 已列入 reservedValues，但主池裡已有數據，声明过期`);

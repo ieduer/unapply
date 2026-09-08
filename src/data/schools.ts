@@ -238,32 +238,6 @@ function schoolNameKey(name: string): string {
   return normalizeSchoolName(name);
 }
 
-function mergeDimensionValue(
-  left: string | string[] | undefined,
-  right: string | string[] | undefined,
-): string | string[] | undefined {
-  if (!left) return right;
-  if (!right) return left;
-  const values = Array.from(new Set([
-    ...(Array.isArray(left) ? left : [left]),
-    ...(Array.isArray(right) ? right : [right]),
-  ]));
-  return values.length === 1 ? values[0] : values;
-}
-
-function mergeQuality(
-  base: School['quality'],
-  extra: School['quality'],
-): School['quality'] {
-  if (!base) return extra;
-  if (!extra) return base;
-  const merged: School['quality'] = { ...base };
-  for (const [dimensionId, value] of Object.entries(extra) as [DimensionId, string | string[]][]) {
-    merged[dimensionId] = mergeDimensionValue(merged[dimensionId], value);
-  }
-  return merged;
-}
-
 function mergeOfficialWithCurated(official: School, curated?: School): School {
   if (!curated) return official;
   const sources = Array.from(new Set([...(official.sources ?? []), ...(curated.sources ?? ['curated'])]));
@@ -279,7 +253,10 @@ function mergeOfficialWithCurated(official: School, curated?: School): School {
     sources,
     sourceUrl: official.sourceUrl ?? curated.sourceUrl,
     updatedAt: official.updatedAt ?? curated.updatedAt,
-    quality: mergeQuality(official.quality, curated.quality),
+    level: official.level,
+    mainCampusType: official.mainCampusType,
+    tuitionRange: official.tuitionRange,
+    quality: official.quality,
   };
 }
 
@@ -311,7 +288,7 @@ export const schools: School[] = officialSchools.map((official) => {
     campusFreshmanPolicy: research.campusFreshmanPolicy ?? merged.campusFreshmanPolicy,
     ownership: research.ownership ?? merged.ownership,
     tuitionRange: research.tuitionRange ?? merged.tuitionRange,
-    quality: mergeQuality(merged.quality, research.quality),
+    quality: { ...merged.quality, ...research.quality },
     qualityEvidence: research.qualityEvidence ?? merged.qualityEvidence,
     sources,
   };

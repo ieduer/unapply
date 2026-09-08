@@ -4,7 +4,6 @@ import {
   useCallback,
   useEffect,
   useSyncExternalStore,
-  lazy,
   Suspense,
   type ReactNode,
 } from 'react'
@@ -28,12 +27,12 @@ import {
 } from './lib/trustedAPlus'
 import type { UnapplyAPlusSyncStatus } from './lib/trustedAPlus'
 
-const Landing = lazy(async () => ({ default: (await import('./components/Landing')).Landing }))
-const QuestionRunner = lazy(async () => ({ default: (await import('./components/QuestionRunner')).QuestionRunner }))
-const ResultPage = lazy(async () => ({ default: (await import('./components/ResultPage')).ResultPage }))
-const AboutPage = lazy(async () => ({ default: (await import('./components/AboutPage')).AboutPage }))
-const SchoolDetail = lazy(async () => ({ default: (await import('./components/SchoolDetail')).SchoolDetail }))
-const ContributePage = lazy(async () => ({ default: (await import('./components/ContributePage')).ContributePage }))
+import { Landing } from './components/Landing'
+import { QuestionRunner } from './components/QuestionRunner'
+import { ResultPage } from './components/ResultPage'
+import { AboutPage } from './components/AboutPage'
+import { SchoolDetail } from './components/SchoolDetail'
+import { ContributePage } from './components/ContributePage'
 
 type Route =
   | { name: 'landing' }

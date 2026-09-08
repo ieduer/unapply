@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/unapply`
 - Git authority: `ieduer/unapply`
-- Current local branch/HEAD: `master` / `4925d96`
+- Current local branch/HEAD: `master` / `0bedd2d`（未提交審計候選；線上source仍4925d96）
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -161,3 +161,20 @@ manual/state updates in `reports/agent_action_log.jsonl`. Chat is not a durable 
 ## 2026-08-26 750 retirement
 
 All current handoff links use `https://gk.rdfzer.com/?nope=<encoded>#advice-top`; no runtime source may link directly to 750. Verify build output, encoded context, browser navigation and the target advice panel. Rollback is the predecessor Pages deployment.
+
+
+## 2026-09-08 效度審計候選（歷史：後續授權見下節）
+
+[20260908-unapply-validity-audit 效度裁定](/Users/ylsuen/CF/reports/operations/20260908-unapply-validity-audit/README.md) 是本輪驗證/阻塞/回退權威。基線HEAD 0bedd2d；當前為未提交候選，正式仍 ddbda44d/source4925d96；舊錨點2700a82d/source4be095d。全站準確性裁定不通過，雖然九個工程閘門綠。修正來源覆蓋、A6啟發式、B解析、重試及儲存白屏；A5硬資料9校，A6年度章程14校，北京排2、江蘇3。A2/E/C5資料語義與學習證據端漏省份仍阻塞發布。舊章程研究沿用，未重查14個全文；原問卷commit 0aa4c193a302dd27c4044f510f6880e9325d79b3 未變。
+
+本輪資源全部retain_hot（suen、2026-10-08複查），報告含補丁、new-files備份、完整命令輸出與runtime manifest；無需hydration才能繼續本機維護，不刪原始問卷或既有來源。`CAPABILITY_FIT: no-new-capability`，無平台／共享契約變更。下一步按報告補資料與省份可信重算，單独取得站長部署批准。
+
+## 2026-09-08 已授權過渡發布（驗證進行中）
+
+站長在效度裁定後明示「如果比現在版本更靠譜些，可以先部署一版。缺失的以後再更新」。本輪按此接受增量可靠性改善；原全站準確性未通過的裁定保留，不再將既有資料缺口視為此次過渡發布的絕對阻塞。來源覆蓋、A6 無來源誤排、B 解析與頁面容錯修正納入候選；A2/E/C5 語義、證據端逐省重算、缺少資料與完整認證讀寫驗收仍列待辦。候選不改 AnswerMap 或共享服務。
+
+Node 權威固定 `.nvmrc` / `engines.node` = 24.18.0，使用現有安裝重跑九閘；不更新依賴。發布與讀回完成後在本節寫入新 deployment/source。當前線上仍 ddbda44d-af57-4c7e-bc63-108188b63b88 / 4925d96，為本次直接回滾錨點；更早 2700a82d / 4be095d 保留。`CAPABILITY_FIT: no-new-capability`；既有 Pages、bindings、相容日期不變。
+
+本次發布權威：[發布驗證記錄](/Users/ylsuen/CF/reports/operations/20260908-unapply-validity-release/README.md)。原[效度審計](/Users/ylsuen/CF/reports/operations/20260908-unapply-validity-audit/README.md)是資料缺口與修正證據。
+
+發布前重驗（2026-09-08）：Node 24.18.0 的九個指定閘門全部 exit 0，55 條 filters、2 條 evidence、7 條 trusted 通過。Cloudflare API 確认正式分支 master、無 Git 自動建置 source、原正式部署 ddbda44d，APLUS_EVIDENCE 綁定及相容日期與本機一致。發布入口現在於 build 後再次檢查乾淨且已推送，回報真實 commit_dirty=false。

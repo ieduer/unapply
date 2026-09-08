@@ -4,7 +4,6 @@ import {
   officialVocationalCount,
 } from '../data/schoolCatalogSummary'
 import { contributionHighlights, researchSummary } from '../data/researchSummary'
-import { motion } from 'motion/react'
 
 interface Props {
   onStart: () => void
@@ -15,10 +14,7 @@ interface Props {
 export function Landing({ onStart, onAbout, onContribute }: Props) {
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex flex-col items-center justify-between px-5 sm:px-6 py-6 sm:py-10">
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+      <div
         className="w-full max-w-5xl flex items-center justify-between text-[10px] sm:text-xs mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-fog-500"
       >
         <span>nope.bdfz.net · v1.6</span>
@@ -28,13 +24,10 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
         >
           about
         </button>
-      </motion.div>
+      </div>
 
       <section className="w-full max-w-5xl flex flex-1 flex-col justify-center gap-8 sm:gap-12 py-10 sm:py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        <div
           className="max-w-3xl"
         >
           <p className="mono text-xs uppercase tracking-[0.28em] text-accent-500">減法人生 · 學校版</p>
@@ -47,7 +40,7 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
           <p className="mt-4 mono text-sm text-fog-500">
             {officialSchoolCount.toLocaleString()} 所普通高校 · 本科 {officialUndergraduateCount.toLocaleString()} · 高職專科 {officialVocationalCount.toLocaleString()}
           </p>
-        </motion.div>
+        </div>
 
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
           <button

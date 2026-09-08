@@ -76,6 +76,8 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
   const regularChannelState = getRegularChannelState(school, { candidateProvince })
   const env = getEnvironment(school.province, school.city)
   const levelText = school.level ? (levelLabel[school.level] ?? school.level) : '層次待核'
+  const [campusLoadError, setCampusLoadError] = useState(false)
+  const [campusRetry, setCampusRetry] = useState(0)
   const tierText = school.cityTier ? (tierLabel[school.cityTier] ?? school.cityTier) : '城市等級待核'
   const typeText = school.type ?? school.moeLevel ?? '類型待補'
   const campusText = school.mainCampusType ? (campusLabel[school.mainCampusType] ?? school.mainCampusType) : '校區待補'
@@ -117,19 +119,13 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
       })
       .catch(() => {
         if (cancelled) return
-        setCampusMap((current) => {
-          if (Object.hasOwn(current, school.moeCode!)) return current
-          return {
-            ...current,
-            [school.moeCode!]: [],
-          }
-        })
+        setCampusLoadError(true)
       })
 
     return () => {
       cancelled = true
     }
-  }, [campusMap, school.moeCode, school.province])
+  }, [campusMap, school.moeCode, school.province, campusRetry])
 
   return (
     <main className="min-h-screen app-canvas text-fog-100">
@@ -223,7 +219,7 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
                 {regularChannelState === 'comprehensive_dominant'
                   && `對${candidateProvince}考生：主要走綜合評價（須另行報名+校測）。章程另寫「部分省份試點普通本科批次錄取」，但沒公布是哪些省，所以這裡不替你排除——要確認請查你所在省當年的招生計劃。`}
                 {regularChannelState === 'regular'
-                  && `對${candidateProvince}考生：有填志願即可投檔的常規批次。`}
+                  && `對${candidateProvince}考生：本輪沒有足夠依據排除常規志願管道；仍請核對所在省當年招生計劃。`}
               </p>
               {admissionChannels.notes && (
                 <p className="text-xs text-fog-500 leading-relaxed">{admissionChannels.notes}</p>
@@ -278,7 +274,8 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
             </div>
           )}
 
-          {!hasCampusResolution && (
+          {campusLoadError && <p role="alert">校區資料暫時載入失敗，尚不能判定是否有資料。<button onClick={() => { setCampusLoadError(false); setCampusRetry((n) => n + 1) }}>重試校區資料</button></p>}
+          {!hasCampusResolution && !campusLoadError && (
             <p className="text-xs text-fog-500 leading-relaxed">正在載入校區資料…</p>
           )}
 
@@ -347,7 +344,7 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
           </div>
           <p className="text-xs text-fog-500 leading-relaxed">
             未填 = 眾包暫未覆蓋，引擎不會以該維度排除此校。
-            只有 1 個人填答的值標為橙色：它會展示，但不拿去做硬排除——1 票和 40 票一致不該有同樣的分量。
+            只有 1 個條有效填答的值標為橙色：它會展示，但不拿去做硬排除——1 票和 40 票一致不該有同樣的分量。
             點擊每張卡片補一條數據到 GitHub。
           </p>
           <div className="grid sm:grid-cols-2 gap-3">
@@ -378,7 +375,7 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
                       ].join(' ')}
                     >
                       {evidence.source === 'crowd'
-                        ? `${evidence.sampleSize} 人填答 · ${evidence.winningVotes} 票一致${filterable ? '' : ' · 證據不足，不參與排除'}`
+                        ? `${evidence.sampleSize} 條有效填答 · ${evidence.winningVotes} 票一致${filterable ? '' : ' · 證據不足，不參與排除'}`
                         : '官方依據'}
                     </span>
                   )}

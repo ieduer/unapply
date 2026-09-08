@@ -90,7 +90,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
     // campusFreshmanPolicy 目前 0/2919 有值，separate_freshman 沒有任何數據源，
     // 「不接受大一單獨分校區」這個選項因此在界面上是隱藏的。
     // 補數據的入口是 campus_official_overrides.csv 的 freshmanOnly 欄位。
-    reservedValues: ['separate_freshman'],
+    reservedValues: ['separate_freshman', 'suburb'],
     authoritativeSources: [
       { title: '各校官網「校區概況」', url: 'https://gaokao.chsi.com.cn/' },
     ],
@@ -102,15 +102,14 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
     label: '額外報名與校測門檻',
     section: 'A_redline',
     values: ['regular_gaokao', 'comprehensive_eval', 'comprehensive_dominant', 'art_exam', 'sports_test', 'military_police', 'navigation_flight'],
+    reservedValues: ['art_exam', 'sports_test', 'military_police', 'navigation_flight'],
     authoritativeSources: [
       { title: '教育部全國普通高等學校名單（院校類型 / 校名）', url: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202506/t20250627_1195683.html' },
       { title: '陽光高考（藝術 / 體育 / 軍警等特殊招生信息）', url: 'https://gaokao.chsi.com.cn/' },
-      { title: '南方科技大學 2025 年本科招生章程', url: 'https://sustech.edu.cn/uploads/files/2025/11/19155008_56838.pdf' },
-      { title: '上海科技大學 2025 年本科招生章程', url: 'https://www.shanghaitech.edu.cn/2025/0519/c1001a1111080/page.htm' },
       { title: '中國科學院大學 2026 年本科招生章程', url: 'https://admission.ucas.ac.cn/ShowArticle/Article/4719aea6-edb5-4446-9f2d-cbcc771da521/3ecb7777-078d-42bd-b474-408693b74a94' },
     ],
     coverage: 'mixed',
-    notes: '藝術/體育/軍警/航海四類用院校類型與校名保守推導；comprehensive_eval（該省只走綜合評價、須另行報名+校測）只認各校招生章程，逐省逐年記錄在 data/research/admission_channels.*.csv。'
+    notes: '藝術/體育/軍警/航海的校名提示不參與整校排除，四個硬篩選值保留待逐省逐年官方依據；comprehensive_eval（該省只走綜合評價、須另行報名+校測）只認各校招生章程，逐省逐年記錄在 data/research/admission_channels.*.csv。'
       + 'comprehensive_dominant 是第三態：章程寫明「另在部分省份試點普通本科批次錄取」但沒公布名單（南方科技大學 2026 即如此），只在卡片上提示、不參與任何排除。'
       + '未收錄的學校一律回到 regular_gaokao 先驗。',
   },
@@ -183,6 +182,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
   B1: {
     id: 'B1', label: '宿舍格局', section: 'B_quality',
     values: ['上床下桌', '上下鋪', '三層上下鋪'],
+    reservedValues: ['三層上下鋪'],
     authoritativeSources: [{ title: 'CollegesChat 眾包問卷', url: 'https://github.com/CollegesChat/university-information' }],
     coverage: 'crowdsourced',
   },
@@ -250,7 +250,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
   B12: {
     id: 'B12', label: '斷電斷網', section: 'B_quality',
     // 眾包問卷的自由文本從未歸一化出這個取值。
-    reservedValues: ['週末不斷'],
+    reservedValues: [],
     values: ['不斷', '午夜後斷', '22點前斷', '21點前斷', '每晚斷電', '每晚斷網', '週末不斷'],
     authoritativeSources: [{ title: 'CollegesChat 眾包問卷', url: 'https://github.com/CollegesChat/university-information' }],
     coverage: 'crowdsourced',

@@ -22,13 +22,13 @@ export function mountUnapplyIdentity() {
   if (typeof window === 'undefined' || window.__unapplyIdentityMounted) return;
   if (window.BdfzIdentity?.mount) {
     window.__unapplyIdentityMounted = true;
-    window.BdfzIdentity.mount({ siteKey: SITE_KEY });
+    try { window.BdfzIdentity.mount({ siteKey: SITE_KEY }); } catch { /* Optional widget must not block content. */ }
   } else {
     // 外部腳本異步載入的兜底重試
     window.addEventListener('load', () => {
       if (window.BdfzIdentity?.mount && !window.__unapplyIdentityMounted) {
         window.__unapplyIdentityMounted = true;
-        window.BdfzIdentity.mount({ siteKey: SITE_KEY });
+        try { window.BdfzIdentity.mount({ siteKey: SITE_KEY }); } catch { /* Optional widget must not block content. */ }
       }
     });
   }
