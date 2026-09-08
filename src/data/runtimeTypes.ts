@@ -7,6 +7,11 @@ export interface QualityEvidenceMeta {
   confidence: 'high' | 'medium' | 'low'
   sampleSize: number
   winningVotes: number
+  classifiedSampleSize?: number
+  unclassifiedResponses?: number
+  valueCounts?: Record<string, number>
+  scope?: 'school' | 'campus' | 'unverified'
+  year?: number
 }
 
 export interface ResearchEvidence {

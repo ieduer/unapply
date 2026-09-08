@@ -23,3 +23,23 @@ Current objective: 先發布確證改善，後續依原裁定補資料與省份�
 資源：專案 /Users/ylsuen/CF/sites/interactive/unapply，GitHub ieduer/unapply@master；已推送的來源與 immutable Pages deployment 為還原權威。報告與既有 dist / .wrangler / node_modules/.tmp 保留熱狀態（owner suen，複查2026-10-08）；私有manifest列確切路徑/大小，任務暫存與隔離Chrome於收尾刪除。不刪原始問卷或既有來源。重建用 Node24.18.0 的 npm run build（已有鎖定依賴）；還原源碼可在經容量/manifest核准的 absent path 用 git clone --branch master https://github.com/ieduer/unapply.git <ABSENT_PATH>，再核對 git cat-file -t aff7c2a56a57e02d7d9054ead7ebd3c007314c9f 與 package-lock.json。既有不可變上一版可直接回滾，無需hydrate。
 
 Ownership: 發布與驗證完成；reports/agent_action_log.jsonl closeout 為交接權威。
+
+## 2026-09-08 中山大學B9誤排確認（待修）
+
+[原因裁定](/Users/ylsuen/CF/reports/operations/20260908-unapply-sysu-metro-check/README.md)：舊/新引擎151選項×31省共4681比較，唯一新增排除為B9步行15分鐘內。中大131條問卷中，33條過度推斷的近地鐵票變未知後，可歸一分母57→24，原有13條無地鐵票勝出；校區混票被錯當全校結論。官方2026-09-07南校园公告證實步行約5分鐘到中大站。判定為aff7c2a引入的回歸，不是新官方事實；原九閘未驗到這類語義問題。此次僅核查，未改產品或部署，現行18a2c95b/sourceaff7c2a、回滾ddbda44d/source4925d96不變。建議B9未有校區證據的眾包只展示；全池模擬硬資料1290→4、walkable排除1215→0，會觸發選項隱藏，須連同問卷資訊呈現處理。中大不加白名單，所有校區也不能一律填有地鐵。報告/evidence留熱，suen複查2026-10-08。
+
+
+## 2026-09-08 生活回報適用範圍修復：串行接續檢查點
+
+中山大學 B9 回歸已定位為匿名回報分母縮小與校區混用。全24項生活資料完成風險盤點，本地已改為未核實校區／年份的回報僅供參考，新增吉林大學2026全校宿舍空調官方補證。資料生成與型別檢查通過；回歸測試、其餘官方網址核對、九道閘門及新版部署尚未完成。當前線上仍為18a2c95b/sourceaff7c2a，也是待發布修復的回滾錨點。
+
+依第二次上下文壓縮接續規則暫停本線程產品改動，完整範圍、授權、髒樹、暫存路徑與接續責任見 `/Users/ylsuen/CF/reports/operations/20260908-unapply-crowd-scope-repair/HANDOFF.md`。使用者已授權核查無誤後部署，不需再次徵求發布批准。這是未完成工作接續，不是驗收或發布紀錄。
+
+
+## 2026-09-08 生活證據修復候選（發布前）
+
+單線程接續原授權。匿名生活回報只供參考，保留全分母、分布、平票與未知；B硬排除要求當年度、整校、完整選項語義及逐校官方來源。中大B9不再被混校區票數排除；吉大只確認宿舍空調，教室未知，未填「都有」。修正三校無時間證據的地鐵推定及兩個過期網址，保留B全部來源到runtime JSON。現可出題15項，B24項暫緩；結果會保留部分不符合生活偏好的學校。
+
+九閘與60 filters + 2 evidence + 7 trusted通過；4681逐選項逐省比較無新增排除、非B無變動，Chrome本機來源/分母/31省A6/儲存與rAF禁用/目錄和校區503重試通過。最終文字與對比調整後再核對驗證產物。發布前線上18a2c95b/sourceaff7c2a不變，也是本次回滾。CAPABILITY_FIT: no-new-capability；固定Node24.18.0、Wrangler4.100.0，無新增綁定或hub/AnswerMap/RPC變更。
+
+A2第三方城市榜單與預設、E省級推導、C5缺項作负面證據、證據服務未帶candidateProvince及真實認證寫入/中央投影/重載驗收仍未完成；原43維全面準確性未通過裁定保留。依據：`/Users/ylsuen/CF/reports/operations/20260908-unapply-crowd-scope-repair/`。本輪原始問卷仍為既有0aa4c193，未拉取/複製/刪除。報告與來源retain_hot供現行版本復核，owner suen、複查2026-10-08；精確資源清理見私有manifest。

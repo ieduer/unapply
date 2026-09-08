@@ -14,7 +14,7 @@ const runtimeManifestPath = path.join(repoRoot, 'src', 'data', 'runtimeManifest.
 const provincePortalsPath = path.join(repoRoot, 'src', 'data', 'provinceAdmissionPortals.ts')
 const campusBucketsPath = path.join(repoRoot, 'src', 'data', 'campusProvinceBuckets.ts')
 
-const evidenceDimensions = new Set(['A5', 'B9', 'C5'])
+const evidenceDimensions = new Set(['A5', 'C5', ...Array.from({ length: 24 }, (_, i) => `B${i + 1}`)])
 
 function toJson(value: unknown): string {
   return JSON.stringify(value)

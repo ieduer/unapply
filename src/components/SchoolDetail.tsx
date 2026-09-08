@@ -334,7 +334,7 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
 
         <div className="flex flex-col gap-4">
           <div className="flex items-baseline justify-between gap-4">
-            <h2 className="serif text-xl">24 維生活質量 · 眾包</h2>
+            <h2 className="serif text-xl">24 維生活資料 · 回報與官方補充</h2>
             <a
               href={contribHref(school.id, 'B1')}
               className="mono text-xs text-accent-500 hover:text-accent-400 shrink-0"
@@ -344,7 +344,7 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
           </div>
           <p className="text-xs text-fog-500 leading-relaxed">
             未填 = 眾包暫未覆蓋，引擎不會以該維度排除此校。
-            只有 1 個條有效填答的值標為橙色：它會展示，但不拿去做硬排除——1 票和 40 票一致不該有同樣的分量。
+            匿名回報未核對校區與觀察年份，只供參考；票數再多也不代表整校都如此。
             點擊每張卡片補一條數據到 GitHub。
           </p>
           <div className="grid sm:grid-cols-2 gap-3">
@@ -354,10 +354,11 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
               const val = Array.isArray(rawValue) ? rawValue.join(' / ') : rawValue
               const evidence = school.qualityEvidence?.[d]
               const filterable = val != null && isHardFilterableQuality(school, d)
+              const crowdValues = Object.entries(evidence?.valueCounts ?? {})
+              const sources = school.researchEvidence?.[d] ?? []
               return (
-                <a
+                <div
                   key={d}
-                  href={contribHref(school.id, d)}
                   className="bg-ink-900 border border-ink-800 rounded-lg p-4 block hover:border-accent-600 transition-colors group"
                 >
                   <div className="flex items-baseline justify-between gap-2">
@@ -365,26 +366,32 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
                     <span className="mono text-[10px] text-fog-500">{d}</span>
                   </div>
                   <p className={['mt-2 text-sm', val ? 'text-fog-100' : 'text-fog-500 italic'].join(' ')}>
-                    {val ?? '待補充 · 點此貢獻'}
+                    {evidence?.source === 'crowd' && crowdValues.length > 1 ? '回報不一致' : evidence?.source === 'crowd' && val ? `未核實回報：${val}` : val ?? '待補充'}
                   </p>
-                  {val != null && evidence && (
+                  {evidence && (
                     <span
                       className={[
                         'mt-2 inline-block text-[10px] mono',
-                        filterable ? 'text-fog-500' : 'text-amber-400/80',
+                        filterable ? 'text-fog-500' : 'text-fog-300',
                       ].join(' ')}
                     >
                       {evidence.source === 'crowd'
-                        ? `${evidence.sampleSize} 條有效填答 · ${evidence.winningVotes} 票一致${filterable ? '' : ' · 證據不足，不參與排除'}`
-                        : '官方依據'}
+                        ? `${evidence.sampleSize} 條填答 · ${evidence.classifiedSampleSize ?? evidence.sampleSize} 條可歸一 · 僅供參考`
+                        : `${evidence.scope === 'school' ? '整校官方依據' : '校區官方資料，不作整校排除'}${evidence.year ? ` · ${evidence.year}` : ''}`}
                     </span>
                   )}
-                  {meta.authoritativeSources[0] && (
-                    <span className="mt-2 block text-[10px] mono text-fog-500 truncate">
-                      {meta.authoritativeSources[0].title.slice(0, 20)}
-                    </span>
+                  {evidence?.source === 'crowd' && (
+                    <p className="mt-2 text-xs text-fog-500">{crowdValues.map(([value, votes]) => value + '：' + votes + '票').join('；')}；無法判讀：{evidence.unclassifiedResponses ?? 0}條</p>
                   )}
-                </a>
+                  {evidence?.source === 'crowd' && <p className="mt-2 text-xs text-fog-500">來源：CollegesChat 匿名問卷；校區與觀察年份未核實</p>}
+                  {sources.map((source, i) => (
+                    <div key={source.url + i} className="mt-2 text-xs text-fog-500">
+                      <a className="text-accent-500 underline" href={source.url} target="_blank" rel="noreferrer noopener">{source.title}</a>
+                      <p>{source.date ?? '來源日期未標明'} · {source.note}</p>
+                    </div>
+                  ))}
+                  <a className="mt-3 inline-block text-xs text-accent-500" href={contribHref(school.id, d)}>補充資料 →</a>
+                </div>
               )
             })}
           </div>
@@ -393,7 +400,7 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
         <footer className="pt-6 border-t border-ink-800 text-xs mono text-fog-500 leading-relaxed">
           <p>權威來源：教育部名單 · 氣象局氣候分區 · 生態環境部 · 城市軌道交通協會 · 第一財經。</p>
           <p className="mt-1">眾包來源：CollegesChat · 用戶貢獻（CC BY-NC-SA 4.0）。</p>
-          <p className="mt-1">所有維度展示為中性事實，勸退與否由用戶自己的偏好決定。</p>
+          <p className="mt-1">匿名回報可能分歧；請核對適用校區、年份與逐項來源。</p>
         </footer>
       </section>
     </main>

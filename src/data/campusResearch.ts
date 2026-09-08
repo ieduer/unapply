@@ -62357,7 +62357,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
 };
 
 export const campusResearchMeta = {
-  "generatedAt": "2026-09-08T14:25:48.510Z",
+  "generatedAt": "2026-09-08T23:15:46.367Z",
   "input": "data/research/campus_locations.2026-04-21.csv",
   "counts": {
     "campusRows": 3396,

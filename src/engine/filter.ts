@@ -9,19 +9,20 @@ import { getEnvironment } from '../data/environment';
 import { getVerifiedAdmissionTracks } from '../lib/schoolProfile';
 import type { AdmissionContext } from '../lib/schoolProfile';
 
-// 眾包生活數據的硬篩選門檻。
-//
-// chooseCrowdValue 的 'low' 等價於「該值只有 1 個匿名回答支持」（2 票平手會直接
-// 作廢）。在此之前，1 個人的回答和 40 個人的一致回答擁有完全相同的排除權力，
-// 而且因為缺失值走疑罪從無，結果是「被填答得越完整的學校越容易被劃掉」——
-// 這是系統性偏差，不是噪音。低置信度值一律降級為展示用，不進硬篩選。
+// 匿名生活回報缺少校區與觀察年份，票數不能證明適用整所學校。
+// B 系硬排除只接受當年度、明確覆蓋整校的官方結論；其餘保留供閱讀。
 export const HARD_FILTER_MIN_CONFIDENCE = 'medium' as const;
 
 export function isHardFilterableQuality(school: School, dim: DimensionId): boolean {
   const meta = school.qualityEvidence?.[dim];
-  if (!meta) return false;             // 缺少證據的值只能展示
-  if (meta.source !== 'crowd') return true;   // 官方/權威來源不受票數門檻限制
-  return meta.confidence !== 'low';
+  if (!meta) return false;
+  if (dim.startsWith('B')) {
+    return meta.source !== 'crowd' && meta.scope === 'school'
+      && meta.year === new Date().getUTCFullYear()
+      && Boolean(school.researchEvidence?.[dim]?.some(e => /^https:\/\//.test(e.url)));
+  }
+  if (meta.source === 'crowd') return false;
+  return true;
 }
 
 // 篩選上下文：目前只有考生省份，用來讓 A6 逐省判定招生管道。

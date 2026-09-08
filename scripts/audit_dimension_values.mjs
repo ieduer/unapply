@@ -94,8 +94,8 @@ for (const question of allQuestions) {
       notes.push(`${question.id}/${option.key}「${option.label}」排除 0 所，但引用的全是 reserved 值，符合预期`);
     } else if (allBelowThreshold) {
       belowThreshold.push(
-        `${question.id}/${option.key}「${option.label}」排除 0 所：引用的值只有单票证据，`
-        + `等众包样本变多会自动恢复`,
+        `${question.id}/${option.key}「${option.label}」排除 0 所：引用的值没有满足整校范围与年度证据门槛，`
+        + `须补足适用范围与年度依据，不能只靠增加票数恢复`,
       );
     } else {
       issues.push(

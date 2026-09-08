@@ -1,3 +1,4 @@
+import { EvidenceNotice } from './EvidenceNotice'
 import { useMemo, useRef, useState } from 'react'
 import type { FilterResult, AnswerMap, ExcludeReason } from '../engine/filter'
 import { explainKept, suggestRelax, distribute } from '../engine/filter'
@@ -199,6 +200,7 @@ export function ResultPage({
       </header>
 
       <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 pb-24 sm:pt-12 flex flex-col gap-10 sm:gap-14">
+        <EvidenceNotice />
         <div className="flex flex-col gap-4">
           <p className="mono text-xs text-fog-500 uppercase tracking-[0.3em]">你的減法樣本</p>
           <h1 className="serif text-3xl sm:text-5xl leading-tight">

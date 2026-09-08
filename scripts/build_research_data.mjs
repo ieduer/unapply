@@ -198,30 +198,33 @@ function setQuality(profile, dimensionId, value, meta) {
   const incomingRank = qualitySourceRank[meta.source] ?? 0;
   const existingRank = existing ? (qualitySourceRank[existing.source] ?? 0) : -1;
   if (existingRank > incomingRank) return false;
-  profile.quality[dimensionId] = value;
+  if (value != null) profile.quality[dimensionId] = value;
   profile.qualityEvidence[dimensionId] = meta;
   return true;
 }
 
-function chooseCrowdValue(tallies) {
+function chooseCrowdValue(tallies, answeredCount) {
   const entries = Array.from(tallies.entries()).sort((left, right) => {
     if (right[1] !== left[1]) return right[1] - left[1];
     return left[0].localeCompare(right[0], 'zh-Hans-CN');
   });
-  if (entries.length === 0) return null;
-
-  const [[value, topCount], [, secondCount = 0] = []] = entries;
-  const total = entries.reduce((sum, [, count]) => sum + count, 0);
-
-  if (topCount === secondCount && entries.length > 1) return null;
+  const [[value = null, topCount = 0] = [], [, secondCount = 0] = []] = entries;
+  const classified = entries.reduce((sum, [, count]) => sum + count, 0);
+  const total = answeredCount ?? classified;
+  if (total < classified) throw new Error('answered count is smaller than classified count');
+  if (total === 0) return null;
 
   let confidence = 'low';
   if (topCount >= 3 && topCount / total >= 0.6) confidence = 'high';
-  else if (topCount >= 2) confidence = 'medium';
+  else if (topCount >= 2 && topCount / total >= 0.5) confidence = 'medium';
 
   return {
-    value,
+    value: entries.length > 1 && topCount === secondCount ? null : value,
     sampleSize: total,
+    classifiedSampleSize: classified,
+    unclassifiedResponses: total - classified,
+    valueCounts: Object.fromEntries(entries),
+    scope: 'unverified',
     winningVotes: topCount,
     confidence,
   };
@@ -760,10 +763,13 @@ async function main() {
     if (b9Value) {
       setQuality(profile, 'B9', b9Value, {
         source: 'official',
+        scope: 'campus',
         confidence: 'high',
         sampleSize: 1,
         winningVotes: 1,
       });
+    }
+    if (b9Value || nearestMetroStation) {
       appendEvidence(profile, 'B9', {
         title: sourceTitle,
         url: sourceUrl,
@@ -771,8 +777,10 @@ async function main() {
         ...(confidence ? { confidence } : {}),
         ...(note ? { note } : {}),
       });
-      addCoverage(coverage, 'B9', moeCode);
-      campusOfficialB9Schools.add(moeCode);
+      if (b9Value) {
+        addCoverage(coverage, 'B9', moeCode);
+        campusOfficialB9Schools.add(moeCode);
+      }
     }
   }
   counts.campusOfficialA5Schools = campusOfficialA5Schools.size;
@@ -815,6 +823,25 @@ async function main() {
   }
   counts.disciplineSchools = disciplineBestBySchool.size;
 
+  const { DIMENSIONS } = await import(pathToFileURL(path.join(repoRoot, 'src/data/dimensions.ts')).href);
+  const officialQualityRows = await readCsvObjects(path.join(researchDir, 'quality_official_overrides.2026-09-08.csv'));
+  for (const row of officialQualityRows) {
+    const school = officialByCode.get(row.moeCode);
+    if (!school || normalizeSchoolName(row.schoolName) !== normalizeSchoolName(school.nameSimplified ?? school.name)) throw new Error('official quality school mismatch: ' + row.moeCode);
+    const dim = row.dimensionId;
+    if (!/^B([1-9]|1[0-9]|2[0-4])$/.test(dim) || !DIMENSIONS[dim]) throw new Error('invalid quality dimension');
+    const source = new URL(row.sourceUrl);
+    if (source.protocol !== 'https:' || !/\.(edu|gov)\.cn$/.test(source.hostname)) throw new Error('official quality source must be official HTTPS');
+    if (!['school', 'campus'].includes(row.scope) || !/^20[0-9]{2}$/.test(row.year) || !row.sourceDate || !row.verifiedAt) throw new Error('official quality scope/year/date required');
+    const profile = ensureProfile(profiles, row.moeCode);
+    appendEvidence(profile, dim, { title: row.sourceTitle, url: row.sourceUrl, date: row.sourceDate, confidence: 'high', note: row.notes });
+    if (row.value) {
+      if (!DIMENSIONS[dim].values.includes(row.value)) throw new Error('invalid official quality value');
+      setQuality(profile, dim, row.value, { source: 'official', scope: row.scope, year: Number(row.year), confidence: 'high', sampleSize: 1, winningVotes: 1 });
+      addCoverage(coverage, dim, row.moeCode);
+    }
+  }
+
   const collegesChatPath = await resolveCollegesChatPath();
   if (!collegesChatPath) {
     // Fail closed。以前這裡只推一條 warning 就繼續產出，結果是任何人照文檔跑一次
@@ -831,6 +858,7 @@ async function main() {
   } else {
     const rawRows = parseCsv(await fs.readFile(collegesChatPath, 'utf8'));
     const crowdTallies = new Map();
+    const answeredTallies = new Map();
     const unmatchedNames = new Set();
 
     for (const row of rawRows.slice(1)) {
@@ -846,15 +874,21 @@ async function main() {
       counts.crowdMatchedAnswers += 1;
       if (!crowdTallies.has(matchedSchool.moeCode)) crowdTallies.set(matchedSchool.moeCode, new Map());
       const schoolTallies = crowdTallies.get(matchedSchool.moeCode);
+      if (!answeredTallies.has(matchedSchool.moeCode)) answeredTallies.set(matchedSchool.moeCode, new Map());
+      const schoolAnswered = answeredTallies.get(matchedSchool.moeCode);
+      const countAnswer = (dim, raw) => { if (raw.trim()) schoolAnswered.set(dim, (schoolAnswered.get(dim) ?? 0) + 1); };
 
       for (const item of crowdNormalizers) {
-        const normalized = item.normalize(row[item.index] ?? '');
+        const raw = row[item.index] ?? '';
+        countAnswer(item.dimensionId, raw);
+        const normalized = item.normalize(raw);
         if (!normalized) continue;
         if (!schoolTallies.has(item.dimensionId)) schoolTallies.set(item.dimensionId, new Map());
         const dimTallies = schoolTallies.get(item.dimensionId);
         dimTallies.set(normalized, (dimTallies.get(normalized) ?? 0) + 1);
       }
 
+      countAnswer('B24', (row[29] ?? '') + (row[30] ?? ''));
       const curfew = normalizeCurfew(row[29] ?? '', row[30] ?? '');
       if (curfew) {
         if (!schoolTallies.has('B24')) schoolTallies.set('B24', new Map());
@@ -868,11 +902,15 @@ async function main() {
 
     for (const [moeCode, schoolTallies] of crowdTallies.entries()) {
       const profile = ensureProfile(profiles, moeCode);
-      for (const [dimensionId, tallies] of schoolTallies.entries()) {
-        const chosen = chooseCrowdValue(tallies);
+      for (const [dimensionId, answeredCount] of answeredTallies.get(moeCode).entries()) {
+        const chosen = chooseCrowdValue(schoolTallies.get(dimensionId) ?? new Map(), answeredCount);
         if (!chosen) continue;
         const written = setQuality(profile, dimensionId, chosen.value, {
           source: 'crowd',
+          classifiedSampleSize: chosen.classifiedSampleSize,
+          unclassifiedResponses: chosen.unclassifiedResponses,
+          valueCounts: chosen.valueCounts,
+          scope: chosen.scope,
           confidence: chosen.confidence,
           sampleSize: chosen.sampleSize,
           winningVotes: chosen.winningVotes,
@@ -881,12 +919,28 @@ async function main() {
           counts.crowdValuesRejectedByOfficial += 1;
           continue;
         }
+        if (chosen.value == null) continue;
         counts.crowdValuesAccepted += 1;
         counts[`crowdValues${chosen.confidence[0].toUpperCase()}${chosen.confidence.slice(1)}`] += 1;
         addCoverage(coverage, dimensionId, moeCode);
       }
     }
   }
+
+  for (const profile of profiles.values()) {
+    for (const [dim, meta] of Object.entries(profile.qualityEvidence)) {
+      if (profile.quality[dim] == null) continue;
+      const hard = meta.source !== 'crowd' && (!dim.startsWith('B') ||
+        (meta.scope === 'school' && meta.year === new Date().getUTCFullYear() && profile.evidence[dim]?.some(e => /^https:\/\//.test(e.url))));
+      counts[hard ? 'hardFilterableValues' : 'displayOnlyValues'] += 1;
+    }
+  }
+  await fs.writeFile(path.join(repoRoot, 'src/data/researchSummary.ts'),
+    '// Generated by build_research_data.mjs.\nexport const researchSummary = ' + JSON.stringify({
+      crowdMatchedSchools: counts.crowdMatchedSchools,
+      crowdValuesAccepted: counts.crowdValuesAccepted,
+      provincePortals: counts.provincePortals,
+    }, null, 2) + ';\nexport const contributionHighlights = [\n  "宿舍、空調、洗澡、假期",\n  "門禁、外賣、快遞、地鐵",\n  "校區位置、分校區、招生入口",\n];\n');
 
   const schoolResearchProfilesByMoeCode = Object.fromEntries(
     Array.from(profiles.entries())
@@ -925,23 +979,11 @@ async function main() {
   );
 
   const output = `// Generated by scripts/build_research_data.mjs. Do not edit by hand.\n`
-    + `// Inputs: school_websites.2026-04-21.csv, laosheng_school_profiles.2026-04-22.csv, github_school_profiles.2026-04-21.csv, campus_official_overrides.2026-04-21.csv, province_portals.2026-04-21.csv, discipline_eval.4th.csv, sino_foreign_programs.2026-04-21.csv${collegesChatPath ? `, ${path.basename(collegesChatPath)}` : ''}\n\n`
+    + `// Inputs: school_websites.2026-04-21.csv, laosheng_school_profiles.2026-04-22.csv, github_school_profiles.2026-04-21.csv, campus_official_overrides.2026-04-21.csv, quality_official_overrides.2026-09-08.csv, province_portals.2026-04-21.csv, discipline_eval.4th.csv, sino_foreign_programs.2026-04-21.csv${collegesChatPath ? `, ${path.basename(collegesChatPath)}` : ''}\n\n`
     + `import type { DimensionId } from './dimensions';\n`
     + `import type { CampusType, SchoolOwnership, TuitionRange } from './schools';\n\n`
-    + `export type QualitySourceKind = 'official' | 'authoritative' | 'crowd';\n\n`
-    + `export interface QualityEvidenceMeta {\n`
-    + `  source: QualitySourceKind;\n`
-    + `  confidence: 'high' | 'medium' | 'low';\n`
-    + `  sampleSize: number;\n`
-    + `  winningVotes: number;\n`
-    + `}\n\n`
-    + `export interface ResearchEvidence {\n`
-    + `  title: string;\n`
-    + `  url: string;\n`
-    + `  date?: string;\n`
-    + `  confidence?: 'high' | 'medium' | 'low';\n`
-    + `  note?: string;\n`
-    + `}\n\n`
+    + `import type { QualityEvidenceMeta, ResearchEvidence } from './runtimeTypes';\n`
+    + `export type { QualitySourceKind, QualityEvidenceMeta, ResearchEvidence } from './runtimeTypes';\n\n`
     + `export interface SchoolResearchProfile {\n`
     + `  website?: string;\n`
     + `  admissionWebsite?: string;\n`
@@ -975,6 +1017,7 @@ async function main() {
         laoshengProfiles: 'data/research/laosheng_school_profiles.2026-04-22.csv',
         githubProfiles: 'data/research/github_school_profiles.2026-04-21.csv',
         campusOfficialOverrides: 'data/research/campus_official_overrides.2026-04-21.csv',
+        qualityOfficialOverrides: 'data/research/quality_official_overrides.2026-09-08.csv',
         provincePortals: 'data/research/province_portals.2026-04-21.csv',
         disciplineEval: 'data/research/discipline_eval.4th.csv',
         cooperativePrograms: 'data/research/sino_foreign_programs.2026-04-21.csv',
@@ -1006,6 +1049,6 @@ async function main() {
   console.log(`discipline schools: ${counts.disciplineSchools}`);
 }
 
-export { crowdNormalizers, normalizeCurfew };
+export { crowdNormalizers, normalizeCurfew, chooseCrowdValue };
 
 if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url) await main();

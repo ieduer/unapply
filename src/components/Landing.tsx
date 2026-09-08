@@ -1,3 +1,4 @@
+import { EvidenceNotice } from './EvidenceNotice'
 import {
   officialSchoolCount,
   officialUndergraduateCount,
@@ -52,16 +53,18 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
           <span className="text-xs mono text-fog-500">按當前有效數據動態出題 · 可隨時跳過</span>
         </div>
 
+        <EvidenceNotice />
+
         <div className="grid border-y border-ink-800 bg-ink-900/70 backdrop-blur-xl sm:grid-cols-3">
           <MetricCard
             label="眾包覆蓋學校"
             value={researchSummary.crowdMatchedSchools.toLocaleString()}
-            detail="已有宿舍、假期、門禁等真實校園數據"
+            detail="有匿名回報可供核對，不代表整校政策"
           />
           <MetricCard
             label="已入庫生活值"
             value={researchSummary.crowdValuesAccepted.toLocaleString()}
-            detail="CollegesChat 與後續 GitHub 審核貢獻會一起累積"
+            detail="保留來源、分歧與未知，不以票數代替核實"
           />
           <MetricCard
             label="省級權威入口"

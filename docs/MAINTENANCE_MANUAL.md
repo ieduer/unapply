@@ -10,14 +10,13 @@
 
 > 在權威學校全集中，用用戶自己的紅線做減法。
 
-因此數據和代碼都必須遵守四條硬約束：
+因此數據和代碼都必須遵守以下硬約束：
 
 1. `2919` 所普通高校主池只能來自教育部年度名單。
 2. 每次排除都必須可追溯到 `題目規則 + 用戶答案 + 學校字段`。
 3. 缺失數據不准猜，必須「疑罪從無」。
 4. 主觀或年度變動字段只能作增強層，不能污染官方主表。
-5. **證據強度決定是否有排除權**。眾包值帶樣本量；只有 1 個人填答的值照常展示，
-   但不參與硬篩選。官方章程/校方頁面的結論不受票數門檻限制，也不會被眾包覆蓋。
+5. **證據強度決定是否有排除權**。匿名生活回報不論票數都只供參考。B 類硬篩選需當年度、涵蓋整校、符合完整選項語義且帶逐校 HTTPS 來源的官方證據；校區或部分事實不能擴張為全校結論。
 6. **預設必須可被來源推翻**。「填志願就能錄取」是先驗不是結論；查到招生章程說
    本科只走綜合評價時要能改判，且逐省逐年。
 
@@ -180,7 +179,7 @@ npm run build
 3. `laosheng_school_profiles.2026-04-22.csv` 來自 `https://laosheng.top/fuwu/yuanxiao`，只用於學校官網與本科招生網補缺；它是第三方人工維護頁，不可直接拿它推導校區、地鐵距離或本科落點。
 4. `github_school_profiles.2026-04-21.csv` 來自 `DaoSword/China-Education-Data`，只用於官網/校址補缺，不可直接拿它推導校區、地鐵距離或大一校區去向。
 5. `campus_locations.2026-04-21.csv` 由 `Naptie/cn-university-geocoder`（主源）+ `ZsTs119/china-university-database` / `pg7go/The-Location-Data-of-Schools-in-China`（POI 校驗）+ `DaoSword/China-Education-Data`（校區地址補全）+ `GaoHR` 2021 全國大學信息表（僅補主校區近似坐標）聚合生成。`jtchen2k/hcu` 與 `daxue.cgsop.com` 暫只作人工核驗參考；`ramwin/china-public-data` 的高校名單基於 2017 年教育部附件，現已不再入正式管線。
-6. `campus_official_overrides.2026-04-21.csv` 是校級官方覆蓋層，只收能安全進 A5/B9 硬篩選的條目；本輪已補 9 所北京高校。
+6. `campus_official_overrides.2026-04-21.csv` 保存官方校區資料；B9 校區觀察只供參考，A5 沿用既有獨立門檻；本輪已補 9 所北京高校。
 7. `researchData.ts` 與 `campusResearch.ts` 保留為 build 側生成結果；前端實際載入的是 `public/data/runtime/*.json`。
 
 若要重放校區抽取：
@@ -200,7 +199,7 @@ npm run data:research
 2. DaoSword 只補地址，不單獨推導大一校區和地鐵距離。
 3. 百度 POI 只做坐標/行政區校驗。
 4. 低置信度記錄只展示，不拿去做硬篩選。
-5. 真正進 A5/B9 硬篩選的校級結論，必須另外寫入 `campus_official_overrides.2026-04-21.csv`。
+5. A5 官方結論寫入 `campus_official_overrides.2026-04-21.csv`；B 類整校年度結論及部分範圍備註另寫 `quality_official_overrides.2026-09-08.csv`，禁止將校區交通直接當整校 B9。
 
 ## 4. 覆蓋率與風險判讀
 
@@ -227,11 +226,10 @@ npm run audit:data
 現在強度會一路帶到前端：
 
 - 生成側：`profile.qualityEvidence[dim] = { source, confidence, sampleSize, winningVotes }`。
-- 引擎側：`isHardFilterableQuality()` 攔住 `source === 'crowd' && confidence === 'low'`
-  （等價於「贏的那個值只有 1 票」），`getSchoolDimensionValue` 對它回 `null`，走疑罪從無。
-- 展示側：學校詳情頁每張卡片顯示「N 人填答 · M 票一致」，單票的標橙色並註明不參與排除。
+- 引擎側：`isHardFilterableQuality()` 拒絕全部匿名生活回報，B類只接收當年度整校官方依據；`getSchoolDimensionValue` 對未過門檻的資料回 `null`。票數與信心標籤只供展示。
+- 展示側：學校詳情顯示全部填答數、可歸一數、分布及無法判讀數；平票與全部未知也保留。所有匿名回報標為僅供參考，逐校官方補證另列日期、適用範圍與來源。
 
-當前分佈：44,929 條眾包值 = high 22,754 / medium 11,184 / **low 10,991（24.5%）**。
+以下為舊單票門檻的歷史分佈（現已由整校/年度規則取代）：44,929 條眾包值 = high 22,754 / medium 11,184 / **low 10,991（24.5%）**。
 門檻上線後 B 系覆蓋率整體下降（例：B24 從 1,886 降到 1,597 所），這是預期的：
 損失的是本來就不該有的排除權。
 
@@ -271,7 +269,7 @@ npm run audit:data
 | 狀態 | 含義 | 處理 |
 | --- | --- | --- |
 | live | 有夠格進硬篩選的數據 | 正常 |
-| below_threshold | 有數據，但全是單票眾包 | 報告，不阻塞；樣本變多會自動恢復 |
+| below_threshold | 有回報，但缺整校範圍或年度依據 | 報告，不阻塞；僅增加票數不會恢復硬篩選 |
 | absent | 主池裡完全沒有 | **必須**寫進該維度的 `reservedValues`，否則 exit 1 |
 
 `reservedValues` 過期（值有數據了還留在聲明裡）同樣報錯。當前 23 個聲明死值，
@@ -416,3 +414,12 @@ curl -I https://nope.bdfz.net/
 發布、驗證、回滾與確切檔案：[20260908-unapply-validity-release](/Users/ylsuen/CF/reports/operations/20260908-unapply-validity-release/README.md)。原[效度裁定](/Users/ylsuen/CF/reports/operations/20260908-unapply-validity-audit/README.md)及OPTIONS保留歷史，不改寫先前未批准的事實。CAPABILITY_FIT: no-new-capability；葉子發布，無平台/共享契約變更。
 
 資源：專案 /Users/ylsuen/CF/sites/interactive/unapply，GitHub ieduer/unapply@master；已推送的來源與 immutable Pages deployment 為還原權威。報告與既有 dist / .wrangler / node_modules/.tmp 保留熱狀態（owner suen，複查2026-10-08）；私有manifest列確切路徑/大小，任務暫存與隔離Chrome於收尾刪除。不刪原始問卷或既有來源。重建用 Node24.18.0 的 npm run build（已有鎖定依賴）；還原源碼可在經容量/manifest核准的 absent path 用 git clone --branch master https://github.com/ieduer/unapply.git <ABSENT_PATH>，再核對 git cat-file -t aff7c2a56a57e02d7d9054ead7ebd3c007314c9f 與 package-lock.json。既有不可變上一版可直接回滾，無需hydrate。
+
+
+## 2026-09-08 生活證據修復候選（發布前）
+
+單線程接續原授權。匿名生活回報只供參考，保留全分母、分布、平票與未知；B硬排除要求當年度、整校、完整選項語義及逐校官方來源。中大B9不再被混校區票數排除；吉大只確認宿舍空調，教室未知，未填「都有」。修正三校無時間證據的地鐵推定及兩個過期網址，保留B全部來源到runtime JSON。現可出題15項，B24項暫緩；結果會保留部分不符合生活偏好的學校。
+
+九閘與60 filters + 2 evidence + 7 trusted通過；4681逐選項逐省比較無新增排除、非B無變動，Chrome本機來源/分母/31省A6/儲存與rAF禁用/目錄和校區503重試通過。最終文字與對比調整後再核對驗證產物。發布前線上18a2c95b/sourceaff7c2a不變，也是本次回滾。CAPABILITY_FIT: no-new-capability；固定Node24.18.0、Wrangler4.100.0，無新增綁定或hub/AnswerMap/RPC變更。
+
+A2第三方城市榜單與預設、E省級推導、C5缺項作负面證據、證據服務未帶candidateProvince及真實認證寫入/中央投影/重載驗收仍未完成；原43維全面準確性未通過裁定保留。依據：`/Users/ylsuen/CF/reports/operations/20260908-unapply-crowd-scope-repair/`。本輪原始問卷仍為既有0aa4c193，未拉取/複製/刪除。報告與來源retain_hot供現行版本復核，owner suen、複查2026-10-08；精確資源清理見私有manifest。

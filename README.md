@@ -34,6 +34,7 @@ npm run lint
 - `data/research/github_school_profiles.2026-04-21.csv`
 - `data/research/campus_locations.2026-04-21.csv`
 - `data/research/campus_official_overrides.2026-04-21.csv`
+- `data/research/quality_official_overrides.2026-09-08.csv`
 - `data/research/province_portals.2026-04-21.csv`
 - `data/research/discipline_eval.4th.csv`
 - `data/research/sino_foreign_programs.2026-04-21.csv`
@@ -44,7 +45,7 @@ npm run lint
 `laosheng_school_profiles.2026-04-22.csv` 來自 [`laosheng.top/fuwu/yuanxiao`](https://laosheng.top/fuwu/yuanxiao) 的人工維護高校名錄，只作學校官網與本科招生網補缺，不參與 A5/B9 等高風險硬篩選推導。
 `github_school_profiles.2026-04-21.csv` 來自 `DaoSword/China-Education-Data` 的高等教育寬表，只作官網/校址補缺，不參與高風險篩選維度推導。
 `campus_locations.2026-04-21.csv` 目前由以下結構化源聚合生成：`Naptie/cn-university-geocoder`（主源）+ `ZsTs119/china-university-database` / `pg7go/The-Location-Data-of-Schools-in-China`（POI 校驗）+ `DaoSword/China-Education-Data`（校區地址補全）+ `GaoHR` 2021 全國大學信息表（僅補主校區近似坐標）。`jtchen2k/hcu` 與 `daxue.cgsop.com` 暫作人工校驗輔助，不直接入自動管線；`ramwin/china-public-data` 的高校名單基於 2017 年教育部附件，現已過時，只保留參考價值。
-`campus_official_overrides.2026-04-21.csv` 是校級官方覆蓋層，只收能安全進 A5/B9 硬篩選的條目；目前收錄 9 所北京高校；效度審計移除無來源人工預設後，`A5` 可硬排除資料為 `9/2919`。
+`campus_official_overrides.2026-04-21.csv` 保存官方校區資料；B9 校區觀察只供參考，A5 沿用既有獨立門檻；目前收錄 9 所北京高校；效度審計移除無來源人工預設後，`A5` 可硬排除資料為 `9/2919`。
 
 ## 部署
 
@@ -137,3 +138,12 @@ scripts/
 ## 申訴下架
 
 學校官方認為某維度存在爭議，可發郵件至 <nope@bdfz.net>，48 小時內人工處理。
+
+
+## 2026-09-08 生活證據修復候選（發布前）
+
+單線程接續原授權。匿名生活回報只供參考，保留全分母、分布、平票與未知；B硬排除要求當年度、整校、完整選項語義及逐校官方來源。中大B9不再被混校區票數排除；吉大只確認宿舍空調，教室未知，未填「都有」。修正三校無時間證據的地鐵推定及兩個過期網址，保留B全部來源到runtime JSON。現可出題15項，B24項暫緩；結果會保留部分不符合生活偏好的學校。
+
+九閘與60 filters + 2 evidence + 7 trusted通過；4681逐選項逐省比較無新增排除、非B無變動，Chrome本機來源/分母/31省A6/儲存與rAF禁用/目錄和校區503重試通過。最終文字與對比調整後再核對驗證產物。發布前線上18a2c95b/sourceaff7c2a不變，也是本次回滾。CAPABILITY_FIT: no-new-capability；固定Node24.18.0、Wrangler4.100.0，無新增綁定或hub/AnswerMap/RPC變更。
+
+A2第三方城市榜單與預設、E省級推導、C5缺項作负面證據、證據服務未帶candidateProvince及真實認證寫入/中央投影/重載驗收仍未完成；原43維全面準確性未通過裁定保留。依據：`/Users/ylsuen/CF/reports/operations/20260908-unapply-crowd-scope-repair/`。本輪原始問卷仍為既有0aa4c193，未拉取/複製/刪除。報告與來源retain_hot供現行版本復核，owner suen、複查2026-10-08；精確資源清理見私有manifest。

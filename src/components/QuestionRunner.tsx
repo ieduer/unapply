@@ -1,3 +1,4 @@
+import { EvidenceNotice } from './EvidenceNotice'
 import { useMemo, useState, useEffect } from 'react'
 import { candidateProvinceOptions } from '../data/admissionAuthorities'
 import type { CandidateProvince } from '../data/admissionAuthorities'
@@ -129,6 +130,7 @@ export function QuestionRunner({
 
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex flex-col">
+      <div className="max-w-2xl w-full mx-auto px-4 pt-4"><EvidenceNotice /></div>
       <header className="sticky top-0 z-10 backdrop-blur bg-ink-950/80 border-b border-ink-800">
         <div className="max-w-2xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-3">
           <button
