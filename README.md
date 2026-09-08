@@ -10,6 +10,8 @@
 
 ## 開發
 
+Node 固定為 `.nvmrc` 的 24.18.0。最新部署、效度缺口與回滾見 [PROJECT_STATE.md](PROJECT_STATE.md)。
+
 ```bash
 npm install
 npm run data:schools  # 從教育部 2025 名單重建 src/data/officialSchools.ts
@@ -42,12 +44,12 @@ npm run lint
 `laosheng_school_profiles.2026-04-22.csv` 來自 [`laosheng.top/fuwu/yuanxiao`](https://laosheng.top/fuwu/yuanxiao) 的人工維護高校名錄，只作學校官網與本科招生網補缺，不參與 A5/B9 等高風險硬篩選推導。
 `github_school_profiles.2026-04-21.csv` 來自 `DaoSword/China-Education-Data` 的高等教育寬表，只作官網/校址補缺，不參與高風險篩選維度推導。
 `campus_locations.2026-04-21.csv` 目前由以下結構化源聚合生成：`Naptie/cn-university-geocoder`（主源）+ `ZsTs119/china-university-database` / `pg7go/The-Location-Data-of-Schools-in-China`（POI 校驗）+ `DaoSword/China-Education-Data`（校區地址補全）+ `GaoHR` 2021 全國大學信息表（僅補主校區近似坐標）。`jtchen2k/hcu` 與 `daxue.cgsop.com` 暫作人工校驗輔助，不直接入自動管線；`ramwin/china-public-data` 的高校名單基於 2017 年教育部附件，現已過時，只保留參考價值。
-`campus_official_overrides.2026-04-21.csv` 是校級官方覆蓋層，只收能安全進 A5/B9 硬篩選的條目；本輪先補了 9 所北京高校，讓 `A5` 覆蓋提升到 `127/2919`。
+`campus_official_overrides.2026-04-21.csv` 是校級官方覆蓋層，只收能安全進 A5/B9 硬篩選的條目；目前收錄 9 所北京高校；效度審計移除無來源人工預設後，`A5` 可硬排除資料為 `9/2919`。
 
 ## 部署
 
 ```bash
-npm run pages:deploy  # 會先 build，再 push 到 CF Pages 的 unapply 項目
+npm run pages:deploy  # 先確認乾淨且已推送，build 後再次過閘，再上傳至 Pages unapply
 ```
 
 Cloudflare 首次部署需要在 dashboard 新建 `unapply` Pages 項目並綁定 `nope.bdfz.net`。
@@ -70,7 +72,7 @@ src/
     schools.ts              # 類型 + build 側合併邏輯
     environment.ts          # 省份/城市 → 氣候、供暖、地鐵等推導
     dimensions.ts           # A/B/C/E 維度 + 權威來源鏈接
-    questions.ts            # 42 題減法問卷
+    questions.ts            # 43 題減法問卷
   engine/
     filter.ts               # 純函數篩選引擎（疑罪從無）
     coverage.ts             # 每題覆蓋率 / 最大排除能力分析
@@ -104,13 +106,13 @@ scripts/
   build_research_data.mjs   # 研究資料 → researchData.ts 生成腳本
   build_campus_research.mjs # campus_locations.csv → campusResearch.ts 生成腳本
   export_runtime_payloads.ts # researchData/campusResearch/schools → runtime JSON payload
-  audit_data_coverage.mjs   # 42 題覆蓋率審計腳本
+  audit_data_coverage.mjs   # 43 題覆蓋率審計腳本
   fetch_sources.md          # 數據採集流程 SOP
 ```
 
 ## 當前價值最高的缺口
 
-1. `A5 校區位置`：校區底稿仍是 `3396` 條記錄、覆蓋 `2732` 所學校；真正進硬篩選的校級官方覆蓋目前只有 `127/2919`，仍需持續補 `campus_official_overrides.csv` 和 `campus_locations.csv` 的本科落點字段。
+1. `A5 校區位置`：校區底稿仍是 `3396` 條記錄、覆蓋 `2732` 所學校；真正進硬篩選的校級官方覆蓋目前只有 `9/2919`，仍需持續補 `campus_official_overrides.csv` 和 `campus_locations.csv` 的本科落點字段。
 2. `C1-C4`：飲食禁忌、無障礙、LGBTQ+、外省生源目前幾乎沒有正式可用數據。
 3. `province_portals.csv`：已接入 31 個省級官方入口，但除北京外仍缺少直達分數線/計劃查詢頁。
 4. `school_websites.csv` / `laosheng_school_profiles.csv`：官網覆蓋已能補到大多數學校，但本科招生網仍偏少，尤其普通本科與高職院校。
