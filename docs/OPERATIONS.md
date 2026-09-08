@@ -8,9 +8,9 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 ## Quick start
 
-- Canonical local path: `/Users/ylsuen/CF/unapply`
+- Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Current local branch/HEAD: `master` / `0bedd2d`（未提交審計候選；線上source仍4925d96）
+- Git branch: `master`; deployed source `0352320`; documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -35,7 +35,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 
 | Resource | Live type | Readback | Detail |
 | --- | --- | --- | --- |
-| `unapply` | Pages | verified 2026-09-08 | production branch `master`; canonical deployment `18a2c95b-b5dd-4fca-bbe0-71c7f6b5c73c` |
+| `unapply` | Pages | verified 2026-09-08 | production branch `master`; canonical deployment `5df11243-e7b1-48b1-9c2f-902f9757f0ea` |
 
 ## Authority and dependencies
 
@@ -54,17 +54,17 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - External/local build inputs, archived paths, receipts, retention, and hydrate commands not stated below are `review_required` and block deletion.
 
 Catalog backup evidence:
-- Cloudflare immutable Pages deployments: current=18a2c95b-b5dd-4fca-bbe0-71c7f6b5c73c (source aff7c2a, 2026-09-08T15:10:41.514768Z), previous=ddbda44d-af57-4c7e-bc63-108188b63b88 (source 4925d96), last pre-change release=2700a82d-1239-4918-bc54-2938a585e8f8 (source 4be095d, 2026-08-26)
+- Cloudflare immutable Pages deployments: current=5df11243-e7b1-48b1-9c2f-902f9757f0ea (source0352320), previous=18a2c95b-b5dd-4fca-bbe0-71c7f6b5c73c (sourceaff7c2a), last pre-change release=2700a82d-1239-4918-bc54-2938a585e8f8 (source 4be095d, 2026-08-26)
 
 Catalog restore evidence:
-- restore previous code/assets by rolling back to production deployment ddbda44d-af57-4c7e-bc63-108188b63b88
+- restore previous code/assets by rolling back to production deployment 18a2c95b-b5dd-4fca-bbe0-71c7f6b5c73c
 
 Before deleting any local resource, satisfy the workspace path-preserving archive, remote readback, isolated restore, receipt, handbook, and project-state gates.
 
 ## Preflight and AI ownership
 
 1. Read `/Users/ylsuen/CF/AGENTS.md`, this file, `PROJECT_STATE.md`, and linked annexes.
-2. Inspect `git -C "/Users/ylsuen/CF/unapply" status --short` when Git-backed.
+2. Inspect `git -C "/Users/ylsuen/CF/sites/interactive/unapply" status --short` when Git-backed.
 3. Inspect recent `reports/agent_action_log.jsonl` ownership.
 4. Resolve the exact source, Worker/Pages/VPS/App target, domains, bindings, data, and rollback live.
 5. Append a scoped `start` row before the first mutation.
@@ -74,17 +74,17 @@ Before deleting any local resource, satisfy the workspace path-preserving archiv
 
 Detected package entrypoints (presence is not proof they currently pass):
 
-- `npm --prefix "/Users/ylsuen/CF/unapply" run build`
-- `npm --prefix "/Users/ylsuen/CF/unapply" run dev`
-- `npm --prefix "/Users/ylsuen/CF/unapply" run lint`
-- `npm --prefix "/Users/ylsuen/CF/unapply" run pages:deploy`
-- `npm --prefix "/Users/ylsuen/CF/unapply" run preview`
-- `npm --prefix "/Users/ylsuen/CF/unapply" run test:evidence`
-- `npm --prefix "/Users/ylsuen/CF/unapply" run test:trusted`
-- `npm --prefix "/Users/ylsuen/CF/unapply" run test:filters`
-- `npm --prefix "/Users/ylsuen/CF/unapply" run audit:questions`
-- `npm --prefix "/Users/ylsuen/CF/unapply" run audit:values`
-- `npm --prefix "/Users/ylsuen/CF/unapply" run audit:data`
+- `npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run build`
+- `npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run dev`
+- `npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run lint`
+- `npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy`
+- `npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run preview`
+- `npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run test:evidence`
+- `npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run test:trusted`
+- `npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run test:filters`
+- `npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run audit:questions`
+- `npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run audit:values`
+- `npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run audit:data`
 
 Data-layer entrypoints and their preconditions:
 
@@ -115,10 +115,10 @@ Also verify authentication boundaries, data read/write behavior, browser/device 
 ## Preview, deployment, and rollback
 
 Catalog deploy commands (not authorization; fresh preflight remains mandatory):
-- npm --prefix "/Users/ylsuen/CF/unapply" run pages:deploy
+- npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- curl -sS -X POST -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" "https://api.cloudflare.com/client/v4/accounts/da810f08b63347a01d3db7fd42619972/pages/projects/unapply/deployments/ddbda44d-af57-4c7e-bc63-108188b63b88/rollback"
+- curl -sS -X POST -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" "https://api.cloudflare.com/client/v4/accounts/da810f08b63347a01d3db7fd42619972/pages/projects/unapply/deployments/18a2c95b-b5dd-4fca-bbe0-71c7f6b5c73c/rollback"
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -144,7 +144,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-09-08 — production aff7c2a; all nine gates, 64 tests, live A6 Beijing 2 / Jiangsu 3, 2919 schools, health active. Exact evidence below.
+8. Last verified: 2026-09-08 — production0352320; all nine gates,69 tests, live A6 Beijing 2 / Jiangsu 3, 2919 schools, health active. Exact evidence below.
 
 ## Synchronized documentation and handoff
 
@@ -169,7 +169,7 @@ All current handoff links use `https://gk.rdfzer.com/?nope=<encoded>#advice-top`
 
 本輪資源全部retain_hot（suen、2026-10-08複查），報告含補丁、new-files備份、完整命令輸出與runtime manifest；無需hydration才能繼續本機維護，不刪原始問卷或既有來源。`CAPABILITY_FIT: no-new-capability`，無平台／共享契約變更。下一步按報告補資料與省份可信重算，單独取得站長部署批准。
 
-## 2026-09-08 已授權過渡發布（已上線）
+## 2026-09-08 已授權過渡發布（歷史，已由生活證據修復取代）
 
 站長在效度裁定後明示「如果比現在版本更靠譜些，可以先部署一版。缺失的以後再更新」。此次接受已確證的增量改善；原全站準確性未通過裁定保留，資料與語義缺口列為後續更新，不再作本次過渡發布的絕對阻塞。
 
@@ -198,11 +198,24 @@ All current handoff links use `https://gk.rdfzer.com/?nope=<encoded>#advice-top`
 
 依第二次上下文壓縮接續規則暫停本線程產品改動，完整範圍、授權、髒樹、暫存路徑與接續責任見 `/Users/ylsuen/CF/reports/operations/20260908-unapply-crowd-scope-repair/HANDOFF.md`。使用者已授權核查無誤後部署，不需再次徵求發布批准。這是未完成工作接續，不是驗收或發布紀錄。
 
+## 2026-09-08 生活證據範圍修復（已上線，當前權威）
 
-## 2026-09-08 生活證據修復候選（發布前）
+正式部署 `5df11243-e7b1-48b1-9c2f-902f9757f0ea`，來源 `03523202ac0dddc7c5c416ed36008811d8e064f9`，完成 `2026-09-08T23:18:48.600864Z`，Direct Upload/master/commit_dirty=false；runtime `8faec1133601`。發布前後Git閘門通過，39檔產物雜湊一致；正式域名和不可變URL的2919校/2919唯一教育部代碼資料SHA256均為 `0db94d09cdce2bbb6eee90388278dc190d6a35313af540e1604701a11e240413`。
 
-單線程接續原授權。匿名生活回報只供參考，保留全分母、分布、平票與未知；B硬排除要求當年度、整校、完整選項語義及逐校官方來源。中大B9不再被混校區票數排除；吉大只確認宿舍空調，教室未知，未填「都有」。修正三校無時間證據的地鐵推定及兩個過期網址，保留B全部來源到runtime JSON。現可出題15項，B24項暫緩；結果會保留部分不符合生活偏好的學校。
+中大B9不再由不同校區匿名回報誤排。生活回報的分母含所有非空填答，保留分類分布、平票與未知；57335組眾包資料中12697組沒有勝出值也保留參考。B硬排除只接受當年度、整校、符合完整選項語義並帶逐校官方HTTPS來源的證據。吉大2026官方公告只證明全校宿舍空調，不擴張成教室都有。另撤除三校無分鐘數證據的地鐵推定，修正兩個過期官方URL，所有B來源保留到runtime JSON。
 
-九閘與60 filters + 2 evidence + 7 trusted通過；4681逐選項逐省比較無新增排除、非B無變動，Chrome本機來源/分母/31省A6/儲存與rAF禁用/目錄和校區503重試通過。最終文字與對比調整後再核對驗證產物。發布前線上18a2c95b/sourceaff7c2a不變，也是本次回滾。CAPABILITY_FIT: no-new-capability；固定Node24.18.0、Wrangler4.100.0，無新增綁定或hub/AnswerMap/RPC變更。
+**代價：24項生活題暫緩硬排除，目前有效題15项；結果可能保留不符合生活偏好的學校。** 首頁、題面、結果與詳情已明示範圍、分歧及未知。沒有擴張2919校主池、改AnswerMap/RPC/Functions/共享樞紐或安裝新依賴。
 
-A2第三方城市榜單與預設、E省級推導、C5缺項作负面證據、證據服務未帶candidateProvince及真實認證寫入/中央投影/重載驗收仍未完成；原43維全面準確性未通過裁定保留。依據：`/Users/ylsuen/CF/reports/operations/20260908-unapply-crowd-scope-repair/`。本輪原始問卷仍為既有0aa4c193，未拉取/複製/刪除。報告與來源retain_hot供現行版本復核，owner suen、複查2026-10-08；精確資源清理見私有manifest。
+九閘全過，60 filters + 2 evidence + 7 trusted = 69 tests；151選項×31省的4681比較無新增排除、非B結果不變。Chrome本機與正式站均驗證中大131/24/107、吉大官方來源、A6北京2/2917與江蘇3/2916、來源連結與日期、手機無横向溢出、pageerror=0；本機另驗證停用儲存/rAF/第三方元件、目錄與校區首次503後成功重試。線上learning health前後均200/receipt active且JSON一致。這不構成真實認證寫入→中央投影→重載驗收。
+
+即時回滾：`18a2c95b-b5dd-4fca-bbe0-71c7f6b5c73c` / source `aff7c2a56a57e02d7d9054ead7ebd3c007314c9f`，已只讀核對successful production及可讀舊產物，未實際切回；用既有Pages rollback API，完成後再驗canonical、正式域名asset/catalog/health。無資料庫遷移。
+
+仍未解決：A2第三方城市榜單與預設、E省級推導、C5缺項作負面證據、證據服務未帶candidateProvince、真實認證跨端驗收，以及原裁定列出的招生/校區/學費資料缺口。原43維全面準確性未通過裁定保留。
+
+CAPABILITY_FIT: no-new-capability。Node24.18.0、Wrangler4.100.0、Pages production compatibility_date2026-04-20、APLUS_EVIDENCE→bdfz-user-center/UnapplyAPlusEvidence均不變。只做葉子站修復；既有學習與身份橋契約未變，沒有新增監控排程。
+
+資源與還原：本地來源 `/Users/ylsuen/CF/sites/interactive/unapply`，GitHub `ieduer/unapply@master` 與不可變部署 `https://5df11243.unapply.pages.dev` 是版本還原權威。原始問卷 `/tmp/university-information/questionnaires/results_desensitized.csv` 沿用現存commit `0aa4c193a302dd27c4044f510f6880e9325d79b3`，未複製/更新/刪除；重建研究資料用 `npm run data:research`，已有生成資料的版本建置用固定Node的 `npm run build`。在核准的不存在目錄可 `git clone --branch master https://github.com/ieduer/unapply.git <ABSENT_PATH>`，先 `git cat-file -t 03523202ac0dddc7c5c416ed36008811d8e064f9` 核對Git還原來源並按manifest核對檔案，再建置；不可將clone本身當還原驗收。
+
+本任務Chrome與wrangler暫存共36820KiB已清理，task root不存在，沒有本任務存活瀏覽器/伺服器。原始來源、當前生成資料、既有dist/.wrangler/node_modules/.tmp與驗證報告均retain_hot供現行版本還原與待補資料復核，owner suen、review2026-10-08；沒有本輪Drive冷資料待歸檔。精確路徑/大小/狀態見 `/Users/ylsuen/CF/reports/private/runtime-artifact-manifests/20260908-unapply-crowd-scope-repair.json`。本輪未刪任何既有來源。
+
+裁定、來源、九閘、瀏覽器、發布及清理證據：`/Users/ylsuen/CF/reports/operations/20260908-unapply-crowd-scope-repair/README.md`。文件收尾另提交推送；Pages未配置Git autobuild，因此純文件提交不改線上來源。
