@@ -16,9 +16,9 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex flex-col items-center justify-between px-5 sm:px-6 py-6 sm:py-10">
       <div
-        className="w-full max-w-5xl flex items-center justify-between text-[10px] sm:text-xs mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-fog-500"
+        className="w-full max-w-5xl flex items-center justify-between text-xs mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-fog-500"
       >
-        <span>nope.bdfz.net · v1.7</span>
+        <span>nope.bdfz.net · v1.8</span>
         <button
           onClick={onAbout}
           className="hover:text-accent-500 transition-colors min-h-[44px] -my-3 py-3 px-2"
@@ -75,7 +75,7 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
 
         <div className="border border-ink-800 bg-ink-900/78 p-5 sm:p-6 flex flex-col gap-4 backdrop-blur-xl">
           <div className="flex flex-col gap-2">
-            <p className="mono text-[11px] uppercase tracking-[0.24em] text-fog-500">用戶貢獻數據</p>
+            <p className="mono text-xs uppercase tracking-[0.24em] text-fog-500">用戶貢獻數據</p>
             <h2 className="serif text-2xl">無學生，不學校</h2>
             <p className="text-sm text-fog-400 leading-relaxed">
               既然所謂官方信息向來少⋯⋯不如，一起來；辛苦提交先進 GitHub issue，審核後再入庫。
@@ -112,7 +112,7 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
           <FooterGroup
             label="姊妹站"
             items={[
-              { href: 'https://path.bdfz.net', text: 'path · 職業減法' },
+              { href: 'https://path.bdfz.net', text: 'path · 你一定不做哪個工作' },
               { href: 'https://gk.rdfzer.com/#advice-top', text: 'gk · 高考報考' },
               { href: 'https://my.bdfz.net', text: 'my · 用戶中心' },
             ]}
@@ -134,7 +134,7 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
             ]}
           />
         </div>
-        <div className="mt-3 px-1 text-[11px] sm:text-xs mono text-fog-500 leading-relaxed opacity-70">
+        <div className="mt-3 px-1 text-xs mono text-fog-500 leading-relaxed">
           非商業公益 · CC BY-NC-SA 4.0 · 不提供志願填報建議
         </div>
       </footer>
@@ -145,7 +145,7 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
 function MetricCard({ label, value, detail }: { label: string; value: string; detail: string }) {
   return (
     <div className="border-b border-ink-800 p-4 flex flex-col gap-2 sm:border-b-0 sm:border-r sm:last:border-r-0">
-      <p className="mono text-[11px] uppercase tracking-[0.22em] text-fog-500">{label}</p>
+      <p className="mono text-xs uppercase tracking-[0.22em] text-fog-500">{label}</p>
       <p className="serif text-3xl text-fog-100">{value}</p>
       <p className="text-xs text-fog-500 leading-relaxed">{detail}</p>
     </div>
@@ -161,7 +161,7 @@ function FooterGroup({
 }) {
   return (
     <section className="border border-ink-800 sm:border-0 bg-ink-900/65 sm:bg-transparent px-4 py-3 sm:px-0 sm:py-0">
-      <p className="mono text-[11px] uppercase tracking-[0.18em] text-fog-300">{label}</p>
+      <p className="mono text-xs uppercase tracking-[0.18em] text-fog-300">{label}</p>
       <div className="mt-2 flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-x-3 sm:gap-y-1 text-xs mono text-fog-500 leading-relaxed">
         {items.map((item) => (
           <a

@@ -84,7 +84,7 @@ test("河北工業大學的211身份不得被人工樣本覆蓋", () => {
 })
 
 test("主題儲存被禁用不阻止頁面", async () => {
-  const { saveThemeState, defaultThemeState } = await import("../src/lib/theme.ts")
+  const { saveThemeState, defaultThemeState } = await import("../src/shared-ui/theme.ts")
   const previous = Object.getOwnPropertyDescriptor(globalThis, "window")
   Object.defineProperty(globalThis, "window", { configurable: true, value: { get localStorage() { throw new Error("blocked") } } })
   try { assert.doesNotThrow(() => saveThemeState(defaultThemeState)) } finally {

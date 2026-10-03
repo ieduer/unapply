@@ -1,4 +1,4 @@
-# nope.bdfz.net 維護手冊（v1.7）
+# nope.bdfz.net 維護手冊（v1.8）
 
 本手冊面向接手維護 `nope.bdfz.net` 的工程師。目標不是介紹產品，而是讓你能安全更新數據、核查覆蓋、發布上線並在必要時回滾。
 
@@ -313,16 +313,24 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 
 ### 5.1 色系
 
-- 全站顏色依賴 CSS 變量。
-- 用戶可通過右上角下方的 `色系` 面板選擇預設或自定義 accent。
-- 色系會同時管理畫布背景、卡片深淺與 accent，不再固定黑底。
-- 本地存儲鍵：`unapply.theme.v1`
+- 色系、畫布、字體與進場動畫放在 `src/shared-ui/`，與姊妹站 path.bdfz.net **逐位元組相同**
+  （`theme.css`、`theme.ts`、`ThemeCustomizer.tsx`、`tests/theme-contrast.test.ts`、`scripts/check_shared_ui.mjs`）。
+  本站自己的樣式只寫在 `src/index.css`。
+- 色系只有兩套：`紙色`（淺）與 `墨色`（深）。不提供自選強調色——任意顏色無法保證文字對比度。
+- 本地存儲鍵：`bdfz.subtraction.theme.v1`
+- `npm run test:theme` 逐一計算每套色系的對比度：文字色對畫布／卡片底 ≥ 4.5:1、按鈕文字 ≥ 4.5:1、
+  選項邊框 ≥ 3:1。不過就不發布。
+- `npm run check:shared-ui` 核對共用檔與 `manifest.json` 一致，姊妹倉庫在旁邊時一併逐檔比對。
 
-若要新增預設：
+改共用模板：
 
-1. 修改 `src/lib/theme.ts`
-2. 保證深色底與文字對比足夠
-3. `npm run build` 後目測首頁、問卷頁、結果頁
+1. 在任一站改 `src/shared-ui/` 裡的檔案，跑 `npm run test:theme`
+2. `node scripts/check_shared_ui.mjs --write` 重寫 manifest
+3. 把同樣的五個檔案與 manifest 複製到姊妹倉庫，兩邊各跑 `npm run check:shared-ui`
+4. 兩站一起發布
+
+元件裡不要用降低透明度（`opacity-*`）來表示次要或停用——用 `text-fog-500` 這類仍過對比度的字色；
+字級不低於 12px（`text-xs`）。
 
 ### 5.2 問題頁與結果頁
 
@@ -348,6 +356,8 @@ npm run audit:data
 npm run test:filters
 npm run test:evidence
 npm run test:trusted
+npm run test:theme
+npm run check:shared-ui
 ```
 
 部署後至少驗證：

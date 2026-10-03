@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App'
 import { mountUnapplyIdentity } from './lib/bdfzIdentity'
-import { applyThemeState, loadThemeState } from './lib/theme'
+import { applyThemeState, loadThemeState } from './shared-ui/theme'
 
 mountUnapplyIdentity()
 applyThemeState(loadThemeState())

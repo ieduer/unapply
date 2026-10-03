@@ -1,0 +1,9 @@
+{
+  "files": {
+    "src/shared-ui/theme.css": "07148b34cbdbaa08cd65480ad749ecff073023555abcb012d2f3991fb65e2424",
+    "src/shared-ui/theme.ts": "529f32cb586342b97f8ece64a154813bd164a41ab998e8ff8923498ffb0baa5a",
+    "src/shared-ui/ThemeCustomizer.tsx": "9937ed45ea52e6f895f5d583b0a00c69c3afd93f6f06b5cfe7765db98ba7f4c8",
+    "tests/theme-contrast.test.ts": "0e1ce7725adcaacb419b03886fa36993ad931e49654decaa9fd6a183e8519a01",
+    "scripts/check_shared_ui.mjs": "3231c5744202694351d4ac398508d89c4de4be9f2c0a17a3d2fd5730aca9c867"
+  }
+}

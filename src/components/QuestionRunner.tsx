@@ -241,7 +241,7 @@ export function QuestionRunner({
       </section>
 
       <div className="sm:hidden sticky bottom-0 left-0 right-0 z-20 bg-ink-950/95 backdrop-blur border-t border-ink-800 px-4 py-3 flex items-center justify-between gap-3">
-        <div className="mono text-[11px] text-fog-500 leading-tight">
+        <div className="mono text-xs text-fog-500 leading-tight">
           劃掉 <span className="text-accent-500 text-sm">{liveResult.stats.excludedCount}</span>
           {' / '}剩 <span className="text-fog-100 text-sm">{liveResult.stats.keptCount}</span>
         </div>

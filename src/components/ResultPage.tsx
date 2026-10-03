@@ -256,7 +256,7 @@ export function ResultPage({
                 </p>
               </div>
               <div className="flex items-center gap-2">
-                <span className="mono text-[10px] text-fog-500 uppercase tracking-[0.2em] shrink-0">考生地區</span>
+                <span className="mono text-xs text-fog-500 uppercase tracking-[0.2em] shrink-0">考生地區</span>
                 <select
                   value={candidateProvince}
                   onChange={(e) => setCandidateProvince(e.target.value as CandidateProvince)}
@@ -277,7 +277,7 @@ export function ResultPage({
                   <button onClick={() => onSchool(school.id)} className="text-left">
                     <div className="flex items-start justify-between gap-3">
                       <span className="serif text-base">{school.name}</span>
-                      <span className="mono text-[10px] text-fog-500 uppercase tracking-wider mt-1 shrink-0">
+                      <span className="mono text-xs text-fog-500 uppercase tracking-wider mt-1 shrink-0">
                         {cityTierBadge(school.cityTier)}
                       </span>
                     </div>
@@ -292,7 +292,7 @@ export function ResultPage({
                         target="_blank"
                         rel="noreferrer noopener"
                         className={[
-                          'px-3 py-2 rounded-full text-[11px] mono min-h-[40px] inline-flex items-center',
+                          'px-3 py-2 rounded-full text-xs mono min-h-[40px] inline-flex items-center',
                           link.kind === 'official'
                             ? 'bg-accent-500/12 text-accent-400 border border-accent-500/30'
                             : 'bg-ink-950 text-fog-300 border border-ink-700 hover:border-fog-500',
@@ -351,7 +351,7 @@ export function ResultPage({
                     </div>
                     <span
                       className={[
-                        'shrink-0 rounded-full px-3 py-1 text-[11px] mono border',
+                        'shrink-0 rounded-full px-3 py-1 text-xs mono border',
                         entry.kind === 'kept'
                           ? 'border-accent-500/40 text-accent-400 bg-accent-500/10'
                           : 'border-ink-700 text-fog-300 bg-ink-900',
@@ -385,7 +385,7 @@ export function ResultPage({
 
         <div className="bg-ink-900 border border-ink-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-4">
           <div>
-            <p className="mono text-[11px] uppercase tracking-[0.24em] text-fog-500">AI 志願</p>
+            <p className="mono text-xs uppercase tracking-[0.24em] text-fog-500">AI 志願</p>
             <h2 className="serif text-xl">帶著這輪減法去報考分析</h2>
             <p className="mt-2 text-sm text-fog-500 leading-relaxed">
               將本輪排除條件作為負向偏好帶入，不替代位次、投檔線和招生章程核查。
@@ -399,7 +399,7 @@ export function ResultPage({
               className="px-5 py-4 border border-accent-500/40 bg-accent-500/10 text-accent-600 rounded-xl text-sm hover:bg-accent-500/15 min-h-[56px] flex items-center justify-between gap-3"
             >
               <span>去 gk AI 志願</span>
-              <span className="mono text-[11px]">gk.rdfzer.com ↗</span>
+              <span className="mono text-xs">gk.rdfzer.com ↗</span>
             </a>
           </div>
         </div>
@@ -483,7 +483,7 @@ function TagRail({ tags }: { tags: string[] }) {
       {tags.map((tag) => (
         <span
           key={tag}
-          className="rounded-full border border-ink-700 bg-ink-950 px-3 py-1 text-[11px] text-fog-300"
+          className="rounded-full border border-ink-700 bg-ink-950 px-3 py-1 text-xs text-fog-300"
         >
           {tag}
         </span>

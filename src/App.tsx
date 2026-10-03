@@ -7,7 +7,7 @@ import {
   Suspense,
   type ReactNode,
 } from 'react'
-import { ThemeCustomizer } from './components/ThemeCustomizer'
+import { ThemeCustomizer } from './shared-ui/ThemeCustomizer'
 import { candidateProvinceOptions, defaultCandidateProvince } from './data/admissionAuthorities'
 import type { CandidateProvince } from './data/admissionAuthorities'
 import type { School } from './data/schools'

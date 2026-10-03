@@ -1,0 +1,169 @@
+/* 「減法人生」兩個姊妹站（nope.bdfz.net、path.bdfz.net）共用的版面基礎。
+   本目錄的檔案在兩個倉庫裡逐位元組相同；改這裡就要兩站一起改（npm run check:shared-ui）。
+   站點自己的樣式寫在各自的 src/index.css。 */
+
+@theme {
+  --font-serif: "HuWenMingChao", "Noto Serif TC", "Songti TC", "Songti SC", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-sans: "Space Grotesk", "Noto Sans TC", system-ui, sans-serif;
+
+  /* 預設＝「紙色」。數值與 theme.ts 的 paper 色系一致，JS 沒跑起來時頁面也是可讀的。 */
+  --color-ink-950: #fbfaf5;
+  --color-ink-900: #f3eee5;
+  --color-ink-800: #d6ccbf;
+  --color-ink-700: #938372;
+  --color-fog-500: #5f554e;
+  --color-fog-400: #574d46;
+  --color-fog-300: #463e38;
+  --color-fog-200: #38312c;
+  --color-fog-100: #231f1c;
+  --color-accent-600: #234848;
+  --color-accent-500: #2f5c5c;
+  --color-accent-400: #3d6e6e;
+}
+
+@font-face {
+  font-family: "HuWenMingChao";
+  src:
+    url("https://mx.bdfz.net/data/fonts/HuWenMingChaoTi.woff2") format("woff2"),
+    url("https://mx.bdfz.net/data/fonts/HuWenMingChaoTi.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  min-height: 100%;
+  background: var(--color-ink-950);
+  color: var(--color-fog-100);
+  font-family: var(--font-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 180ms ease, color 180ms ease;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 畫布：底圖只當紋理。遮罩用當前色系的底色蓋到九成上下，文字底下不會出現雜色。 */
+.app-canvas {
+  background-color: var(--color-ink-950);
+  background-image:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-ink-950) 96%, transparent) 0%,
+      color-mix(in srgb, var(--color-ink-950) 91%, transparent) 50%,
+      color-mix(in srgb, var(--color-ink-950) 85%, transparent) 100%
+    ),
+    url("/media/background.jpeg");
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.app-canvas::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(color-mix(in srgb, var(--color-fog-100) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-fog-100) 3%, transparent) 1px, transparent 1px);
+  background-size: 74px 74px;
+  mask-image: linear-gradient(90deg, black 0%, black 55%, transparent 100%);
+  opacity: 0.4;
+}
+
+*::selection {
+  background: color-mix(in srgb, var(--color-accent-500) 28%, transparent);
+  color: var(--color-fog-100);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1, "zero" 1;
+}
+
+.sans {
+  font-family: var(--font-sans);
+}
+
+.serif {
+  font-family: var(--font-serif);
+}
+
+.panel {
+  border: 1px solid var(--color-ink-800);
+  background: color-mix(in srgb, var(--color-ink-900) 92%, transparent);
+}
+
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-accent-500);
+  outline-offset: 2px;
+}
+
+/* 題面與頁面進場。兩條約束：
+   1. 換題靠 key 變更直接重新掛載，不等任何退場動畫——requestAnimationFrame 在背景分頁、
+      部分內嵌 webview 裡會被暫停，等動畫等於永遠等不到下一題。
+   2. 只動 transform，不動 opacity。必讀文字不能因為「動畫沒跑起來」而看不見。 */
+@keyframes question-enter {
+  from { transform: translateY(12px); }
+  to   { transform: translateY(0); }
+}
+
+.question-enter {
+  animation: question-enter 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (max-width: 720px) {
+  .app-canvas {
+    background-image:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-ink-950) 97%, transparent) 0%,
+        color-mix(in srgb, var(--color-ink-950) 94%, transparent) 62%,
+        color-mix(in srgb, var(--color-ink-950) 90%, transparent) 100%
+      ),
+      url("/media/background.jpeg");
+    background-attachment: scroll;
+    background-position: center top;
+  }
+
+  .app-canvas::before {
+    background-size: 52px 52px;
+    opacity: 0.22;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .question-enter {
+    animation: none;
+  }
+}

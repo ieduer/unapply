@@ -173,7 +173,7 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <span className="mono text-[10px] text-fog-500 uppercase tracking-[0.2em] shrink-0">考生地區</span>
+              <span className="mono text-xs text-fog-500 uppercase tracking-[0.2em] shrink-0">考生地區</span>
               <select
                 value={candidateProvince}
                 onChange={(e) => setCandidateProvince(e.target.value as CandidateProvince)}
@@ -193,7 +193,7 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
                 target="_blank"
                 rel="noreferrer noopener"
                 className={[
-                  'px-3 py-2 rounded-full text-[11px] mono min-h-[40px] inline-flex items-center',
+                  'px-3 py-2 rounded-full text-xs mono min-h-[40px] inline-flex items-center',
                   link.kind === 'official'
                     ? 'bg-accent-500/12 text-accent-400 border border-accent-500/30'
                     : 'bg-ink-900 text-fog-300 border border-ink-700 hover:border-fog-500',
@@ -294,7 +294,7 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="serif text-sm">{campus.campusName}</span>
-                    <span className="mono text-[10px] text-fog-500">
+                    <span className="mono text-xs text-fog-500">
                       {confidenceLabel[campus.confidence ?? 'low'] ?? '低置信'}
                     </span>
                   </div>
@@ -363,7 +363,7 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
                 >
                   <div className="flex items-baseline justify-between gap-2">
                     <span className="serif text-sm">{meta.label}</span>
-                    <span className="mono text-[10px] text-fog-500">{d}</span>
+                    <span className="mono text-xs text-fog-500">{d}</span>
                   </div>
                   <p className={['mt-2 text-sm', val ? 'text-fog-100' : 'text-fog-500 italic'].join(' ')}>
                     {evidence?.source === 'crowd' && crowdValues.length > 1 ? '回報不一致' : evidence?.source === 'crowd' && val ? `未核實回報：${val}` : val ?? '待補充'}
@@ -371,7 +371,7 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
                   {evidence && (
                     <span
                       className={[
-                        'mt-2 inline-block text-[10px] mono',
+                        'mt-2 inline-block text-xs mono',
                         filterable ? 'text-fog-500' : 'text-fog-300',
                       ].join(' ')}
                     >
@@ -417,7 +417,7 @@ function EnvChip({ label }: { label: string }) {
 
 function EvidenceChip({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-ink-700 bg-ink-900 px-3 py-2 text-[11px] text-fog-300">
+    <span className="inline-flex items-center rounded-full border border-ink-700 bg-ink-900 px-3 py-2 text-xs text-fog-300">
       {label}
     </span>
   )
@@ -426,7 +426,7 @@ function EvidenceChip({ label }: { label: string }) {
 function EvidenceRow({ label, items }: { label: string; items: ResearchEvidence[] }) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="mono text-[10px] text-fog-500 uppercase tracking-[0.2em]">{label}</span>
+      <span className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">{label}</span>
       <div className="flex flex-wrap gap-2">
         {items.map((item) => (
           <a
@@ -434,7 +434,7 @@ function EvidenceRow({ label, items }: { label: string; items: ResearchEvidence[
             href={item.url}
             target="_blank"
             rel="noreferrer noopener"
-            className="inline-flex max-w-full items-center rounded-full border border-ink-700 bg-ink-900 px-3 py-2 text-[11px] text-fog-300 hover:border-fog-500"
+            className="inline-flex max-w-full items-center rounded-full border border-ink-700 bg-ink-900 px-3 py-2 text-xs text-fog-300 hover:border-fog-500"
             title={item.note}
           >
             <span className="truncate">

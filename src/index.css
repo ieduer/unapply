@@ -1,107 +1,11 @@
 @import "tailwindcss";
+/* 色系、畫布、字體與進場動畫與姊妹站 path.bdfz.net 共用，見 src/shared-ui/。 */
+@import "./shared-ui/theme.css";
 
-@theme {
-  --font-serif: "HuWenMingChao", "Noto Serif TC", "Songti TC", "Songti SC", serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
-  --font-sans: "Space Grotesk", "Noto Sans TC", system-ui, sans-serif;
-
-  --color-ink-950: #fbfaf5;
-  --color-ink-900: #f4f0e8;
-  --color-ink-800: #d9d0c4;
-  --color-ink-700: #c5b7aa;
-  --color-fog-500: #8f8279;
-  --color-fog-300: #6e625b;
-  --color-fog-100: #4b433f;
-  --color-canvas-top: #fbfaf5;
-  --color-canvas-bottom: #efe9df;
-  --color-canvas-glow: #8aa3a3;
-  --color-accent-500: #8aa3a3;
-  --color-accent-400: #9eb6b5;
-  --color-accent-600: #708a8a;
-}
-
-@font-face {
-  font-family: "HuWenMingChao";
-  src:
-    url("https://mx.bdfz.net/data/fonts/HuWenMingChaoTi.woff2") format("woff2"),
-    url("https://mx.bdfz.net/data/fonts/HuWenMingChaoTi.woff") format("woff");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-
-html,
-body {
-  min-height: 100%;
-  background: var(--color-ink-950);
-  color: var(--color-fog-100);
-  font-family: var(--font-serif);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: background-color 180ms ease, color 180ms ease;
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-body {
-  margin: 0;
-}
-
-#root {
-  min-height: 100%;
-}
-
-:root {
-  color-scheme: light;
-}
-
-.app-canvas {
-  background-color: var(--color-ink-950);
-  background-image:
-    linear-gradient(90deg, rgba(251, 250, 245, 0.92) 0%, rgba(251, 250, 245, 0.78) 44%, rgba(251, 250, 245, 0.66) 100%),
-    url("/media/background.jpeg");
-  background-attachment: fixed;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.app-canvas::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(rgba(75, 67, 63, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(75, 67, 63, 0.03) 1px, transparent 1px);
-  background-size: 74px 74px;
-  mask-image: linear-gradient(90deg, black 0%, black 55%, transparent 100%);
-  opacity: 0.46;
-}
-
-*::selection {
-  background: rgba(138, 163, 163, 0.26);
-  color: #3f3935;
-}
+/* 以下是本站自己的樣式。 */
 
 .scroll-fade-mask {
   mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
-}
-
-.mono {
-  font-family: var(--font-mono);
-  font-feature-settings: "tnum" 1, "zero" 1;
-}
-
-.sans {
-  font-family: var(--font-sans);
-}
-
-.serif {
-  font-family: var(--font-serif);
-}
-
-.text-ink-950 {
-  color: #3f3935;
 }
 
 @keyframes blow-away {
@@ -120,46 +24,4 @@ body {
 
 .blow-away {
   animation: blow-away 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-button:focus-visible,
-[role="button"]:focus-visible {
-  outline: 2px solid var(--color-accent-500);
-  outline-offset: 2px;
-}
-
-@media (max-width: 720px) {
-  .app-canvas {
-    background-image:
-      linear-gradient(180deg, rgba(251, 250, 245, 0.96) 0%, rgba(251, 250, 245, 0.86) 62%, rgba(251, 250, 245, 0.76) 100%),
-      url("/media/background.jpeg");
-    background-attachment: scroll;
-    background-position: center top;
-  }
-
-  .app-canvas::before {
-    background-size: 52px 52px;
-    opacity: 0.26;
-  }
-}
-
-/* 題面進場動畫。
-   兩條刻意的約束：
-   1. 不用動畫庫的 AnimatePresence。舊寫法要等 exit 動畫跑完才換下一題的節點，
-      而那個動畫由 requestAnimationFrame 驅動——在被瀏覽器節流或暫停 rAF 的環境
-      （背景分頁、部分內嵌 webview、省電模式）裡它永遠跑不完，用戶就會一路看著
-      第 1 題的標題答完 39 題。改成 key 變更直接重新掛載，換題不依賴任何動畫。
-   2. 只動 transform，不動 opacity。題目標題和說明是必讀內容，
-      不能讓「動畫沒跑起來」變成「文字看不見」。最壞情況是它靜止在原位。 */
-@keyframes question-enter {
-  from { transform: translateY(12px); }
-  to   { transform: translateY(0); }
-}
-
-.question-enter {
-  animation: question-enter 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .question-enter { animation: none; }
 }

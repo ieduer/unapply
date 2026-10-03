@@ -21,6 +21,8 @@
     "test:evidence": "node --experimental-strip-types --test tests/learning-evidence.test.ts",
     "test:filters": "tsx --test tests/admission-channel.test.ts tests/evidence-threshold.test.ts tests/filter-validity.test.ts",
     "test:trusted": "tsx --test tests/trusted-aplus-*.test.ts",
+    "test:theme": "tsx --test tests/theme-contrast.test.ts",
+    "check:shared-ui": "node scripts/check_shared_ui.mjs",
     "preview": "vite preview",
     "pages:deploy": "npm run build && bash /Users/ylsuen/CF/scripts/git-deploy-gate.sh && npx wrangler pages deploy dist --project-name unapply --branch master --commit-dirty=false",
     "prepages:deploy": "bash /Users/ylsuen/CF/scripts/git-deploy-gate.sh"
