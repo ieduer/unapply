@@ -7,6 +7,7 @@ import {
   Suspense,
   type ReactNode,
 } from 'react'
+import { SyncNotice } from './shared-ui/SyncNotice'
 import { ThemeCustomizer } from './shared-ui/ThemeCustomizer'
 import { candidateProvinceOptions, defaultCandidateProvince } from './data/admissionAuthorities'
 import type { CandidateProvince } from './data/admissionAuthorities'
@@ -116,29 +117,7 @@ function PageLoading() {
 }
 
 function EvidenceSyncNotice({ status }: { status: UnapplyAPlusSyncStatus }) {
-  if (status.phase === 'idle') return null
-  return (
-    <div
-      role="status"
-      aria-live="polite"
-      className={`fixed bottom-4 left-1/2 z-50 w-[min(92vw,34rem)] -translate-x-1/2 rounded-xl border px-4 py-3 text-sm shadow-2xl backdrop-blur ${
-        status.phase === 'verified'
-          ? 'border-emerald-300/30 bg-emerald-950/90 text-emerald-100'
-          : status.phase === 'error'
-            ? 'border-rose-300/30 bg-rose-950/90 text-rose-100'
-            : 'border-accent-500/30 bg-ink-900/95 text-accent-400'
-      }`}
-    >
-      <span className="font-semibold">
-        {status.phase === 'verified'
-          ? '已核验'
-          : status.phase === 'error'
-            ? '核验未完成'
-            : '同步核验中'}
-      </span>
-      <span className="ml-2 opacity-80">{status.message}</span>
-    </div>
-  )
+  return <SyncNotice phase={status.phase} message={status.message} />
 }
 
 const CANDIDATE_PROVINCE_STORAGE_KEY = 'unapply.candidateProvince.v1'

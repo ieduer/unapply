@@ -1,7 +1,8 @@
 // 兩個姊妹站共用（逐位元組相同）。每個色系底下的文字都要看得清楚：
 // 低於門檻就讓測試失敗，而不是靠目測。
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { readFileSync, readdirSync, statSync } from 'node:fs'
+import { join } from 'node:path'
 import test from 'node:test'
 import { contrastRatio, themePresets } from '../src/shared-ui/theme.ts'
 
@@ -48,5 +49,25 @@ test('樣式表的預設值就是紙色，JS 沒跑起來時也可讀', () => {
   for (const [key, value] of Object.entries(paper)) {
     const name = key.replace(/([a-z]+)(\d+)/, '$1-$2')
     assert.equal(variable(name), value, name)
+  }
+})
+
+test('元件不用降低透明度或小於 12px 的字來表示次要內容', () => {
+  const root = new URL('../src', import.meta.url).pathname
+  const files: string[] = []
+  const walk = (dir: string) => {
+    for (const name of readdirSync(dir)) {
+      const full = join(dir, name)
+      if (statSync(full).isDirectory()) walk(full)
+      else if (name.endsWith('.tsx')) files.push(full)
+    }
+  }
+  walk(root)
+  assert.ok(files.length > 5)
+  for (const file of files) {
+    const source = readFileSync(file, 'utf8')
+    // 只看 className 裡的工具類；動畫庫的 opacity 屬性（裝飾層）不在此列。
+    assert.equal(/["'`\s]opacity-\d/.test(source), false, `${file}: opacity utility on content`)
+    assert.equal(/text-\[(?:\d|1[01])px\]/.test(source), false, `${file}: text below 12px`)
   }
 })

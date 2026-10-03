@@ -12,6 +12,7 @@ const FILES = [
   'src/shared-ui/theme.css',
   'src/shared-ui/theme.ts',
   'src/shared-ui/ThemeCustomizer.tsx',
+  'src/shared-ui/SyncNotice.tsx',
   'tests/theme-contrast.test.ts',
   'scripts/check_shared_ui.mjs',
 ]
