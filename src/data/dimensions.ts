@@ -41,7 +41,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
     // 教育部《全國普通高等學校名單》不含港澳台高校，主池永遠不會出現這三個值。
     reservedValues: ['香港', '澳門', '臺灣'],
     authoritativeSources: [
-      { title: '教育部全國普通高等學校名單（截至 2025-06-20）', url: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202506/t20250627_1195683.html' },
+      { title: '教育部全國普通高等學校名單（截至 2026-06-17）', url: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202606/t20260618_1441074.html' },
     ],
     coverage: 'authoritative',
   },
@@ -54,7 +54,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
       { title: '第一財經新一線城市研究所（2025 城市商業魅力榜）', url: 'https://www.yicai.com/topic/100311963/' },
     ],
     coverage: 'mixed',
-    notes: 'tier1 = 北上廣深；newtier1 = 第一財經 2025 新一線榜單 15 座；tier2 = 省會/計劃單列/重點城市映射；tier3_below = 其他地級',
+    notes: 'tier1 = 北上廣深；newtier1 = 第一財經 2025 新一線榜單 15 座（2026 年報告起不再發布城市分級，2025 版為最後一版）；tier2 = 省會/計劃單列/重點城市映射；tier3_below = 其他地級',
   },
   A3: {
     id: 'A3',
@@ -87,7 +87,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
     label: '主校區定位',
     section: 'A_redline',
     values: ['main_city', 'suburb_with_metro', 'suburb', 'separate_freshman'],
-    // campusFreshmanPolicy 目前 0/2919 有值，separate_freshman 沒有任何數據源，
+    // campusFreshmanPolicy 目前 0/2952 有值，separate_freshman 沒有任何數據源，
     // 「不接受大一單獨分校區」這個選項因此在界面上是隱藏的。
     // 補數據的入口是 campus_official_overrides.csv 的 freshmanOnly 欄位。
     reservedValues: ['separate_freshman', 'suburb'],
@@ -104,7 +104,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
     values: ['regular_gaokao', 'comprehensive_eval', 'comprehensive_dominant', 'art_exam', 'sports_test', 'military_police', 'navigation_flight'],
     reservedValues: ['art_exam', 'sports_test', 'military_police', 'navigation_flight'],
     authoritativeSources: [
-      { title: '教育部全國普通高等學校名單（院校類型 / 校名）', url: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202506/t20250627_1195683.html' },
+      { title: '教育部全國普通高等學校名單（院校類型 / 校名）', url: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202606/t20260618_1441074.html' },
       { title: '陽光高考（藝術 / 體育 / 軍警等特殊招生信息）', url: 'https://gaokao.chsi.com.cn/' },
       { title: '中國科學院大學 2026 年本科招生章程', url: 'https://admission.ucas.ac.cn/ShowArticle/Article/4719aea6-edb5-4446-9f2d-cbcc771da521/3ecb7777-078d-42bd-b474-408693b74a94' },
     ],
@@ -336,7 +336,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
   C1: {
     id: 'C1', label: '飲食／宗教', section: 'C_special',
     values: ['有清真食堂', '有素食窗口', '普通食堂'],
-    // 該題 0/2919 覆蓋，全部取值都還沒有數據；題目在界面上是隱藏的。
+    // 該題 0/2952 覆蓋，全部取值都還沒有數據；題目在界面上是隱藏的。
     reservedValues: ['有清真食堂', '有素食窗口', '普通食堂'],
     authoritativeSources: [
       { title: '中國伊斯蘭教協會清真食品認證', url: 'http://www.chinaislam.net.cn/' },
@@ -346,7 +346,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
   C2: {
     id: 'C2', label: '無障礙', section: 'C_special',
     values: ['無障礙完善', '視障輔助', '一般'],
-    // 該題 0/2919 覆蓋，全部取值都還沒有數據；題目在界面上是隱藏的。
+    // 該題 0/2952 覆蓋，全部取值都還沒有數據；題目在界面上是隱藏的。
     reservedValues: ['無障礙完善', '視障輔助', '一般'],
     authoritativeSources: [
       { title: '中國殘疾人聯合會高校無障礙建設評估', url: 'https://www.cdpf.org.cn/' },
@@ -356,7 +356,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
   C3: {
     id: 'C3', label: 'LGBTQ+ 氛圍', section: 'C_special',
     values: ['無公開事件', '學生組織被整頓', '近年壓制事件'],
-    // 該題 0/2919 覆蓋，全部取值都還沒有數據；題目在界面上是隱藏的。
+    // 該題 0/2952 覆蓋，全部取值都還沒有數據；題目在界面上是隱藏的。
     reservedValues: ['無公開事件', '學生組織被整頓', '近年壓制事件'],
     authoritativeSources: [],
     coverage: 'pending',
@@ -365,7 +365,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
   C4: {
     id: 'C4', label: '外省生源比', section: 'C_special',
     values: ['外地≥50%', '本地50-70%', '本省生源＞70%'],
-    // 該題 0/2919 覆蓋，全部取值都還沒有數據；題目在界面上是隱藏的。
+    // 該題 0/2952 覆蓋，全部取值都還沒有數據；題目在界面上是隱藏的。
     reservedValues: ['外地≥50%', '本地50-70%', '本省生源＞70%'],
     authoritativeSources: [
       { title: '各校本科招生章程（分省計劃）', url: 'https://gaokao.chsi.com.cn/' },

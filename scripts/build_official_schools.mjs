@@ -1,15 +1,31 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import * as XLSX from '@e965/xlsx';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
 
-const SOURCE_PAGE =
-  'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202506/t20250627_1195683.html';
-const ORDINARY_ATTACHMENT_FALLBACK =
-  'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202506/W020250729615142156867.xls';
+// 教育部《全國高等學校名單》年度口徑。換年度時只改這一塊，並把官方附件原檔
+// 以 `moe_ordinary_schools.<截至日期>.xls` 存進 data/research/ 後更新 SHA-256。
+const CATALOG = {
+  sourceTag: 'MOE-2026-ordinary',
+  sourcePage: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202606/t20260618_1441074.html',
+  ordinaryAttachment:
+    'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202606/W020260618416094865984.xls',
+  pinnedFile: 'data/research/moe_ordinary_schools.2026-06-17.xls',
+  pinnedSha256: '29c40f083b639888e429cf40b68f9a75782d1ce81131c99aabca65b65b36eaea',
+  sourceDate: '2026-06-17',
+  publishedDate: '2026-06-18',
+  ordinaryCount: 2952,
+  undergraduateCount: 1412,
+  vocationalCount: 1540,
+  adultCount: 244,
+  totalHigherEducationCount: 3196,
+};
+const SOURCE_PAGE = CATALOG.sourcePage;
+const ORDINARY_ATTACHMENT_FALLBACK = CATALOG.ordinaryAttachment;
 
 const C9_NAMES = new Set([
   '北京大学',
@@ -595,7 +611,7 @@ function findOrdinaryAttachment(pageHtml) {
     const around = pageHtml.slice(Math.max(0, pageHtml.indexOf(href) - 80), pageHtml.indexOf(href) + 160);
     return around.includes('普通高等学校名单');
   });
-  const href = ordinary || './W020250729615142156867.xls';
+  const href = ordinary || CATALOG.ordinaryAttachment;
   return new URL(href, SOURCE_PAGE).toString();
 }
 
@@ -633,9 +649,9 @@ function parseOrdinaryWorkbook(buffer) {
       ownership,
       mainCampusType: undefined,
       tuitionRange: inferTuitionRange(ownership),
-      sources: ['MOE-2025-ordinary'],
+      sources: [CATALOG.sourceTag],
       sourceUrl: SOURCE_PAGE,
-      updatedAt: '2025-06-20',
+      updatedAt: CATALOG.sourceDate,
     };
     Object.keys(school).forEach((key) => school[key] === undefined && delete school[key]);
     records.push(school);
@@ -652,13 +668,13 @@ function buildCatalogMeta(records, attachmentUrl) {
     source: 'MOE National Higher Education Institution List',
     sourcePageUrl: SOURCE_PAGE,
     ordinaryAttachmentUrl: attachmentUrl,
-    sourceDate: '2025-06-20',
-    publishedDate: '2025-06-27',
+    sourceDate: CATALOG.sourceDate,
+    publishedDate: CATALOG.publishedDate,
     ordinaryCount: records.length,
     undergraduateCount,
     vocationalCount,
-    adultCount: 248,
-    totalHigherEducationCount: 3167,
+    adultCount: CATALOG.adultCount,
+    totalHigherEducationCount: CATALOG.totalHigherEducationCount,
     provinceCount,
     notes:
       'Official ordinary higher education institutions only; adult institutions are counted in metadata but excluded from the filter pool.',
@@ -683,7 +699,21 @@ export const officialSchools = ${JSON.stringify(records, null, 2)} satisfies Sch
 `;
 }
 
-async function main() {
+async function loadOrdinaryWorkbook() {
+  // 官方附件原檔已存進倉庫並釘住雜湊：重建不依賴教育部網站當下是否可達，
+  // 也不會在附件被悄悄替換時無聲地換掉主表。
+  const pinnedPath = path.join(repoRoot, CATALOG.pinnedFile);
+  try {
+    const buffer = await fs.readFile(pinnedPath);
+    const sha256 = createHash('sha256').update(buffer).digest('hex');
+    if (sha256 !== CATALOG.pinnedSha256) {
+      throw new Error(`Pinned MOE attachment hash mismatch: ${sha256}`);
+    }
+    return { buffer, attachmentUrl: CATALOG.ordinaryAttachment };
+  } catch (err) {
+    if (err.code !== 'ENOENT') throw err;
+  }
+
   let attachmentUrl = ORDINARY_ATTACHMENT_FALLBACK;
   try {
     const pageHtml = await fetchText(SOURCE_PAGE);
@@ -691,11 +721,21 @@ async function main() {
   } catch (err) {
     console.warn(`Unable to resolve attachment from page, using fallback: ${err.message}`);
   }
+  return { buffer: await fetchBuffer(attachmentUrl), attachmentUrl };
+}
 
-  const buffer = await fetchBuffer(attachmentUrl);
+async function main() {
+  const { buffer, attachmentUrl } = await loadOrdinaryWorkbook();
   const records = parseOrdinaryWorkbook(buffer);
-  if (records.length !== 2919) {
-    throw new Error(`Expected 2919 ordinary schools, got ${records.length}`);
+  if (records.length !== CATALOG.ordinaryCount) {
+    throw new Error(`Expected ${CATALOG.ordinaryCount} ordinary schools, got ${records.length}`);
+  }
+  const undergraduate = records.filter((s) => s.moeLevel === '本科').length;
+  const vocational = records.filter((s) => s.moeLevel === '专科').length;
+  if (undergraduate !== CATALOG.undergraduateCount || vocational !== CATALOG.vocationalCount) {
+    throw new Error(
+      `Expected ${CATALOG.undergraduateCount} undergraduate / ${CATALOG.vocationalCount} vocational, got ${undergraduate} / ${vocational}`,
+    );
   }
   const byCode = new Set(records.map((s) => s.moeCode));
   if (byCode.size !== records.length) {

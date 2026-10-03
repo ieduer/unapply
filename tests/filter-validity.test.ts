@@ -45,7 +45,7 @@ test('校名不能證明整校沒有常規錄取管道；跨年度未知不排�
 })
 test('所有runtime排除字段與生成端相同，省份取界面選單', () => {
   const runtime = JSON.parse(fs.readFileSync(new URL('../public/data/runtime/schools.json', import.meta.url), 'utf8')) as typeof schools
-  assert.equal(runtime.length, 2919)
+  assert.equal(runtime.length, 2952)
   for (const r of runtime) {
     assert.ok(candidateProvinceOptions.includes(r.province))
     const s = schools.find(s => s.moeCode === r.moeCode)!
@@ -65,7 +65,7 @@ test('runtime請求失敗可重試；已知省份404不能冒充空校區', asyn
   globalThis.fetch = async () => { calls++; return new Response(calls === 1 ? 'error' : JSON.stringify(schools), { status: calls === 1 ? 503 : 200 }) }
   try {
     await assert.rejects(loadSchools())
-    assert.equal((await loadSchools()).length, 2919)
+    assert.equal((await loadSchools()).length, 2952)
     assert.equal(calls, 2)
     globalThis.fetch = async () => new Response('missing', { status: 404 })
     await assert.rejects(loadCampusesByProvince(candidateProvinceOptions.find(p => p === '北京')!))

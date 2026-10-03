@@ -24,7 +24,7 @@ export function AboutPage({ onBack }: Props) {
           <h1 className="serif text-3xl text-fog-100 mb-4">為什麼做減法？</h1>
           <p>
             絕大多數志願填報工具都在告訴你「該考哪」。我們不做這件事。
-            我們只陪你把不能忍的那一批劃掉，讓篩子從教育部 2025 名單的 {officialSchoolCount.toLocaleString()} 所普通高校變成剩下的幾百所。
+            我們只陪你把不能忍的那一批劃掉，讓篩子從教育部 2026 名單的 {officialSchoolCount.toLocaleString()} 所普通高校變成剩下的幾百所。
           </p>
           <p className="mt-3">
             剩下的那些，不是「我們推薦你考」的，而是「你沒有理由排除它」的。
@@ -50,7 +50,7 @@ export function AboutPage({ onBack }: Props) {
           <h2 className="serif text-2xl text-fog-100 mb-4">數據來源</h2>
           <h3 className="serif text-lg text-fog-100 mt-3 mb-2">官方／權威（年度基準）</h3>
           <ul className="flex flex-col gap-2 text-sm">
-            <li>· 教育部 2025 全國普通高等學校名單：{officialSchoolCount.toLocaleString()} 所（本科 {officialUndergraduateCount.toLocaleString()} · 高職專科 {officialVocationalCount.toLocaleString()}；成人高校 {adultHigherEducationCount.toLocaleString()} 所只作口徑說明） <a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202506/t20250627_1195683.html" target="_blank" rel="noreferrer noopener">moe.gov.cn ↗</a></li>
+            <li>· 教育部 2026 全國普通高等學校名單：{officialSchoolCount.toLocaleString()} 所（本科 {officialUndergraduateCount.toLocaleString()} · 高職專科 {officialVocationalCount.toLocaleString()}；成人高校 {adultHigherEducationCount.toLocaleString()} 所只作口徑說明） <a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202606/t20260618_1441074.html" target="_blank" rel="noreferrer noopener">moe.gov.cn ↗</a></li>
             <li>· 教育部「雙一流」建設高校名單：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.moe.gov.cn/srcsite/A22/s7065/202202/t20220211_598710.html" target="_blank" rel="noreferrer noopener">moe.gov.cn ↗</a></li>
             <li>· 教育部「985 工程」名單：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.moe.gov.cn/srcsite/A22/s7065/200612/t20061206_128833.html" target="_blank" rel="noreferrer noopener">moe.gov.cn ↗</a></li>
             <li>· 教育部第四輪學科評估（2017）：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/" target="_blank" rel="noreferrer noopener">chinadegrees.cn ↗</a></li>
@@ -72,7 +72,7 @@ export function AboutPage({ onBack }: Props) {
         <div>
           <h2 className="serif text-2xl text-fog-100 mb-4">口徑與缺失處理</h2>
           <ul className="flex flex-col gap-2 text-sm list-disc pl-5">
-            <li>教育部 2025 版口徑下，普通高校 {officialSchoolCount.toLocaleString()} 所；成人高校 {adultHigherEducationCount.toLocaleString()} 所只作口徑說明，不進篩選主池。</li>
+            <li>教育部 2026 版口徑下，普通高校 {officialSchoolCount.toLocaleString()} 所；成人高校 {adultHigherEducationCount.toLocaleString()} 所只作口徑說明，不進篩選主池。</li>
             <li>人工增強字段目前覆蓋少量重點學校，用來補英文名、校區類型和少量高價值樣本；不是官方主表。</li>
             <li>數據缺失的維度，本站採用 <b className="text-fog-100">疑罪從無</b>：不排除該校，也不猜測填空。</li>
             <li>暫時沒有實際刪減能力的題和限制選項，會先隱藏；等數據補齊後再放回問卷。具體口徑和缺口說明統一放在這裡，不打斷做題。</li>

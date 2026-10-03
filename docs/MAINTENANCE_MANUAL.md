@@ -1,4 +1,4 @@
-# nope.bdfz.net 維護手冊（v1.6）
+# nope.bdfz.net 維護手冊（v1.7）
 
 本手冊面向接手維護 `nope.bdfz.net` 的工程師。目標不是介紹產品，而是讓你能安全更新數據、核查覆蓋、發布上線並在必要時回滾。
 
@@ -12,7 +12,7 @@
 
 因此數據和代碼都必須遵守以下硬約束：
 
-1. `2919` 所普通高校主池只能來自教育部年度名單。
+1. `2952` 所普通高校主池只能來自教育部年度名單（2026 版，截至 2026-06-17）。
 2. 每次排除都必須可追溯到 `題目規則 + 用戶答案 + 學校字段`。
 3. 缺失數據不准猜，必須「疑罪從無」。
 4. 主觀或年度變動字段只能作增強層，不能污染官方主表。
@@ -23,7 +23,7 @@
 ### 1.2 當前模塊分工
 
 ```text
-src/data/officialSchools.ts   教育部 2025 普通高校主表（2919，build 側）
+src/data/officialSchools.ts   教育部 2026 普通高校主表（2952，build 側）
 src/data/researchData.ts      研究增強層（build 側；不直接進前端 chunk）
 src/data/campusResearch.ts    校區底稿（build 側；不直接進前端 chunk）
 src/data/provinceAdmissionPortals.ts  31 省官方招考入口小表（runtime）
@@ -82,6 +82,20 @@ npm run data:schools
 npm run audit:questions
 npm run build
 ```
+
+換年度（教育部每年 6 月發布新名單）：
+
+1. 把官方「全國普通高等學校名單」附件原檔存成 `data/research/moe_ordinary_schools.<截至日期>.xls`。
+2. 更新 `scripts/build_official_schools.mjs` 開頭的 `CATALOG`：來源頁、附件網址、原檔路徑與 SHA-256、
+   截至／發布日期、普通高校／本科／專科／成人／總數。腳本會逐項核對，任何一個數字對不上就 exit 1。
+3. 用新舊兩份名單按學校標識碼比對，重產 `data/research/moe_former_names.<截至日期>.csv`
+   （同碼不同名＝更名），並同步 `build_research_data.mjs` 讀取的檔名。按校名匹配的資料層
+   （眾包問卷、合作辦學名單）靠它繼續對上；舊名若已是另一所學校的現名則不收。
+4. `data:admission` 會因校名不一致而 exit 1——這是預期的閘門，把
+   `admission_channels.*.csv` 裡的校名改成新名單的寫法。
+5. 更新頁面與測試裡寫死的總數、年份與教育部連結，再跑完九道閘門。
+
+2026 版相對 2025 版：新增 40 個標識碼、撤銷 7 個、更名 55 所、37 所專科升格為本科。
 
 核查點：
 
@@ -149,6 +163,11 @@ git clone --depth=1 https://github.com/CollegesChat/university-information.git /
 任何人照文檔跑一次就會靜默清空約 2,400 所學校的 B 系眾包數據，而 `researchData.ts`
 是生成物、看不出少了什麼。要刻意產出不含眾包層的數據，顯式設 `ALLOW_MISSING_CROWD_SOURCE=1`。
 
+上游在 2026-09 把 `questionnaires/results_desensitized.csv` 拆成 `data/v1.csv` 與
+`data/v1.additions.csv`（欄位不變），並把校區寫成「校名（校區）」。腳本兩種目錄都認；
+全名對不上官方校名時會去掉結尾括號再比一次，校區回報仍併入母校、只供參考。
+另有欄位完全不同的新版問卷 `data/v2.csv`（含校區與入學年份），樣本還很少，尚未接入。
+
 上游是活的倉庫，每次 build 會把 commit 記進 `researchPipelineMeta.inputs.collegesChatSnapshot`；
 兩次 build 之間值變了幾千條時，先比這個 commit。
 
@@ -170,7 +189,8 @@ npm run build
 - `province_portals.2026-04-21.csv`
 - `discipline_eval.4th.csv`
 - `sino_foreign_programs.2026-04-21.csv`
-- `collegeschat_results_desensitized.csv` 或 `/tmp/university-information/questionnaires/results_desensitized.csv`
+- `collegeschat_results_desensitized.csv`，或 `/tmp/university-information/data/v1.csv` + `data/v1.additions.csv`（上游 2026-09 新目錄；舊路徑 `questionnaires/results_desensitized.csv` 仍相容）
+- `moe_former_names.2026-06-17.csv`（教育部同碼更名別名）
 
 注意：
 
@@ -238,7 +258,7 @@ npm run audit:data
 
 ### 4.1 當前仍屬高風險缺口
 
-- `A5 校區位置`：校區底稿已擴到 `2732` 所學校、`3396` 條記錄，但真正進硬篩選的校級官方覆蓋目前只有 `9/2919`；本輪新增北京 9 校後，`maxExcluded` 為 `3`。
+- `A5 校區位置`：校區底稿已擴到 `2732` 所學校、`3396` 條記錄，但真正進硬篩選的校級官方覆蓋目前只有 `9/2952`；新增北京 9 校後，`maxExcluded` 為 `3`。
 - `C1-C4`：幾乎 0 覆蓋，網站必須繼續提示「數據補充中」並徵集。
 - `C5 學科評估`：已從 3 所提升到 54 所，但仍只適合明確有專業方向的用戶。
 - `school_websites.csv` / `laosheng_school_profiles.csv`：最終官網覆蓋已到 `2867` 所，且已補出 `31` 所學校的本科招生網；剩下的缺口主要在普通本科與高職院校。
@@ -274,7 +294,7 @@ npm run audit:data
 
 `reservedValues` 過期（值有數據了還留在聲明裡）同樣報錯。當前 23 個聲明死值，
 分佈在 A1（港澳台不在教育部名單）、A4（精確學費區間待 tuition_programs.csv）、
-A5（`separate_freshman` 目前 0/2919，靠 campus_official_overrides 的 freshmanOnly 補）、
+A5（`separate_freshman` 目前 0/2952，靠 campus_official_overrides 的 freshmanOnly 補）、
 E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4（整題 0 覆蓋）。
 
 ### 4.4 A4 學費分桶

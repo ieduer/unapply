@@ -18,7 +18,7 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
       <div
         className="w-full max-w-5xl flex items-center justify-between text-[10px] sm:text-xs mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-fog-500"
       >
-        <span>nope.bdfz.net · v1.6</span>
+        <span>nope.bdfz.net · v1.7</span>
         <button
           onClick={onAbout}
           className="hover:text-accent-500 transition-colors min-h-[44px] -my-3 py-3 px-2"
@@ -120,7 +120,7 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
           <FooterGroup
             label="權威數據"
             items={[
-              { href: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202506/t20250627_1195683.html', text: '教育部' },
+              { href: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202606/t20260618_1441074.html', text: '教育部' },
               { href: 'https://www.cma.gov.cn/', text: '氣象局' },
               { href: 'https://www.yicai.com/topic/100311963/', text: '第一財經' },
               { href: 'https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/', text: '學科評估' },

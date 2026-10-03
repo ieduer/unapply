@@ -8,9 +8,9 @@ import {
 
 test('builds strict progress and trace records from a genuine filter result', () => {
   const evidence = buildUnapplyResultEvidence({
-    totalInput: 2919,
+    totalInput: 2952,
     keptCount: 9,
-    excludedCount: 2910,
+    excludedCount: 2943,
     answeredCount: 8,
     byQuestion: {},
   }, 'unapply-filter-canary', 'https://nope.bdfz.net/#/result');
@@ -26,15 +26,15 @@ test('builds strict progress and trace records from a genuine filter result', ()
 
 test('rejects zero-answer and internally inconsistent results', () => {
   assert.equal(buildUnapplyResultEvidence({
-    totalInput: 2919,
-    keptCount: 2919,
+    totalInput: 2952,
+    keptCount: 2952,
     excludedCount: 0,
     answeredCount: 0,
     byQuestion: {},
   }, 'empty', 'https://nope.bdfz.net/'), null);
 
   assert.equal(buildUnapplyResultEvidence({
-    totalInput: 2919,
+    totalInput: 2952,
     keptCount: 10,
     excludedCount: 2900,
     answeredCount: 2,

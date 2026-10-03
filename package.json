@@ -2,7 +2,7 @@
   "name": "unapply",
   "private": true,
   "version": "1.0.0",
-  "description": "你一定不考哪所大學 — 用減法從教育部 2025 普通高校名單中劃掉不能忍的那批",
+  "description": "你一定不考哪所大學 — 用減法從教育部 2026 普通高校名單中劃掉不能忍的那批",
   "type": "module",
   "scripts": {
     "dev": "vite",

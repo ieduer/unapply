@@ -84,7 +84,7 @@ function CatalogLoading({
         <p className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">school catalog</p>
         <h1 className="serif text-2xl">{error ? '目錄載入失敗' : '正在載入官方目錄'}</h1>
         <p className="text-sm text-fog-500 leading-relaxed">
-          {error ?? '第一次進入問卷時才載入 2919 所普通高校數據，首頁不預載完整名單。'}
+          {error ?? '第一次進入問卷時才載入 2952 所普通高校數據，首頁不預載完整名單。'}
         </p>
         <div className="flex flex-wrap gap-3">
           {error && (

@@ -1,6 +1,6 @@
 # 你一定不考 · UnApply
 
-一個對標 [path.bdfz.net](https://path.bdfz.net)（減法人生）的**學校版減法工具**：不做推薦，只陪你從教育部 2025 名單的 2919 所普通高校中劃掉一定不考的那批。
+一個對標 [path.bdfz.net](https://path.bdfz.net)（減法人生）的**學校版減法工具**：不做推薦，只陪你從教育部 2026 名單的 2952 所普通高校中劃掉一定不考的那批。
 
 - 線上：<https://nope.bdfz.net>
 - 技術棧：Vite 8 · React 19 · TypeScript · Tailwind 4 · Motion
@@ -14,7 +14,7 @@ Node 固定為 `.nvmrc` 的 24.18.0。最新部署、效度缺口與回滾見 [P
 
 ```bash
 npm install
-npm run data:schools  # 從教育部 2025 名單重建 src/data/officialSchools.ts
+npm run data:schools  # 從教育部 2026 名單（倉庫內釘住的官方附件）重建 src/data/officialSchools.ts
 npm run data:github-profiles # 從 DaoSword 高等教育寬表提取 GitHub 補充的官網/校址
 npm run data:laosheng-profiles # 從 laosheng.top 高校頁抽取官網/本科招生網補充表
 npm run data:campus-extract # 從 GitHub 校區/POI 源生成 data/research/campus_locations.2026-04-21.csv
@@ -40,7 +40,7 @@ npm run lint
 - `data/research/sino_foreign_programs.2026-04-21.csv`
 - `data/research/collegeschat_results_desensitized.csv`
 
-若項目內沒有 `collegeschat_results_desensitized.csv`，腳本會回退讀取本機 `/tmp/university-information/questionnaires/results_desensitized.csv`。
+若項目內沒有 `collegeschat_results_desensitized.csv`，腳本會回退讀取本機 `/tmp/university-information/data/v1.csv` 與 `data/v1.additions.csv`（上游 2026-09 起的新目錄；舊路徑 `questionnaires/results_desensitized.csv` 仍相容）。
 `quality_crowd*.jsonl` 目前不再提交進倉庫：現有轉換結果列錯位，且不進運行時；等後續基於原始問卷重新導出乾淨版本後再重新入庫。
 `laosheng_school_profiles.2026-04-22.csv` 來自 [`laosheng.top/fuwu/yuanxiao`](https://laosheng.top/fuwu/yuanxiao) 的人工維護高校名錄，只作學校官網與本科招生網補缺，不參與 A5/B9 等高風險硬篩選推導。
 `github_school_profiles.2026-04-21.csv` 來自 `DaoSword/China-Education-Data` 的高等教育寬表，只作官網/校址補缺，不參與高風險篩選維度推導。
@@ -63,7 +63,7 @@ src/
   App.tsx                   # 根路由（hash router）
   main.tsx
   data/
-    officialSchools.ts      # 生成文件：教育部 2025 普通高校 2919 所
+    officialSchools.ts      # 生成文件：教育部 2026 普通高校 2952 所
     researchData.ts         # 生成文件：研究聚合層（構建/腳本用，不直接進前端 chunk）
     campusResearch.ts       # 生成文件：校區底稿（構建/腳本用，不直接進前端 chunk）
     provinceAdmissionPortals.ts # 生成文件：31 省官方招考入口小表
@@ -113,7 +113,7 @@ scripts/
 
 ## 當前價值最高的缺口
 
-1. `A5 校區位置`：校區底稿仍是 `3396` 條記錄、覆蓋 `2732` 所學校；真正進硬篩選的校級官方覆蓋目前只有 `9/2919`，仍需持續補 `campus_official_overrides.csv` 和 `campus_locations.csv` 的本科落點字段。
+1. `A5 校區位置`：校區底稿仍是 `3396` 條記錄、覆蓋 `2732` 所學校；真正進硬篩選的校級官方覆蓋目前只有 `9/2952`，仍需持續補 `campus_official_overrides.csv` 和 `campus_locations.csv` 的本科落點字段。
 2. `C1-C4`：飲食禁忌、無障礙、LGBTQ+、外省生源目前幾乎沒有正式可用數據。
 3. `province_portals.csv`：已接入 31 個省級官方入口，但除北京外仍缺少直達分數線/計劃查詢頁。
 4. `school_websites.csv` / `laosheng_school_profiles.csv`：官網覆蓋已能補到大多數學校，但本科招生網仍偏少，尤其普通本科與高職院校。

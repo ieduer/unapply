@@ -225,7 +225,7 @@ export const admissionChannelsByMoeCode: Record<string, SchoolAdmissionChannels>
     "notes": "面向13个省市在普通批次录取，分数优先，无综合评价与校测"
   },
   "4144016401": {
-    "schoolName": "北京师范大学-香港浸会大学联合国际学院",
+    "schoolName": "北师香港浸会大学",
     "year": 2026,
     "regularProvinces": [
       "all"
@@ -350,7 +350,7 @@ export const admissionChannelsByMoeCode: Record<string, SchoolAdmissionChannels>
 }
 
 export const admissionChannelMeta = {
-  "generatedAt": "2026-09-08T23:15:45.223Z",
+  "generatedAt": "2026-10-03T11:03:46.207Z",
   "input": "data/research/admission_channels.2026-09-08.csv",
   "schoolCount": 14
 }

@@ -295,7 +295,7 @@ export const schools: School[] = officialSchools.map((official) => {
 });
 
 // 人工增強層只補官方主表，不擴張篩選主池。未匹配項保留作審計，避免把軍校、
-// 別名或不在教育部普通高校附件中的院校混進 2919 所官方口徑。
+// 別名或不在教育部普通高校附件中的院校混進 2952 所官方口徑。
 export const curatedOnlySchools: School[] = curatedSchools
   .filter((school) => !officialNameKeys.has(schoolNameKey(school.nameSimplified ?? school.name)))
   .map((school) => ({
