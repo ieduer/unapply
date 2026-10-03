@@ -1,6 +1,6 @@
 # 不想考的 operations
 
-Last normalized: 2026-08-10 PDT
+Last normalized: 2026-10-03 PDT
 Owner: suen
 Lifecycle: active
 Data class: student_owned
@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Git branch: `master`; deployed source `0352320`; documentation HEAD is separately recorded by Git
+- Git branch: `master`; deployed source `74f225e`; documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -35,7 +35,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 
 | Resource | Live type | Readback | Detail |
 | --- | --- | --- | --- |
-| `unapply` | Pages | verified 2026-09-08 | production branch `master`; canonical deployment `5df11243-e7b1-48b1-9c2f-902f9757f0ea` |
+| `unapply` | Pages | verified 2026-10-03 | production branch `master`; canonical deployment `7a066074-c3ac-4efc-979c-f65f583f40df` (source `74f225e`) |
 
 ## Authority and dependencies
 
@@ -45,7 +45,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - Identity modes: central
 - User Center required: true
 - Pulse measurement: zone_host
-- Runtime binding: APLUS_EVIDENCE → bdfz-user-center / UnapplyAPlusEvidence; live readback 2026-09-08.
+- Runtime binding: APLUS_EVIDENCE → bdfz-user-center / UnapplyAPlusEvidence; live readback 2026-10-03.
 - Shared User Center, APIS, nav, image, Pulse, App, clone-family, and VPS effects must be checked through workspace topic runbooks; this file does not weaken those gates.
 
 ## Resource location and restore
@@ -54,10 +54,10 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - External/local build inputs, archived paths, receipts, retention, and hydrate commands not stated below are `review_required` and block deletion.
 
 Catalog backup evidence:
-- Cloudflare immutable Pages deployments: current=5df11243-e7b1-48b1-9c2f-902f9757f0ea (source0352320), previous=18a2c95b-b5dd-4fca-bbe0-71c7f6b5c73c (sourceaff7c2a), last pre-change release=2700a82d-1239-4918-bc54-2938a585e8f8 (source 4be095d, 2026-08-26)
+- Cloudflare immutable Pages deployments: current=7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026), previous=5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025), earlier=18a2c95b-b5dd-4fca-bbe0-71c7f6b5c73c (source aff7c2a)
 
 Catalog restore evidence:
-- restore previous code/assets by rolling back to production deployment 18a2c95b-b5dd-4fca-bbe0-71c7f6b5c73c
+- restore previous code/assets by rolling back to production deployment 5df11243-e7b1-48b1-9c2f-902f9757f0ea
 
 Before deleting any local resource, satisfy the workspace path-preserving archive, remote readback, isolated restore, receipt, handbook, and project-state gates.
 
@@ -88,12 +88,14 @@ Detected package entrypoints (presence is not proof they currently pass):
 
 Data-layer entrypoints and their preconditions:
 
-- `run data:schools` regenerates the MOE master table from `data/research/全国普通高等学校名单.xls`.
+- `run data:schools` regenerates the MOE master table from the pinned official attachment `data/research/moe_ordinary_schools.2026-06-17.xls` (SHA-256 and expected counts in the `CATALOG` block of `scripts/build_official_schools.mjs`; falls back to the MOE site only when the pinned file is absent).
 - `run data:admission` regenerates `src/data/admissionChannels.ts` from
   `data/research/admission_channels.*.csv`; it fails closed on an unknown `moeCode`,
   a school-name mismatch against the MOE table, or a missing `sourceUrl`.
 - `run data:research` REQUIRES the CollegesChat desensitized questionnaire on disk:
   `git clone --depth=1 https://github.com/CollegesChat/university-information.git /tmp/university-information`.
+  The builder reads `data/v1.csv` + `data/v1.additions.csv` (upstream layout since 2026-09) and still accepts the
+  older `questionnaires/results_desensitized.csv`.
   Without it the build now aborts instead of silently emptying the crowdsourced B-series
   layer for ~2,400 schools. `ALLOW_MISSING_CROWD_SOURCE=1` is the explicit override.
   The upstream commit is recorded in `researchPipelineMeta.inputs.collegesChatSnapshot`.
@@ -118,7 +120,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- curl -sS -X POST -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" "https://api.cloudflare.com/client/v4/accounts/da810f08b63347a01d3db7fd42619972/pages/projects/unapply/deployments/18a2c95b-b5dd-4fca-bbe0-71c7f6b5c73c/rollback"
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to deployment `5df11243-e7b1-48b1-9c2f-902f9757f0ea` (source `0352320`), after a fresh live baseline readback. Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -144,7 +146,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-09-08 — production0352320; all nine gates,69 tests, live A6 Beijing 2 / Jiangsu 3, 2919 schools, health active. Exact evidence below.
+8. Last verified: 2026-10-03 — production 74f225e; all nine gates, 69 tests, 2952 schools, 39 of 39 assets on custom and immutable hosts, live browser route, health active. Exact evidence below.
 
 ## Synchronized documentation and handoff
 
@@ -225,3 +227,18 @@ CAPABILITY_FIT: no-new-capability。Node24.18.0、Wrangler4.100.0、Pages produc
 ## 2026-10-01 本機／GitHub／Cloudflare 核對
 
 本項目的[逐項核對與來源邊界](/Users/ylsuen/CF/reports/operations/fleet-git-repair-20261001/projects/sites--interactive--unapply.md)列出本機分支、GitHub 上游、Cloudflare 實際部署、既有接受來源及未解決條件。本節是運維索引；保留原有操作／驗收／資料回退權威，不把保全分支或中繼資料讀回當成發布接受。
+
+
+## 2026-10-03 教育部 2026 名單與眾包快照更新（已上線，當前權威）
+
+正式部署 `7a066074-c3ac-4efc-979c-f65f583f40df`，來源 `74f225ed4df1488e56d0ab65944bac59787e49b7`，生效 `2026-10-03T12:40:33Z`，Direct Upload/master/commit_dirty=false；runtime `e4a56a351c2e`。通道 `nope-bdfz-net` 經位元組對帳由 `managed` 轉為 `accepted`，發布走登記的一次性 Pages 交易（`scripts/release-pages-transaction.mjs`）。
+
+發布流程（之後照做）：乾淨且已推送的提交 → Node 24.18.0 九閘 → `npm run build` → 上傳到 Pages 的 `candidate` 預覽分支 → 候選逐檔比對與真實路徑驗收 → 登記 `preview_verified` 收據（租期不超過一小時）→ 在倉庫根目錄執行交易 → 正式站逐檔比對、健康檢查、瀏覽器流程 → 更新接受版本 → 發布 Status 紀錄。不要直接跑 `npm run pages:deploy`：它會被部署閘擋下。
+
+學校主池 2,952 所（本科 1,412／高職專科 1,540）；官方附件原檔與同碼舊校名別名表已入庫；眾包快照 `9f6328d`，覆蓋 2,406 所／45,135 筆，仍只供參考。篩選規則、AnswerMap、Function、`APLUS_EVIDENCE → bdfz-user-center/UnapplyAPlusEvidence`、compatibility_date 2026-04-20 均未變。換年度步驟見 `docs/MAINTENANCE_MANUAL.md` §3.1。
+
+正式域名與不可變 URL 的 schools.json SHA256 `7b517c6cdcfb5b9e82ae5083718cd8d8d75af51e0b4f79d07f8649ecb585f80e`。回滾：`5df11243-e7b1-48b1-9c2f-902f9757f0ea`／來源 `0352320`，走新的受審回滾交易；只切 Pages 版本，無資料庫遷移。
+
+未驗證：已登入學生寫入 → User Center 投影 → 重載。既有資料缺口不變（見 PROJECT_STATE）。資源：原始問卷 clone 為可重建暫存，收尾刪除；報告與私密收據留熱，複查 2026-11-03。
+
+發布、驗證、回滾與證據：`/Users/ylsuen/CF/reports/operations/path-nope-refresh-20261003/RELEASE.md`。CAPABILITY_FIT: no-new-capability；葉子發布，無平台/共享契約變更。

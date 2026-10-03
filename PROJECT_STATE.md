@@ -1,8 +1,26 @@
 # Project State
 
-Last updated: 2026-09-08 PDT
-Current version: 0352320（已部署；文件收尾HEAD另見Git）
-Current objective: 本次生活證據範圍修復已完成；原43維效度與省份證據重算缺口仍列後續。
+Last updated: 2026-10-03 PDT
+Current version: 74f225e（已部署；文件收尾HEAD另見Git）
+Current objective: 2026-10-03 已換成教育部 2026 名單並更新眾包快照；原43維效度與省份證據重算缺口仍列後續。
+
+## 2026-10-03 教育部 2026 名單與眾包快照更新（已上線，當前權威）
+
+正式部署 `7a066074-c3ac-4efc-979c-f65f583f40df`，來源 `74f225ed4df1488e56d0ab65944bac59787e49b7`，生效 `2026-10-03T12:40:33Z`，Direct Upload/master/commit_dirty=false；runtime `e4a56a351c2e`。通道 `nope-bdfz-net` 經位元組對帳由 `managed` 轉為 `accepted`，發布走 release authority 登記的一次性 Pages 交易。
+
+- 學校主池：教育部 2026 名單（截至 2026-06-17）2,952 所，本科 1,412、高職專科 1,540。相對 2025：新增 40 個標識碼、撤銷 7 個、更名 55 所、37 所專科升格本科。
+- 官方附件原檔 `data/research/moe_ordinary_schools.2026-06-17.xls` 入庫並釘 SHA-256；`data/research/moe_former_names.2026-06-17.csv` 提供同碼舊校名別名。
+- 眾包問卷快照 `9f6328d670b46c61b08a3b57e5dc6787510a5f70`（上游改為 `data/v1.csv` + `data/v1.additions.csv`，校區寫成「校名（校區）」）：覆蓋 2,406 所、45,135 筆，仍只供參考、不具排除權。
+- 篩選規則未變；有效題仍 15 題、24 項生活題暫緩硬排除；A6 北京排 2、江蘇排 3。
+- 正式域名與不可變 URL 的 schools.json 均為 2952 校／2952 唯一教育部代碼，SHA256 `7b517c6cdcfb5b9e82ae5083718cd8d8d75af51e0b4f79d07f8649ecb585f80e`。
+
+驗證：Node 24.18.0 九閘全過，60 filters + 2 evidence + 7 trusted = 69 tests；候選與正式站 39/39 檔逐檔一致；正式站瀏覽器驗證首頁數字、選「北京／天津」劃掉 148／剩 2804、更名學校詳情；learning health 前後 200／receipt active。APLUS_EVIDENCE → bdfz-user-center/UnapplyAPlusEvidence、compatibility_date 2026-04-20、AnswerMap 均未變。這不構成真實認證寫入→中央投影→重載驗收。
+
+即時回滾：`5df11243-e7b1-48b1-9c2f-902f9757f0ea` / source `03523202ac0dddc7c5c416ed36008811d8e064f9`，走新的受審回滾交易並先讀回當時線上基線；只切 Pages 版本，無資料庫遷移。
+
+仍未解決：A2 二線城市清單與預設（第一財經 2026 起不再發布分級，2025 版為最後一版）、E 省級推導、C5 缺項作負面證據、證據服務未帶 candidateProvince、真實認證跨端驗收、A5 大一校區、C1–C4、精確學費；上游新版問卷 `data/v2.csv`（含校區與入學年份）樣本很少，尚未接入。
+
+發布、驗證、回滾與證據：`/Users/ylsuen/CF/reports/operations/path-nope-refresh-20261003/RELEASE.md`。Status 公開紀錄 `20261003-nope-moe2026-data` r1。CAPABILITY_FIT: no-new-capability；葉子發布，無平台/共享契約變更。原始問卷 clone 是可重建的暫存，收尾時刪除；重建前依手冊重新 clone。
 
 ## 2026-09-08 已授權過渡發布（歷史，已由生活證據修復取代）
 
@@ -35,7 +53,7 @@ Ownership: 發布與驗證完成；reports/agent_action_log.jsonl closeout 為�
 
 依第二次上下文壓縮接續規則暫停本線程產品改動，完整範圍、授權、髒樹、暫存路徑與接續責任見 `/Users/ylsuen/CF/reports/operations/20260908-unapply-crowd-scope-repair/HANDOFF.md`。使用者已授權核查無誤後部署，不需再次徵求發布批准。這是未完成工作接續，不是驗收或發布紀錄。
 
-## 2026-09-08 生活證據範圍修復（已上線，當前權威）
+## 2026-09-08 生活證據範圍修復（歷史，已由 2026-10-03 更新取代；規則仍沿用）
 
 正式部署 `5df11243-e7b1-48b1-9c2f-902f9757f0ea`，來源 `03523202ac0dddc7c5c416ed36008811d8e064f9`，完成 `2026-09-08T23:18:48.600864Z`，Direct Upload/master/commit_dirty=false；runtime `8faec1133601`。發布前後Git閘門通過，39檔產物雜湊一致；正式域名和不可變URL的2919校/2919唯一教育部代碼資料SHA256均為 `0db94d09cdce2bbb6eee90388278dc190d6a35313af540e1604701a11e240413`。
 
