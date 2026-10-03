@@ -1,10 +1,22 @@
 # Project State
 
 Last updated: 2026-10-03 PDT
-Current version: 74f225e（已部署；文件收尾HEAD另見Git）
+Current version: 0b02a20（已部署；文件收尾HEAD另見Git）
 Current objective: 2026-10-03 已換成教育部 2026 名單並更新眾包快照；原43維效度與省份證據重算缺口仍列後續。
 
-## 2026-10-03 教育部 2026 名單與眾包快照更新（已上線，當前權威）
+## 2026-10-03 可讀色系與共用模板（已上線，當前權威）
+
+正式部署 `321e6e06-3841-4e8c-b218-ab37924dffb4`，來源 `0b02a2009ac906d13802c03f0a1e046b8c5ed467`，生效 `2026-10-03T15:09:45Z`。上一版 `94090cd4`／`c6c0410`（13:20Z，可讀色系首發）。
+
+- `src/shared-ui/`、`tests/theme-contrast.test.ts`、`scripts/check_shared_ui.mjs` 與 path 倉庫（`ieduer/minus-life`）逐位元組相同；改共用檔必須兩站一起發布（`npm run check:shared-ui`）。
+- 色系由五套加自選強調色減為「紙色」「墨色」；`npm run test:theme` 把文字對比度（≥ 4.5:1）、最小字級與「不用透明度表示次要內容」固定成閘門。舊紙色的輔助文字只有 3.6:1、強調色小字與主按鈕文字 2.6:1；深色色系下畫布遮罩仍是淺色。
+- 頁尾姊妹站連結改為「path · 你一定不做哪個工作」。學校數據、篩選規則、Function、binding 均未變。
+
+回滾：`94090cd4-d483-4782-abfc-0146f7bc96d8`／`c6c0410`；回到 `7a066074`／`74f225e` 會同時退回舊色系。走新的受審回滾交易。
+
+發布、驗證與證據：`/Users/ylsuen/CF/reports/operations/shared-readable-theme-20261003/RELEASE.md`。Status：`20261003-nope-readable-theme` r1、`20261003-nope-sync-notice` r1。
+
+## 2026-10-03 教育部 2026 名單與眾包快照更新（歷史，數據仍為現行）
 
 正式部署 `7a066074-c3ac-4efc-979c-f65f583f40df`，來源 `74f225ed4df1488e56d0ab65944bac59787e49b7`，生效 `2026-10-03T12:40:33Z`，Direct Upload/master/commit_dirty=false；runtime `e4a56a351c2e`。通道 `nope-bdfz-net` 經位元組對帳由 `managed` 轉為 `accepted`，發布走 release authority 登記的一次性 Pages 交易。
 

@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Git branch: `master`; deployed source `74f225e`; documentation HEAD is separately recorded by Git
+- Git branch: `master`; deployed source `0b02a20`; documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -35,7 +35,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 
 | Resource | Live type | Readback | Detail |
 | --- | --- | --- | --- |
-| `unapply` | Pages | verified 2026-10-03 | production branch `master`; canonical deployment `7a066074-c3ac-4efc-979c-f65f583f40df` (source `74f225e`) |
+| `unapply` | Pages | verified 2026-10-03 | production branch `master`; canonical deployment `321e6e06-3841-4e8c-b218-ab37924dffb4` (source `0b02a20`) |
 
 ## Authority and dependencies
 
@@ -54,10 +54,10 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - External/local build inputs, archived paths, receipts, retention, and hydrate commands not stated below are `review_required` and block deletion.
 
 Catalog backup evidence:
-- Cloudflare immutable Pages deployments: current=7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026), previous=5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025), earlier=18a2c95b-b5dd-4fca-bbe0-71c7f6b5c73c (source aff7c2a)
+- Cloudflare immutable Pages deployments: current=321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), previous=94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), earlier=7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
 
 Catalog restore evidence:
-- restore previous code/assets by rolling back to production deployment 5df11243-e7b1-48b1-9c2f-902f9757f0ea
+- restore previous code/assets by rolling back to production deployment 94090cd4-d483-4782-abfc-0146f7bc96d8
 
 Before deleting any local resource, satisfy the workspace path-preserving archive, remote readback, isolated restore, receipt, handbook, and project-state gates.
 
@@ -120,7 +120,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to deployment `5df11243-e7b1-48b1-9c2f-902f9757f0ea` (source `0352320`), after a fresh live baseline readback. Direct API rollback without a registered transaction is not release authority.
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to deployment `94090cd4-d483-4782-abfc-0146f7bc96d8` (source `c6c0410`), after a fresh live baseline readback. Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -135,7 +135,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 
 0. Filter-validity gates (blocking for any release that touches questions, dimensions,
    or the data pipeline): `run audit:questions`, `run audit:values`, `run audit:data`,
-   `run test:filters`, `run test:evidence`, `run test:trusted`, `run lint`, `run build`.
+   `run test:filters`, `run test:evidence`, `run test:trusted`, `run test:theme`, `run check:shared-ui`, `run lint`, `run build`.
    `audit:values` fails when a dimension enum value has zero schools in the pool and is
    not declared in `reservedValues`; that is the mechanism that used to let questionnaire
    options silently disappear from the UI.
@@ -146,7 +146,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-10-03 — production 74f225e; all nine gates, 69 tests, 2952 schools, 39 of 39 assets on custom and immutable hosts, live browser route, health active. Exact evidence below.
+8. Last verified: 2026-10-03 — production 0b02a20; all eleven gates, 78 tests, 2952 schools, 39 of 39 assets on custom and immutable hosts, live browser route, health active. Exact evidence below.
 
 ## Synchronized documentation and handoff
 
@@ -229,7 +229,7 @@ CAPABILITY_FIT: no-new-capability。Node24.18.0、Wrangler4.100.0、Pages produc
 本項目的[逐項核對與來源邊界](/Users/ylsuen/CF/reports/operations/fleet-git-repair-20261001/projects/sites--interactive--unapply.md)列出本機分支、GitHub 上游、Cloudflare 實際部署、既有接受來源及未解決條件。本節是運維索引；保留原有操作／驗收／資料回退權威，不把保全分支或中繼資料讀回當成發布接受。
 
 
-## 2026-10-03 教育部 2026 名單與眾包快照更新（已上線，當前權威）
+## 2026-10-03 教育部 2026 名單與眾包快照更新（歷史；發布流程與數據說明仍適用）
 
 正式部署 `7a066074-c3ac-4efc-979c-f65f583f40df`，來源 `74f225ed4df1488e56d0ab65944bac59787e49b7`，生效 `2026-10-03T12:40:33Z`，Direct Upload/master/commit_dirty=false；runtime `e4a56a351c2e`。通道 `nope-bdfz-net` 經位元組對帳由 `managed` 轉為 `accepted`，發布走登記的一次性 Pages 交易（`scripts/release-pages-transaction.mjs`）。
 
@@ -242,3 +242,16 @@ CAPABILITY_FIT: no-new-capability。Node24.18.0、Wrangler4.100.0、Pages produc
 未驗證：已登入學生寫入 → User Center 投影 → 重載。既有資料缺口不變（見 PROJECT_STATE）。資源：原始問卷 clone 為可重建暫存，收尾刪除；報告與私密收據留熱，複查 2026-11-03。
 
 發布、驗證、回滾與證據：`/Users/ylsuen/CF/reports/operations/path-nope-refresh-20261003/RELEASE.md`。CAPABILITY_FIT: no-new-capability；葉子發布，無平台/共享契約變更。
+
+
+## 2026-10-03 可讀色系與共用模板（已上線，當前權威）
+
+正式部署 `321e6e06-3841-4e8c-b218-ab37924dffb4`，來源 `0b02a2009ac906d13802c03f0a1e046b8c5ed467`，生效 `2026-10-03T15:09:45Z`；上一版 `94090cd4`／`c6c0410`。
+
+**跨倉庫依賴（新）**：`src/shared-ui/`（`theme.css`、`theme.ts`、`ThemeCustomizer.tsx`、`SyncNotice.tsx`）、`tests/theme-contrast.test.ts`、`scripts/check_shared_ui.mjs` 與 `ieduer/minus-life`（path.bdfz.net）逐位元組相同。改共用檔的步驟見 `docs/MAINTENANCE_MANUAL.md` §5.1；只發一站會讓另一站的閘門在下次發布時失敗。
+
+色系只有「紙色」「墨色」。`test:theme` 是閘門：文字色對畫布／卡片底 ≥ 4.5:1、按鈕文字 ≥ 4.5:1、選項邊框 ≥ 3:1、元件不得用 `opacity-*` 或小於 12px 的字。
+
+回滾：`94090cd4-d483-4782-abfc-0146f7bc96d8`／`c6c0410`，走新的受審回滾交易。學校數據、篩選規則、Function、binding 未變。
+
+發布、驗證與證據：`/Users/ylsuen/CF/reports/operations/shared-readable-theme-20261003/RELEASE.md`。CAPABILITY_FIT: no-new-capability。
