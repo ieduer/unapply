@@ -4,14 +4,13 @@
 
 Project: 不想考的
 
-This project inherits `/Users/ylsuen/CF/AGENTS.md`. Read, in order:
-
-1. the workspace instructions and project matrix;
-2. `/Users/ylsuen/CF/reports/operations/INDEX.md` and resource/handbook indexes;
-3. this file;
-4. `docs/OPERATIONS.md`;
-5. `PROJECT_STATE.md`;
-6. target source/config/tests and the narrowest fresh live readback.
+This project inherits `/Users/ylsuen/CF/AGENTS.md`.
+Read this file and the source/config/tests relevant to the requested change.
+Use `PROJECT_STATE.md` for ongoing work and `docs/OPERATIONS.md` for exact
+runtime/data/release procedures. Read the matrix for shared-contract or service
+boundary changes; search the operations indexes when locating live resources.
+Live readback is required when the task depends on current production behavior,
+not for an isolated documentation or local text edit.
 
 ## Operating constraints
 

@@ -219,3 +219,9 @@ CAPABILITY_FIT: no-new-capability。Node24.18.0、Wrangler4.100.0、Pages produc
 本任務Chrome與wrangler暫存共36820KiB已清理，task root不存在，沒有本任務存活瀏覽器/伺服器。原始來源、當前生成資料、既有dist/.wrangler/node_modules/.tmp與驗證報告均retain_hot供現行版本還原與待補資料復核，owner suen、review2026-10-08；沒有本輪Drive冷資料待歸檔。精確路徑/大小/狀態見 `/Users/ylsuen/CF/reports/private/runtime-artifact-manifests/20260908-unapply-crowd-scope-repair.json`。本輪未刪任何既有來源。
 
 裁定、來源、九閘、瀏覽器、發布及清理證據：`/Users/ylsuen/CF/reports/operations/20260908-unapply-crowd-scope-repair/README.md`。文件收尾另提交推送；Pages未配置Git autobuild，因此純文件提交不改線上來源。
+
+
+<!-- fleet-authority-20261001:sites--interactive--unapply -->
+## 2026-10-01 本機／GitHub／Cloudflare 核對
+
+本項目的[逐項核對與來源邊界](/Users/ylsuen/CF/reports/operations/fleet-git-repair-20261001/projects/sites--interactive--unapply.md)列出本機分支、GitHub 上游、Cloudflare 實際部署、既有接受來源及未解決條件。本節是運維索引；保留原有操作／驗收／資料回退權威，不把保全分支或中繼資料讀回當成發布接受。
