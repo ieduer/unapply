@@ -262,3 +262,134 @@ test('a transient failure keeps the work and asks the server for the session aga
     client._resetUnapplyAPlusMemoryForTest();
   }
 });
+
+// 本學年已完成過的使用者再作答：UC 回傳同一個已完成會話，互動回 ok 但序號不前進。
+// 舊版以「項目序號 > 會話序號」判斷未送而無限重送；這裡在第 50 次互動請求後拋錯，讓舊版有界失敗。
+const RESEND_LIMIT = 50;
+
+test('a user who already completed this year answers again without resending forever', async () => {
+  client._resetUnapplyAPlusMemoryForTest();
+  const originalFetch = globalThis.fetch;
+  const paths: string[] = [];
+  let interactions = 0;
+  globalThis.fetch = async (input) => {
+    const path = String(input);
+    paths.push(path);
+    if (path.endsWith('/start')) {
+      return ok({
+        sessionId: SESSION_ID,
+        sequence: 16,
+        alreadyCompleted: true,
+        expiresAt: new Date(Date.now() - 86_400_000).toISOString(),
+      });
+    }
+    if (path.endsWith('/interaction')) {
+      interactions += 1;
+      if (interactions > RESEND_LIMIT) throw new Error('interaction resend loop');
+      return ok({ sequence: 16, completed: true, alreadyRecorded: true });
+    }
+    return ok({ status: 'already_recorded', alreadyRecorded: true, sequence: 16 });
+  };
+  try {
+    assert.equal(await client.recordUnapplyAPlusAnswers({ location: ['north'] }, 'location'), null);
+    assert.equal(client.getUnapplyAPlusStatus().phase, 'idle');
+    await client.recordUnapplyAPlusAnswers(
+      { location: ['north'], public_private: 'skip' },
+      'public_private',
+    );
+    assert.equal(client.getUnapplyAPlusStatus().phase, 'idle');
+
+    await client.completeUnapplyAPlusSession({ location: ['north'] }, '北京');
+    assert.equal(client.getUnapplyAPlusStatus().phase, 'verified');
+    assert.deepEqual(paths, ['/api/learning/start']);
+    const state = client._unapplyAPlusStateForTest();
+    assert.equal(state.interactions.length, 0);
+    assert.equal(state.completion, null);
+
+    client._resetUnapplyAPlusMemoryForTest({ preserveStorage: true });
+    assert.equal(await client.resumeUnapplyAPlusRecovery(), null);
+    assert.deepEqual(paths, ['/api/learning/start']);
+    assert.equal(client.getUnapplyAPlusStatus().phase, 'verified');
+    assert.equal(client.resetUnapplyAPlusSession(), true);
+  } finally {
+    globalThis.fetch = originalFetch;
+    client._resetUnapplyAPlusMemoryForTest();
+  }
+});
+
+test('a session completed elsewhere mid-run stops at the answer that learned it', async () => {
+  client._resetUnapplyAPlusMemoryForTest();
+  const originalFetch = globalThis.fetch;
+  const paths: string[] = [];
+  let interactions = 0;
+  globalThis.fetch = async (input, init) => {
+    const path = String(input);
+    const body = JSON.parse(String(init?.body || '{}')) as Record<string, unknown>;
+    paths.push(path);
+    if (path.endsWith('/start')) {
+      return ok({ sessionId: SESSION_ID, sequence: 0, expiresAt: oldEnoughExpiry() });
+    }
+    if (path.endsWith('/interaction')) {
+      interactions += 1;
+      if (interactions > RESEND_LIMIT) throw new Error('interaction resend loop');
+      if (Number(body.sequence) === 1) return ok({ sequence: 1 });
+      return ok({ sequence: 1, completed: true, alreadyRecorded: true });
+    }
+    return ok({ status: 'already_recorded', alreadyRecorded: true, sequence: 1 });
+  };
+  try {
+    await client.recordUnapplyAPlusAnswers({ location: ['north'] }, 'location');
+    await client.recordUnapplyAPlusAnswers(
+      { location: ['north'], public_private: 'skip' },
+      'public_private',
+    );
+    assert.equal(interactions, 2);
+    assert.equal(client.getUnapplyAPlusStatus().phase, 'idle');
+    assert.equal(client._unapplyAPlusStateForTest().interactions.length, 0);
+
+    await client.recordUnapplyAPlusAnswers(
+      { location: ['north'], public_private: 'skip', size: 'skip' },
+      'size',
+    );
+    await client.completeUnapplyAPlusSession({ location: ['north'] }, '北京');
+    assert.equal(interactions, 2);
+    assert.deepEqual(paths, ['/api/learning/start', '/api/learning/interaction', '/api/learning/interaction']);
+    assert.equal(client.getUnapplyAPlusStatus().phase, 'verified');
+  } finally {
+    globalThis.fetch = originalFetch;
+    client._resetUnapplyAPlusMemoryForTest();
+  }
+});
+
+test('an accepted answer whose server sequence does not advance is rejected once, not resent', async () => {
+  client._resetUnapplyAPlusMemoryForTest();
+  const originalFetch = globalThis.fetch;
+  let interactions = 0;
+  globalThis.fetch = async (input) => {
+    const path = String(input);
+    if (path.endsWith('/start')) {
+      return ok({ sessionId: SESSION_ID, sequence: 3, expiresAt: oldEnoughExpiry() });
+    }
+    interactions += 1;
+    if (interactions > RESEND_LIMIT) throw new Error('interaction resend loop');
+    return ok({ sequence: 3 });
+  };
+  try {
+    await assert.rejects(
+      client.recordUnapplyAPlusAnswers({ location: ['north'] }, 'location'),
+      /sequence_not_advanced/,
+    );
+    assert.equal(interactions, 1);
+    const status = client.getUnapplyAPlusStatus();
+    assert.equal(status.phase, 'error');
+    assert.match(status.message, /不会自动重试/);
+    assert.equal(client._unapplyAPlusStateForTest().interactions.length, 0);
+
+    client._resetUnapplyAPlusMemoryForTest({ preserveStorage: true });
+    assert.equal(await client.resumeUnapplyAPlusRecovery(), null);
+    assert.equal(interactions, 1);
+  } finally {
+    globalThis.fetch = originalFetch;
+    client._resetUnapplyAPlusMemoryForTest();
+  }
+});

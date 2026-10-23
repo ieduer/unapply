@@ -281,7 +281,16 @@ async function drainInteractions(active: TrustedSession) {
       changedQuestionId: item.changedQuestionId,
       answers: item.answers,
     });
-    active.sequence = sequenceFrom(result, assignedSequence);
+    if (result.completed === true || result.alreadyRecorded === true) {
+      active.alreadyCompleted = true;
+      return;
+    }
+    const serverSequence = sequenceFrom(result, assignedSequence);
+    // 伺服器回 ok 卻沒收下這個序號：重送只會得到同樣結果，當成確定性拒絕。
+    if (serverSequence < assignedSequence) {
+      throw Object.assign(new Error('learning_sequence_not_advanced'), { status: 409 });
+    }
+    active.sequence = serverSequence;
     persistStateOrThrow();
   }
 }
@@ -310,6 +319,15 @@ function dropQueuedWork() {
   runtimeState.receipt = null;
 }
 
+// 本學年已完成（start 的 alreadyCompleted、互動的 completed）：UC 不再收這個會話的紀錄、序號也不前進，
+// 排隊的作答與完成紀錄都送不進去。清掉，不重送；有完成紀錄時顯示已核驗（本學年的完成紀錄已在 UC）。
+function settleCompletedSession() {
+  const hadCompletion = Boolean(runtimeState.completion);
+  dropQueuedWork();
+  updatePhase(hadCompletion ? 'verified' : 'idle');
+  return null;
+}
+
 async function recoverDurableWork() {
   if (signedOut) {
     dropQueuedWork();
@@ -327,7 +345,8 @@ async function recoverDurableWork() {
   updatePhase('syncing');
   try {
     const active = await beginUnapplyAPlusSession();
-    await drainInteractions(active);
+    if (!active.alreadyCompleted) await drainInteractions(active);
+    if (active.alreadyCompleted) return settleCompletedSession();
     if (!runtimeState.completion) {
       updatePhase('idle');
       return null;
