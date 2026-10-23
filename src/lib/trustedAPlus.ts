@@ -1,3 +1,5 @@
+import { candidateProvinceOptions } from '../data/admissionAuthorities';
+import type { CandidateProvince } from '../data/admissionAuthorities';
 import { runtimeDataManifest } from '../data/runtimeManifest';
 import type { AnswerMap } from '../engine/filter';
 
@@ -31,6 +33,7 @@ interface DurableInteraction {
 
 interface DurableCompletion {
   answers: AnswerMap;
+  candidateProvince: CandidateProvince | null;
   sequence: number | null;
 }
 
@@ -44,11 +47,15 @@ interface DurableState {
   receipt: Record<string, unknown> | null;
 }
 
+const REJECTED_ERROR = 'rejected';
+
 const listeners = new Set<() => void>();
 let runtimeState = loadState();
 let snapshot = statusFromState(runtimeState);
 let startPromise: Promise<TrustedSession> | null = null;
 let recoveryPromise: Promise<Record<string, unknown> | null> | null = null;
+// 本頁收到 401 後即知未登入：匿名作答不排隊、不顯示核驗提示。重新載入頁面時重新判斷。
+let signedOut = false;
 
 function freshState(): DurableState {
   return {
@@ -68,6 +75,19 @@ function cloneAnswers(answers: AnswerMap): AnswerMap {
 
 function validAnswers(value: unknown): value is AnswerMap {
   return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
+}
+
+function validProvince(value: unknown): CandidateProvince | null {
+  return typeof value === 'string' && (candidateProvinceOptions as string[]).includes(value)
+    ? value as CandidateProvince
+    : null;
+}
+
+// 與 filterSchools 的 answeredCount 同一口徑；全部跳過時伺服器必拒，不必送出。
+function hasAnsweredQuestion(answers: AnswerMap) {
+  return Object.values(answers).some(
+    value => value && value !== 'skip' && (!Array.isArray(value) || value.length > 0),
+  );
 }
 
 function loadState(): DurableState {
@@ -113,6 +133,7 @@ function loadState(): DurableState {
     if (parsed.completion && validAnswers(parsed.completion.answers)) {
       state.completion = {
         answers: cloneAnswers(parsed.completion.answers),
+        candidateProvince: validProvince(parsed.completion.candidateProvince),
         sequence: parsed.completion.sequence === null
           ? null
           : Number.isSafeInteger(Number(parsed.completion.sequence))
@@ -158,7 +179,9 @@ function statusFromState(state: DurableState): UnapplyAPlusSyncStatus {
     return { phase: 'syncing', message: '正在核验完成记录，请保持联网。' };
   }
   if (state.phase === 'error') {
-    return { phase: 'error', message: '完成记录尚未核验；联网后将自动重试。' };
+    return state.error === REJECTED_ERROR
+      ? { phase: 'error', message: '这次完成记录未被接受，不会自动重试；重新作答后可再次记录。' }
+      : { phase: 'error', message: '完成记录尚未核验；恢复联网或重新打开页面后会自动重试。' };
   }
   return { phase: 'idle', message: '完成问卷后将在这里显示核验状态。' };
 }
@@ -237,6 +260,7 @@ export function beginUnapplyAPlusSession() {
     })
     .catch((error) => {
       startPromise = null;
+      if (requestStatus(error) === 401) signedOut = true;
       throw error;
     });
   return startPromise;
@@ -270,8 +294,36 @@ function waitForCompletionThreshold(active: TrustedSession) {
     : Promise.resolve();
 }
 
+function requestStatus(error: unknown) {
+  const status = Number((error as { status?: number } | null)?.status);
+  return Number.isInteger(status) ? status : 0;
+}
+
+// 4xx（逾時與限流除外）是確定性的拒絕：同一份紀錄重送也不會通過。
+function isDeterministicRejection(status: number) {
+  return status >= 400 && status < 500 && status !== 408 && status !== 429;
+}
+
+function dropQueuedWork() {
+  runtimeState.interactions = [];
+  runtimeState.completion = null;
+  runtimeState.receipt = null;
+}
+
 async function recoverDurableWork() {
-  if (runtimeState.interactions.length === 0 && !runtimeState.completion) return null;
+  if (signedOut) {
+    dropQueuedWork();
+    updatePhase('idle');
+    return null;
+  }
+  if (runtimeState.completion && !hasAnsweredQuestion(runtimeState.completion.answers)) {
+    runtimeState.completion = null;
+    persistState();
+  }
+  if (runtimeState.interactions.length === 0 && !runtimeState.completion) {
+    if (runtimeState.phase !== 'idle' && runtimeState.phase !== 'verified') updatePhase('idle');
+    return null;
+  }
   updatePhase('syncing');
   try {
     const active = await beginUnapplyAPlusSession();
@@ -291,6 +343,7 @@ async function recoverDurableWork() {
       sequence: completion.sequence,
       runtimeVersion: runtimeDataManifest.version,
       answers: completion.answers,
+      ...(completion.candidateProvince ? { candidateProvince: completion.candidateProvince } : {}),
     });
     active.sequence = sequenceFrom(result, completion.sequence);
     runtimeState.interactions = [];
@@ -299,12 +352,27 @@ async function recoverDurableWork() {
     updatePhase('verified');
     return result;
   } catch (error) {
-    updatePhase('error', error instanceof Error ? error.message : String(error));
+    // 下次重試重新取得伺服器會話與序號（會話可能已逾期或在別處前進）。
+    startPromise = null;
+    const status = requestStatus(error);
+    if (status === 401) {
+      signedOut = true;
+      dropQueuedWork();
+      updatePhase('idle');
+      return null;
+    }
+    if (isDeterministicRejection(status)) {
+      dropQueuedWork();
+      updatePhase('error', REJECTED_ERROR);
+    } else {
+      updatePhase('error', error instanceof Error ? error.message : String(error));
+    }
     throw error;
   }
 }
 
 function hasUnsentWork() {
+  if (signedOut) return false;
   const sequence = runtimeState.session?.sequence ?? 0;
   return runtimeState.interactions.some(item => item.sequence === null || item.sequence > sequence)
     || Boolean(runtimeState.completion);
@@ -324,6 +392,7 @@ export function resumeUnapplyAPlusRecovery(): Promise<Record<string, unknown> | 
 }
 
 export function recordUnapplyAPlusAnswers(answers: AnswerMap, changedQuestionId: string) {
+  if (signedOut) return Promise.resolve(null);
   runtimeState.interactions.push({
     id: crypto.randomUUID(),
     answers: cloneAnswers(answers),
@@ -348,13 +417,19 @@ export function recordUnapplyAPlusAnswers(answers: AnswerMap, changedQuestionId:
   return resumeUnapplyAPlusRecovery();
 }
 
-export function completeUnapplyAPlusSession(answers: AnswerMap) {
+export function completeUnapplyAPlusSession(
+  answers: AnswerMap,
+  candidateProvince: CandidateProvince | null = null,
+) {
+  if (signedOut || !hasAnsweredQuestion(answers)) return resumeUnapplyAPlusRecovery();
   const nextAnswers = cloneAnswers(answers);
+  const province = validProvince(candidateProvince);
   if (
     !runtimeState.completion
     || JSON.stringify(runtimeState.completion.answers) !== JSON.stringify(nextAnswers)
+    || runtimeState.completion.candidateProvince !== province
   ) {
-    runtimeState.completion = { answers: nextAnswers, sequence: null };
+    runtimeState.completion = { answers: nextAnswers, candidateProvince: province, sequence: null };
   }
   runtimeState.receipt = null;
   runtimeState.phase = 'syncing';
@@ -400,6 +475,7 @@ export function resetUnapplyAPlusSession() {
 export function _resetUnapplyAPlusMemoryForTest(options: { preserveStorage?: boolean } = {}) {
   startPromise = null;
   recoveryPromise = null;
+  signedOut = false;
   if (!options.preserveStorage) {
     try {
       localStorage.removeItem(STORAGE_KEY);

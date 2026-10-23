@@ -5,6 +5,7 @@ import { allQuestions } from '../src/data/questions';
 import { runtimeDataManifest } from '../src/data/runtimeManifest';
 import type { School } from '../src/data/schools';
 import { analyzeQuestionCoverage, getVisibleOptions } from '../src/engine/coverage';
+import { filterSchools } from '../src/engine/filter';
 import type { AnswerMap } from '../src/engine/filter';
 import { __test, onRequest } from '../functions/api/learning/[action]';
 
@@ -205,4 +206,66 @@ test('stale runtime versions and client-provided result counts fail closed', asy
     env: { ASSETS: assets(), APLUS_EVIDENCE: {} as never },
   });
   assert.equal(response.status, 400);
+});
+
+test('completion recomputes with the candidate province the visitor saw', async () => {
+  const answers = completeAnswers();
+  let completion: Record<string, unknown> | null = null;
+  const evidence = {
+    async recordAPlusInteraction() {
+      return { ok: true };
+    },
+    async completeAPlusSession(_cookie: string, input: Record<string, unknown>) {
+      completion = input;
+      return { ok: true, status: 'recorded' };
+    },
+  };
+  const response = await onRequest({
+    request: request('complete', {
+      sessionId: SESSION_ID,
+      sequence: 2,
+      runtimeVersion: runtimeDataManifest.version,
+      answers,
+      candidateProvince: '江蘇',
+    }),
+    params: { action: 'complete' },
+    env: { ASSETS: assets(), APLUS_EVIDENCE: evidence as never },
+  });
+  assert.equal(response.status, 200);
+  const expected = filterSchools(schools, answers, { candidateProvince: '江蘇' }).stats;
+  const result = (completion as Record<string, unknown> | null)?.result as Record<string, unknown>;
+  assert.equal(result.keptCount, expected.keptCount);
+  assert.equal(result.excludedCount, expected.excludedCount);
+
+  const unknownProvince = await onRequest({
+    request: request('complete', {
+      sessionId: SESSION_ID,
+      sequence: 2,
+      runtimeVersion: runtimeDataManifest.version,
+      answers,
+      candidateProvince: 'Atlantis',
+    }),
+    params: { action: 'complete' },
+    env: { ASSETS: assets(), APLUS_EVIDENCE: evidence as never },
+  });
+  assert.equal(unknownProvince.status, 400);
+});
+
+test('an expired User Center session is reported as signed out, not as a retryable outage', async () => {
+  const response = await onRequest({
+    request: request('start', {
+      resourceKey: 'unapply:result:v1',
+      runtimeVersion: runtimeDataManifest.version,
+    }),
+    params: { action: 'start' },
+    env: {
+      APLUS_EVIDENCE: {
+        async startAPlusSession() {
+          throw new Error('authenticated User Center session required');
+        },
+      } as never,
+    },
+  });
+  assert.equal(response.status, 401);
+  assert.deepEqual(await response.json(), { ok: false, error: 'authentication_required' });
 });

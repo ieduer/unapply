@@ -221,9 +221,9 @@ export default function App() {
       void syncUnapplyProgress(evidence.progress)
       void recordUnapplyEvent(evidence.event)
     }
-    completeUnapplyAPlusSession(answers).then(() => undefined).catch(() => undefined)
+    completeUnapplyAPlusSession(answers, candidateProvince).then(() => undefined).catch(() => undefined)
     go({ name: 'result' })
-  }, [answers, result, go])
+  }, [answers, candidateProvince, result, go])
 
   if (routeNeedsSchools(route) && (!schools || schoolLoadError)) {
     return (

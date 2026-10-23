@@ -1,3 +1,5 @@
+import { candidateProvinceOptions } from '../../../src/data/admissionAuthorities';
+import type { CandidateProvince } from '../../../src/data/admissionAuthorities';
 import { allQuestions } from '../../../src/data/questions';
 import type { Question } from '../../../src/data/questions';
 import { runtimeDataManifest } from '../../../src/data/runtimeManifest';
@@ -265,8 +267,12 @@ async function complete(request: Request, env: Env, cookie: string) {
   const body = await boundedJson(request);
   const sequence = Number(body.sequence);
   const sessionId = String(body.sessionId || '');
+  // 考生地區只改變 A6 的逐省判定；與前端同一上下文重算，結果才會與考生看到的一致。
+  const candidateProvince = body.candidateProvince;
   if (
-    !onlyKeys(body, ['sessionId', 'sequence', 'runtimeVersion', 'answers'])
+    !onlyKeys(body, ['sessionId', 'sequence', 'runtimeVersion', 'answers', 'candidateProvince'])
+    || (candidateProvince !== undefined
+      && !(candidateProvinceOptions as string[]).includes(String(candidateProvince)))
     || body.runtimeVersion !== runtimeDataManifest.version
     || !SESSION_ID_RE.test(sessionId)
     || !Number.isSafeInteger(sequence)
@@ -279,7 +285,10 @@ async function complete(request: Request, env: Env, cookie: string) {
   ) return fail('learning_evidence_unavailable', 503);
 
   const schools = await loadCanonicalSchools(request, env);
-  const coverage = analyzeQuestionCoverage(schools);
+  const context = candidateProvince === undefined
+    ? undefined
+    : { candidateProvince: candidateProvince as CandidateProvince };
+  const coverage = analyzeQuestionCoverage(schools, context);
   const activeQuestions = allQuestions.filter(question => coverage[question.id]?.active);
   const visibleQuestions = activeQuestions.map(question => ({
     ...question,
@@ -287,7 +296,7 @@ async function complete(request: Request, env: Env, cookie: string) {
   }));
   const answers = normalizeAnswers(body.answers, visibleQuestions);
   if (!answers) return fail('invalid_transcript', 400);
-  const result = filterSchools(schools, answers);
+  const result = filterSchools(schools, answers, context);
   const visitedEveryQuestion = activeQuestions.every(question => question.id in answers);
   if (
     result.stats.answeredCount < 1
@@ -345,6 +354,10 @@ export async function onRequest(context: {
     const status = Number((error as { status?: number }).status);
     if (status === 400 || status === 413) {
       return fail((error as Error).message, status);
+    }
+    // Cookie 還在但用戶中心會話已失效：與沒有 Cookie 同樣是未登入，不是可重試的服務故障。
+    if (String((error as Error)?.message || '').includes('authenticated User Center session required')) {
+      return fail('authentication_required', 401);
     }
     return fail('learning_evidence_unavailable', 503);
   }
