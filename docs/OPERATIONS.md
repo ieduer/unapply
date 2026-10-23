@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Git branch: `master`; deployed source `0b02a20`; documentation HEAD is separately recorded by Git
+- Git branch: `master`; deployed source `6fa8a4e`; documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -35,7 +35,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 
 | Resource | Live type | Readback | Detail |
 | --- | --- | --- | --- |
-| `unapply` | Pages | verified 2026-10-03 | production branch `master`; canonical deployment `321e6e06-3841-4e8c-b218-ab37924dffb4` (source `0b02a20`) |
+| `unapply` | Pages | verified 2026-10-23 | production branch `master`; canonical deployment `d7a7924d-dfa2-49b8-ae19-52054b56266c` (source `6fa8a4e`) |
 
 ## Authority and dependencies
 
@@ -54,10 +54,10 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - External/local build inputs, archived paths, receipts, retention, and hydrate commands not stated below are `review_required` and block deletion.
 
 Catalog backup evidence:
-- Cloudflare immutable Pages deployments: current=321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), previous=94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), earlier=7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
+- Cloudflare immutable Pages deployments: current=d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), previous=84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), earlier=321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
 
 Catalog restore evidence:
-- restore previous code/assets by rolling back to production deployment 94090cd4-d483-4782-abfc-0146f7bc96d8
+- restore previous code/assets by rolling back to production deployment 84a4afd1-0602-4c1c-af4c-d5173c94da94
 
 Before deleting any local resource, satisfy the workspace path-preserving archive, remote readback, isolated restore, receipt, handbook, and project-state gates.
 
@@ -120,7 +120,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to deployment `94090cd4-d483-4782-abfc-0146f7bc96d8` (source `c6c0410`), after a fresh live baseline readback. Direct API rollback without a registered transaction is not release authority.
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to deployment `84a4afd1-0602-4c1c-af4c-d5173c94da94` (source `f2aa606`), after a fresh live baseline readback. Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -146,7 +146,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-10-03 — production 0b02a20; all eleven gates, 78 tests, 2952 schools, 39 of 39 assets on custom and immutable hosts, live browser route, health active. Exact evidence below.
+8. Last verified: 2026-10-23 — production 6fa8a4e; ten gates, 97 tests, 39 of 39 assets on custom and immutable hosts, signed-in repeat run settles (1 start, 0 interaction), signed-out API 401, health active. Exact evidence below.
 
 ## Synchronized documentation and handoff
 
@@ -257,7 +257,7 @@ CAPABILITY_FIT: no-new-capability。Node24.18.0、Wrangler4.100.0、Pages produc
 發布、驗證與證據：`/Users/ylsuen/CF/reports/operations/shared-readable-theme-20261003/RELEASE.md`。CAPABILITY_FIT: no-new-capability。
 
 
-## 2026-10-23 學習記錄同步提示修復（已上線，當前權威）
+## 2026-10-23 學習記錄同步提示修復（歷史；失敗分類與發布流程補充仍適用）
 
 正式部署 `84a4afd1-0602-4c1c-af4c-d5173c94da94`，來源 `f2aa6068fa63ff50df029e3b7b85dee0338f7a61`，生效 `2026-10-23T14:13:18Z`；回滾 `321e6e06-3841-4e8c-b218-ab37924dffb4`／`0b02a20`，走新的受審回滾交易；只切 Pages 版本，無資料庫遷移。
 
@@ -268,3 +268,17 @@ CAPABILITY_FIT: no-new-capability。Node24.18.0、Wrangler4.100.0、Pages produc
 **發布流程補充**：`release-pages-transaction.mjs` 要求收據帶 `http_budget.max_requests`（本次 40，實用 11）；每個收據路徑只能建一份 HTTP 日誌，被閘門擋下後要重跑時用同一份已登記位元組的副本路徑。交易若報「Catalog changed」，先證明 `platform/projects.json` 的變動來自哪個已批准任務（只還原那一項後雜湊等於原釘值），再改釘 `catalog_sha256`。
 
 驗證：Node 24.18.0 十道閘門（含 test:trusted 14、test:theme 9、check:shared-ui）、候選與正式 39/39 逐檔一致、候選未登入路徑無提示、正式站登入路徑「同步核验中→已核验」且 complete 200。發布、驗證與證據：`/Users/ylsuen/CF/reports/operations/nope-sync-notice-20261023/RELEASE.md`。Status `20261023-nope-sync-notice-fix` r1。CAPABILITY_FIT: no-new-capability；葉子發布，無平台／共享契約變更。
+
+## 2026-10-23 已完成者再作答無限重送修復（已上線，當前權威）
+
+正式部署 `d7a7924d-dfa2-49b8-ae19-52054b56266c`，來源 `6fa8a4e00e36a23090544995133d51e693ee1955`，生效 `2026-10-23T15:00:29Z`；上一版 `84a4afd1`／`f2aa606`。與 path `fb4b95b`（`8771ae93`）同一修法、先後發布。
+
+**原因**：UC 對本學年已完成的使用者，start 一律回傳那個已完成的會話（`alreadyCompleted: true`），互動回 `ok`、`completed: true`、序號維持儲存值。客戶端把不前進的序號當成伺服器序號，項目仍算「未送」，`resumeUnapplyAPlusRecovery` 無限遞迴，每題約每 260 ms 重送一次，提示停在「同步核验中」。影響 35 人（UC 2026-2027 completed）。
+
+**修法（只改 `src/lib/trustedAPlus.ts`）**：在上面的失敗分類之外加一類「伺服器已完成」——start 的 `alreadyCompleted`，或互動的 `completed`／`alreadyRecorded`，這個會話視為終結：清掉排隊的作答與完成紀錄、不送出，排著完成紀錄時顯示「已核验」，否則 idle；同一頁之後的作答不再發請求，「清空重來」後重新問一次 start。互動回 `ok` 但序號沒前進時當成一次性拒絕（409）。Function、學校數據、篩選規則、`src/shared-ui/`、binding、證據描述符與 UC 契約未變。
+
+`tests/trusted-aplus-client-recovery.test.ts` 的三項回歸測試用「第 50 次互動請求後拋錯」把舊版的無限迴圈變成有界失敗；改 client 時必須保持通過。
+
+驗證：Node 24.18.0 十道閘門（test:trusted 17、test:filters 60）、候選與正式 39/39 逐檔一致、候選上以 UC 已完成會話形狀的存根跑真實建置包（1 次 start、0 次 interaction）、正式站已登入測試帳號（本學年已完成）再作答到結果頁只有 1 次 start、0 次 interaction／complete，最後「已核验」。回滾：`84a4afd1-0602-4c1c-af4c-d5173c94da94`／`f2aa606`，走新的受審回滾交易（會恢復無限重送）。
+
+發布、驗證與證據：`/Users/ylsuen/CF/reports/operations/aplus-repeat-loop-20261023/RELEASE.md`。Status `20261023-nope-repeat-completion-loop-fix` r1。CAPABILITY_FIT: no-new-capability；葉子發布，無平台／共享契約變更。

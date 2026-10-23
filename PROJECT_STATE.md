@@ -1,17 +1,28 @@
 # Project State
 
 Last updated: 2026-10-23 UTC
-Current version: f2aa606（已部署 84a4afd1；文件收尾HEAD另見Git）
-Current objective: 學習記錄同步提示不再卡在「核验未完成」；原43維效度缺口仍列後續。
+Current version: 6fa8a4e（已部署 d7a7924d；文件收尾HEAD另見Git）
+Current objective: 本學年已完成者再作答的無限重送已修復並驗收（與 path 同修）；原43維效度缺口仍列後續。
 
-## 2026-10-23 學習記錄同步提示修復（已上線，當前權威）
+## 2026-10-23 已完成者再作答無限重送修復（已上線，當前權威）
+
+正式部署 `d7a7924d-dfa2-49b8-ae19-52054b56266c`，來源 `6fa8a4e00e36a23090544995133d51e693ee1955`，生效 `2026-10-23T15:00:29Z`；回滾 `84a4afd1`／`f2aa606`，走新的受審回滾交易（會恢復無限重送）。
+
+- 原因：UC 對本學年已完成者回傳已完成的會話、互動序號不前進，客戶端無限重送（約每 260 ms 一次），提示停在「同步核验中」。影響 35 人。
+- 修法：伺服器回報已完成即視為終結，清掉排隊、不重送，結果頁顯示「已核验」；序號不前進的 ok 只提示一次。未登入、其他拒絕、網路重試的處理不變。
+- 正式站以測試帳號（本學年已完成）實測：作答到結果頁只有一次 start、0 次 interaction／complete。
+- 遺留：「會話中途在別處完成」只由測試覆蓋；沒有新寫入完成證據。
+
+發布、驗證與證據：`/Users/ylsuen/CF/reports/operations/aplus-repeat-loop-20261023/RELEASE.md`。Status：`20261023-nope-repeat-completion-loop-fix` r1。
+
+## 2026-10-23 學習記錄同步提示修復（歷史）
 
 正式部署 `84a4afd1-0602-4c1c-af4c-d5173c94da94`，來源 `f2aa6068fa63ff50df029e3b7b85dee0338f7a61`，生效 `2026-10-23T14:13:18Z`；回滾 `321e6e06`／`0b02a20`，走新的受審回滾交易。
 
 - 原因：未登入作答排隊後 `/api/learning/start` 永遠 401；UC 會話失效被轉成 503；全跳過等 400 拒絕被無限重送，排著完成紀錄時還擋住重新開始。首頁因此一直顯示紅色「核验未完成…联网后将自动重试」。
 - 修法：401＝未登入，清隊列、不提示；其他 4xx 清隊列並提示一次「未被接受，不会自动重试」；網路／5xx 保留並重新取會話；全跳過不送完成；Function 把 UC 未登入轉成 401。
 - 完成紀錄帶考生地區，Function 用同一地區重算 A6——原「證據服務未帶 candidateProvince」缺口就此關閉（UC 收到的摘要欄位不變）。
-- path.bdfz.net 的同步客戶端是同一設計，未登入時同樣會卡住，尚未修。
+- path.bdfz.net 的同一問題已於同日 `26f3eea` 修復；兩站共有的「已完成者再作答無限重送」於同日修復，見上一節。
 
 發布、驗證與證據：`/Users/ylsuen/CF/reports/operations/nope-sync-notice-20261023/RELEASE.md`。Status：`20261023-nope-sync-notice-fix` r1。
 
