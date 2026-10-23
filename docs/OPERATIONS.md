@@ -244,7 +244,7 @@ CAPABILITY_FIT: no-new-capability。Node24.18.0、Wrangler4.100.0、Pages produc
 發布、驗證、回滾與證據：`/Users/ylsuen/CF/reports/operations/path-nope-refresh-20261003/RELEASE.md`。CAPABILITY_FIT: no-new-capability；葉子發布，無平台/共享契約變更。
 
 
-## 2026-10-03 可讀色系與共用模板（已上線，當前權威）
+## 2026-10-03 可讀色系與共用模板（歷史；模板規則仍適用）
 
 正式部署 `321e6e06-3841-4e8c-b218-ab37924dffb4`，來源 `0b02a2009ac906d13802c03f0a1e046b8c5ed467`，生效 `2026-10-03T15:09:45Z`；上一版 `94090cd4`／`c6c0410`。
 
@@ -255,3 +255,16 @@ CAPABILITY_FIT: no-new-capability。Node24.18.0、Wrangler4.100.0、Pages produc
 回滾：`94090cd4-d483-4782-abfc-0146f7bc96d8`／`c6c0410`，走新的受審回滾交易。學校數據、篩選規則、Function、binding 未變。
 
 發布、驗證與證據：`/Users/ylsuen/CF/reports/operations/shared-readable-theme-20261003/RELEASE.md`。CAPABILITY_FIT: no-new-capability。
+
+
+## 2026-10-23 學習記錄同步提示修復（已上線，當前權威）
+
+正式部署 `84a4afd1-0602-4c1c-af4c-d5173c94da94`，來源 `f2aa6068fa63ff50df029e3b7b85dee0338f7a61`，生效 `2026-10-23T14:13:18Z`；回滾 `321e6e06-3841-4e8c-b218-ab37924dffb4`／`0b02a20`，走新的受審回滾交易；只切 Pages 版本，無資料庫遷移。
+
+**同步客戶端的失敗分類（`src/lib/trustedAPlus.ts`）**：401 表示未登入，清掉隊列、回 idle、不顯示提示，本頁之後不再排隊；408／429 以外的 4xx 是確定性拒絕，清掉隊列並只提示一次；網路錯誤與 5xx 保留隊列，下次重新向伺服器取會話與序號（`startPromise` 失敗後清空）。全跳過的結果不送完成紀錄。新增錯誤碼時要先決定它屬於哪一類，不能讓不可能成功的請求留在隊列裡。
+
+**Function（`functions/api/learning/[action].ts`）**：`complete` 接受選填 `candidateProvince`（限 `candidateProvinceOptions`），用它重算覆蓋與篩選，與前端判斷一致；UC 丟出 `authenticated User Center session required` 時回 401 `authentication_required`。送給 UC 的完成摘要欄位與證據描述符未變。
+
+**發布流程補充**：`release-pages-transaction.mjs` 要求收據帶 `http_budget.max_requests`（本次 40，實用 11）；每個收據路徑只能建一份 HTTP 日誌，被閘門擋下後要重跑時用同一份已登記位元組的副本路徑。交易若報「Catalog changed」，先證明 `platform/projects.json` 的變動來自哪個已批准任務（只還原那一項後雜湊等於原釘值），再改釘 `catalog_sha256`。
+
+驗證：Node 24.18.0 十道閘門（含 test:trusted 14、test:theme 9、check:shared-ui）、候選與正式 39/39 逐檔一致、候選未登入路徑無提示、正式站登入路徑「同步核验中→已核验」且 complete 200。發布、驗證與證據：`/Users/ylsuen/CF/reports/operations/nope-sync-notice-20261023/RELEASE.md`。Status `20261023-nope-sync-notice-fix` r1。CAPABILITY_FIT: no-new-capability；葉子發布，無平台／共享契約變更。
