@@ -1,6 +1,7 @@
 # 你一定不考 · UnApply
 
 一個對標 [path.bdfz.net](https://path.bdfz.net)（減法人生）的**學校版減法工具**：不做推薦，只陪你從教育部 2026 名單的 2952 所普通高校中劃掉一定不考的那批。
+2026-11 起立項全球化（先問所在地、全球學科地圖、跨國選擇、全球高校權威資料庫、企業直招高中生路徑），分階段推進，見 [docs/GLOBAL_ROADMAP.md](docs/GLOBAL_ROADMAP.md)。
 
 - 線上：<https://nope.bdfz.net>
 - 技術棧：Vite 8 · React 19 · TypeScript · Tailwind 4 · Motion
@@ -20,6 +21,10 @@ npm run data:laosheng-profiles # 從 laosheng.top 高校頁抽取官網/本科�
 npm run data:campus-extract # 從 GitHub 校區/POI 源生成 data/research/campus_locations.2026-04-21.csv
 npm run data:research # 重建研究聚合層，並同步輸出 public/data/runtime/*.json
 npm run data:runtime  # 只重導運行時 payload（schools.json + campus buckets）
+npm run data:gras     # 抓軟科 GRAS 年度學科排名（57 學科 × 前 50）→ data/research/gras_<年>_*.csv
+npm run data:gras-geo # 機構 → 座標／正體名／教育部代碼（大陸用本站校區底稿，其餘 Wikidata）
+npm run data:atlas    # 組 public/data/atlas/world-atlas.json（#/world 懶載入；build 會先跑）
+npm run test:atlas    # 世界學科地圖資料完整性與減法引擎
 npm run audit:questions # 檢查題目規則與維度枚舉是否一致
 npm run audit:data   # 檢查每題實際覆蓋率與最大排除能力
 npm run dev    # Vite 本機啟動
@@ -83,7 +88,14 @@ src/
     schoolName.ts           # 官網 / 眾包 / 研究 CSV 共用名稱規範化
     share.ts                # html-to-image 分享圖
     theme.ts                # 本地色系狀態與 CSS 變量應用
+    origins.ts              # 所在地／升學身份起點（第 0 題，不進 AnswerMap）
+    worldAtlasTypes.ts      # 世界學科地圖 payload 型別；worldAtlasManifest.ts 由 data:atlas 生成
+  engine/
+    atlas.ts                # 世界學科地圖的門類／學科／地區減法（純函數）
+  lib/
+    atlasData.ts            # 懶載入 world-atlas.json 並核對 manifest
   components/
+    WorldAtlasPage.tsx      # #/world 世界學科地圖＋非大學路徑圖層
     Landing.tsx
     QuestionRunner.tsx
     ResultPage.tsx
@@ -93,6 +105,7 @@ src/
     AboutPage.tsx
     ThemeCustomizer.tsx
 docs/
+  GLOBAL_ROADMAP.md         # 全球化最終目標與 S0–S5 分階段（2026-11-06 立項）
   PROJECT_REPORT.md         # 目的、架構、數據缺口、合規
   DATA_RESEARCH_REQUEST.md  # deep research 所需資料與 CSV/JSONL 格式
   MAINTENANCE_MANUAL.md     # 接手維護、更新、審計、部署與回滾

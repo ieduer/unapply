@@ -25,3 +25,46 @@
 .blow-away {
   animation: blow-away 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
+
+/* 世界學科地圖（#/world）。只用色系變數，紙色／墨色都看得清；不畫國界。 */
+.atlas-land {
+  fill: var(--color-ink-800);
+  stroke: var(--color-ink-900);
+  stroke-width: 0.6;
+}
+
+.atlas-dot {
+  fill: var(--color-accent-500);
+  stroke: var(--color-ink-950);
+  stroke-width: 1;
+}
+
+.atlas-dot-struck {
+  fill: var(--color-ink-950);
+  stroke: var(--color-fog-500);
+  stroke-width: 1;
+  stroke-dasharray: 2 1.5;
+}
+
+.atlas-dot-selected {
+  stroke: var(--color-fog-100);
+  stroke-width: 2.2;
+}
+
+.atlas-program {
+  fill: var(--color-ink-950);
+  stroke: var(--color-accent-600);
+  stroke-width: 1.8;
+}
+
+.atlas-hit {
+  fill: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.atlas-hit:focus-visible + *,
+.atlas-hit:focus-visible {
+  stroke: var(--color-accent-500);
+  stroke-width: 2;
+}

@@ -1,0 +1,545 @@
+univCode,nameEn,univUp,region,nameZhHant,nameSource,moeCode,schoolId,lat,lng,coordinateSource,wikidata,matchedType,note,rankingYear,resolvedAt
+RC00001,Tsinghua University,tsinghua-university,China,清華大學,moe,4111010003,清華大學,40.003396449752614,116.31978243383787,moe-campus,Q16955,,,2026,2026-11-06
+RC00002,Peking University,peking-university,China,北京大學,moe,4111010001,北京大學,39.992591,116.3107,moe-campus,Q16952,,,2026,2026-11-06
+RC00003,Zhejiang University,zhejiang-university,China,浙江大學,moe,4133010335,浙江大學,30.26493,120.120147,moe-campus,Q197543,,,2026,2026-11-06
+RC00004,Fudan University,fudan-university,China,复旦大学,moe,4131010246,moe:4131010246,31.296794,121.503359,moe-campus,Q495015,,,2026,2026-11-06
+RC00005,Shanghai Jiao Tong University,shanghai-jiao-tong-university,China,上海交通大學,moe,4131010248,上海交通大學,31.214452,121.466934,moe-campus,Q525169,,,2026,2026-11-06
+RC00006,University of Science and Technology of China,university-of-science-and-technology-of-china,China,中國科學技術大學,moe,4134010358,中國科學技術大學,31.838692,117.263249,moe-campus,Q1074103,,,2026,2026-11-06
+RC00007,Sun Yat-sen University,sun-yat-sen-university,China,中山大學,moe,4144010558,中山大學,23.128477,113.289805,moe-campus,Q178972,,,2026,2026-11-06
+RC00008,Harbin Institute of Technology,harbin-institute-of-technology,China,哈爾濱工業大學,moe,4123010213,哈爾濱工業大學,45.757935,126.676656,moe-campus,Q632558,,,2026,2026-11-06
+RC00009,Nanjing University,nanjing-university,China,南京大學,moe,4132010284,南京大學,32.055063,118.779441,moe-campus,Q683580,,,2026,2026-11-06
+RC00010,Huazhong University of Science and Technology,huazhong-university-of-science-and-technology,China,華中科技大學,moe,4142010487,華中科技大學,30.51311,114.418862,moe-campus,Q1711196,,,2026,2026-11-06
+RC00011,Sichuan University,sichuan-university,China,四川大學,moe,4151010610,四川大學,30.557546,103.99915,moe-campus,Q2281517,,,2026,2026-11-06
+RC00012,Xi'an Jiaotong University,xian-jiaotong-university,China,西安交通大學,moe,4161010698,西安交通大學,34.257161,108.6502,moe-campus,Q981237,,,2026,2026-11-06
+RC00013,Beihang University,beihang-university,China,北京航空航天大學,moe,4111010006,北京航空航天大學,40.153592,116.27045,moe-campus,Q2299797,,,2026,2026-11-06
+RC00014,Beijing Normal University,beijing-normal-university,China,北京師範大學,moe,4111010027,北京師範大學,39.957588,116.356728,moe-campus,Q1604022,,,2026,2026-11-06
+RC00015,Tianjin University,tianjin-university,China,天津大學,moe,4112010056,天津大學,39.003936,117.31903,moe-campus,Q2031560,,,2026,2026-11-06
+RC00016,Dalian University of Technology,dalian-university-of-technology,China,大連理工大學,moe,4121010141,大連理工大學,38.879391,121.523972,moe-campus,Q1477368,,,2026,2026-11-06
+RC00017,Jilin University,jilin-university,China,吉林大學,moe,4122010183,吉林大學,43.857075,125.335348,moe-campus,Q1432030,,,2026,2026-11-06
+RC00018,Southeast University,southeast-university,China,東南大學,moe,4132010286,東南大學,31.887238,118.820984,moe-campus,Q3551770,,,2026,2026-11-06
+RC00019,Soochow University (Suzhou),soochow-university-china,China,蘇州大學,moe,4132010285,蘇州大學,31.266419,120.727461,moe-campus,Q1639978,,,2026,2026-11-06
+RC00020,Wuhan University,wuhan-university,China,武汉大学,moe,4142010486,moe:4142010486,30.536286,114.36444,moe-campus,Q1108197,,,2026,2026-11-06
+RC00021,Central South University,central-south-university,China,中南大學,moe,4143010533,中南大學,28.1772,112.934197,moe-campus,Q5061828,,,2026,2026-11-06
+RC00022,South China University of Technology,south-china-university-of-technology,China,華南理工大學,moe,4144010561,華南理工大學,23.048539,113.405454,moe-campus,Q835366,,,2026,2026-11-06
+RC00023,University of Electronic Science and Technology of China,university-of-electronic-science-and-technology-of-china,China,電子科技大學,moe,4151010614,電子科技大學,30.716153,104.055669,moe-campus,Q5971900,,,2026,2026-11-06
+RC00024,China Agricultural University,china-agricultural-university,China,中國農業大學,moe,4111010019,中國農業大學,40.003022,116.351358,moe-campus,Q257655,,,2026,2026-11-06
+RC00025,Nankai University,nankai-university,China,南开大学,moe,4112010055,moe:4112010055,39.103751,117.167273,moe-campus,Q254204,,,2026,2026-11-06
+RC00026,Tongji University,tongji-university,China,同濟大學,moe,4131010247,同濟大學,31.255891,121.52456,moe-campus,Q16947,,,2026,2026-11-06
+RC00027,East China University of Science and Technology,east-china-university-of-science-and-technology,China,華東理工大學,moe,4131010251,華東理工大學,31.145187,121.41916,moe-campus,Q2655352,,,2026,2026-11-06
+RC00028,Nanjing University of Science & Technology,nanjing-university-of-science-and-technology,China,南京理工大學,moe,4132010288,南京理工大學,32.028149,118.851776,moe-campus,Q3953805,,,2026,2026-11-06
+RC00029,Nanjing Agricultural University,nanjing-agricultural-university,China,南京農業大學,moe,4132010307,南京農業大學,31.61944,119.169202,moe-campus,Q1804773,,,2026,2026-11-06
+RC00030,Xiamen University,xiamen-university,China,廈門大學,moe,4135010384,廈門大學,24.435999,118.102692,moe-campus,Q1153539,,,2026,2026-11-06
+RC00031,Shandong University,shandong-university,China,山東大學,moe,4137010422,山東大學,36.60008,117.045447,moe-campus,Q604470,,,2026,2026-11-06
+RC00032,Wuhan University of Technology,wuhan-university-of-technology,China,武汉理工大学,moe,4142010497,moe:4142010497,30.607465,114.356611,moe-campus,Q832355,,,2026,2026-11-06
+RC00033,Hunan University,hunan-university,China,湖南大學,moe,4143010532,湖南大學,28.20168,112.926195,moe-campus,Q649868,,,2026,2026-11-06
+RC00034,Northwestern Polytechnical University,northwestern-polytechnical-university,China,西北工業大學,moe,4161010699,西北工業大學,34.244415,108.915456,moe-campus,Q832550,,,2026,2026-11-06
+RC00035,Lanzhou University,lanzhou-university,China,蘭州大學,moe,4162010730,蘭州大學,35.94341,104.148334,moe-campus,Q4475799,,,2026,2026-11-06
+RC00036,Beijing Institute of Technology,beijing-institute-of-technology,China,北京理工大學,moe,4111010007,北京理工大學,39.731782,116.17213,moe-campus,Q23101,,,2026,2026-11-06
+RC00037,University of Science and Technology Beijing,university-of-science-and-technology-beijing,China,北京科技大學,moe,4111010008,北京科技大學,39.986417,116.354227,moe-campus,Q1510516,,,2026,2026-11-06
+RC00038,Beijing University of Chemical Technology,beijing-university-of-chemical-technology,China,北京化工大學,moe,4111010010,北京化工大學,39.970409,116.414976,moe-campus,Q2496210,,,2026,2026-11-06
+RC00039,Peking Union Medical College,peking-union-medical-college,China,北京协和医学院,moe,4111010023,moe:4111010023,39.909691,116.408594,moe-campus,Q3372325,,,2026,2026-11-06
+RC00040,Capital Medical University,capital-medical-university,China,首都医科大学,moe,4111010025,moe:4111010025,39.842146,116.317742,moe-campus,Q5035687,,,2026,2026-11-06
+RC00041,Harbin Engineering University,harbin-engineering-university,China,哈爾濱工程大學,moe,4123010217,哈爾濱工程大學,45.774648,126.675686,moe-campus,Q23102,,,2026,2026-11-06
+RC00042,East China Normal University,east-china-normal-university,China,華東師範大學,moe,4131010269,華東師範大學,31.03148,121.453725,moe-campus,Q2034790,,,2026,2026-11-06
+RC00043,Shanghai University,shanghai-university,China,上海大學,moe,4131010280,上海大學,31.316899,121.393502,moe-campus,Q1343386,,,2026,2026-11-06
+RC00044,Nanjing University of Aeronautics and Astronautics,nanjing-university-of-aeronautics-and-astronautics,China,南京航空航天大學,moe,4132010287,南京航空航天大學,31.938219,118.791387,moe-campus,Q23110,,,2026,2026-11-06
+RC00045,Nanjing Tech University,nanjing-tech-university,China,南京工業大學,moe,4132010291,南京工業大學,32.07618,118.762622,moe-campus,Q10906760,,,2026,2026-11-06
+RC00046,Jiangsu University,jiangsu-university,China,江苏理工学院,moe,4132011463,moe:4132011463,31.752923,119.913931,moe-campus,Q11134930,,,2026,2026-11-06
+RC00047,Nanjing Medical University,nanjing-medical-university,China,南京医科大学,moe,4132010312,moe:4132010312,32.046595,118.769164,moe-campus,Q6963668,,,2026,2026-11-06
+RC00049,China University of Geosciences,china-university-of-geosciences-wuhan,China,中国地质大学（武汉）,moe,4142010491,moe:4142010491,30.523227,114.393142,moe-campus,,,,2026,2026-11-06
+RC00050,China University of Geosciences Beijing,china-university-of-geosciences-beijing,China,中國地質大學（北京）,moe,4111011415,中國地質大學（北京）,39.98878,116.345464,moe-campus,,,,2026,2026-11-06
+RC00051,Huazhong Agricultural University,huazhong-agricultural-university,China,華中農業大學,moe,4142010504,華中農業大學,30.479109,114.333601,moe-campus,Q3429270,,,2026,2026-11-06
+RC00052,Chongqing University,chongqing-university,China,重慶大學,moe,4150010611,重慶大學,29.569027,106.462187,moe-campus,Q834857,,,2026,2026-11-06
+RC00053,Northeastern University (Shenyang),northeastern-university-shenyang,China,東北大學,moe,4121010145,東北大學,39.918749,119.541427,moe-campus,Q1363559,,,2026,2026-11-06
+RC00054,Beijing Jiaotong University,beijing-jiaotong-university,China,北京交通大學,moe,4111010004,北京交通大學,39.949388,116.332095,moe-campus,Q4587760,,,2026,2026-11-06
+RC00055,Beijing University of Technology,beijing-university-of-technology,China,北京工業大學,moe,4111010005,北京工業大學,39.873377,116.47861,moe-campus,Q1674548,,,2026,2026-11-06
+RC00056,North China Electric Power University,north-china-electric-power-university,China,華北電力大學,moe,4111010054,華北電力大學,40.089405,116.310265,moe-campus,Q7054810,,,2026,2026-11-06
+RC00057,Hefei University of Technology,hefei-university-of-technology,China,合肥工业大学,moe,4134010359,moe:4134010359,31.844395,117.291525,moe-campus,Q5698213,,,2026,2026-11-06
+RC00058,Ocean University of China,ocean-university-of-china,China,中國海洋大學,moe,4137010423,中國海洋大學,36.072862,120.432424,moe-campus,Q1074015,,,2026,2026-11-06
+RC00059,Zhengzhou University,zhengzhou-university,China,鄭州大學,moe,4141010459,鄭州大學,34.782866,113.656419,moe-campus,Q649895,,,2026,2026-11-06
+RC00060,Jinan University,jinan-university,China,济南大学,moe,4137010427,moe:4137010427,36.615176,116.963149,moe-campus,Q985775,,,2026,2026-11-06
+RC00062,Southern Medical University,southern-medical-university,China,南方医科大学,moe,4144012121,moe:4144012121,23.187607,113.334471,moe-campus,Q7570129,,,2026,2026-11-06
+RC00063,Northwest A&F University,northwest-a-f-university,China,西北農林科技大學,moe,4161010712,西北農林科技大學,34.287174,108.067874,moe-campus,,,,2026,2026-11-06
+RC00064,Southern University of Science and Technology,southern-university-of-science-and-technology,China,南方科技大學,moe,4144014325,南方科技大學,22.600462,113.994466,moe-campus,Q7568723,,,2026,2026-11-06
+RC00066,"China University of Petroleum, Beijing",china-university-of-petroleum-beijing,China,中國石油大學（北京）,moe,4111011414,中國石油大學（北京）,40.214783,116.248931,moe-campus,Q3274786,,,2026,2026-11-06
+RC00067,China University of Petroleum (East China),china-university-of-petroleum-huadong,China,中国石油大学（华东）,moe,4137010425,moe:4137010425,35.770438,120.027052,moe-campus,,,,2026,2026-11-06
+RC00071,Donghua University,donghua-university,China,東華大學,moe,4131010255,東華大學,31.055031,121.215807,moe-campus,Q837544,,,2026,2026-11-06
+RC00073,China University of Mining and Technology,china-university-of-mining-and-technology-xuzhou,China,中國礦業大學,moe,4132010290,中國礦業大學,34.214174,117.145177,moe-campus,Q1074084,,,2026,2026-11-06
+RC00074,China University of Mining and Technology-Beijing,china-university-of-mining-and-technology-beijing,China,中國礦業大學（北京）,moe,4111011413,中國礦業大學（北京）,39.997542,116.348374,moe-campus,,,,2026,2026-11-06
+RC00075,Jiangnan University,jiangnan-university,China,江南大學,moe,4132010295,江南大學,31.483744,120.271222,moe-campus,Q6191676,,,2026,2026-11-06
+RC00076,Yangzhou University,yangzhou-university,China,扬州大学,moe,4132011117,moe:4132011117,32.379947,119.416371,moe-campus,,,,2026,2026-11-06
+RC00077,Wenzhou Medical University,wenzhou-medical-university,China,温州医科大学,moe,4133010343,moe:4133010343,27.928472,120.706848,moe-campus,,,,2026,2026-11-06
+RC00078,Fuzhou University,fuzhou-university,China,福州大學,moe,4135010386,福州大學,26.056327,119.196722,moe-campus,Q470963,,,2026,2026-11-06
+RC00079,Southwest University,southwest-university,China,西南大學,moe,4150010635,西南大學,29.580608,106.505236,moe-campus,Q840443,,,2026,2026-11-06
+RC00080,Xidian University,xidian-university,China,西安电子科技大学,moe,4161010701,moe:4161010701,34.230124,108.916553,moe-campus,Q649906,,,2026,2026-11-06
+RC00083,Zhejiang University of Technology,zhejiang-university-of-technology,China,浙江工业大学,moe,4133010337,moe:4133010337,30.402394,120.294776,moe-campus,Q986087,,,2026,2026-11-06
+RC00084,National University of Defense Technology,national-university-of-defense-technology,China,國防科技大學,manual,,,28.2282,112.9953,manual,,,軍隊院校，不在教育部普通高校名單；長沙校本部,2026,2026-11-06
+RC00085,Renmin University of China,renmin-university-of-china,China,中國人民大學,moe,4111010002,中國人民大學,39.969316,116.30713,moe-campus,Q1074117,,,2026,2026-11-06
+RC00087,Hohai University,hohai-university,China,河海大學,moe,4132010294,河海大學,31.82476,119.987256,moe-campus,Q662131,,,2026,2026-11-06
+RC00092,Nanchang University,nanchang-university,China,南昌大学,moe,4136010403,moe:4136010403,28.683804,115.906703,moe-campus,Q3497259,,,2026,2026-11-06
+RC00093,Qingdao University,qingdao-university,China,青岛大学,moe,4137011065,moe:4137011065,36.072142,120.413741,moe-campus,,,,2026,2026-11-06
+RC00094,South China Agricultural University,south-china-agricultural-university,China,華南農業大學,moe,4144010564,華南農業大學,23.160804,113.349253,moe-campus,Q7566809,,,2026,2026-11-06
+RC00097,Southwest Jiaotong University,southwest-jiaotong-university,China,西南交通大學,moe,4151010613,西南交通大學,29.579326,103.458437,moe-campus,Q3551422,,,2026,2026-11-06
+RC00100,Beijing University of Posts and Telecommunications,beijing-university-of-posts-and-telecommunications,China,北京郵電大學,moe,4111010013,北京郵電大學,40.156095,116.282835,moe-campus,Q4881210,,,2026,2026-11-06
+RC00101,Beijing Forestry University,beijing-forestry-university,China,北京林業大學,moe,4111010022,北京林業大學,40.063491,116.098806,moe-campus,Q4881133,,,2026,2026-11-06
+RC00102,Yanshan University,yanshan-university,China,燕山大学,moe,4113010216,moe:4113010216,39.909704,119.518201,moe-campus,Q832792,,,2026,2026-11-06
+RC00104,Taiyuan University of Technology,taiyuan-university-of-technology,China,太原理工大學,moe,4114010112,太原理工大學,37.860264,112.51558,moe-campus,Q7676661,,,2026,2026-11-06
+RC00105,China Pharmaceutical University,china-pharmaceutical-university,China,中國藥科大學,moe,4132010316,中國藥科大學,31.90295,118.918105,moe-campus,Q5099853,,,2026,2026-11-06
+RC00106,Ningbo University,ningbo-university,China,寧波大學,moe,4133011646,寧波大學,29.944726,121.601199,moe-campus,Q4391363,,,2026,2026-11-06
+RC00107,Huaqiao University,huaqiao-university,China,华侨大学,moe,4135010385,moe:4135010385,24.935517,118.644474,moe-campus,,,,2026,2026-11-06
+RC00108,Fujian Agriculture and Forestry University,fujian-agriculture-and-forestry-university,China,福建农林大学,moe,4135010389,moe:4135010389,26.085936,119.232129,moe-campus,Q5507366,,,2026,2026-11-06
+RC00117,Nanjing University of Posts and Telecommunications,nanjing-university-of-posts-and-telecommunications,China,南京邮电大学,moe,4132010293,moe:4132010293,32.07975,118.771174,moe-campus,Q6963688,,,2026,2026-11-06
+RC00119,Anhui University,anhui-university,China,安徽大学,moe,4134010357,moe:4134010357,31.851025,117.262163,moe-campus,Q545540,,,2026,2026-11-06
+RC00123,Guangxi University,guangxi-university,China,廣西大學,moe,4145010593,廣西大學,22.845397,108.286027,moe-campus,Q1552757,,,2026,2026-11-06
+RC00124,Sichuan Agricultural University,sichuan-agricultural-university,China,四川農業大學,moe,4151010626,四川農業大學,30.70561,103.862375,moe-campus,Q10924764,,,2026,2026-11-06
+RC00125,Kunming University of Science and Technology,kunming-university-of-science-and-technology,China,昆明理工大学,moe,4153010674,moe:4153010674,25.054382,102.730793,moe-campus,,,,2026,2026-11-06
+RC00127,Beijing Technology and Business University,beijing-technology-and-business-university,China,北京工商大学,moe,4111010011,moe:4111010011,39.718435,116.16125,moe-campus,Q4356865,,,2026,2026-11-06
+RC00139,Central University of Finance and Economics,central-university-of-finance-and-economics,China,中央財經大學,moe,4111010034,中央財經大學,40.17146,116.281888,moe-campus,Q5061957,,,2026,2026-11-06
+RC00140,University of International Business and Economics,university-of-international-business-and-economics,China,對外經濟貿易大學,moe,4111010036,對外經濟貿易大學,39.979053,116.421605,moe-campus,Q835779,,,2026,2026-11-06
+RC00164,Tianjin University of Science and Technology,tianjin-university-of-science-and-technology,China,天津科技大学,moe,4112010057,moe:4112010057,39.087531,117.692932,moe-campus,Q4467975,,,2026,2026-11-06
+RC00165,Tiangong University,tiangong-university,China,天津工業大學,moe,4112010058,天津工業大學,39.064346,117.108233,moe-campus,Q7800203,,,2026,2026-11-06
+RC00213,North University of China,north-university-of-china,China,中北大学,moe,4114010110,moe:4114010110,38.014801,112.44796,moe-campus,,,,2026,2026-11-06
+RC00253,Dalian Maritime University,dalian-maritime-university,China,大連海事大學,moe,4121010151,大連海事大學,38.870358,121.527132,moe-campus,Q3467465,,,2026,2026-11-06
+RC00254,Dalian Polytechnic University,dalian-polytechnic-university,China,大连工业大学,moe,4121010152,moe:4121010152,38.972532,121.522634,moe-campus,Q647594,,,2026,2026-11-06
+RC00261,Shenyang Pharmaceutical University,shenyang-pharmaceutical-university,China,沈阳药科大学,moe,4121010163,moe:4121010163,41.765792,123.438615,moe-campus,,,,2026,2026-11-06
+RC00310,Northeast Agricultural University,northeast-agricultural-university-china,China,东北农业大学,moe,4123010224,moe:4123010224,45.742297,126.721363,moe-campus,Q7057807,,,2026,2026-11-06
+RC00311,Northeast Forestry University,northeast-forestry-university-china,China,東北林業大學,moe,4123010225,東北林業大學,45.715428,126.635205,moe-campus,Q10869592,,,2026,2026-11-06
+RC00328,Shanghai Maritime University,shanghai-maritime-university,China,上海海事大学,moe,4131010254,moe:4131010254,31.265184,121.564589,moe-campus,Q51841,,,2026,2026-11-06
+RC00331,Shanghai Ocean University,shanghai-ocean-university,China,上海海洋大學,moe,4131010264,上海海洋大學,30.885833333,121.892777777,wikidata-label,Q7488485,,,2026,2026-11-06
+RC00335,Shanghai University of Finance and Economics,shanghai-university-of-finance-and-economics,China,上海財經大學,moe,4131010272,上海財經大學,31.308231,121.496234,moe-campus,Q6129947,,,2026,2026-11-06
+RC00348,Jiangsu University of Science and Technology,jiangsu-university-of-science-and-technology,China,江苏科技大学,moe,4132010289,moe:4132010289,32.182096,119.386998,moe-campus,,,,2026,2026-11-06
+RC00349,Nanjing Forestry University,nanjing-forestry-university,China,南京林業大學,moe,4132010298,南京林業大學,32.081192,118.811767,moe-campus,Q6963657,,,2026,2026-11-06
+RC00352,Nanjing University of Chinese Medicine,nanjing-university-of-chinese-medicine,China,南京中医药大学,moe,4132010315,moe:4132010315,32.109189,118.951003,moe-campus,,,,2026,2026-11-06
+RC00366,Nanjing University of Information Science & Technology,nanjing-university-of-information-science-technology,China,南京信息工程大學,moe,4132010300,南京信息工程大學,32.205409,118.710024,moe-campus,Q6963692,,,2026,2026-11-06
+RC00367,Shenzhen University,shenzhen-university,China,深圳大學,moe,4144010590,深圳大學,22.596239,113.993703,moe-campus,Q1945756,,,2026,2026-11-06
+RC00376,Zhejiang Sci-Tech University,zhejiang-sci-tech-university,China,浙江理工大学,moe,4133010338,moe:4133010338,30.315493,120.348659,moe-campus,Q8070672,,,2026,2026-11-06
+RC00382,Shaoxing University,shaoxing-university,China,绍兴大学,moe,4133010349,moe:4133010349,29.97958,120.570382,moe-campus,,,,2026,2026-11-06
+RC00386,Zhejiang Gongshang University,zhejiang-gongshang-university,China,浙江工商大学,moe,4133010353,moe:4133010353,30.285608,120.13437,moe-campus,Q8070664,,,2026,2026-11-06
+RC00403,Anhui Agricultural University,anhui-agricultural-university,China,安徽农业大学,moe,4134010364,moe:4134010364,31.864072,117.251482,moe-campus,,,,2026,2026-11-06
+RC00463,Shandong University of Science and Technology,shandong-university-of-science-and-technology,China,山东科技大学,moe,4137010424,moe:4137010424,36.002529,120.117555,moe-campus,Q7487936,,,2026,2026-11-06
+RC00468,Qilu University of Technology,qilu-university-of-technology,China,齐鲁工业大学,moe,4137010431,moe:4137010431,36.642994,117.039626,moe-campus,,,,2026,2026-11-06
+RC00470,Shandong Agricultural University,shandong-agricultural-university,China,山东农业大学,moe,4137010434,moe:4137010434,36.164261,117.150512,moe-campus,,,,2026,2026-11-06
+RC00471,Qingdao Agricultural University,qingdao-agricultural-university,China,青岛农业大学,moe,4137010435,moe:4137010435,36.319969,120.382258,moe-campus,Q7267798,,,2026,2026-11-06
+RC00504,Henan Polytechnic University,henan-polytechnic-university,China,河南理工大学,moe,4141010460,moe:4141010460,35.246782,113.240608,moe-campus,Q6764493,,,2026,2026-11-06
+RC00509,Henan Agricultural University,henan-agricultural-university,China,河南农业大学,moe,4141010466,moe:4141010466,34.787176,113.6568,moe-campus,Q3429296,,,2026,2026-11-06
+RC00536,Wuhan University of Science and Technology,wuhan-university-of-science-and-technology,China,武汉科技大学,moe,4142010488,moe:4142010488,30.437931,114.267492,moe-campus,Q6123855,,,2026,2026-11-06
+RC00539,Wuhan Textile University,wuhan-textile-university,China,武汉纺织大学,moe,4142010495,moe:4142010495,30.382144,114.344906,moe-campus,Q11124722,,,2026,2026-11-06
+RC00548,Zhongnan University of Economics and Law,zhongnan-university-of-economics-and-law,China,中南財經政法大學,moe,4142010520,中南財經政法大學,30.473953,114.386325,moe-campus,Q8070947,,,2026,2026-11-06
+RC00608,Guangzhou University,guangzhou-university,China,广州大学,moe,4144011078,moe:4144011078,23.148383,113.266098,moe-campus,Q5613747,,,2026,2026-11-06
+RC00616,Guangdong University of Technology,guangdong-university-of-technology,China,广东工业大学,moe,4144011845,moe:4144011845,23.040562578066282,113.39295485761286,moe-campus,Q716822,,,2026,2026-11-06
+RC00640,Hainan University,hainan-university,China,海南大學,moe,4146010589,海南大學,19.507278,109.492042,moe-campus,Q5639382,,,2026,2026-11-06
+RC00644,Chongqing University of Posts and Telecommunications,chongqing-university-of-posts-and-telecommunications,China,重庆邮电大学,moe,4150010617,moe:4150010617,29.53478,106.604112,moe-campus,Q5104676,,,2026,2026-11-06
+RC00658,Southwestern University of Finance and Economics,southwestern-university-of-finance-and-economics,China,西南財經大學,moe,4151010651,西南財經大學,30.666155,104.013719,moe-campus,Q1107944,,,2026,2026-11-06
+RC00659,Southwest Petroleum University,southwest-petroleum-university,China,西南石油大學,moe,4151010615,西南石油大學,30.829052,104.182006,moe-campus,Q7571336,,,2026,2026-11-06
+RC00660,Chengdu University of Technology,chengdu-university-of-technology,China,成都理工大學,moe,4151010616,成都理工大學,30.667473,104.135471,moe-campus,Q5091338,,,2026,2026-11-06
+RC00680,Chengdu University,chengdu-university,China,成都大学,moe,4151011079,moe:4151011079,30.652575,104.18768,moe-campus,Q11074647,,,2026,2026-11-06
+RC00727,Chang'an University,changan-university,China,长安大学,moe,4161010710,moe:4161010710,34.2306,108.95482,moe-campus,,,,2026,2026-11-06
+RC00730,Xi'an University of Architecture and Technology,xian-university-of-architecture-and-technology,China,西安建筑科技大学,moe,4161010703,moe:4161010703,34.016042,108.754121,moe-campus,Q4418179,,,2026,2026-11-06
+RC00731,Xi'an University of Science and Technology,xian-university-of-science-and-technology,China,西安科技大学,moe,4161010704,moe:4161010704,34.365337,109.193094,moe-campus,Q8044029,,,2026,2026-11-06
+RC00733,Shaanxi University of Science & Technology,shaanxi-university-of-science-and-technology,China,陕西科技大学,moe,4161010708,moe:4161010708,34.383906,108.983631,moe-campus,Q7459941,,,2026,2026-11-06
+RC00777,Xinjiang University,xinjiang-university,China,新疆大學,moe,4165010755,新疆大學,43.828155,87.587032,moe-campus,Q985578,,,2026,2026-11-06
+RC00927,"The Chinese University of Hong Kong, Shenzhen",the-chinese-university-of-hong-kong-shenzhen,China,香港中文大学（深圳）,moe,4144016407,moe:4144016407,22.534905,113.938963,moe-campus,Q15934902,,,2026,2026-11-06
+RC01551,Westlake University,westlake-university,China,西湖大学,moe,4133014626,moe:4133014626,30.136598,120.075583,moe-campus,Q28416699,,,2026,2026-11-06
+RG00002,The Chinese University of Hong Kong,the-chinese-university-of-hong-kong,China-Hong Kong,香港中文大學,wikidata-zh-hant,,,22.419722222,114.206791666,wikidata-label,Q15570,university,,2026,2026-11-06
+RG00007,The Hong Kong Polytechnic University,the-hong-kong-polytechnic-university,China-Hong Kong,香港理工大學,wikidata-zh-hant,,,22.305,114.18,wikidata-label,Q1187271,university,,2026,2026-11-06
+RG00008,The Hong Kong University of Science and Technology,the-hong-kong-university-of-science-and-technology,China-Hong Kong,香港科技大學,wikidata-zh-hant,,,22.3375,114.263,wikidata-label,Q1333303,public research university,,2026,2026-11-06
+RG00009,Hong Kong Baptist University,hong-kong-baptist-university,China-Hong Kong,香港浸會大學,wikidata-zh-hant,,,22.338888888,114.181666666,wikidata-label,Q603686,public university,,2026,2026-11-06
+RG00010,The Education University of Hong Kong,the-education-university-of-hong-kong,China-Hong Kong,香港教育大學,wikidata-zh-hant,,,22.4689,114.194,wikidata-label,Q5968342,university,,2026,2026-11-06
+RG00012,The University of Hong Kong,the-university-of-hong-kong,China-Hong Kong,香港大學,wikidata-zh-hant,,,22.284166666,114.137777777,wikidata-label,Q15568,public research university,,2026,2026-11-06
+RG00013,City University of Hong Kong,city-university-of-hong-kong,China-Hong Kong,香港城市大學,wikidata-zh-hant,,,22.336422222,114.172988888,wikidata-label,Q787360,public research university,,2026,2026-11-06
+RG00015,City University of Macau,city-university-of-macau,China-Macau,澳門城市大學,wikidata-zh-hant,,,22.164168,113.557409,wikidata-label,Q5123484,university,,2026,2026-11-06
+RG00017,Macao University of Tourism,institute-for-tourism-studies,China-Macau,澳門旅遊大學,manual,,,22.205,113.5505,manual,,,望廈校區,2026,2026-11-06
+RG00018,Macau University of Science and Technology,macau-university-of-science-and-technology,China-Macau,澳門科技大學,wikidata-zh-hant,,,22.1534,113.568,wikidata-label,Q847993,university,,2026,2026-11-06
+RG00019,University of Macau,university-of-macau,China-Macau,澳門大學,wikidata-zh-hant,,,22.13033,113.545757,wikidata-label,Q1563050,university,,2026,2026-11-06
+RG00041,National Taiwan Normal University,national-taiwan-normal-university,China-Taiwan,國立臺灣師範大學,wikidata-zh-hant,,,25.02591,121.52749,wikidata-label,Q706712,research institute,,2026,2026-11-06
+RG00047,National Taiwan University,national-taiwan-university,China-Taiwan,國立臺灣大學,wikidata-zh-hant,,,25.0168175,121.5384571,wikidata-label,Q32746,national university,,2026,2026-11-06
+RG00049,Taipei Medical University,taipei-medical-university,China-Taiwan,臺北醫學大學,wikidata-zh-hant,,,25.025,121.561,wikidata-label,Q701818,private university,,2026,2026-11-06
+RG00068,Kaohsiung Medical University,kaohsiung-medical-university,China-Taiwan,高雄醫學大學,wikidata-zh-hant,,,22.64752,120.31043,wikidata-label,Q700801,university,,2026,2026-11-06
+RI00038,Australian Catholic University,australian-catholic-university,Australia,,,,,-27.378,153.089,wikidata-label,Q781371,Catholic university,,2026,2026-11-06
+RI00045,Curtin University,curtin-university,Australia,科廷大學,wikidata-zh-hant,,,-32.0048589,115.8936669,wikidata-label,Q1145497,public university,,2026,2026-11-06
+RI00046,Deakin University,deakin-university,Australia,,,,,-38.197888888,144.297,wikidata-label,Q1180978,public university,,2026,2026-11-06
+RI00047,Edith Cowan University,edith-cowan-university,Australia,伊迪斯科文大學,wikidata-zh-hant,,,-33.367082569,115.653387813,wikidata-label,Q1284960,public university,,2026,2026-11-06
+RI00049,Flinders University,flinders-university,Australia,弗林德斯大學,wikidata-zh-hant,,,-35.0208,138.573,wikidata-label,Q15575,public university,,2026,2026-11-06
+RI00050,Griffith University,griffith-university,Australia,葛瑞菲斯大學,wikidata-zh-hant,,,-27.5526,153.0539,wikidata-label,Q1202292,public university,,2026,2026-11-06
+RI00051,James Cook University,james-cook-university,Australia,詹姆士庫克大學,wikidata-zh-hant,,,-19.328,146.757,wikidata-label,Q536512,public university,,2026,2026-11-06
+RI00053,La Trobe University,la-trobe-university,Australia,樂卓博大學,wikidata-zh-hant,,,-37.72179,145.047909,wikidata-label,Q1478723,public university,,2026,2026-11-06
+RI00054,Macquarie University,macquarie-university,Australia,麥覺理大學,wikidata-zh-hant,,,-33.775259,151.112915,wikidata-label,Q741082,public university,,2026,2026-11-06
+RI00055,Monash University,monash-university,Australia,蒙納許大學,wikidata-zh-hant,,,-37.908333333,145.138055555,wikidata-label,Q598841,public university,,2026,2026-11-06
+RI00056,Murdoch University,murdoch-university,Australia,梅鐸大學,wikidata-zh-hant,,,-32.0675,115.83583333,wikidata-label,Q1375146,public university,,2026,2026-11-06
+RI00057,Queensland University of Technology,queensland-university-of-technology,Australia,昆士蘭科技大學,wikidata-zh-hant,,,-27.476944444,153.028055555,wikidata-label,Q1144750,public university,,2026,2026-11-06
+RI00058,RMIT University,rmit-university,Australia,皇家墨爾本理工大學,wikidata-zh-hant,,,-37.807777777,144.963333333,wikidata-label,Q1057890,public university,,2026,2026-11-06
+RI00060,Swinburne University of Technology,swinburne-university-of-technology,Australia,,,,,-37.821111111,145.038333333,wikidata-label,Q787234,public university,,2026,2026-11-06
+RI00061,The Australian National University,the-australian-national-university,Australia,澳洲國立大學,wikidata-zh-hant,,,-35.2778,149.1205,wikidata-label,Q127990,public university,,2026,2026-11-06
+RI00062,Adelaide University,the-university-of-adelaide,Australia,,,,,-34.920396319,138.606796265,wikidata-label,Q123125135,university,,2026,2026-11-06
+RI00063,The University of Melbourne,the-university-of-melbourne,Australia,墨爾本大學,wikidata-zh-hant,,,-37.7963,144.9614,wikidata-label,Q319078,public university,,2026,2026-11-06
+RI00064,The University of New South Wales,the-university-of-new-south-wales,Australia,新南威爾斯大學,wikidata-zh-hant,,,-33.916921,151.232514,wikidata-label,Q734764,research institute,,2026,2026-11-06
+RI00065,"The University of Newcastle, Australia",the-university-of-newcastle-australia,Australia,紐卡索大學,wikidata-zh-hant,,,-32.892777777,151.704444444,wikidata-label,Q531285,public university,,2026,2026-11-06
+RI00067,The University of Queensland,the-university-of-queensland,Australia,昆士蘭大學,wikidata-zh-hant,,,-27.497222222,153.013055555,wikidata-label,Q866012,public university,,2026,2026-11-06
+RI00068,The University of Western Australia,the-university-of-western-australia,Australia,西澳大學,wikidata-zh-hant,,,-31.980277777,115.818611111,wikidata-label,Q1517021,university,,2026,2026-11-06
+RI00073,University of Sydney,university-of-sydney,Australia,雪梨大學,wikidata-zh-hant,,,-33.8875,151.19,wikidata-label,Q487556,public research university,,2026,2026-11-06
+RI00074,University of Tasmania,university-of-tasmania,Australia,塔斯馬尼亞大學,wikidata-zh-hant,,,-42.904722222,147.322777777,wikidata-label,Q962011,public university,,2026,2026-11-06
+RI00075,University of Technology Sydney,university-of-technology-sydney,Australia,雪梨科技大學,wikidata-zh-hant,,,-33.883255413,151.200408369,wikidata-label,Q1145731,public university,,2026,2026-11-06
+RI00077,University of Wollongong,university-of-wollongong,Australia,臥隆崗大學,wikidata-zh-hant,,,-34.406166666,150.879536111,wikidata-label,Q1350021,public research university,,2026,2026-11-06
+RI00080,Western Sydney University,western-sydney-university,Australia,西雪梨大學,wikidata-zh-hant,,,-33.609245,150.754028,wikidata-label,Q1141452,public university,,2026,2026-11-06
+RI00086,Medical University of Vienna,medical-university-of-vienna,Austria,維也納醫科大學,wikidata-zh-hant,,,48.213056,16.359722,wikidata-label,Q700731,medical school,,2026,2026-11-06
+RI00094,Technical University of Leoben,university-of-leoben,Austria,,,,,47.385555555,15.093055555,wikidata-label,Q674568,university,,2026,2026-11-06
+RI00097,"University of Natural Resources and Life Sciences, Vienna",university-of-natural-resources-and-life-sciences-vienna,Austria,維也納農業大學,wikidata-zh-hant,,,48.236572222,16.337472222,wikidata-label,Q876520,public university,,2026,2026-11-06
+RI00099,"University of Veterinary Medicine, Vienna",university-of-veterinary-medicine-vienna,Austria,,,,,48.255277777,16.431388888,wikidata-label,Q877421,university,,2026,2026-11-06
+RI00100,University of Vienna,university-of-vienna,Austria,維也納大學,wikidata-zh-hant,,,48.213055555,16.359722222,wikidata-label,Q165980,university,,2026,2026-11-06
+RI00101,Vienna University of Technology,vienna-university-of-technology,Austria,維也納科技大學,wikidata-zh-hant,,,48.19862,16.37077,wikidata-label,Q689400,public university,,2026,2026-11-06
+RI00124,Ghent University,ghent-university,Belgium,根特大學,wikidata-zh-hant,,,51.043888888,3.726111111,wikidata-label,Q1137665,public university,,2026,2026-11-06
+RI00126,KU Leuven,ku-leuven,Belgium,魯汶天主教大學,manual,,,50.87796336853561,4.70029370854174,wikidata-search,Q833670,"University since 1968 with its main campus in Leuven, Belgium",,2026,2026-11-06
+RI00128,University of Antwerp,university-of-antwerp,Belgium,安特衛普大學,wikidata-zh-hant,,,51.222777777,4.41,wikidata-label,Q175241,university,,2026,2026-11-06
+RI00150,Federal University of Minas Gerais,federal-university-of-minas-gerais,Brazil,米納斯吉拉斯聯邦大學,wikidata-zh-hant,,,-19.8690878,-43.9663841,wikidata-label,Q132140,public university,,2026,2026-11-06
+RI00271,University of Campinas,university-of-campinas,Brazil,坎皮納斯州立大學,wikidata-zh-hant,,,-22.817222222,-47.069444444,wikidata-label,Q2060678,public university,,2026,2026-11-06
+RI00275,University of Sao Paulo,university-of-sao-paulo,Brazil,聖保羅大學,wikidata-zh-hant,,,-23.5613991,-46.7307891,wikidata-label,Q835960,university,,2026,2026-11-06
+RI00292,Concordia University,concordia-university,Canada,協和大學,wikidata-zh-hant,,,45.496944444,-73.578055555,wikidata-label,Q326342,university in Quebec,,2026,2026-11-06
+RI00293,Dalhousie University,dalhousie-university,Canada,戴爾豪斯大學,wikidata-zh-hant,,,44.636944444,-63.591666666,wikidata-label,Q579321,public research university,,2026,2026-11-06
+RI00302,McGill University,mcgill-university,Canada,麥基爾大學,wikidata-zh-hant,,,45.505,-73.5775,wikidata-label,Q201492,university in Quebec,,2026,2026-11-06
+RI00303,McMaster University,mcmaster-university,Canada,麥馬士達大學,wikidata-zh-hant,,,43.263333333,-79.918888888,wikidata-label,Q632891,university in Ontario,,2026,2026-11-06
+RI00304,Memorial University of Newfoundland,memorial-university-of-newfoundland,Canada,紐芬蘭紀念大學,wikidata-zh-hant,,,47.5725,-52.734444444,wikidata-label,Q1895354,university in Newfoundland and Labrador,,2026,2026-11-06
+RI00313,Simon Fraser University,simon-fraser-university,Canada,西門菲莎大學,wikidata-zh-hant,,,49.278175782,-122.919393828,wikidata-label,Q201603,public research university,,2026,2026-11-06
+RI00315,The University of Calgary,the-university-of-calgary,Canada,卡爾加里大學,wikidata-zh-hant,,,51.0775,-114.133055555,wikidata-label,Q1067471,autonomous university,,2026,2026-11-06
+RI00317,University of Alberta,university-of-alberta,Canada,阿爾伯塔大學,wikidata-zh-hant,,,53.524444444,-113.524444444,wikidata-label,Q640694,autonomous university,,2026,2026-11-06
+RI00318,University of British Columbia,university-of-british-columbia,Canada,英屬哥倫比亞大學,wikidata-zh-hant,,,49.264722222,-123.252777777,wikidata-label,Q391028,public research university,,2026,2026-11-06
+RI00319,University of Guelph,university-of-guelph,Canada,貴湖大學,wikidata-zh-hant,,,43.533333333,-80.223611111,wikidata-label,Q795988,university in Ontario,,2026,2026-11-06
+RI00323,University of Montreal,university-of-montreal,Canada,蒙特利爾大學,wikidata-zh-hant,,,45.50414,-73.61433,wikidata-label,Q392189,university in Quebec,,2026,2026-11-06
+RI00326,University of Ottawa,university-of-ottawa,Canada,渥太華大學,wikidata-zh-hant,,,45.4222,-75.6824,wikidata-label,Q627969,public university,,2026,2026-11-06
+RI00334,University of Saskatchewan,university-of-saskatchewan,Canada,薩斯喀徹溫大學,wikidata-zh-hant,,,52.129825,-106.6328,wikidata-label,Q1514848,public research university,,2026,2026-11-06
+RI00336,University of Toronto,university-of-toronto,Canada,多倫多大學,wikidata-zh-hant,,,43.662917,-79.395746,wikidata-label,Q180865,collegiate university,,2026,2026-11-06
+RI00337,University of Victoria,university-of-victoria,Canada,維多利亞大學,wikidata-zh-hant,,,48.463333333,-123.311666666,wikidata-label,Q1458113,university in British Columbia,,2026,2026-11-06
+RI00338,University of Waterloo,university-of-waterloo,Canada,滑鐵盧大學,wikidata-zh-hant,,,43.468888888,-80.54,wikidata-label,Q1049470,public research university,,2026,2026-11-06
+RI00342,Western University,western-university,Canada,西安大略大學,wikidata-zh-hant,,,43.009643504,-81.273776516,wikidata-label,Q1144262,public research university,,2026,2026-11-06
+RI00344,York University,york-university,Canada,約克大學,wikidata-zh-hant,,,43.773055555,-79.503611111,wikidata-label,Q849751,public research university,,2026,2026-11-06
+RI00394,University of Zagreb,university-of-zagreb,Croatia,薩格勒布大學,wikidata-zh-hant,,,45.810672222,15.970097222,wikidata-label,Q675848,public university,,2026,2026-11-06
+RI00407,Czech University of Life Sciences Prague,czech-university-of-life-sciences-prague,Czech Republic,,,,,50.13,14.3733,manual,,,Praha-Suchdol 校園,2026,2026-11-06
+RI00422,Aalborg University,aalborg-university,Denmark,奧爾堡大學,wikidata-zh-hant,,,57.015,9.985,wikidata-label,Q601956,university,,2026,2026-11-06
+RI00424,Aarhus University,aarhus-university,Denmark,奧胡斯大學,wikidata-zh-hant,,,56.170555555,10.201111111,wikidata-label,Q924265,public university,,2026,2026-11-06
+RI00425,Copenhagen Business School,copenhagen-business-school,Denmark,哥本哈根商學院,wikidata-zh-hant,,,55.681625,12.529733333,wikidata-label,Q703620,university,,2026,2026-11-06
+RI00428,Roskilde University,roskilde-university,Denmark,羅斯基勒大學,wikidata-zh-hant,,,55.653888888,12.141111111,wikidata-label,Q1542386,university,,2026,2026-11-06
+RI00433,Technical University of Denmark,technical-university-of-denmark,Denmark,丹麥理工大學,wikidata-zh-hant,,,55.786154962,12.523358653,wikidata-label,Q1269766,public university,,2026,2026-11-06
+RI00435,University of Copenhagen,university-of-copenhagen,Denmark,哥本哈根大學,wikidata-zh-hant,,,55.679722222,12.5725,wikidata-label,Q186285,public research university,,2026,2026-11-06
+RI00485,Aalto University,aalto-university,Finland,阿爾托大學,wikidata-zh-hant,,,60.186111,24.828611,wikidata-label,Q300980,public university,,2026,2026-11-06
+RI00494,University of Helsinki,university-of-helsinki,Finland,赫爾辛基大學,wikidata-zh-hant,,,60.169444444,24.95,wikidata-label,Q28695,public university,,2026,2026-11-06
+RI00496,University of Oulu,university-of-oulu,Finland,奧盧大學,wikidata-zh-hant,,,65.066666666,25.45,wikidata-label,Q1357517,public university,,2026,2026-11-06
+RI00499,University of Turku,university-of-turku,Finland,圖爾庫大學,wikidata-zh-hant,,,60.454166666,22.284722222,wikidata-label,Q501841,public university,,2026,2026-11-06
+RI00502,Institut Agro,institut-agro,France,,,,,48.1135,-1.7064,wikidata-search,Q3152599,French engineering College,,2026,2026-11-06
+RI00503,Aix Marseille University,aix-marseille-university,France,,,,,43.293494444,5.357841666,wikidata-label,Q2302586,university in France,,2026,2026-11-06
+RI00505,Audencia Business School,audencia,France,法國南特高等商學院,wikidata-zh-hant,,,47.246831,-1.552711,wikidata-label,Q1968395,business school,,2026,2026-11-06
+RI00555,HEC Paris,hec-paris,France,巴黎高等商貿學院,wikidata-zh-hant,,,48.758055555,2.170277777,wikidata-label,Q273535,grande école,,2026,2026-11-06
+RI00560,Institut Mines-Telecom,imt-atlantique,France,,,,,48.625,2.443,wikidata-search,Q3546588,French business school,,2026,2026-11-06
+RI00562,INSA Lyon,insa-lyon,France,里昂國立應用科學學院,wikidata-zh-hant,,,45.78138889,4.87222222,wikidata-label,Q1633859,grande école,,2026,2026-11-06
+RI00564,INSEAD,insead,France,歐洲工商管理學院,wikidata-zh-hant,,,48.405277777,2.685277777,wikidata-label,Q1136829,business school,,2026,2026-11-06
+RI00599,The University of Toulouse,paul-sabatier-university-toulouse-3,France,,,,,43.595039444,1.451541666,wikidata-label,Q20669873,Group of universities and institutions (France),,2026,2026-11-06
+RI00602,PSL University,psl-university,France,巴黎文理研究大學,wikidata-zh-hant,,,48.8402026,2.3525628,wikidata-search,Q1163431,French university in Paris,,2026,2026-11-06
+RI00605,Sorbonne University,sorbonne-university,France,索邦大學,wikidata-zh-hant,,,48.850623259,2.34031211,wikidata-label,Q41497113,public university,,2026,2026-11-06
+RI00624,Université Grenoble Alpes,universit-grenoble-alpes,France,格勒諾布爾大學,wikidata-zh-hant,,,45.193055555,5.766944444,wikidata-label,Q945876,public university,,2026,2026-11-06
+RI00644,University of Lille,university-of-lille,France,,,,,50.631722222,3.075194444,wikidata-label,Q3551621,university in France,,2026,2026-11-06
+RI00652,University of Montpellier,university-of-montpellier,France,蒙彼利埃大學,wikidata-zh-hant,,,43.6145,3.872055555,wikidata-label,Q776223,public university,,2026,2026-11-06
+RI00654,Nantes University,university-of-nantes,France,,,,,47.237879,-1.554284,wikidata-label,Q259388,university in France,,2026,2026-11-06
+RI00657,Université Paris Cité,university-of-paris,France,巴黎西岱大學,wikidata-zh-hant,,,48.852951111,2.336785277,wikidata-label,Q55849612,public university,,2026,2026-11-06
+RI00661,Paris-Saclay University,paris-saclay-university,France,,,,,48.70821,2.16447,wikidata-label,Q109409389,public university,,2026,2026-11-06
+RI00675,Toulouse Capitole University,university-of-toulouse-1,France,圖盧茲第一大學,wikidata-zh-hant,,,43.6064,1.43667,wikidata-label,Q590201,public university,,2026,2026-11-06
+RI00678,University of Western Brittany,university-of-western-brittany,France,,,,,48.3985,-4.4862,manual,,,Brest 校本部,2026,2026-11-06
+RI00701,Frankfurt School of Finance and Management,frankfurt-school-of-finance-and-management,Germany,,,,,50.1096,8.69741,wikidata-label,Q1444899,business school,,2026,2026-11-06
+RI00702,Free University Berlin,free-university-berlin,Germany,柏林自由大學,wikidata-zh-hant,,,52.4543245,13.2934768,wikidata-label,Q153006,comprehensive university,,2026,2026-11-06
+RI00708,Heidelberg University,heidelberg-university,Germany,海德堡大學,wikidata-zh-hant,,,49.410277777,8.706388888,wikidata-label,Q151510,comprehensive university,,2026,2026-11-06
+RI00717,Humboldt University of Berlin,humboldt-university-of-berlin,Germany,柏林洪堡大學,wikidata-zh-hant,,,52.518055555,13.393333333,wikidata-label,Q152087,comprehensive university,,2026,2026-11-06
+RI00720,Karlsruhe Institute of Technology (KIT),karlsruhe-institute-of-technology-kit,Germany,卡爾斯魯厄理工學院,wikidata-zh-hant,,,49.0996,8.4319,wikidata-label,Q309988,research institute,,2026,2026-11-06
+RI00725,RWTH Aachen University,rwth-aachen-university,Germany,阿亨工業大學,wikidata-zh-hant,,,50.777777777,6.078055555,wikidata-label,Q273263,public university,,2026,2026-11-06
+RI00726,Saarland University,saarland-university,Germany,沙爾大學,wikidata-zh-hant,,,49.25555556,7.04166667,wikidata-label,Q700758,public university,,2026,2026-11-06
+RI00732,Technical University of Munich,technical-university-of-munich,Germany,慕尼黑工業大學,wikidata-zh-hant,,,48.148055555,11.568055555,wikidata-label,Q157808,university of technology,,2026,2026-11-06
+RI00740,University of Bonn,university-of-bonn,Germany,波昂大學,wikidata-zh-hant,,,50.733888888,7.102222222,wikidata-label,Q152171,public university,,2026,2026-11-06
+RI00741,University of Bremen,university-of-bremen,Germany,不來梅大學,wikidata-zh-hant,,,53.108611111,8.853611111,wikidata-label,Q500692,public university,,2026,2026-11-06
+RI00743,University of Duisburg-Essen,university-of-duisburg-essen-1,Germany,杜伊斯堡-埃森大學,wikidata-zh-hant,,,51.463889,7.006111,wikidata-label,Q696757,public university,,2026,2026-11-06
+RI00746,University of Freiburg,university-of-freiburg,Germany,弗萊堡大學,wikidata-zh-hant,,,47.994166666,7.846944444,wikidata-label,Q153987,public university,,2026,2026-11-06
+RI00748,University of Goettingen,university-of-goettingen,Germany,哥廷根大學,wikidata-zh-hant,,,51.533979833,9.93792,wikidata-label,Q152838,public university,,2026,2026-11-06
+RI00752,University of Hamburg,university-of-hamburg,Germany,漢堡大學,wikidata-zh-hant,,,53.565651296,9.984776342,wikidata-label,Q156725,public university,,2026,2026-11-06
+RI00757,Kiel University,university-of-kiel,Germany,基爾大學,wikidata-zh-hant,,,54.338888888,10.1225,wikidata-label,Q156737,public university,,2026,2026-11-06
+RI00758,University of Konstanz,university-of-konstanz,Germany,康斯坦茨大學,wikidata-zh-hant,,,47.690215,9.1881,wikidata-label,Q835440,public university,,2026,2026-11-06
+RI00762,Johannes Gutenberg University Mainz,university-of-mainz,Germany,美因茨大學,wikidata-zh-hant,,,49.993055555,8.241666666,wikidata-label,Q161982,public university,,2026,2026-11-06
+RI00766,LMU Munich,university-of-munich,Germany,慕尼黑大學,wikidata-zh-hant,,,48.150833333,11.580277777,wikidata-label,Q55044,comprehensive university,,2026,2026-11-06
+RI00771,University of Potsdam,university-of-potsdam,Germany,波茨坦大學,wikidata-zh-hant,,,52.4010314,13.0119098,wikidata-label,Q153012,public university,,2026,2026-11-06
+RI00776,University of Tuebingen,university-of-tuebingen,Germany,杜賓根大學,wikidata-zh-hant,,,48.525,9.058888888,wikidata-label,Q153978,public university,,2026,2026-11-06
+RI00778,University of Veterinary Medicine Hannover,university-of-veterinary-medicine-hannover,Germany,,,,,52.4092,9.7975,manual,,,Hannover Bünteweg 校園,2026,2026-11-06
+RI00779,University of Wuerzburg,university-of-wuerzburg,Germany,符茲堡大學,wikidata-zh-hant,,,49.788055555,9.935277777,wikidata-label,Q161976,public university,,2026,2026-11-06
+RI00794,National and Kapodistrian University of Athens,national-and-kapodistrian-university-of-athens,Greece,雅典大學,wikidata-zh-hant,,,37.951111111,23.738777777,wikidata-label,Q547867,university,,2026,2026-11-06
+RI00812,Semmelweis University,semmelweis-university,Hungary,,,,,47.487222222,19.067222222,wikidata-label,Q277681,university,,2026,2026-11-06
+RI00910,Indian Institute of Technology Delhi,indian-institute-of-technology-delhi,India,德里印度理工學院,wikidata-zh-hant,,,28.54358,77.19312,wikidata-label,Q1194650,university of technology,,2026,2026-11-06
+RI01041,Vellore Institute of Technology,vellore-institute-of-technology,India,,,,,12.9722,79.1592,wikidata-label,Q3298919,engineering school,,2026,2026-11-06
+RI01135,University of Tehran,university-of-tehran,Iran,德黑蘭大學,wikidata-zh-hant,,,35.70411,51.39513,wikidata-label,Q737835,public university,,2026,2026-11-06
+RI01155,Trinity College Dublin,trinity-college-dublin,Ireland,都柏林三一學院,wikidata-zh-hant,,,53.3444,-6.2577,wikidata-search,Q258464,constituent college of the University of Dublin in Ireland,,2026,2026-11-06
+RI01157,University College Dublin,university-college-dublin,Ireland,都柏林大學,wikidata-zh-hant,,,53.3076,-6.21981,wikidata-label,Q1068258,public university,,2026,2026-11-06
+RI01168,Technion-Israel Institute of Technology,technion-israel-institute-of-technology,Israel,以色列理工學院,wikidata-zh-hant,,,32.7775,35.021666666,wikidata-label,Q333705,university,,2026,2026-11-06
+RI01170,The Hebrew University of Jerusalem,the-hebrew-university-of-jerusalem,Israel,耶路撒冷希伯來大學,wikidata-zh-hant,,,31.794166666,35.242777777,wikidata-label,Q174158,university,,2026,2026-11-06
+RI01171,University of Haifa,university-of-haifa,Israel,,,,,32.761601,35.019304,wikidata-label,Q591115,public research university,,2026,2026-11-06
+RI01173,Weizmann Institute of Science,weizmann-institute-of-science,Israel,魏茨曼科學研究所,wikidata-zh-hant,,,31.9075,34.809166666,wikidata-label,Q4182,institute,,2026,2026-11-06
+RI01179,Bocconi University,bocconi-university,Italy,博科尼大學,wikidata-zh-hant,,,45.450277777,9.189722222,wikidata-label,Q959524,private university,,2026,2026-11-06
+RI01186,European University Institute,european-university-institute,Italy,,,,,43.802778,11.282778,wikidata-label,Q1378099,research institute,,2026,2026-11-06
+RI01203,Polytechnic University of Milan,polytechnic-university-of-milan,Italy,米蘭理工大學,wikidata-zh-hant,,,45.478030555,9.227319444,wikidata-label,Q392904,university of technology,,2026,2026-11-06
+RI01204,Polytechnic University of Turin,polytechnic-university-of-turin,Italy,都靈理工大學,wikidata-zh-hant,,,45.063094444,7.661075,wikidata-label,Q392897,university of technology,,2026,2026-11-06
+RI01206,Sapienza University of Rome,sapienza-university-of-rome,Italy,羅馬大學,wikidata-zh-hant,,,41.903333333,12.515833333,wikidata-label,Q209344,public university,,2026,2026-11-06
+RI01208,Sant'Anna School of Advanced Studies - Pisa,scuola-superiore-santanna,Italy,聖安娜高等研究學院,wikidata-zh-hant,,,43.72034167,10.40287222,wikidata-label,Q774609,superior graduate school in Italy,,2026,2026-11-06
+RI01222,University of Bologna,university-of-bologna,Italy,波隆那大學,wikidata-zh-hant,,,44.493888888,11.342777777,wikidata-label,Q131262,public university,,2026,2026-11-06
+RI01231,University of Florence,university-of-florence,Italy,佛羅倫薩大學,wikidata-zh-hant,,,43.77777,11.25951,wikidata-label,Q820887,university,,2026,2026-11-06
+RI01237,University of Milan,university-of-milan,Italy,米蘭大學,wikidata-zh-hant,,,45.4600626,9.194659978,wikidata-label,Q46210,public research university,,2026,2026-11-06
+RI01241,University of Naples Federico II,university-of-naples-federico-ii,Italy,那不勒斯腓特烈二世大學,wikidata-zh-hant,,,40.8472,14.2569,wikidata-label,Q691851,public university,,2026,2026-11-06
+RI01242,University of Padua,university-of-padua,Italy,帕多瓦大學,wikidata-zh-hant,,,45.42,11.87,wikidata-label,Q193510,university,,2026,2026-11-06
+RI01247,University of Pisa,university-of-pisa,Italy,比薩大學,wikidata-zh-hant,,,43.716508333,10.398458333,wikidata-label,Q645663,public university,,2026,2026-11-06
+RI01254,University of Trento,university-of-trento,Italy,,,,,46.069426,11.121117,wikidata-label,Q930528,university,,2026,2026-11-06
+RI01256,University of Turin,university-of-turin,Italy,都靈大學,wikidata-zh-hant,,,45.069444444,7.688888888,wikidata-label,Q499911,university,,2026,2026-11-06
+RI01352,Kyoto University,kyoto-university,Japan,京都大學,wikidata-zh-hant,,,35.026212,135.780842,wikidata-label,Q336264,university,,2026,2026-11-06
+RI01369,Nagoya University,nagoya-university,Japan,名古屋大學,wikidata-zh-hant,,,35.1525,136.968611111,wikidata-label,Q1191132,national university,,2026,2026-11-06
+RI01396,Osaka University,osaka-university,Japan,大阪大學,wikidata-zh-hant,,,34.819166666,135.526666666,wikidata-label,Q651233,university,,2026,2026-11-06
+RI01425,The University of Tokyo,the-university-of-tokyo,Japan,東京大學,wikidata-zh-hant,,,35.71339,139.76232,wikidata-label,Q7842,national university,,2026,2026-11-06
+RI01428,Tohoku University,tohoku-university,Japan,東北大學,wikidata-zh-hant,,,38.254166666,140.873611111,wikidata-label,Q1062129,national university,,2026,2026-11-06
+RI01434,Institute of Science Tokyo,tokyo-institute-of-technology,Japan,,,,,35.6066,139.6838,wikidata-label,Q116264906,university of technology,,2026,2026-11-06
+RI01532,Taylor's University,taylors-university,Malaysia,,,,,3.075,101.591111,wikidata-label,Q841775,university,,2026,2026-11-06
+RI01541,Universiti Teknologi Malaysia,universiti-teknologi-malaysia,Malaysia,馬來西亞工藝大學,wikidata-zh-hant,,,1.559167,103.641389,wikidata-label,Q24401,public research university,,2026,2026-11-06
+RI01550,"University of Science, Malaysia",university-of-science-malaysia,Malaysia,馬來西亞理科大學,wikidata-zh-hant,,,5.356944444,100.301388888,wikidata-label,Q1973130,university,,2026,2026-11-06
+RI01551,University Putra Malaysia,university-putra-malaysia,Malaysia,馬來西亞博特拉大學,wikidata-zh-hant,,,2.999166666,101.707777777,wikidata-label,Q1458579,public research university,,2026,2026-11-06
+RI01566,National Autonomous University of Mexico,national-autonomous-university-of-mexico,Mexico,墨西哥國立自治大學,wikidata-zh-hant,,,19.328888888,-99.187222222,wikidata-label,Q222738,university,,2026,2026-11-06
+RI01604,Delft University of Technology,delft-university-of-technology,Netherlands,代爾夫特理工大學,wikidata-zh-hant,,,52.001666666,4.3725,wikidata-label,Q752663,public university,,2026,2026-11-06
+RI01606,Eindhoven University of Technology,eindhoven-university-of-technology,Netherlands,埃因霍溫理工大學,wikidata-zh-hant,,,51.448055555,5.489722222,wikidata-label,Q280824,university,,2026,2026-11-06
+RI01608,Erasmus University Rotterdam,erasmus-university-rotterdam,Netherlands,鹿特丹大學,wikidata-zh-hant,,,51.918061111,4.525830555,wikidata-label,Q633529,public university,,2026,2026-11-06
+RI01613,Leiden University,leiden-university,Netherlands,萊頓大學,wikidata-zh-hant,,,52.156944444,4.485277777,wikidata-label,Q156598,university,,2026,2026-11-06
+RI01615,Maastricht University,maastricht-university,Netherlands,馬斯特里赫特大學,wikidata-zh-hant,,,50.8471,5.686666666,wikidata-label,Q1137652,university,,2026,2026-11-06
+RI01618,Radboud University Nijmegen,radboud-university-nijmegen,Netherlands,拉德堡德大學,wikidata-zh-hant,,,51.819444,5.865278,wikidata-label,Q632004,university,,2026,2026-11-06
+RI01621,Tilburg University,tilburg-university,Netherlands,,,,,51.562777777,5.041944444,wikidata-label,Q595668,Catholic university,,2026,2026-11-06
+RI01623,University of Amsterdam,university-of-amsterdam,Netherlands,阿姆斯特丹大學,wikidata-zh-hant,,,52.368333333,4.890277777,wikidata-label,Q214341,university,,2026,2026-11-06
+RI01624,University of Groningen,university-of-groningen,Netherlands,格羅寧根大學,wikidata-zh-hant,,,53.219166666,6.562777777,wikidata-label,Q850730,public research university,,2026,2026-11-06
+RI01625,University of Twente,university-of-twente,Netherlands,屯特大學,wikidata-zh-hant,,,52.2425,6.8525,wikidata-label,Q1547084,university,,2026,2026-11-06
+RI01627,Utrecht University,utrecht-university,Netherlands,烏特勒支大學,wikidata-zh-hant,,,52.085277777,5.175,wikidata-label,Q221653,public research university,,2026,2026-11-06
+RI01629,Vrije Universiteit Amsterdam,vrije-universiteit-amsterdam,Netherlands,阿姆斯特丹自由大學,wikidata-zh-hant,,,52.3337568,4.8657199,wikidata-label,Q1065414,university,,2026,2026-11-06
+RI01630,Wageningen University & Research,wageningen-university-research,Netherlands,瓦赫寧恩大學,wikidata-zh-hant,,,51.985277777,5.663666666,wikidata-label,Q422208,public university,,2026,2026-11-06
+RI01631,Auckland University of Technology,aut-university,New Zealand,奧克蘭理工大學,wikidata-zh-hant,,,-36.8533,174.7667,wikidata-label,Q758659,university,,2026,2026-11-06
+RI01633,Massey University,massey-university,New Zealand,梅西大學,wikidata-zh-hant,,,-40.3848,175.6166,wikidata-label,Q1134606,public university,,2026,2026-11-06
+RI01634,The University of Auckland,the-university-of-auckland,New Zealand,奧克蘭大學,wikidata-zh-hant,,,-36.850197222,174.769494444,wikidata-label,Q492467,public university,,2026,2026-11-06
+RI01636,University of Canterbury,university-of-canterbury,New Zealand,,,,,-43.523333333,172.581944444,wikidata-label,Q432475,university,,2026,2026-11-06
+RI01637,University of Otago,university-of-otago,New Zealand,奧塔哥大學,wikidata-zh-hant,,,-45.865555555,170.513888888,wikidata-label,Q1201513,public university,,2026,2026-11-06
+RI01647,BI Norwegian Business School,bi-norwegian-business-school,Norway,,,,,59.948611111,10.768055555,wikidata-label,Q604629,business school,,2026,2026-11-06
+RI01655,NTNU - Norwegian University of Science and Technology,norwegian-university-of-science-and-technology-ntnu,Norway,挪威科技大學,wikidata-zh-hant,,,63.419444444,10.4025,wikidata-label,Q314536,university,,2026,2026-11-06
+RI01664,University of Bergen,university-of-bergen,Norway,卑爾根大學,wikidata-zh-hant,,,60.388086111,5.322872222,wikidata-label,Q204457,university,,2026,2026-11-06
+RI01665,University of Oslo,university-of-oslo,Norway,奧斯陸大學,wikidata-zh-hant,,,59.939936111,10.722063888,wikidata-label,Q486156,public university,,2026,2026-11-06
+RI01666,University of Stavanger,university-of-stavanger,Norway,斯塔萬格大學,wikidata-zh-hant,,,58.937505555,5.697416666,wikidata-label,Q498401,university,,2026,2026-11-06
+RI01738,AGH University of Krakow,agh-university-of-science-and-technology,Poland,AGH大學,wikidata-zh-hant,,,50.064528,19.92375,wikidata-label,Q414245,public university,,2026,2026-11-06
+RI01822,University of Lisbon,university-of-lisbon,Portugal,里斯本大學,wikidata-zh-hant,,,38.7525,-9.158888888,wikidata-label,Q1122926,public research university,,2026,2026-11-06
+RI01824,University of Porto,university-of-porto,Portugal,波爾圖大學,wikidata-zh-hant,,,41.14666667,-8.61555556,wikidata-label,Q1422903,public research university,,2026,2026-11-06
+RI01986,King Abdulaziz University,king-abdulaziz-university,Saudi Arabia,,,,,21.493472222,39.2535,wikidata-label,Q1795928,university,,2026,2026-11-06
+RI01990,King Khalid University,king-khalid-university,Saudi Arabia,哈立德國王大學,wikidata-zh-hant,,,18.0828762,42.7396748,wikidata-label,Q6411791,university,,2026,2026-11-06
+RI01992,King Saud University,king-saud-university,Saudi Arabia,沙特國王大學,wikidata-zh-hant,,,24.722,46.627,wikidata-label,Q1752043,university,,2026,2026-11-06
+RI02009,Nanyang Technological University,nanyang-technological-university,Singapore,南洋理工大學,wikidata-zh-hant,,,1.344722222,103.681388888,wikidata-label,Q721064,university,,2026,2026-11-06
+RI02012,National University of Singapore,national-university-of-singapore,Singapore,新加坡國立大學,wikidata-zh-hant,,,1.295555555,103.776666666,wikidata-label,Q738236,autonomous university,,2026,2026-11-06
+RI02014,Singapore Management University,singapore-management-university,Singapore,,,,,1.296666666,103.849722222,wikidata-label,Q950609,university,,2026,2026-11-06
+RI02015,Singapore University of Technology and Design,singapore-university-of-technology-design,Singapore,,,,,1.340102777,103.962955555,wikidata-label,Q11081251,university,,2026,2026-11-06
+RI02043,University of Cape Town,university-of-cape-town,South Africa,開普頓大學,wikidata-zh-hant,,,-33.9575,18.460555555,wikidata-label,Q951305,university,,2026,2026-11-06
+RI02045,University of Johannesburg,university-of-johannesburg,South Africa,約翰內斯堡大學,wikidata-zh-hant,,,-26.183333333,27.998888888,wikidata-label,Q1972050,university,,2026,2026-11-06
+RI02048,University of Pretoria,university-of-pretoria,South Africa,比勒陀利亞大學,wikidata-zh-hant,,,-25.7536,28.2297,wikidata-label,Q604444,university,,2026,2026-11-06
+RI02092,Hanyang University,hanyang-university,South Korea,漢陽大學,wikidata-zh-hant,,,37.55638889,127.04444444,wikidata-label,Q40006,private university,,2026,2026-11-06
+RI02106,Korea Advanced Institute of Science and Technology,korea-advanced-institute-of-science-and-technology,South Korea,韓國科學技術院,wikidata-zh-hant,,,36.372,127.363,wikidata-label,Q39949,Institute of Science and Technology,,2026,2026-11-06
+RI02114,Korea University,korea-university,South Korea,高麗大學,wikidata-zh-hant,,,37.589166666,127.0325,wikidata-label,Q39997,private university,,2026,2026-11-06
+RI02120,Kyung Hee University,kyung-hee-university,South Korea,慶熙大學,wikidata-zh-hant,,,37.5967,127.052,wikidata-label,Q496536,private university,,2026,2026-11-06
+RI02126,Pohang University of Science and Technology,pohang-university-of-science-and-technology,South Korea,浦項工科大學,wikidata-zh-hant,,,36.010883333,129.322669444,wikidata-label,Q40018,private university,,2026,2026-11-06
+RI02131,Sejong University,sejong-university,South Korea,世宗大學,wikidata-zh-hant,,,37.550833,127.073889,wikidata-label,Q491711,private university,,2026,2026-11-06
+RI02133,Seoul National University,seoul-national-university,South Korea,首爾大學,wikidata-zh-hant,,,37.46,126.9525,wikidata-label,Q39913,national university,,2026,2026-11-06
+RI02141,Sungkyunkwan University,sungkyunkwan-university,South Korea,成均館大學,wikidata-zh-hant,,,37.587222222,126.994166666,wikidata-label,Q41085,private university,,2026,2026-11-06
+RI02142,Ulsan National Institute of Science and Technology,ulsan-national-institute-of-science-and-technology,South Korea,,,,,35.573,129.19,wikidata-label,Q484108,university,,2026,2026-11-06
+RI02148,Yonsei University,yonsei-university,South Korea,延世大學,wikidata-zh-hant,,,37.560277777,126.936944444,wikidata-label,Q39988,private university,,2026,2026-11-06
+RI02150,Autonomous University of Barcelona,autonomous-university-of-barcelona,Spain,巴塞羅那自治大學,wikidata-zh-hant,,,41.500277777,2.107777777,wikidata-label,Q43452,public university,,2026,2026-11-06
+RI02157,Complutense University of Madrid,complutense-university-of-madrid,Spain,馬德里康普頓斯大學,wikidata-zh-hant,,,40.449038888,-3.727030555,wikidata-label,Q219694,public university,,2026,2026-11-06
+RI02173,Polytechnic University of Valencia,polytechnic-university-of-valencia,Spain,瓦倫西亞理工大學,wikidata-zh-hant,,,39.480889579,-0.34110993,wikidata-label,Q2003976,public university,,2026,2026-11-06
+RI02174,Pompeu Fabra University,pompeu-fabra-university,Spain,龐佩烏·法布拉·大學,wikidata-zh-hant,,,41.379166666,2.179508333,wikidata-label,Q24543,public university,,2026,2026-11-06
+RI02181,University of Las Palmas de Gran Canaria,universidad-de-las-palmas-de-gran-canaria,Spain,,,,,28.07257,-15.4539,wikidata-label,Q940302,public university,,2026,2026-11-06
+RI02201,University of Cordoba,university-of-cordoba,Spain,,,,,37.8847,-4.78833,wikidata-label,Q734010,public university,,2026,2026-11-06
+RI02203,University of Extremadura,university-of-extremadura,Spain,,,,,38.883444444,-7.005305555,wikidata-label,Q729391,public university,,2026,2026-11-06
+RI02214,University of Santiago Compostela,university-of-santiago-compostela,Spain,聖地亞哥德坎波斯特拉大學,wikidata-zh-hant,,,42.8885225,-8.5449726,wikidata-label,Q1473677,public university,,2026,2026-11-06
+RI02218,University of Valencia,university-of-valencia,Spain,華倫西亞大學,wikidata-zh-hant,,,39.4790511,-0.3590873,wikidata-label,Q383568,public university,,2026,2026-11-06
+RI02220,University of Vigo,university-of-vigo,Spain,維戈大學,wikidata-zh-hant,,,42.1697632,-8.6845784,wikidata-label,Q666916,public university,,2026,2026-11-06
+RI02221,University of Zaragoza,university-of-zaragoza,Spain,薩拉戈薩大學,wikidata-zh-hant,,,41.6425,-0.9,wikidata-label,Q633561,university,,2026,2026-11-06
+RI02230,Chalmers University of Technology,chalmers-university-of-technology,Sweden,查爾摩斯工學院,wikidata-zh-hant,,,57.688333333,11.976666666,wikidata-label,Q836805,university,,2026,2026-11-06
+RI02235,Karolinska Institute,karolinska-institute,Sweden,卡羅琳學院,wikidata-zh-hant,,,59.348888888,18.026666666,wikidata-label,Q219564,university,,2026,2026-11-06
+RI02238,KTH Royal Institute of Technology,kth-royal-institute-of-technology,Sweden,皇家工學院,wikidata-zh-hant,,,59.347222222,18.072777777,wikidata-label,Q854280,university,,2026,2026-11-06
+RI02240,Linnaeus University,linnaeus-university,Sweden,林奈大學,wikidata-zh-hant,,,56.85416667,14.83083333,wikidata-label,Q1751928,public university,,2026,2026-11-06
+RI02241,Lulea University of Technology,lulea-university-of-technology,Sweden,呂勒奧理工大學,wikidata-zh-hant,,,65.618055555,22.138888888,wikidata-label,Q1972721,university,,2026,2026-11-06
+RI02242,Lund University,lund-university,Sweden,隆德大學,wikidata-zh-hant,,,55.705833333,13.193333333,wikidata-label,Q218506,public university,,2026,2026-11-06
+RI02251,Stockholm School of Economics,stockholm-school-of-economics,Sweden,斯德哥爾摩經濟學院,wikidata-zh-hant,,,59.341666666,18.056944444,wikidata-label,Q1061504,business school,,2026,2026-11-06
+RI02252,Stockholm University,stockholm-university,Sweden,斯德哥爾摩大學,wikidata-zh-hant,,,59.363055555,18.060555555,wikidata-label,Q221645,public university,,2026,2026-11-06
+RI02254,Swedish University of Agricultural Sciences,swedish-university-of-agricultural-sciences,Sweden,,,,,59.815,17.663,wikidata-label,Q1312762,university,,2026,2026-11-06
+RI02259,University of Gothenburg,university-of-gothenburg,Sweden,哥特堡大學,wikidata-zh-hant,,,57.698333333,11.971666666,wikidata-label,Q371522,university,,2026,2026-11-06
+RI02262,Uppsala University,uppsala-university,Sweden,烏普薩拉大學,wikidata-zh-hant,,,59.8575,17.628888888,wikidata-label,Q185246,university,,2026,2026-11-06
+RI02269,ETH Zurich,eth-zurich,Switzerland,蘇黎世聯邦理工學院,wikidata-zh-hant,,,47.37645,8.54785,wikidata-label,Q11942,polytechnic,,2026,2026-11-06
+RI02282,Swiss Federal Institute of Technology Lausanne,swiss-federal-institute-of-technology-lausanne,Switzerland,,,,,46.520277777778,6.5655555555556,wikidata-search,Q262760,"university in Ecublens, Switzerland",,2026,2026-11-06
+RI02287,University of Bern,university-of-bern,Switzerland,伯恩大學,wikidata-zh-hant,,,46.95,7.437,wikidata-label,Q659080,public university,,2026,2026-11-06
+RI02289,University of Geneva,university-of-geneva,Switzerland,日內瓦大學,wikidata-zh-hant,,,46.19899,6.14446,wikidata-label,Q503473,comprehensive university,,2026,2026-11-06
+RI02294,University of Zurich,university-of-zurich,Switzerland,蘇黎世大學,wikidata-zh-hant,,,47.374722222,8.548333333,wikidata-label,Q206702,university,,2026,2026-11-06
+RI02304,Chulalongkorn University,chulalongkorn-university,Thailand,朱拉隆功大學,wikidata-zh-hant,,,13.738361111,100.532111111,wikidata-label,Q855730,public research university,,2026,2026-11-06
+RI02326,Universite de Monastir,universite-de-monastir,Tunisia,莫納斯提爾大學,wikidata-zh-hant,,,35.763361111,10.829027777,wikidata-label,Q3551637,university,,2026,2026-11-06
+RI02366,Ege University,ege-university,Türkiye,愛琴海大學,wikidata-zh-hant,,,38.45388889,27.21166667,wikidata-label,Q1297001,public university,,2026,2026-11-06
+RI02386,Istanbul Technical University,istanbul-technical-university,Türkiye,伊斯坦布爾理工大學,wikidata-zh-hant,,,41.105,29.025,wikidata-label,Q344334,public university,,2026,2026-11-06
+RI02448,Khalifa University,khalifa-university,United Arab Emirates,,,,,24.44736,54.39494,wikidata-label,Q6399651,university,,2026,2026-11-06
+RI02465,Bournemouth University,bournemouth-university,United Kingdom,,,,,50.7432,-1.8969,wikidata-label,Q3182943,university,,2026,2026-11-06
+RI02470,Cardiff University,cardiff-university,United Kingdom,卡地夫大學,wikidata-zh-hant,,,51.487433333,-3.178230555,wikidata-label,Q1035745,public research university,,2026,2026-11-06
+RI02473,Cranfield University,cranfield-university,United Kingdom,簡菲德大學,wikidata-zh-hant,,,52.07333333,-0.62777778,wikidata-label,Q181177,university,,2026,2026-11-06
+RI02475,Durham University,durham-university,United Kingdom,德倫大學,wikidata-zh-hant,,,54.775,-1.575,wikidata-label,Q458393,collegiate university,,2026,2026-11-06
+RI02487,Imperial College London,imperial-college-london,United Kingdom,倫敦帝國學院,wikidata-zh-hant,,,51.498308,-0.176882,wikidata-label,Q189022,university,,2026,2026-11-06
+RI02491,King's College London,kings-college-london,United Kingdom,倫敦國王學院,wikidata-zh-hant,,,51.511944444,-0.116111111,wikidata-label,Q245247,public research university,,2026,2026-11-06
+RI02493,Lancaster University,lancaster-university,United Kingdom,蘭卡斯特大學,wikidata-zh-hant,,,54.010661111,-2.788238888,wikidata-label,Q262854,university,,2026,2026-11-06
+RI02496,Liverpool John Moores University,liverpool-john-moores-university,United Kingdom,,,,,53.403,-2.97,wikidata-label,Q1627967,university,,2026,2026-11-06
+RI02498,London Business School,london-business-school,United Kingdom,倫敦商學院,wikidata-zh-hant,,,51.526388888,-0.160833333,wikidata-label,Q1481050,business school,,2026,2026-11-06
+RI02501,The London School of Economics and Political Science,london-school-of-economics-and-political-science,United Kingdom,倫敦政治經濟學院,wikidata-zh-hant,,,51.513888888,-0.116666666,wikidata-label,Q174570,public research university,,2026,2026-11-06
+RI02502,London School of Hygiene & Tropical Medicine,london-school-of-hygiene-tropical-medicine,United Kingdom,,,,,51.520978,-0.130396,wikidata-label,Q1126189,public research university,,2026,2026-11-06
+RI02504,Loughborough University,loughborough-university,United Kingdom,羅浮堡大學,wikidata-zh-hant,,,52.768333333,-1.228611111,wikidata-label,Q1434547,public university,,2026,2026-11-06
+RI02505,Manchester Metropolitan University,manchester-metropolitan-university,United Kingdom,曼徹斯特都會大學,wikidata-zh-hant,,,53.47,-2.24,wikidata-label,Q1888771,university,,2026,2026-11-06
+RI02508,Newcastle University,newcastle-university,United Kingdom,紐卡索大學,wikidata-zh-hant,,,54.978,-1.615,wikidata-label,Q837164,university,,2026,2026-11-06
+RI02513,Queen Mary University of London,queen-mary-university-of-london,United Kingdom,倫敦瑪麗皇后大學,wikidata-zh-hant,,,51.5240671,-0.0403745,wikidata-label,Q195668,public research university,,2026,2026-11-06
+RI02514,Queen's University Belfast,queens-university-belfast,United Kingdom,貝爾法斯特女王大學,wikidata-zh-hant,,,54.584166666,-5.934722222,wikidata-label,Q877925,university,,2026,2026-11-06
+RI02524,"Royal Holloway, University of London",royal-holloway-university-of-london,United Kingdom,皇家哈洛威學院,wikidata-zh-hant,,,51.4248,-0.566731,wikidata-label,Q1202039,university,,2026,2026-11-06
+RI02536,The Open University,the-open-university,United Kingdom,,,,,52.025,-0.705555555,wikidata-label,Q2413375,public university,,2026,2026-11-06
+RI02537,The Royal Veterinary College,the-royal-veterinary-college,United Kingdom,,,,,51.5368,-0.134,wikidata-search,Q268411,veterinary school in London,,2026,2026-11-06
+RI02539,The University of Edinburgh,the-university-of-edinburgh,United Kingdom,愛丁堡大學,wikidata-zh-hant,,,55.947388888,-3.187194444,wikidata-label,Q160302,public university,,2026,2026-11-06
+RI02540,University of Glasgow,the-university-of-glasgow,United Kingdom,格拉斯哥大學,wikidata-zh-hant,,,55.872222222,-4.288055555,wikidata-label,Q192775,public research university,,2026,2026-11-06
+RI02541,The University of Manchester,the-university-of-manchester,United Kingdom,曼徹斯特大學,wikidata-zh-hant,,,53.466111111,-2.231944444,wikidata-label,Q230899,university,,2026,2026-11-06
+RI02542,The University of Reading,the-university-of-reading,United Kingdom,雷丁大學,wikidata-zh-hant,,,51.441944444,-0.945555555,wikidata-label,Q1432632,university,,2026,2026-11-06
+RI02543,The University of Sheffield,the-university-of-sheffield,United Kingdom,雪菲爾大學,wikidata-zh-hant,,,53.380722222,-1.488805555,wikidata-label,Q823917,public research university,,2026,2026-11-06
+RI02548,University College London,university-college-london,United Kingdom,倫敦大學學院,wikidata-zh-hant,,,51.524722222,-0.133611111,wikidata-label,Q193196,university college,,2026,2026-11-06
+RI02551,University of Bath,university-of-bath,United Kingdom,巴斯大學,wikidata-zh-hant,,,51.3796,-2.328,wikidata-label,Q1422458,university,,2026,2026-11-06
+RI02553,University of Birmingham,university-of-birmingham,United Kingdom,伯明翰大學,wikidata-zh-hant,,,52.450555555,-1.930555555,wikidata-label,Q223429,public research university,,2026,2026-11-06
+RI02556,University of Bristol,university-of-bristol,United Kingdom,布里斯托爾大學,wikidata-zh-hant,,,51.456388888,-2.604444444,wikidata-label,Q459506,public university,,2026,2026-11-06
+RI02557,University of Cambridge,university-of-cambridge,United Kingdom,劍橋大學,wikidata-zh-hant,,,52.205355979,0.113157269,wikidata-label,Q35794,collegiate university,,2026,2026-11-06
+RI02563,University of East Anglia,university-of-east-anglia,United Kingdom,東安格利亞大學,wikidata-zh-hant,,,52.621666666,1.241666666,wikidata-label,Q1045828,public research university,,2026,2026-11-06
+RI02566,University of Exeter,university-of-exeter,United Kingdom,艾希特大學,wikidata-zh-hant,,,50.736111111,-3.535,wikidata-label,Q1414861,public research university,,2026,2026-11-06
+RI02574,University of Leeds,university-of-leeds,United Kingdom,里茲大學,wikidata-zh-hant,,,53.807222222,-1.551666666,wikidata-label,Q503424,public research university,,2026,2026-11-06
+RI02575,University of Leicester,university-of-leicester,United Kingdom,萊斯特大學,wikidata-zh-hant,,,52.621388888,-1.124444444,wikidata-label,Q1333399,university,,2026,2026-11-06
+RI02577,University of Liverpool,university-of-liverpool,United Kingdom,利物浦大學,wikidata-zh-hant,,,53.406,-2.967,wikidata-label,Q499510,public university,,2026,2026-11-06
+RI02580,University of Nottingham,university-of-nottingham,United Kingdom,諾丁漢大學,wikidata-zh-hant,,,52.938888888,-1.196944444,wikidata-label,Q472316,public university,,2026,2026-11-06
+RI02581,University of Oxford,university-of-oxford,United Kingdom,牛津大學,wikidata-zh-hant,,,51.755,-1.255,wikidata-label,Q34433,public university,,2026,2026-11-06
+RI02583,University of Portsmouth,university-of-portsmouth,United Kingdom,樸茨茅斯大學,wikidata-zh-hant,,,50.7953,-1.0936,wikidata-label,Q2744209,public university,,2026,2026-11-06
+RI02586,University of Southampton,university-of-southampton,United Kingdom,南安普敦大學,wikidata-zh-hant,,,50.93463,-1.39595,wikidata-label,Q76473,public university,,2026,2026-11-06
+RI02589,University of Strathclyde,university-of-strathclyde,United Kingdom,斯特拉斯克萊德大學,wikidata-zh-hant,,,55.8617,-4.2416,wikidata-label,Q1859178,public university,,2026,2026-11-06
+RI02591,University of Surrey,university-of-surrey,United Kingdom,薩里大學,wikidata-zh-hant,,,51.243055555,-0.589444444,wikidata-label,Q546976,university,,2026,2026-11-06
+RI02592,University of Sussex,university-of-sussex,United Kingdom,薩塞克斯大學,wikidata-zh-hant,,,50.865277777,-0.085555555,wikidata-label,Q1161297,public research university,,2026,2026-11-06
+RI02597,The University of Warwick,university-of-warwick,United Kingdom,華威大學,wikidata-zh-hant,,,52.380080555,-1.561930555,wikidata-label,Q865528,public research university,,2026,2026-11-06
+RI02612,American University,american-university,United States,美利堅大學,wikidata-zh-hant,,,38.937055,-77.086922,wikidata-label,Q168000,private university,,2026,2026-11-06
+RI02615,Arizona State University,arizona-state-university,United States,亞利桑那州立大學,wikidata-zh-hant,,,33.423611111,-111.935555555,wikidata-label,Q670897,university,,2026,2026-11-06
+RI02620,Babson College,babson-college,United States,巴布森學院,wikidata-zh-hant,,,42.298230555556,-71.261191666667,wikidata-search,Q650167,"private business school in Wellesley, Massachusetts, United States",,2026,2026-11-06
+RI02623,Baylor College of Medicine,baylor-college-of-medicine,United States,,,,,29.7105,-95.3965,wikidata-label,Q2892284,hospital,,2026,2026-11-06
+RI02628,Boston College,boston-college,United States,波士頓學院,wikidata-zh-hant,,,42.335083333,-71.170361111,wikidata-label,Q49118,university,,2026,2026-11-06
+RI02629,Boston University,boston-university,United States,波士頓大學,wikidata-zh-hant,,,42.348888888,-71.100277777,wikidata-label,Q49110,research university,,2026,2026-11-06
+RI02635,Brown University,brown-university,United States,布朗大學,wikidata-zh-hant,,,41.826111111,-71.403055555,wikidata-label,Q49114,private university,,2026,2026-11-06
+RI02640,California Institute of Technology,california-institute-of-technology,United States,加州理工學院,wikidata-zh-hant,,,34.1385,-118.1244,wikidata-label,Q161562,university,,2026,2026-11-06
+RI02653,Carnegie Mellon University,carnegie-mellon-university,United States,卡內基美隆大學,wikidata-zh-hant,,,40.4425,-79.943333333,wikidata-label,Q190080,private university,,2026,2026-11-06
+RI02656,Case Western Reserve University,case-western-reserve-university,United States,凱斯西儲大學,wikidata-zh-hant,,,41.504,-81.608,wikidata-label,Q1047060,private university,,2026,2026-11-06
+RI02670,College of William and Mary,college-of-william-and-mary,United States,威廉與瑪麗學院,wikidata-zh-hant,,,37.270833333,-76.708333333,wikidata-label,Q875637,public research university,,2026,2026-11-06
+RI02676,Colorado State University,colorado-state-university,United States,科羅拉多州立大學,wikidata-zh-hant,,,40.574836111,-105.080977777,wikidata-label,Q1111640,land-grant university,,2026,2026-11-06
+RI02677,Columbia University,columbia-university,United States,哥倫比亞大學,wikidata-zh-hant,,,40.8075,-73.961944444,wikidata-label,Q49088,private university,,2026,2026-11-06
+RI02680,Cornell University,cornell-university,United States,康乃爾大學,wikidata-zh-hant,,,42.449166666,-76.483888888,wikidata-label,Q49115,land-grant university,,2026,2026-11-06
+RI02688,Dartmouth College,dartmouth-college,United States,達特茅斯學院,wikidata-zh-hant,,,43.703333333,-72.288333333,wikidata-label,Q49116,private university,,2026,2026-11-06
+RI02692,Drexel University,drexel-university,United States,卓克索大學,wikidata-zh-hant,,,39.956441,-75.188686,wikidata-label,Q603034,research university,,2026,2026-11-06
+RI02693,Duke University,duke-university,United States,杜克大學,wikidata-zh-hant,,,36.001111111,-78.938888888,wikidata-label,Q168751,university,,2026,2026-11-06
+RI02703,Emory University,emory-university,United States,埃默里大學,wikidata-zh-hant,,,33.7925,-84.324166666,wikidata-label,Q621043,private university,,2026,2026-11-06
+RI02709,Florida Atlantic University,florida-atlantic-university,United States,佛羅里達大西洋大學,wikidata-zh-hant,,,26.3712,-80.1017,wikidata-label,Q429863,university,,2026,2026-11-06
+RI02712,Florida State University,florida-state-university,United States,佛羅里達州立大學,wikidata-zh-hant,,,30.441666666,-84.295,wikidata-label,Q861548,public university,,2026,2026-11-06
+RI02716,George Mason University,george-mason-university,United States,喬治梅森大學,wikidata-zh-hant,,,38.8308,-77.3075,wikidata-label,Q1411222,university,,2026,2026-11-06
+RI02717,Georgetown University,georgetown-university,United States,喬治城大學,wikidata-zh-hant,,,38.907222222,-77.072777777,wikidata-label,Q333886,Catholic university,,2026,2026-11-06
+RI02719,Georgia Institute of Technology,georgia-institute-of-technology,United States,佐治亞理工學院,wikidata-zh-hant,,,33.775805555,-84.394694444,wikidata-label,Q864855,university of technology,,2026,2026-11-06
+RI02722,Georgia State University,georgia-state-university,United States,喬治亞州大學藝術與科學學院,wikidata-zh-hant,,,33.7528,-84.3861,wikidata-label,Q1509333,public research university,,2026,2026-11-06
+RI02727,Harvard University,harvard-university,United States,哈佛大學,wikidata-zh-hant,,,42.374443888,-71.116943888,wikidata-label,Q13371,private university,,2026,2026-11-06
+RI02736,Icahn School of Medicine at Mount Sinai,icahn-school-of-medicine-at-mount-sinai,United States,,,,,40.7895,-73.9538,wikidata-label,Q1950740,medical school,,2026,2026-11-06
+RI02743,"Indiana University, Bloomington",indiana-university-bloomington,United States,印第安納大學布盧明頓分校,wikidata-zh-hant,,,39.167222,-86.521389,wikidata-label,Q1079140,public research university,,2026,2026-11-06
+RI02745,"Indiana University, Indianapolis",indiana-university-purdue-university-at-indianapolis,United States,,,,,39.7738,-86.1766,manual,,,Wikidata 搜尋只回圖書館實體；IUPUI 校園座標,2026,2026-11-06
+RI02748,Iowa State University,iowa-state-university,United States,愛荷華州立大學,wikidata-zh-hant,,,42.026194444,-93.648444444,wikidata-label,Q1136919,land-grant university,,2026,2026-11-06
+RI02756,Johns Hopkins University,johns-hopkins-university,United States,約翰斯·霍普金斯大學,wikidata-zh-hant,,,39.328888888,-76.620555555,wikidata-label,Q193727,research institute,,2026,2026-11-06
+RI02760,Kent State University,kent-state-university,United States,肯特州立大學,wikidata-zh-hant,,,41.146944444,-81.343333333,wikidata-label,Q1473615,public research university,,2026,2026-11-06
+RI02779,Massachusetts Institute of Technology,massachusetts-institute-of-technology-mit,United States,麻省理工學院,wikidata-zh-hant,,,42.359722222,-71.091944444,wikidata-label,Q49108,university,,2026,2026-11-06
+RI02781,Mayo Clinic College of Medicine and Science,mayo-clinic-college-of-medicine-and-science,United States,,,,,44.0212907,-92.4670279,wikidata-label,Q6797536,medical school,,2026,2026-11-06
+RI02790,Michigan State University,michigan-state-university,United States,密西根州立大學,wikidata-zh-hant,,,42.701863748,-84.482161172,wikidata-label,Q270222,university,,2026,2026-11-06
+RI02796,Mississippi State University,mississippi-state-university,United States,,,,,33.453747,-88.790049,wikidata-label,Q1939211,land-grant university,,2026,2026-11-06
+RI02816,New York University,new-york-university,United States,紐約大學,wikidata-zh-hant,,,40.73,-73.995,wikidata-label,Q49210,private university,,2026,2026-11-06
+RI02819,North Carolina State University at Raleigh,north-carolina-state-university-raleigh,United States,北卡羅來納州立大學,wikidata-zh-hant,,,35.787222222,-78.670555555,wikidata-label,Q1132346,land-grant university,,2026,2026-11-06
+RI02822,Northeastern University (Boston),northeastern-university-boston,United States,東北大學,wikidata-zh-hant,,,42.34,-71.088333333,wikidata-label,Q37548,university,,2026,2026-11-06
+RI02826,Northwestern University,northwestern-university,United States,西北大學,wikidata-zh-hant,,,42.0564594,-87.675267,wikidata-label,Q309350,research institute,,2026,2026-11-06
+RI02833,Oklahoma State University,oklahoma-state-university,United States,俄克拉何馬州立大學,wikidata-zh-hant,,,36.132222222,-97.080833333,wikidata-label,Q749718,land-grant university,,2026,2026-11-06
+RI02834,Old Dominion University,old-dominion-university,United States,,,,,36.88654,-76.30522,wikidata-label,Q1474100,university,,2026,2026-11-06
+RI02835,Oregon Health & Science University,oregon-health-and-science-university,United States,俄勒岡州衛生科學大學,wikidata-zh-hant,,,45.498916666,-122.68875,wikidata-label,Q282097,public university,,2026,2026-11-06
+RI02836,Oregon State University,oregon-state-university,United States,俄勒岡州立大學,wikidata-zh-hant,,,44.565833333,-123.278888888,wikidata-label,Q861888,land-grant university,,2026,2026-11-06
+RI02841,"Pennsylvania State University, University Park",pennsylvania-state-university-university-park,United States,賓夕法尼亞州立大學,wikidata-zh-hant,,,40.796111111,-77.862777777,wikidata-label,Q739627,public research university,,2026,2026-11-06
+RI02848,Princeton University,princeton-university,United States,普林斯顿大学,wikidata-zh-hant,,,40.345277777,-74.656111111,wikidata-label,Q21578,private university,,2026,2026-11-06
+RI02849,"Purdue University, West Lafayette",purdue-university-west-lafayette,United States,普渡大學,wikidata-zh-hant,,,40.425,-86.923055555,wikidata-label,Q217741,land-grant university,,2026,2026-11-06
+RI02856,Rockefeller University,rockefeller-university,United States,洛克菲勒大學,wikidata-zh-hant,,,40.7625,-73.955555555,wikidata-label,Q270272,private university,,2026,2026-11-06
+RI02864,"Rutgers University, Newark",rutgers-university-newark,United States,羅格斯大學紐瓦克分校,wikidata-zh-hant,,,40.741,-74.174,wikidata-label,Q7382780,university,,2026,2026-11-06
+RI02865,"Rutgers, The State University of New Jersey - New Brunswick",rutgers-the-state-university-of-new-jersey-new-brunswick,United States,羅格斯大學新布朗斯維克分校,wikidata-zh-hant,,,40.5025,-74.448611111,wikidata-label,Q7382826,land-grant university,,2026,2026-11-06
+RI02870,Sam Houston State University,sam-houston-state-university,United States,山姆休士頓州立大學,wikidata-zh-hant,,,30.7143,-95.5474,wikidata-label,Q1422594,university,,2026,2026-11-06
+RI02892,Stanford University,stanford-university,United States,史丹佛大學,wikidata-zh-hant,,,37.4275,-122.170277777,wikidata-label,Q41506,private university,,2026,2026-11-06
+RI02896,Stony Brook University,stony-brook-university,United States,石溪大學,wikidata-zh-hant,,,40.9173205,-73.1245537,wikidata-label,Q969850,public university,,2026,2026-11-06
+RI02903,Syracuse University,syracuse-university,United States,雪城大學,wikidata-zh-hant,,,43.037638888,-76.134,wikidata-label,Q617433,private university,,2026,2026-11-06
+RI02905,Temple University,temple-university,United States,天普大學,wikidata-zh-hant,,,39.981388888,-75.154444444,wikidata-label,Q1420239,university,,2026,2026-11-06
+RI02907,Texas A&M University,texas-a-m-university,United States,德州農工大學,wikidata-zh-hant,,,30.610369,-96.344056,wikidata-label,Q49212,land-grant university,,2026,2026-11-06
+RI02917,George Washington University,the-george-washington-university,United States,喬治·華盛頓大學,wikidata-zh-hant,,,38.900833333,-77.050833333,wikidata-label,Q432637,private university,,2026,2026-11-06
+RI02921,"Ohio State University, Columbus",the-ohio-state-university-columbus,United States,俄亥俄州立大學,wikidata-zh-hant,,,40.000555555,-83.014444444,wikidata-label,Q309331,land-grant university,,2026,2026-11-06
+RI02926,The University of Georgia,the-university-of-georgia,United States,喬治亞大學,wikidata-zh-hant,,,33.955833333,-83.374444444,wikidata-label,Q761534,university,,2026,2026-11-06
+RI02933,The University of Texas at Austin,the-university-of-texas-at-austin,United States,德克薩斯州大學奧斯汀分校,wikidata-zh-hant,,,30.28614,-97.73942,wikidata-label,Q49213,public research university,,2026,2026-11-06
+RI02934,The University of Texas at Dallas,the-university-of-texas-at-dallas,United States,德克薩斯州大學達拉斯分校,wikidata-zh-hant,,,32.985,-96.75,wikidata-label,Q1781394,university,,2026,2026-11-06
+RI02935,The University of Texas at San Antonio,the-university-of-texas-at-san-antonio,United States,德克薩斯州大學聖安東尼奧分校,wikidata-zh-hant,,,29.584,-98.619,wikidata-label,Q183170,university,,2026,2026-11-06
+RI02938,The University of Texas MD Anderson Cancer Center,the-university-of-texas-m-d-anderson-cancer-center,United States,德州大學安德森癌症中心,wikidata-zh-hant,,,29.7078,-95.3975,wikidata-search,Q1525831,"hospital in Texas, United States",,2026,2026-11-06
+RI02940,University of Texas Southwestern Medical Center,the-university-of-texas-southwestern-medical-center-at-dallas,United States,得克薩斯大學西南醫學中心,wikidata-zh-hant,,,32.812096,-96.84016,wikidata-label,Q2725999,medical school,,2026,2026-11-06
+RI02945,Tufts University,tufts-university,United States,塔夫斯大學,wikidata-zh-hant,,,42.406949,-71.11982,wikidata-label,Q49120,university,,2026,2026-11-06
+RI02950,University at Albany,university-at-albany-state-university-of-new-york,United States,紐約州立大學奧本尼分校,wikidata-zh-hant,,,42.686193,-73.823884,wikidata-label,Q1780816,public university,,2026,2026-11-06
+RI02951,"University at Buffalo, the State University of New York",university-at-buffalo-the-state-university-of-new-york,United States,紐約州立大學水牛城分校,wikidata-zh-hant,,,43,-78.789166666,wikidata-label,Q681025,public research university,,2026,2026-11-06
+RI02957,University of Arizona,university-of-arizona,United States,亞利桑那大學,wikidata-zh-hant,,,32.231944444,-110.9525,wikidata-label,Q503419,land-grant university,,2026,2026-11-06
+RI02958,University of Arkansas at Fayetteville,university-of-arkansas-at-fayetteville,United States,阿肯色大學,wikidata-zh-hant,,,36.068611111,-94.176111111,wikidata-label,Q1070333,land-grant university,,2026,2026-11-06
+RI02962,"University of California, Berkeley",university-of-california-berkeley,United States,柏克萊加州大學,wikidata-zh-hant,,,37.871944444,-122.258333333,wikidata-label,Q168756,land-grant university,,2026,2026-11-06
+RI02963,"University of California, Davis",university-of-california-davis,United States,加利福尼亞大學戴維斯分校,wikidata-zh-hant,,,38.54,-121.75,wikidata-label,Q129421,university,,2026,2026-11-06
+RI02964,"University of California, Irvine",university-of-california-irvine,United States,加利福尼亞大學爾灣分校,wikidata-zh-hant,,,33.64535,-117.842641666,wikidata-label,Q868421,public research university,,2026,2026-11-06
+RI02965,"University of California, Los Angeles",university-of-california-los-angeles,United States,加州大學洛杉磯分校,wikidata-zh-hant,,,34.072222222,-118.442777777,wikidata-label,Q174710,public research university,,2026,2026-11-06
+RI02967,"University of California, San Diego",university-of-california-san-diego,United States,聖地牙哥加利福尼亞大學,wikidata-zh-hant,,,32.878888888,-117.236111111,wikidata-label,Q622664,public university,,2026,2026-11-06
+RI02968,"University of California, San Francisco",university-of-california-san-francisco,United States,舊金山加利福尼亞大學,wikidata-zh-hant,,,37.762777777,-122.458055555,wikidata-label,Q1061104,public university,,2026,2026-11-06
+RI02969,"University of California, Santa Barbara",university-of-california-santa-barbara,United States,加利福尼亞大學聖塔芭芭拉分校,wikidata-zh-hant,,,34.4163232,-119.8463925,wikidata-label,Q263064,public university,,2026,2026-11-06
+RI02970,"University of California, Santa Cruz",university-of-california-santa-cruz,United States,加州大學聖克魯茲分校,wikidata-zh-hant,,,36.991388888,-122.060833333,wikidata-label,Q1047293,university,,2026,2026-11-06
+RI02972,University of Central Florida,university-of-central-florida,United States,中佛羅里達大學,wikidata-zh-hant,,,28.6016,-81.2005,wikidata-label,Q143451,public university,,2026,2026-11-06
+RI02973,University of Chicago,university-of-chicago,United States,芝加哥大學,wikidata-zh-hant,,,41.789722222,-87.599722222,wikidata-label,Q131252,private university,,2026,2026-11-06
+RI02974,University of Cincinnati,university-of-cincinnati,United States,辛辛納提大學,wikidata-zh-hant,,,39.132777777,-84.515277777,wikidata-label,Q153265,public research university,,2026,2026-11-06
+RI02975,University of Colorado Boulder,university-of-colorado-at-boulder,United States,科羅拉多大學波德分校,wikidata-zh-hant,,,40.006666666,-105.267222222,wikidata-label,Q736674,public university,,2026,2026-11-06
+RI02976,University of Colorado at Denver,university-of-colorado-at-denver,United States,科羅拉多大學丹佛分校,wikidata-zh-hant,,,39.743461,-105.003119,wikidata-label,Q1468161,public university,,2026,2026-11-06
+RI02979,University of Connecticut,university-of-connecticut,United States,康涅狄格大學,wikidata-zh-hant,,,41.807222222,-72.2525,wikidata-label,Q49206,land-grant university,,2026,2026-11-06
+RI02984,University of Florida,university-of-florida,United States,佛羅里達大學,wikidata-zh-hant,,,29.6475,-82.345,wikidata-label,Q501758,land-grant university,,2026,2026-11-06
+RI02985,University of Hawaii at Manoa,university-of-hawaii-at-manoa,United States,夏威夷大學馬諾阿分校,wikidata-zh-hant,,,21.297,-157.817,wikidata-label,Q2000129,land-grant university,,2026,2026-11-06
+RI02986,University of Houston,university-of-houston,United States,休士頓大學,wikidata-zh-hant,,,29.718922,-95.339162,wikidata-label,Q1472358,public university,,2026,2026-11-06
+RI02988,University of Illinois Chicago,university-of-illinois-at-chicago,United States,伊利諾大學芝加哥分校,wikidata-zh-hant,,,41.871889,-87.64925,wikidata-label,Q955764,public university,,2026,2026-11-06
+RI02989,"University of Illinois Urbana, Champaign",university-of-illinois-at-urbana-champaign,United States,伊利諾大學厄巴納-香檳分校,wikidata-zh-hant,,,40.110538888,-88.228411111,wikidata-label,Q457281,land-grant university,,2026,2026-11-06
+RI02991,University of Iowa,university-of-iowa,United States,衣阿華大學,wikidata-zh-hant,,,41.661666666,-91.536388888,wikidata-label,Q182973,public research university,,2026,2026-11-06
+RI03001,"University of Maryland, Baltimore",university-of-maryland-baltimore,United States,馬里蘭大學巴爾的摩分校,wikidata-zh-hant,,,39.291388888,-76.625,wikidata-label,Q4119470,public university,,2026,2026-11-06
+RI03003,"University of Maryland, College Park",university-of-maryland-college-park,United States,馬里蘭大學學院市分校,wikidata-zh-hant,,,38.988055555,-76.9425,wikidata-label,Q503415,land-grant university,,2026,2026-11-06
+RI03005,"University of Massachusetts, Amherst",university-of-massachusetts-amherst,United States,馬薩諸塞州立大學艾莫斯特分校,wikidata-zh-hant,,,42.388888888,-72.527777777,wikidata-label,Q15142,university,,2026,2026-11-06
+RI03008,University of Massachusetts Chan Medical School,university-of-massachusetts-medical-school-worcester,United States,,,,,42.276815,-71.762445,wikidata-label,Q108899288,medical school,,2026,2026-11-06
+RI03011,University of Miami,university-of-miami,United States,邁阿密大學,wikidata-zh-hant,,,25.721644,-80.279267,wikidata-label,Q738258,university,,2026,2026-11-06
+RI03012,"University of Michigan, Ann Arbor",university-of-michigan-ann-arbor,United States,密西根大學,wikidata-zh-hant,,,42.276944444,-83.738055555,wikidata-label,Q230492,public research university,,2026,2026-11-06
+RI03014,"University of Minnesota, Twin Cities",university-of-minnesota-twin-cities,United States,明尼蘇達大學,wikidata-zh-hant,,,44.975,-93.235277777,wikidata-label,Q238101,land-grant university,,2026,2026-11-06
+RI03017,"University of Missouri, Columbia",university-of-missouri-columbia,United States,密蘇里大學,wikidata-zh-hant,,,38.9453,-92.3288,wikidata-label,Q579968,land-grant university,,2026,2026-11-06
+RI03021,"University of Nebraska, Lincoln",university-of-nebraska-lincoln,United States,內布拉斯加大學林肯分校,wikidata-zh-hant,,,40.8175,-96.701388888,wikidata-label,Q1353679,land-grant university,,2026,2026-11-06
+RI03025,"University of Nevada, Las Vegas",university-of-nevada-las-vegas-1,United States,內華達大學拉斯維加斯分校,wikidata-zh-hant,,,36.10779,-115.14376,wikidata-label,Q2302311,public research university,,2026,2026-11-06
+RI03029,University of North Carolina at Chapel Hill,university-of-north-carolina-at-chapel-hill,United States,北卡羅來納大學教堂山分校,wikidata-zh-hant,,,35.908611111,-79.049166666,wikidata-label,Q192334,public research university,,2026,2026-11-06
+RI03036,University of North Texas,university-of-north-texas,United States,北德州大學,wikidata-zh-hant,,,33.21095,-97.146958333,wikidata-label,Q860527,public research university,,2026,2026-11-06
+RI03040,University of Notre Dame,university-of-notre-dame,United States,聖母大學,wikidata-zh-hant,,,41.7,-86.238888888,wikidata-label,Q178848,Catholic university,,2026,2026-11-06
+RI03041,"University of Oklahoma, Norman",university-of-oklahoma-norman,United States,奧克拉荷馬大學,wikidata-zh-hant,,,35.208611111,-97.445833333,wikidata-label,Q640652,university,,2026,2026-11-06
+RI03045,University of Pennsylvania,university-of-pennsylvania,United States,賓夕凡尼亞大學,wikidata-zh-hant,,,39.951944444,-75.193611111,wikidata-label,Q49117,private university,,2026,2026-11-06
+RI03046,University of Pittsburgh,university-of-pittsburgh,United States,匹茲堡大學,wikidata-zh-hant,,,40.444565,-79.953274,wikidata-label,Q235034,private university,,2026,2026-11-06
+RI03052,University of Rochester,university-of-rochester,United States,羅徹斯特大學,wikidata-zh-hant,,,43.128333,-77.628333,wikidata-label,Q149990,university,,2026,2026-11-06
+RI03057,"University of South Carolina, Columbia",university-of-south-carolina-columbia-1,United States,南卡羅來納大學,wikidata-zh-hant,,,33.9975,-81.025277777,wikidata-label,Q1024426,public university,,2026,2026-11-06
+RI03059,University of South Florida,university-of-south-florida,United States,南佛羅里達大學,wikidata-zh-hant,,,28.06,-82.41,wikidata-label,Q500606,public university,,2026,2026-11-06
+RI03060,University of Southern California,university-of-southern-california,United States,南加州大學,wikidata-zh-hant,,,34.021667,-118.285278,wikidata-label,Q4614,private university,,2026,2026-11-06
+RI03062,"The University of Tennessee, Knoxville",university-of-tennessee-knoxville,United States,,,,,35.9517,-83.93,wikidata-label,Q1150105,university,,2026,2026-11-06
+RI03070,University of Utah,university-of-utah,United States,猶他大學,wikidata-zh-hant,,,40.764166666,-111.846388888,wikidata-label,Q168515,public research university,,2026,2026-11-06
+RI03072,University of Virginia,university-of-virginia,United States,維吉尼亞大學,wikidata-zh-hant,,,38.035555555,-78.503333333,wikidata-label,Q213439,public research university,,2026,2026-11-06
+RI03073,University of Washington,university-of-washington,United States,華盛頓大學,wikidata-zh-hant,,,47.65416666666667,-122.30805555555555,wikidata-search,Q219563,"public research university in Seattle, Washington, United States",,2026,2026-11-06
+RI03074,"University of Wisconsin, Madison",university-of-wisconsin-madison,United States,威斯康星大學麥迪遜分校,wikidata-zh-hant,,,43.075277777,-89.404166666,wikidata-label,Q838330,land-grant university,,2026,2026-11-06
+RI03084,Vanderbilt University,vanderbilt-university,United States,范德堡大學,wikidata-zh-hant,,,36.1475,-86.8025,wikidata-label,Q29052,private university,,2026,2026-11-06
+RI03090,Virginia Polytechnic Institute and State University,virginia-polytechnic-institute-and-state-university,United States,,,,,37.225,-80.425,wikidata-label,Q65379,university,,2026,2026-11-06
+RI03091,Wake Forest University,wake-forest-university,United States,威克森林大學,wikidata-zh-hant,,,36.135,-80.277,wikidata-label,Q392667,university,,2026,2026-11-06
+RI03094,Washington State University,washington-state-university,United States,華盛頓州立大學,wikidata-zh-hant,,,46.7252,-117.1596,wikidata-label,Q597236,land-grant university,,2026,2026-11-06
+RI03095,Washington University in St Louis,washington-university-in-st-louis,United States,聖路易華盛頓大學,wikidata-zh-hant,,,38.648,-90.305,wikidata-search,Q777403,"private research university in St. Louis, Missouri, United States",,2026,2026-11-06
+RI03109,Yale University,yale-university,United States,耶魯大學,wikidata-zh-hant,,,41.311111111,-72.926666666,wikidata-label,Q49112,private university,,2026,2026-11-06
+RI03228,Institut Polytechnique de Paris,institut-polytechnique-de-paris,France,,,,,48.710709,2.219011,wikidata-search,Q48759778,French research university of engineering schools in Paris-Saclay,,2026,2026-11-06
+RI03329,Bahir Dar University,bahir-dar-univeristy,Ethiopia,,,,,11.59722,37.39583,wikidata-label,Q4842597,university,,2026,2026-11-06
+RI03464,National Textile University,national-textile-university-faisalabad,Pakistan,,,,,31.4630455,73.1410928,wikidata-label,Q6978908,university,,2026,2026-11-06
+RI03812,Mohamed Bin Zayed University of Artificial Intelligence,mohamed-bin-zayed-university-of-artificial-intelligence,United Arab Emirates,,,,,24.4337,54.618,manual,,,Masdar City 校園,2026,2026-11-06
+RI21001,Central School of Lille,central-school-of-lille,France,,,,,50.6075,3.1369,manual,,,Villeneuve-d'Ascq 校園,2026,2026-11-06

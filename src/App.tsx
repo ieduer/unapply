@@ -1,4 +1,5 @@
 import {
+  lazy,
   useMemo,
   useState,
   useCallback,
@@ -11,6 +12,7 @@ import { SyncNotice } from './shared-ui/SyncNotice'
 import { ThemeCustomizer } from './shared-ui/ThemeCustomizer'
 import { candidateProvinceOptions, defaultCandidateProvince } from './data/admissionAuthorities'
 import type { CandidateProvince } from './data/admissionAuthorities'
+import { readStoredOrigin, saveOrigin, type OriginRegion } from './data/origins'
 import type { School } from './data/schools'
 import { filterSchools } from './engine/filter'
 import type { AnswerMap } from './engine/filter'
@@ -35,12 +37,16 @@ import { AboutPage } from './components/AboutPage'
 import { SchoolDetail } from './components/SchoolDetail'
 import { ContributePage } from './components/ContributePage'
 
+// 世界學科地圖只在進入 #/world 時載入，首頁與問卷的主包不帶它。
+const WorldAtlasPage = lazy(() => import('./components/WorldAtlasPage').then((module) => ({ default: module.WorldAtlasPage })))
+
 type Route =
   | { name: 'landing' }
   | { name: 'filter' }
   | { name: 'result' }
   | { name: 'about' }
   | { name: 'contribute' }
+  | { name: 'world' }
   | { name: 'school'; id: string }
 
 function parseRoute(): Route {
@@ -52,6 +58,7 @@ function parseRoute(): Route {
   if (head === 'result') return { name: 'result' }
   if (head === 'about') return { name: 'about' }
   if (head === 'contribute') return { name: 'contribute' }
+  if (head === 'world') return { name: 'world' }
   if (head === 'school' && id) return { name: 'school', id: decodeURIComponent(id) }
   return { name: 'landing' }
 }
@@ -62,6 +69,7 @@ function navigate(route: Route) {
   else if (route.name === 'result') hash = '#/result'
   else if (route.name === 'about') hash = '#/about'
   else if (route.name === 'contribute') hash = '#/contribute'
+  else if (route.name === 'world') hash = '#/world'
   else if (route.name === 'school') hash = `#/school/${encodeURIComponent(route.id)}`
   if (window.location.hash !== hash) window.location.hash = hash
 }
@@ -140,6 +148,8 @@ export default function App() {
   // 考生地區是篩選上下文，不是問卷答案：A6 的招生管道逐省不同，
   // 但它不能進 AnswerMap，否則會污染學習證據契約。
   const [candidateProvince, setCandidateProvinceState] = useState<CandidateProvince>(readStoredCandidateProvince)
+  // 所在地／升學身份是起點（決定從哪個題庫開始），同樣不進 AnswerMap。
+  const [origin, setOriginState] = useState<OriginRegion | null>(() => readStoredOrigin())
   const [schools, setSchools] = useState<School[] | null>(null)
   const [schoolLoadError, setSchoolLoadError] = useState<string | null>(null)
   const evidenceStatus = useSyncExternalStore(
@@ -170,6 +180,11 @@ export default function App() {
     } catch {
       // 存不下就算了，本次會話仍然生效
     }
+  }, [])
+
+  const setOrigin = useCallback((next: OriginRegion) => {
+    setOriginState(next)
+    saveOrigin(next)
   }, [])
 
   const go = useCallback((r: Route) => {
@@ -225,6 +240,22 @@ export default function App() {
     go({ name: 'result' })
   }, [answers, candidateProvince, result, go])
 
+  const startMainland = useCallback(() => {
+    beginUnapplyAPlusSession().then(() => undefined).catch(() => undefined)
+    go({ name: 'filter' })
+  }, [go])
+
+  const landingPage = (
+    <Landing
+      origin={origin}
+      onOriginChange={setOrigin}
+      onStart={startMainland}
+      onWorld={() => go({ name: 'world' })}
+      onAbout={() => go({ name: 'about' })}
+      onContribute={() => go({ name: 'contribute' })}
+    />
+  )
+
   if (routeNeedsSchools(route) && (!schools || schoolLoadError)) {
     return (
       <>
@@ -237,10 +268,7 @@ export default function App() {
   let page: ReactNode = null
 
   if (route.name === 'landing') {
-    page = <Landing onStart={() => {
-      beginUnapplyAPlusSession().then(() => undefined).catch(() => undefined)
-      go({ name: 'filter' })
-    }} onAbout={() => go({ name: 'about' })} onContribute={() => go({ name: 'contribute' })} />
+    page = landingPage
   } else if (route.name === 'filter') {
     if (schools) {
       page = (
@@ -272,11 +300,22 @@ export default function App() {
           onSchool={(id) => go({ name: 'school', id })}
           onAbout={() => go({ name: 'about' })}
           onContribute={() => go({ name: 'contribute' })}
+          onWorld={() => go({ name: 'world' })}
         />
       )
     }
   } else if (route.name === 'about') {
     page = <AboutPage onBack={() => go({ name: 'landing' })} />
+  } else if (route.name === 'world') {
+    page = (
+      <WorldAtlasPage
+        origin={origin}
+        onBack={() => go({ name: 'landing' })}
+        onAbout={() => go({ name: 'about' })}
+        onSchool={(id) => go({ name: 'school', id })}
+        onStartMainland={startMainland}
+      />
+    )
   } else if (route.name === 'contribute') {
     if (schools) page = <ContributePage schools={schools} onBack={() => go({ name: 'result' })} />
   } else if (route.name === 'school') {
@@ -291,7 +330,7 @@ export default function App() {
             onBack={() => history.length > 1 ? history.back() : go({ name: 'result' })}
           />
         )
-        : <Landing onStart={() => go({ name: 'filter' })} onAbout={() => go({ name: 'about' })} onContribute={() => go({ name: 'contribute' })} />
+        : landingPage
     }
   }
 

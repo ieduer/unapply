@@ -62,6 +62,13 @@ export function AboutPage({ onBack }: Props) {
             <li>· 民政部《全國行政區劃》：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.mca.gov.cn/" target="_blank" rel="noreferrer noopener">mca.gov.cn ↗</a></li>
             <li>· 《中國語言地圖集》（商務印書館／中國社科院）：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.cssn.cn/" target="_blank" rel="noreferrer noopener">cssn.cn ↗</a></li>
           </ul>
+          <h3 className="serif text-lg text-fog-100 mt-4 mb-2">全球學科地圖（只描述分佈，不作推薦）</h3>
+          <ul className="flex flex-col gap-2 text-sm">
+            <li>· 軟科世界一流學科排名 GRAS 2026（57 個學科、每科前 50 名，公開頁面讀取）：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.shanghairanking.com/rankings/gras/2026" target="_blank" rel="noreferrer noopener">shanghairanking.com ↗</a></li>
+            <li>· 機構座標與正體中文名：Wikidata（CC0）；大陸機構改用教育部校名與本站校區底稿的主校區座標：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.wikidata.org/" target="_blank" rel="noreferrer noopener">wikidata.org ↗</a></li>
+            <li>· 陸地輪廓：Natural Earth 1:110m Land（公有領域），只畫陸地、不畫國界：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.naturalearthdata.com/" target="_blank" rel="noreferrer noopener">naturalearthdata.com ↗</a></li>
+            <li>· 企業直招高中生計劃：各計劃官方頁；缺官方頁時用主流媒體報導並標示可信度與核對日期，條目隨招募年度變動。</li>
+          </ul>
           <h3 className="serif text-lg text-fog-100 mt-4 mb-2">眾包（部分覆蓋，缺失不默認）</h3>
           <ul className="flex flex-col gap-2 text-sm">
             <li>· CollegesChat 眾包問卷（CC BY-NC-SA 4.0）：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://github.com/CollegesChat/university-information" target="_blank" rel="noreferrer noopener">github.com/CollegesChat ↗</a></li>
@@ -91,6 +98,24 @@ export function AboutPage({ onBack }: Props) {
             <li><b className="text-fog-100">非商業</b>：本站非商業公益；派生自 CollegesChat 的數據繼承 CC BY-NC-SA 4.0。</li>
             <li><b className="text-fog-100">不提供志願填報建議</b>：本站不是教育機構，不對錄取結果負責。</li>
           </ul>
+        </div>
+
+        <div>
+          <h2 className="serif text-2xl text-fog-100 mb-4">全球化路線圖</h2>
+          <p>
+            本站最終要做成全球學生都能用的學校減法：先問你在哪裡升學，再按你的選擇一路做減法，最後落到專業與學校；不同地區的學生可以跨國選，
+            站內同時建一個有來源、有年份、有有效期的全球高校資料庫，連同各校招生情況一起可查。近幾年一些公司繞過高校直接招高中畢業生，這類非大學路徑也列入。
+          </p>
+          <ul className="flex flex-col gap-2 text-sm list-disc pl-5 mt-3">
+            <li><b className="text-fog-100">S0（現在）</b>：首頁先問所在地；全球學科地圖＋學科／地區減法；企業直招高中生首批條目。</li>
+            <li><b className="text-fog-100">S1</b>：中國大陸高校按專業、錄取條件、招生政策逐校逐年補齊。</li>
+            <li><b className="text-fog-100">S2</b>：中外合作辦學、內地與港澳臺合作辦學，港澳臺院校與管道。</li>
+            <li><b className="text-fog-100">S3</b>：澳洲、歐美、日韓新等可申請學校，以學科為主索引補錄取條件、名額、學費、簽證。</li>
+            <li><b className="text-fog-100">S4–S5</b>：多語言與多起點；全球高校權威資料庫服務化。</li>
+          </ul>
+          <p className="mt-3 text-sm text-fog-500">
+            完整目標、分階段定義與資料權威分級：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://github.com/ieduer/unapply/blob/master/docs/GLOBAL_ROADMAP.md" target="_blank" rel="noreferrer noopener">docs/GLOBAL_ROADMAP.md ↗</a>
+          </p>
         </div>
 
         <div>

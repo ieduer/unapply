@@ -135,7 +135,8 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 
 0. Filter-validity gates (blocking for any release that touches questions, dimensions,
    or the data pipeline): `run audit:questions`, `run audit:values`, `run audit:data`,
-   `run test:filters`, `run test:evidence`, `run test:trusted`, `run test:theme`, `run check:shared-ui`, `run lint`, `run build`.
+   `run test:filters`, `run test:evidence`, `run test:trusted`, `run test:theme`, `run test:atlas`, `run check:shared-ui`, `run lint`, `run build`
+   （`build` 會先跑 `data:runtime` 與 `data:atlas`；`test:atlas` 檢查世界學科地圖 payload 與減法引擎）.
    `audit:values` fails when a dimension enum value has zero schools in the pool and is
    not declared in `reservedValues`; that is the mechanism that used to let questionnaire
    options silently disappear from the UI.
@@ -282,3 +283,30 @@ CAPABILITY_FIT: no-new-capability。Node24.18.0、Wrangler4.100.0、Pages produc
 驗證：Node 24.18.0 十道閘門（test:trusted 17、test:filters 60）、候選與正式 39/39 逐檔一致、候選上以 UC 已完成會話形狀的存根跑真實建置包（1 次 start、0 次 interaction）、正式站已登入測試帳號（本學年已完成）再作答到結果頁只有 1 次 start、0 次 interaction／complete，最後「已核验」。回滾：`84a4afd1-0602-4c1c-af4c-d5173c94da94`／`f2aa606`，走新的受審回滾交易（會恢復無限重送）。
 
 發布、驗證與證據：`/Users/ylsuen/CF/reports/operations/aplus-repeat-loop-20261023/RELEASE.md`。Status `20261023-nope-repeat-completion-loop-fix` r1。CAPABILITY_FIT: no-new-capability；葉子發布，無平台／共享契約變更。
+
+
+## 2026-11-06 全球化立項與第一階段世界學科地圖（本機已驗證，未發布）
+
+**範圍**：站長 2026-11-06 口述的最終目標寫入 `docs/GLOBAL_ROADMAP.md`（S0–S5 分階段、資料權威分級、跨國規則、
+企業直招高中生橫切層）。S0 已在本機實作：首頁「第 0 題 · 你在哪裡升學」起點選擇（中國大陸／香港／澳門／臺灣／其他，
+存 `unapply.origin.v1`，不進 AnswerMap）；`#/world` 世界學科地圖（軟科 GRAS 2026 57 學科、每科前 10／25／50，
+Equal Earth 投影、只畫陸地）與門類／學科／地區減法；「非大學路徑」圖層 10 條企業直招高中生計劃；About 補來源與路線圖；
+結果頁加入口。43 題、篩選引擎、Function、AnswerMap、`APLUS_EVIDENCE`、`src/shared-ui` 均未變；無新依賴。
+
+**新資料層與閘門**：`data/research/gras_2026_subjects.csv`、`gras_2026_top50.csv`（`npm run data:gras`）、
+`gras_institutions_geo.2026-11-06.csv`（`npm run data:gras-geo`：139 所大陸機構用教育部校名＋校區底稿座標、385 Wikidata 標籤、
+12 Wikidata 搜尋、8 人工）、`direct_hire_programs.2026-11-06.csv`（人工）、`ne_110m_land.geojson`（Natural Earth 公有領域）
+→ `npm run data:atlas` → `public/data/atlas/world-atlas.json`（237 KiB，懶載入）＋ `src/data/worldAtlasManifest.ts`。
+`npm run test:atlas` 為新閘門；`build` 先跑 `data:atlas`。年度更新步驟：`docs/MAINTENANCE_MANUAL.md` §3.3。
+
+**驗證（Node 24.18.0）**：audit:questions／values／data 通過；test:filters 60、test:evidence 2、test:trusted 17、test:theme 9、
+test:atlas 10 全過；check:shared-ui 6 檔一致；lint、tsc、build 通過（主包 357.7 kB，`WorldAtlasPage` 獨立分塊 21.8 kB）。
+本機 Vite 內建瀏覽器：首頁起點切換與按鈕互換、`#/world` 載入 195 點／570 席位、劃掉工學 → 135 所／320 席位、
+劃掉美國 → 82 所／141 席位且美國點改虛線、選清華顯示席位並有「看本站學校詳情」、企業直招圖層 10 菱形＋10 卡；
+逐路由文字對比度量測（`/`、`#/world`、`#/about`，紙色與墨色，桌面 964–1440 與手機 390）新增低對比項 0、最低 6.27:1、最小字 12px、
+無橫向溢出。未做：候選預覽上傳與正式站比對、已登入學生路徑（本輪不改 A+ 契約）。
+
+**發布狀態**：正式仍為 `d7a7924d`／`6fa8a4e`。發布須站長批准後走登記的 Pages 交易（候選預覽 → 收據 → 交易 → 讀回 → accepted → Status）。
+回滾錨點＝當時的正式部署；只切 Pages 版本，無資料庫遷移。CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
+
+報告：`/Users/ylsuen/CF/reports/operations/nope-global-atlas-20261106/REPORT.md`。

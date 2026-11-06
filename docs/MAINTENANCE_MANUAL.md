@@ -221,6 +221,39 @@ npm run data:research
 4. 低置信度記錄只展示，不拿去做硬篩選。
 5. A5 官方結論寫入 `campus_official_overrides.2026-04-21.csv`；B 類整校年度結論及部分範圍備註另寫 `quality_official_overrides.2026-09-08.csv`，禁止將校區交通直接當整校 B9。
 
+### 3.3 全球學科地圖資料層（2026-11 起）
+
+目標與分階段見 `docs/GLOBAL_ROADMAP.md`。這一層只描述「各學科最前列的機構在哪裡」，不進 43 題篩選引擎，
+不碰 AnswerMap／Function／A+ 證據契約；它有自己的 payload、自己的引擎與自己的閘門。
+
+資料檔（都在 `data/research/`，建置不需要網路）：
+
+| 檔案 | 產生方式 | 內容 |
+| --- | --- | --- |
+| `gras_<年>_subjects.csv` | `npm run data:gras` | 57 學科：代碼、門類、英文名、軟科中文站簡體名、本站正體名、來源頁 |
+| `gras_<年>_top50.csv` | `npm run data:gras` | 每科前 50：名次、機構代碼、英文名、地區、總分、來源頁、讀取日 |
+| `gras_institutions_geo.<日期>.csv` | `npm run data:gras-geo` | 機構 → 座標、正體名、（大陸）教育部代碼與本站學校 id、座標來源 |
+| `direct_hire_programs.<日期>.csv` | 人工維護 | 企業直招高中生計劃：條件、給什麼、支薪、學位、座標、官方頁、來源、核對日、可信度 |
+| `ne_110m_land.geojson` | 一次性下載 | Natural Earth 1:110m Land（公有領域），只畫陸地 |
+
+`npm run data:atlas`（`scripts/build_world_atlas.mjs`）把以上組成 `public/data/atlas/world-atlas.json`
+與 `src/data/worldAtlasManifest.ts`（版本雜湊＋各類數量）；`npm run build` 會先跑它。前端 `#/world`
+用 `src/lib/atlasData.ts` 懶載入並核對 manifest 數量，`src/engine/atlas.ts` 做學科／門類／地區減法。
+
+年度更新（軟科每年約 10–11 月發布新一年 GRAS）：
+
+1. `npm run data:gras`（必要時先改 `package.json` 裡的 `--year`）。腳本從年度索引頁找 Nuxt 靜態 build id，
+   逐科下載 payload，在無 `require`／`process` 的 vm 沙箱裡執行後只取回傳物件。新增學科或門類會因
+   `SUBJECT_ZH`／`FAMILY_ZH` 缺項直接失敗：先到軟科中文站抄簡體名、再寫正體名（只轉字形不換用詞）。
+2. `npm run data:gras-geo`。大陸機構先對教育部主表（含 `moe_former_names` 舊校名）並取 `campus_locations` 主校區座標；
+   其餘查 Wikidata（標籤→別名→搜尋 API），中文名只取 zh-hant／zh-tw／zh-hk 標籤。任何機構對不到 → 腳本失敗並列出，
+   加到 `MAINLAND_ALIASES`／`WIKIDATA_ALIASES`／`MANUAL_OVERRIDES`（人工座標要附註來源）後重跑。
+3. 複核 `direct_hire_programs`：每條重新打開官方頁，更新 `status`／`verifiedAt`；連續兩年沒有招募標 `inactive`，不刪。
+   新地區出現時 `build_world_atlas.mjs` 的 `REGION_ZH`／`CONTINENT` 會失敗，補上中文名與洲別。
+4. `npm run data:atlas` → `npm run test:atlas` → 其餘閘門 → 候選預覽 → Pages 交易（§6）。
+
+口徑提醒：排名反映研究產出，不反映本科教學、錄取難度或學費，頁面與 About 已明示；不要把它接進任何「推薦」邏輯。
+
 ## 4. 覆蓋率與風險判讀
 
 用這條命令看 43 題實際是否有用：

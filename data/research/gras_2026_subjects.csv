@@ -1,0 +1,58 @@
+subjectCode,familyCode,familyNameEn,familyNameZhHant,subjectNameEn,subjectNameZhHans,subjectNameZhHant,rankingYear,sourceUrl,fetchedAt
+AS0101,AS01,Natural Sciences,理學,Mathematics,数学,數學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0101,2026-11-06
+AS0102,AS01,Natural Sciences,理學,Physics,物理学,物理學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0102,2026-11-06
+AS0103,AS01,Natural Sciences,理學,Chemistry,化学,化學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0103,2026-11-06
+AS0104,AS01,Natural Sciences,理學,Earth Sciences,地球科学,地球科學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0104,2026-11-06
+AS0105,AS01,Natural Sciences,理學,Geography,地理学,地理學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0105,2026-11-06
+AS0106,AS01,Natural Sciences,理學,Ecology,生态学,生態學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0106,2026-11-06
+AS0107,AS01,Natural Sciences,理學,Oceanography,海洋科学,海洋科學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0107,2026-11-06
+AS0108,AS01,Natural Sciences,理學,Atmospheric Science,大气科学,大氣科學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0108,2026-11-06
+AS0201,AS02,Engineering,工學,Mechanical Engineering,机械工程,機械工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0201,2026-11-06
+AS0202,AS02,Engineering,工學,Electrical & Electronic Engineering,电力电子工程,電力電子工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0202,2026-11-06
+AS0205,AS02,Engineering,工學,Automation & Control,控制科学与工程,控制科學與工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0205,2026-11-06
+AS0206,AS02,Engineering,工學,Telecommunication Engineering,通信工程,通信工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0206,2026-11-06
+AS0207,AS02,Engineering,工學,Instruments Science & Technology,仪器科学,儀器科學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0207,2026-11-06
+AS0208,AS02,Engineering,工學,Biomedical Engineering,生物医学工程,生物醫學工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0208,2026-11-06
+AS0210,AS02,Engineering,工學,Computer Science & Engineering,计算机科学与工程,計算機科學與工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0210,2026-11-06
+AS0211,AS02,Engineering,工學,Civil Engineering,土木工程,土木工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0211,2026-11-06
+AS0212,AS02,Engineering,工學,Chemical Engineering,化学工程,化學工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0212,2026-11-06
+AS0213,AS02,Engineering,工學,Materials Science & Engineering,材料科学与工程,材料科學與工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0213,2026-11-06
+AS0214,AS02,Engineering,工學,Nanoscience & Nanotechnology,纳米科学与技术,納米科學與技術,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0214,2026-11-06
+AS0215,AS02,Engineering,工學,Energy Science & Engineering,能源科学与工程,能源科學與工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0215,2026-11-06
+AS0216,AS02,Engineering,工學,Environmental Science & Engineering,环境科学与工程,環境科學與工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0216,2026-11-06
+AS0217,AS02,Engineering,工學,Water Resources,水资源工程,水資源工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0217,2026-11-06
+AS0219,AS02,Engineering,工學,Food Science & Technology,食品科学与工程,食品科學與工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0219,2026-11-06
+AS0220,AS02,Engineering,工學,Biotechnology,生物工程,生物工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0220,2026-11-06
+AS0221,AS02,Engineering,工學,Aerospace Engineering,航空航天工程,航空航天工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0221,2026-11-06
+AS0222,AS02,Engineering,工學,Marine/Ocean Engineering,船舶与海洋工程,船舶與海洋工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0222,2026-11-06
+AS0223,AS02,Engineering,工學,Transportation Science & Technology,交通运输工程,交通運輸工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0223,2026-11-06
+AS0224,AS02,Engineering,工學,Remote Sensing,遥感技术,遙感技術,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0224,2026-11-06
+AS0226,AS02,Engineering,工學,Mining & Mineral Engineering,矿业工程,礦業工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0226,2026-11-06
+AS0227,AS02,Engineering,工學,Metallurgical Engineering,冶金工程,冶金工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0227,2026-11-06
+AS0228,AS02,Engineering,工學,Textile Science & Engineering,纺织科学与工程,紡織科學與工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0228,2026-11-06
+AS0229,AS02,Engineering,工學,Artificial Intelligence,人工智能,人工智能,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0229,2026-11-06
+AS0230,AS02,Engineering,工學,Robotic Science & Engineering,机器人科学与工程,機器人科學與工程,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0230,2026-11-06
+AS0301,AS03,Life Sciences,生命科學,Biological Sciences,生物学,生物學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0301,2026-11-06
+AS0302,AS03,Life Sciences,生命科學,Human Biological Sciences,基础医学,基礎醫學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0302,2026-11-06
+AS0303,AS03,Life Sciences,生命科學,Agricultural Sciences,农学,農學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0303,2026-11-06
+AS0304,AS03,Life Sciences,生命科學,Veterinary Sciences,兽医学,獸醫學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0304,2026-11-06
+AS0401,AS04,Medical Sciences,醫學,Clinical Medicine,临床医学,臨床醫學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0401,2026-11-06
+AS0402,AS04,Medical Sciences,醫學,Public Health,公共卫生,公共衛生,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0402,2026-11-06
+AS0403,AS04,Medical Sciences,醫學,Dentistry & Oral Sciences,口腔医学,口腔醫學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0403,2026-11-06
+AS0404,AS04,Medical Sciences,醫學,Nursing,护理学,護理學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0404,2026-11-06
+AS0405,AS04,Medical Sciences,醫學,Medical Technology,医学技术,醫學技術,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0405,2026-11-06
+AS0406,AS04,Medical Sciences,醫學,Pharmacy & Pharmaceutical Sciences,药学,藥學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0406,2026-11-06
+AS0501,AS05,Social Sciences,社會科學,Economics,经济学,經濟學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0501,2026-11-06
+AS0502,AS05,Social Sciences,社會科學,Statistics,统计学,統計學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0502,2026-11-06
+AS0503,AS05,Social Sciences,社會科學,Law,法学,法學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0503,2026-11-06
+AS0504,AS05,Social Sciences,社會科學,Political Sciences,政治学,政治學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0504,2026-11-06
+AS0505,AS05,Social Sciences,社會科學,Sociology,社会学,社會學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0505,2026-11-06
+AS0506,AS05,Social Sciences,社會科學,Education,教育学,教育學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0506,2026-11-06
+AS0507,AS05,Social Sciences,社會科學,Communication,新闻传播学,新聞傳播學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0507,2026-11-06
+AS0508,AS05,Social Sciences,社會科學,Psychology,心理学,心理學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0508,2026-11-06
+AS0509,AS05,Social Sciences,社會科學,Business Administration,工商管理,工商管理,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0509,2026-11-06
+AS0510,AS05,Social Sciences,社會科學,Finance,金融学,金融學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0510,2026-11-06
+AS0511,AS05,Social Sciences,社會科學,Management,管理学,管理學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0511,2026-11-06
+AS0512,AS05,Social Sciences,社會科學,Public Administration,公共管理,公共管理,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0512,2026-11-06
+AS0513,AS05,Social Sciences,社會科學,Hospitality & Tourism Management,旅游休闲管理,旅遊休閒管理,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0513,2026-11-06
+AS0515,AS05,Social Sciences,社會科學,Library & Information Science,图书情报科学,圖書情報科學,2026,https://www.shanghairanking.com/rankings/gras/2026/AS0515,2026-11-06

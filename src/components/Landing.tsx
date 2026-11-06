@@ -5,20 +5,25 @@ import {
   officialVocationalCount,
 } from '../data/schoolCatalogSummary'
 import { contributionHighlights, researchSummary } from '../data/researchSummary'
+import { getOriginOption, originOptions, type OriginRegion } from '../data/origins'
 
 interface Props {
+  origin: OriginRegion | null
+  onOriginChange: (origin: OriginRegion) => void
   onStart: () => void
+  onWorld: () => void
   onAbout: () => void
   onContribute: () => void
 }
 
-export function Landing({ onStart, onAbout, onContribute }: Props) {
+export function Landing({ origin, onOriginChange, onStart, onWorld, onAbout, onContribute }: Props) {
+  const originOption = origin ? getOriginOption(origin) : null
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex flex-col items-center justify-between px-5 sm:px-6 py-6 sm:py-10">
       <div
         className="w-full max-w-5xl flex items-center justify-between text-xs mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-fog-500"
       >
-        <span>nope.bdfz.net · v1.8</span>
+        <span>nope.bdfz.net · v1.9</span>
         <button
           onClick={onAbout}
           className="hover:text-accent-500 transition-colors min-h-[44px] -my-3 py-3 px-2"
@@ -43,14 +48,83 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-          <button
-            onClick={onStart}
-            className="px-7 py-4 sm:py-3 bg-accent-500 text-ink-950 rounded-xl font-semibold text-base hover:bg-accent-400 transition-colors min-h-[52px]"
-          >
-            開始減法
-          </button>
-          <span className="text-xs mono text-fog-500">按當前有效數據動態出題 · 可隨時跳過</span>
+        <div className="border border-ink-800 bg-ink-900/78 p-5 sm:p-6 flex flex-col gap-4 backdrop-blur-xl">
+          <div className="flex flex-col gap-2">
+            <p className="mono text-xs uppercase tracking-[0.24em] text-fog-500">第 0 題 · 起點</p>
+            <h2 className="serif text-2xl">你在哪裡升學？</h2>
+            <p className="text-sm text-fog-400 leading-relaxed">
+              所在地只決定從哪個題庫開始、有哪些可申請的管道；之後每一步都可以跨國選。目前只有中國大陸有完整題庫，其他起點先看全球學科地圖。
+            </p>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-5" role="group" aria-label="所在地">
+            {originOptions.map((option) => {
+              const active = option.id === origin
+              return (
+                <button
+                  key={option.id}
+                  onClick={() => onOriginChange(option.id)}
+                  aria-pressed={active}
+                  className={[
+                    'text-left rounded-xl border px-3 py-3 min-h-[56px] flex flex-col gap-1',
+                    active
+                      ? 'border-accent-500 bg-accent-500/10 text-fog-100'
+                      : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100',
+                  ].join(' ')}
+                >
+                  <span className="serif text-base leading-snug">{option.label}</span>
+                  <span className="text-xs text-fog-500 leading-snug">{option.hasLocalPool ? '題庫完整' : '題庫建設中'}</span>
+                </button>
+              )
+            })}
+          </div>
+
+          {!originOption && (
+            <p className="text-sm text-fog-500">選一個起點，下面的按鈕才會亮起來。全球學科地圖不分起點，隨時可看。</p>
+          )}
+          {originOption && !originOption.hasLocalPool && (
+            <p className="text-sm text-fog-300 leading-relaxed">
+              <b className="text-fog-100">{originOption.label}</b>：{originOption.hint}。先用全球學科地圖做學科與地區的減法；如果你也考慮中國大陸高校，可以直接進大陸題庫。
+            </p>
+          )}
+
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+            {originOption?.hasLocalPool !== false ? (
+              <>
+                <button
+                  onClick={onStart}
+                  disabled={!originOption}
+                  className={[
+                    'px-7 py-4 sm:py-3 rounded-xl font-semibold text-base transition-colors min-h-[52px]',
+                    originOption ? 'bg-accent-500 text-ink-950 hover:bg-accent-400' : 'bg-ink-800 text-fog-500 cursor-not-allowed',
+                  ].join(' ')}
+                >
+                  開始減法
+                </button>
+                <button
+                  onClick={onWorld}
+                  className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
+                >
+                  看全球學科地圖
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={onWorld}
+                  className="px-7 py-4 sm:py-3 bg-accent-500 text-ink-950 rounded-xl font-semibold text-base hover:bg-accent-400 transition-colors min-h-[52px]"
+                >
+                  看全球學科地圖
+                </button>
+                <button
+                  onClick={onStart}
+                  className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
+                >
+                  進中國大陸題庫
+                </button>
+              </>
+            )}
+            <span className="text-xs mono text-fog-500">按當前有效數據動態出題 · 可隨時跳過</span>
+          </div>
         </div>
 
         <EvidenceNotice />
@@ -124,6 +198,7 @@ export function Landing({ onStart, onAbout, onContribute }: Props) {
               { href: 'https://www.cma.gov.cn/', text: '氣象局' },
               { href: 'https://www.yicai.com/topic/100311963/', text: '第一財經' },
               { href: 'https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/', text: '學科評估' },
+              { href: 'https://www.shanghairanking.com/rankings/gras/2026', text: '軟科世界一流學科' },
             ]}
           />
           <FooterGroup
