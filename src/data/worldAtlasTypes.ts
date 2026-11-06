@@ -37,6 +37,8 @@ export interface AtlasInstitution {
   univUp: string | null
   /** 學科代碼 → 該年名次（只收前 50）。 */
   ranks: Record<string, number>
+  /** 已核查的學校官網：兩個權威來源同網域為 high，單一來源且像學術網域為 medium；未核查通過者為 null。 */
+  website: { url: string; sources: string; confidence: 'high' | 'medium'; verifiedAt: string } | null
 }
 
 export interface AtlasProgram {
@@ -74,7 +76,7 @@ export interface WorldAtlasPayload {
   version: string
   generatedAt: string
   ranking: { name: string; nameZh: string; year: number; topNMax: number; url: string; fetchedAt: string }
-  sources: { geo: { name: string; file: string }; land: { name: string; file: string }; programs: { file: string } }
+  sources: { geo: { name: string; file: string }; land: { name: string; file: string }; programs: { file: string }; websites: { name: string; file: string } }
   projection: { name: string; width: number; height: number }
   land: string[]
   families: AtlasFamily[]

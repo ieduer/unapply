@@ -1,0 +1,2 @@
+univCode,nameEn,wikidataLabel,nameZhHant,method,note
+RI02848,Princeton University,普林斯顿大学,普林斯頓大學,manual-character-form,Wikidata zh-hant 標籤實為簡體字形；只轉字形不換用詞（OpenCC s2t 全表掃描 348 個標籤後唯一真正含簡體者；里／托／范等為正體本字，不改）

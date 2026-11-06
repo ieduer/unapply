@@ -59,6 +59,24 @@ test('每所機構都有投影座標、地區與名字；大陸機構連得到�
   for (const region of payload.regions) assert.ok(region.nameZh && region.continentZh, region.code)
 })
 
+test('學校官網只收核查通過的：https、high/medium、帶核查日；覆蓋至少 300 所', () => {
+  const withSite = payload.institutions.filter((inst) => inst.website)
+  assert.equal(withSite.length, worldAtlasManifest.counts.websites)
+  assert.ok(withSite.length >= 300, `verified websites ${withSite.length}`)
+  for (const inst of withSite) {
+    assert.match(inst.website!.url, /^https?:\/\//, inst.nameEn)
+    assert.ok(['high', 'medium'].includes(inst.website!.confidence), inst.nameEn)
+    assert.match(inst.website!.verifiedAt, /^\d{4}-\d{2}-\d{2}$/)
+    assert.ok(inst.website!.sources.length > 0)
+  }
+  for (const subject of payload.subjects) assert.match(subject.sourceUrl, /^https:\/\//)
+})
+
+test('正體名字形覆寫已套用（Wikidata zh-hant 標籤含簡體時）', () => {
+  const princeton = payload.institutions.find((inst) => inst.nameEn === 'Princeton University')
+  assert.equal(princeton?.nameZh, '普林斯頓大學')
+})
+
 test('陸地路徑是閉合的 SVG path，沒有國界圖層', () => {
   assert.ok(payload.land.length > 50)
   for (const d of payload.land) {

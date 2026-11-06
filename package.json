@@ -15,6 +15,7 @@
     "data:runtime": "tsx scripts/export_runtime_payloads.ts",
     "data:gras": "node scripts/fetch_gras_rankings.mjs --year 2026",
     "data:gras-geo": "node scripts/geocode_gras_institutions.mjs --year 2026",
+    "data:gras-websites": "node scripts/verify_institution_websites.mjs --year 2026",
     "data:atlas": "node scripts/build_world_atlas.mjs",
     "audit:questions": "node scripts/audit_question_rules.mjs",
     "audit:values": "tsx scripts/audit_dimension_values.mjs",

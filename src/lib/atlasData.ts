@@ -17,6 +17,7 @@ export function loadWorldAtlas(): Promise<WorldAtlasPayload> {
           || payload.subjects?.length !== counts.subjects
           || payload.institutions?.length !== counts.institutions
           || payload.programs?.length !== counts.programs
+          || payload.institutions.filter((institution) => institution.website).length !== counts.websites
           || !Array.isArray(payload.land) || payload.land.length !== counts.landPaths) {
           throw new Error('世界學科地圖資料不完整，請重新載入')
         }

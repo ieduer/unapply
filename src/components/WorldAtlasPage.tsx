@@ -415,7 +415,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
         <footer className="pt-6 border-t border-ink-800 text-xs mono text-fog-500 leading-relaxed flex flex-col gap-2">
           <p>
             學科與名次：<a className="hover:text-accent-500 underline" href={payload.ranking.url} target="_blank" rel="noreferrer noopener">{payload.ranking.name} {payload.ranking.year}</a>（{payload.ranking.fetchedAt} 讀取，每科前 {payload.ranking.topNMax} 名）。
-            機構座標與中文名：{payload.sources.geo.name}；陸地輪廓：{payload.sources.land.name}，只畫陸地、不畫國界。
+            機構座標與中文名：{payload.sources.geo.name}；學校官網：{payload.sources.websites.name}，只收核查通過的；陸地輪廓：{payload.sources.land.name}，只畫陸地、不畫國界。
           </p>
           <p>
             排名反映研究產出，不反映本科教學、錄取難度或學費。大陸機構可直接打開本站詳情頁；海外機構的專業、錄取條件與學費是下一階段的事，見 <button onClick={onAbout} className="underline hover:text-accent-500">about</button> 的路線圖說明。
@@ -453,8 +453,16 @@ function SelectedInstitution({
       </div>
       <ul className="flex flex-wrap gap-2">
         {seats.map((seat) => (
-          <li key={seat.subject.code} className="rounded-full border border-ink-700 bg-ink-950 px-3 py-1 text-sm text-fog-100">
-            {seat.subject.nameZh} <span className="mono text-xs text-fog-500">#{seat.rank}</span>
+          <li key={seat.subject.code}>
+            <a
+              className="inline-block rounded-full border border-ink-700 bg-ink-950 px-3 py-1 text-sm text-fog-100 hover:border-accent-500"
+              href={seat.subject.sourceUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              title={`軟科 ${seat.subject.nameEn} 排名頁`}
+            >
+              {seat.subject.nameZh} <span className="mono text-xs text-fog-500">#{seat.rank} ↗</span>
+            </a>
           </li>
         ))}
       </ul>
@@ -463,6 +471,17 @@ function SelectedInstitution({
           <button onClick={() => onSchool(institution.schoolId!)} className="px-4 py-2 rounded-full bg-accent-500 text-ink-950 font-semibold hover:bg-accent-400 min-h-[40px]">
             看本站學校詳情 →
           </button>
+        )}
+        {institution.website && (
+          <a
+            className="px-4 py-2 rounded-full border border-ink-700 text-fog-100 hover:border-accent-500 min-h-[40px] inline-flex items-center"
+            href={institution.website.url}
+            target="_blank"
+            rel="noreferrer noopener"
+            title={`${institution.website.confidence === 'high' ? '兩個權威來源一致' : '單一權威來源'} · ${institution.website.verifiedAt} 連通核查`}
+          >
+            學校官網 ↗
+          </a>
         )}
         {external && (
           <a className="mono text-xs text-fog-500 hover:text-accent-500 underline" href={external} target="_blank" rel="noreferrer noopener">

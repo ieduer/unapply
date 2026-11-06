@@ -233,6 +233,8 @@ npm run data:research
 | `gras_<年>_subjects.csv` | `npm run data:gras` | 57 學科：代碼、門類、英文名、軟科中文站簡體名、本站正體名、來源頁 |
 | `gras_<年>_top50.csv` | `npm run data:gras` | 每科前 50：名次、機構代碼、英文名、地區、總分、來源頁、讀取日 |
 | `gras_institutions_geo.<日期>.csv` | `npm run data:gras-geo` | 機構 → 座標、正體名、（大陸）教育部代碼與本站學校 id、座標來源 |
+| `gras_institution_names_zh_hant.<日期>.csv` | 人工 | Wikidata zh-hant 標籤其實是簡體字形時的覆寫（只轉字形不換用詞；里／托／范等正體本字不改） |
+| `gras_institution_websites.<日期>.csv` | `npm run data:gras-websites` | 機構官網：候選來自軟科機構頁、Wikidata P856、教育部主表；逐條 HTTP 核查；只收 `verified` 且 high／medium |
 | `direct_hire_programs.<日期>.csv` | 人工維護 | 企業直招高中生計劃：條件、給什麼、支薪、學位、座標、官方頁、來源、核對日、可信度 |
 | `ne_110m_land.geojson` | 一次性下載 | Natural Earth 1:110m Land（公有領域），只畫陸地 |
 
@@ -248,9 +250,13 @@ npm run data:research
 2. `npm run data:gras-geo`。大陸機構先對教育部主表（含 `moe_former_names` 舊校名）並取 `campus_locations` 主校區座標；
    其餘查 Wikidata（標籤→別名→搜尋 API），中文名只取 zh-hant／zh-tw／zh-hk 標籤。任何機構對不到 → 腳本失敗並列出，
    加到 `MAINLAND_ALIASES`／`WIKIDATA_ALIASES`／`MANUAL_OVERRIDES`（人工座標要附註來源）後重跑。
-3. 複核 `direct_hire_programs`：每條重新打開官方頁，更新 `status`／`verifiedAt`；連續兩年沒有招募標 `inactive`，不刪。
+3. `npm run data:gras-websites`（約 10 分鐘）。站長 2026-11-06 要求：權威鏈接可以加，但必須核查是官方或權威。
+   腳本的規則：兩個獨立權威來源（軟科機構頁、Wikidata P856、教育部主表）同一可註冊網域且 GET 200、最終網域一致 → `high`；
+   單一來源、網域像學術機構且連通 → `medium`；其餘不收（`status` 留 unreachable／rejected，供人工覆核）。
+   `build_world_atlas.mjs` 只合併 `verified`，少於 300 所會直接失敗。不要手改 CSV 補鏈接——改腳本的來源或人工覆核清單再重跑。
+4. 複核 `direct_hire_programs`：每條重新打開官方頁，更新 `status`／`verifiedAt`；連續兩年沒有招募標 `inactive`，不刪。
    新地區出現時 `build_world_atlas.mjs` 的 `REGION_ZH`／`CONTINENT` 會失敗，補上中文名與洲別。
-4. `npm run data:atlas` → `npm run test:atlas` → 其餘閘門 → 候選預覽 → Pages 交易（§6）。
+5. `npm run data:atlas` → `npm run test:atlas` → 其餘閘門 → 候選預覽 → Pages 交易（§6）。
 
 口徑提醒：排名反映研究產出，不反映本科教學、錄取難度或學費，頁面與 About 已明示；不要把它接進任何「推薦」邏輯。
 
