@@ -265,7 +265,7 @@ npm run data:research
 ### 3.4 S1 專業／選考科目／招生政策資料層（2026-11 起）
 
 設計與站長待決點見 `docs/DESIGN_S1_PROGRAMS_ADMISSION.md`。首批（2026-11-07 上線）走的是設計文件的 S1.a：
-資料以**起點條件**的形式在 43 題之後另算一層、分開計數。批 C（S1.b，`1bc3995`，候選階段）把它改成**兩道正式題**：
+資料以**起點條件**的形式在 43 題之後另算一層、分開計數。批 C（S1.b，`5b18cd1`，2026-11-07 已上線）把它改成**兩道正式題**：
 S1「你的選考科目是哪三科？」（`src/data/programPrefs.ts` 的 `SUBJECT_COMBOS` 20 個固定序組合鍵）與 S2「你想讀的專業類，學校一定要有開設嗎？」（`src/data/programClasses.ts` 92 個專業類代碼），
 學校取值由 `src/engine/programs.ts` 的 `admissibleCombos`／`offeredClasses`（含通配值 `*`）算在逐校摘要上，經 `FilterContext.programs` 進 `getSchoolDimensionValue`；
 沒有本科資料的學校取值 `null`、永不因兩題被劃掉。兩題選項 `alwaysVisible`（考生自身事實，排除 0 所仍要能作答；`audit:values` 視為符合預期）。

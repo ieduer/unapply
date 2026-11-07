@@ -1,6 +1,6 @@
 # S1 設計：中國大陸高校「專業 × 錄取條件 × 招生政策」資料層
 
-- 狀態：**S1.a 已上線並擴到全部 2,952 校**（2026-11-07：首批 `2e79f9b`、修正批 A `6b70522`、批 B `ccf1770`／`8cb266cb`；站長裁定「做新題，擴到全部，22 MB放R2，該修正的都修正」）：起點條件層＋逐校展示，見手冊 §3.4。未動 43 題／引擎／AnswerMap／Function／A+ 證據契約／`src/shared-ui`。**S1.b（兩道正式題 S1 選科組合／S2 意向專業類，共享契約變更）已實作 `1bc3995`，候選階段待站長放行；UC 無需變更、未做任何 UC 生產寫入（證據見手冊 §3.4 與 OPERATIONS 批 C 節）。**
+- 狀態：**S1.a 已上線並擴到全部 2,952 校**（2026-11-07：首批 `2e79f9b`、修正批 A `6b70522`、批 B `ccf1770`／`8cb266cb`；站長裁定「做新題，擴到全部，22 MB放R2，該修正的都修正」）：起點條件層＋逐校展示，見手冊 §3.4。未動 43 題／引擎／AnswerMap／Function／A+ 證據契約／`src/shared-ui`。**S1.b（兩道正式題 S1 選科組合／S2 意向專業類，共享契約變更）已上線 2026-11-07（`5b18cd1`／`b3e0f4c8`，站長「放行，正式發布 C」）；UC 無需變更、未做任何 UC 生產寫入（證據見手冊 §3.4 與 OPERATIONS 批 C 節）。**
 - 上位文件：`docs/GLOBAL_ROADMAP.md` S1 列（進入條件 S0 上線 ✔；完成定義「每題覆蓋率 `audit:data` 達到裁定門檻；A+ 證據契約不變」）。
 - 既有慣例：`docs/MAINTENANCE_MANUAL.md` §3（CSV 入庫、來源 URL／日期／可信度欄、生成腳本、fail-closed 閘門）、§3.1a A6 招生管道表、`docs/DESIGN_A6_ADMISSION_CHANNEL.md`（學校 × 省份 × 年度、不誤殺、省份繁體口徑）。
 - 首批資料與稽核：`data/research/program_offerings.2027.csv` 等（手冊 §3.4）；`/Users/ylsuen/CF/reports/operations/nope-s1-programs-admission-20261106/s1-audit.md`。

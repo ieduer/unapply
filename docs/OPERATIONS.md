@@ -391,9 +391,12 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 
 **人工查核清單（交站長）**：本科校缺清單 178（分類見上，全名單在 `s1-audit-all.md` §0）；專科校缺 551；陽光高考章程／專項名單／分省計劃只能人工（412 挑戰）；bjeea.cn 本機不通、廣東回 forbid；江蘇公告頁 .xlsx 404（.xls 本科段完整）；三校招生代碼對不到主表（防災科技學院、內蒙古科技大學包頭師範學院／包頭醫學院）；省表 89 個舊校名已按代碼學成別名。
 
-## 2026-11-07 批 C：S1.b 正式兩題（選考科目組合 S1、意向專業類 S2）——候選階段，未部署，待站長放行
+## 2026-11-07 批 C：S1.b 正式兩題（選考科目組合 S1、意向專業類 S2）（已上線，當前權威）
 
-**授權**：站長 2026-11-07 主會話「做新題，擴到全部，22 MB放R2，該修正的都修正」之「做新題」。這是**功能授權**，不是對 User Center 生產寫入的放行；本批 nope 側做到候選為止，正式 Pages 交易只在站長從主會話明確放行後執行（流程同批 A／B：`prepare-release.mjs` → `release-pages-transaction.mjs`（倉庫目錄執行）→ `accept-production.mjs` → Status）。
+**授權**：站長 2026-11-07 主會話「做新題，擴到全部，22 MB放R2，該修正的都修正」之「做新題」（功能授權）；正式發布由站長 2026-11-07 在本側會話直接裁定「放行，正式發布 C」。User Center 無需變更、未做任何 UC 生產寫入。
+
+**正式部署**：`b3e0f4c8-4fe5-4e83-863f-476cd41ce836`，來源 `5b18cd197892d786d4f6cb4fb5b6271ca8615c35`（`1bc3995` feat＋`8f7f492` docs＋`5b18cd1` fix），生效 `2026-11-07T04:57:35Z`（Cloudflare `ended_on`）；正式與不可變網址 74/74 一致；health active；正式真實路徑（`nope-c/production-browser.json`，逐步真實點擊）：物生政 → 劃掉 33／剩 2919，＋計算機類 → 劃掉 180／剩 2772，結果頁無起點條件層，北方工業大學／北京工業職業技術學院詳情判定正確，主控台無錯誤。
+登記簿 accepted → `b3e0f4c8`／`5b18cd1`，rollback → `8cb266cb`／`ccf1770`。Status `20261107-nope-s1b-questions-c` r1（improvement，已發布並讀回，`status-readback-c.txt`）。收據 `20261107-nope-s1b-questions-c`（12 個 reviewed_changes）。
 
 **共享契約變更（`1bc3995`）**：`DimensionId` 追加 `S1`、`S2`（只追加，43 個既有維度、取值、計分皆不動）；`Question.section` 加 `S_programs`；`allQuestions` 45 題（S 區排在 C 區之後）。
 - S1「你的選考科目是哪三科？」：20 個固定序三科組合鍵（`PCB`…`ZHG`，序 物化生政史地）；學校取值＝至少有一個本科招生專業可報的組合集合（`admissibleCombos`）；選項 `requires` 該組合，所以只有「全部本科專業都報不了」的學校被劃掉。
@@ -409,4 +412,6 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 
 **扇出**：my（UC）verified_no_change；path（`src/shared-ui` 同步，`check:shared-ui` 過）verified_no_change；gk（`nope.v1` 交接，`sanitizeNopeContext` 取前 20 題、逐欄截斷，S1／S2 答案以題目標題＋選項標籤進入，不需改）verified_no_change；Pulse／Status／Companion 不涉及題集（Status 記錄在正式發布時才寫）。
 
-**驗證與候選**：十二道閘門於釋出提交上執行（`nope-c/check.txt`；`test:s1` 10、`test:trusted` 18、`audit:values` 45 維 0 阻斷、`audit:questions` 45 題）；候選上傳（`candidate` 分支）、資產逐檔比對、候選瀏覽器真實路徑與對比度記錄在 `nope-c/candidate-*.json`。**正式未部署**：登記簿 accepted 仍為批 B `8cb266cb`／`ccf1770`；回滾錨點不變。放行後的正式交易與 Status 記錄另記於本節之後。
+**驗證**：十二道閘門於釋出提交 `5b18cd1` 上執行（`nope-c/check.txt`；`test:s1` 10、`test:trusted` 18、`audit:values` 45 維 0 阻斷、`audit:questions` 45 題、build 74 檔）；候選 `bc3c5927` 上傳、資產逐檔比對、瀏覽器真實路徑與對比度（候選 1024 紙色 6.27 起；本機 390 紙色 4.57／墨色 4.93 起，0 失敗）記錄在 `nope-c/candidate-*.json`；正式讀回 `production-assets.json`／`production-immutable-assets.json`／`production-browser.json`／`production-acceptance.json`。
+
+**回滾**：`8cb266cb`／`ccf1770`，走受審回滾交易（先讀回當時線上基線）；只切 Pages 版本，無資料庫遷移。回滾會把兩題撤回起點條件層；已完成的學習記錄不受影響（UC 契約未變）。
