@@ -12,7 +12,7 @@ Current objective: 全球化路線圖（docs/GLOBAL_ROADMAP.md）：S0、S1 首�
 - 共享契約：`DimensionId` 追加 `S1`／`S2`（只追加），45 題；學校取值算在逐校招生專業摘要上（`FilterContext.programs`）；沒有本科資料者取值 null 永不被劃掉；試驗班通配值 `*`；兩題選項 `alwaysVisible`。
 - Function：釘定摘要重算；新頁面帶 `programsVersion`；舊 43 題頁面仍可完成（換版不斷會話）。
 - UC：契約不變（manifest／自由格式互動鍵／聚合校驗），可執行證據 `nope-c/uc-contract-evidence.json`（accepted `0559b0cf` 唯讀工作樹、記憶體庫）＋`uc-accepted-tests.txt`；共享樞紐收據 `reports/operations/shared_hub_changes/20261107-user-center-nope-s1b-questions.json`（status in_progress，nope 為 blocked＝待站長放行）。
-- 移除：首頁起點條件區塊、`unapply.programPrefs.v1`、結果頁分層計數；詳情判定改由 S1／S2 作答推出。版號 v2.0。
+- 移除：首頁起點條件區塊、`unapply.programPrefs.v1`、結果頁分層計數；詳情判定改由 S1／S2 作答推出。版號 v2.0。排除理由對兩題改寫成可讀句（S1 選考要求分佈、S2 開設專業類）。
 - 閘門：`test:s1` 10、`test:trusted` 18（含 programsVersion 與舊頁面相容）、`audit:values` 45 維 0 阻斷、`audit:questions` 45 題；十二道於釋出提交上執行（`nope-c/check.txt`）。
 
 ## 2026-11-07 批 B：擴到全部 2,952 校＋兩層 payload＋原檔上 R2（已上線，當前權威）

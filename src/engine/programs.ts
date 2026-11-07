@@ -50,6 +50,18 @@ export function matchingPatternIndexes(entry: ProgramIndexEntry, prefs: ProgramP
   return entry.g?.includes(intent.classCode) ? [...exact, ...inClass] : exact
 }
 
+/** 排除理由用：全校本科專業的選考要求分佈（出現次數多的在前，最多 limit 種），例：物理＋化學 ×50 / 物理 ×6。 */
+export function describeRequirements(entry: ProgramIndexEntry, lookup: ProgramIndexLookup, limit = 4): string {
+  const counts = new Map<string, number>()
+  for (const index of allPatternIndexes(entry)) {
+    const pattern = lookup.patterns[index] ?? 'none'
+    counts.set(pattern, (counts.get(pattern) ?? 0) + 1)
+  }
+  const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1])
+  const shown = sorted.slice(0, limit).map(([pattern, n]) => `${requirementLabel(pattern)} ×${n}`)
+  return sorted.length > limit ? `${shown.join(' / ')} 等 ${sorted.length} 種` : shown.join(' / ')
+}
+
 export function countAdmissible(entry: ProgramIndexEntry, chosen: ReadonlySet<SubjectCode>, lookup: ProgramIndexLookup): number {
   return allPatternIndexes(entry).filter((index) => isAdmissible(lookup.patterns[index], chosen)).length
 }

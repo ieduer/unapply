@@ -255,7 +255,7 @@ export function QuestionRunner({
                 className="bg-ink-950 border border-ink-700 rounded-lg px-2 py-2 text-sm text-fog-200 min-h-[48px]"
               >
                 <option value="">— 選門類 —</option>
-                {programDisciplines.map((d) => <option key={d.code} value={d.code}>{d.code} {d.name}</option>)}
+                {programDisciplines.filter((d) => programClasses.some((c) => c.discipline === d.code)).map((d) => <option key={d.code} value={d.code}>{d.code} {d.name}</option>)}
               </select>
             </label>
             <label className="flex flex-col gap-1 text-xs text-fog-500">

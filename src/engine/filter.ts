@@ -9,7 +9,7 @@ import { getEnvironment } from '../data/environment';
 import { getVerifiedAdmissionTracks } from '../lib/schoolProfile';
 import type { AdmissionContext } from '../lib/schoolProfile';
 import type { ProgramIndexPayload } from '../data/programsTypes';
-import { PROGRAM_CLASS_WILDCARD, admissibleCombos, offeredClasses } from './programs';
+import { PROGRAM_CLASS_WILDCARD, admissibleCombos, describeRequirements, offeredClasses } from './programs';
 import { SUBJECT_COMBOS, comboLabel } from '../data/programPrefs';
 import { programClassByCode } from '../data/programClasses';
 
@@ -117,6 +117,24 @@ function formatSchoolValue(value: string | string[]): string {
   return values.map(labelForValue).join(' / ');
 }
 
+/**
+ * S1／S2 的學校取值是長清單（可報組合最多 20 種、開設專業類可達數十類），排除理由改寫成人能讀的一句：
+ * S1 列全校本科專業的選考要求分佈；S2 列開設的專業類（最多 8 類）。其他維度沿用原本的「取值（不含 X）」。
+ */
+function describeProgramSchoolValue(school: School, dim: DimensionId, val: string | string[], okValues: Set<string>, ctx?: FilterContext): string {
+  const wanted = Array.from(okValues).map(labelForValue).join('/');
+  const entry = ctx?.programs && school.moeCode ? ctx.programs.schools[school.moeCode] : undefined;
+  if (dim === 'S1' && entry) {
+    return `${entry.u} 個本科招生專業（類）的選考要求：${describeRequirements(entry, ctx!.programs!)}（${wanted} 一個都報不了）`;
+  }
+  if (dim === 'S2' && entry) {
+    const classes = (Array.isArray(val) ? val : [val]).filter((item) => item !== PROGRAM_CLASS_WILDCARD);
+    const shown = classes.slice(0, 8).map(labelForValue).join(' / ');
+    return `開設 ${classes.length} 個專業類：${shown}${classes.length > 8 ? ' 等' : ''}（沒有 ${wanted}）`;
+  }
+  return `${formatSchoolValue(val)}（不含 ${wanted}）`;
+}
+
 export function getSchoolDimensionValue(
   school: School,
   dim: DimensionId,
@@ -215,7 +233,7 @@ function checkQuestion(
         questionId: question.id,
         questionTitle: question.title,
         userAnswerLabel: labels.join('、'),
-        schoolValue: `${formatSchoolValue(val)}（不含 ${Array.from(okValues).map(labelForValue).join('/')}）`,
+        schoolValue: describeProgramSchoolValue(school, dim, val, okValues, ctx),
       };
     }
   }

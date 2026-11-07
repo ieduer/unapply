@@ -191,6 +191,12 @@ test('S1 題：物生政劃掉全部專業都要物＋化的學校；沒本科�
   assert.equal(result.stats.keptCount + result.stats.excludedCount, schools.length)
   const skipped = filterSchools(schools, { S1: 'skip' }, ctx)
   assert.equal(skipped.excluded.length, 0)
+  // 排除理由要人能讀：列全校選考要求分佈，不是 13 種可報組合的清單。
+  for (const { reasons } of result.excluded) {
+    assert.equal(reasons.length, 1)
+    assert.match(reasons[0].schoolValue, /^\d+ 個本科招生專業（類）的選考要求：.+（物理＋生物＋思想政治 一個都報不了）$/)
+    assert.ok(reasons[0].schoolValue.length <= 160, reasons[0].schoolValue)
+  }
 })
 
 test('S2 題：沒開該專業類的學校被劃掉；開了或另有試驗班（通配）的保留；沒資料的保留', () => {
@@ -207,9 +213,11 @@ test('S2 題：沒開該專業類的學校被劃掉；開了或另有試驗班�
     if (!entry || entry.u === 0) continue
     assert.ok(entry.c[rareClass.code] || entry.x > 0, `${school.name} 沒開 ${rareClass.name} 也沒試驗班卻保留`)
   }
-  for (const { school } of rare.excluded) {
+  for (const { school, reasons } of rare.excluded) {
     const entry = index.schools[school.moeCode!]
     assert.ok(entry && entry.u > 0 && !entry.c[rareClass.code] && entry.x === 0, `${school.name} 不該被劃掉`)
+    assert.match(reasons[0].schoolValue, /^開設 \d+ 個專業類：.+（沒有 水利类）$/)
+    assert.ok(reasons[0].schoolValue.length <= 200, reasons[0].schoolValue)
   }
 })
 
