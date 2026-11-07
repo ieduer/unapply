@@ -14,6 +14,7 @@ import { TierBadge } from './TierBadge'
 import { worldAtlasManifest } from '../data/worldAtlasManifest'
 import { authorityTiersSource } from '../data/authorityTiers'
 import { linkCheckBaseline } from '../data/linkCheckBaseline'
+import { dbManifest } from '../data/dbManifest'
 
 interface Props { onBack: () => void }
 
@@ -22,6 +23,9 @@ const ext = (href: string) => (children: ReactNode) => (
     <a className="text-accent-500 hover:text-accent-400 mono break-all" href={href} target="_blank" rel="noreferrer noopener">{children}</a>
     <TierBadge url={href} />
   </span>
+)
+const own = (href: string) => (children: ReactNode) => (
+  <a className="text-accent-500 hover:text-accent-400 mono break-all" href={href} target="_blank" rel="noreferrer noopener">{children}</a>
 )
 const site = (href: string) => (children: ReactNode) => (
   <a className="text-accent-500 hover:text-accent-400" href={href} target="_blank" rel="noreferrer noopener">{children}</a>
@@ -145,6 +149,24 @@ export function AboutPage({ onBack }: Props) {
               k="ui.about.tiers.data"
               params={{ rules: n(authorityTiersSource.counts.rules), urls: n(linkCheckBaseline.counts.urls) }}
               slots={{ a1: ext('https://github.com/ieduer/unapply/blob/master/data/research/authority_tiers.2026-11-07.csv'), a2: ext('https://github.com/ieduer/unapply/blob/master/data/research/link_check.2026-11-07.summary.json') }}
+            />
+          </p>
+        </div>
+
+        <div data-db-section data-db-version={dbManifest.version}>
+          <h2 className="serif text-2xl text-fog-100 mb-4">{t('ui.about.db.title')}</h2>
+          <p className="text-sm">{t('ui.about.db.intro', { institutions: n(dbManifest.counts.institutions), crosswalk: n(dbManifest.counts.crosswalk), channels: n(dbManifest.counts.channels), conditions: n(dbManifest.counts.conditions), sources: n(dbManifest.counts.sources), validity: n(dbManifest.counts.validity) })}</p>
+          <p className="mt-3 text-sm"><Rich k="ui.about.db.rule" /></p>
+          <p className="mt-3 text-sm text-fog-500">
+            <Rich
+              k="ui.about.db.links"
+              params={{ version: <code className="mono">{dbManifest.version}</code> }}
+              slots={{
+                a1: own(dbManifest.latestPath),
+                a2: own('https://github.com/ieduer/unapply/blob/master/docs/DB_API.md'),
+                a3: own('https://github.com/ieduer/unapply/blob/master/docs/DB_SCHEMA.md'),
+                a4: own('https://github.com/ieduer/unapply/blob/master/docs/ANNUAL_UPDATE.md'),
+              }}
             />
           </p>
         </div>

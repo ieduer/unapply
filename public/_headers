@@ -1,0 +1,10 @@
+# Cloudflare Pages response headers (static assets only; Pages Functions under /api/* are not affected).
+# Read-only database /db/v1 (roadmap S5, docs/DB_API.md): cross-origin GET for sister products,
+# immutable versioned files, short-lived latest pointer. Only /db/* paths are matched here.
+/db/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET
+/db/v1/latest.json
+  Cache-Control: public, max-age=300
+/db/v1/:version/*
+  Cache-Control: public, max-age=31536000, immutable

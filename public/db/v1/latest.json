@@ -1,0 +1,56 @@
+{
+ "schema": "nope.db.latest.v1",
+ "schemaVersion": 1,
+ "version": "7926db10b4c6",
+ "generatedAt": "2026-11-07",
+ "base": "/db/v1/7926db10b4c6/",
+ "manifest": {
+  "path": "/db/v1/7926db10b4c6/manifest.json",
+  "sha256": "17859ad9cfdd58659c9da0d4222b2255d5231537f096eae9dde15c3b9ffc00de",
+  "bytes": 33502
+ },
+ "datasets": {
+  "institutions": {
+   "path": "/db/v1/7926db10b4c6/institutions.json",
+   "count": 3935,
+   "sha256": "3573af23f5c7b4caa23dc5a2ccadda80f80e8e32b7371ef3bb6d1b81c5d69dcc",
+   "bytes": 1826073
+  },
+  "crosswalk": {
+   "path": "/db/v1/7926db10b4c6/crosswalk.json",
+   "count": 561,
+   "sha256": "e601d492ae1793343a7b4a9b68ca56d1c588639e6b7a36857abad0e4b5dadbc6",
+   "bytes": 138265
+  },
+  "channels": {
+   "path": "/db/v1/7926db10b4c6/channels.json",
+   "count": 2051,
+   "sha256": "7f04a7f23133ddfffa2042b8acd2245f1381b6cbe5ffa76176487f4ec42d60b1",
+   "bytes": 1133786
+  },
+  "conditions.index": {
+   "path": "/db/v1/7926db10b4c6/conditions.index.json",
+   "count": 1223,
+   "sha256": "bf22752241774a0f2dd6337898c2b7231eb6686d8108d1a73b48a2eecfc5c273",
+   "bytes": 492890
+  },
+  "sources": {
+   "path": "/db/v1/7926db10b4c6/sources.json",
+   "count": 3516,
+   "sha256": "43a4d1a401d60857adbdc8b48275078ee230972b0c532d9530b9a7a39ca2d200",
+   "bytes": 1757502
+  },
+  "validity": {
+   "path": "/db/v1/7926db10b4c6/validity.json",
+   "count": 3274,
+   "sha256": "056f9b378955bf9166c00e33f23071959fbbfcb59454031027db9125a90f95af",
+   "bytes": 572580
+  }
+ },
+ "references": {
+  "count": 84,
+  "bytes": 29949309
+ },
+ "contract": "https://github.com/ieduer/unapply/blob/master/docs/DB_API.md",
+ "usage": "只讀、公開官方資訊的統一索引；任何欄位都不表示錄取可能或推薦，排名只描述學科分佈。Read-only index of public official information; no field indicates admission chances or a recommendation."
+}

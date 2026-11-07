@@ -453,6 +453,22 @@ npm run data:programs && npm run test:s1                   # 前端 payload 與�
 
 2026-11-07 批 S3 首批（當時值）：403 所中 verified 343（high 336／medium 7）、blocked 42、not_found 16、needs_review 2；高考採認有原句 35（accepted 4／not_accepted 2／separate_channel 4／mentioned 25）；平台 91 條（上鏈接 63）、簽證 90 條（上鏈接 47）；44 個地區；payload `23c590c30412`。抓取 2026-11-07T05:39–06:27Z、9,423 次 HTTP、587 個可註冊網域、零付費。
 
+### 3.10 只讀資料庫 `/db/v1`（2026-11 批 F2 起，路線圖 S5）
+
+把 §3.1–§3.9 的各層統一成有版本、有來源、有有效期的靜態資料庫，供 path／gk 等站內產品與任何人只讀取用。**只是索引與註記**：不改任何既有 payload 形狀、不新增判斷、不進題目／引擎／AnswerMap／A+ 證據；任何欄位都不表示錄取可能。不新增任何 Cloudflare 資源：檔案隨既有 Pages 專案發布，CORS／快取頭在 `public/_headers`（只匹配 `/db/*`）。
+
+| 檔案 | 產生方式 | 內容 |
+| --- | --- | --- |
+| `scripts/lib/db_layers.mjs` | 程式 | 讀各層組成六類實體草稿＋來源線索；`NEXT_REVIEW` 年度日曆 |
+| `scripts/lib/authority_tier.mjs` | 程式 | Node 端分級（與 `src/lib/authorityTier.ts` 同規則；`check_links.mjs` 共用） |
+| `data/research/db_source_evidence.<日期>.json.gz` | `npm run data:db-evidence -- --date … --s3 … --s4 … --xcut …`（`scripts/assemble_db_evidence.mjs`，不連網） | 研究會話保存的逐 URL 抓取證據子集（2026-11-07 當時值 1,430 條） |
+| `data/research/db_https_entry.<日期>.json` | 人工觸發的禮貌 https 探測 | 資料層記為 http 的來源的 https 入口（2026-11-07：11 條，10 可用、1 不可用） |
+| `public/db/v1/<version>/*.json`、`public/db/v1/latest.json`、`src/data/dbManifest.ts` | `npm run data:db`（`scripts/build_db.mjs`；build 鏈在 `data:i18n` 之後、`tsc` 之前） | manifest＋六個資料集；只保留當前版本目錄 |
+
+建置斷言（任一不過就不產出）：來源全 https 且有分級（規則表 → 網域型態 → 資料層脈絡）、institution id 格式、crosswalk 端點存在、channel／condition 引用的機構／來源存在且每筆有 validity、引用檔存在、latest ≤10 KiB、institutions gzip ≤500 KiB、無電郵字樣。閘門 `npm run test:db`（`tests/db.test.ts`，9 項：latest／manifest／資料集與 84 個引用檔 sha256、版本雜湊可重算、id 與 crosswalk 雙向、validity 齊、sources https＋分級、體積、`_headers` 只動 `/db/*`、三語鍵）。
+
+更新：任何一層資料更新後，`npm run build` 會一併重建資料庫（新內容＝新 version）；提交時連同 `public/db/v1/` 一起提交（建置後工作樹必須乾淨）。年度流程見 `docs/ANNUAL_UPDATE.md`；schema `docs/DB_SCHEMA.md`；使用契約 `docs/DB_API.md`。2026-11-07 當時值：機構 3,935（moe 2,952／gras 544／crs 411／hkmotw 28）、對照 561、管道 2,051、條件 1,223、來源 3,516（可上鏈接 3,411）、有效期 3,274、引用檔 84（29.9 MB）；資料集合計約 5.7 MB（gzip 約 0.6 MB）。
+
 ## 4. 覆蓋率與風險判讀
 
 用這條命令看 43 題實際是否有用：

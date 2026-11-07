@@ -24,6 +24,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSy
 import { dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { gunzipSync } from 'node:zlib'
+import { domainOf, hostOf, loadTierRules, makeTierOf } from './lib/authority_tier.mjs'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const args = Object.fromEntries(process.argv.slice(2).map((a, i, all) => a.startsWith('--') ? [a.slice(2), all[i + 1] && !all[i + 1].startsWith('--') ? all[i + 1] : 'true'] : []).filter(Boolean))
@@ -58,37 +59,13 @@ function parseCsv(text) {
 const csvCell = (v) => { const t = v === undefined || v === null ? '' : String(v); return /[",\n\r]/.test(t) ? `"${t.replace(/"/g, '""')}"` : t }
 const readMaybeGz = (p) => p.endsWith('.gz') ? gunzipSync(readFileSync(p)).toString('utf8') : readFileSync(p, 'utf8')
 
-// ---------- 網域 ----------
-const SECOND_LEVEL = new Set(['ac', 'edu', 'co', 'com', 'org', 'gov', 'net', 'or', 'ne', 'go', 'gouv', 'gc', 'gob', 'govt', 'sch', 'in', 'rnu', 'nhs', 'police', 'mil', 'lg'])
-export function registrableDomain(hostname) {
-  const parts = String(hostname || '').toLowerCase().replace(/\.$/, '').split('.')
-  if (parts.length <= 2) return parts.join('.')
-  const tld = parts[parts.length - 1], second = parts[parts.length - 2]
-  if (tld.length === 2 && SECOND_LEVEL.has(second)) return parts.slice(-3).join('.')
-  return parts.slice(-2).join('.')
-}
-const hostOf = (url) => { try { return new URL(url).hostname } catch { return '' } }
-const domainOf = (url) => registrableDomain(hostOf(url))
+// ---------- 網域與權威分級（共用 scripts/lib/authority_tier.mjs；與 src/lib/authorityTier.ts 同一規則） ----------
 const stripFragment = (url) => { try { const u = new URL(url); u.hash = ''; return u.href } catch { return url } }
-
-// ---------- 權威分級（規則表＋啟發式；與 src/lib/authorityTier.ts 同） ----------
-const tierRules = (() => {
-  const files = readdirSync(join(root, 'data/research')).filter((f) => /^authority_tiers\.\d{4}-\d{2}-\d{2}\.csv$/.test(f)).sort()
-  if (!files.length) die('missing data/research/authority_tiers.<date>.csv')
-  const order = { prefix: 0, host: 1, registrable: 2 }
-  return parseCsv(readFileSync(join(root, 'data/research', files.at(-1)), 'utf8')).rows
-    .map((r) => ({ domain: r.domain.toLowerCase(), match: r.match, tier: r.tier, nameZh: r.nameZh, reason: r.reason }))
-    .sort((a, b) => order[a.match] - order[b.match] || b.domain.length - a.domain.length)
-})()
-const GOV_RE = /(^|\.)(gov|gob|gouv|govt|go|gc|mil|lg)\.[a-z]{2}$|(^|\.)gov$|(^|\.)gv\.at$|(^|\.)admin\.ch$|(^|\.)europa\.eu$/i
-const EDU_RE = /(^|\.)(edu|ac)\.[a-z]{2,3}$|(^|\.)edu$/i
+const tierRules = loadTierRules(join(root, 'data/research')).rules
+const ruleTier = makeTierOf(tierRules)
 function classify(url, ctx = {}) {
-  const host = hostOf(url).toLowerCase(), href = url.toLowerCase()
-  for (const r of tierRules) {
-    if (r.match === 'prefix' ? href.startsWith(r.domain) : r.match === 'host' ? host === r.domain : (host === r.domain || host.endsWith(`.${r.domain}`))) return { tier: r.tier, reason: `${r.nameZh}：${r.reason}` }
-  }
-  if (GOV_RE.test(host)) return { tier: 'P0', reason: '政府／主管機關官方網域（gov 類）' }
-  if (EDU_RE.test(host)) return { tier: 'P0', reason: '教育機構官方網域（edu／ac 類）' }
+  const t = ruleTier(url)
+  if (t) return t
   if (ctx.grasOfficial) return { tier: 'P0', reason: 'S0 兩來源交叉核查之機構官網' }
   if (ctx.cnSchoolSite) return ctx.titleMatch === 'yes' ? { tier: 'P0', reason: '中國大陸高校校網（非 edu.cn 網域，頁面標題含校名）' } : { tier: 'P0', reason: '中國大陸高校校網（非 edu.cn 網域，標題未能自動確認校名，列入人工覆核）', review: true }
   return { tier: 'P2', reason: '未在規則表中的第三方網域（預設 P2，列入人工覆核）', review: true }

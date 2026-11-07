@@ -108,6 +108,11 @@ Data-layer entrypoints and their preconditions:
   (identified UA, robots.txt, ≥2 s per registrable domain, ≤6 in flight, no challenge bypass), **not a release gate**.
   Use `--since data/research/link_check.<date>.csv.gz` to re-check only broken／blocked／unreachable／redirected／new URLs,
   `--report <csv>` to rebuild the summary offline. Procedure and status vocabulary: `docs/MAINTENANCE_MANUAL.md` §3.9.
+- `run data:db` (batch F2, after `data:i18n` in the `build` chain) builds the read-only static database
+  `public/db/v1/<version>/` + `latest.json` + `src/data/dbManifest.ts` from the committed layers and
+  `data/research/db_source_evidence.<date>.json.gz` (no network); `run test:db` is its gate. Response headers for
+  `/db/*` (CORS GET; immutable version dirs; latest 300 s) live in `public/_headers` and match nothing else.
+  Contract `docs/DB_API.md`, schema `docs/DB_SCHEMA.md`, annual procedure `docs/ANNUAL_UPDATE.md`.
 
 Run only commands supported by the current project toolchain and verify expected outputs in the project before using them as release evidence.
 

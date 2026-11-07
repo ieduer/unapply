@@ -131,6 +131,10 @@ scripts/
   audit_data_coverage.mjs   # 43 題覆蓋率審計腳本
   build_authority_tiers.mjs # authority_tiers.<日期>.csv → authorityTiers.ts；link_check.<日期>.summary.json → linkCheckBaseline.ts
   check_links.mjs           # 全站外部鏈接年檢（npm run audit:links；網路依賴，不進發布閘門；--since 基線只重核變動／壞鏈）
+  build_db.mjs              # 只讀資料庫 /db/v1（npm run data:db）：public/db/v1/<version>/ 六個資料集＋manifest、latest.json（docs/DB_SCHEMA.md、DB_API.md）
+  assemble_db_evidence.mjs  # 研究會話逐 URL 抓取證據 → data/research/db_source_evidence.<日期>.json.gz（不連網）
+public/db/v1/               # 只讀資料庫（版本目錄不可變；CORS 與快取頭在 public/_headers，只匹配 /db/*）
+docs/DB_SCHEMA.md、DB_API.md、ANNUAL_UPDATE.md  # 資料庫 schema、對 path／gk 等的只讀契約、年度更新作業
 data/research/
   direct_hire_programs.<日期>.csv   # 企業直招高中生計劃（status=unverified 不渲染）
   authority_tiers.<日期>.csv        # 權威分級規則表
