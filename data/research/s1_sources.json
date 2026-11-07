@@ -1,6 +1,6 @@
 {
   "schema": "unapply.s1Sources.v1",
-  "description": "S1 中國大陸高校專業／選考科目／招生政策資料層的官方來源釘定表。store=committed 的原檔入庫在 data/research/raw/s1/，store=external 的大檔只釘 SHA-256／大小／來源網址，重跑時下載到 --cache-dir。任何已釘雜湊不符都 fail closed。",
+  "description": "S1 中國大陸高校專業／選考科目／招生政策資料層的官方來源釘定表。store=committed 的原檔入庫在 data/research/raw/s1/，store=external 的大檔只釘 SHA-256／大小／來源網址，重跑時下載到 --cache-dir。任何已釘雜湊不符都 fail closed。 store=external 的大檔另有 r2 欄：既有私密桶 bdfz-ops-backups、前綴 unapply/s1-sources/v1/，上傳後讀回核對 SHA-256；重取用 --from-r2（rclone 遠端 r2:）。",
   "userAgent": "Mozilla/5.0 (compatible; nope.bdfz.net data pipeline; contact nope@bdfz.net)",
   "sources": [
     {
@@ -119,7 +119,17 @@
         "undergraduateRows": 50465,
         "undergraduateSchools": 1197
       },
-      "notes": ".xls 格式有 65,536 行上限，實測資料 65,532 行、截斷發生在專科段，本科 50,465 行完整。公告頁另列 .xlsx（//www.jseea.cn/webfile/upload/2025/02-20/17-24-450745-585252450.xlsx）2026-11-06 回 404，待補。第二工作表「军队院校」不入本層（軍校不在教育部普通高校主池）。"
+      "notes": ".xls 格式有 65,536 行上限，實測資料 65,532 行、截斷發生在專科段，本科 50,465 行完整。公告頁另列 .xlsx（//www.jseea.cn/webfile/upload/2025/02-20/17-24-450745-585252450.xlsx）2026-11-06 回 404，待補。第二工作表「军队院校」不入本層（軍校不在教育部普通高校主池）。 原檔已上 R2（見 r2 欄）；本機副本於 2026-11-07 讀回核對後刪除，重取用 node scripts/fetch_s1_sources.mjs --from-r2。",
+      "r2": {
+        "bucket": "bdfz-ops-backups",
+        "key": "unapply/s1-sources/v1/jiangsu_xkkm_2027.xls",
+        "sha256": "7f7475d9cfa449ed6f07298fbb7d1221e321e85ac7204924689a9f047f54f3fe",
+        "bytes": 7182848,
+        "md5": "3ccd3f9050b90b27b9c22fee7b4316a7",
+        "uploadedAt": "2026-11-07",
+        "readbackVerified": "2026-11-07",
+        "authority": "owner 2026-11-07「22 MB放R2」（主會話轉達）；bucket 為既有私密 ops 備份桶，無新建資源"
+      }
     },
     {
       "id": "jiangsu-xkkm-2027-page",
@@ -179,7 +189,17 @@
           "科目要求"
         ]
       },
-      "notes": "PDF 表格，要求欄用簡寫（物／化／生／政／史／地，以「和」連接，「不限」＝不提科目要求）。通知原文：此次報送的要求適用於 2027 年及以後全國各省參加高考的考生，故可與其他省表交叉核對。只列本科。"
+      "notes": "PDF 表格，要求欄用簡寫（物／化／生／政／史／地，以「和」連接，「不限」＝不提科目要求）。通知原文：此次報送的要求適用於 2027 年及以後全國各省參加高考的考生，故可與其他省表交叉核對。只列本科。 原檔已上 R2（見 r2 欄）；本機副本於 2026-11-07 讀回核對後刪除，重取用 node scripts/fetch_s1_sources.mjs --from-r2。",
+      "r2": {
+        "bucket": "bdfz-ops-backups",
+        "key": "unapply/s1-sources/v1/shanghai_xkkm_2027.pdf",
+        "sha256": "71800ce9174ec3284d22206481f9ef47b77ae2e6d65c25eb2f6cb4dd23d443d1",
+        "bytes": 10190280,
+        "md5": "84c8f9336ab2437337971052b42ed032",
+        "uploadedAt": "2026-11-07",
+        "readbackVerified": "2026-11-07",
+        "authority": "owner 2026-11-07「22 MB放R2」（主會話轉達）；bucket 為既有私密 ops 備份桶，無新建資源"
+      }
     },
     {
       "id": "shanghai-xkkm-2027-page",
@@ -228,7 +248,17 @@
           "选考科目要求"
         ]
       },
-      "notes": "zip 內檔名為 GBK 編碼，用 unzip -p 串流取出。PDF 有「浙江省教育考试院」散字水印，按座標分欄並剔除。無專業代碼欄，只能按校名＋專業名對齊。含本科與高職(專科)。"
+      "notes": "zip 內檔名為 GBK 編碼，用 unzip -p 串流取出。PDF 有「浙江省教育考试院」散字水印，按座標分欄並剔除。無專業代碼欄，只能按校名＋專業名對齊。含本科與高職(專科)。 原檔已上 R2（見 r2 欄）；本機副本於 2026-11-07 讀回核對後刪除，重取用 node scripts/fetch_s1_sources.mjs --from-r2。",
+      "r2": {
+        "bucket": "bdfz-ops-backups",
+        "key": "unapply/s1-sources/v1/zhejiang_xkkm_2027.zip",
+        "sha256": "3ccc6aa64b64fd76a5d8da0accdf6c271dba1b83d6aeadcc6175354922919d4f",
+        "bytes": 5151646,
+        "md5": "6597892d1b090ee96cea5409ed7b21ef",
+        "uploadedAt": "2026-11-07",
+        "readbackVerified": "2026-11-07",
+        "authority": "owner 2026-11-07「22 MB放R2」（主會話轉達）；bucket 為既有私密 ops 備份桶，無新建資源"
+      }
     },
     {
       "id": "zhejiang-xkkm-2027-page",

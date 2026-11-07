@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-07T02:25:28.891Z",
+  "generatedAt": "2026-11-07T03:36:42.679Z",
   "scope": "dfc",
   "inputs": {
     "hubei-xkkm-2027": {
@@ -54,21 +54,25 @@
   "sources": {
     "hubei-xkkm-2027": {
       "undergraduateRows": 49232,
+      "vocationalRows": 0,
       "undergraduateSchools": 1237,
       "unmatchedSchools": 61
     },
     "jiangsu-xkkm-2027": {
       "undergraduateRows": 50351,
+      "vocationalRows": 0,
       "undergraduateSchools": 1197,
       "unmatchedSchools": 3
     },
     "shanghai-xkkm-2027": {
       "undergraduateRows": 39607,
+      "vocationalRows": 0,
       "undergraduateSchools": 986,
       "unmatchedSchools": 31
     },
     "zhejiang-xkkm-2027": {
       "undergraduateRows": 48450,
+      "vocationalRows": 0,
       "undergraduateSchools": 1191,
       "unmatchedSchools": 30
     }
@@ -378,6 +382,8 @@
     "scopeSchools": 144,
     "schoolsWithOfferings": 144,
     "offerings": 9534,
+    "undergraduateOfferings": 9534,
+    "vocationalOfferings": 0,
     "conflicts": 0,
     "catalogPrograms": 883,
     "strongBase": 39

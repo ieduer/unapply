@@ -14,9 +14,9 @@ import { candidateProvinceOptions, defaultCandidateProvince } from './data/admis
 import type { CandidateProvince } from './data/admissionAuthorities'
 import { readStoredOrigin, saveOrigin, type OriginRegion } from './data/origins'
 import { programPrefsActive, readStoredProgramPrefs, saveProgramPrefs, type ProgramPrefs } from './data/programPrefs'
-import type { ProgramOfferingsPayload } from './data/programsTypes'
+import type { ProgramIndexPayload } from './data/programsTypes'
 import { applyProgramPrefs } from './engine/programs'
-import { loadProgramOfferings, type ProgramsLayerState } from './lib/programsData'
+import { loadProgramIndex, type ProgramsLayerState } from './lib/programsData'
 import type { School } from './data/schools'
 import { filterSchools } from './engine/filter'
 import type { AnswerMap } from './engine/filter'
@@ -156,7 +156,7 @@ export default function App() {
   const [origin, setOriginState] = useState<OriginRegion | null>(() => readStoredOrigin())
   // 起點條件（選考科目、意向專業）：在 43 題之後另算一層，不進 AnswerMap，也不改 A+ 證據。
   const [programPrefs, setProgramPrefsState] = useState<ProgramPrefs>(() => readStoredProgramPrefs())
-  const [programsPayload, setProgramsPayload] = useState<ProgramOfferingsPayload | null>(null)
+  const [programsIndex, setProgramsIndex] = useState<ProgramIndexPayload | null>(null)
   const [programsError, setProgramsError] = useState(false)
   const [schools, setSchools] = useState<School[] | null>(null)
   const [schoolLoadError, setSchoolLoadError] = useState<string | null>(null)
@@ -227,19 +227,19 @@ export default function App() {
     }
   }, [route.name])
 
-  // 逐校招生專業資料（約 70 KiB gzip）只在結果頁、學校詳情，或起點條件生效的問卷頁載入。
+  // 每校招生專業摘要（約 150 KiB gzip）只在結果頁、學校詳情，或起點條件生效的問卷頁載入；完整清單在詳情頁按省分桶再載。
   const routeNeedsPrograms = route.name === 'result' || route.name === 'school'
     || (route.name === 'filter' && programPrefsActive(programPrefs))
   useEffect(() => {
-    if (!routeNeedsPrograms || programsPayload || programsError) return
+    if (!routeNeedsPrograms || programsIndex || programsError) return
     let alive = true
-    // loadProgramOfferings 內部快取同一個 promise，重複進入不會重抓。
-    loadProgramOfferings()
-      .then((payload) => { if (alive) setProgramsPayload(payload) })
+    // loadProgramIndex 內部快取同一個 promise，重複進入不會重抓。
+    loadProgramIndex()
+      .then((payload) => { if (alive) setProgramsIndex(payload) })
       .catch(() => { if (alive) setProgramsError(true) })
     return () => { alive = false }
-  }, [programsError, programsPayload, routeNeedsPrograms])
-  const programsStatus: ProgramsLayerState['status'] = programsPayload ? 'ready' : programsError ? 'error' : routeNeedsPrograms ? 'loading' : 'idle'
+  }, [programsError, programsIndex, routeNeedsPrograms])
+  const programsStatus: ProgramsLayerState['status'] = programsIndex ? 'ready' : programsError ? 'error' : routeNeedsPrograms ? 'loading' : 'idle'
 
   const filterContext = useMemo(() => ({ candidateProvince }), [candidateProvince])
   const result = useMemo(
@@ -248,12 +248,12 @@ export default function App() {
   )
   // 43 題之後再套起點條件；A+ 證據與分享摘要仍用 result（43 題）的 stats。
   const programOutcome = useMemo(
-    () => (result && programsPayload && programPrefsActive(programPrefs) ? applyProgramPrefs(result.kept, programsPayload, programPrefs) : null),
-    [programPrefs, programsPayload, result],
+    () => (result && programsIndex && programPrefsActive(programPrefs) ? applyProgramPrefs(result.kept, programsIndex, programPrefs) : null),
+    [programPrefs, programsIndex, result],
   )
   const programsLayer = useMemo<ProgramsLayerState>(
-    () => ({ prefs: programPrefs, payload: programsPayload, status: programsStatus }),
-    [programPrefs, programsPayload, programsStatus],
+    () => ({ prefs: programPrefs, index: programsIndex, status: programsStatus }),
+    [programPrefs, programsIndex, programsStatus],
   )
   const retrySchoolLoad = useCallback(() => {
     setSchoolLoadError(null)

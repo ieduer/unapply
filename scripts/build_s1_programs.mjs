@@ -2,6 +2,8 @@
 // S1 資料層首批建置：雙一流（教育部 2026 名單內民辦／公辦普通高校，不含軍校）的本科招生專業清單＋選考科目要求。
 //
 //   node scripts/build_s1_programs.mjs --cache-dir DIR [--scope dfc|all]
+//   --scope dfc（預設）：雙一流 144 校、只收本科列，寫 program_offerings.2027.csv；
+//   --scope all：教育部主池全部 2,952 校、本科與高職（專科）都收，寫 program_offerings.2027.all.csv.gz（gzip，約 10 萬條）。
 //
 // 輸入（全部官方，見 data/research/s1_sources.json；先跑 scripts/fetch_s1_sources.mjs 核對雜湊）：
 //   教育部《普通高等学校本科专业目录（2026年）》PDF            → data/research/bk_catalog.2026.csv
@@ -17,6 +19,7 @@
 //   - 需要 poppler 的 pdftotext 與系統 unzip；缺少時報錯退出並說明安裝方式，不改用其他來源。
 
 import { createHash } from 'node:crypto'
+import { gzipSync } from 'node:zlib'
 import { spawnSync } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
@@ -31,6 +34,10 @@ const argv = process.argv.slice(2)
 const argValue = (flag, fallback) => { const i = argv.indexOf(flag); return i >= 0 ? argv[i + 1] : fallback }
 const cacheDir = resolve(argValue('--cache-dir', join(root, '.tmp', 's1-sources')))
 const scope = argValue('--scope', 'dfc')
+if (!['dfc', 'all'].includes(scope)) die(`--scope 只接受 dfc 或 all`)
+const includeVocational = scope === 'all'
+// 省表的層次寫法：本科／高职(专科)／专科；上海表只有本科。
+const normalizeLevel = (raw) => (raw === '本科' ? '本科' : /专科/.test(raw ?? '') ? '專科' : null)
 const researchDir = join(root, 'data', 'research')
 const committedDir = join(researchDir, 'raw', 's1')
 const registry = JSON.parse(readFileSync(join(researchDir, 's1_sources.json'), 'utf8'))
@@ -208,8 +215,9 @@ function parseSpreadsheet(id, { sheetName, headerRowMatch, pick }) {
   for (const r of rows.slice(headerIndex + 1)) {
     const rec = pick(r)
     if (!rec || !rec.schoolCode) continue
-    if (rec.level !== '本科') continue
-    undergraduateSchools.add(rec.schoolCode)
+    const level = normalizeLevel(rec.level)
+    if (!level || (level === '專科' && !includeVocational)) continue
+    if (level === '本科') undergraduateSchools.add(rec.schoolCode)
     let school = byCode5.get(rec.schoolCode), campusLabel = ''
     if (school) {
       const tableName = normalizeName(rec.schoolName), moeName = normalizeName(school.nameSimplified ?? school.name)
@@ -230,12 +238,14 @@ function parseSpreadsheet(id, { sheetName, headerRowMatch, pick }) {
       if (campusLabel) (meta.campusMappings[id] ??= {})[`${rec.schoolCode} ${rec.schoolName}`] = `${school.nameSimplified ?? school.name}｜${campusLabel}`
       else (meta.codeFallbackByName[id] ??= {})[`${rec.schoolCode} ${rec.schoolName}`] = `${school.moeCode} ${school.nameSimplified ?? school.name}` // 省表招生代碼≠教育部標識碼，按校名對上
     }
-    records.push({ sourceId: id, province: source.province, school, campusLabel, programName: normalizeName(rec.programName), programCode: rec.programCode, requirementRaw: rec.requirementRaw, pattern: normalizeRequirement(rec.requirementRaw, id) })
+    records.push({ sourceId: id, province: source.province, school, campusLabel, level, programName: normalizeName(rec.programName), programCode: rec.programCode, requirementRaw: rec.requirementRaw, pattern: normalizeRequirement(rec.requirementRaw, id) })
   }
+  const undergraduateRows = records.filter((r) => r.level === '本科').length
+  const vocationalRows = records.length - undergraduateRows
   const exp = source.expected
-  if (exp.undergraduateRows && records.length !== exp.undergraduateRows) console.warn(`  ${id}: 本科列 ${records.length}（表內 ${exp.undergraduateRows}；差額為對不到教育部主表的院校列，多為軍校與未入主池院校）`)
-  meta.sources[id] = { undergraduateRows: records.length, undergraduateSchools: undergraduateSchools.size, unmatchedSchools: (meta.unmatchedSchoolNames[id] ?? []).length }
-  console.log(`${id}: 本科 ${records.length} 列、${undergraduateSchools.size} 校（對不到主表 ${(meta.unmatchedSchoolNames[id] ?? []).length} 校）`)
+  if (exp.undergraduateRows && undergraduateRows !== exp.undergraduateRows) console.warn(`  ${id}: 本科列 ${undergraduateRows}（表內 ${exp.undergraduateRows}；差額為對不到教育部主表的院校列，多為軍校與未入主池院校）`)
+  meta.sources[id] = { undergraduateRows, vocationalRows, undergraduateSchools: undergraduateSchools.size, unmatchedSchools: (meta.unmatchedSchoolNames[id] ?? []).length }
+  console.log(`${id}: 本科 ${undergraduateRows} 列（專科 ${vocationalRows}）、${undergraduateSchools.size} 校（對不到主表 ${(meta.unmatchedSchoolNames[id] ?? []).length} 校）`)
   return records
 }
 
@@ -325,7 +335,7 @@ function pdfTable(id, pdfPath, { columns, watermark, headerKey, levelColumn }) {
   }
   meta.wrappedRowsMerged[id] = merged
   meta.droppedIncompleteRows[id] = dropped
-  return rowsOut.filter((r) => !levelColumn || r[levelColumn] === '本科')
+  return rowsOut.map((r) => ({ ...r, level: levelColumn ? normalizeLevel(r[levelColumn]) : '本科' })).filter((r) => r.level && (r.level === '本科' || includeVocational))
 }
 
 function parsePdfSource(id, pdfPath, options) {
@@ -337,11 +347,12 @@ function parsePdfSource(id, pdfPath, options) {
     const resolved = resolveSchoolByName(r.schoolName)
     if (!resolved) { unmatched.add(r.schoolName); continue }
     if (resolved.campusLabel) (meta.campusMappings[id] ??= {})[r.schoolName] = `${resolved.school.nameSimplified ?? resolved.school.name}｜${resolved.campusLabel}`
-    records.push({ sourceId: id, province: source.province, school: resolved.school, campusLabel: resolved.campusLabel, programName: normalizeName(r.programName), programCode: r.programCode ?? '', requirementRaw: r.requirement, pattern: normalizeRequirement(r.requirement, id) })
+    records.push({ sourceId: id, province: source.province, school: resolved.school, campusLabel: resolved.campusLabel, level: r.level, programName: normalizeName(r.programName), programCode: r.programCode ?? '', requirementRaw: r.requirement, pattern: normalizeRequirement(r.requirement, id) })
   }
   meta.unmatchedSchoolNames[id] = [...unmatched]
-  meta.sources[id] = { undergraduateRows: records.length, undergraduateSchools: schools.size, unmatchedSchools: unmatched.size }
-  console.log(`${id}: 本科 ${records.length} 列、${schools.size} 校（對不到主表 ${unmatched.size} 校；折行拼回 ${meta.wrappedRowsMerged[id]}；不完整列丟棄 ${meta.droppedIncompleteRows[id]}，其中本科 ${meta.droppedUndergraduateRows[id] ?? 0}；剔除水印字 ${meta.droppedWatermarkWords[id] ?? 0}）`)
+  const undergraduateRows = records.filter((r) => r.level === '本科').length
+  meta.sources[id] = { undergraduateRows, vocationalRows: records.length - undergraduateRows, undergraduateSchools: schools.size, unmatchedSchools: unmatched.size }
+  console.log(`${id}: 本科 ${undergraduateRows} 列（專科 ${records.length - undergraduateRows}）、${schools.size} 校（對不到主表 ${unmatched.size} 校；折行拼回 ${meta.wrappedRowsMerged[id]}；不完整列丟棄 ${meta.droppedIncompleteRows[id]}，其中本科 ${meta.droppedUndergraduateRows[id] ?? 0}；剔除水印字 ${meta.droppedWatermarkWords[id] ?? 0}）`)
   return records
 }
 
@@ -391,8 +402,8 @@ const bySchool = new Map()
 for (const rec of all) {
   if (!inScope(rec.school)) continue
   const programs = bySchool.get(rec.school.moeCode) ?? bySchool.set(rec.school.moeCode, new Map()).get(rec.school.moeCode)
-  const key = `${rec.campusLabel}|${rec.programName}`
-  const entry = programs.get(key) ?? programs.set(key, { name: rec.programName, campusLabel: rec.campusLabel, codes: new Set(), patterns: new Map(), raws: new Map(), variants: new Map(), provinces: new Set(), sourceIds: new Set() }).get(key)
+  const key = `${rec.level}|${rec.campusLabel}|${rec.programName}`
+  const entry = programs.get(key) ?? programs.set(key, { name: rec.programName, level: rec.level, campusLabel: rec.campusLabel, codes: new Set(), patterns: new Map(), raws: new Map(), variants: new Map(), provinces: new Set(), sourceIds: new Set() }).get(key)
   if (rec.programCode) entry.codes.add(rec.programCode)
   const national = nationalPattern(rec.pattern)
   entry.patterns.set(national, (entry.patterns.get(national) ?? 0) + 1)
@@ -405,21 +416,22 @@ const offerings = []; const summary = []
 for (const [moeCode, programs] of [...bySchool.entries()].sort()) {
   const school = byMoeCode.get(moeCode)
   const patternCounts = new Map(); let conflicts = 0, matched = 0, classMatched = 0, unmatched = 0
-  for (const entry of [...programs.values()].sort((a, b) => a.campusLabel.localeCompare(b.campusLabel) || a.name.localeCompare(b.name, 'zh-Hans-CN'))) {
+  for (const entry of [...programs.values()].sort((a, b) => a.level.localeCompare(b.level) || a.campusLabel.localeCompare(b.campusLabel) || a.name.localeCompare(b.name, 'zh-Hans-CN'))) {
     const patterns = [...entry.patterns.keys()]
     const conflict = patterns.length > 1
     const pattern = conflict ? '' : patterns[0]
     const codes = [...entry.codes].sort()
-    const cat = matchCatalog(entry.name, codes)
+    // 高職（專科）專業用的是《職業教育專業目錄》，不對本科目錄；只記錄，不做專業類對應。
+    const cat = entry.level === '本科' ? matchCatalog(entry.name, codes) : { match: 'vocational', kind: 'vocational' }
     const program = cat.program; const klass = cat.klass ?? (program ? (catalog.classes.find((c) => c.code === program.classCode) ?? { code: '', name: program.className, disciplineCode: program.disciplineCode }) : null)
     const discipline = klass ? disciplineByCode.get(klass.disciplineCode) : null
-    if (cat.match === 'class') classMatched += 1; else if (cat.match === 'none') unmatched += 1; else matched += 1
+    if (cat.match === 'class') classMatched += 1; else if (cat.match === 'none') unmatched += 1; else if (cat.match !== 'vocational') matched += 1
     if (conflict) conflicts += 1
     patternCounts.set(conflict ? 'conflict' : (pattern || 'none'), (patternCounts.get(conflict ? 'conflict' : (pattern || 'none')) ?? 0) + 1)
     offerings.push({
-      moeCode, schoolName: school.nameSimplified ?? school.name, schoolCode: moeCode.slice(-5), campusLabel: entry.campusLabel, admissionYear: 2027,
+      moeCode, schoolName: school.nameSimplified ?? school.name, schoolCode: moeCode.slice(-5), campusLabel: entry.campusLabel, level: entry.level, admissionYear: 2027,
       programName: entry.name, programNameBase: baseName(entry.name), programCodes: codes.join('|'),
-      programKind: cat.match === 'none' ? cat.kind : (cat.match === 'class' ? 'class' : 'program'),
+      programKind: cat.match === 'none' || cat.match === 'vocational' ? cat.kind : (cat.match === 'class' ? 'class' : 'program'),
       catalogMatch: cat.match, catalogCode: program?.code ?? '', catalogName: program?.name ?? '',
       catalogClassCode: klass?.code ?? '', catalogClassName: klass?.name ?? '', disciplineCode: discipline?.code ?? '', disciplineName: discipline?.name ?? '',
       requirementPattern: conflict ? '' : (pattern || 'none'), requirementRaw: conflict ? '' : entry.raws.get(pattern),
@@ -431,7 +443,9 @@ for (const [moeCode, programs] of [...bySchool.entries()].sort()) {
   }
   const provinces = new Set(); const campuses = new Set(); for (const e of programs.values()) { for (const p of e.provinces) provinces.add(p); if (e.campusLabel) campuses.add(e.campusLabel) }
   summary.push({
-    moeCode, schoolName: school.nameSimplified ?? school.name, moeLevel: school.level, programCount: programs.size, campusLabels: [...campuses].sort().join('|'),
+    moeCode, schoolName: school.nameSimplified ?? school.name, moeLevel: school.level, programCount: programs.size,
+    undergraduateCount: [...programs.values()].filter((e) => e.level === '本科').length, vocationalCount: [...programs.values()].filter((e) => e.level === '專科').length,
+    campusLabels: [...campuses].sort().join('|'),
     provinces: [...provinces].sort().join('|'), provinceCount: provinces.size,
     patternBreakdown: [...patternCounts.entries()].sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k}:${v}`).join(';'),
     catalogProgramMatched: matched, catalogClassMatched: classMatched, catalogUnmatched: unmatched, conflicts,
@@ -465,11 +479,18 @@ const strongBaseRows = strongBase()
 // ---------- 輸出 ----------
 writeCsv(join(researchDir, 'bk_catalog.2026.csv'), ['code', 'name', 'special', 'controlled', 'classCode', 'className', 'disciplineCode', 'disciplineName', 'degreeNote', 'year', 'sourceTitle', 'sourceUrl', 'sourceDate'],
   catalog.programs.map((p) => ({ ...p, degreeNote: p.note, year: 2026, sourceTitle: catalog.source.title, sourceUrl: catalog.source.pageUrl, sourceDate: catalog.source.publishedDate })))
-const offeringsName = scope === 'all' ? 'program_offerings.2027.all.csv' : 'program_offerings.2027.csv'
-writeCsv(join(researchDir, offeringsName), ['moeCode', 'schoolName', 'schoolCode', 'campusLabel', 'admissionYear', 'programName', 'programNameBase', 'programCodes', 'programKind', 'catalogMatch', 'catalogCode', 'catalogName', 'catalogClassCode', 'catalogClassName', 'disciplineCode', 'disciplineName', 'requirementPattern', 'requirementRaw', 'requirementVariants', 'provinces', 'sourceIds', 'conflict', 'confidence', 'sourceDate'], offerings)
-writeCsv(join(researchDir, scope === 'all' ? 'program_offerings_summary.2027.all.csv' : 'program_offerings_summary.2027.csv'), ['moeCode', 'schoolName', 'moeLevel', 'programCount', 'campusLabels', 'provinces', 'provinceCount', 'patternBreakdown', 'catalogProgramMatched', 'catalogClassMatched', 'catalogUnmatched', 'conflicts'], summary)
+const OFFERING_COLUMNS = ['moeCode', 'schoolName', 'schoolCode', 'campusLabel', 'level', 'admissionYear', 'programName', 'programNameBase', 'programCodes', 'programKind', 'catalogMatch', 'catalogCode', 'catalogName', 'catalogClassCode', 'catalogClassName', 'disciplineCode', 'disciplineName', 'requirementPattern', 'requirementRaw', 'requirementVariants', 'provinces', 'sourceIds', 'conflict', 'confidence', 'sourceDate']
+const offeringsName = scope === 'all' ? 'program_offerings.2027.all.csv.gz' : 'program_offerings.2027.csv'
+if (scope === 'all') {
+  // 全部 2,952 校約 10 萬條，純文字近 30 MB；以 gzip 入庫（zlib 可直接讀），diff 用 gzip -dc 比。
+  const text = `${OFFERING_COLUMNS.join(',')}\n${offerings.map((r) => OFFERING_COLUMNS.map((k) => csvCell(r[k])).join(',')).join('\n')}\n`
+  writeFileSync(join(researchDir, offeringsName), gzipSync(Buffer.from(text, 'utf8'), { level: 9 }))
+} else {
+  writeCsv(join(researchDir, offeringsName), OFFERING_COLUMNS, offerings)
+}
+writeCsv(join(researchDir, scope === 'all' ? 'program_offerings_summary.2027.all.csv' : 'program_offerings_summary.2027.csv'), ['moeCode', 'schoolName', 'moeLevel', 'programCount', 'undergraduateCount', 'vocationalCount', 'campusLabels', 'provinces', 'provinceCount', 'patternBreakdown', 'catalogProgramMatched', 'catalogClassMatched', 'catalogUnmatched', 'conflicts'], summary)
 writeCsv(join(researchDir, 'strong_base_schools.2026.csv'), ['moeCode', 'schoolName', 'inMoePool', 'evidenceYear', 'listedSince', 'sourceTitle', 'sourceUrl', 'sourceDate', 'confidence', 'notes'], strongBaseRows)
-meta.counts = { scopeSchools: scope === 'all' ? officialSchools.length : dfc.size, schoolsWithOfferings: bySchool.size, offerings: offerings.length, conflicts: offerings.filter((o) => o.conflict).length, catalogPrograms: catalog.programs.length, strongBase: strongBaseRows.length }
+meta.counts = { scopeSchools: scope === 'all' ? officialSchools.length : dfc.size, schoolsWithOfferings: bySchool.size, offerings: offerings.length, undergraduateOfferings: offerings.filter((o) => o.level === '本科').length, vocationalOfferings: offerings.filter((o) => o.level === '專科').length, conflicts: offerings.filter((o) => o.conflict).length, catalogPrograms: catalog.programs.length, strongBase: strongBaseRows.length }
 meta.doubleFirstClass = { round2Total: dfcRaw.length, inPool: dfc.size, outsidePool: dfcOutsidePool, aliases: DFC_ALIASES }
-writeFileSync(join(researchDir, 'program_offerings.2027.meta.json'), `${JSON.stringify(meta, null, 2)}\n`)
-console.log(`\n${offeringsName}: ${offerings.length} 條（${bySchool.size}/${meta.counts.scopeSchools} 校；衝突 ${meta.counts.conflicts}）；強基 ${strongBaseRows.length} 所；校名不一致 ${meta.nameMismatches.length}`)
+writeFileSync(join(researchDir, scope === 'all' ? 'program_offerings.2027.all.meta.json' : 'program_offerings.2027.meta.json'), `${JSON.stringify(meta, null, 2)}\n`)
+console.log(`\n${offeringsName}: ${offerings.length} 條（本科 ${meta.counts.undergraduateOfferings}／專科 ${meta.counts.vocationalOfferings}；${bySchool.size}/${meta.counts.scopeSchools} 校；衝突 ${meta.counts.conflicts}）；強基 ${strongBaseRows.length} 所；校名不一致 ${meta.nameMismatches.length}`)

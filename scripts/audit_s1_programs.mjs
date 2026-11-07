@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // S1 首批資料覆蓋率與缺口稽核（只讀，不改資料）。
 //
-//   node scripts/audit_s1_programs.mjs [--out DIR]     # 印出摘要；--out 時另寫 s1-audit.md 與 s1-audit.json
+//   node scripts/audit_s1_programs.mjs [--out DIR] [--scope dfc|all]   # 印出摘要；--out 時另寫 s1-audit[-all].md 與 .json
+//   --scope all 讀 program_offerings.2027.all.csv.gz（全部 2,952 校、本科＋專科），另按教育部層次算本科校／專科校覆蓋。
 //
 // 看什麼：
 //   1. 雙一流集合（教育部 2026 主池內 144 所）每所是否都有本科招生專業清單，幾個省表列到它，專業數分佈。
@@ -11,7 +12,8 @@
 //      這是判斷「選科題有沒有減法能力」的直接證據；數字小不代表做錯，代表這一題在雙一流層幾乎不排除學校。
 //   5. 來源層缺口：各省表對不到教育部主表的院校、校名不一致（多為更名）、校區／醫學院映射。
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { gunzipSync } from 'node:zlib'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
@@ -19,6 +21,9 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const argv = process.argv.slice(2)
 const outIndex = argv.indexOf('--out')
 const outDir = outIndex >= 0 ? resolve(argv[outIndex + 1]) : null
+const scopeIndex = argv.indexOf('--scope')
+const scope = scopeIndex >= 0 ? argv[scopeIndex + 1] : 'dfc'
+const suffix = scope === 'all' ? '.all' : ''
 const researchDir = join(root, 'data', 'research')
 
 function parseCsv(text) {
@@ -38,11 +43,12 @@ function parseCsv(text) {
 const count = (items, key) => { const m = new Map(); for (const it of items) { const k = key(it); m.set(k, (m.get(k) ?? 0) + 1) } return [...m.entries()].sort((a, b) => b[1] - a[1]) }
 const pct = (a, b) => (b === 0 ? '—' : `${((a / b) * 100).toFixed(1)}%`)
 
-const offerings = parseCsv(readFileSync(join(researchDir, 'program_offerings.2027.csv'), 'utf8'))
-const summary = parseCsv(readFileSync(join(researchDir, 'program_offerings_summary.2027.csv'), 'utf8'))
+const offerings = parseCsv(scope === 'all' ? gunzipSync(readFileSync(join(researchDir, 'program_offerings.2027.all.csv.gz'))).toString('utf8') : readFileSync(join(researchDir, 'program_offerings.2027.csv'), 'utf8'))
+const summary = parseCsv(readFileSync(join(researchDir, `program_offerings_summary.2027${suffix}.csv`), 'utf8'))
 const strongBase = parseCsv(readFileSync(join(researchDir, 'strong_base_schools.2026.csv'), 'utf8'))
 const catalog = parseCsv(readFileSync(join(researchDir, 'bk_catalog.2026.csv'), 'utf8'))
-const meta = JSON.parse(readFileSync(join(researchDir, 'program_offerings.2027.meta.json'), 'utf8'))
+const meta = JSON.parse(readFileSync(join(researchDir, `program_offerings.2027${suffix}.meta.json`), 'utf8'))
+const undergradOfferings = offerings.filter((r) => (r.level || '本科') === '本科')
 const registry = JSON.parse(readFileSync(join(researchDir, 's1_sources.json'), 'utf8'))
 const { officialSchools } = await import(pathToFileURL(join(root, 'src', 'data', 'officialSchools.ts')).href)
 const byMoeCode = new Map(officialSchools.map((s) => [s.moeCode, s]))
@@ -52,22 +58,50 @@ const lines = []
 const out = (s = '') => lines.push(s)
 
 // 1. 雙一流覆蓋
-const scopeTotal = meta.counts.scopeSchools
-const covered = summary.length
-out(`# S1 首批資料稽核（${meta.generatedAt.slice(0, 10)}）`)
+const scopeTotal = meta.doubleFirstClass.inPool
+const dfcSummary = scope === 'all' ? summary.filter((r) => ['C9', '985非C9', '211非985', '雙一流非211'].includes(r.moeLevel)) : summary
+const covered = dfcSummary.filter((r) => Number(r.undergraduateCount ?? r.programCount) > 0).length
+out(`# S1 資料稽核（${meta.generatedAt.slice(0, 10)}，scope=${scope}）`)
 out()
+if (scope === 'all') {
+  const undergrad = officialSchools.filter((s) => s.moeLevel === '本科')
+  const vocational = officialSchools.filter((s) => s.moeLevel !== '本科')
+  const summaryByCode = new Map(summary.map((r) => [r.moeCode, r]))
+  const uCovered = undergrad.filter((s) => Number(summaryByCode.get(s.moeCode)?.undergraduateCount ?? 0) > 0)
+  const vCovered = vocational.filter((s) => Number(summaryByCode.get(s.moeCode)?.vocationalCount ?? 0) > 0)
+  out(`## 0. 全部主池覆蓋（按教育部層次）`)
+  out()
+  out(`- 本科校 ${undergrad.length}：有本科招生專業清單 ${uCovered.length}（${pct(uCovered.length, undergrad.length)}）；缺 ${undergrad.length - uCovered.length} 校（分類與全名單見下）。`)
+  out(`- 專科校 ${vocational.length}：有高職（專科）專業清單 ${vCovered.length}（${pct(vCovered.length, vocational.length)}）；缺 ${vocational.length - vCovered.length} 校（多為只在湖北／江蘇／浙江表外招生或當年未在三省安排計劃；保持未知）。`)
+  out(`- 本科校另有專科專業列 ${undergrad.filter((s) => Number(summaryByCode.get(s.moeCode)?.vocationalCount ?? 0) > 0).length} 校；專科列全部不對本科目錄（programKind=vocational），只展示不判定。`)
+  out(`- 條數：本科 ${meta.counts.undergraduateOfferings}、專科 ${meta.counts.vocationalOfferings}；跨省衝突 ${meta.counts.conflicts}。`)
+  // 缺清單不是阻塞：疑罪從無，缺的保持未知。這裡把缺口分類，給人工查核清單用。
+  const missing = undergrad.filter((s) => !uCovered.includes(s))
+  const kind = (s) => {
+    const n = s.nameSimplified ?? s.name
+    if (/职业/.test(n)) return '職業大學／職業技術大學（本科層次職業學校，專業多以高職目錄公布）'
+    if (/警察|公安|刑事|司法警官/.test(n)) return '警察／公安類（提前批、不在省表）'
+    if (/学院$/.test(n) && /大学.+学院|学院.+学院/.test(n)) return '獨立學院（多已轉設或更名，省表用舊名／舊代碼）'
+    if (/军|武警|海军|空军|火箭|国防/.test(n)) return '軍事類'
+    return '其他（當年未在四省安排計劃、更名未對上或合作辦學）'
+  }
+  const byKind = count(missing, kind)
+  out(`- 缺口分類（供人工查核，不猜填）：${byKind.map(([k, v]) => `${k} ${v}`).join('；')}。`)
+  out(`- 缺口全名單：${missing.map((s) => s.nameSimplified ?? s.name).join('、')}。`)
+  out()
+}
 out(`## 1. 雙一流覆蓋`)
 out()
 out(`- 第二輪雙一流 ${meta.doubleFirstClass.round2Total} 所；教育部 2026 普通高校主池內 ${meta.doubleFirstClass.inPool} 所（主池外：${meta.doubleFirstClass.outsidePool.join('、')}；別名：${Object.entries(meta.doubleFirstClass.aliases).map(([a, b]) => `${a}→${b}`).join('、')}）。`)
 out(`- 有本科招生專業清單的：${covered}/${scopeTotal}（${pct(covered, scopeTotal)}）。`)
 if (covered !== scopeTotal) problems.push(`雙一流只覆蓋 ${covered}/${scopeTotal}`)
-const provinceCountDist = count(summary, (r) => r.provinceCount).sort((a, b) => Number(b[0]) - Number(a[0]))
+const provinceCountDist = count(dfcSummary, (r) => r.provinceCount).sort((a, b) => Number(b[0]) - Number(a[0]))
 out(`- 被幾個省表列到：${provinceCountDist.map(([k, v]) => `${k} 省 ${v} 校`).join('；')}。`)
-const programCounts = summary.map((r) => Number(r.programCount)).sort((a, b) => a - b)
-out(`- 每校專業（類）數：最少 ${programCounts[0]}、中位 ${programCounts[Math.floor(programCounts.length / 2)]}、最多 ${programCounts[programCounts.length - 1]}；合計 ${offerings.length} 條。`)
-const thin = summary.filter((r) => Number(r.programCount) < 15)
+const programCounts = dfcSummary.map((r) => Number(r.undergraduateCount ?? r.programCount)).sort((a, b) => a - b)
+out(`- 每校本科專業（類）數：最少 ${programCounts[0]}、中位 ${programCounts[Math.floor(programCounts.length / 2)]}、最多 ${programCounts[programCounts.length - 1]}；本層合計 ${offerings.length} 條。`)
+const thin = dfcSummary.filter((r) => Number(r.undergraduateCount ?? r.programCount) < 15)
 out(`- 專業數少於 15 的學校（通常是專科性院校或只在少數省招生）：${thin.map((r) => `${r.schoolName} ${r.programCount}`).join('、') || '無'}。`)
-const withCampus = summary.filter((r) => r.campusLabels)
+const withCampus = dfcSummary.filter((r) => r.campusLabels)
 out(`- 含校區／醫學院獨立招生代碼映射的學校：${withCampus.length} 所（${withCampus.map((r) => `${r.schoolName}[${r.campusLabels}]`).join('、')}）。`)
 out()
 
@@ -86,11 +120,11 @@ out()
 // 3. 目錄對應
 out(`## 3. 國標本科專業目錄對應`)
 out()
-const matchDist = count(offerings, (r) => r.catalogMatch)
-out(`- 目錄 2026：${catalog.length} 種專業。對應方式：${matchDist.map(([k, v]) => `${k} ${v}（${pct(v, offerings.length)}）`).join('；')}。`)
-const unmatched = count(offerings.filter((r) => r.catalogMatch === 'none'), (r) => `${r.programKind}:${r.programNameBase}`)
+const matchDist = count(undergradOfferings, (r) => r.catalogMatch)
+out(`- 目錄 2026：${catalog.length} 種專業。本科條目對應方式：${matchDist.map(([k, v]) => `${k} ${v}（${pct(v, undergradOfferings.length)}）`).join('；')}。`)
+const unmatched = count(undergradOfferings.filter((r) => r.catalogMatch === 'none'), (r) => `${r.programKind}:${r.programNameBase}`)
 out(`- 對不到目錄的名稱（前 40，按出現校數）：${unmatched.slice(0, 40).map(([k, v]) => `${k.split(':')[1]}×${v}`).join('、')}。`)
-out(`- 其中試驗班／實驗班類 ${offerings.filter((r) => r.programKind === 'experimental').length} 條、其他 ${offerings.filter((r) => r.programKind === 'other').length} 條。`)
+out(`- 其中試驗班／實驗班類 ${undergradOfferings.filter((r) => r.programKind === 'experimental').length} 條、其他 ${undergradOfferings.filter((r) => r.programKind === 'other').length} 條。`)
 out()
 
 // 4. 選科組合模擬
@@ -102,7 +136,7 @@ for (const first of ['P', 'H']) for (let i = 0; i < 4; i += 1) for (let j = i + 
 const combos33 = []
 for (let a = 0; a < 6; a += 1) for (let b = a + 1; b < 6; b += 1) for (let c = b + 1; c < 6; c += 1) combos33.push(SUBJ[a] + SUBJ[b] + SUBJ[c])
 const bySchool = new Map()
-for (const r of offerings) (bySchool.get(r.moeCode) ?? bySchool.set(r.moeCode, []).get(r.moeCode)).push(r)
+for (const r of undergradOfferings) (bySchool.get(r.moeCode) ?? bySchool.set(r.moeCode, []).get(r.moeCode)).push(r)
 const ZH = { P: '物', C: '化', B: '生', Z: '政', H: '史', G: '地' }
 function simulate(combos) {
   return combos.map((combo) => {
@@ -117,11 +151,11 @@ function simulate(combos) {
   })
 }
 const sim312 = simulate(combos312), sim33 = simulate(combos33)
-out(`- 3+1+2（${combos312.length} 種）：各組合「全校沒有一個可報專業」的雙一流校數——${sim312.map((s) => `${s.combo} ${s.schoolsWithNoProgram}`).join('；')}。`)
+out(`- 3+1+2（${combos312.length} 種）：各組合「全校沒有一個可報本科專業」的校數（本層 ${bySchool.size} 校）——${sim312.map((s) => `${s.combo} ${s.schoolsWithNoProgram}`).join('；')}。`)
 out(`- 3+3（${combos33.length} 種）：${sim33.map((s) => `${s.combo} ${s.schoolsWithNoProgram}`).join('；')}。`)
-out(`- 可報專業條數（${offerings.length} 條基數）：${sim312.map((s) => `${s.combo} ${s.programsOpen}`).join('；')}。`)
+out(`- 可報本科專業條數（${undergradOfferings.length} 條基數）：${sim312.map((s) => `${s.combo} ${s.programsOpen}`).join('；')}。`)
 const everZero = new Set(sim312.flatMap((s) => s.zeroNames))
-out(`- 在任一 3+1+2 組合下會被整校劃掉的學校：${[...everZero].join('、') || '無'}。`)
+out(`- 在任一 3+1+2 組合下會被整校劃掉的學校：${everZero.size}（${[...everZero].slice(0, 40).join('、')}${everZero.size > 40 ? '…' : ''}）。`)
 out()
 
 // 5. 來源層缺口
@@ -147,14 +181,14 @@ out()
 out(`## 7. 結論`)
 out()
 out(problems.length ? `- 阻塞：${problems.join('；')}` : `- 無阻塞：雙一流 ${covered}/${scopeTotal} 校皆有專業清單與選考要求；跨省要求 0 衝突。`)
-out(`- 本層目前只進「展示」與「設計評估」，未接任何題目或引擎；接入前要走 docs/DESIGN_S1_PROGRAMS_ADMISSION.md 列的閘門。`)
+out(`- 本層以「起點條件」（AnswerMap 之外）接入；成為正式題目（S1.b）前要走 docs/DESIGN_S1_PROGRAMS_ADMISSION.md §6 的閘門與共享契約 fan-out。`)
 
 const text = `${lines.join('\n')}\n`
 process.stdout.write(text)
 if (outDir) {
   mkdirSync(outDir, { recursive: true })
-  writeFileSync(join(outDir, 's1-audit.md'), text)
-  writeFileSync(join(outDir, 's1-audit.json'), `${JSON.stringify({ generatedAt: new Date().toISOString(), meta: meta.counts, coverage: { scopeTotal, covered, provinceCountDist, programCounts: { min: programCounts[0], median: programCounts[Math.floor(programCounts.length / 2)], max: programCounts[programCounts.length - 1] } }, requirement: { conflicts: conflicts.length, patterns: count(offerings, (r) => r.requirementPattern || 'conflict'), confidence: count(offerings, (r) => r.confidence), variants: variants.length }, catalog: { match: matchDist, unmatchedTop: unmatched.slice(0, 100) }, simulation: { combos312: sim312, combos33: sim33 }, sources: meta.sources, nameMismatches: meta.nameMismatches, campusMappings: meta.campusMappings, unmatchedSchoolNames: meta.unmatchedSchoolNames, strongBase: strongBase.length, problems }, null, 2)}\n`)
-  console.log(`\nwrote ${join(outDir, 's1-audit.md')} and s1-audit.json`)
+  writeFileSync(join(outDir, `s1-audit${scope === 'all' ? '-all' : ''}.md`), text)
+  writeFileSync(join(outDir, `s1-audit${scope === 'all' ? '-all' : ''}.json`), `${JSON.stringify({ generatedAt: new Date().toISOString(), meta: meta.counts, coverage: { scopeTotal, covered, provinceCountDist, programCounts: { min: programCounts[0], median: programCounts[Math.floor(programCounts.length / 2)], max: programCounts[programCounts.length - 1] } }, requirement: { conflicts: conflicts.length, patterns: count(offerings, (r) => r.requirementPattern || 'conflict'), confidence: count(offerings, (r) => r.confidence), variants: variants.length }, catalog: { match: matchDist, unmatchedTop: unmatched.slice(0, 100) }, simulation: { combos312: sim312, combos33: sim33 }, sources: meta.sources, nameMismatches: meta.nameMismatches, campusMappings: meta.campusMappings, unmatchedSchoolNames: meta.unmatchedSchoolNames, strongBase: strongBase.length, problems }, null, 2)}\n`)
+  console.log(`\nwrote ${join(outDir, `s1-audit${scope === 'all' ? '-all' : ''}.md`)} and .json`)
 }
 if (problems.length) process.exit(1)

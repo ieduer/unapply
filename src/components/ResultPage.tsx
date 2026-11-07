@@ -15,7 +15,7 @@ import { recordUnapplyDownload } from '../lib/bdfzIdentity'
 import { allQuestions } from '../data/questions'
 import type { ProgramsLayerState } from '../lib/programsData'
 import type { ProgramFilterOutcome, ProgramVerdict } from '../engine/programs'
-import { describeProgramPrefs, indexSchoolPrograms, isAdmissible } from '../engine/programs'
+import { countAdmissible, describeProgramPrefs } from '../engine/programs'
 import { programPrefsActive } from '../data/programPrefs'
 import { programsManifest } from '../data/programsManifest'
 
@@ -151,17 +151,18 @@ export function ResultPage({
   const prefsActive = programPrefsActive(programs.prefs)
   const outcome = programs.outcome
   const finalKept = outcome ? outcome.kept : result.kept
-  const programIndex = useMemo(() => (programs.payload ? indexSchoolPrograms(programs.payload) : null), [programs.payload])
+  const programIndex = programs.index
   const chosenSubjects = useMemo(() => (programs.prefs.subjects.length === 3 ? new Set(programs.prefs.subjects) : null), [programs.prefs.subjects])
   const dist = useMemo(() => distribute(finalKept), [finalKept])
   const relaxHints = useMemo(() => suggestRelax(result.stats, 3), [result.stats])
   const topKept = finalKept.slice(0, 24)
   const programLine = (school: FilterResult['kept'][number]): string | null => {
-    const entry = school.moeCode ? programIndex?.get(school.moeCode) : undefined
+    const entry = school.moeCode && programIndex ? programIndex.schools[school.moeCode] : undefined
     if (!entry) return null
-    const total = entry.programs.length
-    if (chosenSubjects) return `${programsManifest.admissionYear} 年招生專業（類）${total} 個 · 你的選科可報 ${entry.programs.filter((p) => isAdmissible(p.r, chosenSubjects)).length} 個`
-    return `${programsManifest.admissionYear} 年招生專業（類）${total} 個 · 選考要求已入庫`
+    if (entry.u === 0) return `${programsManifest.admissionYear} 年高職（專科）專業 ${entry.v} 個 · 本科專業未公布，起點條件不判定`
+    const vocational = entry.v > 0 ? ` · 另有專科專業 ${entry.v} 個` : ''
+    if (chosenSubjects) return `${programsManifest.admissionYear} 年本科招生專業（類）${entry.u} 個 · 你的選科可報 ${countAdmissible(entry, chosenSubjects, programIndex!)} 個${vocational}`
+    return `${programsManifest.admissionYear} 年本科招生專業（類）${entry.u} 個 · 選考要求已入庫${vocational}`
   }
 
   const lookupResults = useMemo(() => {
@@ -251,13 +252,13 @@ export function ResultPage({
               <p>還沒設選考科目或意向專業。設了之後，這裡會另列出「選科報不了」「沒開這個專業」的學校，不混進上面的 43 題計數。</p>
             )}
             {prefsActive && describeProgramPrefs(programs.prefs).map((line) => <p key={line} className="text-fog-200">{line}</p>)}
-            {prefsActive && programs.status === 'loading' && <p className="text-fog-500">正在載入 {programsManifest.counts.schools} 校的招生專業與選考要求…</p>}
+            {prefsActive && programs.status === 'loading' && <p className="text-fog-500">正在載入 {programsManifest.counts.undergraduateSchools} 所本科校的招生專業與選考要求…</p>}
             {prefsActive && programs.status === 'error' && <p>招生專業資料載入失敗，這一層暫時不生效；43 題的結果照常。</p>}
             {outcome && (
               <p className="text-fog-500">
-                有資料可判定 {outcome.stats.evaluated} 校（雙一流 {programsManifest.counts.schools} 校的 {programsManifest.admissionYear} 年公布表）：
+                有本科專業資料可判定 {outcome.stats.evaluated} 校（{programsManifest.admissionYear} 年四省公布表，{programsManifest.counts.undergraduateSchools} 所本科校）：
                 沒開意向專業劃掉 {outcome.stats.struckByProgram} 所、選科不符劃掉 {outcome.stats.struckBySubjects} 所、
-                只有試驗班對不到專業類而不判定 {outcome.stats.unknown} 所；未入庫 {outcome.stats.noData} 所不受影響。
+                只有試驗班對不到專業類而不判定 {outcome.stats.unknown} 所；沒有本科專業資料的 {outcome.stats.noData} 所（含專科校）不受影響。
               </p>
             )}
             <button

@@ -5,12 +5,14 @@
 //   node scripts/fetch_s1_sources.mjs --offline             # 只核對，不碰網路；缺檔直接失敗
 //   node scripts/fetch_s1_sources.mjs --repin               # 補登缺少的 sha256／bytes／fetchedAt（只對尚未釘定的來源；已釘定的不符仍失敗）
 //   node scripts/fetch_s1_sources.mjs --cache-dir DIR       # external 來源的存放目錄（預設 .tmp/s1-sources，已在 .gitignore）
+//   node scripts/fetch_s1_sources.mjs --from-r2              # external 大檔改從既有 R2 桶取回（rclone 遠端 r2:，registry 的 r2 欄），不打原網站
 //
 // 來源清單：data/research/s1_sources.json。每條 store=committed 的原檔入庫在 data/research/raw/s1/，
 // store=external 的只釘 SHA-256／大小／來源網址。任何已釘雜湊不符都 exit 1——這一層的失效模式是
 // 上游悄悄換檔，而我們的 CSV 看起來一切正常。只抓官方／權威來源，不用 AI 生成資料，不付費。
 
 import { createHash } from 'node:crypto'
+import { spawnSync } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -20,6 +22,7 @@ const args = new Set(process.argv.slice(2).filter((a) => a.startsWith('--') && !
 const cacheDirArg = process.argv.indexOf('--cache-dir')
 const cacheDir = resolve(cacheDirArg >= 0 ? process.argv[cacheDirArg + 1] : join(root, '.tmp', 's1-sources'))
 const offline = args.has('--offline')
+const fromR2 = args.has('--from-r2')
 const repin = args.has('--repin')
 const registryPath = join(root, 'data', 'research', 's1_sources.json')
 const committedDir = join(root, 'data', 'research', 'raw', 's1')
@@ -67,6 +70,13 @@ for (const source of registry.sources) {
   } else if (offline) {
     problems.push(`${source.id}: 缺少 ${target}（--offline 不下載）`)
     continue
+  } else if (fromR2 && source.r2) {
+    // 原檔已上既有私密桶；rclone 遠端 r2: 由工作站既有設定提供（不在倉庫）。
+    mkdirSync(dirname(target), { recursive: true })
+    const out = spawnSync('rclone', ['copyto', `r2:${source.r2.bucket}/${source.r2.key}`, target], { encoding: 'utf8' })
+    if (out.status !== 0 || !existsSync(target)) { problems.push(`${source.id}: R2 取回失敗 r2:${source.r2.bucket}/${source.r2.key} — ${(out.stderr || out.error?.message || '').trim().slice(0, 160)}`); continue }
+    buf = readFileSync(target)
+    origin = 'r2'
   } else {
     try {
       buf = await download(source)
@@ -98,7 +108,7 @@ for (const source of registry.sources) {
     continue
   }
   if (origin === 'downloaded' && !source.fetchedAt) { source.fetchedAt = new Date().toISOString().slice(0, 10); changed = true }
-  report.push(`${origin === 'downloaded' ? 'GET ' : 'ok  '} ${source.id.padEnd(30)} ${String(buf.length).padStart(9)} B  ${source.store === 'committed' ? 'committed' : 'external '}  ${digest.slice(0, 12)}`)
+  report.push(`${origin === 'downloaded' ? 'GET ' : origin === 'r2' ? 'R2  ' : 'ok  '} ${source.id.padEnd(30)} ${String(buf.length).padStart(9)} B  ${source.store === 'committed' ? 'committed' : 'external '}  ${digest.slice(0, 12)}`)
 }
 
 for (const line of report) console.log(line)

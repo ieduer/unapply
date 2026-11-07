@@ -12,7 +12,7 @@ import { getEnvironment } from '../data/environment'
 import { isHardFilterableQuality } from '../engine/filter'
 import { loadCampusesByProvince } from '../lib/runtimeData'
 import { getRegularChannelState } from '../lib/schoolProfile'
-import type { ProgramsLayerState } from '../lib/programsData'
+import { loadProgramBucket, type ProgramsLayerState } from '../lib/programsData'
 import type { ProgramOffering } from '../data/programsTypes'
 import { evaluateSchoolPrograms, isAdmissible } from '../engine/programs'
 import { programPrefsActive, requirementLabel, subjectLabels } from '../data/programPrefs'
@@ -78,17 +78,25 @@ function contribHref(schoolId: string, dim: DimensionId): string {
 export function SchoolDetail({ school, programs, candidateProvince, onCandidateProvinceChange: setCandidateProvince, onBack }: Props) {
   const [campusMap, setCampusMap] = useState<Record<string, CampusResearchRecord[]>>({})
   const [showAllPrograms, setShowAllPrograms] = useState(false)
-  const programEntry = useMemo(
-    () => (programs.payload && school.moeCode ? programs.payload.schools.find((entry) => entry.moeCode === school.moeCode) : undefined),
-    [programs.payload, school.moeCode],
-  )
-  const programVerdict = useMemo(() => evaluateSchoolPrograms(programEntry, programs.prefs), [programEntry, programs.prefs])
-  const strongBase = programs.payload && school.moeCode ? programs.payload.strongBase.find((row) => row.moeCode === school.moeCode) : undefined
+  const [programList, setProgramList] = useState<{ moeCode: string; programs: ProgramOffering[] } | null>(null)
+  const [programListError, setProgramListError] = useState(false)
+  const programEntry = programs.index && school.moeCode ? programs.index.schools[school.moeCode] : undefined
+  const programVerdict = useMemo(() => (programs.index ? evaluateSchoolPrograms(programEntry, programs.prefs, programs.index) : null), [programEntry, programs.index, programs.prefs])
+  const strongBase = programs.index && school.moeCode ? programs.index.strongBase.find((row) => row.moeCode === school.moeCode) : undefined
   const chosenSubjects = programs.prefs.subjects.length === 3 ? new Set(programs.prefs.subjects) : null
+  useEffect(() => {
+    if (!programEntry || !school.moeCode || programListError) return
+    if (programList && programList.moeCode === school.moeCode) return
+    let alive = true
+    loadProgramBucket(school.province)
+      .then((bucket) => { if (alive) setProgramList({ moeCode: school.moeCode!, programs: bucket[school.moeCode!] ?? [] }) })
+      .catch(() => { if (alive) setProgramListError(true) })
+    return () => { alive = false }
+  }, [programEntry, programList, programListError, school.moeCode, school.province])
   const programSources = useMemo(() => {
-    if (!programs.payload || !programEntry) return [] as ResearchEvidence[]
-    const payload = programs.payload
-    const rows: ResearchEvidence[] = programEntry.provinces
+    if (!programs.index || !programEntry) return [] as ResearchEvidence[]
+    const payload = programs.index
+    const rows: ResearchEvidence[] = programEntry.p.split('|')
       .map((tag) => payload.provinceSources[tag])
       .filter((item): item is { sourceId: string; nameZh: string } => Boolean(item))
       .map((item) => {
@@ -98,17 +106,19 @@ export function SchoolDetail({ school, programs, candidateProvince, onCandidateP
     const catalog = payload.sources['moe-bk-catalog-2026']
     if (catalog) rows.push({ title: `教育部《本科專業目錄（${payload.catalogYear} 年）》`, url: catalog.url, date: catalog.date, confidence: 'high' })
     return rows
-  }, [programEntry, programs.payload])
-  const programsPayload = programs.payload
+  }, [programEntry, programs.index])
+  const programsPayload = programs.index
+  const currentList = programList && programList.moeCode === school.moeCode ? programList.programs : null
   const programGroups = useMemo(() => {
-    if (!programEntry) return [] as { campus: string; programs: ProgramOffering[] }[]
-    const groups = new Map<string, ProgramOffering[]>()
-    for (const program of programEntry.programs) {
-      const list = groups.get(program.c) ?? groups.set(program.c, []).get(program.c)!
-      list.push(program)
+    if (!currentList) return [] as { level: 'u' | 'v'; campus: string; programs: ProgramOffering[] }[]
+    const groups = new Map<string, { level: 'u' | 'v'; campus: string; programs: ProgramOffering[] }>()
+    for (const program of currentList) {
+      const key = `${program.l}|${program.c}`
+      const group = groups.get(key) ?? groups.set(key, { level: program.l, campus: program.c, programs: [] }).get(key)!
+      group.programs.push(program)
     }
-    return [...groups.entries()].sort(([a], [b]) => (a === '' ? -1 : b === '' ? 1 : a.localeCompare(b))).map(([campus, list]) => ({ campus, programs: list }))
-  }, [programEntry])
+    return [...groups.values()].sort((a, b) => a.level.localeCompare(b.level) || (a.campus === '' ? -1 : b.campus === '' ? 1 : a.campus.localeCompare(b.campus)))
+  }, [currentList])
   const qualityDims = DIMENSION_GROUPS.B
   const admissionChannels = school.admissionChannels
   const regularChannelState = getRegularChannelState(school, { candidateProvince })
@@ -288,23 +298,24 @@ export function SchoolDetail({ school, programs, candidateProvince, onCandidateP
               專業名稱用公布表原文；目錄對應按教育部《本科專業目錄》。
             </p>
           </div>
-          {programs.status === 'loading' && !programs.payload && (
+          {programs.status === 'loading' && !programs.index && (
             <p className="text-sm text-fog-500">正在載入招生專業資料…</p>
           )}
           {programs.status === 'error' && (
             <p className="text-sm text-fog-300">招生專業資料載入失敗，請重新整理後再看。</p>
           )}
-          {programs.payload && !programEntry && (
+          {programs.index && !programEntry && (
             <p className="text-xs text-fog-500 leading-relaxed">
-              本校的招生專業與選考要求尚未入庫（首批只有雙一流 {programsManifest.counts.schools} 校）。沒有資料不影響它在結果裡的去留；要查請用上方的陽光高考院校庫或所在省招考入口。
+              本校 {programsManifest.admissionYear} 年的招生專業與選考要求沒有出現在湖北、江蘇、上海、浙江四省公布表裡（可能當年未在這四省安排計劃）。沒有資料不影響它在結果裡的去留；要查請用上方的陽光高考院校庫或所在省招考入口。
             </p>
           )}
           {programsPayload && programEntry && (
             <div className="flex flex-col gap-4">
               <div className="flex flex-wrap gap-2">
-                <EvidenceChip label={`${programEntry.programs.length} 個招生專業（類）`} />
-                <EvidenceChip label={`${programEntry.programs.filter((p) => p.m !== 'none').length} 個對應到國標目錄`} />
-                {programGroups.length > 1 && <EvidenceChip label={`校區／學院：${programGroups.filter((g) => g.campus).map((g) => g.campus).join('、')}`} />}
+                {programEntry.u > 0 && <EvidenceChip label={`${programEntry.u} 個本科招生專業（類）`} />}
+                {programEntry.u > 0 && <EvidenceChip label={`${programEntry.u - programEntry.x} 個對應到國標目錄`} />}
+                {programEntry.v > 0 && <EvidenceChip label={`${programEntry.v} 個高職（專科）專業`} />}
+                {programGroups.some((g) => g.campus) && <EvidenceChip label={`校區／學院：${[...new Set(programGroups.filter((g) => g.campus).map((g) => g.campus))].join('、')}`} />}
                 {strongBase && <EvidenceChip label={`強基計劃試點高校（${strongBase.since} 年起）`} />}
               </div>
               {strongBase && programsPayload.sources[strongBase.sourceId] && (
@@ -317,36 +328,40 @@ export function SchoolDetail({ school, programs, candidateProvince, onCandidateP
                   {programsPayload.sources[strongBase.sourceId].title}（{programsPayload.sources[strongBase.sourceId].date}） ↗
                 </a>
               )}
-              {programPrefsActive(programs.prefs) && (
+              {programPrefsActive(programs.prefs) && programVerdict && (
                 <div className="rounded-xl border border-ink-700 bg-ink-900 px-4 py-3 text-sm text-fog-200 leading-relaxed flex flex-col gap-1">
                   <span className="mono text-xs uppercase tracking-[0.2em] text-fog-500">你的起點條件</span>
                   {programVerdict.state === 'kept' && (
                     <span>
-                      {programs.prefs.intent ? `有開設「${programs.prefs.intent.programName ?? programs.prefs.intent.className}」：${programVerdict.matching.length} 個招生專業（類）` : `${programVerdict.matching.length} 個招生專業（類）`}
-                      {chosenSubjects ? `，你的選科 ${subjectLabels(programs.prefs.subjects).join('＋')} 可報 ${programVerdict.admissible.length} 個。` : '。'}
+                      {programs.prefs.intent ? `有開設「${programs.prefs.intent.programName ?? programs.prefs.intent.className}」：${programVerdict.matchingCount} 個本科招生專業（類）` : `${programVerdict.matchingCount} 個本科招生專業（類）`}
+                      {chosenSubjects ? `，你的選科 ${subjectLabels(programs.prefs.subjects).join('＋')} 可報 ${programVerdict.admissibleCount} 個。` : '。'}
                     </span>
                   )}
                   {programVerdict.state === 'struck' && programVerdict.reasons.map((reason) => <span key={reason.kind}>起點條件會劃掉它：{reason.label}</span>)}
                   {programVerdict.state === 'unknown' && (
                     <span>沒找到「{programs.prefs.intent?.programName ?? programs.prefs.intent?.className}」，但本校有 {programVerdict.experimental} 個試驗班對不到專業類，本站不替你判定、照常保留。</span>
                   )}
+                  {programVerdict.state === 'no-data' && <span>本校只公布了高職（專科）專業，起點條件不判定、照常保留。</span>}
                 </div>
               )}
+              {!currentList && !programListError && <p className="text-sm text-fog-500">正在載入本省的招生專業清單…</p>}
+              {programListError && <p className="text-sm text-fog-300">招生專業清單載入失敗，請重新整理後再看。</p>}
               <div className="flex flex-col gap-3">
                 {programGroups.map((group) => {
                   const visible = showAllPrograms ? group.programs : group.programs.slice(0, programGroups.length > 1 ? 12 : 30)
+                  const heading = [group.level === 'v' ? '高職（專科）' : '', group.campus].filter(Boolean).join(' · ')
                   return (
-                    <div key={group.campus || 'main'} className="flex flex-col gap-2">
-                      {group.campus && <span className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">{group.campus}</span>}
+                    <div key={`${group.level}-${group.campus || 'main'}`} className="flex flex-col gap-2">
+                      {heading && <span className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">{heading}</span>}
                       <ul className="grid gap-2 sm:grid-cols-2">
                         {visible.map((program) => {
-                          const admissible = chosenSubjects ? isAdmissible(program.r, chosenSubjects) : null
+                          const admissible = chosenSubjects && program.l === 'u' ? isAdmissible(program.r, chosenSubjects) : null
                           return (
                             <li key={`${program.c}-${program.n}`} className="rounded-lg border border-ink-800 bg-ink-900 px-3 py-2 text-xs flex flex-col gap-1">
                               <span className="text-fog-100 text-sm">{program.n}</span>
                               <span className="text-fog-500">
                                 {requirementLabel(program.r)}
-                                {program.m === 'class' ? ' · 按專業類招生' : program.m === 'none' ? ' · 試驗班，未對應專業類' : ''}
+                                {program.m === 'class' ? ' · 按專業類招生' : program.m === 'none' ? ' · 試驗班，未對應專業類' : program.m === 'vocational' ? ' · 專科，不對本科目錄' : ''}
                               </span>
                               {admissible !== null && (
                                 <span className={admissible ? 'text-accent-500' : 'text-fog-300'}>{admissible ? '你的選科可報' : '你的選科報不了'}</span>
@@ -363,7 +378,7 @@ export function SchoolDetail({ school, programs, candidateProvince, onCandidateP
                     onClick={() => setShowAllPrograms(true)}
                     className="self-start px-4 py-2 rounded-full border border-ink-700 text-xs text-fog-300 hover:text-fog-100 hover:border-fog-500 min-h-[44px]"
                   >
-                    展開全部 {programEntry.programs.length} 個
+                    展開全部 {currentList?.length ?? 0} 個
                   </button>
                 )}
               </div>

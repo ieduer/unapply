@@ -61,7 +61,7 @@ export function StartConditions({ prefs, onChange }: Props) {
         <h2 className="serif text-2xl">選考科目與意向專業</h2>
         <p className="text-sm text-fog-400 leading-relaxed">
           這兩項不進 43 題，也不改你的作答紀錄：結果頁會在 43 題之後另標出「你的選科報不了」「沒開這個專業」的學校，分開計數。
-          目前有 {programsManifest.admissionYear} 年招生專業與選考要求資料的是雙一流 {programsManifest.counts.schools} 所（{programsManifest.counts.offerings.toLocaleString()} 個招生專業（類）），其他學校不受這兩項影響。
+          目前有 {programsManifest.admissionYear} 年本科招生專業與選考要求資料的是 {programsManifest.counts.undergraduateSchools.toLocaleString()} 所本科校（{programsManifest.counts.undergraduateOfferings.toLocaleString()} 個招生專業（類），取自湖北、江蘇、上海、浙江四省公布表）；沒有資料的學校（含只公布專科專業的）不受這兩項影響。
         </p>
       </div>
 
