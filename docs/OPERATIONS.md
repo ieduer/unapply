@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Git branch: `master`; deployed source `2e79f9b`; documentation HEAD is separately recorded by Git
+- Git branch: `master`; deployed source `6b70522`; documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -35,7 +35,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 
 | Resource | Live type | Readback | Detail |
 | --- | --- | --- | --- |
-| `unapply` | Pages | verified 2026-11-07 | production branch `master`; canonical deployment `7aa5e5b5-345e-403b-8cd6-d3d0076178d1` (source `2e79f9b`) |
+| `unapply` | Pages | verified 2026-11-07 | production branch `master`; canonical deployment `021e1a3d-164b-408b-a2af-fcec41712d31` (source `6b70522`) |
 
 ## Authority and dependencies
 
@@ -54,10 +54,10 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - External/local build inputs, archived paths, receipts, retention, and hydrate commands not stated below are `review_required` and block deletion.
 
 Catalog backup evidence:
-- Cloudflare immutable Pages deployments: current=7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), previous=0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), earlier=d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
+- Cloudflare immutable Pages deployments: current=021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), previous=7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), earlier=0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
 
 Catalog restore evidence:
-- restore previous code/assets by rolling back to production deployment 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514)
+- restore previous code/assets by rolling back to production deployment 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b)
 
 Before deleting any local resource, satisfy the workspace path-preserving archive, remote readback, isolated restore, receipt, handbook, and project-state gates.
 
@@ -120,7 +120,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to deployment `0ec6d42f-3b93-4859-bd22-813e7f000c3e` (source `d4ae514`), after a fresh live baseline readback (rolls back the start conditions, the programs layer and the per-school programs section; the world atlas and origin question stay). Direct API rollback without a registered transaction is not release authority.
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to deployment `7aa5e5b5-345e-403b-8cd6-d3d0076178d1` (source `2e79f9b`), after a fresh live baseline readback (rolls back fix batch A: 上海體育大學 level, atlas date determinism, verdict copy). Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -147,7 +147,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-11-07 — production 2e79f9b; twelve gates (test:s1 8 added), 43 of 43 assets on custom and immutable hosts, signed-out real path (start conditions, programs layer on the result page, per-school programs section), health active. Exact evidence below.
+8. Last verified: 2026-11-07 — production 6b70522 (fix batch A on top of 2e79f9b); twelve gates, 43 of 43 assets on custom and immutable hosts, signed-out real path (start conditions, programs layer on the result page, per-school programs section), health active. Exact evidence below.
 
 ## Synchronized documentation and handoff
 
@@ -321,7 +321,7 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力；Fun
 
 報告：`/Users/ylsuen/CF/reports/operations/nope-global-atlas-20261106/REPORT.md`。
 
-## 2026-11-07 S1 首批：起點條件（選考科目／意向專業）與雙一流招生專業（已上線，當前權威）
+## 2026-11-07 S1 首批：起點條件（選考科目／意向專業）與雙一流招生專業（已上線；修正批 A 疊加於其上）
 
 **授權**：站長 2026-11-07 在主會話回覆「入庫實作，依據最終goal繼續推進。」（由主會話轉達本側會話），涵蓋入庫、實作與本版正式發布；付費資源仍須另行申請。
 
@@ -361,3 +361,15 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 已登入學生的 A+ 證據路徑本次未改、未實測（最近一次登入實測 2026-10-23）。
 
 報告：`/Users/ylsuen/CF/reports/operations/nope-s1-programs-admission-20261106/RELEASE.md`（發布）與 `REPORT.md`（資料層設計與稽核）。
+
+## 2026-11-07 修正批 A：上海體育大學雙一流標籤、世界地圖日期戳、判定文案（已上線，當前權威）
+
+**授權**：站長 2026-11-07 主會話「做新題，擴到全部，22 MB放R2，該修正的都修正」之「該修正的都修正」。
+
+**內容（`6b70522`）**：`scripts/build_official_schools.mjs` 新增 `LEVEL_LIST_NAME_BY_CURRENT_NAME`（上海体育大学 → 名單舊名 上海体育学院，來源：教育部 2026 名單標識碼 4131010277、第二輪雙一流名單），
+重產 `officialSchools.ts`／runtime `schools.json`／`runtimeManifest`：雙一流非 211 由 31 → 32，民辦雙一流集合 144/144，其餘 2,951 筆不變。
+`scripts/build_world_atlas.mjs` 的 `generatedAt` 改取輸入最晚讀取／核查日（版本回到 `8a4beeaa84b5`，跨日重建不再變）。`src/engine/programs.ts` 選科單獨生效的判定文案補空格。
+
+**驗證與發布**：十二道閘門全過（`nope-a/check.txt`）；候選 `45eb204f-78cd-40e6-8fca-62fa241ca7e3` 43/43，候選真實路徑：中國科學技術大學判定文案「報不了這 56 個招生專業（類）」、上海體育大學詳情顯示「雙一流（非 211）」與 24 個招生專業；
+收據 `20261107-nope-s1-fixes-a`（3 個 reviewed_changes）；正式部署 `021e1a3d-164b-408b-a2af-fcec41712d31`，來源 `6b70522e08dea910b2630fdb07ce16cedf1db5b3`，生效 `2026-11-07T03:30:29.192795Z`；
+正式與不可變網址 43/43；health active；正式真實路徑：上海體育大學詳情層次徽章與專業區塊、主控台無錯誤。登記簿 accepted → `021e1a3d`／`6b70522`，rollback → `7aa5e5b5`／`2e79f9b`。Status `20261107-nope-s1-fixes-a` r1（fix）。
