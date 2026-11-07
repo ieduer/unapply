@@ -1,10 +1,17 @@
 # Project State
 
 Last updated: 2026-11-07 UTC
-Current version: 893667b（已部署 26154a49，生效 2026-11-07T09:12:01Z；批 D2 疊加於批 D3 26bad8c／df4540a2）
-Current objective: 全球化路線圖（docs/GLOBAL_ROADMAP.md）：S0、S1 全批（首批、A、B、C、D1＋D4）與 S2 兩半（D3 港澳臺院校池、D2 中外合作辦學）皆已上線並登記 accepted；待站長審核項列於 `reports/operations/nope-s2-coverage-jointprograms-20261107/PENDING_OWNER_REVIEW.md`（conflict 口徑、不可達省表、港澳臺三條待覆核、合作辦學收費→A4）；S3 海外、S4 多語言與起點分支題、S5 服務化由後續會話串行接續；原 43 維效度缺口仍列後續。
+Current version: 7443bb5（已部署 41a45cad，生效 2026-11-07T10:24:43Z；批 S3 疊加於批 D2 893667b／26154a49）
+Current objective: 全球化路線圖（docs/GLOBAL_ROADMAP.md）：S0、S1 全批（首批、A、B、C、D1＋D4）、S2 兩半（D3 港澳臺院校池、D2 中外合作辦學）與 S3 海外可申請學校層（批 S3）皆已上線並登記 accepted；待站長審核項列於 `reports/operations/nope-s2-coverage-jointprograms-20261107/PENDING_OWNER_REVIEW.md`（conflict 口徑、不可達省表、港澳臺三條待覆核、合作辦學收費→A4）與 `reports/operations/nope-s3-overseas-20261107/nope-s3/PENDING_OWNER_REVIEW.md`（被擋／純 JS 機構與國家層頁人工覆核、medium 7 所是否上鏈接、海外層是否進導航文案）；S4 多語言與起點分支題、S5 服務化由後續會話串行接續；原 43 維效度缺口仍列後續。
 
-## 2026-11-07 批 D2：中外合作辦學機構／項目資料層（已上線，當前權威）
+## 2026-11-07 批 S3：海外可申請學校層 #/overseas（已上線，當前權威）
+
+正式部署 `41a45cad-b152-4a16-9f38-3db892008648`，來源 `7443bb5`，生效 `2026-11-07T10:24:43Z`；回滾 `26154a49`／`893667b`。Status `20261107-nope-s3-overseas-admissions` r1。
+- 研究會話三張 CSV 入庫（403 所非大陸 GRAS 前 50 機構、91 條申請平台、90 條簽證頁；零付費、電郵已去識別）→ `build_overseas_layer.mjs` fail-closed → index（gzip 17 KiB）＋44 個地區檔懶載，manifest `23c590c30412`：官方頁已讀到 343（high 336／medium 7）、被擋 42、未找到 16、純 JS 2；招生頁上鏈接 336、平台 63/91、簽證 47/90；高考採認原句 35。
+- 只抄官方頁原文、不解讀、不代表錄取可能；鏈接規則 verified＋high／平台需機構頁佐證／簽證 verified；不改題集／契約／UC；不進引擎。入口：首頁「其他國家或地區」主按鈕、世界地圖機構面板、結果頁頁尾、About。
+- 十五道閘門於 `7443bb5`（新增 `test:overseas` 9）；候選 `f8fc27da` 與正式 126/126；真實路徑與候選一致。待站長：`reports/operations/nope-s3-overseas-20261107/nope-s3/PENDING_OWNER_REVIEW.md`。
+
+## 2026-11-07 批 D2：中外合作辦學機構／項目資料層（歷史；批 S3 疊加於其上）
 
 正式部署 `26154a49-5bf2-4943-9105-c2526cf49e06`，來源 `893667b`，生效 `2026-11-07T09:12:01Z`；回滾 `df4540a2`／`26bad8c`。Status `20261107-nope-s2-jointprograms-d2` r1。
 - 唯一主來源 crs.jsj.edu.cn 名單 1,834 條詳情全部讀到：機構 411、項目 1,423（內地與港澳臺合作 35），仍在名單 1,781；對回主表 1,826 條掛到 667 校，對不到 8 條（非普通高校）只列不掛校。manifest `a249d541a01a`。平台無學費欄，不產生 A4。

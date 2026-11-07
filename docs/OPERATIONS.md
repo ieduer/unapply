@@ -455,3 +455,17 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 **介面**：學校詳情新增「中外合作辦學」區塊（逐條：機構／項目與合作類型、名稱、外方（或港澳臺）合作辦學者、層次、招生年份、專業、批准書／許可證編號與有效期、平台詳情鏈接、讀取日；對不到主表的條目不掛校）；結果卡片在招生專業行下多一行計數（「中外合作辦學 機構 n／項目 n」）；About 加來源。閘門新增 `test:joint`（5），`build` 鏈在 `data:hkmotw` 後加 `data:joint`。
 
 **回滾**：`df4540a2`／`26bad8c`，受審回滾交易；只切 Pages 版本，無資料庫遷移；學習記錄不受影響。證據：`reports/operations/nope-s2-coverage-jointprograms-20261107/nope-d2/`。
+
+## 2026-11-07 批 S3：海外可申請學校層 `#/overseas`（已上線，當前權威）
+
+**授權**：站長 2026-11-07 睡前裁定「不涉及付費都可以推進，使用到的資源做好記錄。s1直至s5，包括橫切，最終完成全部。我睡，你持續推進，必須我審核的留到最後。」葉子資料／介面更新走登記的發布交易。不改題集／DimensionId／AnswerMap／learning manifest／Function／shared-ui；無 UC 或共享樞紐寫入；無付費或計量資源；無新 Cloudflare 資源或綁定；不改導航／門戶／Pulse／UC 登記（新頁在既有站內，同 D3）。起點分支題與多語言屬 S4，未做；需站長裁定的只寫入 `PENDING_OWNER_REVIEW.md`。
+
+**正式部署**：`41a45cad-b152-4a16-9f38-3db892008648`，來源 `7443bb5bc10c6fdc0a518d9f86c8abdc840bcf88`，生效 `2026-11-07T10:24:43Z`（Cloudflare `ended_on`）；候選 `f8fc27da`、正式 nope.bdfz.net 與不可變網址 126/126 一致；health active；正式真實路徑（`nope-s3/production-browser.json`）與候選一致。登記簿 accepted → `41a45cad`／`7443bb5`，rollback → `26154a49`／`893667b`。Status `20261107-nope-s3-overseas-admissions` r1（new，已發布並讀回 `status-readback-s3.txt`）。收據 `20261107-nope-s3-overseas-admissions`（5 個 reviewed_changes：index.html、App、Landing、ResultPage、AboutPage；HTTP 10/40）。
+
+**資料**（手冊 §3.7）：研究會話（只讀倉庫、零付費）的 `reports/operations/nope-s3-overseas-20261107/research/` 三張 CSV 入庫為 `data/research/overseas_admissions.2026-11-07.csv`（403 所非大陸 GRAS 前 50 機構）、`overseas_national_portals.2026-11-07.csv`（91 條）、`overseas_visa_policies.2026-11-07.csv`（90 條）＋ `overseas_admissions.2026-11-07.meta.json`（三檔 SHA-256、計數、抓取期間 2026-11-07T05:39–06:27Z、9,423 次 HTTP／587 個網域、方法指向 `METHOD.md`）→ `scripts/build_overseas_layer.mjs` → `public/data/overseas/index.json`（170 KiB，gzip 17 KiB）＋ `regions/<slug>.json` 44 檔（合計 2,251 KiB，只在進入地區頁時載入）＋ `src/data/overseasManifest.ts` `23c590c30412`：機構 verified 343（同官網網域 high 336／另一官方網域 medium 7）、blocked 42、not_found 16、needs_review 2；招生頁上鏈接 336；高考採認有原句 35（寫明接受 4／寫明不接受 2／另有內地考生管道 4／有提及 25）；平台 91 條上鏈接 63；簽證 90 條上鏈接 47；44 個地區。鏈接規則：機構招生頁 verified＋high 才上鏈接，medium 只給標題與主機名「待人工確認後才上鏈接」，其餘寫「官方頁本站未讀到：原因」；非政府共用平台需 ≥1 所機構官方頁佐證；簽證頁 verified 才上鏈接；原文片段與來源 URL 只在機構上線且 https＋同網域時成為鏈接。fail-closed 斷言：SHA-256、表頭白名單（擋人名欄）、全欄無電郵、id 對 S0 geo／websites、學科數對 top50、片段 ≤280 字、計數＝coverage、序列化後無電郵／會話字串／pageMatchScore、index gzip ≤200 KiB；版本雜湊只由內容決定（重建相同）。
+
+**介面**：`#/overseas`（`OverseasPage`：地區清單按機構數排序 → `#/overseas/<slug>`：申請平台與官方資訊入口、簽證主管機關頁、機構列表（已讀到的在前）→ `#/overseas/<slug>/<institutionId>` 自動展開：招生頁、高考採認標籤＋原句、接受的學歷資格、英語要求（原句第一個分數可能是總分或單項）、其他語言、國際生學費、申請管道、申請時程、資料學年、來源與抓取日；缺者寫「官方頁未讀到」）；首頁「其他國家或地區」主按鈕「看海外可申請學校」（`origins.ts` 提示改「海外機構招生頁已上線（S3）；題庫分支建設中（S4）」）；世界地圖機構面板「招生條件（官方頁原文）→」；結果頁頁尾「海外可申請學校」；About 來源段與路線圖 S3 行。閘門新增 `test:overseas`（9），`build` 鏈在 `data:joint` 後加 `data:overseas`；十五道閘門於 `7443bb5`（`nope-s3/check.txt`，dist 126 檔）。
+
+**驗證**：本機（Vite 5179，`local-browser.json`）、候選 `f8fc27da`（`candidate-browser.json`：真實點擊起點與主按鈕、英國／澳大利亞地區頁、皇家哈洛威（verified high）／蘭卡斯特（medium）／牛津（blocked）展開、世界地圖入口深鏈、結果頁頁尾）、正式（`production-browser.json`）三處一致；紙色／墨色 × 1440／390 文字對比最低 6.27（紙）／7.14（墨），0 低於 4.5，最小字 12px，無橫向溢出；主控台只有預覽域既有的 my.bdfz.net 會話 CORS 與簽出 401，正式站無錯誤。
+
+**回滾**：`26154a49`／`893667b`，受審回滾交易；只切 Pages 版本，無資料庫遷移；學習記錄不受影響。證據：`reports/operations/nope-s3-overseas-20261107/nope-s3/`；資源記錄 `nope-s3/resources.md`；待站長 `nope-s3/PENDING_OWNER_REVIEW.md`。
