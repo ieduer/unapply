@@ -572,8 +572,17 @@ function inferTuitionRange(ownership) {
   return undefined;
 }
 
+// 層次名單用的是公布當年的校名；教育部年度名單之後更名的學校要對回名單裡的舊名，
+// 否則會悄悄掉成「普通本科」（2026-11 核出：上海體育大學在第二輪雙一流名單裡是「上海体育学院」）。
+// 鍵＝教育部 2026 名單現名；值＝層次名單裡的寫法。來源：教育部 2026 名單（學校標識碼 4131010277）與
+// 第二輪「雙一流」名單 https://www.moe.gov.cn/srcsite/A22/s7065/202202/t20220211_598710.html。
+const LEVEL_LIST_NAME_BY_CURRENT_NAME = {
+  上海体育大学: '上海体育学院',
+};
+
 function inferLevel(name, moeLevel) {
-  const key = normalizeNameKey(name);
+  const current = normalizeNameKey(name);
+  const key = LEVEL_LIST_NAME_BY_CURRENT_NAME[current] ? normalizeNameKey(LEVEL_LIST_NAME_BY_CURRENT_NAME[current]) : current;
   if (C9_NAMES.has(key)) return 'C9';
   if (NINE_EIGHT_FIVE_NAMES.has(key)) return '985非C9';
   if (TWO_ONE_ONE_NAMES.has(key)) return '211非985';

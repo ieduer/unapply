@@ -78,7 +78,7 @@ export function evaluateSchoolPrograms(entry: SchoolPrograms | undefined, prefs:
   const chosen = prefs.subjects.length === 3 ? new Set(prefs.subjects) : null
   const admissible = chosen ? matching.filter((p) => isAdmissible(p.r, chosen)) : matching
   if (chosen && matching.length > 0 && admissible.length === 0) {
-    const scope = prefs.intent ? `「${prefs.intent.programName ?? prefs.intent.className}」的 ${matching.length} 個招生專業` : `${matching.length} 個招生專業（類）`
+    const scope = prefs.intent ? `「${prefs.intent.programName ?? prefs.intent.className}」的 ${matching.length} 個招生專業` : `這 ${matching.length} 個招生專業（類）`
     const patterns = [...new Set(matching.map((p) => requirementLabel(p.r)))].slice(0, 3).join('／')
     reasons.push({ kind: 'subjects', label: `選科 ${subjectLabels(prefs.subjects).join('＋')} 報不了${scope}（要求：${patterns}）` })
     return { state: 'struck', reasons, matching, admissible, experimental }

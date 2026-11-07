@@ -13349,7 +13349,7 @@ export const officialSchools = [
     "province": "上海",
     "city": "上海",
     "cityTier": "tier1",
-    "level": "普通本科",
+    "level": "雙一流非211",
     "moeCode": "4131010277",
     "department": "上海市",
     "moeLevel": "本科",

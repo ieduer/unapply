@@ -212,7 +212,8 @@ function main() {
   const land = landPaths(geojson)
   const payload = {
     version: '',
-    generatedAt: new Date().toISOString().slice(0, 10),
+    // 不用建置當天的日期：那會讓跨日重建的 payload 雜湊變動、發布樹變髒。改取所有輸入裡最晚的讀取／核查日，輸入不變就不變。
+    generatedAt: [top[0].fetchedAt, ...websiteRows.map((w) => w.verifiedAt), ...programs.map((p) => p.verifiedAt)].filter(Boolean).sort().pop(),
     ranking: {
       name: "ShanghaiRanking's Global Ranking of Academic Subjects", nameZh: '軟科世界一流學科排名', year: YEAR, topNMax: TOP_N_MAX,
       url: `https://www.shanghairanking.com/rankings/gras/${YEAR}`, fetchedAt: top[0].fetchedAt,
