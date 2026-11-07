@@ -13,6 +13,10 @@ import { ThemeCustomizer } from './shared-ui/ThemeCustomizer'
 import { candidateProvinceOptions, defaultCandidateProvince } from './data/admissionAuthorities'
 import type { CandidateProvince } from './data/admissionAuthorities'
 import { readStoredOrigin, saveOrigin, type OriginRegion } from './data/origins'
+import { programPrefsActive, readStoredProgramPrefs, saveProgramPrefs, type ProgramPrefs } from './data/programPrefs'
+import type { ProgramOfferingsPayload } from './data/programsTypes'
+import { applyProgramPrefs } from './engine/programs'
+import { loadProgramOfferings, type ProgramsLayerState } from './lib/programsData'
 import type { School } from './data/schools'
 import { filterSchools } from './engine/filter'
 import type { AnswerMap } from './engine/filter'
@@ -150,6 +154,10 @@ export default function App() {
   const [candidateProvince, setCandidateProvinceState] = useState<CandidateProvince>(readStoredCandidateProvince)
   // 所在地／升學身份是起點（決定從哪個題庫開始），同樣不進 AnswerMap。
   const [origin, setOriginState] = useState<OriginRegion | null>(() => readStoredOrigin())
+  // 起點條件（選考科目、意向專業）：在 43 題之後另算一層，不進 AnswerMap，也不改 A+ 證據。
+  const [programPrefs, setProgramPrefsState] = useState<ProgramPrefs>(() => readStoredProgramPrefs())
+  const [programsPayload, setProgramsPayload] = useState<ProgramOfferingsPayload | null>(null)
+  const [programsError, setProgramsError] = useState(false)
   const [schools, setSchools] = useState<School[] | null>(null)
   const [schoolLoadError, setSchoolLoadError] = useState<string | null>(null)
   const evidenceStatus = useSyncExternalStore(
@@ -187,6 +195,11 @@ export default function App() {
     saveOrigin(next)
   }, [])
 
+  const setProgramPrefs = useCallback((next: ProgramPrefs) => {
+    setProgramPrefsState(next)
+    saveProgramPrefs(next)
+  }, [])
+
   const go = useCallback((r: Route) => {
     navigate(r)
     setRoute(r)
@@ -214,10 +227,33 @@ export default function App() {
     }
   }, [route.name])
 
+  // 逐校招生專業資料（約 70 KiB gzip）只在結果頁、學校詳情，或起點條件生效的問卷頁載入。
+  const routeNeedsPrograms = route.name === 'result' || route.name === 'school'
+    || (route.name === 'filter' && programPrefsActive(programPrefs))
+  useEffect(() => {
+    if (!routeNeedsPrograms || programsPayload || programsError) return
+    let alive = true
+    // loadProgramOfferings 內部快取同一個 promise，重複進入不會重抓。
+    loadProgramOfferings()
+      .then((payload) => { if (alive) setProgramsPayload(payload) })
+      .catch(() => { if (alive) setProgramsError(true) })
+    return () => { alive = false }
+  }, [programsError, programsPayload, routeNeedsPrograms])
+  const programsStatus: ProgramsLayerState['status'] = programsPayload ? 'ready' : programsError ? 'error' : routeNeedsPrograms ? 'loading' : 'idle'
+
   const filterContext = useMemo(() => ({ candidateProvince }), [candidateProvince])
   const result = useMemo(
     () => schools ? filterSchools(schools, answers, filterContext) : null,
     [answers, filterContext, schools],
+  )
+  // 43 題之後再套起點條件；A+ 證據與分享摘要仍用 result（43 題）的 stats。
+  const programOutcome = useMemo(
+    () => (result && programsPayload && programPrefsActive(programPrefs) ? applyProgramPrefs(result.kept, programsPayload, programPrefs) : null),
+    [programPrefs, programsPayload, result],
+  )
+  const programsLayer = useMemo<ProgramsLayerState>(
+    () => ({ prefs: programPrefs, payload: programsPayload, status: programsStatus }),
+    [programPrefs, programsPayload, programsStatus],
   )
   const retrySchoolLoad = useCallback(() => {
     setSchoolLoadError(null)
@@ -249,6 +285,8 @@ export default function App() {
     <Landing
       origin={origin}
       onOriginChange={setOrigin}
+      programPrefs={programPrefs}
+      onProgramPrefsChange={setProgramPrefs}
       onStart={startMainland}
       onWorld={() => go({ name: 'world' })}
       onAbout={() => go({ name: 'about' })}
@@ -289,6 +327,7 @@ export default function App() {
         <ResultPage
           result={result}
           answers={answers}
+          programs={{ ...programsLayer, outcome: programOutcome, onEdit: () => go({ name: 'landing' }) }}
           candidateProvince={candidateProvince}
           onCandidateProvinceChange={setCandidateProvince}
           onRestart={() => {
@@ -325,6 +364,7 @@ export default function App() {
         ? (
           <SchoolDetail
             school={school}
+            programs={programsLayer}
             candidateProvince={candidateProvince}
             onCandidateProvinceChange={setCandidateProvince}
             onBack={() => history.length > 1 ? history.back() : go({ name: 'result' })}

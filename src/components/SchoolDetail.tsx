@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { School } from '../data/schools'
 import { DIMENSIONS, DIMENSION_GROUPS } from '../data/dimensions'
 import type { DimensionId } from '../data/dimensions'
@@ -12,9 +12,15 @@ import { getEnvironment } from '../data/environment'
 import { isHardFilterableQuality } from '../engine/filter'
 import { loadCampusesByProvince } from '../lib/runtimeData'
 import { getRegularChannelState } from '../lib/schoolProfile'
+import type { ProgramsLayerState } from '../lib/programsData'
+import type { ProgramOffering } from '../data/programsTypes'
+import { evaluateSchoolPrograms, isAdmissible } from '../engine/programs'
+import { programPrefsActive, requirementLabel, subjectLabels } from '../data/programPrefs'
+import { programsManifest } from '../data/programsManifest'
 
 interface Props {
   school: School
+  programs: ProgramsLayerState
   candidateProvince: CandidateProvince
   onCandidateProvinceChange: (province: CandidateProvince) => void
   onBack: () => void
@@ -69,8 +75,40 @@ function contribHref(schoolId: string, dim: DimensionId): string {
   return `#/contribute?school=${encodeURIComponent(schoolId)}&dim=${dim}`
 }
 
-export function SchoolDetail({ school, candidateProvince, onCandidateProvinceChange: setCandidateProvince, onBack }: Props) {
+export function SchoolDetail({ school, programs, candidateProvince, onCandidateProvinceChange: setCandidateProvince, onBack }: Props) {
   const [campusMap, setCampusMap] = useState<Record<string, CampusResearchRecord[]>>({})
+  const [showAllPrograms, setShowAllPrograms] = useState(false)
+  const programEntry = useMemo(
+    () => (programs.payload && school.moeCode ? programs.payload.schools.find((entry) => entry.moeCode === school.moeCode) : undefined),
+    [programs.payload, school.moeCode],
+  )
+  const programVerdict = useMemo(() => evaluateSchoolPrograms(programEntry, programs.prefs), [programEntry, programs.prefs])
+  const strongBase = programs.payload && school.moeCode ? programs.payload.strongBase.find((row) => row.moeCode === school.moeCode) : undefined
+  const chosenSubjects = programs.prefs.subjects.length === 3 ? new Set(programs.prefs.subjects) : null
+  const programSources = useMemo(() => {
+    if (!programs.payload || !programEntry) return [] as ResearchEvidence[]
+    const payload = programs.payload
+    const rows: ResearchEvidence[] = programEntry.provinces
+      .map((tag) => payload.provinceSources[tag])
+      .filter((item): item is { sourceId: string; nameZh: string } => Boolean(item))
+      .map((item) => {
+        const source = payload.sources[item.sourceId]
+        return { title: `${item.nameZh} · ${source.publisher}（${payload.admissionYear} 年選考科目要求表）`, url: source.url, date: source.date, confidence: 'high' as const }
+      })
+    const catalog = payload.sources['moe-bk-catalog-2026']
+    if (catalog) rows.push({ title: `教育部《本科專業目錄（${payload.catalogYear} 年）》`, url: catalog.url, date: catalog.date, confidence: 'high' })
+    return rows
+  }, [programEntry, programs.payload])
+  const programsPayload = programs.payload
+  const programGroups = useMemo(() => {
+    if (!programEntry) return [] as { campus: string; programs: ProgramOffering[] }[]
+    const groups = new Map<string, ProgramOffering[]>()
+    for (const program of programEntry.programs) {
+      const list = groups.get(program.c) ?? groups.set(program.c, []).get(program.c)!
+      list.push(program)
+    }
+    return [...groups.entries()].sort(([a], [b]) => (a === '' ? -1 : b === '' ? 1 : a.localeCompare(b))).map(([campus, list]) => ({ campus, programs: list }))
+  }, [programEntry])
   const qualityDims = DIMENSION_GROUPS.B
   const admissionChannels = school.admissionChannels
   const regularChannelState = getRegularChannelState(school, { candidateProvince })
@@ -239,6 +277,98 @@ export function SchoolDetail({ school, candidateProvince, onCandidateProvinceCha
               未收錄本校的逐省招生管道，按普通高考常規統招處理。
               這是先驗而不是結論——只有查到招生章程明確寫「本科只走綜合評價」時，才會改判並在此列出章程鏈接。
             </p>
+          )}
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <div>
+            <h2 className="serif text-xl">招生專業 · 選考科目要求（{programsManifest.admissionYear} 年）</h2>
+            <p className="mt-2 text-xs text-fog-500 leading-relaxed">
+              各省教育考試院／教育廳公布的「擬招生專業（類）選考科目要求」是學校自己報送、全國統一口徑的官方表；本站取湖北、江蘇、上海、浙江四省表交叉核對，不一致的一條都不收。
+              專業名稱用公布表原文；目錄對應按教育部《本科專業目錄》。
+            </p>
+          </div>
+          {programs.status === 'loading' && !programs.payload && (
+            <p className="text-sm text-fog-500">正在載入招生專業資料…</p>
+          )}
+          {programs.status === 'error' && (
+            <p className="text-sm text-fog-300">招生專業資料載入失敗，請重新整理後再看。</p>
+          )}
+          {programs.payload && !programEntry && (
+            <p className="text-xs text-fog-500 leading-relaxed">
+              本校的招生專業與選考要求尚未入庫（首批只有雙一流 {programsManifest.counts.schools} 校）。沒有資料不影響它在結果裡的去留；要查請用上方的陽光高考院校庫或所在省招考入口。
+            </p>
+          )}
+          {programsPayload && programEntry && (
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-wrap gap-2">
+                <EvidenceChip label={`${programEntry.programs.length} 個招生專業（類）`} />
+                <EvidenceChip label={`${programEntry.programs.filter((p) => p.m !== 'none').length} 個對應到國標目錄`} />
+                {programGroups.length > 1 && <EvidenceChip label={`校區／學院：${programGroups.filter((g) => g.campus).map((g) => g.campus).join('、')}`} />}
+                {strongBase && <EvidenceChip label={`強基計劃試點高校（${strongBase.since} 年起）`} />}
+              </div>
+              {strongBase && programsPayload.sources[strongBase.sourceId] && (
+                <a
+                  href={programsPayload.sources[strongBase.sourceId].url}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="mono text-xs text-accent-500 hover:text-accent-400 break-all"
+                >
+                  {programsPayload.sources[strongBase.sourceId].title}（{programsPayload.sources[strongBase.sourceId].date}） ↗
+                </a>
+              )}
+              {programPrefsActive(programs.prefs) && (
+                <div className="rounded-xl border border-ink-700 bg-ink-900 px-4 py-3 text-sm text-fog-200 leading-relaxed flex flex-col gap-1">
+                  <span className="mono text-xs uppercase tracking-[0.2em] text-fog-500">你的起點條件</span>
+                  {programVerdict.state === 'kept' && (
+                    <span>
+                      {programs.prefs.intent ? `有開設「${programs.prefs.intent.programName ?? programs.prefs.intent.className}」：${programVerdict.matching.length} 個招生專業（類）` : `${programVerdict.matching.length} 個招生專業（類）`}
+                      {chosenSubjects ? `，你的選科 ${subjectLabels(programs.prefs.subjects).join('＋')} 可報 ${programVerdict.admissible.length} 個。` : '。'}
+                    </span>
+                  )}
+                  {programVerdict.state === 'struck' && programVerdict.reasons.map((reason) => <span key={reason.kind}>起點條件會劃掉它：{reason.label}</span>)}
+                  {programVerdict.state === 'unknown' && (
+                    <span>沒找到「{programs.prefs.intent?.programName ?? programs.prefs.intent?.className}」，但本校有 {programVerdict.experimental} 個試驗班對不到專業類，本站不替你判定、照常保留。</span>
+                  )}
+                </div>
+              )}
+              <div className="flex flex-col gap-3">
+                {programGroups.map((group) => {
+                  const visible = showAllPrograms ? group.programs : group.programs.slice(0, programGroups.length > 1 ? 12 : 30)
+                  return (
+                    <div key={group.campus || 'main'} className="flex flex-col gap-2">
+                      {group.campus && <span className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">{group.campus}</span>}
+                      <ul className="grid gap-2 sm:grid-cols-2">
+                        {visible.map((program) => {
+                          const admissible = chosenSubjects ? isAdmissible(program.r, chosenSubjects) : null
+                          return (
+                            <li key={`${program.c}-${program.n}`} className="rounded-lg border border-ink-800 bg-ink-900 px-3 py-2 text-xs flex flex-col gap-1">
+                              <span className="text-fog-100 text-sm">{program.n}</span>
+                              <span className="text-fog-500">
+                                {requirementLabel(program.r)}
+                                {program.m === 'class' ? ' · 按專業類招生' : program.m === 'none' ? ' · 試驗班，未對應專業類' : ''}
+                              </span>
+                              {admissible !== null && (
+                                <span className={admissible ? 'text-accent-500' : 'text-fog-300'}>{admissible ? '你的選科可報' : '你的選科報不了'}</span>
+                              )}
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </div>
+                  )
+                })}
+                {!showAllPrograms && programGroups.some((g) => g.programs.length > (programGroups.length > 1 ? 12 : 30)) && (
+                  <button
+                    onClick={() => setShowAllPrograms(true)}
+                    className="self-start px-4 py-2 rounded-full border border-ink-700 text-xs text-fog-300 hover:text-fog-100 hover:border-fog-500 min-h-[44px]"
+                  >
+                    展開全部 {programEntry.programs.length} 個
+                  </button>
+                )}
+              </div>
+              {programSources.length > 0 && <EvidenceRow label="來源" items={programSources} />}
+            </div>
           )}
         </div>
 
