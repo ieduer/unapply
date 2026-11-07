@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Git branch: `master`; deployed source `6fa8a4e`; documentation HEAD is separately recorded by Git
+- Git branch: `master`; deployed source `d4ae514`; documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -35,7 +35,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 
 | Resource | Live type | Readback | Detail |
 | --- | --- | --- | --- |
-| `unapply` | Pages | verified 2026-10-23 | production branch `master`; canonical deployment `d7a7924d-dfa2-49b8-ae19-52054b56266c` (source `6fa8a4e`) |
+| `unapply` | Pages | verified 2026-11-06 | production branch `master`; canonical deployment `0ec6d42f-3b93-4859-bd22-813e7f000c3e` (source `d4ae514`) |
 
 ## Authority and dependencies
 
@@ -54,10 +54,10 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - External/local build inputs, archived paths, receipts, retention, and hydrate commands not stated below are `review_required` and block deletion.
 
 Catalog backup evidence:
-- Cloudflare immutable Pages deployments: current=d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), previous=84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), earlier=321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
+- Cloudflare immutable Pages deployments: current=0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), previous=d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), earlier=84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
 
 Catalog restore evidence:
-- restore previous code/assets by rolling back to production deployment 84a4afd1-0602-4c1c-af4c-d5173c94da94
+- restore previous code/assets by rolling back to production deployment d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e)
 
 Before deleting any local resource, satisfy the workspace path-preserving archive, remote readback, isolated restore, receipt, handbook, and project-state gates.
 
@@ -120,7 +120,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to deployment `84a4afd1-0602-4c1c-af4c-d5173c94da94` (source `f2aa606`), after a fresh live baseline readback. Direct API rollback without a registered transaction is not release authority.
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to deployment `d7a7924d-dfa2-49b8-ae19-52054b56266c` (source `6fa8a4e`), after a fresh live baseline readback (rolls back the origin question, world atlas and verified links). Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -147,7 +147,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-10-23 — production 6fa8a4e; ten gates, 97 tests, 39 of 39 assets on custom and immutable hosts, signed-in repeat run settles (1 start, 0 interaction), signed-out API 401, health active. Exact evidence below.
+8. Last verified: 2026-11-06 — production d4ae514; eleven gates (test:atlas 12 added), 41 of 41 assets on custom and immutable hosts, signed-out real path (origin question, world atlas subtraction, verified links, programs layer), health active. Exact evidence below.
 
 ## Synchronized documentation and handoff
 
@@ -285,7 +285,7 @@ CAPABILITY_FIT: no-new-capability。Node24.18.0、Wrangler4.100.0、Pages produc
 發布、驗證與證據：`/Users/ylsuen/CF/reports/operations/aplus-repeat-loop-20261023/RELEASE.md`。Status `20261023-nope-repeat-completion-loop-fix` r1。CAPABILITY_FIT: no-new-capability；葉子發布，無平台／共享契約變更。
 
 
-## 2026-11-06 全球化立項與第一階段世界學科地圖（本機已驗證，未發布）
+## 2026-11-06 全球化立項與第一階段世界學科地圖（已上線，當前權威）
 
 **範圍**：站長 2026-11-06 口述的最終目標寫入 `docs/GLOBAL_ROADMAP.md`（S0–S5 分階段、資料權威分級、跨國規則、
 企業直招高中生橫切層）。S0 已在本機實作：首頁「第 0 題 · 你在哪裡升學」起點選擇（中國大陸／香港／澳門／臺灣／其他，
@@ -306,7 +306,17 @@ test:atlas 10 全過；check:shared-ui 6 檔一致；lint、tsc、build 通過�
 逐路由文字對比度量測（`/`、`#/world`、`#/about`，紙色與墨色，桌面 964–1440 與手機 390）新增低對比項 0、最低 6.27:1、最小字 12px、
 無橫向溢出。未做：候選預覽上傳與正式站比對、已登入學生路徑（本輪不改 A+ 契約）。
 
-**發布狀態**：正式仍為 `d7a7924d`／`6fa8a4e`。發布須站長批准後走登記的 Pages 交易（候選預覽 → 收據 → 交易 → 讀回 → accepted → Status）。
-回滾錨點＝當時的正式部署；只切 Pages 版本，無資料庫遷移。CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
+**權威鏈接核查（站長同日追加）**：`npm run data:gras-websites`（`scripts/verify_institution_websites.mjs`）：候選來自軟科機構頁、Wikidata P856、教育部主表，逐條實際 GET；
+兩個獨立來源同網域且連通＝high、同網域但被反爬擋＝medium、單一軟科／教育部來源連通＝medium，其餘不收。544 所中 531 所有官網（high 431、medium 100）。
+機構面板顯示「學校官網 ↗」（title 寫核查依據與日期）；每個學科席位連到軟科該學科排名頁。另有正體字形覆寫表 `gras_institution_names_zh_hant.<日期>.csv`（唯一一筆：普林斯頓大學）。
+
+**發布（站長回覆「推送並發布」）**：正式部署 `0ec6d42f-3b93-4859-bd22-813e7f000c3e`，來源 `d4ae5141bd04a0024a4054f2e4bf16c20cace891`（`ieduer/unapply@master`），
+生效 `2026-11-06T22:50:51Z`；候選預覽 `dc57a019-1768-4017-bd75-452bdb8b7d1e`；change `20261106-nope-global-atlas-s0` 已消費（HTTP 預算 40，實用 10）。
+十一道閘門在發布提交上全過（`nope/check.txt`）；候選、正式自訂網域、不可變網址 41/41 檔逐檔一致；正式站未登入真實路徑：首頁起點 5 選項、
+`#/world` 195 所／570 席位 → 劃掉美國 139 所／351 席位（56 點虛線）、普林斯頓面板有官網與學科鏈接、企業直招圖層 10；health active；主控台無錯誤。
+回滾：`d7a7924d-dfa2-49b8-ae19-52054b56266c`／`6fa8a4e`，走新的受審回滾交易；只切 Pages 版本，無資料庫遷移。Status `20261106-nope-global-atlas-s0` r1（new）。
+CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力；Function、binding 未變）。
+
+**未驗證**：已登入學生的 A+ 證據路徑（本次未改，最近一次登入實測 2026-10-23）。
 
 報告：`/Users/ylsuen/CF/reports/operations/nope-global-atlas-20261106/REPORT.md`。

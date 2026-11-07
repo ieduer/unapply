@@ -1,10 +1,13 @@
 # Project State
 
 Last updated: 2026-11-06 UTC
-Current version: 6fa8a4e（已部署 d7a7924d；本機工作樹為全球化 S0 候選，未發布）
-Current objective: 全球化路線圖已立項（docs/GLOBAL_ROADMAP.md）；S0（所在地起點＋世界學科地圖＋企業直招高中生層）本機十一道閘門全過，待站長批准發布；原 43 維效度缺口仍列後續。
+Current version: d4ae514（已部署 0ec6d42f，生效 2026-11-06T22:50:51Z）
+Current objective: 全球化路線圖已立項（docs/GLOBAL_ROADMAP.md）；S0（所在地起點＋世界學科地圖＋已核查官網鏈接＋企業直招高中生層）已上線並登記 accepted；下一步 S1 大陸高校專業／錄取條件／招生政策；原 43 維效度缺口仍列後續。
 
-## 2026-11-06 全球化立項與 S0 世界學科地圖（本機已驗證，待批准發布）
+## 2026-11-06 全球化立項與 S0 世界學科地圖（已上線，當前權威）
+
+正式部署 `0ec6d42f-3b93-4859-bd22-813e7f000c3e`，來源 `d4ae5141bd04a0024a4054f2e4bf16c20cace891`，生效 `2026-11-06T22:50:51Z`；
+回滾 `d7a7924d-dfa2-49b8-ae19-52054b56266c`／`6fa8a4e`（走受審回滾交易，會撤掉起點問題、世界地圖與官網鏈接）。Status `20261106-nope-global-atlas-s0` r1。
 
 - 目標：站點補充完善為全球學生可用；先問所在地，再用減法走到專業與學校；可跨國選；建全球高校權威資料庫並可查招生；
   企業直招高中生也列入；分 S0–S5 推進，詳見 `docs/GLOBAL_ROADMAP.md`。
@@ -13,7 +16,8 @@ Current objective: 全球化路線圖已立項（docs/GLOBAL_ROADMAP.md）；S0�
 - 不變：43 題、引擎、Function、AnswerMap、A+ 證據契約、`src/shared-ui`、依賴。
 - 驗證：十道既有閘門＋`test:atlas`（10）全過；build 主包 357.7 kB、地圖分塊 21.8 kB、payload 237 KiB；
   本機瀏覽器桌面／手機、紙色／墨色逐路由對比度最低 6.27:1、無新增低對比、無橫向溢出。
-- 發布：未發布；正式 `d7a7924d`／`6fa8a4e` 不變。待站長批准後走 Pages 交易並發 Status。
+- 權威鏈接（站長同日追加）：機構官網三來源交叉＋逐條連通核查，531/544 所（high 431、medium 100），13 所未收待人工覆核；學科席位連軟科學科頁。
+- 發布：站長回覆「推送並發布」後走登記的 Pages 交易；候選 `dc57a019` 與正式 41/41 檔一致；正式站真實路徑與 health 讀回通過。
 - 已知限制：排名只描述研究分佈；海外機構尚無專業／錄取／學費（S3）；港澳臺與海外起點尚無題庫（S2／S3）；
   企業直招條目只保證核對日為真；Wikidata 無正體標籤的 56 所海外機構只顯示英文名。
 - 報告：`/Users/ylsuen/CF/reports/operations/nope-global-atlas-20261106/REPORT.md`。
