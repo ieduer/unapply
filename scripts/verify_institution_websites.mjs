@@ -4,6 +4,7 @@
 //   node scripts/verify_institution_websites.mjs --year 2026
 //   node scripts/verify_institution_websites.mjs --year 2026 --from data/research/gras_institution_websites.<日期>.csv   # 離線：用上一輪記錄的候選與連通結果重判，不打網路
 //   node scripts/verify_institution_websites.mjs --year 2026 --from <上一輪 CSV> --recheck   # 只對上一輪未通過的列重打網路（含人工覆核清單 MANUAL_REVIEW），其餘列照抄
+//   node scripts/verify_institution_websites.mjs --year 2026 --from <上一輪 CSV> --recheck --only RI02126,RI02976   # 只重打指定機構（須有 MANUAL_REVIEW 條目；鏈接年檢發現官網跨網域轉址時用），其餘列照抄
 //
 // 候選來源（都是公開、可追溯的）：
 //   sr   軟科機構頁 https://www.shanghairanking.com/institution/<univUp> 裡的官網鏈接（排名機構自己登記的官網）
@@ -138,6 +139,12 @@ const MANUAL_REVIEW = {
   RI02745: { url: 'https://indianapolis.iu.edu/', evidence: 'sr iupui.edu 轉址到 indianapolis.iu.edu（IUPUI 2024 年起改為 Indiana University Indianapolis，iu.edu 為印第安納大學官方網域）；GET 200', reviewedAt: '2026-11-07' },
   RI02940: { url: 'https://www.utsouthwestern.edu/', evidence: 'sr swmed.edu 轉址到 utsouthwestern.edu（.edu 學術網域，UT Southwestern 官網）；wd utswmedicine.org 為其醫療品牌網域；GET 200', reviewedAt: '2026-11-07' },
   RI03812: { url: 'https://mbzuai.ac.ae/', evidence: 'sr 單一來源 .ac.ae 學術網域；對腳本回 403（反爬），以內建瀏覽器開啟確認為 MBZUAI 官網', reviewedAt: '2026-11-07', allowBlocked: true },
+  // 2026-11-07 鏈接年檢（reports/operations/nope-xcut-directhire-links-20261107/research/link_check_summary.md §4）：原官網跨網域轉址，最終網域仍明顯是該校（.ac.kr／.edu）。
+  // 暫不套用（批 F1 決定，見 reports/operations/nope-s5-db-xcut-20261107/nope-f1/link_fixes.md）：S0 官網是海外層 S3 的錨點（officialWebsite／officialDomain 決定招生頁能否上鏈接），
+  // 改網域會連帶改變 S3 判定（CU Denver 招生頁在 ucdenver.edu 會由 high 降 medium；POSTECH 招生頁在 postech.ac.kr 會由 medium 升 high，屬 S3 待站長項）。
+  // 下一輪 S3 重抓時與 overseas_admissions 同批套用：取消註解後跑 --from <CSV> --recheck --only RI02126,RI02976。
+  // RI02126: { url: 'https://www.postech.ac.kr/kor/index.do', evidence: 'sr＋wd 同為 postech.edu，2026-11-07 鏈接年檢見其跨網域轉址至 postech.ac.kr/kor/index.do（韓國學術網域，頁面標題「가치창출대학 POSTECH」；根路徑 / 回 404，故記最終網址）；改為最終網址', reviewedAt: '2026-11-07' },
+  // RI02976: { url: 'https://www.cudenver.edu/', evidence: 'sr＋wd 同為 ucdenver.edu，2026-11-07 鏈接年檢見其跨網域轉址至 cudenver.edu（.edu 學術網域，University of Colorado Denver 官網）；改為最終網址', reviewedAt: '2026-11-07' },
 }
 
 function normalizeCandidate(url) {
@@ -186,9 +193,11 @@ async function redecideFrom(csvPath) {
 // 只重查上一輪未通過的列：有人工覆核條目的用覆核網址實際 GET；沒有的照原候選重打一次。通過的列逐字照抄（含 verifiedAt）。
 async function recheckFrom(csvPath) {
   const rows = parseCsv(readFileSync(csvPath, 'utf8'))
+  const only = typeof args.only === 'string' ? new Set(args.only.split(',').map((c) => c.trim()).filter(Boolean)) : null
+  if (only) for (const code of only) if (!MANUAL_REVIEW[code]) throw new Error(`--only ${code}: no MANUAL_REVIEW entry（指定重核的機構必須先寫人工覆核證據）`)
   const out = []
   for (const r of rows) {
-    if (r.status === 'verified') { out.push({ ...r }); continue }
+    if (only ? !only.has(r.univCode) : r.status === 'verified') { out.push({ ...r }); continue }
     const review = MANUAL_REVIEW[r.univCode]
     if (review) {
       let check = await verifyUrl(review.url)

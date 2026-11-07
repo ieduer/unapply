@@ -1,0 +1,3894 @@
+{
+  "schema": "nope.link-check-summary.v1",
+  "generatedFrom": "../../../reports/operations/nope-xcut-directhire-links-20261107/research/link_check.2026-11-07.csv",
+  "checkedAt": "2026-11-07",
+  "method": "Node fetch; UA 明示身分；尊重 robots.txt；同可註冊網域 ≥2 秒；並發 ≤6；403／404／412 不重試；不繞過挑戰；被擋不算不可達；不可達須連續兩輪才標暫不可達",
+  "counts": {
+    "urls": 6139,
+    "domains": 3704,
+    "byStatus": {
+      "ok": 2743,
+      "unreachable": 1852,
+      "reused-s2": 610,
+      "reused-s0": 488,
+      "blocked": 155,
+      "broken": 114,
+      "redirect-cross-domain": 103,
+      "robots-disallow": 74
+    },
+    "byTier": {
+      "P0": 6042,
+      "P1": 75,
+      "P2": 13,
+      "OWN": 9
+    },
+    "reviewFlagged": 1038
+  },
+  "bySourceFile": {
+    "data/research/admission_channels.2026-09-08.csv": {
+      "unreachable": 1,
+      "ok": 10,
+      "blocked": 3
+    },
+    "data/research/bk_catalog.2026.csv": {
+      "ok": 1
+    },
+    "data/research/campus_locations.2026-04-21.csv": {
+      "ok": 2
+    },
+    "data/research/campus_official_overrides.2026-04-21.csv": {
+      "ok": 8,
+      "broken": 1
+    },
+    "data/research/direct_hire_programs.2026-11-06.csv": {
+      "ok": 11,
+      "blocked": 2
+    },
+    "data/research/discipline_eval.4th.csv": {
+      "blocked": 1
+    },
+    "data/research/discipline_eval.4th.unmapped.csv": {
+      "blocked": 1
+    },
+    "data/research/double_first_class_round2_disciplines.2026-04-21.csv": {
+      "ok": 1
+    },
+    "data/research/double_first_class_round2_raw.2026-04-21.csv": {
+      "ok": 1
+    },
+    "data/research/github_school_profiles.2026-04-21.csv": {
+      "ok": 1406,
+      "unreachable": 1127,
+      "robots-disallow": 42,
+      "blocked": 86,
+      "redirect-cross-domain": 66,
+      "broken": 75,
+      "reused-s0": 44
+    },
+    "data/research/gras_2026_subjects.csv": {
+      "ok": 57
+    },
+    "data/research/gras_2026_top50.csv": {
+      "ok": 57
+    },
+    "data/research/gras_institution_websites.2026-11-06.csv": {
+      "reused-s0": 476,
+      "ok": 45,
+      "robots-disallow": 1,
+      "unreachable": 1,
+      "redirect-cross-domain": 2,
+      "blocked": 5
+    },
+    "data/research/gras_institution_websites.2026-11-07.csv": {
+      "reused-s0": 488,
+      "ok": 46,
+      "robots-disallow": 1,
+      "unreachable": 1,
+      "redirect-cross-domain": 2,
+      "blocked": 5
+    },
+    "data/research/hkmotw_admission_channels.2026-11-07.csv": {
+      "ok": 20,
+      "blocked": 1,
+      "unreachable": 2
+    },
+    "data/research/hkmotw_institutions.2026-11-07.csv": {
+      "reused-s0": 7,
+      "ok": 30,
+      "blocked": 4,
+      "unreachable": 5
+    },
+    "data/research/joint_programs.2026-11-07.csv": {
+      "reused-s2": 609
+    },
+    "data/research/laosheng_school_profiles.2026-04-22.csv": {
+      "reused-s0": 20,
+      "ok": 1494,
+      "unreachable": 1065,
+      "robots-disallow": 46,
+      "blocked": 66,
+      "redirect-cross-domain": 59,
+      "broken": 53
+    },
+    "data/research/moe_211_list.2026-04-21.csv": {
+      "ok": 1
+    },
+    "data/research/moe_985_list.2026-04-21.csv": {
+      "ok": 1
+    },
+    "data/research/moe_former_names.2026-06-17.csv": {
+      "ok": 1
+    },
+    "data/research/province_portals.2026-04-21.csv": {
+      "unreachable": 23,
+      "ok": 9,
+      "blocked": 1
+    },
+    "data/research/quality_official_overrides.2026-09-08.csv": {
+      "ok": 2
+    },
+    "data/research/s1_sources.json": {
+      "ok": 16,
+      "unreachable": 7
+    },
+    "data/research/school_websites.2026-04-21.csv": {
+      "reused-s0": 99,
+      "ok": 311,
+      "unreachable": 129,
+      "blocked": 15,
+      "redirect-cross-domain": 6,
+      "broken": 3,
+      "robots-disallow": 2
+    },
+    "data/research/sino_foreign_programs.2026-04-21.csv": {
+      "broken": 3
+    },
+    "data/research/strong_base_schools.2026.csv": {
+      "ok": 4
+    },
+    "public/data/atlas/world-atlas.json": {
+      "ok": 115,
+      "blocked": 7,
+      "reused-s0": 488,
+      "robots-disallow": 1,
+      "unreachable": 1,
+      "redirect-cross-domain": 2
+    },
+    "public/data/hkmotw/pool.json": {
+      "reused-s0": 7,
+      "ok": 34,
+      "blocked": 2,
+      "unreachable": 6
+    },
+    "public/data/joint/index.json": {
+      "ok": 1
+    },
+    "public/data/joint/items.json": {
+      "reused-s2": 567
+    },
+    "public/data/programs/catalog.json": {
+      "ok": 1
+    },
+    "public/data/programs/index.json": {
+      "ok": 9,
+      "unreachable": 3
+    },
+    "public/data/runtime/campuses/campus-01.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-02.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-03.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-04.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-05.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-06.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-07.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-08.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-09.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-10.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-11.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-12.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-13.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-14.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-15.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-16.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-17.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-18.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-19.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-20.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-21.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-22.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-23.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-24.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-25.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-26.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-27.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-28.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-29.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-30.json": {
+      "ok": 2
+    },
+    "public/data/runtime/campuses/campus-31.json": {
+      "ok": 2
+    },
+    "public/data/runtime/schools.json": {
+      "unreachable": 1100,
+      "ok": 1476,
+      "blocked": 70,
+      "broken": 57,
+      "reused-s0": 104,
+      "redirect-cross-domain": 61,
+      "robots-disallow": 42
+    },
+    "src/components/AboutPage.tsx": {
+      "ok": 25,
+      "blocked": 2,
+      "unreachable": 4,
+      "robots-disallow": 1,
+      "broken": 2
+    },
+    "src/components/Landing.tsx": {
+      "blocked": 1,
+      "ok": 8,
+      "broken": 1,
+      "robots-disallow": 1
+    },
+    "src/components/ResultPage.tsx": {
+      "ok": 1
+    },
+    "src/data/admissionChannels.ts": {
+      "unreachable": 1,
+      "ok": 10,
+      "blocked": 3
+    },
+    "src/data/campusResearch.ts": {
+      "ok": 2,
+      "broken": 1
+    },
+    "src/data/dimensions.ts": {
+      "ok": 18,
+      "blocked": 3,
+      "unreachable": 2,
+      "broken": 2
+    },
+    "src/data/environment.ts": {
+      "broken": 1,
+      "ok": 6,
+      "unreachable": 1
+    },
+    "src/data/jointProgramsManifest.ts": {
+      "ok": 1
+    },
+    "src/data/jointTypes.ts": {
+      "reused-s2": 1
+    },
+    "src/data/officialSchoolMeta.ts": {
+      "ok": 2
+    },
+    "src/data/officialSchools.ts": {
+      "ok": 1
+    },
+    "src/data/provinceAdmissionPortals.ts": {
+      "unreachable": 23,
+      "ok": 10,
+      "blocked": 1
+    },
+    "src/data/researchData.ts": {
+      "ok": 1477,
+      "broken": 57,
+      "blocked": 68,
+      "reused-s0": 104,
+      "unreachable": 1122,
+      "redirect-cross-domain": 61,
+      "robots-disallow": 42
+    },
+    "src/data/schools.ts": {
+      "ok": 118,
+      "blocked": 4,
+      "unreachable": 5,
+      "robots-disallow": 1
+    }
+  },
+  "broken": [
+    {
+      "url": "https://news.bwu.edu.cn/info/1714/62249.htm",
+      "finalUrl": "https://news.bwu.edu.cn/info/1714/62249.htm",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/campus_official_overrides.2026-04-21.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "404错误提示",
+      "notes": "http 404"
+    },
+    {
+      "url": "http://www.cap.edu.cn/campus/sy_new/",
+      "finalUrl": "https://www.cap.edu.cn/campus/sy_new/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "成都航空职业技术大学",
+      "notes": "http 404; title-match:yes"
+    },
+    {
+      "url": "http://www.cqiss.com/index.html",
+      "finalUrl": "https://www.cqiss.com/index.html",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404 - 找不到文件或目录。",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.cqvit.com",
+      "finalUrl": "http://www.cqvit.com/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.dlmso.com.cn/index.html",
+      "finalUrl": "http://www.dlmso.com.cn/index.html",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.ezu.cn",
+      "finalUrl": "https://www.ezu.cn/",
+      "http": 418,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "The access is blocked.",
+      "notes": "http 418; title-match:no"
+    },
+    {
+      "url": "http://www.fzlmxy.cn",
+      "finalUrl": "http://www.fzlmxy.cn/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "http://www.gscat.edu.cn/home/",
+      "finalUrl": "https://www.gscat.edu.cn/home/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404错误提示",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.gxjzy.com/JZYWEB/index.php",
+      "finalUrl": "https://www.gxjzy.com/JZYWEB/index.php",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404错误提示",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.hb-green.com",
+      "finalUrl": "https://www.hbstxy.edu.cn/",
+      "http": 468,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "",
+      "notes": "http 468; title-match:no"
+    },
+    {
+      "url": "http://www.hbkjxy.cn",
+      "finalUrl": "http://www.hbkjxy.cn/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.hbou.cn/web-hbousite/index",
+      "finalUrl": "https://www.hbou.cn/web-hbousite/index",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.hbswkj.com",
+      "finalUrl": "http://www.hbswkj.com/",
+      "http": 400,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "400 Bad Request",
+      "notes": "http 400; title-match:no"
+    },
+    {
+      "url": "http://www.hbzyy.org",
+      "finalUrl": "http://www.hbzyy.org/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.hfet.com",
+      "finalUrl": "http://www.hfet.com/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "http://www.htzd.org/",
+      "finalUrl": "http://www.htzd.org/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.jxmtc.com",
+      "finalUrl": "https://www.jxmtc.com/",
+      "http": 405,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "NWAF页面",
+      "notes": "http 405; title-match:no"
+    },
+    {
+      "url": "http://www.jxvtc.edu.cn/default.html",
+      "finalUrl": "https://www.jxvtc.edu.cn/default.html",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404错误提示",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.kmhpc.net/",
+      "finalUrl": "http://www.kmhpc.net/",
+      "http": 410,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "阿里云 Web应用防火墙",
+      "notes": "http 410; title-match:no"
+    },
+    {
+      "url": "http://www.lndhdx.com",
+      "finalUrl": "https://www.lndhdx.com/",
+      "http": 418,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "访问被拦截！",
+      "notes": "http 418; title-match:no"
+    },
+    {
+      "url": "http://www.lzzy.net/",
+      "finalUrl": "http://www.lzzy.net/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "访问出错 - 404",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.mbu.cn",
+      "finalUrl": "http://www.mbu.cn/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.nchvc.edu.cn/html/",
+      "finalUrl": "https://www.nchvc.edu.cn/html/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404错误提示",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.ncyscb.com",
+      "finalUrl": "http://www.ncyscb.com/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.ndkj.com.cn/",
+      "finalUrl": "http://www.ndkj.com.cn/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.ntvu.edu.cn",
+      "finalUrl": "http://www.ntvu.edu.cn/",
+      "http": 400,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "400 The plain HTTP request was sent to HTTPS port",
+      "notes": "http 400; title-match:no"
+    },
+    {
+      "url": "http://www.qdopenu.cn/Category/List/34",
+      "finalUrl": "https://www.qdopenu.cn/Category/List/34",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404错误提示",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.scit.edu.cn/",
+      "finalUrl": "http://www.scit.edu.cn/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "HTTP Status 404 – Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.scshpc.com",
+      "finalUrl": "http://www.scshpc.com/",
+      "http": 405,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "NWAF页面",
+      "notes": "http 405; title-match:no"
+    },
+    {
+      "url": "http://www.shzq.edu.cn",
+      "finalUrl": "http://www.shzq.edu.cn/",
+      "http": 400,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "400 The plain HTTP request was sent to HTTPS port",
+      "notes": "http 400; title-match:no"
+    },
+    {
+      "url": "http://www.sjzmc.cn/cmshtml/index.any",
+      "finalUrl": "https://www.sjzmc.cn/cmshtml/index.any",
+      "http": 500,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "",
+      "notes": "http 500; title-match:no"
+    },
+    {
+      "url": "http://www.stcmchina.com",
+      "finalUrl": "http://www.stcmchina.com/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.wru.edu.cn",
+      "finalUrl": "http://www.wru.edu.cn/",
+      "http": 420,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "黑名单页面",
+      "notes": "http 420; title-match:no"
+    },
+    {
+      "url": "http://www.wuantc.com/",
+      "finalUrl": "http://www.wuantc.com/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.xacxxy.com/index.jsp",
+      "finalUrl": "http://www.xacxxy.com/index.jsp",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "系统提示",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.xjou.cn/",
+      "finalUrl": "https://www.xjou.cn/",
+      "http": 418,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "访问被拦截！",
+      "notes": "http 418; title-match:no"
+    },
+    {
+      "url": "http://www.xlglvc.cn/",
+      "finalUrl": "http://www.xlglvc.cn/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.xtmc.net",
+      "finalUrl": "http://www.xtmc.net/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.yazjy.com",
+      "finalUrl": "http://www.yazjy.com/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.yhiedu.cn/",
+      "finalUrl": "http://www.yhiedu.cn/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.yxwy.org/",
+      "finalUrl": "http://www.yxwy.org/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.zjjcxy.cn/",
+      "finalUrl": "http://www.zjjcxy.cn/",
+      "http": 420,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "黑名单页面",
+      "notes": "http 420; title-match:no"
+    },
+    {
+      "url": "http://www.zzyyedu.com",
+      "finalUrl": "http://www.zzyyedu.com/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "http://xthtc.com/",
+      "finalUrl": "http://xthtc.com/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "https://dukekunshan.edu.cn/zh",
+      "finalUrl": "https://www.dukekunshan.edu.cn/zh",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "https://www.dlnu.edu.cn/hhh/index.htm",
+      "finalUrl": "https://www.dlnu.edu.cn/hhh/index.htm",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404错误提示",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "https://www.hcrt.edu.cn/",
+      "finalUrl": "https://www.hcrt.edu.cn/",
+      "http": 405,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "405页面",
+      "notes": "http 405; title-match:no"
+    },
+    {
+      "url": "https://www.szit.edu.cn/website/",
+      "finalUrl": "https://www.szit.edu.cn/website/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404错误提示",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "https://www.szou.edu.cn/",
+      "finalUrl": "https://www.szou.edu.cn/",
+      "http": 405,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "NWAF页面",
+      "notes": "http 405; title-match:no"
+    },
+    {
+      "url": "https://www.whtvu.com.cn/",
+      "finalUrl": "https://www.whtvu.com.cn/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "https://www.ynou.edu.cn/",
+      "finalUrl": "https://www.ynou.edu.cn/",
+      "http": 418,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "访问被拦截！",
+      "notes": "http 418; title-match:no"
+    },
+    {
+      "url": "http://www.yibinu.edu.cn/",
+      "finalUrl": "http://www.yibinu.edu.cn/",
+      "http": 405,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "data/research/school_websites.2026-04-21.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "NWAF页面",
+      "notes": "http 405; title-match:no"
+    },
+    {
+      "url": "http://binhai.nankai.edu.cn/",
+      "finalUrl": "https://binhai.nankai.edu.cn/",
+      "http": 420,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "黑名单页面",
+      "notes": "http 420; title-match:no"
+    },
+    {
+      "url": "http://www.ccrw.edu.cn/",
+      "finalUrl": "https://www.ccrw.edu.cn/",
+      "http": 405,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "NWAF页面",
+      "notes": "http 405; title-match:no"
+    },
+    {
+      "url": "http://www.ccufe.edu.cn/",
+      "finalUrl": "http://www.ccufe.edu.cn/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "http://www.dlemcedu.cn/",
+      "finalUrl": "http://www.dlemcedu.cn/",
+      "http": 502,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "502 Bad Gateway",
+      "notes": "http 502; title-match:no"
+    },
+    {
+      "url": "http://www.forestpolice.net/",
+      "finalUrl": "http://www.forestpolice.net/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "南京警察学院 - 网站维护中",
+      "notes": "http 404; title-match:yes"
+    },
+    {
+      "url": "http://www.gdiet.edu.cn/",
+      "finalUrl": "http://www.gdiet.edu.cn/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.gnhvc.edu.cn/",
+      "finalUrl": "http://www.gnhvc.edu.cn/",
+      "http": 420,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "黑名单页面",
+      "notes": "http 420; title-match:no"
+    },
+    {
+      "url": "http://www.gztcme.cn/",
+      "finalUrl": "https://www.gztcme.cn/",
+      "http": 418,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "访问被拦截！",
+      "notes": "http 418; title-match:no"
+    },
+    {
+      "url": "http://www.hbxytc.com/",
+      "finalUrl": "http://www.hbxytc.com/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.hfcfe.edu.cn/",
+      "finalUrl": "http://www.hfcfe.edu.cn/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "http://www.hhvtc.cn/",
+      "finalUrl": "http://www.hhvtc.cn/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.jscu.cn/",
+      "finalUrl": "http://www.jscu.cn/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "http://www.jxtvc.com/",
+      "finalUrl": "http://www.jxtvc.com/",
+      "http": 500,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "500 - 内部服务器错误。",
+      "notes": "http 500; title-match:no"
+    },
+    {
+      "url": "http://www.jzit.net.cn/",
+      "finalUrl": "http://www.jzit.net.cn/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.kxedu.net/",
+      "finalUrl": "http://www.kxedu.net/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "http://www.nykjzyxydz.com/",
+      "finalUrl": "http://www.nykjzyxydz.com/",
+      "http": 411,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "恭喜，站点创建成功！",
+      "notes": "http 411; title-match:no"
+    },
+    {
+      "url": "http://www.polus.edu.cn/",
+      "finalUrl": "https://www.polus.edu.cn/",
+      "http": 500,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "四川国际标榜职业学院",
+      "notes": "http 500; title-match:yes"
+    },
+    {
+      "url": "http://www.thyyjkzyxy.org.cn/",
+      "finalUrl": "http://www.thyyjkzyxy.org.cn/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "http://www.tynxy.com/",
+      "finalUrl": "http://www.tynxy.com/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.ynsxzy.com/",
+      "finalUrl": "http://www.ynsxzy.com/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "https://www.xjsmc.edu.cn/",
+      "finalUrl": "https://www.xjsmc.edu.cn/",
+      "http": 420,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "黑名单页面 - 网络安全审计预警平台",
+      "notes": "http 420; title-match:no"
+    },
+    {
+      "url": "https://www.sdwu.edu.cn/",
+      "finalUrl": "https://www.sdwu.edu.cn/",
+      "http": 502,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/school_websites.2026-04-21.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "502 Bad Gateway",
+      "notes": "http 502; title-match:no"
+    },
+    {
+      "url": "http://www.whxyart.cn/",
+      "finalUrl": "http://www.whxyart.cn/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "https://www.fjsdxy.com/",
+      "finalUrl": "https://www.fjsdxy.com/",
+      "http": 420,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "黑名单页面",
+      "notes": "http 420; title-match:no"
+    },
+    {
+      "url": "http://www.hmzyedu.cn/",
+      "finalUrl": "http://www.hmzyedu.cn/",
+      "http": 422,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv"
+      ],
+      "pageTitle": "站点不存在 - 网络安全审计预警平台",
+      "notes": "http 422; title-match:no"
+    },
+    {
+      "url": "http://ljzyjsxy.com/",
+      "finalUrl": "http://ljzyjsxy.com/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "http://ncbcjxau.edu.cn/",
+      "finalUrl": "https://ncbcjxau.edu.cn:8443/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "非法域名",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.buaa.edu.cn/zsjy1/bkszs.htm",
+      "finalUrl": "http://www.buaa.edu.cn/zsjy1/bkszs.htm",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "404错误提示",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.ccdlvtc.com/",
+      "finalUrl": "http://www.ccdlvtc.com/",
+      "http": 422,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 422; title-match:no"
+    },
+    {
+      "url": "http://www.cqcvc.edu.cn/",
+      "finalUrl": "http://www.cqcvc.edu.cn/",
+      "http": 422,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 422; title-match:no"
+    },
+    {
+      "url": "http://www.czie.net/",
+      "finalUrl": "http://www.czie.net/",
+      "http": 400,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "400 Bad Request",
+      "notes": "http 400; title-match:no"
+    },
+    {
+      "url": "http://www.fzlmxy.cn/",
+      "finalUrl": "http://www.fzlmxy.cn/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "http://www.gduf.edu.cn/",
+      "finalUrl": "http://www.gduf.edu.cn/",
+      "http": 421,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "升级维护中",
+      "notes": "http 421; title-match:no"
+    },
+    {
+      "url": "http://www.hb-green.com/",
+      "finalUrl": "https://www.hbstxy.edu.cn/",
+      "http": 468,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 468; title-match:no"
+    },
+    {
+      "url": "http://www.hbssyys.cn/",
+      "finalUrl": "http://www.hbssyys.cn/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.hbswkj.com/",
+      "finalUrl": "http://www.hbswkj.com/",
+      "http": 400,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "400 Bad Request",
+      "notes": "http 400; title-match:no"
+    },
+    {
+      "url": "http://www.hcrt.edu.cn/",
+      "finalUrl": "http://www.hcrt.edu.cn/",
+      "http": 405,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "405页面",
+      "notes": "http 405; title-match:no"
+    },
+    {
+      "url": "http://www.hfet.com/",
+      "finalUrl": "http://www.hfet.com/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "http://www.hljkltc.edu.cn/",
+      "finalUrl": "http://www.hljkltc.edu.cn/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "http://www.jxmtc.com/",
+      "finalUrl": "https://www.jxmtc.com/",
+      "http": 405,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "NWAF页面",
+      "notes": "http 405; title-match:no"
+    },
+    {
+      "url": "http://www.lazyjsxy.net/",
+      "finalUrl": "https://www.lazyjsxy.net/",
+      "http": 420,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "黑名单页面",
+      "notes": "http 420; title-match:no"
+    },
+    {
+      "url": "http://www.lyvcc.com/",
+      "finalUrl": "http://www.lyvcc.com/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "http://www.mbu.cn/",
+      "finalUrl": "http://www.mbu.cn/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.ncyscb.com/",
+      "finalUrl": "http://www.ncyscb.com/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.ndzy.cn/",
+      "finalUrl": "http://www.ndzy.cn/",
+      "http": 400,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "400 The plain HTTP request was sent to HTTPS port",
+      "notes": "http 400; title-match:no"
+    },
+    {
+      "url": "http://www.ntvu.edu.cn/",
+      "finalUrl": "http://www.ntvu.edu.cn/",
+      "http": 400,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "400 The plain HTTP request was sent to HTTPS port",
+      "notes": "http 400; title-match:no"
+    },
+    {
+      "url": "http://www.scrc.edu.cn/",
+      "finalUrl": "https://www.scrc.edu.cn/",
+      "http": 483,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "访问出错 - 502",
+      "notes": "http 483; title-match:no"
+    },
+    {
+      "url": "http://www.scshpc.com/",
+      "finalUrl": "http://www.scshpc.com/",
+      "http": 405,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "NWAF页面",
+      "notes": "http 405; title-match:no"
+    },
+    {
+      "url": "http://www.sdctcm.edu.cn/",
+      "finalUrl": "http://www.sdctcm.edu.cn/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "http://www.whgmxy.edu.cn/",
+      "finalUrl": "http://www.whgmxy.edu.cn/",
+      "http": 420,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "黑名单页面",
+      "notes": "http 420; title-match:no"
+    },
+    {
+      "url": "http://www.wru.edu.cn/",
+      "finalUrl": "http://www.wru.edu.cn/",
+      "http": 420,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "黑名单页面",
+      "notes": "http 420; title-match:no"
+    },
+    {
+      "url": "http://www.xthtc.com/",
+      "finalUrl": "http://www.xthtc.com/",
+      "http": 444,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 444; title-match:no"
+    },
+    {
+      "url": "http://www.yazjy.com/",
+      "finalUrl": "http://www.yazjy.com/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.ynou.edu.cn/",
+      "finalUrl": "https://www.ynou.edu.cn/",
+      "http": 418,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "访问被拦截！",
+      "notes": "http 418; title-match:no"
+    },
+    {
+      "url": "http://www.zjpc.edu.cn/",
+      "finalUrl": "http://www.zjpc.edu.cn/",
+      "http": 420,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "黑名单页面",
+      "notes": "http 420; title-match:no"
+    },
+    {
+      "url": "https://zwu.edu.cn/",
+      "finalUrl": "https://zwu.edu.cn/",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/school_websites.2026-04-21.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "404 Not Found",
+      "notes": "http 404; title-match:no"
+    },
+    {
+      "url": "http://www.moe.gov.cn/moe_879/moe_1157/moe_1320/moe_1324/moe_1328/tnull_19303.html",
+      "finalUrl": "http://www.moe.gov.cn/moe_879/moe_1157/moe_1320/moe_1324/moe_1328/tnull_19303.html",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/sino_foreign_programs.2026-04-21.csv"
+      ],
+      "pageTitle": "",
+      "notes": "http 404"
+    },
+    {
+      "url": "http://www.moe.gov.cn/moe_879/moe_1157/moe_1320/moe_1324/moe_1329/tnull_19327.html",
+      "finalUrl": "http://www.moe.gov.cn/moe_879/moe_1157/moe_1320/moe_1324/moe_1329/tnull_19327.html",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/sino_foreign_programs.2026-04-21.csv"
+      ],
+      "pageTitle": "",
+      "notes": "http 404"
+    },
+    {
+      "url": "http://www.moe.gov.cn/moe_879/moe_1157/moe_1320/moe_1324/moe_1334/tnull_19301.html",
+      "finalUrl": "http://www.moe.gov.cn/moe_879/moe_1157/moe_1320/moe_1324/moe_1334/tnull_19301.html",
+      "http": 404,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/sino_foreign_programs.2026-04-21.csv"
+      ],
+      "pageTitle": "",
+      "notes": "http 404"
+    },
+    {
+      "url": "https://www.yicai.com/topic/100311963/",
+      "finalUrl": "https://www.yicai.com/topic/100311963/",
+      "http": 404,
+      "tier": "P2",
+      "sourceFiles": [
+        "src/components/AboutPage.tsx",
+        "src/components/Landing.tsx",
+        "src/data/dimensions.ts"
+      ],
+      "pageTitle": "页面不存在",
+      "notes": "http 404"
+    },
+    {
+      "url": "https://www.camet.org.cn/tjxx/",
+      "finalUrl": "https://www.camet.org.cn/tjxx/",
+      "http": 404,
+      "tier": "P1",
+      "sourceFiles": [
+        "src/components/AboutPage.tsx",
+        "src/data/dimensions.ts",
+        "src/data/environment.ts"
+      ],
+      "pageTitle": "中国城市轨道交通协会",
+      "notes": "http 404"
+    },
+    {
+      "url": "https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/",
+      "finalUrl": "https://github.com/jtchen2k/hcu%E3%80%81https://daxue.cgsop.com/",
+      "http": 404,
+      "tier": "P2",
+      "sourceFiles": [
+        "src/data/campusResearch.ts"
+      ],
+      "pageTitle": "",
+      "notes": "http 404"
+    }
+  ],
+  "redirectCrossDomain": [
+    {
+      "url": "http://wjcollege.ahnu.edu.cn/",
+      "finalUrl": "https://www.uwh.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "芜湖学院",
+      "notes": "→ www.uwh.edu.cn; title-match:no"
+    },
+    {
+      "url": "http://www.bxait.cn/",
+      "finalUrl": "https://www.xags.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "西安工商学院",
+      "notes": "→ www.xags.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.cidp.edu.cn",
+      "finalUrl": "https://www.ncist.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "应急管理大学",
+      "notes": "→ www.ncist.edu.cn; title-match:no"
+    },
+    {
+      "url": "http://www.cqcet.edu.cn",
+      "finalUrl": "https://www.cquet.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "重庆电子科技职业大学-官网-www.cquet.edu.cn",
+      "notes": "→ www.cquet.edu.cn; title-match:no"
+    },
+    {
+      "url": "http://www.gdhsc.edu.cn",
+      "finalUrl": "https://www.gzhs.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "广州华商学院",
+      "notes": "→ www.gzhs.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.gxufl.com",
+      "finalUrl": "https://gxufl.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "广西外国语学院",
+      "notes": "→ gxufl.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.hebdx.com/",
+      "finalUrl": "http://www.hbswdx.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "中共河北省委党校",
+      "notes": "→ www.hbswdx.cn; title-match:no"
+    },
+    {
+      "url": "http://www.hnjd.net.cn/",
+      "finalUrl": "http://www.hndq.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "湖南电气职业技术学院",
+      "notes": "→ www.hndq.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.hnlgzy.net",
+      "finalUrl": "https://www.xlgy.com/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "湖南理工职业技术学院官网（湖南理工职院）-欢迎您！",
+      "notes": "→ www.xlgy.com; title-match:yes"
+    },
+    {
+      "url": "http://www.hnyznc.com/",
+      "finalUrl": "http://hnyznc.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "永州师范高等专科学校 官网",
+      "notes": "→ hnyznc.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.kdhj-edu.net/",
+      "finalUrl": "https://www.sxhju.cn//index.htm",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "陕西科技大学镐京学院",
+      "notes": "→ www.sxhju.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.ldzy.com/",
+      "finalUrl": "https://www.ldzy.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "娄底职业技术学院",
+      "notes": "→ www.ldzy.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.lncu.cn",
+      "finalUrl": "https://www.lncu.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "辽宁传媒学院",
+      "notes": "→ www.lncu.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.lnjzxy.com/",
+      "finalUrl": "https://www.lnjzxy.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "辽宁建筑职业学院",
+      "notes": "→ www.lnjzxy.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.lnvc.cn",
+      "finalUrl": "http://www.lnvc.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "辽宁职业学院",
+      "notes": "→ www.lnvc.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.mitu.cn",
+      "finalUrl": "https://www.fjpit.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "福建信息职业技术学院",
+      "notes": "→ www.fjpit.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.njpji.cn",
+      "finalUrl": "https://www.njpji.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "南京工业大学浦江学院_教育",
+      "notes": "→ www.njpji.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.qyvtc.com",
+      "finalUrl": "https://www.qyvtc.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "庆阳职业技术学院",
+      "notes": "→ www.qyvtc.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.qzoiedu.com",
+      "finalUrl": "https://www.qzoi.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "泉州海洋职业学院",
+      "notes": "→ www.qzoi.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.sdbky.cn",
+      "finalUrl": "https://www.bzcst.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "滨州科技职业学院",
+      "notes": "→ www.bzcst.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.sdjnwx.com/",
+      "finalUrl": "https://www.jnnvc.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "济南护理职业学院",
+      "notes": "→ www.jnnvc.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.sxtbu.net/",
+      "finalUrl": "https://www.sxtbu.edu.cn/index.html",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "山西工商学院",
+      "notes": "→ www.sxtbu.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.tcsisu.com/",
+      "finalUrl": "https://www.cqifs.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "重庆外语外事学院",
+      "notes": "→ www.cqifs.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.xcmzyz.com/",
+      "finalUrl": "https://www.xcmzyz.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "西昌民族幼儿师范高等专科学校",
+      "notes": "→ www.xcmzyz.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.yncjxy.com/",
+      "finalUrl": "https://www.yncjxy.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "云南城市建设职业学院-官网",
+      "notes": "→ www.yncjxy.edu.cn; title-match:yes"
+    },
+    {
+      "url": "https://www.ahou.edu.cn/portal/",
+      "finalUrl": "https://www.ahtvu.ah.cn/home",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "安徽开放大学",
+      "notes": "→ www.ahtvu.ah.cn; title-match:yes"
+    },
+    {
+      "url": "https://www.cisisu.edu.cn/",
+      "finalUrl": "https://www.cdisu.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "首页 - 成都外国语学院",
+      "notes": "→ www.cdisu.edu.cn; title-match:no"
+    },
+    {
+      "url": "https://www.fjjyxy.com/",
+      "finalUrl": "https://www.fjie.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "",
+      "notes": "→ www.fjie.edu.cn; title-match:no"
+    },
+    {
+      "url": "https://www.gcu.edu.cn/",
+      "finalUrl": "https://www.gcut.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "广州城市理工学院",
+      "notes": "→ www.gcut.edu.cn; title-match:yes"
+    },
+    {
+      "url": "https://www.glmc.edu.cn/",
+      "finalUrl": "https://www.glmu.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "桂林医科大学官网",
+      "notes": "→ www.glmu.edu.cn; title-match:yes"
+    },
+    {
+      "url": "https://www.jhc.cn/",
+      "finalUrl": "https://www.jhc.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "金华职业技术大学",
+      "notes": "→ www.jhc.edu.cn; title-match:yes"
+    },
+    {
+      "url": "https://www.jzxy.net.cn/",
+      "finalUrl": "https://www.jzun.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "荆州学院",
+      "notes": "→ www.jzun.edu.cn; title-match:yes"
+    },
+    {
+      "url": "https://www.kdvtc.edu.cn/",
+      "finalUrl": "https://www.gzkdp.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "广州康大职业技术学院",
+      "notes": "→ www.gzkdp.edu.cn; title-match:yes"
+    },
+    {
+      "url": "https://www.sqmc.edu.cn/",
+      "finalUrl": "https://www.nhmu.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "豫北医学院",
+      "notes": "→ www.nhmu.edu.cn; title-match:no"
+    },
+    {
+      "url": "https://www.sztczyjsxy.com/p1/index.html",
+      "finalUrl": "https://www.sztczyjsxy.cn/p1/index.html",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "朔州陶瓷职业技术学院",
+      "notes": "→ www.sztczyjsxy.cn; meta refresh → https://www.sztczyjsxy.com/; title-match:yes"
+    },
+    {
+      "url": "https://www.ynjgy.com/",
+      "finalUrl": "https://www.ynjgy.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv"
+      ],
+      "pageTitle": "云南经济管理学院_应用型本科院校",
+      "notes": "→ www.ynjgy.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.hyit.edu.cn/",
+      "finalUrl": "https://www.hau.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv"
+      ],
+      "pageTitle": "淮安大学",
+      "notes": "→ www.hau.edu.cn; title-match:no"
+    },
+    {
+      "url": "http://www.hhhxy.cn/",
+      "finalUrl": "https://www.hhxy.edu.cn/index.htm",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "data/research/school_websites.2026-04-21.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "黑河学院",
+      "notes": "→ www.hhxy.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.bwgl.cn/",
+      "finalUrl": "https://www.nnlgxy.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "南宁理工学院",
+      "notes": "→ www.nnlgxy.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.ccit.js.cn/",
+      "finalUrl": "https://www.czit.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "常州信息职业技术大学",
+      "notes": "→ www.czit.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.cqgyzy.com/",
+      "finalUrl": "https://www.cqgyzy.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "重庆公共运输职业学院",
+      "notes": "→ www.cqgyzy.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.czmc.com/",
+      "finalUrl": "http://www.czmc.edu.cn/index.htm",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "长治医学院",
+      "notes": "→ www.czmc.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.gswx.com.cn/",
+      "finalUrl": "https://www.gswzy.com.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "甘肃卫生职业学院",
+      "notes": "→ www.gswzy.com.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.gxuie.cn/",
+      "finalUrl": "https://www.gxou.com.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "广西开放大学 广西信息职业技术学院",
+      "notes": "→ www.gxou.com.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.gzgmzyxy.cn/",
+      "finalUrl": "https://www.gzvcit.edu.cn/index.htm",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "贵州工贸职业学院",
+      "notes": "→ www.gzvcit.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.hicc.cn/",
+      "finalUrl": "https://icc.hbu.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "工商学院",
+      "notes": "→ icc.hbu.edu.cn; title-match:no"
+    },
+    {
+      "url": "http://www.hnjdzy.net/",
+      "finalUrl": "https://www.hnjdzy.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "湖南机电职业技术学院",
+      "notes": "→ www.hnjdzy.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.hnkjxy.net.cn/",
+      "finalUrl": "https://www.hnkjzy.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "湖南科技职业学院",
+      "notes": "→ www.hnkjzy.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.hnwomen.com.cn/",
+      "finalUrl": "https://www.hnwomen.com/main.htm",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "福建华南女子职业学院",
+      "notes": "→ www.hnwomen.com; title-match:yes"
+    },
+    {
+      "url": "http://www.hnyzzy.com/",
+      "finalUrl": "https://www.yongzhouzhiyuan.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "永州职业技术学院-永州职业技术学院校园网",
+      "notes": "→ www.yongzhouzhiyuan.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.hustwenhua.net/",
+      "finalUrl": "https://www.whc.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "文华学院官网",
+      "notes": "→ www.whc.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.hyyesf.com/",
+      "finalUrl": "https://www.hyyesz.com/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "衡阳幼儿师范高等专科学校",
+      "notes": "→ www.hyyesz.com; title-match:yes"
+    },
+    {
+      "url": "http://www.hzvtc.edu.cn/",
+      "finalUrl": "https://www.hzpu.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "杭州职业技术大学",
+      "notes": "→ www.hzpu.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.lntdxy.com/",
+      "finalUrl": "https://www.lntdxy.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "辽宁铁道职业技术学院",
+      "notes": "→ www.lntdxy.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.nbpt.edu.cn/",
+      "finalUrl": "https://www.nbpu.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "宁波职业技术大学",
+      "notes": "→ www.nbpu.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.nipes.cn/",
+      "finalUrl": "https://www.nsi.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "南京体育学院",
+      "notes": "→ www.nsi.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.qledu.net/",
+      "finalUrl": "http://www.sdhg.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "山东化工职业学院",
+      "notes": "→ www.sdhg.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.qxnvc.edu.cn/",
+      "finalUrl": "https://www.qxnvtc.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "黔西南民族职业技术学院",
+      "notes": "→ www.qxnvtc.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.sdse.cn/",
+      "finalUrl": "https://www.sdse.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "山东特殊教育职业学院",
+      "notes": "→ www.sdse.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.sdshxy.cn/",
+      "finalUrl": "https://www.sdshxy.edu.cn/index.html",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "山东圣翰财贸职业学院",
+      "notes": "→ www.sdshxy.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.shufe.edu.cn/",
+      "finalUrl": "https://www.sufe.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "上海财经大学",
+      "notes": "→ www.sufe.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.tlzyxy.com/",
+      "finalUrl": "http://www.tlzyxy.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "通辽职业学院",
+      "notes": "→ www.tlzyxy.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.ynny.cn/",
+      "finalUrl": "https://www.ynny.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "云南能源职业技术学院",
+      "notes": "→ www.ynny.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.jntc.nm.cn/",
+      "finalUrl": "https://www.jnnu.edu.cn/index.htm",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "data/research/school_websites.2026-04-21.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "集宁师范学院",
+      "notes": "→ www.jnnu.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.dzkjxy.com/",
+      "finalUrl": "https://www.dztvc.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "德州科技职业学院",
+      "notes": "→ www.dztvc.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.ynudcc.cn/",
+      "finalUrl": "https://www.dcc.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/github_school_profiles.2026-04-21.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "滇池学院 官网",
+      "notes": "→ www.dcc.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.postech.edu/",
+      "finalUrl": "https://www.postech.ac.kr/kor/index.do",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/gras_institution_websites.2026-11-06.csv",
+        "data/research/gras_institution_websites.2026-11-07.csv",
+        "public/data/atlas/world-atlas.json"
+      ],
+      "pageTitle": "가치창출대학 POSTECH",
+      "notes": "→ www.postech.ac.kr; S0 10% sample recheck"
+    },
+    {
+      "url": "https://www.ucdenver.edu/",
+      "finalUrl": "https://www.cudenver.edu/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/gras_institution_websites.2026-11-06.csv",
+        "data/research/gras_institution_websites.2026-11-07.csv",
+        "public/data/atlas/world-atlas.json"
+      ],
+      "pageTitle": "CU Denver Home Page | University of Colorado Denver",
+      "notes": "→ www.cudenver.edu; S0 10% sample recheck"
+    },
+    {
+      "url": "http://www.cidp.edu.cn/",
+      "finalUrl": "https://www.ncist.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv"
+      ],
+      "pageTitle": "应急管理大学",
+      "notes": "→ www.ncist.edu.cn; title-match:no"
+    },
+    {
+      "url": "http://www.lnit.edu.cn/",
+      "finalUrl": "https://www.lnut.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv"
+      ],
+      "pageTitle": "辽宁工业大学",
+      "notes": "→ www.lnut.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.gliet.edu.cn/",
+      "finalUrl": "https://www.guet.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "data/research/school_websites.2026-04-21.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "桂林电子科技大学",
+      "notes": "→ www.guet.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://sztczyjsxy.com/",
+      "finalUrl": "https://www.sztczyjsxy.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "朔州陶瓷职业技术学院",
+      "notes": "→ www.sztczyjsxy.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.cisisu.edu.cn/",
+      "finalUrl": "https://www.cdisu.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "首页 - 成都外国语学院",
+      "notes": "→ www.cdisu.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.cqcet.edu.cn/",
+      "finalUrl": "https://www.cquet.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "重庆电子科技职业大学-官网-www.cquet.edu.cn",
+      "notes": "→ www.cquet.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.cqiivc.com/",
+      "finalUrl": "https://www.cqiivc.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "重庆工信职业学院",
+      "notes": "→ www.cqiivc.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.gcu.edu.cn/",
+      "finalUrl": "https://www.gcut.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "广州城市理工学院",
+      "notes": "→ www.gcut.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.gdhsc.edu.cn/",
+      "finalUrl": "https://www.gzhs.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "广州华商学院",
+      "notes": "→ www.gzhs.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.gdqy.edu.cn/",
+      "finalUrl": "https://www.gdipu.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "广东轻工职业技术大学",
+      "notes": "→ www.gdipu.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.glmc.edu.cn/",
+      "finalUrl": "https://www.glmu.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "桂林医科大学官网",
+      "notes": "→ www.glmu.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.hbfsh.com/",
+      "finalUrl": "https://www.hebuet.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "河北工程技术学院",
+      "notes": "→ www.hebuet.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.hbwgydx.com/",
+      "finalUrl": "https://www.hisu.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "河北外国语学院——75个语种的外国语大学 - 河北外国语学院 hebei international studies university",
+      "notes": "→ www.hisu.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.hnupc.net/",
+      "finalUrl": "https://stu.hnupc.com/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "",
+      "notes": "→ stu.hnupc.com; title-match:no"
+    },
+    {
+      "url": "http://www.hylgzyxy.cn/",
+      "finalUrl": "http://183.136.132.24/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "友情提示",
+      "notes": "→ 183.136.132.24; title-match:no"
+    },
+    {
+      "url": "http://www.jjtc.com.cn/",
+      "finalUrl": "https://www.jljy.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "吉林交通职业技术学院欢迎您！",
+      "notes": "→ www.jljy.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.jzxy.net.cn/",
+      "finalUrl": "https://www.jzun.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "荆州学院",
+      "notes": "→ www.jzun.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.kdvtc.edu.cn/",
+      "finalUrl": "https://www.gzkdp.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "广州康大职业技术学院",
+      "notes": "→ www.gzkdp.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.lnvc.cn/",
+      "finalUrl": "http://www.lnvc.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "辽宁职业学院",
+      "notes": "→ www.lnvc.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.mitu.cn/",
+      "finalUrl": "https://www.fjpit.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "福建信息职业技术学院",
+      "notes": "→ www.fjpit.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.nncvt.edu.cn/",
+      "finalUrl": "https://www.nnvtu.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "欢迎光临全日制综合性本科层次职业院校—南宁职业技术大学",
+      "notes": "→ www.nnvtu.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.nygymy.com/",
+      "finalUrl": "https://www.nygymy.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "南阳工艺美术职业学院",
+      "notes": "→ www.nygymy.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.qyvtc.com/",
+      "finalUrl": "https://www.qyvtc.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "庆阳职业技术学院",
+      "notes": "→ www.qyvtc.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.qzoiedu.com/",
+      "finalUrl": "https://www.qzoi.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "泉州海洋职业学院",
+      "notes": "→ www.qzoi.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.sdbky.cn/",
+      "finalUrl": "https://www.bzcst.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "滨州科技职业学院",
+      "notes": "→ www.bzcst.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.shlzhj.net/",
+      "finalUrl": "https://slxy.chinalco.com.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "山东铝业职业学院",
+      "notes": "→ slxy.chinalco.com.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.sqmc.edu.cn/",
+      "finalUrl": "https://www.nhmu.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "豫北医学院",
+      "notes": "→ www.nhmu.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.ycnzy.com/",
+      "finalUrl": "https://www.ycac.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "盐城农业科技职业学院",
+      "notes": "→ www.ycac.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.yhvcedu.cn/",
+      "finalUrl": "https://www.yhvc.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "扬州中瑞酒店职业学院",
+      "notes": "→ www.yhvc.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.ynjgy.com/",
+      "finalUrl": "https://www.ynjgy.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "云南经济管理学院_应用型本科院校",
+      "notes": "→ www.ynjgy.edu.cn; title-match:yes"
+    },
+    {
+      "url": "https://www.bxait.cn/",
+      "finalUrl": "https://www.xags.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "西安工商学院",
+      "notes": "→ www.xags.edu.cn; title-match:yes"
+    },
+    {
+      "url": "https://www.yncjxy.com/",
+      "finalUrl": "https://www.yncjxy.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/laosheng_school_profiles.2026-04-22.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "云南城市建设职业学院-官网",
+      "notes": "→ www.yncjxy.edu.cn; title-match:yes"
+    },
+    {
+      "url": "https://www.cidp.edu.cn/",
+      "finalUrl": "https://www.ncist.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/school_websites.2026-04-21.csv"
+      ],
+      "pageTitle": "应急管理大学",
+      "notes": "→ www.ncist.edu.cn; title-match:no"
+    },
+    {
+      "url": "http://www.ecjtu.jx.cn/",
+      "finalUrl": "https://www.ecjtu.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/school_websites.2026-04-21.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "华东交通大学",
+      "notes": "→ www.ecjtu.edu.cn; title-match:yes"
+    },
+    {
+      "url": "http://www.yxnu.net/",
+      "finalUrl": "https://www.yxnu.edu.cn/",
+      "http": 200,
+      "tier": "P0",
+      "sourceFiles": [
+        "data/research/school_websites.2026-04-21.csv",
+        "public/data/runtime/schools.json",
+        "src/data/researchData.ts"
+      ],
+      "pageTitle": "玉溪师范学院",
+      "notes": "→ www.yxnu.edu.cn; title-match:yes"
+    }
+  ],
+  "blocked": [
+    {
+      "url": "https://gaokao.chsi.com.cn/wap/zszc/viewZszc?schId=1783356075&infoId=7653817220",
+      "http": 412,
+      "tier": "P1"
+    },
+    {
+      "url": "https://gaokao.chsi.com.cn/wap/zszc/viewZszc?schId=360427709&infoId=7622117708",
+      "http": 412,
+      "tier": "P1"
+    },
+    {
+      "url": "https://sites.gtiit.edu.cn/admissions/gtiit-gaokao-examination-2026/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.dysoninstitute.ac.uk/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.goldmansachs.com/careers/students/programs-and-internships/emea/degree-apprentices",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/",
+      "http": 412,
+      "tier": "P1"
+    },
+    {
+      "url": "http://jc.nuaa.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://ncfiva.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://njc.gjfgxy.cn/index.shtml",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://srygz.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.ayrwedu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.bfa.edu.cn",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.bjczy.edu.cn",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.bjjt.edu.cn",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.bjwszyxy.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.bupt.edu.cn",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.cdnkxy.com",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.gzdsxy.org.cn",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.hfstu.cn",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.imvcc.cn",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.lzu.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.nmjtzy.com",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.sdsfjy.com",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.sias.edu.cn",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.silkedu.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.smxcsa.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.sxqzy.cn",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.szhkxy.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.thnu.edu.cn/publish/index.htm",
+      "http": 429,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.tjhxzd.com.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.tjrac.edu.cn",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.xkypet.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.ynjw.net/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.zgwuyedx.com/index.php?_m=frontpage&_a=index",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.zptc.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www1.hebeinu.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www2017.tyut.edu.cn",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://hpcollege.hpe.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.bjzbzyxy.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.gcac.edu.cn/sites/caacHome/index.html",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.giist.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.gzst.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.hzevc.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.jsbc.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.jvic.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.lngczyxy.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.msykxy.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.nmmzyz.org.cn/index.html",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.ntit.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.qdpecedu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.scrc.org.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.sou.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.xaiu.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.xjqg.edu.cn/xjqg/xjqg1/index.php",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.zspt.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.zykqxy.com/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.zzyesf.net/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.ccu.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.cdtu.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.cdut.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.hstc.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.lut.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.njnu.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.nuaa.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.yzu.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.cfxy.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.xhu.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://glxy.yzu.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.ahgmedu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.cduestc.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.cqsxedu.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.henz.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.hnsoftedu.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.humc.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.nxyszyxy.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.scctcm.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.scemi.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.swun.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.swupl.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.swvtc.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.wfust.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.wxpoly.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.yqzyjsxy.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.yvcct.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.zjkm.com.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.cjlu.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.nwnu.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.shcc.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.ynau.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.bhsyxy.com",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://xinhua.nxu.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.hhvc.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://american.edu/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://le.ac.uk/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://lnu.se/en/education/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.insead.edu/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.nus.edu.sg/",
+      "http": 200,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.cityu.edu.hk/admo/",
+      "http": 200,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.hkmu.edu.hk/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.hkmu.edu.hk/admissions/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.cityu.edu.hk/",
+      "http": 200,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.bupt.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.cjlu.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.hebpu.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.njtu.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.nwnu.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.shcc.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.thnu.edu.cn/",
+      "http": 429,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.ynau.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://changdecollege.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://hfstu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://smp.mhedu.sh.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.bfa.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.bhlgxy.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.bjzbzyxy.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.cdnkxy.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.gzdsxy.org.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.hatu.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.hebeinu.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.hzevc.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.jsbc.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.jvic.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.lngczyxy.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.msykxy.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.nmjtzy.com/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.nmmzyz.org.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.ntit.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.qzuie.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.sias.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.tjrac.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.xaiu.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.zptc.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.zspt.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.zykqxy.com/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "http://www.zyz.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.bjczy.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.caskm.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://zs.scu.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://zsb.nwpu.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.ganseea.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://tyu.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.ccu.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.cdtu.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.cqut.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.hcnu.edu.cn/",
+      "http": 403,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.hstc.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.lut.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.njnu.edu.cn/",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.thnu.edu.cn/",
+      "http": 429,
+      "tier": "P0"
+    },
+    {
+      "url": "https://gaokao.chsi.com.cn/",
+      "http": 412,
+      "tier": "P1"
+    },
+    {
+      "url": "https://www.bjsubway.com/",
+      "http": 403,
+      "tier": "P1"
+    },
+    {
+      "url": "https://www.bupt.edu.cn",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.cdut.edu.cn",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.lzu.edu.cn",
+      "http": 412,
+      "tier": "P0"
+    },
+    {
+      "url": "https://www.njnu.edu.cn",
+      "http": 412,
+      "tier": "P0"
+    }
+  ],
+  "robotsDisallow": [
+    "http://ausedu.cn/",
+    "http://lnyj.net/",
+    "http://www.cdcas.edu.cn/",
+    "http://www.cslg.edu.cn/",
+    "http://www.dqzyxy.net",
+    "http://www.jmu.edu.cn",
+    "http://www.kdcnu.com",
+    "http://www.lidapoly.edu.cn/",
+    "http://www.mdut.cn/",
+    "http://www.ptyd.pte.sh.cn/x310000/11344/index.aspx",
+    "http://www.sckzd.com/zh/home",
+    "http://www.sxgyxy.net/",
+    "http://www.tianshi.edu.cn/",
+    "http://www.wuhues.com/",
+    "https://gdyfvccm.edu.cn/",
+    "https://www.avcmt.edu.cn/",
+    "https://www.fosu.edu.cn/",
+    "https://www.gdxzzy.edu.cn/",
+    "https://www.hnjc.edu.cn/",
+    "https://www.hznu.edu.cn/",
+    "https://www.sada.edu.cn/",
+    "https://www.sxou.cn/",
+    "https://www.zzrvtc.edu.cn/",
+    "https://www.westlake.edu.cn/",
+    "http://www.bjwlxy.cn/",
+    "http://www.byau.edu.cn/",
+    "http://www.sru.edu.cn/",
+    "http://www.zjut.edu.cn/",
+    "http://rjxy.wmu.edu.cn/",
+    "http://tj.ustb.edu.cn/",
+    "http://www.ccmusic.edu.cn/",
+    "http://www.cuz.edu.cn/",
+    "http://www.gdatv.edu.cn/",
+    "http://www.gzzjxy.edu.cn/",
+    "http://www.hngfxy.com/",
+    "http://www.jzsz.edu.cn/",
+    "http://www.mhkkmzyjsxy.com/",
+    "http://www.nkzy.org.cn/",
+    "http://www.scauzj.edu.cn/",
+    "http://www.wxu.edu.cn/",
+    "http://www.xacom.edu.cn/",
+    "http://www.zzyaou.edu.cn/",
+    "http://www.jmu.edu.cn/",
+    "http://www.hznu.edu.cn/",
+    "http://mooc.yit.edu.cn/",
+    "http://nhjcxy.edu.cn/",
+    "http://tyyzjy.jysd.com/",
+    "http://www.ausedu.cn/",
+    "http://www.avcmt.edu.cn/",
+    "http://www.dqzyxy.net/",
+    "http://www.fosu.edu.cn/",
+    "http://www.gdxzzy.edu.cn/",
+    "http://www.gdyfvccm.edu.cn/",
+    "http://www.gsjtxy.edu.cn/",
+    "http://www.hbjhart.com/",
+    "http://www.hnjc.edu.cn/",
+    "http://www.lku.edu.cn/",
+    "http://www.lnyj.net/",
+    "http://www.sada.edu.cn/",
+    "http://www.sgmart.com/",
+    "http://www.szhct.edu.cn/",
+    "http://www.tgai.edu.cn/",
+    "http://www.westlake.edu.cn/",
+    "http://www.ycyesf.cn/",
+    "http://www.zcmu.edu.cn/",
+    "http://www.zzrvtc.edu.cn/",
+    "http://xtkjzyxy.mh.chaoxing.com/",
+    "https://www.hnvc.net.cn/",
+    "https://www.tianshi.edu.cn/",
+    "https://www.xncy.edu.cn/",
+    "https://www.jmu.edu.cn/",
+    "https://github.com/ieduer/unapply/issues?q=label%3Adata-contribution",
+    "https://github.com/ieduer/unapply/issues?q=is%3Aissue+label%3Adata-contribution",
+    "https://www.ccmusic.edu.cn"
+  ],
+  "unreachable": {
+    "count": 1852,
+    "note": "多為大陸校網對海外出口重置連線或 TLS 鏈不完整；不是壞鏈證據，連續兩輪不可達才標暫不可達",
+    "mainlandEdu": 1018
+  }
+}

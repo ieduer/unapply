@@ -10,7 +10,7 @@
 // - 方言：《中國語言地圖集》（商務印書館／中國社科院）
 //   https://www.cssn.cn/
 // - 地鐵：中國城市軌道交通協會《城市軌道交通統計年鑑》（截至 2024）
-//   https://www.camet.org.cn/
+//   https://www.camet.org.cn/xytj/tjxx/（2026-11-07 核查：舊欄目路徑 /tjxx/ 已 404，改現行「統計報告」欄目）
 // - 沿海 / 高原：民政部《全國行政區劃》+ 中國地理常識
 //   https://www.mca.gov.cn/
 
@@ -109,7 +109,7 @@ export const PROVINCE_CLIMATE: Record<string, ProvinceClimate> = {
 
 // 已開通地鐵（含輕軌）的城市。
 // 來源：中國城市軌道交通協會《城市軌道交通 2024 年度統計和分析報告》
-// https://www.camet.org.cn/tjxx/
+// https://www.camet.org.cn/xytj/tjxx/（2024 年度報告：https://www.camet.org.cn/xytj/tjxx/660844283682885.shtml，2026-11-07 核查 HTTP 200）
 export const SUBWAY_CITIES: ReadonlySet<string> = new Set([
   // 2000 年前
   '北京', '上海', '廣州', '天津', '香港',

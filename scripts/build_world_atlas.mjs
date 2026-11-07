@@ -9,7 +9,7 @@
 //   data/research/gras_institutions_geo.<date>.csv      scripts/geocode_gras_institutions.mjs（取最新日期）
 //   data/research/gras_institution_names_zh_hant.<date>.csv  人工：Wikidata zh-hant 標籤含簡體字形時的字形覆寫（只轉字形不換用詞）
 //   data/research/gras_institution_websites.<date>.csv  scripts/verify_institution_websites.mjs（取最新日期；只合併 verified）
-//   data/research/direct_hire_programs.<date>.csv       人工維護（取最新日期）
+//   data/research/direct_hire_programs.<date>.csv       人工維護（取最新日期）；status=unverified 的候選只留在檔內，不渲染（2026-11-07 批 F1 起）
 //   data/research/ne_110m_land.geojson                  Natural Earth 1:110m Land，公有領域
 //                                                       https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_land.geojson
 //
@@ -51,11 +51,17 @@ const CONTINENT = {
   oceania: { zh: '大洋洲', regions: ['Australia', 'New Zealand'] },
   africa: { zh: '非洲', regions: ['South Africa', 'Egypt', 'Tunisia', 'Ethiopia', 'Nigeria', 'Kenya', 'Morocco', 'Ghana', 'Uganda'] },
 }
+// 條目類型（kindZh 為 zh-Hant 後備；介面以 ui.world.program.kind.<kind> 三語鍵顯示）。2026-11-07 批 F1 新增學徒制／直聘／資助培訓四類（研究 direct_hire_notes.md §4）。
 const KIND_ZH = {
   fellowship_to_hire: '直聘型 fellowship', fellowship_grant: '資助型 fellowship', employer_degree: '雇主資助學位',
   degree_apprenticeship: '學位學徒制', talent_program_with_degree: '企業特才培養（含學位）', research_trainee: '全職預備研究員',
   youth_internship_camp: '中學生實訓營',
+  apprenticeship: '學徒制（非學位）', apprenticeship_mixed: '學徒制入口（含學位與非學位計劃）',
+  direct_hire_school_leaver: '高中畢業生正職直聘', sponsored_training_to_hire: '企業資助培訓後任職',
 }
+const DEGREE = new Set(['yes', 'no', 'partial', 'unknown'])
+const PAID = new Set(['yes', 'no', 'stipend', 'unknown'])
+const regionKeyOf = (country) => String(country).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
 function parseCsv(text) {
   const rows = []
@@ -197,16 +203,25 @@ function main() {
     })
     .sort((a, b) => a.nameEn.localeCompare(b.nameEn))
 
-  const programs = programRows.map((p) => {
+  // 渲染規則（路線圖「對外鏈接規則」＋批 F1）：status=unverified（官方頁本站讀不到，只供年檢重試）不渲染；渲染的條目 confidence 必為 high／medium、
+  // sourceUrl 必 https、officialUrl 有則必 https、kind 在詞表內、verifiedAt 為日期。任一不符直接失敗，不讓條目悄悄上線或悄悄消失。
+  const programIds = new Set()
+  for (const p of programRows) { if (programIds.has(p.id)) throw new Error(`program ${p.id}: duplicate id`); programIds.add(p.id) }
+  const unverifiedRows = programRows.filter((p) => p.status === 'unverified')
+  for (const p of unverifiedRows) if (p.confidence !== 'low') throw new Error(`program ${p.id}: unverified rows must stay confidence=low`)
+  const programs = programRows.filter((p) => p.status !== 'unverified').map((p) => {
     const lat = Number(p.lat), lng = Number(p.lng)
     if (!Number.isFinite(lat) || !Number.isFinite(lng)) throw new Error(`program ${p.id}: bad coordinates`)
     if (!/^https:\/\//.test(p.sourceUrl)) throw new Error(`program ${p.id}: sourceUrl must be https`)
     if (p.officialUrl && !/^https:\/\//.test(p.officialUrl)) throw new Error(`program ${p.id}: officialUrl must be https`)
     if (!KIND_ZH[p.kind]) throw new Error(`program ${p.id}: unknown kind ${p.kind}`)
     if (!/^\d{4}-\d{2}-\d{2}$/.test(p.verifiedAt)) throw new Error(`program ${p.id}: verifiedAt must be YYYY-MM-DD`)
-    if (!['high', 'medium', 'low'].includes(p.confidence)) throw new Error(`program ${p.id}: confidence`)
+    if (!['high', 'medium'].includes(p.confidence)) throw new Error(`program ${p.id}: rendered rows need confidence high/medium (got ${p.confidence}); mark status=unverified instead`)
+    if (!DEGREE.has(p.degree)) throw new Error(`program ${p.id}: degree ${p.degree}`)
+    if (!PAID.has(p.paid)) throw new Error(`program ${p.id}: paid ${p.paid}`)
+    if (!p.country || !p.regionZh || !p.status) throw new Error(`program ${p.id}: country/regionZh/status`)
     const [x, y] = project(lng, lat)
-    return { ...p, kindZh: KIND_ZH[p.kind], lat, lng, x, y, sinceYear: p.sinceYear ? Number(p.sinceYear) : null }
+    return { ...p, kindZh: KIND_ZH[p.kind], regionKey: regionKeyOf(p.country), lat, lng, x, y, sinceYear: p.sinceYear ? Number(p.sinceYear) : null }
   })
 
   const land = landPaths(geojson)
@@ -221,7 +236,7 @@ function main() {
     sources: {
       geo: { name: 'Wikidata (CC0) + 本站校區底稿', file: geoPath.split('/').pop() },
       land: { name: 'Natural Earth 1:110m Land (public domain)', file: 'ne_110m_land.geojson' },
-      programs: { file: programsPath.split('/').pop() },
+      programs: { file: programsPath.split('/').pop(), rows: programRows.length, rendered: programs.length, unverified: unverifiedRows.length },
       websites: { name: '軟科機構頁＋Wikidata P856＋教育部主表，逐條 HTTP 核查', file: websitesPath.split('/').pop() },
     },
     projection: { name: 'equal-earth', width: WIDTH, height: HEIGHT },
@@ -242,7 +257,7 @@ function main() {
     path: '/data/atlas/world-atlas.json',
     rankingYear: YEAR,
     topNMax: TOP_N_MAX,
-    counts: { subjects: payload.subjects.length, families: families.length, regions: regions.length, institutions: institutions.length, programs: programs.length, landPaths: land.length, websites: institutions.filter((i) => i.website).length },
+    counts: { subjects: payload.subjects.length, families: families.length, regions: regions.length, institutions: institutions.length, programs: programs.length, programsUnverified: unverifiedRows.length, landPaths: land.length, websites: institutions.filter((i) => i.website).length },
   }
   writeFileSync(join(root, 'src', 'data', 'worldAtlasManifest.ts'),
     `// Generated by scripts/build_world_atlas.mjs. Do not edit by hand.\nexport const worldAtlasManifest = ${JSON.stringify(manifest, null, 2)} as const\n`)

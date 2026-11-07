@@ -1,5 +1,6 @@
 import { EvidenceNotice } from './EvidenceNotice'
 import { LocaleSwitcher } from './LocaleSwitcher'
+import { TierBadge } from './TierBadge'
 import {
   officialSchoolCount,
   officialUndergraduateCount,
@@ -240,7 +241,7 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
             items={[
               { href: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202606/t20260618_1441074.html', text: t('ui.landing.footer.moe') },
               { href: 'https://www.cma.gov.cn/', text: t('ui.landing.footer.cma') },
-              { href: 'https://www.yicai.com/topic/100311963/', text: t('ui.landing.footer.yicai') },
+              { href: 'https://www.yicai.com/topic/', text: t('ui.landing.footer.yicai') },
               { href: 'https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/', text: t('ui.landing.footer.disciplineEval') },
               { href: 'https://www.shanghairanking.com/rankings/gras/2026', text: t('ui.landing.footer.gras') },
             ]}
@@ -283,15 +284,17 @@ function FooterGroup({
       <p className="mono text-xs uppercase tracking-[0.18em] text-fog-300">{label}</p>
       <div className="mt-2 flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-x-3 sm:gap-y-1 text-xs mono text-fog-500 leading-relaxed">
         {items.map((item) => (
-          <a
-            key={item.href}
-            className="hover:text-accent-500 break-all"
-            href={item.href}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            {item.text}
-          </a>
+          <span key={item.href} className="inline-flex items-center gap-1">
+            <a
+              className="hover:text-accent-500 break-all"
+              href={item.href}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              {item.text}
+            </a>
+            <TierBadge url={item.href} />
+          </span>
         ))}
       </div>
     </section>

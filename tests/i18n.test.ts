@@ -156,6 +156,11 @@ test('程式裡的靜態翻譯鍵都存在於 zh-Hant；動態鍵族逐值存在
     ...['verified', 'syncing', 'rejected', 'pending', 'idle'].map((v) => `ui.aplus.${v}`),
     ...originOptions.flatMap((o) => [`origin.${o.id}.label`, `origin.${o.id}.hint`]),
     ...[1, 2, 3].map((i) => `ui.landing.contribHighlight.${i}`),
+    ...['P0', 'P1', 'P2'].map((v) => `ui.tier.${v}`),
+    ...['fellowship_to_hire', 'fellowship_grant', 'employer_degree', 'degree_apprenticeship', 'talent_program_with_degree', 'research_trainee', 'youth_internship_camp', 'apprenticeship', 'apprenticeship_mixed', 'direct_hire_school_leaver', 'sponsored_training_to_hire'].map((v) => `ui.world.program.kind.${v}`),
+    ...['united-states', 'united-kingdom', 'canada', 'germany', 'china', 'switzerland', 'japan', 'hong-kong', 'south-korea'].map((v) => `ui.world.program.country.${v}`),
+    ...['yes', 'no', 'partial'].map((v) => `ui.world.program.degree.${v}`),
+    'ui.world.program.degreeBadge', 'ui.world.program.degreeBadge.partial', 'ui.tier.aria',
   ]
   const missingFamilies = families.filter((k) => !(k in zhHant))
   assert.deepEqual(missingFamilies, [], `動態鍵缺：${missingFamilies.join(', ')}`)

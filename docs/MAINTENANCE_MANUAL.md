@@ -241,7 +241,7 @@ npm run data:research
 | `gras_institutions_geo.<日期>.csv` | `npm run data:gras-geo` | 機構 → 座標、正體名、（大陸）教育部代碼與本站學校 id、座標來源 |
 | `gras_institution_names_zh_hant.<日期>.csv` | 人工 | Wikidata zh-hant 標籤其實是簡體字形時的覆寫（只轉字形不換用詞；里／托／范等正體本字不改） |
 | `gras_institution_websites.<日期>.csv` | `npm run data:gras-websites` | 機構官網：候選來自軟科機構頁、Wikidata P856、教育部主表；逐條 HTTP 核查；只收 `verified` 且 high／medium |
-| `direct_hire_programs.<日期>.csv` | 人工維護 | 企業直招高中生計劃：條件、給什麼、支薪、學位、座標、官方頁、來源、核對日、可信度 |
+| `direct_hire_programs.<日期>.csv` | 人工維護（候選由只讀研究會話核官方頁後提供） | 企業直招高中生計劃：條件、給什麼、支薪、學位（yes／no／partial／unknown）、座標、官方頁、來源、核對日、可信度、`status`（active／…／`unverified`）。**2026-11-07 批 F1 起**：`status=unverified`（官方頁對聲明身分的檢查器回驗證頁、純 JavaScript 或站點維護中，條件欄未填）的候選只留在檔內供年檢重試，`build_world_atlas.mjs` 不渲染；渲染的條目 `confidence` 必為 high／medium、`sourceUrl` 必 https、`officialUrl` 有則必 https；`kind` 詞表：fellowship_to_hire／fellowship_grant／employer_degree／degree_apprenticeship／talent_program_with_degree／research_trainee／youth_internship_camp／apprenticeship（非學位學徒）／apprenticeship_mixed（同一入口含學位與非學位）／direct_hire_school_leaver（日本高卒採用類正職直聘）／sponsored_training_to_hire（公司資助培訓後任職），每個 kind 與國家名都有 `ui.world.program.kind.*`／`ui.world.program.country.*` 三語鍵（`test:atlas` 斷言）；`degree=yes／partial` 在介面標「含在職學位」——沿用 Dyson／Goldman Sachs／Siemens／Shopify 既有口徑（學徒制含在職學位是否算「繞過高校」仍是站長待審項）。2026-11-07 當時值：32 列＝既有 10（重核）＋14 核過候選＋8 unverified；渲染 24 |
 | `ne_110m_land.geojson` | 一次性下載 | Natural Earth 1:110m Land（公有領域），只畫陸地 |
 
 `npm run data:atlas`（`scripts/build_world_atlas.mjs`）把以上組成 `public/data/atlas/world-atlas.json`
@@ -261,11 +261,50 @@ npm run data:research
    單一來源、網域像學術機構且連通 → `medium`；其餘不收（`status` 留 unreachable／rejected，供人工覆核）。
    `build_world_atlas.mjs` 只合併 `verified`，少於 300 所會直接失敗。不要手改 CSV 補鏈接——改腳本的來源或人工覆核清單再重跑。
    人工覆核清單在腳本的 `MANUAL_REVIEW`（每條寫證據與覆核日）；`--from <上一輪 CSV> --recheck` 只重打上一輪未通過的列（覆核網址實際 GET、最終網域一致才收；標 `allowBlocked` 的反爬 403 以瀏覽器開啟核對、標 `curlFallback` 的憑證鏈不完整站以系統 curl 再試），通過的列逐字照抄。2026-11-07 批 D4 以此把 S0 留下的 13 所補齊到 544/544。
-4. 複核 `direct_hire_programs`：每條重新打開官方頁，更新 `status`／`verifiedAt`；連續兩年沒有招募標 `inactive`，不刪。
-   新地區出現時 `build_world_atlas.mjs` 的 `REGION_ZH`／`CONTINENT` 會失敗，補上中文名與洲別。
+4. 複核 `direct_hire_programs`：每條重新打開官方頁，更新 `status`／`verifiedAt`；連續兩年沒有招募標 `inactive`，不刪；官方頁對檢查器回 403／412 的（Dyson、Goldman Sachs 等）不算壞鏈，改人工瀏覽器核對並在 `notesZh` 記錄；`unverified` 候選人工在真實瀏覽器讀到條件原句後填齊欄位、改 `status=active` 與 `confidence`，否則維持不渲染。新 kind 要同時加 `KIND_ZH` 與三語鍵。
+   新地區出現時 `build_world_atlas.mjs` 的 `REGION_ZH`／`CONTINENT` 會失敗，補上中文名與洲別；新國家的條目要加 `ui.world.program.country.<slug>` 三語鍵。
 5. `npm run data:atlas` → `npm run test:atlas` → 其餘閘門 → 候選預覽 → Pages 交易（§6）。
 
 口徑提醒：排名反映研究產出，不反映本科教學、錄取難度或學費，頁面與 About 已明示；不要把它接進任何「推薦」邏輯。
+
+### 3.8 資料權威分級（2026-11 批 F1 起，路線圖橫切項）
+
+每條對外鏈接按「鏈接目標是誰」分級，與頁面當下是否可達無關（可達性在 §3.9）。定義（研究 `reports/operations/nope-xcut-directhire-links-20261107/research/authority_tiers.md`）：
+
+| 層級 | 定義 | 本站實例 |
+| --- | --- | --- |
+| **P0 官方** | 政府／教育主管機關／官方考試機構／機構本身的官方網域（學校官網、招生處、企業自有網域上的計劃官方頁） | moe.gov.cn、crs.jsj.edu.cn、各省教育考試院、dsedj.gov.mo、edb.gov.hk、`*.edu.cn`／`*.edu`／`*.ac.*` 校網、S0 兩來源核查的 GRAS 機構官網、palantir.com／goldmansachs.com 等 |
+| **P1 權威平台** | 非主管機關本級但受官方委託／授權，或有公開方法論且本站只用於「描述」的平台 | chsi.com.cn（陽光高考）、chinadegrees.cn（學科評估）、shanghairanking.com（GRAS）、陸生／海外聯招會（寄存於大學網域）、camet.org.cn、cssn.cn、lever.co（企業職缺寄存）、findyou2026.com（吉利專站）、ucas.com／commonapp.org |
+| **P2 第三方** | 媒體、開源社群、眾包；只作旁證或貢獻入口 | yicai.com、wikidata.org、naturalearthdata.com、fortune.com／36kr.com／sixthtone.com／cdsb.com、github.com（CollegesChat／Naptie／DaoSword／jtchen2k）、laosheng.top |
+| **OWN** | 本站與姊妹站，不標 | nope／path／my.bdfz.net、gk.rdfzer.com、status.bdfz.net、github.com/ieduer/unapply |
+
+| 檔案 | 產生方式 | 內容 |
+| --- | --- | --- |
+| `data/research/authority_tiers.<日期>.csv` | 人工維護（`domain,match,tier,nameZh,reason,checkedAt`；`match`＝`prefix`（URL 前綴，GitHub 路徑用）／`host`（精確主機，如 www.gov.cn、www.edu.cn）／`registrable`（含子網域）） | 規則表；2026-11-07 當時值 106 條（P0 71／P1 15／P2 14／OWN 6） |
+| `src/data/authorityTiers.ts`、`src/data/linkCheckBaseline.ts` | `npm run data:tiers`（`scripts/build_authority_tiers.mjs`；build 鏈最前） | 規則表（prefix → host → registrable、長網域先比）＋年檢基線計數（讀 §3.9 的 summary.json） |
+| `src/lib/authorityTier.ts` | 程式 | `tierOf(url)`：先查規則表，再用網域型態啟發式（gov／gob／gouv／go／gc／mil 類與 edu／ac 類 → P0），都不認得回 `null`（頁面不標，不猜 P2）；`displayTier()` 把 OWN 收成不標 |
+| `src/components/TierBadge.tsx` | 程式 | 鏈接旁的標籤「官方／權威平台／第三方」（`ui.tier.*` 三語；`data-tier` 屬性供驗收） |
+
+標籤出現位置：首頁頁尾三組鏈接、About 全部來源鏈接（含多鏈接條目）、學校詳情的證據鏈接與校園生活來源、世界地圖直招條目的官方頁與來源頁。頁尾「權威數據」分區標題與第一財經（P2）是否移出、chinadegrees.cn／findyou2026.com 是否升 P0，屬站長待審項（`reports/operations/nope-s5-db-xcut-20261107/nope-f1/PENDING_OWNER_REVIEW.md`），未改。
+
+新增網域規則：改 CSV（同日期檔可直接改；跨年改日期另存）→ `npm run data:tiers` → `npm run test:atlas`（斷言規則無重複、順序正確、站內已知鏈接判得出）。排名與第三方資料只用來描述分佈，不作錄取可能或推薦依據。
+
+### 3.9 鏈接年檢（2026-11 批 F1 起）
+
+工具 `scripts/check_links.mjs`（`npm run audit:links`；網路依賴，**不在發布閘門內**；移植自研究會話 tools/，Node ≥22 無第三方依賴）。盤點範圍：`data/research/*.csv` 欄名含 url／website 的欄、`s1_sources.json`、`origin_sources.*.json`、`src/**/*.ts(x)` 硬編碼鏈接（含生成檔）、`public/data/**/*.json` 內所有 URL（模板字串不計）。
+
+禮貌與邊界（不得放寬）：UA 明示身分與聯絡方式；尊重 robots.txt（5xx 視為全禁、Crawl-delay 最多 10 秒）；同可註冊網域 ≥2 秒；全程同時連線 ≤6（`NOPE_MAX_INFLIGHT` 只能調小）；逾時 12 秒；403／404／412 不重試、只對連線重置重試 1 次；不停用 TLS 驗證；不登入、不填表、不繞過任何挑戰；不存頁面本文。
+
+狀態口徑：`ok`／`redirect-cross-domain`／`broken`（404／410／5xx）／`blocked`（401／403／412／429／503 或 200 挑戰殼）／`robots-disallow`／`unreachable`（DNS／TLS／連線／逾時）／`reused-baseline`。**預設口徑（研究 PENDING 第 6、7 項，待站長確認）**：對聲明身分的檢查器被擋（blocked）**不標不可達**、鏈接保留、改人工瀏覽器抽查；大陸校網 `unreachable` 多為海外出口被重置或 TLS 鏈不完整，**連續兩輪不可達才標「官方頁暫不可達」**（工具以 `--since` 基線狀態＋本輪狀態在 notes 標「連續兩輪不可達」，人工確認後才改資料檔），單輪不可達不動。
+
+年度流程（隨 GRAS 更新，約每年 11 月）：
+
+1. `npm run audit:links -- --since data/research/link_check.<上一年>.csv.gz --out .tmp/link-check`：基線 ok／reused 且 URL 未變者沿用不重抓，只重核壞鏈／被擋／不可達／跨網域轉址／新 URL（全量約 6,100 條、1.5 小時、300 MiB；`--only <sourceFile>`／`--sample <百分比>` 可縮範圍）。
+2. 讀 `.tmp/link-check/link_check.<日期>.summary.json`：`broken` 逐條處置（非校網：找現行官方頁，網域一致且 200 才改鏈，否則改上層頁或去 href 留文字＋註記；校網：人工確認後改鏈或下線）；`redirectCrossDomain` 只對「最終網域明顯仍是該校（.edu／.edu.cn／.ac.* 且校名一致）」者改為最終網址（school_websites 直接改列＋`sourceDate`／`notes`；GRAS 官網經 `verify_institution_websites.mjs --from … --recheck --only <univCode>` 加 MANUAL_REVIEW 條目重打——**但 GRAS 官網是海外層 S3 的錨點**：`build_overseas_layer.mjs` 斷言 `overseas_admissions` 的 `officialWebsite`＝S0 官網、招生頁在 `officialDomain` 之下，改網域會改變 S3 上鏈接判定，所以只在 S3 同批重抓時一起改），其餘留待下一輪；`blocked`／`unreachable` 依上段口徑。每一處改動寫入該年報告的 `link_fixes.md`（舊值／新值／依據）。
+3. 入庫新基線：`gzip -9 -n -c link_check.<日期>.csv > data/research/link_check.<日期>.csv.gz`、`node scripts/check_links.mjs --report <csv> --out <dir>` 產 summary 並複製為 `data/research/link_check.<日期>.summary.json` → `npm run data:tiers`（更新 `linkCheckBaseline.ts`）→ `npm run data:research`（若改了 school_websites／campus_locations；需 CollegesChat 釘定快照在 `/tmp/university-information`，commit 見 `researchPipelineMeta.inputs.collegesChatSnapshot`）→ `data:atlas` → 閘門 → 候選 → Pages 交易（§6）。
+4. 直招條目隨同重核（§3.3 第 4 步）；`unverified` 候選重試。
+
+2026-11-07 基線（當時值）：6,139 條去重 URL、3,704 可註冊網域；ok 2,743／unreachable 1,852（大陸 .edu.cn 1,018）／reused-s2 610／reused-s0 488／blocked 155／broken 114（非校網 6 已修，見 `nope-f1/link_fixes.md`）／redirect-cross-domain 103（school_websites 5 條已改；GRAS 2 條因是 S3 錨點暫緩，見 `nope-f1/link_fixes.md`）／robots-disallow 74；P0 6,042／P1 75／P2 13／OWN 9。基線檔 `data/research/link_check.2026-11-07.csv.gz`（研究 CSV 原樣壓縮，SHA-256 與研究檔一致）＋ `.summary.json`。
 
 ### 3.4 S1 專業／選考科目／招生政策資料層（2026-11 起）
 

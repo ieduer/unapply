@@ -101,6 +101,13 @@ Data-layer entrypoints and their preconditions:
   The upstream commit is recorded in `researchPipelineMeta.inputs.collegesChatSnapshot`.
 - `run data:runtime` only re-exports the generated `.ts` layers into
   `public/data/runtime/*.json`; it has no external input and is always safe to run.
+- `run data:tiers` (head of the `build` chain since batch F1, 2026-11-07) regenerates `src/data/authorityTiers.ts`
+  from `data/research/authority_tiers.<date>.csv` and `src/data/linkCheckBaseline.ts` from the latest
+  `data/research/link_check.<date>.summary.json` (which must sit next to its `.csv.gz`); no network.
+- `run audit:links` (`scripts/check_links.mjs`) is the annual outbound-link audit: network-dependent, polite
+  (identified UA, robots.txt, ≥2 s per registrable domain, ≤6 in flight, no challenge bypass), **not a release gate**.
+  Use `--since data/research/link_check.<date>.csv.gz` to re-check only broken／blocked／unreachable／redirected／new URLs,
+  `--report <csv>` to rebuild the summary offline. Procedure and status vocabulary: `docs/MAINTENANCE_MANUAL.md` §3.9.
 
 Run only commands supported by the current project toolchain and verify expected outputs in the project before using them as release evidence.
 

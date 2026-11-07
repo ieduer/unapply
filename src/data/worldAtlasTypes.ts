@@ -47,9 +47,12 @@ export interface AtlasProgram {
   orgZh: string
   programEn: string
   programZh: string
+  /** 條目類型代碼（詞表見 scripts/build_world_atlas.mjs KIND_ZH；介面以 ui.world.program.kind.<kind> 顯示）。 */
   kind: string
   kindZh: string
   country: string
+  /** 國家／地區的 i18n 鍵尾（ui.world.program.country.<regionKey>），由 country 派生。 */
+  regionKey: string
   regionZh: string
   city: string
   cityZh: string
@@ -59,16 +62,20 @@ export interface AtlasProgram {
   y: number
   eligibilityZh: string
   offersZh: string
+  /** yes／no／stipend／unknown。 */
   paid: string
+  /** yes／no／partial（同一入口含學位與非學位計劃）／unknown；yes 與 partial 在介面標「含在職學位」。 */
   degree: string
   sinceYear: number | null
+  /** 招募狀態原文；status=unverified 的候選在建置期已過濾，不會出現在 payload。 */
   status: string
   officialUrl: string
   sourceTitle: string
   sourceUrl: string
   sourceDate: string
   verifiedAt: string
-  confidence: 'high' | 'medium' | 'low'
+  /** 渲染的條目只有 high／medium；low 只存在於資料檔的 unverified 列。 */
+  confidence: 'high' | 'medium'
   notesZh: string
 }
 
@@ -76,7 +83,7 @@ export interface WorldAtlasPayload {
   version: string
   generatedAt: string
   ranking: { name: string; nameZh: string; year: number; topNMax: number; url: string; fetchedAt: string }
-  sources: { geo: { name: string; file: string }; land: { name: string; file: string }; programs: { file: string }; websites: { name: string; file: string } }
+  sources: { geo: { name: string; file: string }; land: { name: string; file: string }; programs: { file: string; rows: number; rendered: number; unverified: number }; websites: { name: string; file: string } }
   projection: { name: string; width: number; height: number }
   land: string[]
   families: AtlasFamily[]

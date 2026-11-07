@@ -93,14 +93,17 @@ src/
     origins.ts              # 所在地／升學身份起點（第 0 題，不進 AnswerMap）
     worldAtlasTypes.ts      # 世界學科地圖 payload 型別；worldAtlasManifest.ts 由 data:atlas 生成
     overseasTypes.ts        # 海外可申請學校層 payload 型別；overseasManifest.ts 由 data:overseas 生成
+    authorityTiers.ts       # 生成文件（data:tiers）：外部鏈接權威分級規則表 P0／P1／P2／OWN；linkCheckBaseline.ts 為年檢基線計數
   engine/
     atlas.ts                # 世界學科地圖的門類／學科／地區減法（純函數）
   lib/
     atlasData.ts            # 懶載入 world-atlas.json 並核對 manifest
     overseasData.ts         # 懶載入 overseas/index.json 與地區檔並核對 manifest
+    authorityTier.ts        # tierOf(url)：規則表＋gov／edu 啟發式，不認得回 null
   components/
     WorldAtlasPage.tsx      # #/world 世界學科地圖＋非大學路徑圖層
     OverseasPage.tsx        # #/overseas 海外可申請學校（地區 → 申請平台／簽證頁／機構招生頁原文）
+    TierBadge.tsx           # 來源鏈接旁的「官方／權威平台／第三方」標籤
     Landing.tsx
     QuestionRunner.tsx
     ResultPage.tsx
@@ -126,6 +129,12 @@ scripts/
   build_campus_research.mjs # campus_locations.csv → campusResearch.ts 生成腳本
   export_runtime_payloads.ts # researchData/campusResearch/schools → runtime JSON payload
   audit_data_coverage.mjs   # 43 題覆蓋率審計腳本
+  build_authority_tiers.mjs # authority_tiers.<日期>.csv → authorityTiers.ts；link_check.<日期>.summary.json → linkCheckBaseline.ts
+  check_links.mjs           # 全站外部鏈接年檢（npm run audit:links；網路依賴，不進發布閘門；--since 基線只重核變動／壞鏈）
+data/research/
+  direct_hire_programs.<日期>.csv   # 企業直招高中生計劃（status=unverified 不渲染）
+  authority_tiers.<日期>.csv        # 權威分級規則表
+  link_check.<日期>.csv.gz + .summary.json  # 鏈接年檢基線（手冊 §3.9）
   fetch_sources.md          # 數據採集流程 SOP
 ```
 

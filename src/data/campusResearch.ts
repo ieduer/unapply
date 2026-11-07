@@ -224,7 +224,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010005": [
@@ -389,7 +389,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010011": [
@@ -408,7 +408,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010012": [
@@ -480,7 +480,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010015": [
@@ -609,7 +609,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010020": [
@@ -628,7 +628,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010022": [
@@ -647,7 +647,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010023": [
@@ -704,7 +704,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010027": [
@@ -742,7 +742,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010029": [
@@ -761,7 +761,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010030": [
@@ -780,7 +780,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010031": [
@@ -818,7 +818,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010033": [
@@ -909,7 +909,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010038": [
@@ -964,7 +964,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010040": [
@@ -1055,7 +1055,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010043": [
@@ -1074,7 +1074,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010045": [
@@ -1112,7 +1112,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010047": [
@@ -1205,7 +1205,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010051": [
@@ -1224,7 +1224,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010052": [
@@ -1243,7 +1243,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111010053": [
@@ -1402,7 +1402,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111011092": [
@@ -1421,7 +1421,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111011149": [
@@ -1440,7 +1440,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111011232": [
@@ -1459,7 +1459,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111011413": [
@@ -1514,7 +1514,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111011415": [
@@ -1533,7 +1533,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111011417": [
@@ -1588,7 +1588,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111011625": [
@@ -1624,7 +1624,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111011831": [
@@ -1698,7 +1698,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111012453": [
@@ -1821,7 +1821,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111012565": [
@@ -1859,7 +1859,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111012567": [
@@ -1897,7 +1897,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111012733": [
@@ -1916,7 +1916,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111012802": [
@@ -1935,7 +1935,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111013629": [
@@ -2009,7 +2009,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111013901": [
@@ -2028,7 +2028,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111013904": [
@@ -2066,7 +2066,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111014073": [
@@ -2174,7 +2174,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111014201": [
@@ -2193,7 +2193,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4111014215": [
@@ -2358,7 +2358,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4112010055": [
@@ -2517,7 +2517,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4112010059": [
@@ -2623,7 +2623,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4112010063": [
@@ -2642,7 +2642,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4112010065": [
@@ -2769,7 +2769,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4112010071": [
@@ -2820,7 +2820,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4112010073": [
@@ -2877,7 +2877,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4112011032": [
@@ -2966,7 +2966,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4112012719": [
@@ -2985,7 +2985,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4112012720": [
@@ -3273,7 +3273,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4112013659": [
@@ -3292,7 +3292,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4112013660": [
@@ -3463,7 +3463,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4112013898": [
@@ -3592,7 +3592,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4112014087": [
@@ -3630,7 +3630,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4112014599": [
@@ -3668,7 +3668,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113010075": [
@@ -3723,7 +3723,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113010077": [
@@ -3833,7 +3833,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113010084": [
@@ -3852,7 +3852,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113010085": [
@@ -3945,7 +3945,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113010093": [
@@ -4309,7 +4309,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113010798": [
@@ -4470,7 +4470,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113011238": [
@@ -4546,7 +4546,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113011775": [
@@ -4584,7 +4584,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113011903": [
@@ -4603,7 +4603,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113012352": [
@@ -4622,7 +4622,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113012367": [
@@ -4660,7 +4660,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113012408": [
@@ -4679,7 +4679,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113012415": [
@@ -4793,7 +4793,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113012784": [
@@ -4812,7 +4812,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113012785": [
@@ -4939,7 +4939,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113012887": [
@@ -4958,7 +4958,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113013070": [
@@ -4977,7 +4977,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113013071": [
@@ -5197,7 +5197,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113013396": [
@@ -5271,7 +5271,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113013399": [
@@ -5347,7 +5347,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113013404": [
@@ -5383,7 +5383,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113013411": [
@@ -5440,7 +5440,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113013578": [
@@ -5459,7 +5459,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113013592": [
@@ -5478,7 +5478,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113013593": [
@@ -5497,7 +5497,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113013594": [
@@ -5516,7 +5516,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113013595": [
@@ -5535,7 +5535,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113013596": [
@@ -5554,7 +5554,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113013690": [
@@ -5789,7 +5789,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113014103": [
@@ -5895,7 +5895,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113014208": [
@@ -5988,7 +5988,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113014280": [
@@ -6026,7 +6026,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113014328": [
@@ -6045,7 +6045,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113014335": [
@@ -6246,7 +6246,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113014686": [
@@ -6265,7 +6265,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113014695": [
@@ -6284,7 +6284,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113014696": [
@@ -6303,7 +6303,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113014742": [
@@ -6339,7 +6339,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113016203": [
@@ -6358,7 +6358,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4113016204": [
@@ -6515,7 +6515,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114010113": [
@@ -6672,7 +6672,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114010120": [
@@ -6727,7 +6727,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114010122": [
@@ -6994,7 +6994,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114012388": [
@@ -7013,7 +7013,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114012774": [
@@ -7032,7 +7032,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114012776": [
@@ -7144,7 +7144,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114012891": [
@@ -7235,7 +7235,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114013171": [
@@ -7290,7 +7290,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114013530": [
@@ -7366,7 +7366,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114013537": [
@@ -7402,7 +7402,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114013541": [
@@ -7493,7 +7493,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114013692": [
@@ -7512,7 +7512,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114013693": [
@@ -7550,7 +7550,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114013695": [
@@ -7624,7 +7624,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114013821": [
@@ -7662,7 +7662,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114013913": [
@@ -7681,7 +7681,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114013914": [
@@ -7719,7 +7719,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114014093": [
@@ -7850,7 +7850,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114014247": [
@@ -7869,7 +7869,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114014270": [
@@ -7945,7 +7945,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114014461": [
@@ -8002,7 +8002,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114014527": [
@@ -8021,7 +8021,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114014627": [
@@ -8133,7 +8133,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114014698": [
@@ -8152,7 +8152,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4114016201": [
@@ -8171,7 +8171,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115010126": [
@@ -8317,7 +8317,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115010135": [
@@ -8429,7 +8429,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115010871": [
@@ -8484,7 +8484,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115011631": [
@@ -8503,7 +8503,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115011709": [
@@ -8522,7 +8522,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115012057": [
@@ -8541,7 +8541,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115012443": [
@@ -8609,7 +8609,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115012673": [
@@ -8666,7 +8666,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115012676": [
@@ -8757,7 +8757,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115013699": [
@@ -8871,7 +8871,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115014048": [
@@ -8890,7 +8890,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115014049": [
@@ -8966,7 +8966,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115014199": [
@@ -9004,7 +9004,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115014219": [
@@ -9023,7 +9023,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115014248": [
@@ -9135,7 +9135,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115014338": [
@@ -9192,7 +9192,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115014463": [
@@ -9211,7 +9211,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115014501": [
@@ -9285,7 +9285,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115014539": [
@@ -9304,7 +9304,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4115014699": [
@@ -9323,7 +9323,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121010140": [
@@ -9641,7 +9641,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121010150": [
@@ -9660,7 +9660,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121010151": [
@@ -9755,7 +9755,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121010158": [
@@ -9810,7 +9810,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121010160": [
@@ -9867,7 +9867,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121010163": [
@@ -9941,7 +9941,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121010166": [
@@ -10049,7 +10049,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121010173": [
@@ -10106,7 +10106,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121010177": [
@@ -10125,7 +10125,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121010179": [
@@ -10144,7 +10144,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121010180": [
@@ -10182,7 +10182,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121010182": [
@@ -10201,7 +10201,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121010841": [
@@ -10239,7 +10239,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121010957": [
@@ -10296,7 +10296,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121011249": [
@@ -10315,7 +10315,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121011250": [
@@ -10334,7 +10334,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121011258": [
@@ -10630,7 +10630,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121012595": [
@@ -10649,7 +10649,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121012730": [
@@ -10706,7 +10706,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121012897": [
@@ -10744,7 +10744,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121012899": [
@@ -10801,7 +10801,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121013198": [
@@ -10820,7 +10820,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121013201": [
@@ -10839,7 +10839,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121013203": [
@@ -10858,7 +10858,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121013207": [
@@ -10953,7 +10953,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121013217": [
@@ -11048,7 +11048,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121013610": [
@@ -11162,7 +11162,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121013960": [
@@ -11181,7 +11181,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121013961": [
@@ -11348,7 +11348,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121014228": [
@@ -11367,7 +11367,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121014240": [
@@ -11386,7 +11386,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121014286": [
@@ -11443,7 +11443,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121014289": [
@@ -11517,7 +11517,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121014398": [
@@ -11661,7 +11661,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4121014700": [
@@ -11680,7 +11680,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122010183": [
@@ -11835,7 +11835,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122010188": [
@@ -11854,7 +11854,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122010190": [
@@ -11892,7 +11892,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122010192": [
@@ -12055,7 +12055,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122010204": [
@@ -12180,7 +12180,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122010208": [
@@ -12199,7 +12199,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122010209": [
@@ -12218,7 +12218,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122010847": [
@@ -12256,7 +12256,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122011044": [
@@ -12311,7 +12311,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122011436": [
@@ -12432,7 +12432,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122011441": [
@@ -12451,7 +12451,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122011726": [
@@ -12470,7 +12470,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122011823": [
@@ -12508,7 +12508,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122012306": [
@@ -12527,7 +12527,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122012901": [
@@ -12546,7 +12546,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122012902": [
@@ -12637,7 +12637,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122013161": [
@@ -12692,7 +12692,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122013602": [
@@ -12711,7 +12711,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122013603": [
@@ -12730,7 +12730,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122013604": [
@@ -12749,7 +12749,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122013605": [
@@ -12768,7 +12768,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122013606": [
@@ -12806,7 +12806,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122013622": [
@@ -12825,7 +12825,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122013623": [
@@ -12863,7 +12863,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122013706": [
@@ -12994,7 +12994,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122014291": [
@@ -13013,7 +13013,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122014340": [
@@ -13032,7 +13032,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122014426": [
@@ -13051,7 +13051,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122014567": [
@@ -13089,7 +13089,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122014603": [
@@ -13108,7 +13108,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122014701": [
@@ -13127,7 +13127,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122014702": [
@@ -13146,7 +13146,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4122014743": [
@@ -13199,7 +13199,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123010213": [
@@ -13218,7 +13218,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123010214": [
@@ -13254,7 +13254,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123010217": [
@@ -13273,7 +13273,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123010219": [
@@ -13292,7 +13292,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123010220": [
@@ -13368,7 +13368,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123010225": [
@@ -13387,7 +13387,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123010226": [
@@ -13406,7 +13406,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123010228": [
@@ -13425,7 +13425,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123010229": [
@@ -13493,7 +13493,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123010233": [
@@ -13531,7 +13531,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123010235": [
@@ -13656,7 +13656,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123010245": [
@@ -13675,7 +13675,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123010872": [
@@ -13770,7 +13770,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123011449": [
@@ -13859,7 +13859,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123012053": [
@@ -13878,7 +13878,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123012490": [
@@ -13897,7 +13897,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123012718": [
@@ -13954,7 +13954,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123012726": [
@@ -13973,7 +13973,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123012727": [
@@ -13992,7 +13992,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123012728": [
@@ -14011,7 +14011,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123012729": [
@@ -14068,7 +14068,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123012907": [
@@ -14087,7 +14087,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123012908": [
@@ -14161,7 +14161,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123013298": [
@@ -14180,7 +14180,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123013299": [
@@ -14199,7 +14199,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123013300": [
@@ -14235,7 +14235,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123013302": [
@@ -14254,7 +14254,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123013303": [
@@ -14273,7 +14273,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123013304": [
@@ -14292,7 +14292,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123013306": [
@@ -14311,7 +14311,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123013307": [
@@ -14330,7 +14330,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123013448": [
@@ -14349,7 +14349,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123013449": [
@@ -14368,7 +14368,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123013451": [
@@ -14387,7 +14387,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123013729": [
@@ -14406,7 +14406,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123013730": [
@@ -14425,7 +14425,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123013731": [
@@ -14444,7 +14444,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123013732": [
@@ -14520,7 +14520,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123014017": [
@@ -14630,7 +14630,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123014108": [
@@ -14649,7 +14649,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123014178": [
@@ -14668,7 +14668,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123014272": [
@@ -14742,7 +14742,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123014540": [
@@ -14761,7 +14761,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123014560": [
@@ -14780,7 +14780,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4123014633": [
@@ -14799,7 +14799,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131010246": [
@@ -14888,7 +14888,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131010248": [
@@ -14941,7 +14941,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131010251": [
@@ -14977,7 +14977,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131010252": [
@@ -15032,7 +15032,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131010255": [
@@ -15157,7 +15157,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131010264": [
@@ -15208,7 +15208,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131010269": [
@@ -15335,7 +15335,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131010273": [
@@ -15354,7 +15354,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131010274": [
@@ -15373,7 +15373,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131010275": [
@@ -15602,7 +15602,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131010851": [
@@ -15621,7 +15621,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131010852": [
@@ -15708,7 +15708,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131011047": [
@@ -15890,7 +15890,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131012050": [
@@ -15945,7 +15945,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131012495": [
@@ -16066,7 +16066,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131012499": [
@@ -16085,7 +16085,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131012583": [
@@ -16138,7 +16138,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131012585": [
@@ -16174,7 +16174,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131012587": [
@@ -16286,7 +16286,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131012801": [
@@ -16324,7 +16324,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131012913": [
@@ -16362,7 +16362,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131012915": [
@@ -16381,7 +16381,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131013632": [
@@ -16455,7 +16455,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4131013893": [
@@ -16580,7 +16580,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132010284": [
@@ -16817,7 +16817,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132010292": [
@@ -17075,7 +17075,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132010312": [
@@ -17094,7 +17094,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132010313": [
@@ -17113,7 +17113,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132010315": [
@@ -17361,7 +17361,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132010330": [
@@ -17399,7 +17399,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132010332": [
@@ -17418,7 +17418,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132010333": [
@@ -17518,7 +17518,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132010850": [
@@ -17537,7 +17537,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132010958": [
@@ -17556,7 +17556,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132010960": [
@@ -17751,7 +17751,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132011122": [
@@ -17825,7 +17825,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132011288": [
@@ -17988,7 +17988,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132012048": [
@@ -18007,7 +18007,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132012054": [
@@ -18064,7 +18064,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132012106": [
@@ -18138,7 +18138,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132012679": [
@@ -18157,7 +18157,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132012680": [
@@ -18176,7 +18176,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132012681": [
@@ -18309,7 +18309,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132012688": [
@@ -18383,7 +18383,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132012703": [
@@ -18421,7 +18421,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132012805": [
@@ -18440,7 +18440,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132012806": [
@@ -18497,7 +18497,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132012809": [
@@ -18535,7 +18535,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132012918": [
@@ -18554,7 +18554,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132012919": [
@@ -18611,7 +18611,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132012922": [
@@ -18630,7 +18630,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132012923": [
@@ -18649,7 +18649,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013017": [
@@ -18687,7 +18687,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013101": [
@@ -18801,7 +18801,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013107": [
@@ -18820,7 +18820,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013108": [
@@ -18839,7 +18839,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013110": [
@@ -18953,7 +18953,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013573": [
@@ -18972,7 +18972,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013579": [
@@ -19067,7 +19067,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013748": [
@@ -19086,7 +19086,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013749": [
@@ -19124,7 +19124,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013751": [
@@ -19143,7 +19143,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013752": [
@@ -19200,7 +19200,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013842": [
@@ -19293,7 +19293,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013962": [
@@ -19312,7 +19312,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013963": [
@@ -19331,7 +19331,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013964": [
@@ -19350,7 +19350,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013980": [
@@ -19407,7 +19407,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013983": [
@@ -19426,7 +19426,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013984": [
@@ -19483,7 +19483,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013987": [
@@ -19502,7 +19502,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013988": [
@@ -19574,7 +19574,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013991": [
@@ -19593,7 +19593,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013992": [
@@ -19612,7 +19612,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132013993": [
@@ -19667,7 +19667,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132014000": [
@@ -19705,7 +19705,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132014056": [
@@ -19724,7 +19724,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132014160": [
@@ -19779,7 +19779,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132014255": [
@@ -19798,7 +19798,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132014256": [
@@ -19855,7 +19855,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132014329": [
@@ -19874,7 +19874,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132014401": [
@@ -19893,7 +19893,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132014436": [
@@ -19967,7 +19967,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132014528": [
@@ -19986,7 +19986,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132014541": [
@@ -20043,7 +20043,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132014568": [
@@ -20117,7 +20117,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4132014773": [
@@ -20208,7 +20208,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     },
     {
       "campusName": "紫金港校区",
@@ -20244,7 +20244,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133010337": [
@@ -20297,7 +20297,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133010338": [
@@ -20316,7 +20316,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133010340": [
@@ -20388,7 +20388,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133010344": [
@@ -20445,7 +20445,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133010347": [
@@ -20464,7 +20464,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133010349": [
@@ -20589,7 +20589,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133010353": [
@@ -20716,7 +20716,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133010876": [
@@ -20735,7 +20735,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133011057": [
@@ -20771,7 +20771,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133011481": [
@@ -20790,7 +20790,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133011482": [
@@ -20809,7 +20809,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133011483": [
@@ -20828,7 +20828,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133011488": [
@@ -20866,7 +20866,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133011647": [
@@ -20921,7 +20921,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133012036": [
@@ -20976,7 +20976,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133012646": [
@@ -21033,7 +21033,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133012790": [
@@ -21052,7 +21052,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133012791": [
@@ -21173,7 +21173,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133012863": [
@@ -21230,7 +21230,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133012866": [
@@ -21249,7 +21249,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133012867": [
@@ -21287,7 +21287,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133012869": [
@@ -21306,7 +21306,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133012870": [
@@ -21325,7 +21325,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133012871": [
@@ -21344,7 +21344,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133012872": [
@@ -21380,7 +21380,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133012875": [
@@ -21437,7 +21437,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133012878": [
@@ -21494,7 +21494,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013003": [
@@ -21532,7 +21532,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013022": [
@@ -21551,7 +21551,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013023": [
@@ -21570,7 +21570,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013025": [
@@ -21589,7 +21589,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013026": [
@@ -21608,7 +21608,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013027": [
@@ -21665,7 +21665,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013030": [
@@ -21720,7 +21720,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013276": [
@@ -21739,7 +21739,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013277": [
@@ -21758,7 +21758,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013279": [
@@ -21794,7 +21794,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013280": [
@@ -21813,7 +21813,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013283": [
@@ -21940,7 +21940,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013287": [
@@ -21959,7 +21959,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013288": [
@@ -21995,7 +21995,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013290": [
@@ -22050,7 +22050,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013292": [
@@ -22120,7 +22120,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013688": [
@@ -22139,7 +22139,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133013742": [
@@ -22215,7 +22215,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133014088": [
@@ -22272,7 +22272,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133014206": [
@@ -22310,7 +22310,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133014269": [
@@ -22367,7 +22367,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133014492": [
@@ -22424,7 +22424,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133014703": [
@@ -22443,7 +22443,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4133014746": [
@@ -22549,7 +22549,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134010357": [
@@ -22623,7 +22623,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134010360": [
@@ -22678,7 +22678,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134010363": [
@@ -23582,7 +23582,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134012218": [
@@ -23601,7 +23601,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134012219": [
@@ -23675,7 +23675,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134012410": [
@@ -23694,7 +23694,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134012810": [
@@ -23808,7 +23808,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134012816": [
@@ -24028,7 +24028,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134013064": [
@@ -24047,7 +24047,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134013065": [
@@ -24085,7 +24085,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134013337": [
@@ -24290,7 +24290,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134013346": [
@@ -24345,7 +24345,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134013612": [
@@ -24451,7 +24451,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134013616": [
@@ -24519,7 +24519,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134013619": [
@@ -24591,7 +24591,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134013846": [
@@ -24610,7 +24610,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134013847": [
@@ -24629,7 +24629,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134013848": [
@@ -24648,7 +24648,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134013849": [
@@ -24699,7 +24699,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134013851": [
@@ -24718,7 +24718,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134013852": [
@@ -24866,7 +24866,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134014135": [
@@ -25050,7 +25050,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134014229": [
@@ -25069,7 +25069,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134014230": [
@@ -25088,7 +25088,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134014273": [
@@ -25126,7 +25126,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134014297": [
@@ -25164,7 +25164,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134014299": [
@@ -25259,7 +25259,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134014419": [
@@ -25278,7 +25278,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134014420": [
@@ -25354,7 +25354,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134014704": [
@@ -25373,7 +25373,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4134014747": [
@@ -25875,7 +25875,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135011311": [
@@ -26023,7 +26023,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135011495": [
@@ -26114,7 +26114,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135011502": [
@@ -26336,7 +26336,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135012633": [
@@ -26374,7 +26374,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135012708": [
@@ -26393,7 +26393,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135012709": [
@@ -26431,7 +26431,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135012711": [
@@ -26450,7 +26450,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135012927": [
@@ -26488,7 +26488,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135012992": [
@@ -26581,7 +26581,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135013469": [
@@ -26600,7 +26600,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135013470": [
@@ -26638,7 +26638,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135013472": [
@@ -26657,7 +26657,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135013762": [
@@ -26695,7 +26695,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135013764": [
@@ -26714,7 +26714,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135013765": [
@@ -26807,7 +26807,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135013769": [
@@ -26826,7 +26826,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135013770": [
@@ -26881,7 +26881,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135013773": [
@@ -26919,7 +26919,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135013972": [
@@ -26991,7 +26991,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135013975": [
@@ -27067,7 +27067,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135013979": [
@@ -27086,7 +27086,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135014046": [
@@ -27105,7 +27105,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135014059": [
@@ -27143,7 +27143,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135014110": [
@@ -27162,7 +27162,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135014111": [
@@ -27219,7 +27219,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135014115": [
@@ -27314,7 +27314,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135014257": [
@@ -27443,7 +27443,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4135016411": [
@@ -27462,7 +27462,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136010403": [
@@ -27555,7 +27555,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136010407": [
@@ -27625,7 +27625,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136010410": [
@@ -27822,7 +27822,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136010419": [
@@ -27932,7 +27932,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136010888": [
@@ -27970,7 +27970,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136010895": [
@@ -28182,7 +28182,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136012766": [
@@ -28201,7 +28201,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136012795": [
@@ -28239,7 +28239,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136012930": [
@@ -28258,7 +28258,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136012932": [
@@ -28296,7 +28296,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136012934": [
@@ -28334,7 +28334,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136012937": [
@@ -28353,7 +28353,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136012938": [
@@ -28448,7 +28448,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136012943": [
@@ -28505,7 +28505,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013418": [
@@ -28562,7 +28562,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013421": [
@@ -28581,7 +28581,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013422": [
@@ -28600,7 +28600,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013423": [
@@ -28676,7 +28676,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013427": [
@@ -28695,7 +28695,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013428": [
@@ -28714,7 +28714,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013429": [
@@ -28769,7 +28769,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013431": [
@@ -28788,7 +28788,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013432": [
@@ -28807,7 +28807,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013433": [
@@ -28845,7 +28845,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013435": [
@@ -28864,7 +28864,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013436": [
@@ -28934,7 +28934,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013439": [
@@ -28953,7 +28953,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013440": [
@@ -28972,7 +28972,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013441": [
@@ -28991,7 +28991,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013774": [
@@ -29010,7 +29010,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013775": [
@@ -29097,7 +29097,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013868": [
@@ -29116,7 +29116,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013869": [
@@ -29135,7 +29135,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013870": [
@@ -29154,7 +29154,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136013871": [
@@ -29304,7 +29304,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136014241": [
@@ -29361,7 +29361,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136014321": [
@@ -29380,7 +29380,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136014402": [
@@ -29435,7 +29435,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136014465": [
@@ -29473,7 +29473,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136014494": [
@@ -29492,7 +29492,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136014504": [
@@ -29568,7 +29568,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136014569": [
@@ -29625,7 +29625,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136014665": [
@@ -29644,7 +29644,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136014705": [
@@ -29663,7 +29663,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136014706": [
@@ -29682,7 +29682,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4136014748": [
@@ -29769,7 +29769,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137010423": [
@@ -29841,7 +29841,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137010425": [
@@ -29860,7 +29860,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137010426": [
@@ -30032,7 +30032,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137010431": [
@@ -30051,7 +30051,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137010433": [
@@ -30089,7 +30089,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137010435": [
@@ -30248,7 +30248,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137010442": [
@@ -30299,7 +30299,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137010444": [
@@ -30409,7 +30409,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137010448": [
@@ -30483,7 +30483,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137010453": [
@@ -30540,7 +30540,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137010456": [
@@ -30595,7 +30595,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137010458": [
@@ -30650,7 +30650,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137010832": [
@@ -30707,7 +30707,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137010908": [
@@ -30762,7 +30762,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137011066": [
@@ -30851,7 +30851,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137011688": [
@@ -30908,7 +30908,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137012070": [
@@ -30980,7 +30980,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137012326": [
@@ -31018,7 +31018,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137012329": [
@@ -31164,7 +31164,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137012391": [
@@ -31462,7 +31462,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013005": [
@@ -31481,7 +31481,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013006": [
@@ -31536,7 +31536,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013008": [
@@ -31644,7 +31644,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013012": [
@@ -31663,7 +31663,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013014": [
@@ -31777,7 +31777,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013320": [
@@ -31815,7 +31815,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013322": [
@@ -31853,7 +31853,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013324": [
@@ -31927,7 +31927,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013373": [
@@ -31965,7 +31965,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013379": [
@@ -32003,7 +32003,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013386": [
@@ -32022,7 +32022,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013387": [
@@ -32041,7 +32041,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013388": [
@@ -32079,7 +32079,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013390": [
@@ -32098,7 +32098,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013624": [
@@ -32117,7 +32117,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013777": [
@@ -32155,7 +32155,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013855": [
@@ -32174,7 +32174,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013856": [
@@ -32307,7 +32307,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013966": [
@@ -32364,7 +32364,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137013998": [
@@ -32476,7 +32476,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014081": [
@@ -32550,7 +32550,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014118": [
@@ -32624,7 +32624,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014196": [
@@ -32662,7 +32662,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014261": [
@@ -32681,7 +32681,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014276": [
@@ -32810,7 +32810,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014345": [
@@ -32937,7 +32937,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014439": [
@@ -32956,7 +32956,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014477": [
@@ -32994,7 +32994,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014507": [
@@ -33051,7 +33051,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014605": [
@@ -33070,7 +33070,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014666": [
@@ -33089,7 +33089,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014688": [
@@ -33127,7 +33127,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014707": [
@@ -33146,7 +33146,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014708": [
@@ -33165,7 +33165,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014709": [
@@ -33184,7 +33184,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014710": [
@@ -33203,7 +33203,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4137014749": [
@@ -33290,7 +33290,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141010460": [
@@ -33377,7 +33377,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141010463": [
@@ -33449,7 +33449,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141010465": [
@@ -33468,7 +33468,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141010466": [
@@ -33578,7 +33578,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141010472": [
@@ -33646,7 +33646,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141010477": [
@@ -33758,7 +33758,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141010483": [
@@ -33813,7 +33813,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141010485": [
@@ -33944,7 +33944,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141010919": [
@@ -34071,7 +34071,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141011326": [
@@ -34147,7 +34147,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141011522": [
@@ -34276,7 +34276,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141011788": [
@@ -34295,7 +34295,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141011828": [
@@ -34424,7 +34424,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141012735": [
@@ -34572,7 +34572,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141012781": [
@@ -34591,7 +34591,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141012793": [
@@ -34610,7 +34610,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141012794": [
@@ -34682,7 +34682,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141012950": [
@@ -34701,7 +34701,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141013497": [
@@ -34739,7 +34739,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141013499": [
@@ -34758,7 +34758,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141013500": [
@@ -34796,7 +34796,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141013502": [
@@ -34849,7 +34849,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141013504": [
@@ -34868,7 +34868,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141013505": [
@@ -35042,7 +35042,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141013780": [
@@ -35061,7 +35061,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141013781": [
@@ -35099,7 +35099,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141013783": [
@@ -35118,7 +35118,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141013784": [
@@ -35192,7 +35192,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141013787": [
@@ -35230,7 +35230,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141013789": [
@@ -35357,7 +35357,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141013889": [
@@ -35562,7 +35562,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014245": [
@@ -35581,7 +35581,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014251": [
@@ -35600,7 +35600,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014300": [
@@ -35638,7 +35638,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014302": [
@@ -35695,7 +35695,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014306": [
@@ -35807,7 +35807,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014349": [
@@ -35900,7 +35900,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014353": [
@@ -35938,7 +35938,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014382": [
@@ -35995,7 +35995,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014392": [
@@ -36014,7 +36014,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014405": [
@@ -36166,7 +36166,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014598": [
@@ -36185,7 +36185,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014606": [
@@ -36204,7 +36204,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014607": [
@@ -36223,7 +36223,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014608": [
@@ -36242,7 +36242,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014634": [
@@ -36261,7 +36261,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014635": [
@@ -36331,7 +36331,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014654": [
@@ -36369,7 +36369,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014711": [
@@ -36388,7 +36388,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014712": [
@@ -36407,7 +36407,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014713": [
@@ -36426,7 +36426,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014714": [
@@ -36445,7 +36445,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014715": [
@@ -36464,7 +36464,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014716": [
@@ -36483,7 +36483,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014717": [
@@ -36502,7 +36502,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014718": [
@@ -36521,7 +36521,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014719": [
@@ -36540,7 +36540,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014720": [
@@ -36559,7 +36559,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4141014750": [
@@ -36826,7 +36826,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142010495": [
@@ -36987,7 +36987,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142010511": [
@@ -37152,7 +37152,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142010520": [
@@ -37190,7 +37190,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142010523": [
@@ -37247,7 +37247,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142010528": [
@@ -37393,7 +37393,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142011072": [
@@ -37600,7 +37600,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142011796": [
@@ -37619,7 +37619,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142011798": [
@@ -37714,7 +37714,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142012310": [
@@ -37733,7 +37733,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142012347": [
@@ -37809,7 +37809,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142012737": [
@@ -37847,7 +37847,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142012740": [
@@ -37885,7 +37885,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142012752": [
@@ -37904,7 +37904,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142012951": [
@@ -37961,7 +37961,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142012978": [
@@ -38037,7 +38037,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142012983": [
@@ -38075,7 +38075,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142012985": [
@@ -38094,7 +38094,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142012986": [
@@ -38113,7 +38113,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142012987": [
@@ -38132,7 +38132,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142012988": [
@@ -38200,7 +38200,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142012990": [
@@ -38219,7 +38219,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142012991": [
@@ -38272,7 +38272,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013234": [
@@ -38344,7 +38344,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013237": [
@@ -38363,7 +38363,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013238": [
@@ -38382,7 +38382,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013239": [
@@ -38401,7 +38401,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013240": [
@@ -38420,7 +38420,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013241": [
@@ -38439,7 +38439,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013242": [
@@ -38458,7 +38458,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013245": [
@@ -38532,7 +38532,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013249": [
@@ -38551,7 +38551,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013250": [
@@ -38570,7 +38570,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013251": [
@@ -38589,7 +38589,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013253": [
@@ -38608,7 +38608,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013256": [
@@ -38627,7 +38627,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013257": [
@@ -38646,7 +38646,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013258": [
@@ -38684,7 +38684,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013263": [
@@ -38703,7 +38703,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013264": [
@@ -38722,7 +38722,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013265": [
@@ -38760,7 +38760,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013634": [
@@ -38779,7 +38779,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013664": [
@@ -38836,7 +38836,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013793": [
@@ -38855,7 +38855,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013796": [
@@ -38874,7 +38874,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013797": [
@@ -38910,7 +38910,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013799": [
@@ -38948,7 +38948,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142013801": [
@@ -38967,7 +38967,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142014035": [
@@ -38986,7 +38986,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142014061": [
@@ -39024,7 +39024,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142014119": [
@@ -39155,7 +39155,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142014357": [
@@ -39174,7 +39174,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142014467": [
@@ -39229,7 +39229,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142014554": [
@@ -39318,7 +39318,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142014591": [
@@ -39337,7 +39337,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142014721": [
@@ -39356,7 +39356,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4142014755": [
@@ -39726,7 +39726,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143010551": [
@@ -39874,7 +39874,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143010830": [
@@ -39912,7 +39912,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143010865": [
@@ -40136,7 +40136,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143011604": [
@@ -40265,7 +40265,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143012301": [
@@ -40491,7 +40491,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143012598": [
@@ -40529,7 +40529,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143012600": [
@@ -40548,7 +40548,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143012601": [
@@ -40567,7 +40567,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143012603": [
@@ -40586,7 +40586,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143012604": [
@@ -40605,7 +40605,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143012649": [
@@ -40624,7 +40624,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143012650": [
@@ -40679,7 +40679,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143012652": [
@@ -40715,7 +40715,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143012656": [
@@ -40787,7 +40787,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143012660": [
@@ -40806,7 +40806,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143012661": [
@@ -40825,7 +40825,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143012662": [
@@ -40992,7 +40992,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143013032": [
@@ -41011,7 +41011,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143013033": [
@@ -41087,7 +41087,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143013039": [
@@ -41125,7 +41125,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143013042": [
@@ -41235,7 +41235,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143013635": [
@@ -41254,7 +41254,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143013802": [
@@ -41311,7 +41311,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143013806": [
@@ -41362,7 +41362,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143013808": [
@@ -41457,7 +41457,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143013923": [
@@ -41563,7 +41563,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143013939": [
@@ -41658,7 +41658,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143014071": [
@@ -41829,7 +41829,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143014358": [
@@ -41848,7 +41848,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143014359": [
@@ -41867,7 +41867,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143014360": [
@@ -41905,7 +41905,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143014468": [
@@ -41962,7 +41962,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143014663": [
@@ -42019,7 +42019,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143014692": [
@@ -42038,7 +42038,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4143014774": [
@@ -42905,7 +42905,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144010590": [
@@ -43361,7 +43361,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144011347": [
@@ -43471,7 +43471,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144011656": [
@@ -43908,7 +43908,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144012327": [
@@ -43982,7 +43982,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144012574": [
@@ -44020,7 +44020,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144012576": [
@@ -44077,7 +44077,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144012617": [
@@ -44096,7 +44096,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144012618": [
@@ -44115,7 +44115,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144012619": [
@@ -44134,7 +44134,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144012620": [
@@ -44153,7 +44153,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144012621": [
@@ -44172,7 +44172,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144012622": [
@@ -44191,7 +44191,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144012623": [
@@ -44210,7 +44210,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144012668": [
@@ -44229,7 +44229,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144012736": [
@@ -44331,7 +44331,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144012743": [
@@ -44782,7 +44782,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144013656": [
@@ -44835,7 +44835,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144013675": [
@@ -44873,7 +44873,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144013707": [
@@ -44911,7 +44911,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144013709": [
@@ -44966,7 +44966,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144013711": [
@@ -45053,7 +45053,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144013714": [
@@ -45106,7 +45106,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144013716": [
@@ -45252,7 +45252,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144013810": [
@@ -45356,7 +45356,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144013919": [
@@ -45532,7 +45532,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144014063": [
@@ -45676,7 +45676,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144014126": [
@@ -45790,7 +45790,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144014278": [
@@ -45919,7 +45919,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144014363": [
@@ -45938,7 +45938,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144014407": [
@@ -46097,7 +46097,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144014572": [
@@ -46116,7 +46116,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144014587": [
@@ -46243,7 +46243,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144014638": [
@@ -46262,7 +46262,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144014655": [
@@ -46281,7 +46281,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144014664": [
@@ -46300,7 +46300,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144014667": [
@@ -46402,7 +46402,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144016407": [
@@ -46421,7 +46421,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4144016409": [
@@ -46550,7 +46550,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145010596": [
@@ -46569,7 +46569,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145010598": [
@@ -46588,7 +46588,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145010599": [
@@ -46726,7 +46726,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145010604": [
@@ -46819,7 +46819,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145010608": [
@@ -46857,7 +46857,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145010867": [
@@ -46876,7 +46876,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145011350": [
@@ -47022,7 +47022,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145011608": [
@@ -47111,7 +47111,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145011825": [
@@ -47149,7 +47149,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145011838": [
@@ -47168,7 +47168,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145012104": [
@@ -47238,7 +47238,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145012364": [
@@ -47276,7 +47276,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145012392": [
@@ -47295,7 +47295,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145013138": [
@@ -47428,7 +47428,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145013640": [
@@ -47447,7 +47447,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145013641": [
@@ -47502,7 +47502,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145013644": [
@@ -47570,7 +47570,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145013828": [
@@ -47744,7 +47744,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145014068": [
@@ -47763,7 +47763,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145014127": [
@@ -48097,7 +48097,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145014694": [
@@ -48116,7 +48116,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145014722": [
@@ -48135,7 +48135,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145014723": [
@@ -48154,7 +48154,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4145014762": [
@@ -48415,7 +48415,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4146013575": [
@@ -48434,7 +48434,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4146013576": [
@@ -48472,7 +48472,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4146013811": [
@@ -48527,7 +48527,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4146013876": [
@@ -48565,7 +48565,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4146013931": [
@@ -48584,7 +48584,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4146014172": [
@@ -48639,7 +48639,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4146014575": [
@@ -48677,7 +48677,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4146014639": [
@@ -48715,7 +48715,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150010611": [
@@ -48789,7 +48789,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150010635": [
@@ -48808,7 +48808,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150010637": [
@@ -48878,7 +48878,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150010643": [
@@ -48954,7 +48954,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150010655": [
@@ -48973,7 +48973,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150010870": [
@@ -49170,7 +49170,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150012607": [
@@ -49365,7 +49365,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150012758": [
@@ -49384,7 +49384,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150012759": [
@@ -49422,7 +49422,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150013548": [
@@ -49477,7 +49477,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150013590": [
@@ -49496,7 +49496,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150013591": [
@@ -49695,7 +49695,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150014069": [
@@ -49845,7 +49845,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150014267": [
@@ -50014,7 +50014,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150014370": [
@@ -50209,7 +50209,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150014576": [
@@ -50247,7 +50247,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150014726": [
@@ -50266,7 +50266,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150014727": [
@@ -50285,7 +50285,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4150014766": [
@@ -50495,7 +50495,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151010616": [
@@ -50533,7 +50533,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151010621": [
@@ -50588,7 +50588,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151010623": [
@@ -50607,7 +50607,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151010624": [
@@ -50626,7 +50626,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151010626": [
@@ -50895,7 +50895,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151010640": [
@@ -51016,7 +51016,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151010649": [
@@ -51035,7 +51035,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151010651": [
@@ -51306,7 +51306,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151011841": [
@@ -51325,7 +51325,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151012064": [
@@ -51427,7 +51427,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151012636": [
@@ -51539,7 +51539,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151012641": [
@@ -51613,7 +51613,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151012761": [
@@ -51844,7 +51844,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151012967": [
@@ -51971,7 +51971,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151013049": [
@@ -51990,7 +51990,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151013665": [
@@ -52060,7 +52060,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151013669": [
@@ -52079,7 +52079,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151013670": [
@@ -52098,7 +52098,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151013671": [
@@ -52189,7 +52189,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151013812": [
@@ -52208,7 +52208,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151013813": [
@@ -52426,7 +52426,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014007": [
@@ -52464,7 +52464,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014037": [
@@ -52536,7 +52536,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014043": [
@@ -52555,7 +52555,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     },
     {
       "campusName": "梓潼校区",
@@ -52803,7 +52803,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014323": [
@@ -52898,7 +52898,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014410": [
@@ -53048,7 +53048,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014513": [
@@ -53122,7 +53122,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014547": [
@@ -53141,7 +53141,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014548": [
@@ -53217,7 +53217,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014642": [
@@ -53274,7 +53274,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014645": [
@@ -53293,7 +53293,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014646": [
@@ -53312,7 +53312,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014647": [
@@ -53331,7 +53331,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014669": [
@@ -53350,7 +53350,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014670": [
@@ -53369,7 +53369,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014671": [
@@ -53407,7 +53407,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014673": [
@@ -53445,7 +53445,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014728": [
@@ -53483,7 +53483,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014730": [
@@ -53502,7 +53502,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014731": [
@@ -53521,7 +53521,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014732": [
@@ -53540,7 +53540,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4151014767": [
@@ -53754,7 +53754,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152010665": [
@@ -53773,7 +53773,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152010666": [
@@ -53921,7 +53921,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152010672": [
@@ -53997,7 +53997,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152011731": [
@@ -54016,7 +54016,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152012107": [
@@ -54071,7 +54071,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152012336": [
@@ -54128,7 +54128,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152012823": [
@@ -54185,7 +54185,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152013052": [
@@ -54295,7 +54295,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152013648": [
@@ -54490,7 +54490,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152014198": [
@@ -54547,7 +54547,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152014371": [
@@ -54604,7 +54604,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152014469": [
@@ -54661,7 +54661,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152014499": [
@@ -54737,7 +54737,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152014558": [
@@ -54794,7 +54794,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152014578": [
@@ -54851,7 +54851,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152014613": [
@@ -54980,7 +54980,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152014630": [
@@ -54999,7 +54999,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152014648": [
@@ -55018,7 +55018,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152014733": [
@@ -55037,7 +55037,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152014734": [
@@ -55056,7 +55056,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152014735": [
@@ -55075,7 +55075,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4152014769": [
@@ -55213,7 +55213,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153010677": [
@@ -55232,7 +55232,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153010678": [
@@ -55251,7 +55251,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153010679": [
@@ -55289,7 +55289,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153010681": [
@@ -55562,7 +55562,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153011393": [
@@ -55581,7 +55581,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153011556": [
@@ -55619,7 +55619,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153012349": [
@@ -55657,7 +55657,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153012393": [
@@ -55845,7 +55845,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153012971": [
@@ -55919,7 +55919,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153013329": [
@@ -56048,7 +56048,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153013758": [
@@ -56067,7 +56067,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153013759": [
@@ -56124,7 +56124,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153014012": [
@@ -56232,7 +56232,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153014092": [
@@ -56308,7 +56308,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153014253": [
@@ -56365,7 +56365,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153014373": [
@@ -56403,7 +56403,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153014413": [
@@ -56422,7 +56422,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153014415": [
@@ -56536,7 +56536,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153014583": [
@@ -56574,7 +56574,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153014618": [
@@ -56593,7 +56593,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153014619": [
@@ -56644,7 +56644,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153014621": [
@@ -56663,7 +56663,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153014623": [
@@ -56720,7 +56720,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153014675": [
@@ -56739,7 +56739,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153014676": [
@@ -56758,7 +56758,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4153014736": [
@@ -56777,7 +56777,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4154010692": [
@@ -57025,7 +57025,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161010699": [
@@ -57080,7 +57080,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161010701": [
@@ -57254,7 +57254,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161010708": [
@@ -57396,7 +57396,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161010716": [
@@ -57415,7 +57415,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161010718": [
@@ -57625,7 +57625,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161010726": [
@@ -57718,7 +57718,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161010828": [
@@ -57881,7 +57881,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161011664": [
@@ -57955,7 +57955,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161011840": [
@@ -58080,7 +58080,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161012714": [
@@ -58099,7 +58099,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161012715": [
@@ -58118,7 +58118,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161012827": [
@@ -58283,7 +58283,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161013123": [
@@ -58302,7 +58302,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161013124": [
@@ -58321,7 +58321,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161013125": [
@@ -58490,7 +58490,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161013679": [
@@ -58509,7 +58509,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161013680": [
@@ -58566,7 +58566,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161013683": [
@@ -58585,7 +58585,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161013736": [
@@ -58712,7 +58712,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161013945": [
@@ -58769,7 +58769,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161013948": [
@@ -58934,7 +58934,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161014030": [
@@ -58991,7 +58991,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161014041": [
@@ -59010,7 +59010,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161014042": [
@@ -59029,7 +59029,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161014222": [
@@ -59177,7 +59177,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161014737": [
@@ -59196,7 +59196,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4161014770": [
@@ -59232,7 +59232,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4162010731": [
@@ -59433,7 +59433,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4162010739": [
@@ -59844,7 +59844,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4162013514": [
@@ -59863,7 +59863,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4162013515": [
@@ -59882,7 +59882,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4162013518": [
@@ -59954,7 +59954,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4162013955": [
@@ -59973,7 +59973,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4162014131": [
@@ -60047,7 +60047,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4162014517": [
@@ -60180,7 +60180,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4162014771": [
@@ -60282,7 +60282,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4163010746": [
@@ -60356,7 +60356,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4163012852": [
@@ -60504,7 +60504,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4164010749": [
@@ -60523,7 +60523,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4164010752": [
@@ -60542,7 +60542,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4164010753": [
@@ -60688,7 +60688,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4164013089": [
@@ -60726,7 +60726,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4164013325": [
@@ -60745,7 +60745,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4164013820": [
@@ -60764,7 +60764,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4164014200": [
@@ -60838,7 +60838,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4164014624": [
@@ -60857,7 +60857,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4164014739": [
@@ -60876,7 +60876,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165010755": [
@@ -60948,7 +60948,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165010759": [
@@ -60967,7 +60967,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165010760": [
@@ -61086,7 +61086,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165010765": [
@@ -61141,7 +61141,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165010994": [
@@ -61319,7 +61319,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165012514": [
@@ -61357,7 +61357,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165012734": [
@@ -61412,7 +61412,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165012975": [
@@ -61450,7 +61450,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165013094": [
@@ -61488,7 +61488,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165013560": [
@@ -61507,7 +61507,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165013561": [
@@ -61526,7 +61526,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165013562": [
@@ -61594,7 +61594,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165013726": [
@@ -61632,7 +61632,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165013926": [
@@ -61687,7 +61687,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165014416": [
@@ -61744,7 +61744,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165014489": [
@@ -61837,7 +61837,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165014585": [
@@ -61949,7 +61949,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165014677": [
@@ -61987,7 +61987,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165014679": [
@@ -62006,7 +62006,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165014680": [
@@ -62025,7 +62025,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4165014740": [
@@ -62063,7 +62063,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4213051721": [
@@ -62169,7 +62169,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4244050853": [
@@ -62243,7 +62243,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4251051351": [
@@ -62262,7 +62262,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4252050963": [
@@ -62281,7 +62281,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
       "sourceUrl": "https://github.com/Naptie/cn-university-geocoder",
       "sourceDate": "2026-04-21",
       "confidence": "medium",
-      "notes": "辅源：https://github.com/jtchen2k/hcu、https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
+      "notes": "辅源：https://github.com/jtchen2k/hcu 與 https://daxue.cgsop.com/ 可用于后续人工校验校区沿革与本科去向。"
     }
   ],
   "4261050084": [
@@ -62357,7 +62357,7 @@ export const campusResearchByMoeCode: Record<string, CampusResearchRecord[]> = {
 };
 
 export const campusResearchMeta = {
-  "generatedAt": "2026-10-03T11:03:47.600Z",
+  "generatedAt": "2026-11-07T13:42:57.387Z",
   "input": "data/research/campus_locations.2026-04-21.csv",
   "counts": {
     "campusRows": 3396,

@@ -10,11 +10,18 @@ import { overseasManifest } from '../data/overseasManifest'
 import { useLocale } from '../i18n/react'
 import { Rich, type RichParams } from '../i18n/rich'
 import { LocaleSwitcher } from './LocaleSwitcher'
+import { TierBadge } from './TierBadge'
+import { worldAtlasManifest } from '../data/worldAtlasManifest'
+import { authorityTiersSource } from '../data/authorityTiers'
+import { linkCheckBaseline } from '../data/linkCheckBaseline'
 
 interface Props { onBack: () => void }
 
 const ext = (href: string) => (children: ReactNode) => (
-  <a className="text-accent-500 hover:text-accent-400 mono break-all" href={href} target="_blank" rel="noreferrer noopener">{children}</a>
+  <span className="inline-flex items-center gap-1 align-baseline">
+    <a className="text-accent-500 hover:text-accent-400 mono break-all" href={href} target="_blank" rel="noreferrer noopener">{children}</a>
+    <TierBadge url={href} />
+  </span>
 )
 const site = (href: string) => (children: ReactNode) => (
   <a className="text-accent-500 hover:text-accent-400" href={href} target="_blank" rel="noreferrer noopener">{children}</a>
@@ -72,8 +79,8 @@ export function AboutPage({ onBack }: Props) {
             <Li k="ui.about.sources.chsi" href="https://gaokao.chsi.com.cn/" />
             <Li k="ui.about.sources.cma" href="https://www.cma.gov.cn/2011xzt/essay/" />
             <Li k="ui.about.sources.mee" href="https://www.mee.gov.cn/hjzl/sthjzk/zghjzkgb/" />
-            <Li k="ui.about.sources.camet" href="https://www.camet.org.cn/tjxx/" />
-            <Li k="ui.about.sources.yicai" href="https://www.yicai.com/topic/100311963/" />
+            <Li k="ui.about.sources.camet" href="https://www.camet.org.cn/xytj/tjxx/" />
+            <Li k="ui.about.sources.yicai" href="https://www.yicai.com/topic/" />
             <Li k="ui.about.sources.mca" href="https://www.mca.gov.cn/" />
             <Li k="ui.about.sources.langAtlas" href="https://www.cssn.cn/" />
           </ul>
@@ -99,7 +106,7 @@ export function AboutPage({ onBack }: Props) {
               />
             </li>
             <Li k="ui.about.sources.strongBase" href="http://www.moe.gov.cn/srcsite/A15/moe_776/s3258/202001/t20200115_415589.html" />
-            <Li k="ui.about.sources.directHire" />
+            <Li k="ui.about.sources.directHire" params={{ rendered: worldAtlasManifest.counts.programs, unverified: worldAtlasManifest.counts.programsUnverified }} />
             <Li k="ui.about.sources.joint" href="https://www.crs.jsj.edu.cn/" />
             <li>
               <Rich
@@ -122,6 +129,24 @@ export function AboutPage({ onBack }: Props) {
             <Li k="ui.about.sources.collegeschat" href="https://github.com/CollegesChat/university-information" />
             <Li k="ui.about.sources.userContrib" href="https://github.com/ieduer/unapply/issues?q=label%3Adata-contribution" />
           </ul>
+        </div>
+
+        <div data-authority-tiers>
+          <h2 className="serif text-2xl text-fog-100 mb-4">{t('ui.about.tiers.title')}</h2>
+          <p className="text-sm">{t('ui.about.tiers.intro')}</p>
+          <ul className="flex flex-col gap-2 text-sm list-disc pl-5 mt-3">
+            <Li k="ui.about.tiers.p0" />
+            <Li k="ui.about.tiers.p1" />
+            <Li k="ui.about.tiers.p2" />
+          </ul>
+          <p className="mt-3 text-sm"><Rich k="ui.about.tiers.rule" slots={{ a1: ext('https://github.com/ieduer/unapply/blob/master/docs/MAINTENANCE_MANUAL.md') }} /></p>
+          <p className="mt-2 text-sm text-fog-500">
+            <Rich
+              k="ui.about.tiers.data"
+              params={{ rules: n(authorityTiersSource.counts.rules), urls: n(linkCheckBaseline.counts.urls) }}
+              slots={{ a1: ext('https://github.com/ieduer/unapply/blob/master/data/research/authority_tiers.2026-11-07.csv'), a2: ext('https://github.com/ieduer/unapply/blob/master/data/research/link_check.2026-11-07.summary.json') }}
+            />
+          </p>
         </div>
 
         <div>

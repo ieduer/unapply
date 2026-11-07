@@ -103817,7 +103817,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     }
   },
   "4115011427": {
-    "website": "http://www.jntc.nm.cn/",
+    "website": "https://www.jnnu.edu.cn/",
     "schoolAddress": "内蒙古自治区乌兰察布市集宁区工农大街59号",
     "quality": {
       "B1": "上下鋪",
@@ -177576,7 +177576,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     }
   },
   "4123013744": {
-    "website": "http://www.hhhxy.cn/",
+    "website": "https://www.hhxy.edu.cn/",
     "schoolAddress": "黑龙江省黑河市学院路1号",
     "quality": {
       "B2": "都沒有",
@@ -344290,7 +344290,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     }
   },
   "4136010404": {
-    "website": "http://www.ecjtu.jx.cn/",
+    "website": "https://www.ecjtu.edu.cn/",
     "schoolAddress": "江西省南昌市经济技术开发区双港东大街808号",
     "quality": {
       "B1": "上床下桌",
@@ -603936,7 +603936,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     }
   },
   "4145010595": {
-    "website": "http://www.gliet.edu.cn/",
+    "website": "https://www.guet.edu.cn/",
     "schoolAddress": "广西壮族自治区桂林金鸡路1号",
     "quality": {
       "B1": "上下鋪",
@@ -708767,7 +708767,7 @@ export const schoolResearchProfilesByMoeCode: Record<string, SchoolResearchProfi
     }
   },
   "4153011390": {
-    "website": "http://www.yxnu.net/",
+    "website": "https://www.yxnu.edu.cn/",
     "schoolAddress": "云南省玉溪市红塔区凤凰路134号",
     "quality": {
       "B1": "上床下桌",
@@ -777781,7 +777781,7 @@ export const researchCoverageByDimension: Partial<Record<DimensionId, { schoolCo
 };
 
 export const researchPipelineMeta = {
-  "generatedAt": "2026-10-03T11:03:47.369Z",
+  "generatedAt": "2026-11-07T13:42:57.184Z",
   "inputs": {
     "websites": "data/research/school_websites.2026-04-21.csv",
     "laoshengProfiles": "data/research/laosheng_school_profiles.2026-04-22.csv",

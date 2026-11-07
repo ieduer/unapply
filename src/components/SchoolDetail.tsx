@@ -22,6 +22,7 @@ import { programsManifest } from '../data/programsManifest'
 import { loadJointItems } from '../lib/jointData'
 import type { JointItem } from '../data/jointTypes'
 import { jointProgramsManifest } from '../data/jointProgramsManifest'
+import { TierBadge } from './TierBadge'
 import { useLocale } from '../i18n/react'
 import { dimensionLabel, linkLabel, linkNote, programStrikeLabel, provinceLabel, requirementLabel, schoolDisplayName, subjectsLabel, valueLabel } from '../lib/i18nLabels'
 import { LocaleSwitcher } from './LocaleSwitcher'
@@ -515,7 +516,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                   {evidence?.source === 'crowd' && <p className="mt-2 text-xs text-fog-500">{t('ui.detail.life.crowdSource')}</p>}
                   {sources.map((source, i) => (
                     <div key={source.url + i} className="mt-2 text-xs text-fog-500">
-                      <a className="text-accent-500 underline" href={source.url} target="_blank" rel="noreferrer noopener">{source.title}</a>
+                      <a className="text-accent-500 underline" href={source.url} target="_blank" rel="noreferrer noopener">{source.title}</a> <TierBadge url={source.url} />
                       <p>{source.date ?? t('ui.detail.life.sourceDateMissing')} · {source.note}</p>
                     </div>
                   ))}
@@ -606,6 +607,7 @@ function EvidenceRow({ label, items }: { label: string; items: ResearchEvidence[
               {item.date ? ` · ${item.date}` : ''}
               {item.confidence ? ` · ${tOr(`ui.detail.confidence.${item.confidence}`, item.confidence)}` : ''}
             </span>
+            <TierBadge url={item.url} className="ml-1 shrink-0" />
             <span className="ml-1 shrink-0">↗</span>
           </a>
         ))}

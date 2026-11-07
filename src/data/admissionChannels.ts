@@ -350,7 +350,7 @@ export const admissionChannelsByMoeCode: Record<string, SchoolAdmissionChannels>
 }
 
 export const admissionChannelMeta = {
-  "generatedAt": "2026-10-03T11:03:46.207Z",
+  "generatedAt": "2026-11-07T13:42:55.867Z",
   "input": "data/research/admission_channels.2026-09-08.csv",
   "schoolCount": 14
 }

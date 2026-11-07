@@ -54,7 +54,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
     section: 'A_redline',
     values: ['tier1', 'newtier1', 'tier2', 'tier3_below'],
     authoritativeSources: [
-      { title: '第一財經新一線城市研究所（2025 城市商業魅力榜）', url: 'https://www.yicai.com/topic/100311963/' },
+      { title: '第一財經新一線城市研究所（2025 城市商業魅力榜；專題頁 2026-11-07 核查已失效，改鏈第一財經專題總頁）', url: 'https://www.yicai.com/topic/' },
     ],
     coverage: 'mixed',
     notes: 'tier1 = 北上廣深；newtier1 = 第一財經 2025 新一線榜單 15 座（2026 年報告起不再發布城市分級，2025 版為最後一版）；tier2 = 省會/計劃單列/重點城市映射；tier3_below = 其他地級',
@@ -162,7 +162,7 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
     id: 'E6', label: '有地鐵', section: 'E_environment',
     values: ['yes', 'no'],
     authoritativeSources: [
-      { title: '中國城市軌道交通協會年度報告', url: 'https://www.camet.org.cn/tjxx/' },
+      { title: '中國城市軌道交通協會「統計報告」欄目（2026-11-07 核查改鏈現行路徑）', url: 'https://www.camet.org.cn/xytj/tjxx/' },
     ],
     coverage: 'authoritative',
     notes: '截至 2024 年，含已開通地鐵與輕軌的城市',
