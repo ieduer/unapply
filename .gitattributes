@@ -1,0 +1,2 @@
+# 入庫的官方原檔快照逐位元組保存（SHA-256 釘在 data/research/s1_sources.json），不做空白檢查、不做文字 diff。
+data/research/raw/** -whitespace -diff

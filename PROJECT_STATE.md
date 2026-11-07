@@ -1,8 +1,24 @@
 # Project State
 
-Last updated: 2026-11-06 UTC
+Last updated: 2026-11-07 UTC
 Current version: d4ae514（已部署 0ec6d42f，生效 2026-11-06T22:50:51Z）
-Current objective: 全球化路線圖已立項（docs/GLOBAL_ROADMAP.md）；S0（所在地起點＋世界學科地圖＋已核查官網鏈接＋企業直招高中生層）已上線並登記 accepted；下一步 S1 大陸高校專業／錄取條件／招生政策；原 43 維效度缺口仍列後續。
+Current objective: 全球化路線圖已立項（docs/GLOBAL_ROADMAP.md）；S0（所在地起點＋世界學科地圖＋已核查官網鏈接＋企業直招高中生層）已上線並登記 accepted；S1 大陸高校專業／錄取條件／招生政策的 schema 設計與首批資料（雙一流 144 校）已產出、**待站長審核，未接前端、未發布**；原 43 維效度缺口仍列後續。
+
+## 2026-11-06 S1 專業／選考科目／招生政策資料層：設計與首批資料（候選，待站長審核，未發布）
+
+線上仍為 `0ec6d42f`／`d4ae514`（S0），本輪**沒有任何前端、引擎、AnswerMap、Function、shared-ui 或發布變更**；工作樹新增的是資料層檔案與腳本，未提交。
+
+- 設計：`docs/DESIGN_S1_PROGRAMS_ADMISSION.md`——機構 × 專業（國標目錄）× 年度 × 省份的錄取條件與招生政策 schema、
+  哪些維度能進減法題、哪些只展示、官方來源可取得性核查表、接入閘門與站長待決點。
+- 首批資料（`data/research/`）：`s1_sources.json` 釘定 16 個官方來源（13 個原檔入庫 `raw/s1/`，3 個大檔只釘 SHA-256）；
+  `bk_catalog.2026.csv` 教育部本科專業目錄 883 種；`program_offerings.2027.csv` 雙一流 144 校（第二輪 147 減 3 所軍校；上海體育學院已更名上海體育大學）
+  的本科招生專業（類）與選考科目要求（湖北／江蘇／上海／浙江四省 2027 表聯集，跨省 0 衝突）；`strong_base_schools.2026.csv` 強基 39 校。
+- 腳本：`npm run data:s1-fetch`／`data:s1-build`／`audit:s1`（手冊 §3.4）；離線可重跑，不付費、不用 AI 生成資料；
+  陽光高考對腳本回 412 挑戰，只能人工瀏覽器查核，未繞過。
+- 稽核：`/Users/ylsuen/CF/reports/operations/nope-s1-programs-admission-20261106/s1-audit.md`；報告 `REPORT.md` 同目錄。
+- 待站長決定：選科題要不要成為新題（會改 AnswerMap／A+ 契約）還是先只在學校詳情頁展示；專業題如何與既有 C5 共存；
+  陽光高考人工查核的分工；下一批（全部 2,952 校／章程層／專項計劃）的順序。
+- 附帶發現（未修）：`officialSchools.ts` 的雙一流標籤按 2022 校名比對，上海體育大學（原上海體育學院）因此落為「普通本科」。
 
 ## 2026-11-06 全球化立項與 S0 世界學科地圖（已上線，當前權威）
 
