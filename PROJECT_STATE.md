@@ -1,10 +1,17 @@
 # Project State
 
 Last updated: 2026-11-07 UTC
-Current version: 84c0fcd（已部署 460b9fcb，生效 2026-11-07T11:52:24Z；批 E1 疊加於批 S3 7443bb5／41a45cad）
-Current objective: 全球化路線圖（docs/GLOBAL_ROADMAP.md）：S0、S1 全批（首批、A、B、C、D1＋D4）、S2 兩半（D3 港澳臺院校池、D2 中外合作辦學）、S3 海外可申請學校層（批 S3）與 S4 批 E1 三語介面皆已上線並登記 accepted；S4 批 E2（起點分支＋跨國結果）實作中；待站長審核項列於 `reports/operations/nope-s2-coverage-jointprograms-20261107/PENDING_OWNER_REVIEW.md`（conflict 口徑、不可達省表、港澳臺三條待覆核、合作辦學收費→A4）與 `reports/operations/nope-s3-overseas-20261107/nope-s3/PENDING_OWNER_REVIEW.md`（被擋／純 JS 機構與國家層頁人工覆核、medium 7 所是否上鏈接、海外層是否進導航文案）；待站長審核項另見 `reports/operations/nope-s4-i18n-origins-20261107/nope-e1/PENDING_OWNER_REVIEW.md`（shared-ui 9 條字串是否兩站同批改、三處英譯口徑）；S5 服務化由後續會話串行接續；原 43 維效度缺口仍列後續。
+Current version: 55eb014（已部署 9753bdc3，生效 2026-11-07T12:56:17Z；批 E2 疊加於批 E1 84c0fcd／460b9fcb）
+Current objective: 全球化路線圖（docs/GLOBAL_ROADMAP.md）：S0、S1 全批（首批、A、B、C、D1＋D4）、S2 兩半（D3 港澳臺院校池、D2 中外合作辦學）、S3 海外可申請學校層（批 S3）與 S4 兩批（E1 三語介面、E2 起點分支＋跨國結果）皆已上線並登記 accepted；待站長審核項列於 `reports/operations/nope-s2-coverage-jointprograms-20261107/PENDING_OWNER_REVIEW.md`（conflict 口徑、不可達省表、港澳臺三條待覆核、合作辦學收費→A4）與 `reports/operations/nope-s3-overseas-20261107/nope-s3/PENDING_OWNER_REVIEW.md`（被擋／純 JS 機構與國家層頁人工覆核、medium 7 所是否上鏈接、海外層是否進導航文案）；待站長審核項另見 `reports/operations/nope-s4-i18n-origins-20261107/nope-e1/PENDING_OWNER_REVIEW.md`（shared-ui 9 條字串是否兩站同批改、三處英譯口徑）與 `nope-e2/PENDING_OWNER_REVIEW.md`（起點／資格／範圍是否進 A+ 學習證據＝方案 A；未核官方頁人工核查清單）；S5 服務化由後續會話串行接續；原 43 維效度缺口仍列後續。
 
-## 2026-11-07 批 E1：三語介面 zh-Hant／zh-Hans／en（已上線，當前權威）
+## 2026-11-07 批 E2：起點分支（資格／範圍）＋官方進大陸管道＋海外層資格標示＋結果頁跨國並列（已上線，當前權威）
+
+正式部署 `9753bdc3-ebe9-4488-80a4-32db2fbcb728`，來源 `55eb014`，生效 `2026-11-07T12:56:17Z`；回滾 `460b9fcb`／`84c0fcd`。Status `20261107-nope-s4-origins-e2` r1。
+- 方案 B 展示層（手冊 §5.4）：港澳臺／海外起點先答資格（18 種）與範圖（只本地／只海外／都考慮，可跳過），只存 `unapply.originPrefs.v1`，不進 AnswerMap／學習證據／Function；A+ 證據仍只有 45 題。
+- 港澳臺起點附 7 條官方進大陸管道（只鏈 verified 來源，blocked／needs_review 顯示「官方頁本站未讀到」）；海外層按資格保留式標示「校方頁面寫明接受」與分國計數（`qualifications.json` `efbab412ac6e`：403 所、32 token、gaokaoAccepted 4）；結果頁按範圍並列港澳臺院校池與海外層（local 收成一行）；A6 港澳臺提示。
+- i18n 新增 96 鍵（1,296 鍵，`9891b7f7178f`）；十七道閘門於 `55eb014`（新增 `test:origins` 7）；候選 `42982ad7` 與正式 129/129；三語 × 兩色系 × 1440／390 逐路由對比 0 低於 4.5。待站長：`reports/operations/nope-s4-i18n-origins-20261107/nope-e2/PENDING_OWNER_REVIEW.md`。
+
+## 2026-11-07 批 E1：三語介面 zh-Hant／zh-Hans／en（歷史；批 E2 疊加於其上）
 
 正式部署 `460b9fcb-e6b8-4576-aa8f-e3b3d5381f53`，來源 `84c0fcd`，生效 `2026-11-07T11:52:24Z`；回滾 `41a45cad`／`7443bb5`。Status `20261107-nope-s4-i18n-e1` r1。
 - 翻譯層 1,200 鍵（手冊 §5.3）：zh-Hant 來源打包進主包；zh-Hans 由 `data:i18n` 以 vendored OpenCC t2s 字級字典＋站內例外表生成（只轉字形不換用詞，140 條 fixtures 閘門）；en 站方翻譯；兩者自 `public/i18n/` 懶載（manifest `457977554cc4`）。頭部切換存 `unapply.locale.v1`，首次依瀏覽器語言，同步 `<html lang>`／title／description；hash 路由不帶語言。

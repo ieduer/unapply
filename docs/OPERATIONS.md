@@ -470,7 +470,7 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 
 **回滾**：`26154a49`／`893667b`，受審回滾交易；只切 Pages 版本，無資料庫遷移；學習記錄不受影響。證據：`reports/operations/nope-s3-overseas-20261107/nope-s3/`；資源記錄 `nope-s3/resources.md`；待站長 `nope-s3/PENDING_OWNER_REVIEW.md`。
 
-## 2026-11-07 批 E1：三語介面 zh-Hant／zh-Hans／en（已上線，當前權威）
+## 2026-11-07 批 E1：三語介面 zh-Hant／zh-Hans／en（已上線；批 E2 疊加於其上）
 
 **授權**：站長 2026-11-07 睡前裁定「不涉及付費都可以推進，使用到的資源做好記錄。s1直至s5，包括橫切，最終完成全部。我睡，你持續推進，必須我審核的留到最後。」葉子介面更新走登記的發布交易。不改題集／DimensionId／AnswerMap／learning manifest／Function／shared-ui；無 UC 或共享樞紐寫入；無付費或計量資源（英譯與簡體規則由本模型在會話內完成，無翻譯 API）；無新 Cloudflare 資源或綁定；不改導航／門戶／Pulse／UC 登記。需站長裁定的只寫入 `PENDING_OWNER_REVIEW.md`。
 
@@ -481,3 +481,15 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 **驗證**：本機（Vite 5181，`local-browser.json`：首次 en 試跑發現問卷頁頭部切換器在 390 寬未隱藏致橫向溢出 405／471 px，改 `max-sm:hidden` 後重測乾淨）、候選 `959207b8`（`candidate-browser.json`：真實點擊切換、三語 × 紙色／墨色 × 1440／390 共 12 輪 × 11 路由，0 低於 4.5，最低 4.57（紙）／4.93（墨）＝強調色按鈕文字，最小字 12px，無橫向溢出；en 的 `#/world` 剩餘機構表在既有 `overflow-x-auto` 容器內捲動）、正式（`production-browser.json`：三語 × 紙色 × 1440，主控台無錯誤）三處一致；十六道閘門於 `84c0fcd`（`nope-e1/check.txt`，dist 128 檔）。
 
 **回滾**：`41a45cad`／`7443bb5`，受審回滾交易；只切 Pages 版本，無資料庫遷移；學習記錄不受影響；回滾後 `unapply.locale.v1` 殘留無害（舊版不讀它）。證據：`reports/operations/nope-s4-i18n-origins-20261107/nope-e1/`；資源記錄 `nope-e1/resources.md`；待站長 `nope-e1/PENDING_OWNER_REVIEW.md`。
+
+## 2026-11-07 批 E2：起點分支（資格／範圍）＋官方進大陸管道＋海外層資格標示＋結果頁跨國並列（已上線，當前權威）
+
+**授權**：同批 E1（站長 2026-11-07 睡前裁定）。採研究方案 B：起點／資格／範圍為展示層分支，只存 localStorage（`unapply.origin.v1`、`unapply.originPrefs.v1`），不進 AnswerMap／DimensionId／learning manifest／Function；A+ 學習證據仍只有 45 題；無 UC 或共享樞紐寫入；無付費或計量資源（來源核查只用既有研究產出與本機 fetch）；無新 Cloudflare 資源或綁定；不改導航／門戶／Pulse／UC 登記；shared-ui 不動。需站長裁定的只寫入 `nope-e2/PENDING_OWNER_REVIEW.md`（方案 A 是否進學習證據；未核官方頁清單）。
+
+**正式部署**：`9753bdc3-ebe9-4488-80a4-32db2fbcb728`，來源 `55eb014aff106dacfb6ab1149ee418a57f0f78dd`，生效 `2026-11-07T12:56:17Z`（Cloudflare `ended_on`）；候選 `42982ad7-90f7-4a14-aeca-763fb5b49dda`、正式 nope.bdfz.net 與不可變網址 129/129 一致；health active（manifest `unapply-result-v1` 不變）；正式真實路徑（`nope-e2/production-browser.json`）與候選一致。登記簿 accepted → `9753bdc3`／`55eb014`，rollback → `460b9fcb`／`84c0fcd`。Status `20261107-nope-s4-origins-e2` r1（new，已發布並讀回 `status-readback-e2.txt`：API／列表／RSS／`/api/status`）。收據 `20261107-nope-s4-origins-e2`（5 個 reviewed_changes：package.json、App、Landing、QuestionRunner、ResultPage；HTTP 10/40）。
+
+**實作**（手冊 §5.4）：`src/data/originBranch.ts` 18 種資格（港／澳／臺各 3、海外 13，含共用的 `other`；大陸 0）× 範圍 `local`／`abroad`／`both`（海外起點只有 abroad／both），`QUALIFICATION_OPTIONS` 帶 S3 `qualificationsListed` token 與官方來源；`MAINLAND_CHANNELS` 港澳臺官方進大陸管道 7 條（港：文憑試收生計劃、全國聯招；澳：全國聯招、澳門保送（needs_review）、四校聯考；臺：依學測成績申請、全國聯招），只鏈 verified 來源，blocked／needs_review 顯示「官方頁本站未讀到」且不給鏈接。資料：`data/research/origin_sources.2026-11-07.json`（65 來源：60 verified／1 needs_review／4 blocked）→ `scripts/build_origin_layer.mjs`（`data:origins`，build 鏈在 `data:overseas` 之後、`data:i18n` 之前）→ `public/data/overseas/qualifications.json`（版本 `efbab412ac6e`，403 所、32 token、gaokaoAccepted 4）＋ `src/data/originSources.ts`（59 live）／`originManifest.ts`。保留式標示 `src/lib/originLayer.ts`：`markInstitution`（token 在校方頁列出，或大陸起點 `gaokaoPolicy=accepted` → 「校方頁面寫明接受」；其餘「官方頁未讀到（保留）」，永不劃掉）、`countListed`（listed＋unread＝total）。介面：Landing `OriginBranch`（可跳過、可清除、附來源；`data-origin-branch`）；HkMoTwPage `MainlandChannels`（`data-mainland-channels`）＋「你的資格」；OverseasPage 資格選單（`max-w-full`）、分國計數 `data-region-qual-counts`、逐行 `data-qual-mark`；ResultPage `CrossBorderSections`（`data-cross-border` expanded：大陸結果後並列港澳臺院校池與海外層＋高考資格計數；local 時 collapsed 一行入口）；QuestionRunner A6 港澳臺起點提示；App 持有 `originPrefs` 並隨起點 `normalizeOriginPrefs`。i18n 新增 96 鍵（`origin.qual.*`／`origin.scope.*`／`ui.branch.*`／`ui.channels.*`／`ui.overseas.qual.*`／`ui.result.cross.*`／`ui.runner.a6.hkmotwNote`／`ui.common.hkmotwPool`／`ui.common.colon`），共 1,296 鍵，版本 `9891b7f7178f`；en 以 `ui.common.colon` 取代硬寫全形冒號。主包 466→504 KiB（gzip 153 KiB）；`qualifications.json` 19,968 B 只在海外層／結果頁需要時載入。新閘門 `test:origins`（7 項）。
+
+**驗證**：本機（Vite 5181，`nope-e2/local-browser.json`：港／澳／海外／大陸四條流程真實點擊；首輪 390 寬發現海外頁資格 `<select>` 以最長選項撐到 381 px、右緣 414 px 溢出，加 `max-w-full` 後右緣 357 px 重測乾淨）、候選 `42982ad7`（`candidate-browser.json`：三語 × 紙色／墨色 × 1440／390 共 12 輪 × 11 路由，0 低於 4.5，最低 4.57（紙）／4.93（墨）＝強調色按鈕文字，最小字 12px，無橫向溢出；新原點首繪依瀏覽器語言 en；色系以面板真實點擊切換）、正式（`production-browser.json`：三語 × 紙色 × 1440，主控台無錯誤）三處一致；十七道閘門於 `55eb014`（`nope-e2/check.txt`，dist 129 檔）。
+
+**回滾**：`460b9fcb`／`84c0fcd`（批 E1），受審回滾交易；只切 Pages 版本，無資料庫遷移；學習記錄不受影響；回滾後 `unapply.originPrefs.v1` 殘留無害（舊版不讀它）。證據：`reports/operations/nope-s4-i18n-origins-20261107/nope-e2/`；資源 `nope-e2/resources.md`；待站長 `nope-e2/PENDING_OWNER_REVIEW.md`。
