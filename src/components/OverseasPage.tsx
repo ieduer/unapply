@@ -11,6 +11,9 @@ import type {
 } from '../data/overseasTypes'
 import { loadOverseasIndex, loadOverseasRegion } from '../lib/overseasData'
 import { getOriginOption, type OriginRegion } from '../data/origins'
+import { useLocale, type Locale } from '../i18n/react'
+import { Rich } from '../i18n/rich'
+import { LocaleSwitcher } from './LocaleSwitcher'
 
 interface Props {
   origin: OriginRegion | null
@@ -26,14 +29,17 @@ interface Props {
   onStartMainland: () => void
 }
 
-const UNREAD = '官方頁未讀到'
+/** 地區名：payload 的 nameZh 是正體（資料，不轉字形）；en 用地區代碼（英文名）。 */
+const regionName = (row: { code: string; nameZh: string }, locale: Locale) => (locale === 'en' ? row.code : row.nameZh)
 
 /**
  * 海外可申請學校（路線圖 S3）。只抄各機構官方國際本科招生頁、各國官方申請平台與簽證主管機關頁的原文片段，
  * 不解讀、不換算、不代表錄取可能；排名數字只描述學科分佈。核查不過的鏈接不上線，只寫「官方頁本站未讀到」與原因。
  * 它不是題庫、不替任何人劃掉學校；所在地只決定先看哪裡，之後可以跨區看。
+ * 原文片段、機構名、平台名、主管機關名與 payload 內的說明文字（note／roleLabel／typeZh）是資料，不翻譯、不轉字形；狀態與分類以代碼經 ui.overseas.* 翻譯。
  */
 export function OverseasPage({ origin, regionSlug, institutionId, onNavigate, onBack, onAbout, onWorld, onHkMoTw, onStartMainland }: Props) {
+  const { t } = useLocale()
   const [index, setIndex] = useState<OverseasIndexPayload | null>(null)
   const [loadError, setLoadError] = useState<string | null>(null)
   const [reloadToken, setReloadToken] = useState(0)
@@ -53,12 +59,12 @@ export function OverseasPage({ origin, regionSlug, institutionId, onNavigate, on
     return (
       <main className="min-h-screen app-canvas text-fog-100 flex items-center justify-center px-5">
         <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-xl p-6 flex flex-col gap-4">
-          <p className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">overseas</p>
-          <h1 className="serif text-2xl">海外可申請學校載入失敗</h1>
+          <p className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">{t('ui.overseas.kicker')}</p>
+          <h1 className="serif text-2xl">{t('ui.overseas.loadFailed')}</h1>
           <p className="text-sm text-fog-500 leading-relaxed">{loadError}</p>
           <div className="flex flex-wrap gap-3">
-            <button onClick={() => { setLoadError(null); setReloadToken((t) => t + 1) }} className="px-5 py-3 rounded-full bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">重試載入</button>
-            <button onClick={onBack} className="px-5 py-3 rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">返回首頁</button>
+            <button onClick={() => { setLoadError(null); setReloadToken((token) => token + 1) }} className="px-5 py-3 rounded-full bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">{t('ui.common.retryLoad')}</button>
+            <button onClick={onBack} className="px-5 py-3 rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">{t('ui.common.backHome')}</button>
           </div>
         </section>
       </main>
@@ -67,7 +73,7 @@ export function OverseasPage({ origin, regionSlug, institutionId, onNavigate, on
   if (!index) {
     return (
       <main className="min-h-screen app-canvas text-fog-100 flex items-center justify-center px-5">
-        <p className="mono text-xs uppercase tracking-[0.2em] text-fog-500">loading overseas admissions</p>
+        <p className="mono text-xs uppercase tracking-[0.2em] text-fog-500">{t('ui.overseas.loading')}</p>
       </main>
     )
   }
@@ -80,43 +86,52 @@ export function OverseasPage({ origin, regionSlug, institutionId, onNavigate, on
     portalsLive: index.regions.reduce((n, r) => n + r.portalsLive, 0),
     visaLive: index.regions.reduce((n, r) => n + r.visaLive, 0),
   }
+  const unread = t('ui.overseas.unread')
 
   return (
     <main className="min-h-screen app-canvas text-fog-100">
       <header className="border-b border-ink-800 bg-ink-900/70 backdrop-blur-xl">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between text-xs mono uppercase tracking-[0.2em] text-fog-500">
-          <button onClick={onBack} className="hover:text-accent-500 min-h-[44px] -my-3 py-3">← 回首頁</button>
-          <span className="hidden sm:inline">nope.bdfz.net · 海外可申請學校 · {index.version}</span>
-          <button onClick={onAbout} className="hover:text-accent-500 min-h-[44px] -my-3 py-3">about</button>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3 text-xs mono uppercase tracking-[0.2em] text-fog-500">
+          <button onClick={onBack} className="hover:text-accent-500 min-h-[44px] -my-3 py-3">{t('ui.hkmotw.backHome')}</button>
+          <span className="hidden sm:inline">{t('ui.overseas.brand', { version: index.version })}</span>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <LocaleSwitcher />
+            <button onClick={onAbout} className="hover:text-accent-500 min-h-[44px] -my-3 py-3">{t('ui.common.about')}</button>
+          </div>
         </div>
       </header>
 
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8">
         <div className="max-w-3xl flex flex-col gap-3">
-          <p className="mono text-xs uppercase tracking-[0.28em] text-accent-500">跨區可選池 · 海外（路線圖 S3）</p>
-          <h1 className="serif text-3xl sm:text-5xl leading-tight">海外的學校怎麼招國際學生？只抄官方頁原文。</h1>
+          <p className="mono text-xs uppercase tracking-[0.28em] text-accent-500">{t('ui.overseas.stepKicker')}</p>
+          <h1 className="serif text-3xl sm:text-5xl leading-tight">{t('ui.overseas.title')}</h1>
           <p className="text-sm sm:text-base text-fog-300 leading-relaxed">
-            這一頁把全球學科地圖（GRAS 2026 前 50）裡 <b className="text-fog-100">{totals.institutions}</b> 所非中國大陸機構的官方國際本科招生頁、
-            各國官方申請平台與簽證主管機關頁放在一起：<b className="text-fog-100">只抄官方頁原文片段，不解讀、不換算</b>，每段都帶來源與抓取日。
-            它<b className="text-fog-100">不代表錄取可能</b>，排名數字只描述學科分佈；學費、語言分數可能是研究生或單項，以原句為準。
-            核查不過的鏈接不上線，只寫「{UNREAD}」與原因；年度隨 GRAS 更新重核。
+            <Rich k="ui.overseas.lede" params={{ institutions: totals.institutions, unread }} />
           </p>
           <p className="text-xs mono text-fog-500 leading-relaxed">
-            機構 {totals.institutions} · 官方頁已讀到 {totals.verified} · 招生頁鏈接已核 {totals.linkLive} · 未讀到 {totals.unread} · 申請平台鏈接 {totals.portalsLive} · 簽證頁鏈接 {totals.visaLive} · 資料日 {index.generatedAt}
+            {t('ui.overseas.totals', { ...totals, date: index.generatedAt })}
           </p>
           {originOption && !originOption.hasLocalPool && (
             <div className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 text-sm text-fog-300 leading-relaxed">
-              你選的起點是 <b className="text-fog-100">{originOption.label}</b>：{originOption.hint}。先看這裡各地區的招生頁原文，
-              也可以 <button onClick={onWorld} className="underline hover:text-accent-500">看全球學科地圖</button>
-              {(origin === 'hk' || origin === 'mo' || origin === 'tw') && <>、<button onClick={onHkMoTw} className="underline hover:text-accent-500">看港澳臺院校池</button></>}
-              {' '}或 <button onClick={onStartMainland} className="underline hover:text-accent-500">進中國大陸題庫</button>。
+              <Rich
+                k="ui.overseas.originNote"
+                params={{
+                  origin: t(`origin.${originOption.id}.label`),
+                  hint: t(`origin.${originOption.id}.hint`),
+                  hkmotw: (origin === 'hk' || origin === 'mo' || origin === 'tw') ? <Rich k="ui.overseas.originNote.hkmotw" slots={{ a3: (children) => <button onClick={onHkMoTw} className="underline hover:text-accent-500">{children}</button> }} /> : '',
+                }}
+                slots={{
+                  a1: (children) => <button onClick={onWorld} className="underline hover:text-accent-500">{children}</button>,
+                  a2: (children) => <button onClick={onStartMainland} className="underline hover:text-accent-500">{children}</button>,
+                }}
+              />
             </div>
           )}
         </div>
 
         {regionSlug && !regionRow && (
           <div className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 text-sm text-fog-300 leading-relaxed">
-            找不到地區「{regionSlug}」。<button onClick={() => onNavigate(null)} className="underline hover:text-accent-500">回地區清單</button>
+            <Rich k="ui.overseas.regionNotFound" params={{ slug: regionSlug }} slots={{ a1: (children) => <button onClick={() => onNavigate(null)} className="underline hover:text-accent-500">{children}</button> }} />
           </div>
         )}
 
@@ -127,8 +142,18 @@ export function OverseasPage({ origin, regionSlug, institutionId, onNavigate, on
         )}
 
         <footer className="pt-6 border-t border-ink-800 text-xs mono text-fog-500 leading-relaxed">
-          <p>只抄官方頁原文，核查不過的鏈接不上線；排名不是推薦，任何欄位都不是錄取可能。</p>
-          <p>資料日 {index.generatedAt} · 了解 <button onClick={onAbout} className="hover:text-accent-500 underline">數據來源與方法論</button> · 看 <button onClick={onWorld} className="hover:text-accent-500 underline">全球學科地圖</button> · 跨區看 <button onClick={onHkMoTw} className="hover:text-accent-500 underline">港澳臺院校池</button></p>
+          <p>{t('ui.overseas.footer.rule')}</p>
+          <p>
+            <Rich
+              k="ui.overseas.footer.links"
+              params={{ date: index.generatedAt }}
+              slots={{
+                a1: (children) => <button onClick={onAbout} className="hover:text-accent-500 underline">{children}</button>,
+                a2: (children) => <button onClick={onWorld} className="hover:text-accent-500 underline">{children}</button>,
+                a3: (children) => <button onClick={onHkMoTw} className="hover:text-accent-500 underline">{children}</button>,
+              }}
+            />
+          </p>
         </footer>
       </section>
     </main>
@@ -136,11 +161,12 @@ export function OverseasPage({ origin, regionSlug, institutionId, onNavigate, on
 }
 
 function RegionList({ regions, onOpen }: { regions: OverseasRegionRow[]; onOpen: (slug: string) => void }) {
+  const { t, locale } = useLocale()
   return (
-    <section className="flex flex-col gap-4" aria-label="地區清單">
+    <section className="flex flex-col gap-4" aria-label={t('ui.overseas.regions.aria')}>
       <div className="flex items-baseline justify-between gap-3">
-        <h2 className="serif text-2xl">先選一個國家或地區</h2>
-        <span className="text-xs mono text-fog-500">按機構數排序 · {regions.length} 個</span>
+        <h2 className="serif text-2xl">{t('ui.overseas.regions.title')}</h2>
+        <span className="text-xs mono text-fog-500">{t('ui.overseas.regions.sorted', { n: regions.length })}</span>
       </div>
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {regions.map((r) => (
@@ -150,11 +176,11 @@ function RegionList({ regions, onOpen }: { regions: OverseasRegionRow[]; onOpen:
               className="w-full text-left border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-xl p-4 flex flex-col gap-2 hover:border-accent-500 min-h-[96px]"
             >
               <span className="flex items-baseline justify-between gap-2">
-                <span className="serif text-xl leading-snug">{r.nameZh}</span>
-                <span className="text-xs mono text-fog-500 truncate">{r.code}</span>
+                <span className="serif text-xl leading-snug">{regionName(r, locale)}</span>
+                {locale !== 'en' && <span className="text-xs mono text-fog-500 truncate">{r.code}</span>}
               </span>
-              <span className="text-sm text-fog-300">機構 <b className="text-fog-100">{r.institutions}</b> · 官方頁已讀到 {r.verified} · 未讀到 {r.unread}</span>
-              <span className="text-xs mono text-fog-500">申請平台鏈接 {r.portalsLive}／{r.portals} · 簽證頁鏈接 {r.visaLive}／{r.visa}</span>
+              <span className="text-sm text-fog-300"><Rich k="ui.overseas.regions.card.line1" params={{ institutions: r.institutions, verified: r.verified, unread: r.unread }} /></span>
+              <span className="text-xs mono text-fog-500">{t('ui.overseas.regions.card.line2', { portalsLive: r.portalsLive, portals: r.portals, visaLive: r.visaLive, visa: r.visa })}</span>
             </button>
           </li>
         ))}
@@ -164,6 +190,7 @@ function RegionList({ regions, onOpen }: { regions: OverseasRegionRow[]; onOpen:
 }
 
 function RegionSection({ row, index, institutionId, onBackToList, onWorld }: { row: OverseasRegionRow; index: OverseasIndexPayload; institutionId: string | null; onBackToList: () => void; onWorld: () => void }) {
+  const { t, locale } = useLocale()
   const [payload, setPayload] = useState<OverseasRegionPayload | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [reloadToken, setReloadToken] = useState(0)
@@ -184,41 +211,45 @@ function RegionSection({ row, index, institutionId, onBackToList, onWorld }: { r
     // 官方頁已讀到的排前面（字母序），未讀到的排後面（字母序）；不按任何分數排。
     return [...list].sort((a, b) => Number(b.status === 'verified') - Number(a.status === 'verified') || a.nameEn.localeCompare(b.nameEn, 'en'))
   }, [payload])
+  const unread = t('ui.overseas.unread')
 
   return (
-    <section className="flex flex-col gap-6" aria-label={`${row.nameZh} 地區`}>
+    <section className="flex flex-col gap-6" aria-label={t('ui.overseas.region.aria', { region: regionName(row, locale) })}>
       <div className="flex flex-col gap-2">
-        <button onClick={onBackToList} className="self-start text-xs mono uppercase tracking-[0.2em] text-fog-500 hover:text-accent-500 min-h-[40px]">← 全部地區</button>
-        <h2 className="serif text-3xl leading-tight">{row.nameZh} <span className="text-fog-500 text-xl">· {row.code}</span></h2>
+        <button onClick={onBackToList} className="self-start text-xs mono uppercase tracking-[0.2em] text-fog-500 hover:text-accent-500 min-h-[40px]">{t('ui.overseas.region.allRegions')}</button>
+        <h2 className="serif text-3xl leading-tight">{regionName(row, locale)} {locale !== 'en' && <span className="text-fog-500 text-xl">· {row.code}</span>}</h2>
         <p className="text-sm text-fog-300 leading-relaxed">
-          機構 <b className="text-fog-100">{row.institutions}</b>（官方頁已讀到 {row.verified}、招生頁鏈接已核 {row.linkLive}、未讀到 {row.unread}）· 申請平台 {row.portals}（鏈接 {row.portalsLive}）· 簽證主管機關頁 {row.visa}（鏈接 {row.visaLive}）。
-          所在地只決定先看哪裡；想比較學科分佈可以 <button onClick={onWorld} className="underline hover:text-accent-500">回全球學科地圖</button>。
+          <Rich
+            k="ui.overseas.region.summary"
+            params={{ institutions: row.institutions, verified: row.verified, linkLive: row.linkLive, unread: row.unread, portals: row.portals, portalsLive: row.portalsLive, visa: row.visa, visaLive: row.visaLive }}
+            slots={{ a1: (children) => <button onClick={onWorld} className="underline hover:text-accent-500">{children}</button> }}
+          />
         </p>
       </div>
 
       {error && (
         <div className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 text-sm text-fog-300 leading-relaxed flex flex-wrap items-center gap-3">
           <span>{error}</span>
-          <button onClick={() => { setError(null); setReloadToken((t) => t + 1) }} className="px-4 py-2 rounded-full bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">重試載入</button>
+          <button onClick={() => { setError(null); setReloadToken((token) => token + 1) }} className="px-4 py-2 rounded-full bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">{t('ui.common.retryLoad')}</button>
         </div>
       )}
-      {!payload && !error && <p className="mono text-xs uppercase tracking-[0.2em] text-fog-500">loading {row.slug}</p>}
+      {!payload && !error && <p className="mono text-xs uppercase tracking-[0.2em] text-fog-500">{t('ui.overseas.region.loading', { slug: row.slug })}</p>}
 
       {payload && (
         <>
-          <Block title="申請平台與官方資訊入口" count={payload.portals.length} note="名稱與角色標籤是編輯說明；對象、費用、時程只抄頁面原文。各校共用的非政府平台要有機構官方頁鏈到它才上鏈接。">
-            {payload.portals.length === 0 ? <Empty text={`${UNREAD}：這個地區本站未核到可上線的申請平台或資訊入口。`} /> : (
+          <Block title={t('ui.overseas.portals.title')} count={payload.portals.length} note={t('ui.overseas.portals.note')}>
+            {payload.portals.length === 0 ? <Empty text={t('ui.overseas.portals.empty', { unread })} /> : (
               <ul className="flex flex-col gap-3">{payload.portals.map((p, i) => <PortalCard key={`${p.name}-${i}`} portal={p} />)}</ul>
             )}
           </Block>
 
-          <Block title="簽證主管機關頁" count={payload.visa.length} note="只收政府主管機關或其委託機構的官方頁；財力、語言、保險、費用、時程只抄原文。被擋者只寫主管機關名與「核查時被擋」。">
-            {payload.visa.length === 0 ? <Empty text={`${UNREAD}：這個地區本站未核到簽證主管機關頁。`} /> : (
+          <Block title={t('ui.overseas.visa.title')} count={payload.visa.length} note={t('ui.overseas.visa.note')}>
+            {payload.visa.length === 0 ? <Empty text={t('ui.overseas.visa.empty', { unread })} /> : (
               <ul className="flex flex-col gap-3">{payload.visa.map((v, i) => <VisaCard key={`${v.category}-${i}`} visa={v} />)}</ul>
             )}
           </Block>
 
-          <Block title="機構" count={summaries.length} note="「GRAS 前 50 學科 n 個」只描述這所機構在哪些學科排名前列，不是推薦，也不是錄取難度。展開看招生頁原文；缺的寫「官方頁未讀到」。">
+          <Block title={t('ui.overseas.institutions.title')} count={summaries.length} note={t('ui.overseas.institutions.note')}>
             <ul className="flex flex-col gap-3">
               {ordered.map((inst) => (
                 <InstitutionRow key={inst.id} inst={inst} open={openId === inst.id} onToggle={() => setOpenId(openId === inst.id ? null : inst.id)} autoScroll={institutionId === inst.id} />
@@ -253,13 +284,14 @@ function StatusBadge({ text }: { text: string }) {
   return <span className="inline-block rounded-full border border-ink-700 bg-ink-950 px-2.5 py-0.5 text-xs text-fog-300 leading-5">{text}</span>
 }
 
-function SourceLine({ url, live, date, prefix = '來源' }: { url: string; live: boolean; date?: string; prefix?: string }) {
+function SourceLine({ url, live, date, prefixKey = 'ui.overseas.source' }: { url: string; live: boolean; date?: string; prefixKey?: string }) {
+  const { t } = useLocale()
   let host = url
   try { host = new URL(url).hostname } catch { /* 原樣顯示 */ }
   return (
     <p className="text-xs mono text-fog-500 break-all leading-relaxed">
-      {prefix}：{live ? <a className="underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{url} ↗</a> : <span>{host}（未上鏈接）</span>}
-      {date && <> · 抓取 {date}</>}
+      {t(prefixKey)}：{live ? <a className="underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{url} ↗</a> : <span>{host}{t('ui.overseas.notLinked')}</span>}
+      {date && <> · {t('ui.overseas.fetched', { date })}</>}
     </p>
   )
 }
@@ -288,33 +320,45 @@ function PlainQuotes({ label, items }: { label: string; items: string[] }) {
   )
 }
 
+/** 未上鏈接的說明行：前綴以鍵翻譯；note 是 payload 原文（資料），網域與核對日照列。 */
+function UnreadLine({ note, domain, fetchedAt }: { note?: string; domain: string | null; fetchedAt: string }) {
+  const { t } = useLocale()
+  return (
+    <p className="text-xs mono text-fog-500 leading-relaxed break-words">{t('ui.overseas.unreadPrefix')}{note ? `：${note}` : ''}{domain ? ` · ${domain}` : ''} · {t('ui.overseas.checked', { date: fetchedAt })}</p>
+  )
+}
+
 function PortalCard({ portal }: { portal: OverseasPortal }) {
+  const { t } = useLocale()
+  const unread = t('ui.overseas.unread')
   const hasQuotes = portal.quotes.audience.length + portal.quotes.fees.length + portal.quotes.timeline.length > 0
   return (
     <li className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-xl p-4 flex flex-col gap-2">
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
         <div className="flex flex-col gap-1">
           <h4 className="text-base text-fog-100 font-semibold leading-snug">{portal.name}</h4>
-          <p className="text-xs mono text-fog-500">{portal.typeZh} · {portal.domainClassZh}{portal.domainClass === 'official-platform' && <> · {portal.corroborating} 所機構官方頁鏈到此平台</>}</p>
+          <p className="text-xs mono text-fog-500">{portal.typeZh} · {portal.domainClassZh}{portal.domainClass === 'official-platform' && <> · {t('ui.overseas.portal.corroborating', { n: portal.corroborating })}</>}</p>
           <p className="text-sm text-fog-300 leading-relaxed">{portal.roleLabel}</p>
         </div>
-        <StatusBadge text={portal.linkLive ? '官方頁已核' : portal.statusZh} />
+        <StatusBadge text={portal.linkLive ? t('ui.overseas.status.verifiedLink') : t(`ui.overseas.statusCode.${portal.status}`)} />
       </div>
       {hasQuotes ? (
         <dl className="grid gap-2">
-          <PlainQuotes label="對象" items={portal.quotes.audience} />
-          <PlainQuotes label="費用" items={portal.quotes.fees} />
-          <PlainQuotes label="時程" items={portal.quotes.timeline} />
+          <PlainQuotes label={t('ui.overseas.portal.quotes.audience')} items={portal.quotes.audience} />
+          <PlainQuotes label={t('ui.overseas.portal.quotes.fees')} items={portal.quotes.fees} />
+          <PlainQuotes label={t('ui.overseas.portal.quotes.timeline')} items={portal.quotes.timeline} />
         </dl>
-      ) : <p className="text-xs text-fog-500">對象／費用／時程：{UNREAD}。</p>}
-      {portal.linkLive && portal.url ? <SourceLine url={portal.url} live date={portal.fetchedAt} prefix="官方頁" /> : (
-        <p className="text-xs mono text-fog-500 leading-relaxed break-words">官方頁本站未讀到{portal.note ? `：${portal.note}` : ''}{portal.domain ? ` · ${portal.domain}` : ''} · 核對 {portal.fetchedAt}</p>
+      ) : <p className="text-xs text-fog-500">{t('ui.overseas.portal.noQuotes', { unread })}</p>}
+      {portal.linkLive && portal.url ? <SourceLine url={portal.url} live date={portal.fetchedAt} prefixKey="ui.overseas.officialPage" /> : (
+        <UnreadLine note={portal.note} domain={portal.domain} fetchedAt={portal.fetchedAt} />
       )}
     </li>
   )
 }
 
 function VisaCard({ visa }: { visa: OverseasVisa }) {
+  const { t } = useLocale()
+  const unread = t('ui.overseas.unread')
   const q = visa.quotes
   const hasQuotes = q.financial.length + q.language.length + q.insurance.length + q.fee.length + q.timeline.length > 0
   return (
@@ -324,33 +368,32 @@ function VisaCard({ visa }: { visa: OverseasVisa }) {
           <h4 className="text-base text-fog-100 font-semibold leading-snug">{visa.category}</h4>
           <p className="text-sm text-fog-300 leading-relaxed">{visa.authority}</p>
         </div>
-        <StatusBadge text={visa.linkLive ? '官方頁已核' : visa.statusZh} />
+        <StatusBadge text={visa.linkLive ? t('ui.overseas.status.verifiedLink') : t(`ui.overseas.statusCode.${visa.status}`)} />
       </div>
       {hasQuotes ? (
         <dl className="grid gap-2">
-          <PlainQuotes label="財力" items={q.financial} />
-          <PlainQuotes label="語言" items={q.language} />
-          <PlainQuotes label="保險" items={q.insurance} />
-          <PlainQuotes label="費用" items={q.fee} />
-          <PlainQuotes label="時程" items={q.timeline} />
+          <PlainQuotes label={t('ui.overseas.visa.quotes.financial')} items={q.financial} />
+          <PlainQuotes label={t('ui.overseas.visa.quotes.language')} items={q.language} />
+          <PlainQuotes label={t('ui.overseas.visa.quotes.insurance')} items={q.insurance} />
+          <PlainQuotes label={t('ui.overseas.visa.quotes.fee')} items={q.fee} />
+          <PlainQuotes label={t('ui.overseas.visa.quotes.timeline')} items={q.timeline} />
         </dl>
-      ) : <p className="text-xs text-fog-500">財力／語言／保險／費用／時程：{UNREAD}。</p>}
-      {visa.linkLive && visa.url ? <SourceLine url={visa.url} live date={visa.fetchedAt} prefix="官方頁" /> : (
-        <p className="text-xs mono text-fog-500 leading-relaxed break-words">官方頁本站未讀到{visa.note ? `：${visa.note}` : ''}{visa.domain ? ` · ${visa.domain}` : ''} · 核對 {visa.fetchedAt}</p>
+      ) : <p className="text-xs text-fog-500">{t('ui.overseas.visa.noQuotes', { unread })}</p>}
+      {visa.linkLive && visa.url ? <SourceLine url={visa.url} live date={visa.fetchedAt} prefixKey="ui.overseas.officialPage" /> : (
+        <UnreadLine note={visa.note} domain={visa.domain} fetchedAt={visa.fetchedAt} />
       )}
     </li>
   )
 }
 
-function institutionBadge(inst: OverseasInstitutionSummary): string {
-  if (inst.linkLive) return '招生頁已核'
-  if (inst.confidence === 'medium') return '另一官方網域 · 待確認'
-  if (inst.status === 'blocked') return '核查時被擋'
-  if (inst.status === 'needs_review') return '待人工覆核'
-  return '官方頁未找到'
+function institutionBadgeKey(inst: OverseasInstitutionSummary): string {
+  if (inst.linkLive) return 'ui.overseas.badge.linkLive'
+  if (inst.confidence === 'medium') return 'ui.overseas.badge.medium'
+  return `ui.overseas.statusCode.${inst.status}`
 }
 
 function InstitutionRow({ inst, open, onToggle, autoScroll }: { inst: OverseasInstitutionDetail; open: boolean; onToggle: () => void; autoScroll: boolean }) {
+  const { t, locale } = useLocale()
   const ref = useRef<HTMLLIElement | null>(null)
   useEffect(() => {
     if (autoScroll && ref.current) ref.current.scrollIntoView({ block: 'start' })
@@ -360,14 +403,14 @@ function InstitutionRow({ inst, open, onToggle, autoScroll }: { inst: OverseasIn
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
         <div className="flex flex-col gap-1 min-w-0">
           <h4 className="serif text-xl leading-snug break-words">
-            {inst.nameZh ? <>{inst.nameZh} <span className="text-fog-500 text-base">· {inst.nameEn}</span></> : inst.nameEn}
+            {locale !== 'en' && inst.nameZh ? <>{inst.nameZh} <span className="text-fog-500 text-base">· {inst.nameEn}</span></> : inst.nameEn}
           </h4>
-          <p className="text-xs mono text-fog-500">GRAS 2026 前 50 學科 {inst.subjects} 個（只描述學科分佈）{inst.dataAcademicYear ? ` · 資料學年 ${inst.dataAcademicYear}` : ''}</p>
+          <p className="text-xs mono text-fog-500">{t('ui.overseas.inst.subjects', { n: inst.subjects })}{inst.dataAcademicYear ? t('ui.overseas.inst.academicYear', { year: inst.dataAcademicYear }) : ''}</p>
         </div>
         <div className="flex flex-wrap items-center gap-2 shrink-0">
-          <StatusBadge text={institutionBadge(inst)} />
-          <a className="text-xs mono text-accent-500 hover:text-accent-400" href={inst.website} target="_blank" rel="noreferrer noopener">官網 ↗</a>
-          <button onClick={onToggle} aria-expanded={open} className="text-xs mono text-accent-500 hover:text-accent-400 min-h-[32px] px-1">{open ? '收起' : '招生條件'}</button>
+          <StatusBadge text={t(institutionBadgeKey(inst))} />
+          <a className="text-xs mono text-accent-500 hover:text-accent-400" href={inst.website} target="_blank" rel="noreferrer noopener">{t('ui.overseas.inst.website')}</a>
+          <button onClick={onToggle} aria-expanded={open} className="text-xs mono text-accent-500 hover:text-accent-400 min-h-[32px] px-1">{open ? t('ui.overseas.inst.collapse') : t('ui.overseas.inst.expand')}</button>
         </div>
       </div>
       {open && <InstitutionDetail inst={inst} />}
@@ -394,15 +437,19 @@ function Chips({ items }: { items: string[] }) {
 }
 
 function Quotes({ quotes, emptyNote }: { quotes: OverseasQuote[]; emptyNote?: string }) {
-  if (quotes.length === 0) return <p className="text-sm text-fog-500">{UNREAD}{emptyNote ? `（${emptyNote}）` : ''}。</p>
+  const { t } = useLocale()
+  if (quotes.length === 0) return <p className="text-sm text-fog-500">{t('ui.overseas.quotes.empty', { unread: t('ui.overseas.unread'), note: emptyNote ? t('ui.common.parenthetical', { text: emptyNote }) : '' })}</p>
   return <>{quotes.map((q, i) => <Quote key={i} quote={q} />)}</>
 }
 
 function InstitutionDetail({ inst }: { inst: OverseasInstitutionDetail }) {
+  const { t } = useLocale()
   const a = inst.admissions
+  const unread = t('ui.overseas.unread')
+  const scores = [inst.english.ielts ? `IELTS ${inst.english.ielts}` : '', inst.english.toefl ? `TOEFL ${inst.english.toefl}` : ''].filter(Boolean).join(' · ')
   return (
     <dl className="flex flex-col gap-3 text-sm text-fog-300 leading-relaxed">
-      <Field label="國際本科招生頁">
+      <Field label={t('ui.overseas.field.admissions')}>
         {a.linkLive && a.url ? (
           <>
             <p><a className="underline text-fog-100 hover:text-accent-500 break-words" href={a.url} target="_blank" rel="noreferrer noopener">{a.title || a.url} ↗</a></p>
@@ -410,63 +457,61 @@ function InstitutionDetail({ inst }: { inst: OverseasInstitutionDetail }) {
           </>
         ) : a.confidence === 'medium' ? (
           <>
-            <p className="text-fog-100 break-words">{a.title || '（頁面標題未讀到）'}</p>
+            <p className="text-fog-100 break-words">{a.title || t('ui.overseas.inst.titleMissing')}</p>
             <p className="text-xs mono text-fog-500 break-all">{a.externalDomain} · {a.note}</p>
           </>
         ) : <p>{a.note}</p>}
       </Field>
 
-      <Field label="高考採認">
+      <Field label={t('ui.overseas.field.gaokao')}>
         <div className="flex flex-wrap items-center gap-2">
-          <StatusBadge text={inst.gaokao.policyZh} />
-          <span className="text-xs text-fog-500">分類只看字樣；以下原句不改寫，請自行讀原句。</span>
+          <StatusBadge text={t(`ui.overseas.gaokao.${inst.gaokao.policy}`)} />
+          <span className="text-xs text-fog-500">{t('ui.overseas.gaokao.note')}</span>
         </div>
-        <Quotes quotes={inst.gaokao.quotes} emptyNote="頁面未出現高考／Gaokao 字樣" />
+        <Quotes quotes={inst.gaokao.quotes} emptyNote={t('ui.overseas.gaokao.emptyNote')} />
       </Field>
 
-      <Field label="接受的學歷資格">
+      <Field label={t('ui.overseas.field.qualifications')}>
         <Chips items={inst.qualifications.listed} />
         <Quotes quotes={inst.qualifications.quotes} />
       </Field>
 
-      <Field label="英語要求">
+      <Field label={t('ui.overseas.field.english')}>
         <Chips items={inst.english.tests} />
-        {(inst.english.ielts || inst.english.toefl) && (
-          <p className="text-xs text-fog-500">原句第一個分數：{inst.english.ielts ? `IELTS ${inst.english.ielts}` : ''}{inst.english.ielts && inst.english.toefl ? ' · ' : ''}{inst.english.toefl ? `TOEFL ${inst.english.toefl}` : ''}（可能是總分，也可能是單項，以原句為準）</p>
-        )}
+        {scores && <p className="text-xs text-fog-500">{t('ui.overseas.english.firstScore', { scores })}</p>}
         <Quotes quotes={inst.english.quotes} />
       </Field>
 
-      <Field label="其他語言">
+      <Field label={t('ui.overseas.field.otherLanguage')}>
         <Chips items={inst.otherLanguage.listed} />
         <Quotes quotes={inst.otherLanguage.quotes} />
       </Field>
 
-      <Field label="國際生學費">
-        {inst.tuition.quotes.length > 0 && <p className="text-xs text-fog-500">原句不區分本科／研究生，金額以原句為準。</p>}
+      <Field label={t('ui.overseas.field.tuition')}>
+        {inst.tuition.quotes.length > 0 && <p className="text-xs text-fog-500">{t('ui.overseas.tuition.note')}</p>}
         <Quotes quotes={inst.tuition.quotes} />
       </Field>
 
-      <Field label="申請管道">
+      <Field label={t('ui.overseas.field.channels')}>
         <Chips items={inst.channels.listed} />
         <Quotes quotes={inst.channels.quotes} />
       </Field>
 
-      <Field label="申請時程">
+      <Field label={t('ui.overseas.field.timeline')}>
         <Quotes quotes={inst.timeline.quotes} />
       </Field>
 
-      <Field label="資料學年">
-        <p>{inst.dataAcademicYear ?? `${UNREAD}。`}</p>
+      <Field label={t('ui.overseas.field.year')}>
+        <p>{inst.dataAcademicYear ?? t('ui.overseas.quotes.empty', { unread, note: '' })}</p>
       </Field>
 
-      <Field label="來源與抓取日">
-        <p className="text-xs mono text-fog-500">抓取 {inst.fetchedAt} · 嘗試讀取 {inst.pagesFetched} 頁 · 官方頁狀態：{a.statusZh}{a.confidence ? `（${a.confidence === 'high' ? '同官網網域' : '另一官方網域'}）` : ''}</p>
-        {inst.sources.length === 0 ? <p className="text-sm text-fog-500">{UNREAD}。</p> : (
+      <Field label={t('ui.overseas.field.sources')}>
+        <p className="text-xs mono text-fog-500">{t('ui.overseas.sources.line', { date: inst.fetchedAt, pages: inst.pagesFetched, status: t(`ui.overseas.statusCode.${a.status}`), confidence: a.confidence ? t(`ui.overseas.confidence.${a.confidence}`) : '' })}</p>
+        {inst.sources.length === 0 ? <p className="text-sm text-fog-500">{t('ui.overseas.quotes.empty', { unread, note: '' })}</p> : (
           <ul className="flex flex-col gap-1">
             {inst.sources.map((s) => (
               <li key={s.url} className="text-xs mono text-fog-500 break-all leading-relaxed">
-                {s.live ? <a className="underline hover:text-accent-500" href={s.url} target="_blank" rel="noreferrer noopener">{s.url} ↗</a> : <span>{hostOf(s.url)}（未上鏈接）</span>}
+                {s.live ? <a className="underline hover:text-accent-500" href={s.url} target="_blank" rel="noreferrer noopener">{s.url} ↗</a> : <span>{hostOf(s.url)}{t('ui.overseas.notLinked')}</span>}
               </li>
             ))}
           </ul>
@@ -481,14 +526,16 @@ function hostOf(url: string): string {
 }
 
 function UnreadNote({ institutions }: { institutions: OverseasInstitutionSummary[] }) {
+  const { t, locale } = useLocale()
   const unread = institutions.filter((i) => i.status !== 'verified')
   const medium = institutions.filter((i) => i.confidence === 'medium')
   if (unread.length === 0 && medium.length === 0) return null
-  const name = (i: OverseasInstitutionSummary) => i.nameZh ?? i.nameEn
+  const name = (i: OverseasInstitutionSummary) => (locale === 'en' ? i.nameEn : i.nameZh ?? i.nameEn)
+  const joiner = t('ui.common.listJoiner')
   return (
     <div className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 text-xs text-fog-500 leading-relaxed flex flex-col gap-1">
-      {unread.length > 0 && <p>另有 {unread.length} 所機構的官方頁本站讀不到（對聲明身分的爬蟲回驗證頁、robots 不允許、純 JavaScript 或未找到對應頁），按規則不上線招生頁鏈接、待人工覆核：{unread.map(name).join('、')}。</p>}
-      {medium.length > 0 && <p>{medium.length} 所機構的招生頁在學校另一官方網域，待人工確認後才上鏈接：{medium.map(name).join('、')}。</p>}
+      {unread.length > 0 && <p>{t('ui.overseas.unreadNote.unread', { n: unread.length, names: unread.map(name).join(joiner) })}</p>}
+      {medium.length > 0 && <p>{t('ui.overseas.unreadNote.medium', { n: medium.length, names: medium.map(name).join(joiner) })}</p>}
     </div>
   )
 }

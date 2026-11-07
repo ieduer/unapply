@@ -3,6 +3,10 @@ import type { School } from '../data/schools'
 import { DIMENSIONS } from '../data/dimensions'
 import type { DimensionId } from '../data/dimensions'
 import { recordUnapplyEvent } from '../lib/bdfzIdentity'
+import { useLocale } from '../i18n/react'
+import { Rich } from '../i18n/rich'
+import { dimensionLabel, schoolDisplayName, valueLabel } from '../lib/i18nLabels'
+import { LocaleSwitcher } from './LocaleSwitcher'
 
 interface Props {
   schools: School[]
@@ -33,34 +37,31 @@ const FREE_VALUE = '__free_value__'
 const CONTRIBUTABLE_DIMS = (Object.keys(DIMENSIONS) as DimensionId[])
   .filter((dim) => DIMENSIONS[dim].coverage !== 'authoritative')
 
-const SOURCE_LABELS: Record<SourceType, string> = {
-  official: '教育部/政府公告',
-  school: '學校官網/招生章程',
-  student: '在讀學生/校友',
-  news: '媒體/公開新聞',
-  map: '地圖/交通資料',
-  github: 'GitHub/開放數據',
-  other: '其他',
+// 下列三張表是寫進 GitHub issue／用戶中心事件的紀錄文字（zh-Hant 契約，維護者讀）；介面顯示另以 ui.contribute.* 鍵翻譯。
+const SOURCE_LABELS: Record<SourceType, string> = { // i18n-contract
+  official: '教育部/政府公告', // i18n-contract
+  school: '學校官網/招生章程', // i18n-contract
+  student: '在讀學生/校友', // i18n-contract
+  news: '媒體/公開新聞', // i18n-contract
+  map: '地圖/交通資料', // i18n-contract
+  github: 'GitHub/開放數據', // i18n-contract
+  other: '其他', // i18n-contract
 }
 
-const CONFIDENCE_LABELS: Record<Confidence, string> = {
-  high: '高：可公開核驗',
-  medium: '中：有來源但需覆核',
-  low: '低：個人體驗/待佐證',
-}
+const CONFIDENCE_KEYS: Confidence[] = ['high', 'medium', 'low']
 
-const CATEGORY_LABELS: Record<CustomCategory, string> = {
-  campus_location: '校區/地理/交通',
-  tuition_fee: '學費/住宿費/合作辦學',
-  dormitory: '宿舍/浴室/空調/洗衣',
-  management_rules: '門禁/查寢/跑步/早晚自習',
-  academic_major: '專業/學科/培養方案',
-  employment: '就業/升學/保研/出國',
-  mobility_transfer: '轉專業/輔修/跨校區流動',
-  accessibility: '無障礙/特殊需求支持',
-  food_safety: '食堂/食品安全',
-  student_life: '學生生活/社團/校園服務',
-  other: '其他重要數據',
+const CATEGORY_LABELS: Record<CustomCategory, string> = { // i18n-contract
+  campus_location: '校區/地理/交通', // i18n-contract
+  tuition_fee: '學費/住宿費/合作辦學', // i18n-contract
+  dormitory: '宿舍/浴室/空調/洗衣', // i18n-contract
+  management_rules: '門禁/查寢/跑步/早晚自習', // i18n-contract
+  academic_major: '專業/學科/培養方案', // i18n-contract
+  employment: '就業/升學/保研/出國', // i18n-contract
+  mobility_transfer: '轉專業/輔修/跨校區流動', // i18n-contract
+  accessibility: '無障礙/特殊需求支持', // i18n-contract
+  food_safety: '食堂/食品安全', // i18n-contract
+  student_life: '學生生活/社團/校園服務', // i18n-contract
+  other: '其他重要數據', // i18n-contract
 }
 
 function normalizeInitialDim(dim: string | null): ContributionDimension {
@@ -78,15 +79,16 @@ function buildGithubBody(params: {
   evidence: string
   contributor: string
 }) {
+  // GitHub issue 正文：維護者讀的 zh-Hant 紀錄（schema unapply.dataContribution.v1），不隨介面語言變。 // i18n-contract
   return [
-    `**學校**: ${params.schoolName}（id=${params.schoolId}）`,
-    `**數據項**: ${params.dimensionLabel}`,
-    `**取值**: ${params.value}`,
-    `**來源類型**: ${params.sourceLabel}`,
-    `**證據/補充**:`,
-    params.evidence || '（未填）',
+    `**學校**: ${params.schoolName}（id=${params.schoolId}）`, // i18n-contract
+    `**數據項**: ${params.dimensionLabel}`, // i18n-contract
+    `**取值**: ${params.value}`, // i18n-contract
+    `**來源類型**: ${params.sourceLabel}`, // i18n-contract
+    `**證據/補充**:`, // i18n-contract
+    params.evidence || '（未填）', // i18n-contract
     '',
-    `**貢獻者**: ${params.contributor || '（匿名）'}`,
+    `**貢獻者**: ${params.contributor || '（匿名）'}`, // i18n-contract
     '',
     '```json',
     JSON.stringify(params.contribution, null, 2),
@@ -94,11 +96,12 @@ function buildGithubBody(params: {
     '',
     '---',
     'schema: unapply.dataContribution.v1',
-    '入庫原則：可核驗來源優先；眾包項至少交叉覆核；敏感/負面項必須有公開證據。',
+    '入庫原則：可核驗來源優先；眾包項至少交叉覆核；敏感/負面項必須有公開證據。', // i18n-contract
   ].join('\n')
 }
 
 export function ContributePage({ schools, onBack }: Props) {
+  const { t } = useLocale()
   const params = useMemo(() => {
     const qs = new URLSearchParams(window.location.hash.split('?')[1] ?? '')
     return {
@@ -124,37 +127,38 @@ export function ContributePage({ schools, onBack }: Props) {
   const [sampleSize, setSampleSize] = useState('')
   const [evidence, setEvidence] = useState('')
   const [contributor, setContributor] = useState('')
-  const [err, setErr] = useState<string | null>(null)
+  const [errKey, setErrKey] = useState<string | null>(null)
 
   const school = schools.find(s => s.id === schoolId)
   const isCustom = dim === CUSTOM_DIM
   const knownDim = isCustom ? null : (dim as DimensionId)
   const meta = knownDim ? DIMENSIONS[knownDim] : null
   const selectedValue = isCustom || value === FREE_VALUE ? customValue.trim() : value
-  const dimensionLabel = isCustom
-    ? `${CATEGORY_LABELS[customCategory]} · ${customMetric.trim() || '自定義項'}`
+  // 紀錄用的維度描述（zh-Hant 契約）。
+  const dimensionRecordLabel = isCustom
+    ? `${CATEGORY_LABELS[customCategory]} · ${customMetric.trim() || '自定義項'}` // i18n-contract
     : `${knownDim} · ${meta?.label ?? knownDim}`
 
   const submit = () => {
-    setErr(null)
+    setErrKey(null)
     if (!schoolId) {
-      setErr('請選擇學校')
+      setErrKey('ui.contribute.err.school')
       return
     }
     if (isCustom && !customMetric.trim()) {
-      setErr('請填寫自定義數據項名稱')
+      setErrKey('ui.contribute.err.customMetric')
       return
     }
     if (!selectedValue) {
-      setErr('請填寫或選擇取值')
+      setErrKey('ui.contribute.err.value')
       return
     }
     if (!sourceTitle.trim() && !sourceUrl.trim() && !evidence.trim()) {
-      setErr('請至少提供來源標題、來源鏈接或證據補充中的一項')
+      setErrKey('ui.contribute.err.source')
       return
     }
     if (['official', 'school', 'news', 'map', 'github'].includes(sourceType) && !sourceUrl.trim()) {
-      setErr('此來源類型需要可打開的鏈接，否則請改選「在讀學生/校友」或「其他」')
+      setErrKey('ui.contribute.err.sourceUrl')
       return
     }
 
@@ -203,13 +207,13 @@ export function ContributePage({ schools, onBack }: Props) {
       contribution,
       schoolName: school?.name ?? schoolId,
       schoolId,
-      dimensionLabel,
+      dimensionLabel: dimensionRecordLabel,
       value: selectedValue,
       sourceLabel: SOURCE_LABELS[sourceType],
       evidence,
       contributor,
     })
-    const title = `數據貢獻：${school?.name ?? schoolId} · ${dimensionLabel} = ${selectedValue}`
+    const title = `數據貢獻：${school?.name ?? schoolId} · ${dimensionRecordLabel} = ${selectedValue}` // i18n-contract
     const url = new URL(ISSUE_URL)
     url.searchParams.set('template', 'data-contribution.md')
     url.searchParams.set('title', title)
@@ -219,50 +223,51 @@ export function ContributePage({ schools, onBack }: Props) {
     void recordUnapplyEvent({
       recordKind: 'event',
       recordKey: `contrib-${schoolId}-${Date.now().toString(36)}`,
-      title: `發起貢獻：${school?.name ?? schoolId} · ${dimensionLabel}`,
-      summary: `值=${selectedValue}${sourceTitle ? ` · 源=${sourceTitle.slice(0, 30)}` : ''}`,
+      title: `發起貢獻：${school?.name ?? schoolId} · ${dimensionRecordLabel}`, // i18n-contract
+      summary: `值=${selectedValue}${sourceTitle ? ` · 源=${sourceTitle.slice(0, 30)}` : ''}`, // i18n-contract
       payload: contribution,
     })
 
     window.open(url.toString(), '_blank', 'noopener,noreferrer')
   }
 
+  const inputClass = 'w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]'
+
   return (
     <main className="min-h-screen app-canvas text-fog-100">
       <header className="sticky top-0 z-10 backdrop-blur bg-ink-950/80 border-b border-ink-800">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
           <button onClick={onBack} className="text-xs mono uppercase tracking-[0.2em] text-fog-500 hover:text-accent-500 min-h-[44px] -my-3 py-3">
-            ← 返回
+            {t('ui.common.back')}
           </button>
-          <span className="mono text-xs text-fog-500">contribute</span>
+          <div className="flex items-center gap-3">
+            <LocaleSwitcher />
+            <span className="mono text-xs text-fog-500">{t('ui.contribute.kicker')}</span>
+          </div>
         </div>
       </header>
 
       <section className="max-w-2xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-6">
         <div className="flex flex-col gap-3">
-          <h1 className="serif text-2xl sm:text-3xl">貢獻高校數據</h1>
+          <h1 className="serif text-2xl sm:text-3xl">{t('ui.contribute.title')}</h1>
           <p className="text-sm text-fog-500 leading-relaxed">
-            支持補充既有維度，也支持提交你認為重要的新數據。提交後會打開 <code className="mono text-fog-300">{REPO}</code> 的 issue 創建頁，內含可機器讀取的 JSON。
+            <Rich k="ui.contribute.lede" params={{ repo: REPO }} />
           </p>
-          <p className="text-xs text-fog-500 leading-relaxed">
-            權威維度只接受官方或可公開核驗來源；生活體驗類允許在讀學生/校友補充，但入庫前仍需覆核。
-          </p>
-          <p className="text-xs text-fog-500 leading-relaxed">
-            如果你是從題目頁直接跳過來，先選擇你熟悉的一所學校，再提交這一維的資料。
-          </p>
+          <p className="text-xs text-fog-500 leading-relaxed">{t('ui.contribute.rule1')}</p>
+          <p className="text-xs text-fog-500 leading-relaxed">{t('ui.contribute.rule2')}</p>
         </div>
 
-        <Field label="學校">
+        <Field label={t('ui.contribute.field.school')}>
           <select
             value={schoolId}
             onChange={(e) => setSchoolId(e.target.value)}
-            className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]"
+            className={inputClass}
           >
-            {schools.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
+            {schools.map(s => <option key={s.id} value={s.id}>{schoolDisplayName(s)}</option>)}
           </select>
         </Field>
 
-        <Field label="數據項">
+        <Field label={t('ui.contribute.field.dimension')}>
           <select
             value={dim}
             onChange={(e) => {
@@ -270,55 +275,54 @@ export function ContributePage({ schools, onBack }: Props) {
               setValue('')
               setCustomValue('')
             }}
-            className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]"
+            className={inputClass}
           >
-            <option value={CUSTOM_DIM}>自定義重要數據</option>
-            {CONTRIBUTABLE_DIMS.map(d => {
-              const m = DIMENSIONS[d]
-              return <option key={d} value={d}>{d} · {m.label}</option>
-            })}
+            <option value={CUSTOM_DIM}>{t('ui.contribute.customDim')}</option>
+            {CONTRIBUTABLE_DIMS.map(d => (
+              <option key={d} value={d}>{t('ui.contribute.dimOption', { id: d, label: dimensionLabel(d) })}</option>
+            ))}
           </select>
           {meta?.notes && <p className="text-xs text-fog-500 mt-2">{meta.notes}</p>}
         </Field>
 
         {isCustom && (
           <>
-            <Field label="自定義類別">
+            <Field label={t('ui.contribute.field.customCategory')}>
               <select
                 value={customCategory}
                 onChange={(e) => setCustomCategory(e.target.value as CustomCategory)}
-                className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]"
+                className={inputClass}
               >
-                {Object.entries(CATEGORY_LABELS).map(([key, label]) => (
-                  <option key={key} value={key}>{label}</option>
+                {(Object.keys(CATEGORY_LABELS) as CustomCategory[]).map((key) => (
+                  <option key={key} value={key}>{t(`ui.contribute.category.${key}`)}</option>
                 ))}
               </select>
             </Field>
-            <Field label="自定義數據項名稱">
+            <Field label={t('ui.contribute.field.customMetric')}>
               <input
                 type="text"
                 value={customMetric}
                 onChange={(e) => setCustomMetric(e.target.value)}
-                placeholder="例：2024 本科保研率 / 大一所在校區 / 轉專業限制"
-                className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]"
+                placeholder={t('ui.contribute.placeholder.customMetric')}
+                className={inputClass}
               />
             </Field>
           </>
         )}
 
-        <Field label="取值">
-          {!isCustom && meta ? (
+        <Field label={t('ui.contribute.field.value')}>
+          {!isCustom && meta && knownDim ? (
             <select
               value={value}
               onChange={(e) => {
                 setValue(e.target.value)
                 if (e.target.value !== FREE_VALUE) setCustomValue('')
               }}
-              className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]"
+              className={inputClass}
             >
-              <option value="">— 選擇 —</option>
-              {meta.values.map((v) => <option key={v} value={v}>{v}</option>)}
-              <option value={FREE_VALUE}>其他/更精確取值</option>
+              <option value="">{t('ui.contribute.valuePlaceholder')}</option>
+              {meta.values.map((v) => <option key={v} value={v}>{valueLabel(knownDim, v)}</option>)}
+              <option value={FREE_VALUE}>{t('ui.contribute.valueOther')}</option>
             </select>
           ) : null}
           {(isCustom || value === FREE_VALUE) && (
@@ -326,138 +330,90 @@ export function ContributePage({ schools, onBack }: Props) {
               type="text"
               value={customValue}
               onChange={(e) => setCustomValue(e.target.value)}
-              placeholder="例：主校區距地鐵 1.1km / 2024 年保研率 18.7% / 不限績點可申請"
-              className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]"
+              placeholder={t('ui.contribute.placeholder.customValue')}
+              className={inputClass}
             />
           )}
         </Field>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Field label="來源類型">
+          <Field label={t('ui.contribute.field.sourceType')}>
             <select
               value={sourceType}
               onChange={(e) => setSourceType(e.target.value as SourceType)}
-              className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]"
+              className={inputClass}
             >
-              {Object.entries(SOURCE_LABELS).map(([key, label]) => (
-                <option key={key} value={key}>{label}</option>
+              {(Object.keys(SOURCE_LABELS) as SourceType[]).map((key) => (
+                <option key={key} value={key}>{t(`ui.contribute.sourceType.${key}`)}</option>
               ))}
             </select>
           </Field>
-          <Field label="可信度">
+          <Field label={t('ui.contribute.field.confidence')}>
             <select
               value={confidence}
               onChange={(e) => setConfidence(e.target.value as Confidence)}
-              className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]"
+              className={inputClass}
             >
-              {Object.entries(CONFIDENCE_LABELS).map(([key, label]) => (
-                <option key={key} value={key}>{label}</option>
+              {CONFIDENCE_KEYS.map((key) => (
+                <option key={key} value={key}>{t(`ui.contribute.confidence.${key}`)}</option>
               ))}
             </select>
           </Field>
         </div>
 
-        <Field label="來源標題">
-          <input
-            type="text"
-            value={sourceTitle}
-            onChange={(e) => setSourceTitle(e.target.value)}
-            placeholder="例：北京大學 2024 本科招生章程 / 學校後勤通知 / 本人 2023 級在讀"
-            className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]"
-          />
+        <Field label={t('ui.contribute.field.sourceTitle')}>
+          <input type="text" value={sourceTitle} onChange={(e) => setSourceTitle(e.target.value)} placeholder={t('ui.contribute.placeholder.sourceTitle')} className={inputClass} />
         </Field>
 
-        <Field label="來源鏈接">
-          <input
-            type="url"
-            value={sourceUrl}
-            onChange={(e) => setSourceUrl(e.target.value)}
-            placeholder="https://..."
-            className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]"
-          />
+        <Field label={t('ui.contribute.field.sourceUrl')}>
+          <input type="url" value={sourceUrl} onChange={(e) => setSourceUrl(e.target.value)} placeholder="https://..." className={inputClass} />
         </Field>
 
-        <Field label="來源日期">
-          <input
-            type="text"
-            value={sourceDate}
-            onChange={(e) => setSourceDate(e.target.value)}
-            placeholder="例：2024-06-15 / 2024 學年 / 2023 級"
-            className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]"
-          />
+        <Field label={t('ui.contribute.field.sourceDate')}>
+          <input type="text" value={sourceDate} onChange={(e) => setSourceDate(e.target.value)} placeholder={t('ui.contribute.placeholder.sourceDate')} className={inputClass} />
         </Field>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Field label="校區/範圍">
-            <input
-              type="text"
-              value={campus}
-              onChange={(e) => setCampus(e.target.value)}
-              placeholder="例：沙河校區 / 本部 / 全校"
-              className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]"
-            />
+          <Field label={t('ui.contribute.field.campus')}>
+            <input type="text" value={campus} onChange={(e) => setCampus(e.target.value)} placeholder={t('ui.contribute.placeholder.campus')} className={inputClass} />
           </Field>
-          <Field label="專業/年級">
-            <input
-              type="text"
-              value={major}
-              onChange={(e) => setMajor(e.target.value)}
-              placeholder="例：計算機類 / 全專業"
-              className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]"
-            />
+          <Field label={t('ui.contribute.field.major')}>
+            <input type="text" value={major} onChange={(e) => setMajor(e.target.value)} placeholder={t('ui.contribute.placeholder.major')} className={inputClass} />
           </Field>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Field label="入學年份/年級">
-            <input
-              type="text"
-              value={grade}
-              onChange={(e) => setGrade(e.target.value)}
-              placeholder="例：2023 級 / 2024 本科新生"
-              className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]"
-            />
+          <Field label={t('ui.contribute.field.grade')}>
+            <input type="text" value={grade} onChange={(e) => setGrade(e.target.value)} placeholder={t('ui.contribute.placeholder.grade')} className={inputClass} />
           </Field>
-          <Field label="樣本量">
-            <input
-              type="text"
-              value={sampleSize}
-              onChange={(e) => setSampleSize(e.target.value)}
-              placeholder="例：1 人親歷 / 3 人一致 / 官方全量"
-              className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]"
-            />
+          <Field label={t('ui.contribute.field.sampleSize')}>
+            <input type="text" value={sampleSize} onChange={(e) => setSampleSize(e.target.value)} placeholder={t('ui.contribute.placeholder.sampleSize')} className={inputClass} />
           </Field>
         </div>
 
-        <Field label="證據/補充">
+        <Field label={t('ui.contribute.field.evidence')}>
           <textarea
             value={evidence}
             onChange={(e) => setEvidence(e.target.value)}
             maxLength={1000}
             rows={5}
-            placeholder="寫清楚數據如何得出、適用範圍、是否只適用某校區/某專業/某年份。負面或敏感項請提供公開鏈接。"
+            placeholder={t('ui.contribute.placeholder.evidence')}
             className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm"
           />
         </Field>
 
-        <Field label="貢獻者">
-          <input
-            type="text"
-            value={contributor}
-            onChange={(e) => setContributor(e.target.value)}
-            placeholder="匿名即可；也可以寫 GitHub 用戶名或暱稱"
-            className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]"
-          />
+        <Field label={t('ui.contribute.field.contributor')}>
+          <input type="text" value={contributor} onChange={(e) => setContributor(e.target.value)} placeholder={t('ui.contribute.placeholder.contributor')} className={inputClass} />
         </Field>
 
-        {err && <p className="text-sm text-accent-500">{err}</p>}
+        {errKey && <p className="text-sm text-accent-500">{t(errKey)}</p>}
 
         <div className="flex flex-col sm:flex-row gap-3 pt-2">
           <button
             onClick={submit}
             className="px-6 py-3 bg-accent-500 text-ink-950 rounded-full font-semibold text-sm hover:bg-accent-400 min-h-[48px]"
           >
-            提交到 GitHub →
+            {t('ui.contribute.submit')}
           </button>
           <a
             href={`https://github.com/${REPO}/issues?q=is%3Aissue+label%3Adata-contribution`}
@@ -465,12 +421,12 @@ export function ContributePage({ schools, onBack }: Props) {
             rel="noopener noreferrer"
             className="px-6 py-3 border border-ink-700 text-fog-300 rounded-full text-sm hover:text-fog-100 hover:border-fog-500 text-center min-h-[48px] flex items-center justify-center"
           >
-            查看所有貢獻
+            {t('ui.contribute.viewAll')}
           </a>
         </div>
 
         <p className="text-xs text-fog-500 mt-4 leading-relaxed">
-          CC BY-NC-SA 4.0 · 非商業公益用途 · 公開審核後入庫 · JSON schema 見 issue 正文。
+          {t('ui.contribute.footer')}
         </p>
       </section>
     </main>

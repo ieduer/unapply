@@ -1,4 +1,5 @@
 import { EvidenceNotice } from './EvidenceNotice'
+import { LocaleSwitcher } from './LocaleSwitcher'
 import { useMemo, useState, useEffect } from 'react'
 import { candidateProvinceOptions } from '../data/admissionAuthorities'
 import type { CandidateProvince } from '../data/admissionAuthorities'
@@ -11,6 +12,9 @@ import { analyzeQuestionCoverage, getVisibleOptions } from '../engine/coverage'
 import type { ProgramIndexPayload } from '../data/programsTypes'
 import { SUBJECT_OPTIONS, isSubjectCode, subjectsToCombo } from '../data/programPrefs'
 import { programClasses, programDisciplines } from '../data/programClasses'
+import { useLocale } from '../i18n/react'
+import { Rich } from '../i18n/rich'
+import { optionHint, optionLabel, provinceLabel, questionSubtitle, questionTitle, sectionLabel, subjectLabel } from '../lib/i18nLabels'
 
 interface Props {
   allSchools: School[]
@@ -34,6 +38,7 @@ export function QuestionRunner({
   onFinish,
   onBack,
 }: Props) {
+  const { t } = useLocale()
   const [idx, setIdx] = useState(0)
   // S1 的三科在湊滿之前只存在本地，不進 AnswerMap（不送互動紀錄）；S2 的門類選擇同理。綁定題號，換題即視為空。
   const [pending, setPending] = useState<{ qid: string; subjects: string[]; discipline: string }>({ qid: '', subjects: [], discipline: '' })
@@ -69,15 +74,15 @@ export function QuestionRunner({
     return (
       <main className="min-h-screen app-canvas text-fog-100 flex items-center justify-center px-5">
         <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-xl p-6 flex flex-col gap-4">
-          <h1 className="serif text-2xl">暫時無法開始</h1>
+          <h1 className="serif text-2xl">{t('ui.runner.cannotStart')}</h1>
           <p className="text-sm text-fog-500 leading-relaxed">
-            請先返回首頁，稍後再試。
+            {t('ui.runner.cannotStartNote')}
           </p>
           <button
             onClick={onBack}
             className="self-start px-5 py-3 rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500"
           >
-            返回首頁
+            {t('ui.common.backHome')}
           </button>
         </section>
       </main>
@@ -131,12 +136,6 @@ export function QuestionRunner({
     return true
   }
 
-  const sectionLabel =
-    q.section === 'A_redline' ? '紅線' :
-    q.section === 'E_environment' ? '環境' :
-    q.section === 'B_quality' ? '生活' :
-    q.section === 'S_programs' ? '專業' : '特殊'
-
   // S1：六科挑三科的挑選器；答案＝固定序組合鍵（'PCB'），與選項 key 一致。
   const pendingSubjects = pending.qid === q.id ? pending.subjects : []
   const pendingDiscipline = pending.qid === q.id ? pending.discipline : ''
@@ -158,6 +157,8 @@ export function QuestionRunner({
   const disciplineOfCurrent = currentClass ? programClasses.find((c) => c.code === currentClass)?.discipline ?? '' : ''
   const activeDiscipline = pendingDiscipline || disciplineOfCurrent
   const classesInDiscipline = programClasses.filter((c) => c.discipline === activeDiscipline && visibleComboKeys.has(c.code))
+  const subtitle = questionSubtitle(q.id)
+  const nextLabel = shortlistReached ? t('ui.runner.generateReport') : activeIdx === total - 1 ? t('ui.runner.seeResults') : t('ui.runner.next')
 
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex flex-col">
@@ -168,17 +169,20 @@ export function QuestionRunner({
             onClick={prev}
             className="text-xs mono uppercase tracking-[0.2em] text-fog-500 hover:text-accent-500 min-h-[44px] -my-3 py-3 px-1"
           >
-            ← {activeIdx === 0 ? '返回' : '上一題'}
+            ← {activeIdx === 0 ? t('ui.runner.back') : t('ui.runner.prev')}
           </button>
           <div className="text-xs mono text-fog-500 shrink-0">
-            {sectionLabel} · {activeIdx + 1} / {total}
+            {t('ui.runner.progress', { section: sectionLabel(q.section), index: activeIdx + 1, total })}
           </div>
-          <button
-            onClick={skip}
-            className="text-xs mono uppercase tracking-[0.2em] text-fog-500 hover:text-accent-500 min-h-[44px] -my-3 py-3 px-1"
-          >
-            {shortlistReached ? '結果' : '跳過'}
-          </button>
+          <div className="flex items-center gap-2">
+            <LocaleSwitcher className="max-sm:hidden" />
+            <button
+              onClick={skip}
+              className="text-xs mono uppercase tracking-[0.2em] text-fog-500 hover:text-accent-500 min-h-[44px] -my-3 py-3 px-1"
+            >
+              {shortlistReached ? t('ui.runner.results') : t('ui.runner.skip')}
+            </button>
+          </div>
         </div>
         <div className="h-[2px] bg-ink-800">
           <div
@@ -190,30 +194,30 @@ export function QuestionRunner({
 
       <section className="flex-1 max-w-2xl w-full mx-auto px-4 sm:px-6 pt-6 pb-32 sm:pt-10 sm:pb-10 flex flex-col gap-8 sm:gap-10">
         <div key={q.id} className="question-enter flex flex-col gap-3 sm:gap-4">
-            <h2 className="serif text-2xl sm:text-3xl leading-snug">{q.title}</h2>
-            {q.subtitle && (
-              <p className="text-sm text-fog-500 leading-relaxed">{q.subtitle}</p>
+            <h2 className="serif text-2xl sm:text-3xl leading-snug">{questionTitle(q.id)}</h2>
+            {subtitle && (
+              <p className="text-sm text-fog-500 leading-relaxed">{subtitle}</p>
             )}
             {q.id === 'A6' && (
               <label className="flex flex-wrap items-center gap-2 text-xs mono text-fog-500 border border-ink-700 bg-ink-900 rounded-xl px-3 py-3">
-                <span className="uppercase tracking-[0.2em] shrink-0">考生地區</span>
+                <span className="uppercase tracking-[0.2em] shrink-0">{t('ui.common.candidateProvince')}</span>
                 <select
                   value={candidateProvince}
                   onChange={(event) => onCandidateProvinceChange(event.target.value as CandidateProvince)}
                   className="bg-ink-950 border border-ink-700 rounded-lg px-2 py-2 text-fog-200 min-h-[40px]"
                 >
                   {candidateProvinceOptions.map((province) => (
-                    <option key={province} value={province}>{province}</option>
+                    <option key={province} value={province}>{provinceLabel(province)}</option>
                   ))}
                 </select>
-                <span className="text-fog-500">招生管道逐省不同，改這裡會即時重算</span>
+                <span className="text-fog-500">{t('ui.runner.a6.provinceNote')}</span>
               </label>
             )}
         </div>
 
         {q.id === 'S1' && (
           <div className="flex flex-col gap-3">
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2" role="group" aria-label="選考科目">
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2" role="group" aria-label={t('ui.runner.s1.groupAria')}>
               {SUBJECT_OPTIONS.map((subject) => {
                 const pressed = chosenSubjects.includes(subject.code)
                 const disabled = !pressed && chosenSubjects.length >= 3
@@ -233,46 +237,46 @@ export function QuestionRunner({
                           : 'border-ink-700 bg-ink-900 text-fog-300 hover:border-fog-500 hover:text-fog-100',
                     ].join(' ')}
                   >
-                    {subject.label}
+                    {subjectLabel(subject.code)}
                   </button>
                 )
               })}
             </div>
             <p className="text-xs text-fog-500 leading-relaxed">
               {currentCombo
-                ? `已選 ${visibleOptions.find((opt) => opt.key === currentCombo)?.label ?? currentCombo}；${currentExcluded === 0 ? '這組選科在每所有資料的學校都至少報得了一個本科專業，本題不劃掉任何學校。' : '全部本科專業都報不了的學校會被劃掉；只公布專科專業的學校不判定。'}`
-                : `已選 ${chosenSubjects.length}/3，選滿三科才會參與篩選。`}
+                ? `${t('ui.runner.s1.chosen', { combo: optionLabel('S1', currentCombo) })}${currentExcluded === 0 ? t('ui.runner.s1.noExclusion') : t('ui.runner.s1.exclusion')}`
+                : t('ui.runner.s1.pending', { n: chosenSubjects.length })}
             </p>
           </div>
         )}
         {q.id === 'S2' && (
           <div className="grid gap-2 sm:grid-cols-2">
             <label className="flex flex-col gap-1 text-xs text-fog-500">
-              門類
+              {t('ui.runner.s2.discipline')}
               <select
                 value={activeDiscipline}
                 onChange={(event) => { setPending({ qid: q.id, subjects: [], discipline: event.target.value }); if (currentClass) onAnswerChange({ ...answers, [q.id]: null }, q.id) }}
                 className="bg-ink-950 border border-ink-700 rounded-lg px-2 py-2 text-sm text-fog-200 min-h-[48px]"
               >
-                <option value="">— 選門類 —</option>
+                <option value="">{t('ui.runner.s2.disciplinePlaceholder')}</option>
                 {programDisciplines.filter((d) => programClasses.some((c) => c.discipline === d.code)).map((d) => <option key={d.code} value={d.code}>{d.code} {d.name}</option>)}
               </select>
             </label>
             <label className="flex flex-col gap-1 text-xs text-fog-500">
-              專業類
+              {t('ui.runner.s2.class')}
               <select
                 value={currentClass ?? ''}
                 disabled={!activeDiscipline}
                 onChange={(event) => { if (event.target.value) setAnswer(event.target.value) }}
                 className="bg-ink-950 border border-ink-700 rounded-lg px-2 py-2 text-sm text-fog-200 min-h-[48px]"
               >
-                <option value="">— 選專業類 —</option>
+                <option value="">{t('ui.runner.s2.classPlaceholder')}</option>
                 {classesInDiscipline.map((c) => <option key={c.code} value={c.code}>{c.code} {c.name}</option>)}
               </select>
             </label>
             {currentClass && (
               <p className="sm:col-span-2 text-xs text-fog-500 leading-relaxed">
-                已選 {visibleOptions.find((opt) => opt.key === currentClass)?.label ?? currentClass}；{currentExcluded === 0 ? '每所有資料的學校都開了這一類，本題不劃掉任何學校。' : '沒開這一類的學校會被劃掉，只有試驗班對不到的保留。'}
+                {t('ui.runner.s2.chosen', { label: optionLabel('S2', currentClass) })}{currentExcluded === 0 ? t('ui.runner.s2.noExclusion') : t('ui.runner.s2.exclusion')}
               </p>
             )}
           </div>
@@ -281,6 +285,7 @@ export function QuestionRunner({
         <div className="flex flex-col gap-3">
           {(q.id === 'S1' || q.id === 'S2' ? [] : visibleOptions).map((opt) => {
             const active = isCurrent(opt.key)
+            const hint = optionHint(q.id, opt.key)
             return (
               <button
                 key={opt.key}
@@ -299,10 +304,10 @@ export function QuestionRunner({
                       active ? 'border-accent-500 bg-accent-500' : 'border-fog-500',
                     ].join(' ')}
                   />
-                  <span className="serif text-base leading-snug">{opt.label}</span>
+                  <span className="serif text-base leading-snug">{optionLabel(q.id, opt.key)}</span>
                 </div>
-                {opt.hint && (
-                  <p className="mt-2 ml-7 text-xs text-fog-500 leading-relaxed">{opt.hint}</p>
+                {hint && (
+                  <p className="mt-2 ml-7 text-xs text-fog-500 leading-relaxed">{hint}</p>
                 )}
               </button>
             )
@@ -311,17 +316,16 @@ export function QuestionRunner({
 
         {showShortlistPanel && (
           <div className="rounded-2xl border border-accent-500/30 bg-ink-900/80 px-4 py-4 flex flex-col gap-2">
-            <p className="serif text-lg text-fog-100">這一題後只剩 {liveResult.stats.keptCount} 所了。</p>
+            <p className="serif text-lg text-fog-100">{t('ui.runner.shortlist.title', { n: liveResult.stats.keptCount })}</p>
             <p className="text-sm text-fog-300 leading-relaxed">
-              這一輪先收束到報告頁，不再往後連做。你可以先看結果；如果想繼續調條件，也可以直接改上一題或清空重來。
+              {t('ui.runner.shortlist.note')}
             </p>
           </div>
         )}
 
         <div className="hidden sm:flex items-center justify-between gap-3">
           <div className="mono text-xs text-fog-500">
-            實時：已劃掉 <span className="text-accent-500 text-sm">{liveResult.stats.excludedCount}</span>
-            {' / '}剩 <span className="text-fog-100 text-sm">{liveResult.stats.keptCount}</span>
+            <Rich k="ui.runner.live" params={{ excluded: <span className="text-sm">{liveResult.stats.excludedCount}</span>, kept: <span className="text-sm">{liveResult.stats.keptCount}</span> }} />
           </div>
           <button
             onClick={next}
@@ -333,15 +337,14 @@ export function QuestionRunner({
                 : 'bg-ink-800 text-fog-500 cursor-not-allowed',
             ].join(' ')}
           >
-            {shortlistReached ? '生成報告' : activeIdx === total - 1 ? '看結果' : '下一題 →'}
+            {nextLabel}
           </button>
         </div>
       </section>
 
       <div className="sm:hidden sticky bottom-0 left-0 right-0 z-20 bg-ink-950/95 backdrop-blur border-t border-ink-800 px-4 py-3 flex items-center justify-between gap-3">
         <div className="mono text-xs text-fog-500 leading-tight">
-          劃掉 <span className="text-accent-500 text-sm">{liveResult.stats.excludedCount}</span>
-          {' / '}剩 <span className="text-fog-100 text-sm">{liveResult.stats.keptCount}</span>
+          <Rich k="ui.runner.live.short" params={{ excluded: <span className="text-sm">{liveResult.stats.excludedCount}</span>, kept: <span className="text-sm">{liveResult.stats.keptCount}</span> }} />
         </div>
         <button
           onClick={next}
@@ -353,7 +356,7 @@ export function QuestionRunner({
               : 'bg-ink-800 text-fog-500 cursor-not-allowed',
           ].join(' ')}
         >
-          {shortlistReached ? '生成報告' : activeIdx === total - 1 ? '看結果' : '下一題 →'}
+          {nextLabel}
         </button>
       </div>
     </main>

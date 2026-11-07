@@ -1,0 +1,1578 @@
+{
+ "$schema": "nope.zh-hans.fixtures.v1",
+ "generatedAt": "2026-11-07T08:45:49.894Z",
+ "policy": "zh-hans.policy.md",
+ "converterUsedForCandidates": "OpenCC t2s dictionaries (TSCharacters 4,113 + TSPhrases 277) via vendored opencc-python at sites/tools/cy/scripts/vendor/opencc; manual corrections listed per fixture",
+ "count": 140,
+ "fixtures": [
+  {
+   "id": "f001",
+   "key": "meta.title",
+   "category": "ui",
+   "zhHant": "你一定不考 · 不考大學指南",
+   "zhHans": "你一定不考 · 不考大学指南",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f002",
+   "key": "meta.description",
+   "category": "ui",
+   "zhHant": "用減法從教育部 2026 名單的 2952 所普通高校中劃掉一定不考的那批。不做推薦，只做排除。",
+   "zhHans": "用减法从教育部 2026 名单的 2952 所普通高校中划掉一定不考的那批。不做推荐，只做排除。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "劃",
+    "只"
+   ]
+  },
+  {
+   "id": "f003",
+   "key": "meta.ogDescription",
+   "category": "ui",
+   "zhHant": "不告訴你該考哪所，只幫你劃掉不能忍的那幾百所。",
+   "zhHans": "不告诉你该考哪所，只帮你划掉不能忍的那几百所。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "只",
+    "劃"
+   ]
+  },
+  {
+   "id": "f004",
+   "key": "ui.landing.title",
+   "category": "ui",
+   "zhHant": "你一定不考哪所大學",
+   "zhHans": "你一定不考哪所大学",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f005",
+   "key": "ui.landing.lede",
+   "category": "ui",
+   "zhHant": "不告訴你該考哪所，只幫你從官方目錄裡先劃掉不能忍的那批。",
+   "zhHans": "不告诉你该考哪所，只帮你从官方目录里先划掉不能忍的那批。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "只",
+    "裡",
+    "劃"
+   ]
+  },
+  {
+   "id": "f006",
+   "key": "ui.landing.originTitle",
+   "category": "ui",
+   "zhHant": "你在哪裡升學？",
+   "zhHans": "你在哪里升学？",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "裡"
+   ]
+  },
+  {
+   "id": "f007",
+   "key": "ui.landing.originLede",
+   "category": "ui",
+   "zhHant": "所在地只決定從哪個題庫開始、有哪些可申請的管道；之後每一步都可以跨國選。目前只有中國大陸有完整題庫；香港、澳門、臺灣先看院校池（官方招生管道），其他起點先看全球學科地圖。",
+   "zhHans": "所在地只决定从哪个题库开始、有哪些可申请的管道；之后每一步都可以跨国选。目前只有中国大陆有完整题库；香港、澳门、台湾先看院校池（官方招生管道），其他起点先看全球学科地图。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "只",
+    "後",
+    "臺"
+   ]
+  },
+  {
+   "id": "f008",
+   "key": "ui.landing.footer.licence",
+   "category": "ui",
+   "zhHant": "非商業公益 · CC BY-NC-SA 4.0 · 不提供志願填報建議",
+   "zhHans": "非商业公益 · CC BY-NC-SA 4.0 · 不提供志愿填报建议",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f009",
+   "key": "ui.result.headline",
+   "category": "ui",
+   "zhHant": "從 {total} 所中，你劃掉了 {excluded} 所。",
+   "zhHans": "从 {total} 所中，你划掉了 {excluded} 所。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "劃",
+    "了"
+   ]
+  },
+  {
+   "id": "f010",
+   "key": "ui.result.ai.title",
+   "category": "ui",
+   "zhHant": "帶著這輪減法去報考分析",
+   "zhHans": "带着这轮减法去报考分析",
+   "rule": "char-only (t2s) + particle 著→着 (zh-hans.policy.md §3)",
+   "note": "Corrected 2026-11-07 by the S4 implementation session: the research probe had accepted the raw OpenCC char-level output 带著, which the policy itself (§3 著／着) lists as the one sentence needing correction; the particle 著 is 着 in simplified script.",
+   "riskyChars": [
+    "著"
+   ]
+  },
+  {
+   "id": "f011",
+   "key": "ui.result.footer.presumption",
+   "category": "ui",
+   "zhHant": "數據缺失的維度不會誤殺學校（疑罪從無）。",
+   "zhHans": "数据缺失的维度不会误杀学校（疑罪从无）。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f012",
+   "key": "ui.result.kept.note",
+   "category": "ui",
+   "zhHant": "每張卡都附帶核心標籤、官網、陽光高考院校庫，以及你所選考生地區的權威錄取查詢入口。 考生地區也決定 A6 的招生管道判定——換一個省，名單會即時重算。",
+   "zhHans": "每张卡都附带核心标签、官网、阳光高考院校库，以及你所选考生地区的权威录取查询入口。 考生地区也决定 A6 的招生管道判定——换一个省，名单会即时重算。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "籤"
+   ]
+  },
+  {
+   "id": "f013",
+   "key": "ui.result.lookup.placeholder",
+   "category": "ui",
+   "zhHant": "輸入學校名，例如：西安交通大學 / 中央音樂學院",
+   "zhHans": "输入学校名，例如：西安交通大学 / 中央音乐学院",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f014",
+   "key": "ui.about.why.title",
+   "category": "ui",
+   "zhHant": "為什麼做減法？",
+   "zhHans": "为什么做减法？",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "麼"
+   ]
+  },
+  {
+   "id": "f015",
+   "key": "ui.about.scope.presumptionEmph",
+   "category": "ui",
+   "zhHant": "疑罪從無",
+   "zhHans": "疑罪从无",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f016",
+   "key": "ui.about.sources.atlasTitle",
+   "category": "ui",
+   "zhHant": "全球學科地圖（只描述分佈，不作推薦）",
+   "zhHans": "全球学科地图（只描述分布，不作推荐）",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "只",
+    "佈"
+   ]
+  },
+  {
+   "id": "f017",
+   "key": "ui.about.sources.subjectTables",
+   "category": "ui",
+   "zhHant": "· 2027 年擬招生普通高校專業（類）選考科目要求彙總表（學校報送、全國統一口徑；本站取能以腳本取得的七省官方表交叉核對，覆蓋表中列出的 {schools} 校；問卷「選考科目」「意向專業類」兩題與學校詳情都算在這份資料上；只以查詢系統公布、或本機連不上的省份未納入）：",
+   "zhHans": "· 2027 年拟招生普通高校专业（类）选考科目要求汇总表（学校报送、全国统一口径；本站取能以脚本取得的七省官方表交叉核对，覆盖表中列出的 {schools} 校；问卷「选考科目」「意向专业类」两题与学校详情都算在这份资料上；只以查询系统公布、或本机连不上的省份未纳入）：",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "彙",
+    "覆",
+    "卷",
+    "向",
+    "只",
+    "系",
+    "布"
+   ]
+  },
+  {
+   "id": "f018",
+   "key": "ui.about.method.prior.text",
+   "category": "ui",
+   "zhHant": "：絕大多數學校填志願就能錄取，所以那是預設；但預設必須可被章程推翻。本科只走綜合評價（須另行報名 + 校測）的院校，逐省逐年記在招生管道表裡，在校名旁標「綜評校測·無常規批」，並附章程鏈接。查不到章程的一律回到預設，寧可少排除，不誤殺。",
+   "zhHans": "：绝大多数学校填志愿就能录取，所以那是预设；但预设必须可被章程推翻。本科只走综合评价（须另行报名 + 校测）的院校，逐省逐年记在招生管道表里，在校名旁标「综评校测·无常规批」，并附章程链接。查不到章程的一律回到预设，宁可少排除，不误杀。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "須",
+    "只",
+    "裡",
+    "並"
+   ]
+  },
+  {
+   "id": "f019",
+   "key": "ui.about.sisters.title",
+   "category": "ui",
+   "zhHant": "和姊妹站的關係",
+   "zhHans": "和姊妹站的关系",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "係"
+   ]
+  },
+  {
+   "id": "f020",
+   "key": "ui.detail.env.summer.hot",
+   "category": "ui",
+   "zhHant": "夏天乾熱",
+   "zhHans": "夏天干热",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "乾"
+   ]
+  },
+  {
+   "id": "f021",
+   "key": "ui.detail.joint.note",
+   "category": "ui",
+   "zhHant": "教育部中外合作辦學監管工作信息平台公布的「經審批和復核的機構及項目名單」（{note}）；本站按中方合作辦學者對回學校，獨立法人機構以機構本身對回。 只展示、不判定；平台沒有學費欄，收費以各校招生章程為準。名稱與專業為平台原文。",
+   "zhHans": "教育部中外合作办学监管工作信息平台公布的「经审批和复核的机构及项目名单」（{note}）；本站按中方合作办学者对回学校，独立法人机构以机构本身对回。 只展示、不判定；平台没有学费栏，收费以各校招生章程为准。名称与专业为平台原文。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "台",
+    "布",
+    "復",
+    "只",
+    "準"
+   ]
+  },
+  {
+   "id": "f022",
+   "key": "ui.detail.channels.comprehensiveDominant",
+   "category": "ui",
+   "zhHant": "對{province}考生：主要走綜合評價（須另行報名+校測）。章程另寫「部分省份試點普通本科批次錄取」，但沒公布是哪些省，所以這裡不替你排除——要確認請查你所在省當年的招生計劃。",
+   "zhHans": "对{province}考生：主要走综合评价（须另行报名+校测）。章程另写「部分省份试点普通本科批次录取」，但没公布是哪些省，所以这里不替你排除——要确认请查你所在省当年的招生计划。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "須",
+    "布",
+    "裡",
+    "劃"
+   ]
+  },
+  {
+   "id": "f023",
+   "key": "ui.detail.programs.notInTables",
+   "category": "ui",
+   "zhHant": "本校 {year} 年的招生專業與選考要求沒有出現在本站已取得的 {n} 省公布表（{provinces}）裡（可能當年未在這些省安排計劃，或只透過查詢系統公布）。沒有資料不影響它在結果裡的去留；要查請用上方的陽光高考院校庫或所在省招考入口。",
+   "zhHans": "本校 {year} 年的招生专业与选考要求没有出现在本站已取得的 {n} 省公布表（{provinces}）里（可能当年未在这些省安排计划，或只透过查询系统公布）。没有资料不影响它在结果里的去留；要查请用上方的阳光高考院校库或所在省招考入口。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "布",
+    "裡",
+    "劃",
+    "只",
+    "系"
+   ]
+  },
+  {
+   "id": "f024",
+   "key": "ui.hkmotw.title",
+   "category": "ui",
+   "zhHant": "香港、澳門、臺灣的院校，怎麼招內地與港澳學生？",
+   "zhHans": "香港、澳门、台湾的院校，怎么招内地与港澳学生？",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "臺",
+    "麼"
+   ]
+  },
+  {
+   "id": "f025",
+   "key": "ui.hkmotw.lede2",
+   "category": "ui",
+   "zhHant": "的院校與招生管道：每條都帶來源網址、來源網域與機構一致、實際連通與核對日。 它不是題庫、不替你劃掉任何學校；所在地只決定先看哪個地區，之後可以跨區看。條件與學費以各院校當年公布為準，缺的保持未知。",
+   "zhHans": "的院校与招生管道：每条都带来源网址、来源网域与机构一致、实际连通与核对日。 它不是题库、不替你划掉任何学校；所在地只决定先看哪个地区，之后可以跨区看。条件与学费以各院校当年公布为准，缺的保持未知。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "劃",
+    "只",
+    "後",
+    "布",
+    "準"
+   ]
+  },
+  {
+   "id": "f026",
+   "key": "ui.hkmotw.review",
+   "category": "ui",
+   "zhHant": "另有 {institutions} 所院校、{channels} 條管道的官方頁本站讀不到或核不過（例如只以 JavaScript 載入、或對腳本回驗證頁），按規則不上線、待人工覆核：{names}。",
+   "zhHans": "另有 {institutions} 所院校、{channels} 条管道的官方页本站读不到或核不过（例如只以 JavaScript 载入、或对脚本回验证页），按规则不上线、待人工复核：{names}。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "manual correction over OpenCC t2s char output",
+   "riskyChars": [
+    "只",
+    "覆"
+   ]
+  },
+  {
+   "id": "f027",
+   "key": "ui.contribute.rule1",
+   "category": "ui",
+   "zhHant": "權威維度只接受官方或可公開核驗來源；生活體驗類允許在讀學生/校友補充，但入庫前仍需覆核。",
+   "zhHans": "权威维度只接受官方或可公开核验来源；生活体验类允许在读学生/校友补充，但入库前仍需复核。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "manual correction over OpenCC t2s char output",
+   "riskyChars": [
+    "只",
+    "覆"
+   ]
+  },
+  {
+   "id": "f028",
+   "key": "ui.contribute.confidence.medium",
+   "category": "ui",
+   "zhHant": "中：有來源但需覆核",
+   "zhHans": "中：有来源但需复核",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "manual correction over OpenCC t2s char output",
+   "riskyChars": [
+    "覆"
+   ]
+  },
+  {
+   "id": "f029",
+   "key": "ui.world.title",
+   "category": "ui",
+   "zhHant": "人類此刻最強的學科，都在哪裡？",
+   "zhHans": "人类此刻最强的学科，都在哪里？",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "裡"
+   ]
+  },
+  {
+   "id": "f030",
+   "key": "ui.world.legend",
+   "category": "ui",
+   "zhHant": "點大小＝席位數 · 虛線＝所在地已劃掉 · 菱形＝企業直招",
+   "zhHans": "点大小＝席位数 · 虚线＝所在地已划掉 · 菱形＝企业直招",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "劃"
+   ]
+  },
+  {
+   "id": "f031",
+   "key": "ui.evidence.title",
+   "category": "ui",
+   "zhHant": "匿名生活回報暫不參與整校排除",
+   "zhHans": "匿名生活回报暂不参与整校排除",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f032",
+   "key": "ui.evidence.details",
+   "category": "ui",
+   "zhHant": "查看生活資料範圍與暫緩原因",
+   "zhHans": "查看生活资料范围与暂缓原因",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "範"
+   ]
+  },
+  {
+   "id": "f033",
+   "key": "ui.runner.s1.exclusion",
+   "category": "ui",
+   "zhHant": "全部本科專業都報不了的學校會被劃掉；只公布專科專業的學校不判定。",
+   "zhHans": "全部本科专业都报不了的学校会被划掉；只公布专科专业的学校不判定。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "了",
+    "劃",
+    "只",
+    "布"
+   ]
+  },
+  {
+   "id": "f034",
+   "key": "origin.cn-mainland.hint",
+   "category": "ui",
+   "zhHant": "教育部 2026 名單 2,952 所普通高校的減法題庫",
+   "zhHans": "教育部 2026 名单 2,952 所普通高校的减法题库",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f035",
+   "key": "origin.hk.hint",
+   "category": "ui",
+   "zhHant": "港澳臺院校池已上線（官方招生管道）；本地減法題庫建設中（路線圖 S4）",
+   "zhHans": "港澳台院校池已上线（官方招生管道）；本地减法题库建设中（路线图 S4）",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "臺"
+   ]
+  },
+  {
+   "id": "f036",
+   "key": "origin.tw.label",
+   "category": "ui",
+   "zhHant": "臺灣",
+   "zhHans": "台湾",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "臺"
+   ]
+  },
+  {
+   "id": "f037",
+   "key": "origin.overseas.label",
+   "category": "ui",
+   "zhHant": "其他國家或地區",
+   "zhHans": "其他国家或地区",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "家"
+   ]
+  },
+  {
+   "id": "f038",
+   "key": "q.A1.title",
+   "category": "question",
+   "zhHant": "哪些地區你一定不去？",
+   "zhHans": "哪些地区你一定不去？",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f039",
+   "key": "q.A1.subtitle",
+   "category": "question",
+   "zhHant": "可多選；選中的地區所有學校會被直接劃掉。",
+   "zhHans": "可多选；选中的地区所有学校会被直接划掉。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "劃"
+   ]
+  },
+  {
+   "id": "f040",
+   "key": "q.A1.opt.shaanxi.label",
+   "category": "question",
+   "zhHant": "陝西（西安／咸陽／楊凌）",
+   "zhHans": "陕西（西安／咸阳／杨凌）",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "咸"
+   ]
+  },
+  {
+   "id": "f041",
+   "key": "q.A1.opt.yungui.label",
+   "category": "question",
+   "zhHant": "雲南／貴州",
+   "zhHans": "云南／贵州",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "雲"
+   ]
+  },
+  {
+   "id": "f042",
+   "key": "q.A1.opt.northeast.label",
+   "category": "question",
+   "zhHant": "東三省（黑龍江／吉林／遼寧）",
+   "zhHans": "东三省（黑龙江／吉林／辽宁）",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f043",
+   "key": "q.A2.subtitle",
+   "category": "question",
+   "zhHant": "低於這個等級的城市，直接劃掉。",
+   "zhHans": "低于这个等级的城市，直接划掉。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "於",
+    "劃"
+   ]
+  },
+  {
+   "id": "f044",
+   "key": "q.A2.opt.newtier1.hint",
+   "category": "question",
+   "zhHant": "含成都、杭州、武漢、南京、蘇州、西安、重慶、長沙、青島、瀋陽、合肥、佛山、鄭州、東莞、昆明。",
+   "zhHans": "含成都、杭州、武汉、南京、苏州、西安、重庆、长沙、青岛、沈阳、合肥、佛山、郑州、东莞、昆明。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "瀋"
+   ]
+  },
+  {
+   "id": "f045",
+   "key": "q.A3.subtitle",
+   "category": "question",
+   "zhHant": "標準越高，後面能劃的學校越少。",
+   "zhHans": "标准越高，后面能划的学校越少。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "準",
+    "後",
+    "面",
+    "劃"
+   ]
+  },
+  {
+   "id": "f046",
+   "key": "q.A3.opt.doubleFirst.label",
+   "category": "question",
+   "zhHant": "雙一流及以上",
+   "zhHans": "双一流及以上",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f047",
+   "key": "q.A4.subtitle",
+   "category": "question",
+   "zhHant": "教育部名單能權威分出公辦、民辦、中外合作三類：公辦約 5-6 千，民辦本科多在 1.5-3 萬，中外合作辦學機構 6-25 萬。逐校精確金額仍要看當年招生章程，這裡不硬填。",
+   "zhHans": "教育部名单能权威分出公办、民办、中外合作三类：公办约 5-6 千，民办本科多在 1.5-3 万，中外合作办学机构 6-25 万。逐校精确金额仍要看当年招生章程，这里不硬填。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "裡"
+   ]
+  },
+  {
+   "id": "f048",
+   "key": "q.A6.subtitle",
+   "category": "question",
+   "zhHant": "除了填志願，有些學校還得單獨報名、校考、體測、政審，或參加綜合評價校測。判定按你的考生地區來——同一所學校對不同省份的口徑可以完全不同：上海科技大學只有江蘇考生必須拿到校園開放日成績，其餘省份裸分就能填。",
+   "zhHans": "除了填志愿，有些学校还得单独报名、校考、体测、政审，或参加综合评价校测。判定按你的考生地区来——同一所学校对不同省份的口径可以完全不同：上海科技大学只有江苏考生必须拿到校园开放日成绩，其余省份裸分就能填。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "了",
+    "只",
+    "須",
+    "餘"
+   ]
+  },
+  {
+   "id": "f049",
+   "key": "q.B5.opt.light.label",
+   "category": "question",
+   "zhHant": "每週 1-2 次可以",
+   "zhHans": "每周 1-2 次可以",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "週"
+   ]
+  },
+  {
+   "id": "f050",
+   "key": "q.B7.subtitle",
+   "category": "question",
+   "zhHant": "只用明確能看懂的校曆或眾包描述；看不準的不會拿來誤排。",
+   "zhHans": "只用明确能看懂的校历或众包描述；看不准的不会拿来误排。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "只",
+    "曆",
+    "準"
+   ]
+  },
+  {
+   "id": "f051",
+   "key": "q.B7.opt.strict.label",
+   "category": "question",
+   "zhHant": "不接受小學期，且暑假至少 6 週",
+   "zhHans": "不接受小学期，且暑假至少 6 周",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "週"
+   ]
+  },
+  {
+   "id": "f052",
+   "key": "q.B19.title",
+   "category": "question",
+   "zhHant": "校園卡體系？",
+   "zhHans": "校园卡体系？",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "系"
+   ]
+  },
+  {
+   "id": "f053",
+   "key": "q.C5.opt.hist.label",
+   "category": "question",
+   "zhHant": "歷史",
+   "zhHans": "历史",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "歷"
+   ]
+  },
+  {
+   "id": "f054",
+   "key": "q.E2.subtitle",
+   "category": "question",
+   "zhHant": "重慶、南京、武漢、長沙素稱「火爐」；新疆吐魯番乾熱極端。",
+   "zhHans": "重庆、南京、武汉、长沙素称「火炉」；新疆吐鲁番干热极端。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "乾"
+   ]
+  },
+  {
+   "id": "f055",
+   "key": "q.E3.title",
+   "category": "question",
+   "zhHant": "冬天冷到什麼程度可接受？",
+   "zhHans": "冬天冷到什么程度可接受？",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "麼"
+   ]
+  },
+  {
+   "id": "f056",
+   "key": "q.E4.subtitle",
+   "category": "question",
+   "zhHant": "基於生態環境部 PM2.5 年均數據。",
+   "zhHans": "基于生态环境部 PM2.5 年均数据。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "於"
+   ]
+  },
+  {
+   "id": "f057",
+   "key": "q.S1.title",
+   "category": "question",
+   "zhHant": "你的選考科目是哪三科？",
+   "zhHans": "你的选考科目是哪三科？",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f058",
+   "key": "q.S1.subtitle",
+   "category": "question",
+   "zhHant": "按各校公布的 2027 年選考科目要求判定：一所學校所有本科招生專業你都報不了，才會被劃掉。3+1+2 省份請把首選科目一起算進來；還沒定可以跳過。沒有公布本科專業清單的學校不受本題影響。",
+   "zhHans": "按各校公布的 2027 年选考科目要求判定：一所学校所有本科招生专业你都报不了，才会被划掉。3+1+2 省份请把首选科目一起算进来；还没定可以跳过。没有公布本科专业清单的学校不受本题影响。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "布",
+    "了",
+    "劃"
+   ]
+  },
+  {
+   "id": "f059",
+   "key": "q.S2.title",
+   "category": "question",
+   "zhHant": "你想讀的專業類，學校一定要有開設嗎？",
+   "zhHans": "你想读的专业类，学校一定要有开设吗？",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f060",
+   "key": "dim.B6.label",
+   "category": "dimension-value",
+   "zhHant": "公里打卡",
+   "zhHans": "公里打卡",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "identical in both scripts",
+   "riskyChars": [
+    "里"
+   ]
+  },
+  {
+   "id": "f061",
+   "key": "dim.S2.label",
+   "category": "dimension-value",
+   "zhHant": "意向專業類",
+   "zhHans": "意向专业类",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "向"
+   ]
+  },
+  {
+   "id": "f062",
+   "key": "dim.B24.label",
+   "category": "dimension-value",
+   "zhHant": "門禁／查寢",
+   "zhHans": "门禁／查寝",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f063",
+   "key": "val.A3.雙一流非211",
+   "category": "dimension-value",
+   "zhHant": "雙一流非211",
+   "zhHans": "双一流非211",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f064",
+   "key": "val.A4.中外合作待核價",
+   "category": "dimension-value",
+   "zhHant": "中外合作待核價",
+   "zhHans": "中外合作待核价",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f065",
+   "key": "val.B1.上床下桌",
+   "category": "dimension-value",
+   "zhHant": "上床下桌",
+   "zhHans": "上床下桌",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "identical in both scripts",
+   "riskyChars": []
+  },
+  {
+   "id": "f066",
+   "key": "val.B12.週末不斷",
+   "category": "dimension-value",
+   "zhHant": "週末不斷",
+   "zhHans": "周末不断",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "週"
+   ]
+  },
+  {
+   "id": "f067",
+   "key": "val.B22.菜鳥驛站遠",
+   "category": "dimension-value",
+   "zhHant": "菜鳥驛站遠",
+   "zhHans": "菜鸟驿站远",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f068",
+   "key": "val.E5.維吾爾語",
+   "category": "dimension-value",
+   "zhHant": "維吾爾語",
+   "zhHans": "维吾尔语",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f069",
+   "key": "val.A6.comprehensive_eval",
+   "category": "dimension-value",
+   "zhHant": "本科只走綜合評價（須另行報名+校測）",
+   "zhHans": "本科只走综合评价（须另行报名+校测）",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "只",
+    "須"
+   ]
+  },
+  {
+   "id": "f070",
+   "key": "subject.Z",
+   "category": "ui",
+   "zhHant": "思想政治",
+   "zhHans": "思想政治",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "identical in both scripts",
+   "riskyChars": []
+  },
+  {
+   "id": "f071",
+   "key": "geo.province.雲南",
+   "category": "province",
+   "zhHant": "雲南",
+   "zhHans": "云南",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "雲"
+   ]
+  },
+  {
+   "id": "f072",
+   "key": "geo.province.遼寧",
+   "category": "province",
+   "zhHant": "遼寧",
+   "zhHans": "辽宁",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f073",
+   "key": "geo.province.黑龍江",
+   "category": "province",
+   "zhHant": "黑龍江",
+   "zhHans": "黑龙江",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f074",
+   "key": "geo.province.內蒙古",
+   "category": "province",
+   "zhHant": "內蒙古",
+   "zhHans": "内蒙古",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f075",
+   "key": "geo.province.陝西",
+   "category": "province",
+   "zhHant": "陝西",
+   "zhHans": "陕西",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f076",
+   "key": "geo.province.寧夏",
+   "category": "province",
+   "zhHant": "寧夏",
+   "zhHans": "宁夏",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f077",
+   "key": "geo.province.貴州",
+   "category": "province",
+   "zhHant": "貴州",
+   "zhHans": "贵州",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f078",
+   "key": "geo.province.廣東",
+   "category": "province",
+   "zhHant": "廣東",
+   "zhHans": "广东",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f079",
+   "key": "data.school.北京大學",
+   "category": "data-name",
+   "zhHant": "北京大學",
+   "zhHans": "北京大学",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f080",
+   "key": "data.school.復旦大學",
+   "category": "data-name",
+   "zhHant": "復旦大學",
+   "zhHans": "复旦大学",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "復"
+   ]
+  },
+  {
+   "id": "f081",
+   "key": "data.school.哈爾濱工業大學",
+   "category": "data-name",
+   "zhHant": "哈爾濱工業大學",
+   "zhHans": "哈尔滨工业大学",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f082",
+   "key": "data.school.華東師範大學",
+   "category": "data-name",
+   "zhHant": "華東師範大學",
+   "zhHans": "华东师范大学",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "範"
+   ]
+  },
+  {
+   "id": "f083",
+   "key": "data.school.廣州中醫藥大學",
+   "category": "data-name",
+   "zhHant": "廣州中醫藥大學",
+   "zhHans": "广州中医药大学",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f084",
+   "key": "data.school.中國科學技術大學",
+   "category": "data-name",
+   "zhHant": "中國科學技術大學",
+   "zhHans": "中国科学技术大学",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "術"
+   ]
+  },
+  {
+   "id": "f085",
+   "key": "data.school.東南大學",
+   "category": "data-name",
+   "zhHant": "東南大學",
+   "zhHans": "东南大学",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f086",
+   "key": "data.school.北京師範大學",
+   "category": "data-name",
+   "zhHant": "北京師範大學",
+   "zhHans": "北京师范大学",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "範"
+   ]
+  },
+  {
+   "id": "f087",
+   "key": "data.hkmotw.hk-cuhk.nameZh",
+   "category": "data-name",
+   "zhHant": "香港中文大學",
+   "zhHans": "香港中文大学",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f088",
+   "key": "data.hkmotw.hk-sfu.nameZh",
+   "category": "data-name",
+   "zhHant": "聖方濟各大學",
+   "zhHans": "圣方济各大学",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f089",
+   "key": "data.hkmotw.hk-lingnan.nameZh",
+   "category": "data-name",
+   "zhHant": "嶺南大學",
+   "zhHans": "岭南大学",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f090",
+   "key": "data.hkmotw.mo-utm.nameZh",
+   "category": "data-name",
+   "zhHant": "澳門旅遊大學",
+   "zhHans": "澳门旅游大学",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "遊"
+   ]
+  },
+  {
+   "id": "f091",
+   "key": "data.hkmotw.mo-kwnc.nameZh",
+   "category": "data-name",
+   "zhHant": "澳門鏡湖護理學院",
+   "zhHans": "澳门镜湖护理学院",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f092",
+   "key": "data.hkmotw.tw-rusen.nameZh",
+   "category": "data-name",
+   "zhHant": "臺灣大學校院（經陸生聯招會）",
+   "zhHans": "台湾大学校院（经陆生联招会）",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "臺"
+   ]
+  },
+  {
+   "id": "f093",
+   "key": "data.hkmotw.tw-overseas.nameZh",
+   "category": "data-name",
+   "zhHant": "臺灣大學校院（經海外聯招會，港澳生管道）",
+   "zhHans": "台湾大学校院（经海外联招会，港澳生管道）",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "臺"
+   ]
+  },
+  {
+   "id": "f094",
+   "key": "data.hkmotw.hk-cuhk.channelZh",
+   "category": "data-name",
+   "zhHant": "統招提前批（經省考試院填報志願）",
+   "zhHans": "统招提前批（经省考试院填报志愿）",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f095",
+   "key": "data.hkmotw.tw-rusen.channelZh",
+   "category": "data-name",
+   "zhHant": "目前只招碩博士班；學士班未招生",
+   "zhHans": "目前只招硕博士班；学士班未招生",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": [
+    "只"
+   ]
+  },
+  {
+   "id": "f096",
+   "key": "data.atlas.region.Australia",
+   "category": "data-name",
+   "zhHant": "澳大利亞",
+   "zhHans": "澳大利亚",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f097",
+   "key": "data.atlas.region.Türkiye",
+   "category": "data-name",
+   "zhHant": "土耳其",
+   "zhHans": "土耳其",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "identical in both scripts",
+   "riskyChars": []
+  },
+  {
+   "id": "f098",
+   "key": "data.atlas.region.Saudi Arabia",
+   "category": "data-name",
+   "zhHant": "沙特阿拉伯",
+   "zhHans": "沙特阿拉伯",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "identical in both scripts",
+   "riskyChars": []
+  },
+  {
+   "id": "f099",
+   "key": "data.atlas.subject.AS0101",
+   "category": "data-name",
+   "zhHant": "數學",
+   "zhHans": "数学",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f100",
+   "key": "data.atlas.subject.AS0102",
+   "category": "data-name",
+   "zhHant": "物理學",
+   "zhHans": "物理学",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "OpenCC t2s output accepted",
+   "riskyChars": []
+  },
+  {
+   "id": "f101",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "其餘省份裸分就能填；餘下名額另行公布。",
+   "zhHans": "其余省份裸分就能填；余下名额另行公布。",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "餘→余",
+   "riskyChars": []
+  },
+  {
+   "id": "f102",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "規劃／計劃／劃掉；畫地圖、畫國界",
+   "zhHans": "规划／计划／划掉；画地图、画国界",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "劃→划、畫→画",
+   "riskyChars": []
+  },
+  {
+   "id": "f103",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "乾熱、乾淨；幹部；干擾；乾隆年間",
+   "zhHans": "干热、干净；干部；干扰；乾隆年间",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "乾／幹／干→干；乾隆保留",
+   "riskyChars": []
+  },
+  {
+   "id": "f104",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "復習、複習、復核；答覆、回覆；覆蓋、顛覆",
+   "zhHans": "复习、复习、复核；答复、回复；覆盖、颠覆",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "復／複→复；覆核／答覆／回覆→复；覆蓋保留",
+   "riskyChars": []
+  },
+  {
+   "id": "f105",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "於是；低於；基於；姓於的人",
+   "zhHans": "于是；低于；基于；姓於的人",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "於→于；姓氏保留",
+   "riskyChars": []
+  },
+  {
+   "id": "f106",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "製造、制度；體製改為體制",
+   "zhHans": "制造、制度；体制改为体制",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "製→制",
+   "riskyChars": []
+  },
+  {
+   "id": "f107",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "輕鬆、鬆散；松樹",
+   "zhHans": "轻松、松散；松树",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "鬆→松",
+   "riskyChars": []
+  },
+  {
+   "id": "f108",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "麵條、麵包；面子、負面新聞",
+   "zhHans": "面条、面包；面子、负面新闻",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "麵→面",
+   "riskyChars": []
+  },
+  {
+   "id": "f109",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "臺灣、臺北；平臺；舞台",
+   "zhHans": "台湾、台北；平台；舞台",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "臺→台",
+   "riskyChars": []
+  },
+  {
+   "id": "f110",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "週末、每週、週期；周刊、周圍",
+   "zhHans": "周末、每周、周期；周刊、周围",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "週→周",
+   "riskyChars": []
+  },
+  {
+   "id": "f111",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "憑藉、藉口；狼藉",
+   "zhHans": "凭借、借口；狼藉",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "藉→借；狼藉保留",
+   "riskyChars": []
+  },
+  {
+   "id": "f112",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "帶著、跟著走；著名、著作",
+   "zhHans": "带着、跟着走；著名、著作",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "著→着（助詞）；著名／著作保留",
+   "riskyChars": []
+  },
+  {
+   "id": "f113",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "午夜後斷電；皇后",
+   "zhHans": "午夜后断电；皇后",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "後→后",
+   "riskyChars": []
+  },
+  {
+   "id": "f114",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "裡面、這裡；公里",
+   "zhHans": "里面、这里；公里",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "裡／裏→里",
+   "riskyChars": []
+  },
+  {
+   "id": "f115",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "瀋陽；沈先生",
+   "zhHans": "沈阳；沈先生",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "瀋→沈",
+   "riskyChars": []
+  },
+  {
+   "id": "f116",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "鍾情、鍾書；時鐘",
+   "zhHans": "钟情、锺书；时钟",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "鍾→钟（錢鍾書作锺）",
+   "riskyChars": []
+  },
+  {
+   "id": "f117",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "什麼、為什麼；幺妹",
+   "zhHans": "什么、为什么；幺妹",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "麼→么",
+   "riskyChars": []
+  },
+  {
+   "id": "f118",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "夥伴、合夥；傢具",
+   "zhHans": "伙伴、合伙；家具",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "夥→伙；傢→家",
+   "riskyChars": []
+  },
+  {
+   "id": "f119",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "一隻、隻身；只有",
+   "zhHans": "一只、只身；只有",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "隻→只",
+   "riskyChars": []
+  },
+  {
+   "id": "f120",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "捲起、膠捲；試卷",
+   "zhHans": "卷起、胶卷；试卷",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "捲→卷",
+   "riskyChars": []
+  },
+  {
+   "id": "f121",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "鬱悶、鬱金香",
+   "zhHans": "郁闷、郁金香",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "鬱→郁",
+   "riskyChars": []
+  },
+  {
+   "id": "f122",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "鹹水、鹹淡；咸陽",
+   "zhHans": "咸水、咸淡；咸阳",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "鹹→咸；咸陽保留",
+   "riskyChars": []
+  },
+  {
+   "id": "f123",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "抽籤、標籤；簽名",
+   "zhHans": "抽签、标签；签名",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "籤→签",
+   "riskyChars": []
+  },
+  {
+   "id": "f124",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "籃球、搖籃；藍色",
+   "zhHans": "篮球、摇篮；蓝色",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "籃→篮",
+   "riskyChars": []
+  },
+  {
+   "id": "f125",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "讚美、點讚；贊助",
+   "zhHans": "赞美、点赞；赞助",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "讚→赞",
+   "riskyChars": []
+  },
+  {
+   "id": "f126",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "儘管、儘量；盡力",
+   "zhHans": "尽管、尽量；尽力",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "儘→尽",
+   "riskyChars": []
+  },
+  {
+   "id": "f127",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "分佈、佈置；宣布",
+   "zhHans": "分布、布置；宣布",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "佈→布",
+   "riskyChars": []
+  },
+  {
+   "id": "f128",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "彙總、詞彙；匯款",
+   "zhHans": "汇总、词汇；汇款",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "彙→汇",
+   "riskyChars": []
+  },
+  {
+   "id": "f129",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "合併、併入；並且",
+   "zhHans": "合并、并入；并且",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "併→并；並→并",
+   "riskyChars": []
+  },
+  {
+   "id": "f130",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "校曆、日曆；歷史、歷年",
+   "zhHans": "校历、日历；历史、历年",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "曆／歷→历",
+   "riskyChars": []
+  },
+  {
+   "id": "f131",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "特徵、象徵；徵收",
+   "zhHans": "特征、象征；征收",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "徵→征",
+   "riskyChars": []
+  },
+  {
+   "id": "f132",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "採用、採訪；精彩",
+   "zhHans": "采用、采访；精彩",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "採→采",
+   "riskyChars": []
+  },
+  {
+   "id": "f133",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "關係、聯繫、體系",
+   "zhHans": "关系、联系、体系",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "係／繫／系→系",
+   "riskyChars": []
+  },
+  {
+   "id": "f134",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "師範、範圍、模範；姓范",
+   "zhHans": "师范、范围、模范；姓范",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "範→范",
+   "riskyChars": []
+  },
+  {
+   "id": "f135",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "準確、標準；批准",
+   "zhHans": "准确、标准；批准",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "準→准",
+   "riskyChars": []
+  },
+  {
+   "id": "f136",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "瞭解情況；瞭望台",
+   "zhHans": "了解情况；瞭望台",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "瞭→了（瞭望保留）",
+   "riskyChars": []
+  },
+  {
+   "id": "f137",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "技術、藝術、學術",
+   "zhHans": "技术、艺术、学术",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "術→术",
+   "riskyChars": []
+  },
+  {
+   "id": "f138",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "雲南、雲端；子曰詩云",
+   "zhHans": "云南、云端；子曰诗云",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "雲→云",
+   "riskyChars": []
+  },
+  {
+   "id": "f139",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "教育部 2026 名單 2,952 所普通高校；本科 1,412 · 高職專科 1,540",
+   "zhHans": "教育部 2026 名单 2,952 所普通高校；本科 1,412 · 高职专科 1,540",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "數字、標點與半形符號不變",
+   "riskyChars": []
+  },
+  {
+   "id": "f140",
+   "key": null,
+   "category": "rule-probe",
+   "zhHant": "nope.bdfz.net · v2.0 · CC BY-NC-SA 4.0 · {province}招生計劃",
+   "zhHans": "nope.bdfz.net · v2.0 · CC BY-NC-SA 4.0 · {province}招生计划",
+   "rule": "char-only (t2s); no regional vocabulary substitution",
+   "note": "英文、網址、模板佔位符不變",
+   "riskyChars": []
+  }
+ ],
+ "correctedBy": "S4 implementation session 2026-11-07 (f010 expected value aligned with zh-hans.policy.md §3)"
+}

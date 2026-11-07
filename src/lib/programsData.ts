@@ -1,3 +1,4 @@
+import { t } from '../i18n/core'
 import { programsManifest } from '../data/programsManifest'
 import type { ProgramBucket, ProgramCatalogPayload, ProgramIndexPayload } from '../data/programsTypes'
 
@@ -24,7 +25,7 @@ export function loadProgramCatalog(): Promise<ProgramCatalogPayload> {
           || payload.disciplines?.length !== counts.disciplines
           || payload.classes?.length !== counts.classes
           || payload.programs?.length !== counts.catalogPrograms) {
-          throw new Error('專業目錄資料不完整，請重新載入')
+          throw new Error(t('ui.data.error.programCatalog'))
         }
         return payload
       })
@@ -50,7 +51,7 @@ export function loadProgramIndex(): Promise<ProgramIndexPayload> {
           || payload.patterns?.length !== counts.patterns
           || payload.catalogCodes?.length !== counts.catalogPrograms
           || payload.strongBase?.length !== counts.strongBase) {
-          throw new Error('招生專業資料不完整，請重新載入')
+          throw new Error(t('ui.data.error.programIndex'))
         }
         return payload
       })
@@ -66,7 +67,7 @@ export function loadProgramBucket(province: string): Promise<ProgramBucket> {
   if (!bucketPromises.has(file)) {
     const promise = fetchPayload<ProgramBucket>(`${programsManifest.bucketsBasePath}/${file}`)
       .then((bucket) => {
-        if (!bucket || typeof bucket !== 'object' || Array.isArray(bucket)) throw new Error('招生專業清單格式不對，請重新載入')
+        if (!bucket || typeof bucket !== 'object' || Array.isArray(bucket)) throw new Error(t('ui.data.error.programBucket'))
         return bucket
       })
       .catch((error: unknown) => { bucketPromises.delete(file); throw error })

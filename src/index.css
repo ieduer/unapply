@@ -4,6 +4,11 @@
 
 /* 以下是本站自己的樣式。 */
 
+/* 簡體介面（<html lang="zh-Hans">，批 E1）：襯線字型優先用 Noto Serif SC，避免簡體字以臺標筆形呈現；色系變數不動。 */
+:root[lang="zh-Hans"] {
+  --font-serif: "HuWenMingChao", "Noto Serif SC", "Noto Serif TC", "Songti SC", "Songti TC", serif;
+}
+
 .scroll-fade-mask {
   mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
 }

@@ -1,3 +1,4 @@
+import { t } from '../i18n/core'
 import { worldAtlasManifest } from '../data/worldAtlasManifest'
 import type { WorldAtlasPayload } from '../data/worldAtlasTypes'
 
@@ -19,7 +20,7 @@ export function loadWorldAtlas(): Promise<WorldAtlasPayload> {
           || payload.programs?.length !== counts.programs
           || payload.institutions.filter((institution) => institution.website).length !== counts.websites
           || !Array.isArray(payload.land) || payload.land.length !== counts.landPaths) {
-          throw new Error('世界學科地圖資料不完整，請重新載入')
+          throw new Error(t('ui.data.error.atlas'))
         }
         return payload
       })

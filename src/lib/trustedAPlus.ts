@@ -15,7 +15,10 @@ export type UnapplyAPlusSyncPhase = 'idle' | 'syncing' | 'verified' | 'error';
 
 export interface UnapplyAPlusSyncStatus {
   phase: UnapplyAPlusSyncPhase;
+  /** 簡體原文（與 My 用戶中心一致；契約／紀錄用）。 */
   message: string;
+  /** 展示層翻譯鍵（ui.aplus.*）。 */
+  messageKey: string;
 }
 
 interface TrustedSession {
@@ -173,18 +176,19 @@ function persistStateOrThrow() {
 }
 
 function statusFromState(state: DurableState): UnapplyAPlusSyncStatus {
+  // 簡體原文與 My 用戶中心一致（契約字串，不轉字形）；介面顯示用 messageKey 翻譯。 // i18n-contract
   if (state.phase === 'verified') {
-    return { phase: 'verified', message: '完成记录已核验。' };
+    return { phase: 'verified', message: '完成记录已核验。', messageKey: 'ui.aplus.verified' }; // i18n-contract
   }
   if (state.phase === 'syncing') {
-    return { phase: 'syncing', message: '正在核验完成记录，请保持联网。' };
+    return { phase: 'syncing', message: '正在核验完成记录，请保持联网。', messageKey: 'ui.aplus.syncing' }; // i18n-contract
   }
   if (state.phase === 'error') {
     return state.error === REJECTED_ERROR
-      ? { phase: 'error', message: '这次完成记录未被接受，不会自动重试；重新作答后可再次记录。' }
-      : { phase: 'error', message: '完成记录尚未核验；恢复联网或重新打开页面后会自动重试。' };
+      ? { phase: 'error', message: '这次完成记录未被接受，不会自动重试；重新作答后可再次记录。', messageKey: 'ui.aplus.rejected' } // i18n-contract
+      : { phase: 'error', message: '完成记录尚未核验；恢复联网或重新打开页面后会自动重试。', messageKey: 'ui.aplus.pending' }; // i18n-contract
   }
-  return { phase: 'idle', message: '完成问卷后将在这里显示核验状态。' };
+  return { phase: 'idle', message: '完成问卷后将在这里显示核验状态。', messageKey: 'ui.aplus.idle' }; // i18n-contract
 }
 
 function publish() {

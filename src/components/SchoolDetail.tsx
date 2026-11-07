@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { School } from '../data/schools'
-import { DIMENSIONS, DIMENSION_GROUPS } from '../data/dimensions'
+import { DIMENSION_GROUPS } from '../data/dimensions'
 import type { DimensionId } from '../data/dimensions'
 import type { CampusResearchRecord, ResearchEvidence } from '../data/runtimeTypes'
 import {
@@ -16,12 +16,15 @@ import { loadProgramBucket } from '../lib/programsData'
 import type { ProgramIndexPayload, ProgramOffering, SubjectCode } from '../data/programsTypes'
 import type { AnswerMap } from '../engine/filter'
 import { evaluateSchoolPrograms, isAdmissible } from '../engine/programs'
-import { programPrefsActive, requirementLabel, subjectLabels, type ProgramPrefs } from '../data/programPrefs'
+import { programPrefsActive, type ProgramPrefs } from '../data/programPrefs'
 import { programClassByCode } from '../data/programClasses'
 import { programsManifest } from '../data/programsManifest'
 import { loadJointItems } from '../lib/jointData'
 import type { JointItem } from '../data/jointTypes'
 import { jointProgramsManifest } from '../data/jointProgramsManifest'
+import { useLocale } from '../i18n/react'
+import { dimensionLabel, linkLabel, linkNote, programStrikeLabel, provinceLabel, requirementLabel, schoolDisplayName, subjectsLabel, valueLabel } from '../lib/i18nLabels'
+import { LocaleSwitcher } from './LocaleSwitcher'
 
 interface Props {
   school: School
@@ -34,56 +37,12 @@ interface Props {
   onBack: () => void
 }
 
-const levelLabel: Record<string, string> = {
-  'C9': 'C9 聯盟',
-  '985非C9': '985（非 C9）',
-  '211非985': '211（非 985）',
-  '雙一流非211': '雙一流（非 211）',
-  '普通本科': '普通本科',
-  '專科': '專科',
-}
-
-const tierLabel: Record<string, string> = {
-  tier1: '一線城市',
-  newtier1: '新一線城市',
-  tier2: '二線城市',
-  tier3_below: '三線及以下',
-}
-
-const campusLabel: Record<string, string> = {
-  main_city: '主城主校區',
-  suburb_with_metro: '遠郊有地鐵',
-  suburb: '遠郊無地鐵',
-  separate_freshman: '大一單獨分校',
-}
-
-const freshmanPolicyLabel: Record<string, string> = {
-  yes: '大一單獨落在分校',
-  no: '不是僅大一分校',
-  unknown: '本科新生去向待核',
-}
-
-const envLabel = {
-  heating: { yes: '有集中供暖', no: '無集中供暖' },
-  summer: { mild: '夏天涼爽', hot: '夏天乾熱', humid_hot: '夏天濕熱', extreme_hot: '夏天酷熱' },
-  winter: { warm: '冬天溫暖', mild: '冬天偶冷', cold: '冬天常結冰', extreme_cold: '冬天極寒' },
-  haze: { low: '空氣好', medium: '霧霾中等', high: '霧霾較重', extreme: '重度霧霾' },
-  subway: { yes: '有地鐵', no: '無地鐵' },
-  coastal: { yes: '沿海', no: '內陸' },
-  highland: { yes: '高海拔', no: '平原/丘陵' },
-} as const
-
-const confidenceLabel: Record<string, string> = {
-  high: '高置信',
-  medium: '中置信',
-  low: '低置信',
-}
-
 function contribHref(schoolId: string, dim: DimensionId): string {
   return `#/contribute?school=${encodeURIComponent(schoolId)}&dim=${dim}`
 }
 
 export function SchoolDetail({ school, programsIndex, answers, candidateProvince, onCandidateProvinceChange: setCandidateProvince, onBack }: Props) {
+  const { t, tOr, locale } = useLocale()
   const [campusMap, setCampusMap] = useState<Record<string, CampusResearchRecord[]>>({})
   // 由 S1／S2 的作答組成判定偏好（與引擎的 requires 判定同義）。
   const programPrefs = useMemo<ProgramPrefs>(() => {
@@ -120,16 +79,16 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
       .filter((item): item is { sourceId: string; nameZh: string } => Boolean(item))
       .map((item) => {
         const source = payload.sources[item.sourceId]
-        return { title: `${item.nameZh} · ${source.publisher}（${payload.admissionYear} 年選考科目要求表）`, url: source.url, date: source.date, confidence: 'high' as const }
+        return { title: t('ui.detail.programs.sourceTitle', { province: provinceLabel(item.nameZh), publisher: source.publisher, year: payload.admissionYear }), url: source.url, date: source.date, confidence: 'high' as const }
       })
     const catalog = payload.sources['moe-bk-catalog-2026']
-    if (catalog) rows.push({ title: `教育部《本科專業目錄（${payload.catalogYear} 年）》`, url: catalog.url, date: catalog.date, confidence: 'high' })
+    if (catalog) rows.push({ title: t('ui.detail.programs.catalogTitle', { year: payload.catalogYear }), url: catalog.url, date: catalog.date, confidence: 'high' })
     return rows
-  }, [programEntry, programs.index])
+  }, [programEntry, programs.index, t])
   const programsPayload = programs.index
   // 已納入交叉核對的省表（來自 payload，省數隨來源增加而變）。
-  const programProvinceNames = useMemo(() => (programsPayload ? Object.values(programsPayload.provinceSources).map((item) => item.nameZh) : []), [programsPayload])
-  const programProvinceList = programProvinceNames.length > 0 ? programProvinceNames.join('、') : '各省'
+  const programProvinceNames = programsPayload ? Object.values(programsPayload.provinceSources).map((item) => provinceLabel(item.nameZh)) : []
+  const programProvinceList = programProvinceNames.length > 0 ? programProvinceNames.join(t('ui.common.listJoiner')) : t('ui.detail.programs.provincesFallback')
   const currentList = programList && programList.moeCode === school.moeCode ? programList.programs : null
   const programGroups = useMemo(() => {
     if (!currentList) return [] as { level: 'u' | 'v'; campus: string; programs: ProgramOffering[] }[]
@@ -154,22 +113,24 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
   const admissionChannels = school.admissionChannels
   const regularChannelState = getRegularChannelState(school, { candidateProvince })
   const env = getEnvironment(school.province, school.city)
-  const levelText = school.level ? (levelLabel[school.level] ?? school.level) : '層次待核'
+  const levelText = school.level ? tOr(`ui.detail.level.${school.level}`, school.level) : t('ui.detail.tierPending')
   const [campusLoadError, setCampusLoadError] = useState(false)
   const [campusRetry, setCampusRetry] = useState(0)
-  const tierText = school.cityTier ? (tierLabel[school.cityTier] ?? school.cityTier) : '城市等級待核'
-  const typeText = school.type ?? school.moeLevel ?? '類型待補'
-  const campusText = school.mainCampusType ? (campusLabel[school.mainCampusType] ?? school.mainCampusType) : '校區待補'
+  const tierText = school.cityTier ? tOr(`ui.detail.tier.${school.cityTier}`, tOr(`tag.cityTier.${school.cityTier}`, school.cityTier)) : t('ui.detail.cityTierPending')
+  const typeText = school.type ? tOr(`tag.type.${school.type}`, school.type) : (school.moeLevel ?? t('ui.detail.typePending'))
+  const campusText = school.mainCampusType ? tOr(`ui.detail.campus.${school.mainCampusType}`, school.mainCampusType) : t('ui.detail.campusPending')
   const hasCampusResolution = !school.moeCode || Object.hasOwn(campusMap, school.moeCode)
   const campusList = school.moeCode ? (campusMap[school.moeCode] ?? []) : []
   const officialA5Evidence = school.researchEvidence?.A5 ?? []
   const officialB9Evidence = school.researchEvidence?.B9 ?? []
   const metroRaw = school.quality?.B9
-  const metroText = Array.isArray(metroRaw) ? metroRaw.join(' / ') : metroRaw
+  const metroText = Array.isArray(metroRaw) ? metroRaw.map((v) => valueLabel('B9', v)).join(' / ') : metroRaw ? valueLabel('B9', metroRaw) : undefined
   const officialMetroText = officialB9Evidence.length > 0 ? metroText : null
   const freshmanPolicyText = school.campusFreshmanPolicy
-    ? (freshmanPolicyLabel[school.campusFreshmanPolicy] ?? school.campusFreshmanPolicy)
+    ? tOr(`ui.detail.freshman.${school.campusFreshmanPolicy}`, school.campusFreshmanPolicy)
     : null
+  const provinceLine = `${provinceLabel(school.province)} · ${school.city} · ${typeText} · ${campusText}`
+  const programLimit = programGroups.length > 1 ? 12 : 30
 
   useEffect(() => {
     let cancelled = false
@@ -209,11 +170,14 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
   return (
     <main className="min-h-screen app-canvas text-fog-100">
       <header className="sticky top-0 z-10 backdrop-blur bg-ink-950/80 border-b border-ink-800">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
           <button onClick={onBack} className="text-xs mono uppercase tracking-[0.2em] text-fog-500 hover:text-accent-500 min-h-[44px] -my-3 py-3">
-            ← 返回
+            {t('ui.common.back')}
           </button>
-          <span className="mono text-xs text-fog-500">學校詳情</span>
+          <div className="flex items-center gap-3">
+            <LocaleSwitcher />
+            <span className="mono text-xs text-fog-500">{t('ui.detail.header')}</span>
+          </div>
         </div>
       </header>
 
@@ -224,20 +188,20 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
             <span>·</span>
             <span>{tierText}</span>
           </div>
-          <h1 className="serif text-3xl sm:text-5xl">{school.name}</h1>
+          <h1 className="serif text-3xl sm:text-5xl">{locale === 'zh-Hans' ? schoolDisplayName(school) : school.name}</h1>
           {school.nameEn && <p className="mono text-sm text-fog-500">{school.nameEn}</p>}
           <p className="text-fog-300 text-sm mt-2">
-            {school.province} · {school.city} · {typeText} · {campusText}
+            {provinceLine}
           </p>
           {school.schoolAddress && (
             <p className="text-xs text-fog-500 leading-relaxed">
-              校址：{school.schoolAddress}
+              {t('ui.detail.address', { address: school.schoolAddress })}
             </p>
           )}
           {school.tags?.length ? (
             <div className="flex flex-wrap gap-2 mt-2">
-              {school.tags.map(t => (
-                <span key={t} className="text-xs text-fog-500 border border-ink-700 px-2 py-1 rounded-full">{t}</span>
+              {school.tags.map(tag => (
+                <span key={tag} className="text-xs text-fog-500 border border-ink-700 px-2 py-1 rounded-full">{tag}</span>
               ))}
             </div>
           ) : null}
@@ -246,20 +210,20 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
         <div className="flex flex-col gap-4">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
             <div>
-              <h2 className="serif text-xl">官方與權威查詢</h2>
+              <h2 className="serif text-xl">{t('ui.detail.officialLookup.title')}</h2>
               <p className="mt-2 text-xs text-fog-500 leading-relaxed">
-                給出學校官網、陽光高考院校庫，以及你所選考生地區的權威錄取/分數線入口。
+                {t('ui.detail.officialLookup.note')}
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <span className="mono text-xs text-fog-500 uppercase tracking-[0.2em] shrink-0">考生地區</span>
+              <span className="mono text-xs text-fog-500 uppercase tracking-[0.2em] shrink-0">{t('ui.common.candidateProvince')}</span>
               <select
                 value={candidateProvince}
                 onChange={(e) => setCandidateProvince(e.target.value as CandidateProvince)}
                 className="bg-ink-900 border border-ink-700 rounded-full px-3 py-2 text-xs text-fog-200 min-h-[40px]"
               >
                 {candidateProvinceOptions.map((province) => (
-                  <option key={province} value={province}>{province}</option>
+                  <option key={province} value={province}>{provinceLabel(province)}</option>
                 ))}
               </select>
             </div>
@@ -267,7 +231,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
           <div className="flex flex-wrap gap-2">
             {getAdmissionResourceLinks(school, candidateProvince).map((link) => (
               <a
-                key={`${school.id}-${link.label}`}
+                key={`${school.id}-${link.labelKey}`}
                 href={link.url}
                 target="_blank"
                 rel="noreferrer noopener"
@@ -277,28 +241,25 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                     ? 'bg-accent-500/12 text-accent-400 border border-accent-500/30'
                     : 'bg-ink-900 text-fog-300 border border-ink-700 hover:border-fog-500',
                 ].join(' ')}
-                title={link.note}
+                title={linkNote(link)}
               >
-                {link.label} ↗
+                {linkLabel(link)} ↗
               </a>
             ))}
           </div>
           <p className="text-xs text-fog-500 leading-relaxed">
-            已接入 31 個省級官方招考入口；北京同時提供近年錄取/分數線直鏈，其他省份將持續補齊直達查詢頁。
+            {t('ui.detail.officialLookup.portalsNote')}
           </p>
         </div>
 
         <div className="flex flex-col gap-4">
-          <h2 className="serif text-xl">招生管道 · 章程依據</h2>
+          <h2 className="serif text-xl">{t('ui.detail.channels.title')}</h2>
           {admissionChannels ? (
             <div className="flex flex-col gap-3">
               <p className="text-sm text-fog-200 leading-relaxed">
-                {regularChannelState === 'comprehensive_only'
-                  && `對${candidateProvince}考生：本科只走綜合評價，必須另行報名並參加校測，光填志願錄不進來。`}
-                {regularChannelState === 'comprehensive_dominant'
-                  && `對${candidateProvince}考生：主要走綜合評價（須另行報名+校測）。章程另寫「部分省份試點普通本科批次錄取」，但沒公布是哪些省，所以這裡不替你排除——要確認請查你所在省當年的招生計劃。`}
-                {regularChannelState === 'regular'
-                  && `對${candidateProvince}考生：本輪沒有足夠依據排除常規志願管道；仍請核對所在省當年招生計劃。`}
+                {regularChannelState === 'comprehensive_only' && t('ui.detail.channels.comprehensiveOnly', { province: provinceLabel(candidateProvince) })}
+                {regularChannelState === 'comprehensive_dominant' && t('ui.detail.channels.comprehensiveDominant', { province: provinceLabel(candidateProvince) })}
+                {regularChannelState === 'regular' && t('ui.detail.channels.regular', { province: provinceLabel(candidateProvince) })}
               </p>
               {admissionChannels.notes && (
                 <p className="text-xs text-fog-500 leading-relaxed">{admissionChannels.notes}</p>
@@ -310,41 +271,39 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                 className="mono text-xs text-accent-500 hover:text-accent-400 break-all"
               >
                 {admissionChannels.source.title}
-                {admissionChannels.year ? `（${admissionChannels.year} 年）` : ''} ↗
+                {admissionChannels.year ? t('ui.detail.channels.sourceYear', { year: admissionChannels.year }) : ''} ↗
               </a>
             </div>
           ) : (
             <p className="text-xs text-fog-500 leading-relaxed">
-              未收錄本校的逐省招生管道，按普通高考常規統招處理。
-              這是先驗而不是結論——只有查到招生章程明確寫「本科只走綜合評價」時，才會改判並在此列出章程鏈接。
+              {t('ui.detail.channels.notRecorded')}
             </p>
           )}
         </div>
 
         <div className="flex flex-col gap-4">
           <div>
-            <h2 className="serif text-xl">招生專業 · 選考科目要求（{programsManifest.admissionYear} 年）</h2>
+            <h2 className="serif text-xl">{t('ui.detail.programs.title', { year: programsManifest.admissionYear })}</h2>
             <p className="mt-2 text-xs text-fog-500 leading-relaxed">
-              各省教育考試院／教育廳公布的「擬招生專業（類）選考科目要求」是學校自己報送、全國統一口徑的官方表；本站取已能取得的 {programProvinceNames.length} 省官方表（{programProvinceList}）交叉核對，不一致的一條都不收。
-              專業名稱用公布表原文；目錄對應按教育部《本科專業目錄》。
+              {t('ui.detail.programs.note', { n: programProvinceNames.length, provinces: programProvinceList })}
             </p>
           </div>
           {!programs.index && (
-            <p className="text-sm text-fog-500">正在載入招生專業資料…</p>
+            <p className="text-sm text-fog-500">{t('ui.detail.programs.loading')}</p>
           )}
           {programs.index && !programEntry && (
             <p className="text-xs text-fog-500 leading-relaxed">
-              本校 {programsManifest.admissionYear} 年的招生專業與選考要求沒有出現在本站已取得的 {programProvinceNames.length} 省公布表（{programProvinceList}）裡（可能當年未在這些省安排計劃，或只透過查詢系統公布）。沒有資料不影響它在結果裡的去留；要查請用上方的陽光高考院校庫或所在省招考入口。
+              {t('ui.detail.programs.notInTables', { year: programsManifest.admissionYear, n: programProvinceNames.length, provinces: programProvinceList })}
             </p>
           )}
           {programsPayload && programEntry && (
             <div className="flex flex-col gap-4">
               <div className="flex flex-wrap gap-2">
-                {programEntry.u > 0 && <EvidenceChip label={`${programEntry.u} 個本科招生專業（類）`} />}
-                {programEntry.u > 0 && <EvidenceChip label={`${programEntry.u - programEntry.x} 個對應到國標目錄`} />}
-                {programEntry.v > 0 && <EvidenceChip label={`${programEntry.v} 個高職（專科）專業`} />}
-                {programGroups.some((g) => g.campus) && <EvidenceChip label={`校區／學院：${[...new Set(programGroups.filter((g) => g.campus).map((g) => g.campus))].join('、')}`} />}
-                {strongBase && <EvidenceChip label={`強基計劃試點高校（${strongBase.since} 年起）`} />}
+                {programEntry.u > 0 && <EvidenceChip label={t('ui.detail.programs.chip.undergrad', { u: programEntry.u })} />}
+                {programEntry.u > 0 && <EvidenceChip label={t('ui.detail.programs.chip.mapped', { n: programEntry.u - programEntry.x })} />}
+                {programEntry.v > 0 && <EvidenceChip label={t('ui.detail.programs.chip.vocational', { v: programEntry.v })} />}
+                {programGroups.some((g) => g.campus) && <EvidenceChip label={t('ui.detail.programs.chip.campuses', { list: [...new Set(programGroups.filter((g) => g.campus).map((g) => g.campus))].join(t('ui.common.listJoiner')) })} />}
+                {strongBase && <EvidenceChip label={t('ui.detail.programs.chip.strongBase', { since: strongBase.since })} />}
               </div>
               {strongBase && programsPayload.sources[strongBase.sourceId] && (
                 <a
@@ -358,26 +317,26 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
               )}
               {programPrefsActive(programs.prefs) && programVerdict && (
                 <div className="rounded-xl border border-ink-700 bg-ink-900 px-4 py-3 text-sm text-fog-200 leading-relaxed flex flex-col gap-1">
-                  <span className="mono text-xs uppercase tracking-[0.2em] text-fog-500">按你的選科／意向專業（S1／S2 題）</span>
+                  <span className="mono text-xs uppercase tracking-[0.2em] text-fog-500">{t('ui.detail.programs.verdict.kicker')}</span>
                   {programVerdict.state === 'kept' && (
                     <span>
-                      {programs.prefs.intent ? `有開設「${programs.prefs.intent.programName ?? programs.prefs.intent.className}」：${programVerdict.matchingCount} 個本科招生專業（類）` : `${programVerdict.matchingCount} 個本科招生專業（類）`}
-                      {chosenSubjects ? `，你的選科 ${subjectLabels(programs.prefs.subjects).join('＋')} 可報 ${programVerdict.admissibleCount} 個。` : '。'}
+                      {programs.prefs.intent ? t('ui.detail.programs.verdict.offers', { wanted: programs.prefs.intent.programName ?? programs.prefs.intent.className, n: programVerdict.matchingCount }) : t('ui.detail.programs.verdict.count', { n: programVerdict.matchingCount })}
+                      {chosenSubjects ? t('ui.detail.programs.verdict.admissible', { subjects: subjectsLabel(programs.prefs.subjects), n: programVerdict.admissibleCount }) : t('ui.detail.programs.verdict.period')}
                     </span>
                   )}
-                  {programVerdict.state === 'struck' && programVerdict.reasons.map((reason) => <span key={reason.kind}>這兩題會劃掉它：{reason.label}</span>)}
+                  {programVerdict.state === 'struck' && programVerdict.reasons.map((reason) => <span key={reason.kind}>{t('ui.detail.programs.verdict.struck', { reason: programStrikeLabel(reason) })}</span>)}
                   {programVerdict.state === 'unknown' && (
-                    <span>沒找到「{programs.prefs.intent?.programName ?? programs.prefs.intent?.className}」，但本校有 {programVerdict.experimental} 個試驗班對不到專業類，本站不替你判定、照常保留。</span>
+                    <span>{t('ui.detail.programs.verdict.unknown', { wanted: programs.prefs.intent?.programName ?? programs.prefs.intent?.className ?? '', n: programVerdict.experimental })}</span>
                   )}
-                  {programVerdict.state === 'no-data' && <span>本校只公布了高職（專科）專業，選科與專業兩題不判定、照常保留。</span>}
+                  {programVerdict.state === 'no-data' && <span>{t('ui.detail.programs.verdict.noData')}</span>}
                 </div>
               )}
-              {!currentList && !programListError && <p className="text-sm text-fog-500">正在載入本省的招生專業清單…</p>}
-              {programListError && <p className="text-sm text-fog-300">招生專業清單載入失敗，請重新整理後再看。</p>}
+              {!currentList && !programListError && <p className="text-sm text-fog-500">{t('ui.detail.programs.listLoading')}</p>}
+              {programListError && <p className="text-sm text-fog-300">{t('ui.detail.programs.listFailed')}</p>}
               <div className="flex flex-col gap-3">
                 {programGroups.map((group) => {
-                  const visible = showAllPrograms ? group.programs : group.programs.slice(0, programGroups.length > 1 ? 12 : 30)
-                  const heading = [group.level === 'v' ? '高職（專科）' : '', group.campus].filter(Boolean).join(' · ')
+                  const visible = showAllPrograms ? group.programs : group.programs.slice(0, programLimit)
+                  const heading = [group.level === 'v' ? t('ui.detail.programs.vocationalHeading') : '', group.campus].filter(Boolean).join(' · ')
                   return (
                     <div key={`${group.level}-${group.campus || 'main'}`} className="flex flex-col gap-2">
                       {heading && <span className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">{heading}</span>}
@@ -389,10 +348,10 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                               <span className="text-fog-100 text-sm">{program.n}</span>
                               <span className="text-fog-500">
                                 {requirementLabel(program.r)}
-                                {program.m === 'class' ? ' · 按專業類招生' : program.m === 'none' ? ' · 試驗班，未對應專業類' : program.m === 'vocational' ? ' · 專科，不對本科目錄' : ''}
+                                {program.m === 'class' ? t('ui.detail.programs.matchClass') : program.m === 'none' ? t('ui.detail.programs.matchNone') : program.m === 'vocational' ? t('ui.detail.programs.matchVocational') : ''}
                               </span>
                               {admissible !== null && (
-                                <span className={admissible ? 'text-accent-500' : 'text-fog-300'}>{admissible ? '你的選科可報' : '你的選科報不了'}</span>
+                                <span className={admissible ? 'text-accent-500' : 'text-fog-300'}>{admissible ? t('ui.detail.programs.admissible') : t('ui.detail.programs.notAdmissible')}</span>
                               )}
                             </li>
                           )
@@ -401,16 +360,16 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                     </div>
                   )
                 })}
-                {!showAllPrograms && programGroups.some((g) => g.programs.length > (programGroups.length > 1 ? 12 : 30)) && (
+                {!showAllPrograms && programGroups.some((g) => g.programs.length > programLimit) && (
                   <button
                     onClick={() => setShowAllPrograms(true)}
                     className="self-start px-4 py-2 rounded-full border border-ink-700 text-xs text-fog-300 hover:text-fog-100 hover:border-fog-500 min-h-[44px]"
                   >
-                    展開全部 {currentList?.length ?? 0} 個
+                    {t('ui.detail.programs.showAll', { n: currentList?.length ?? 0 })}
                   </button>
                 )}
               </div>
-              {programSources.length > 0 && <EvidenceRow label="來源" items={programSources} />}
+              {programSources.length > 0 && <EvidenceRow label={t('ui.common.source')} items={programSources} />}
             </div>
           )}
         </div>
@@ -418,43 +377,43 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
         <div className="flex flex-col gap-4">
           <div className="flex items-baseline justify-between gap-4">
             <div>
-              <h2 className="serif text-xl">校區 · 研究補全</h2>
+              <h2 className="serif text-xl">{t('ui.detail.campus.title')}</h2>
               <p className="mt-2 text-xs text-fog-500 leading-relaxed">
-                校區明細先用 GitHub 結構化底稿聚合；只有已核到學校級官方依據的 A5/B9 條目才直接參與硬篩選。
+                {t('ui.detail.campus.note')}
               </p>
             </div>
             <a
               href={contribHref(school.id, 'A5')}
               className="mono text-xs text-accent-500 hover:text-accent-400 shrink-0"
             >
-              補校區 →
+              {t('ui.detail.campus.addCta')}
             </a>
           </div>
 
           {(school.mainCampusType || freshmanPolicyText || officialMetroText || officialA5Evidence.length > 0 || officialB9Evidence.length > 0) && (
             <div className="flex flex-col gap-3">
               <div className="flex flex-wrap gap-2">
-                <EvidenceChip label={`A5：${campusText}`} />
-                {freshmanPolicyText && <EvidenceChip label={`本科新生：${freshmanPolicyText}`} />}
-                {officialMetroText && <EvidenceChip label={`B9：${officialMetroText}`} />}
+                <EvidenceChip label={t('ui.detail.campus.chipA5', { campus: campusText })} />
+                {freshmanPolicyText && <EvidenceChip label={t('ui.detail.campus.chipFreshman', { policy: freshmanPolicyText })} />}
+                {officialMetroText && <EvidenceChip label={t('ui.detail.campus.chipB9', { metro: officialMetroText })} />}
               </div>
               {officialA5Evidence.length > 0 && (
-                <EvidenceRow label="A5 官方依據" items={officialA5Evidence} />
+                <EvidenceRow label={t('ui.detail.campus.evidenceA5')} items={officialA5Evidence} />
               )}
               {officialB9Evidence.length > 0 && (
-                <EvidenceRow label="B9 官方依據" items={officialB9Evidence} />
+                <EvidenceRow label={t('ui.detail.campus.evidenceB9')} items={officialB9Evidence} />
               )}
             </div>
           )}
 
-          {campusLoadError && <p role="alert">校區資料暫時載入失敗，尚不能判定是否有資料。<button onClick={() => { setCampusLoadError(false); setCampusRetry((n) => n + 1) }}>重試校區資料</button></p>}
+          {campusLoadError && <p role="alert">{t('ui.detail.campus.loadFailed')}<button onClick={() => { setCampusLoadError(false); setCampusRetry((n) => n + 1) }}>{t('ui.detail.campus.retry')}</button></p>}
           {!hasCampusResolution && !campusLoadError && (
-            <p className="text-xs text-fog-500 leading-relaxed">正在載入校區資料…</p>
+            <p className="text-xs text-fog-500 leading-relaxed">{t('ui.detail.campus.loading')}</p>
           )}
 
           {hasCampusResolution && campusList.length === 0 && (
             <p className="text-xs text-fog-500 leading-relaxed">
-              校區資料補充中；當前只把已核到學校級官方依據的 A5/B9 條目拿去排除，其餘底稿只展示不誤殺。點上方入口可直接補充。
+              {t('ui.detail.campus.empty')}
             </p>
           )}
 
@@ -468,14 +427,14 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="serif text-sm">{campus.campusName}</span>
                     <span className="mono text-xs text-fog-500">
-                      {confidenceLabel[campus.confidence ?? 'low'] ?? '低置信'}
+                      {tOr(`ui.detail.confidence.${campus.confidence ?? 'low'}`, t('ui.detail.confidence.low'))}
                     </span>
                   </div>
                   {campus.campusAddress && (
                     <p className="text-sm text-fog-200 leading-relaxed">{campus.campusAddress}</p>
                   )}
                   <p className="text-xs text-fog-500">
-                    {[campus.province, campus.city, campus.district].filter(Boolean).join(' · ') || '地理信息待補'}
+                    {[campus.province ? provinceLabel(campus.province) : '', campus.city, campus.district].filter(Boolean).join(' · ') || t('ui.detail.campus.geoPending')}
                   </p>
                   {campus.notes && (
                     <p className="text-xs text-fog-500 leading-relaxed">{campus.notes}</p>
@@ -488,43 +447,40 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
 
         {env && (
           <div className="flex flex-col gap-4">
-            <h2 className="serif text-xl">環境 · 權威推導</h2>
+            <h2 className="serif text-xl">{t('ui.detail.env.title')}</h2>
             <p className="text-xs text-fog-500 leading-relaxed">
-              以下由省份+城市直接推導，來源於氣象局／生態環境部／城市軌道交通協會，不接受眾包修改。
+              {t('ui.detail.env.note')}
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              <EnvChip label={envLabel.heating[env.heating]} />
-              <EnvChip label={envLabel.summer[env.summer]} />
-              <EnvChip label={envLabel.winter[env.winter]} />
-              <EnvChip label={envLabel.haze[env.haze]} />
-              <EnvChip label={envLabel.subway[env.subwayCity]} />
-              <EnvChip label={envLabel.coastal[env.coastal]} />
-              <EnvChip label={envLabel.highland[env.highland]} />
-              <EnvChip label={env.dialect} />
+              <EnvChip label={t(`ui.detail.env.heating.${env.heating ? 'yes' : 'no'}`)} />
+              <EnvChip label={t(`ui.detail.env.summer.${env.summer}`)} />
+              <EnvChip label={t(`ui.detail.env.winter.${env.winter}`)} />
+              <EnvChip label={t(`ui.detail.env.haze.${env.haze}`)} />
+              <EnvChip label={t(`ui.detail.env.subway.${env.subwayCity ? 'yes' : 'no'}`)} />
+              <EnvChip label={t(`ui.detail.env.coastal.${env.coastal ? 'yes' : 'no'}`)} />
+              <EnvChip label={t(`ui.detail.env.highland.${env.highland ? 'yes' : 'no'}`)} />
+              <EnvChip label={valueLabel('E5', env.dialect)} />
             </div>
           </div>
         )}
 
         <div className="flex flex-col gap-4">
           <div className="flex items-baseline justify-between gap-4">
-            <h2 className="serif text-xl">24 維生活資料 · 回報與官方補充</h2>
+            <h2 className="serif text-xl">{t('ui.detail.life.title')}</h2>
             <a
               href={contribHref(school.id, 'B1')}
               className="mono text-xs text-accent-500 hover:text-accent-400 shrink-0"
             >
-              全部補充 →
+              {t('ui.detail.life.addAll')}
             </a>
           </div>
           <p className="text-xs text-fog-500 leading-relaxed">
-            未填 = 眾包暫未覆蓋，引擎不會以該維度排除此校。
-            匿名回報未核對校區與觀察年份，只供參考；票數再多也不代表整校都如此。
-            點擊每張卡片補一條數據到 GitHub。
+            {t('ui.detail.life.note')}
           </p>
           <div className="grid sm:grid-cols-2 gap-3">
             {qualityDims.map(d => {
-              const meta = DIMENSIONS[d]
               const rawValue = school.quality?.[d]
-              const val = Array.isArray(rawValue) ? rawValue.join(' / ') : rawValue
+              const val = Array.isArray(rawValue) ? rawValue.map((v) => valueLabel(d, v)).join(' / ') : rawValue ? valueLabel(d, rawValue) : undefined
               const evidence = school.qualityEvidence?.[d]
               const filterable = val != null && isHardFilterableQuality(school, d)
               const crowdValues = Object.entries(evidence?.valueCounts ?? {})
@@ -535,11 +491,11 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                   className="bg-ink-900 border border-ink-800 rounded-lg p-4 block hover:border-accent-600 transition-colors group"
                 >
                   <div className="flex items-baseline justify-between gap-2">
-                    <span className="serif text-sm">{meta.label}</span>
+                    <span className="serif text-sm">{dimensionLabel(d)}</span>
                     <span className="mono text-xs text-fog-500">{d}</span>
                   </div>
                   <p className={['mt-2 text-sm', val ? 'text-fog-100' : 'text-fog-500 italic'].join(' ')}>
-                    {evidence?.source === 'crowd' && crowdValues.length > 1 ? '回報不一致' : evidence?.source === 'crowd' && val ? `未核實回報：${val}` : val ?? '待補充'}
+                    {evidence?.source === 'crowd' && crowdValues.length > 1 ? t('ui.detail.life.inconsistent') : evidence?.source === 'crowd' && val ? t('ui.detail.life.unverified', { value: val }) : val ?? t('ui.detail.life.pending')}
                   </p>
                   {evidence && (
                     <span
@@ -549,21 +505,21 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                       ].join(' ')}
                     >
                       {evidence.source === 'crowd'
-                        ? `${evidence.sampleSize} 條填答 · ${evidence.classifiedSampleSize ?? evidence.sampleSize} 條可歸一 · 僅供參考`
-                        : `${evidence.scope === 'school' ? '整校官方依據' : '校區官方資料，不作整校排除'}${evidence.year ? ` · ${evidence.year}` : ''}`}
+                        ? t('ui.detail.life.crowdMeta', { n: evidence.sampleSize, classified: evidence.classifiedSampleSize ?? evidence.sampleSize })
+                        : `${evidence.scope === 'school' ? t('ui.detail.life.officialSchoolWide') : t('ui.detail.life.officialCampusOnly')}${evidence.year ? ` · ${evidence.year}` : ''}`}
                     </span>
                   )}
                   {evidence?.source === 'crowd' && (
-                    <p className="mt-2 text-xs text-fog-500">{crowdValues.map(([value, votes]) => value + '：' + votes + '票').join('；')}；無法判讀：{evidence.unclassifiedResponses ?? 0}條</p>
+                    <p className="mt-2 text-xs text-fog-500">{crowdValues.map(([value, votes]) => t('ui.detail.life.votes', { value: valueLabel(d, value), votes })).join('；')}{t('ui.detail.life.unclassified', { n: evidence.unclassifiedResponses ?? 0 })}</p>
                   )}
-                  {evidence?.source === 'crowd' && <p className="mt-2 text-xs text-fog-500">來源：CollegesChat 匿名問卷；校區與觀察年份未核實</p>}
+                  {evidence?.source === 'crowd' && <p className="mt-2 text-xs text-fog-500">{t('ui.detail.life.crowdSource')}</p>}
                   {sources.map((source, i) => (
                     <div key={source.url + i} className="mt-2 text-xs text-fog-500">
                       <a className="text-accent-500 underline" href={source.url} target="_blank" rel="noreferrer noopener">{source.title}</a>
-                      <p>{source.date ?? '來源日期未標明'} · {source.note}</p>
+                      <p>{source.date ?? t('ui.detail.life.sourceDateMissing')} · {source.note}</p>
                     </div>
                   ))}
-                  <a className="mt-3 inline-block text-xs text-accent-500" href={contribHref(school.id, d)}>補充資料 →</a>
+                  <a className="mt-3 inline-block text-xs text-accent-500" href={contribHref(school.id, d)}>{t('ui.detail.life.addOne')}</a>
                 </div>
               )
             })}
@@ -571,39 +527,38 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
         </div>
 
         <footer className="pt-6 border-t border-ink-800 text-xs mono text-fog-500 leading-relaxed">
-          <p>權威來源：教育部名單 · 氣象局氣候分區 · 生態環境部 · 城市軌道交通協會 · 第一財經。</p>
-          <p className="mt-1">眾包來源：CollegesChat · 用戶貢獻（CC BY-NC-SA 4.0）。</p>
-          <p className="mt-1">匿名回報可能分歧；請核對適用校區、年份與逐項來源。</p>
+          <p>{t('ui.detail.footer.authoritative')}</p>
+          <p className="mt-1">{t('ui.detail.footer.crowd')}</p>
+          <p className="mt-1">{t('ui.detail.footer.caveat')}</p>
         </footer>
       </section>
       {school.moeCode && (jointItems === null ? null : (jointItems.length > 0 || jointError) && (
         <section className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-xl p-5 sm:p-6 flex flex-col gap-4">
           <div>
-            <h2 className="serif text-xl">中外合作辦學（教育部監管平台）</h2>
+            <h2 className="serif text-xl">{t('ui.detail.joint.title')}</h2>
             <p className="mt-2 text-xs text-fog-500 leading-relaxed">
-              教育部中外合作辦學監管工作信息平台公布的「經審批和復核的機構及項目名單」（{jointProgramsManifest.source.note}）；本站按中方合作辦學者對回學校，獨立法人機構以機構本身對回。
-              只展示、不判定；平台沒有學費欄，收費以各校招生章程為準。名稱與專業為平台原文。
+              {t('ui.detail.joint.note', { note: jointProgramsManifest.source.note })}
             </p>
           </div>
-          {jointError && <p className="text-sm text-fog-300">中外合作辦學清單載入失敗，請重新整理後再看。</p>}
+          {jointError && <p className="text-sm text-fog-300">{t('ui.detail.joint.loadFailed')}</p>}
           {jointItems.length > 0 && (
             <ul className="flex flex-col gap-3">
               {jointItems.map((item) => (
                 <li key={item.id} className="border border-ink-800 bg-ink-950 rounded-lg px-3 py-3 flex flex-col gap-1.5 text-sm">
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                    <span className="mono text-xs uppercase tracking-[0.16em] text-fog-500">{item.kind === 'institution' ? '機構' : '項目'}{item.coop === 'mainland_hkmotw' ? ' · 內地與港澳臺' : item.coop === 'foreign_independent' ? ' · 境外高校獨立辦學' : ''}</span>
+                    <span className="mono text-xs uppercase tracking-[0.16em] text-fog-500">{item.kind === 'institution' ? t('ui.detail.joint.institution') : t('ui.detail.joint.project')}{item.coop === 'mainland_hkmotw' ? t('ui.detail.joint.hkmotw') : item.coop === 'foreign_independent' ? t('ui.detail.joint.foreignIndependent') : ''}</span>
                     {item.status !== 'listed' && <span className="rounded-full border border-ink-700 px-2 py-0.5 text-xs text-fog-300">{item.annotation || item.status}</span>}
                   </div>
                   <p className="text-fog-100 leading-snug">{item.name}</p>
                   <p className="text-xs text-fog-300 leading-relaxed">
-                    {item.foreign && <>{item.coop === 'mainland_hkmotw' ? '港澳臺方' : '外方'}：{item.foreign}</>}
+                    {item.foreign && <>{item.coop === 'mainland_hkmotw' ? t('ui.detail.joint.partnerHkmotw') : t('ui.detail.joint.partnerForeign')}：{item.foreign}</>}
                     {item.level && <> · {item.level}</>}
-                    {item.enrolmentYears && <> · 招生年份 {item.enrolmentYears}</>}
+                    {item.enrolmentYears && <>{t('ui.detail.joint.enrolmentYears', { years: item.enrolmentYears })}</>}
                   </p>
-                  {item.programs && <p className="text-xs text-fog-300 leading-relaxed">專業／課程：{item.programs}</p>}
+                  {item.programs && <p className="text-xs text-fog-300 leading-relaxed">{t('ui.detail.joint.programs', { programs: item.programs })}</p>}
                   <p className="text-xs mono text-fog-500 break-all">
-                    {item.licenseKind}{item.licenseKind ? ' ' : ''}{item.licenseNo}{item.validUntil ? ' · 有效期至 ' + item.validUntil : ''} ·{' '}
-                    <a className="underline hover:text-accent-500" href={item.url} target="_blank" rel="noreferrer noopener">平台詳情 ↗</a> · 讀取 {item.fetchedAt}
+                    {item.licenseKind}{item.licenseKind ? ' ' : ''}{item.licenseNo}{item.validUntil ? t('ui.detail.joint.validUntil', { date: item.validUntil }) : ''} ·{' '}
+                    <a className="underline hover:text-accent-500" href={item.url} target="_blank" rel="noreferrer noopener">{t('ui.detail.joint.platformLink')}</a> · {t('ui.detail.joint.fetched', { date: item.fetchedAt })}
                   </p>
                 </li>
               ))}
@@ -632,6 +587,7 @@ function EvidenceChip({ label }: { label: string }) {
 }
 
 function EvidenceRow({ label, items }: { label: string; items: ResearchEvidence[] }) {
+  const { tOr } = useLocale()
   return (
     <div className="flex flex-col gap-2">
       <span className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">{label}</span>
@@ -648,7 +604,7 @@ function EvidenceRow({ label, items }: { label: string; items: ResearchEvidence[
             <span className="truncate">
               {item.title}
               {item.date ? ` · ${item.date}` : ''}
-              {item.confidence ? ` · ${confidenceLabel[item.confidence] ?? item.confidence}` : ''}
+              {item.confidence ? ` · ${tOr(`ui.detail.confidence.${item.confidence}`, item.confidence)}` : ''}
             </span>
             <span className="ml-1 shrink-0">↗</span>
           </a>

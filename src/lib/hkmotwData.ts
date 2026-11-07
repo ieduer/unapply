@@ -1,3 +1,4 @@
+import { t } from '../i18n/core'
 import { hkmotwManifest } from '../data/hkmotwManifest'
 import type { HkMoTwPoolPayload } from '../data/hkmotwTypes'
 
@@ -15,7 +16,7 @@ export function loadHkMoTwPool(): Promise<HkMoTwPoolPayload> {
         const counts = hkmotwManifest.counts
         const channels = payload.institutions?.reduce((n, i) => n + (i.channels?.length ?? 0), 0)
         if (payload.version !== hkmotwManifest.version || payload.institutions?.length !== counts.institutions || channels !== counts.channels || payload.regions?.length !== counts.regions) {
-          throw new Error('港澳臺院校池資料不完整，請重新載入')
+          throw new Error(t('ui.data.error.hkmotw'))
         }
         return payload
       })

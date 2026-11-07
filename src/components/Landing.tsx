@@ -1,4 +1,5 @@
 import { EvidenceNotice } from './EvidenceNotice'
+import { LocaleSwitcher } from './LocaleSwitcher'
 import {
   officialSchoolCount,
   officialUndergraduateCount,
@@ -6,6 +7,8 @@ import {
 } from '../data/schoolCatalogSummary'
 import { contributionHighlights, researchSummary } from '../data/researchSummary'
 import { getOriginOption, originOptions, type OriginRegion } from '../data/origins'
+import { useLocale } from '../i18n/react'
+import { Rich } from '../i18n/rich'
 
 interface Props {
   origin: OriginRegion | null
@@ -19,48 +22,53 @@ interface Props {
 }
 
 export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, onOverseas, onAbout, onContribute }: Props) {
+  const { t, tOr, n } = useLocale()
   const originOption = origin ? getOriginOption(origin) : null
   const isHkMoTw = origin === 'hk' || origin === 'mo' || origin === 'tw'
   const isOverseas = origin === 'overseas'
+  const routeKey = isHkMoTw ? 'ui.landing.noPool.route.hkmotw' : isOverseas ? 'ui.landing.noPool.route.overseas' : 'ui.landing.noPool.route.other'
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex flex-col items-center justify-between px-5 sm:px-6 py-6 sm:py-10">
       <div
-        className="w-full max-w-5xl flex items-center justify-between text-xs mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-fog-500"
+        className="w-full max-w-5xl flex items-center justify-between gap-3 text-xs mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-fog-500"
       >
-        <span>nope.bdfz.net · v2.0</span>
-        <button
-          onClick={onAbout}
-          className="hover:text-accent-500 transition-colors min-h-[44px] -my-3 py-3 px-2"
-        >
-          about
-        </button>
+        <span>{t('ui.landing.brand')}</span>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <LocaleSwitcher />
+          <button
+            onClick={onAbout}
+            className="hover:text-accent-500 transition-colors min-h-[44px] -my-3 py-3 px-2"
+          >
+            {t('ui.common.about')}
+          </button>
+        </div>
       </div>
 
       <section className="w-full max-w-5xl flex flex-1 flex-col justify-center gap-8 sm:gap-12 py-10 sm:py-16">
         <div
           className="max-w-3xl"
         >
-          <p className="mono text-xs uppercase tracking-[0.28em] text-accent-500">減法人生 · 學校版</p>
+          <p className="mono text-xs uppercase tracking-[0.28em] text-accent-500">{t('ui.landing.kicker')}</p>
           <h1 className="mt-5 serif text-5xl sm:text-7xl leading-none text-fog-100">
-            你一定不考哪所大學
+            {t('ui.landing.title')}
           </h1>
           <p className="mt-6 max-w-2xl text-base sm:text-lg text-fog-300 leading-relaxed">
-            不告訴你該考哪所，只幫你從官方目錄裡先劃掉不能忍的那批。
+            {t('ui.landing.lede')}
           </p>
           <p className="mt-4 mono text-sm text-fog-500">
-            {officialSchoolCount.toLocaleString()} 所普通高校 · 本科 {officialUndergraduateCount.toLocaleString()} · 高職專科 {officialVocationalCount.toLocaleString()}
+            {t('ui.landing.counts', { total: n(officialSchoolCount), undergrad: n(officialUndergraduateCount), vocational: n(officialVocationalCount) })}
           </p>
         </div>
 
         <div className="border border-ink-800 bg-ink-900/78 p-5 sm:p-6 flex flex-col gap-4 backdrop-blur-xl">
           <div className="flex flex-col gap-2">
-            <p className="mono text-xs uppercase tracking-[0.24em] text-fog-500">第 0 題 · 起點</p>
-            <h2 className="serif text-2xl">你在哪裡升學？</h2>
+            <p className="mono text-xs uppercase tracking-[0.24em] text-fog-500">{t('ui.landing.originKicker')}</p>
+            <h2 className="serif text-2xl">{t('ui.landing.originTitle')}</h2>
             <p className="text-sm text-fog-400 leading-relaxed">
-              所在地只決定從哪個題庫開始、有哪些可申請的管道；之後每一步都可以跨國選。目前只有中國大陸有完整題庫；香港、澳門、臺灣先看院校池（官方招生管道），其他國家或地區先看海外可申請學校（各校招生頁原文）與全球學科地圖。
+              {t('ui.landing.originLede')}
             </p>
           </div>
-          <div className="grid gap-2 sm:grid-cols-5" role="group" aria-label="所在地">
+          <div className="grid gap-2 sm:grid-cols-5" role="group" aria-label={t('ui.landing.originGroupAria')}>
             {originOptions.map((option) => {
               const active = option.id === origin
               return (
@@ -75,21 +83,19 @@ export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, on
                       : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100',
                   ].join(' ')}
                 >
-                  <span className="serif text-base leading-snug">{option.label}</span>
-                  <span className="text-xs text-fog-500 leading-snug">{option.hasLocalPool ? '題庫完整' : '題庫建設中'}</span>
+                  <span className="serif text-base leading-snug">{t(`origin.${option.id}.label`)}</span>
+                  <span className="text-xs text-fog-500 leading-snug">{option.hasLocalPool ? t('ui.landing.poolReady') : t('ui.landing.poolBuilding')}</span>
                 </button>
               )
             })}
           </div>
 
           {!originOption && (
-            <p className="text-sm text-fog-500">選一個起點，下面的按鈕才會亮起來。全球學科地圖不分起點，隨時可看。</p>
+            <p className="text-sm text-fog-500">{t('ui.landing.pickOriginHint')}</p>
           )}
           {originOption && !originOption.hasLocalPool && (
             <p className="text-sm text-fog-300 leading-relaxed">
-              <b className="text-fog-100">{originOption.label}</b>：{originOption.hint}。
-              {isHkMoTw ? '先看港澳臺院校池裡各院校的官方招生管道與條件，再用全球學科地圖做學科與地區的減法；' : isOverseas ? '先看各國申請平台、簽證主管機關頁與各校官方招生頁的原文（只抄原文，不代表錄取可能），再用全球學科地圖做學科與地區的減法；' : '先用全球學科地圖做學科與地區的減法；'}
-              如果你也考慮中國大陸高校，可以直接進大陸題庫。
+              <Rich k="ui.landing.noPool" params={{ origin: t(`origin.${originOption.id}.label`), hint: t(`origin.${originOption.id}.hint`), route: t(routeKey) }} />
             </p>
           )}
 
@@ -104,13 +110,13 @@ export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, on
                     originOption ? 'bg-accent-500 text-ink-950 hover:bg-accent-400' : 'bg-ink-800 text-fog-500 cursor-not-allowed',
                   ].join(' ')}
                 >
-                  開始減法
+                  {t('ui.landing.start')}
                 </button>
                 <button
                   onClick={onWorld}
                   className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
                 >
-                  看全球學科地圖
+                  {t('ui.landing.world')}
                 </button>
               </>
             ) : isHkMoTw ? (
@@ -119,19 +125,19 @@ export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, on
                   onClick={onHkMoTw}
                   className="px-7 py-4 sm:py-3 bg-accent-500 text-ink-950 rounded-xl font-semibold text-base hover:bg-accent-400 transition-colors min-h-[52px]"
                 >
-                  看港澳臺院校池
+                  {t('ui.landing.hkmotw')}
                 </button>
                 <button
                   onClick={onWorld}
                   className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
                 >
-                  看全球學科地圖
+                  {t('ui.landing.world')}
                 </button>
                 <button
                   onClick={onStart}
                   className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
                 >
-                  進中國大陸題庫
+                  {t('ui.landing.enterMainland')}
                 </button>
               </>
             ) : (
@@ -140,23 +146,23 @@ export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, on
                   onClick={onOverseas}
                   className="px-7 py-4 sm:py-3 bg-accent-500 text-ink-950 rounded-xl font-semibold text-base hover:bg-accent-400 transition-colors min-h-[52px]"
                 >
-                  看海外可申請學校
+                  {t('ui.landing.overseas')}
                 </button>
                 <button
                   onClick={onWorld}
                   className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
                 >
-                  看全球學科地圖
+                  {t('ui.landing.world')}
                 </button>
                 <button
                   onClick={onStart}
                   className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
                 >
-                  進中國大陸題庫
+                  {t('ui.landing.enterMainland')}
                 </button>
               </>
             )}
-            <span className="text-xs mono text-fog-500">按當前有效數據動態出題 · 可隨時跳過</span>
+            <span className="text-xs mono text-fog-500">{t('ui.landing.dynamicNote')}</span>
           </div>
         </div>
 
@@ -164,34 +170,34 @@ export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, on
 
         <div className="grid border-y border-ink-800 bg-ink-900/70 backdrop-blur-xl sm:grid-cols-3">
           <MetricCard
-            label="眾包覆蓋學校"
-            value={researchSummary.crowdMatchedSchools.toLocaleString()}
-            detail="有匿名回報可供核對，不代表整校政策"
+            label={t('ui.landing.metric.crowdSchools.label')}
+            value={n(researchSummary.crowdMatchedSchools)}
+            detail={t('ui.landing.metric.crowdSchools.detail')}
           />
           <MetricCard
-            label="已入庫生活值"
-            value={researchSummary.crowdValuesAccepted.toLocaleString()}
-            detail="保留來源、分歧與未知，不以票數代替核實"
+            label={t('ui.landing.metric.crowdValues.label')}
+            value={n(researchSummary.crowdValuesAccepted)}
+            detail={t('ui.landing.metric.crowdValues.detail')}
           />
           <MetricCard
-            label="省級權威入口"
-            value={researchSummary.provincePortals.toLocaleString()}
-            detail="結果頁可直達各省官方錄取/分數線查詢"
+            label={t('ui.landing.metric.portals.label')}
+            value={n(researchSummary.provincePortals)}
+            detail={t('ui.landing.metric.portals.detail')}
           />
         </div>
 
         <div className="border border-ink-800 bg-ink-900/78 p-5 sm:p-6 flex flex-col gap-4 backdrop-blur-xl">
           <div className="flex flex-col gap-2">
-            <p className="mono text-xs uppercase tracking-[0.24em] text-fog-500">用戶貢獻數據</p>
-            <h2 className="serif text-2xl">無學生，不學校</h2>
+            <p className="mono text-xs uppercase tracking-[0.24em] text-fog-500">{t('ui.landing.contribKicker')}</p>
+            <h2 className="serif text-2xl">{t('ui.landing.contribTitle')}</h2>
             <p className="text-sm text-fog-400 leading-relaxed">
-              既然所謂官方信息向來少⋯⋯不如，一起來；辛苦提交先進 GitHub issue，審核後再入庫。
+              {t('ui.landing.contribLede')}
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
-            {contributionHighlights.map((item) => (
+            {contributionHighlights.map((item, index) => (
               <span key={item} className="rounded-full border border-ink-700 bg-ink-950 px-3 py-1 text-xs text-fog-300">
-                {item}
+                {tOr(`ui.landing.contribHighlight.${index + 1}`, item)}
               </span>
             ))}
           </div>
@@ -200,7 +206,7 @@ export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, on
               onClick={onContribute}
               className="px-5 py-3 rounded-xl border border-accent-500/40 bg-accent-500/10 text-accent-600 text-sm hover:bg-accent-500/15 min-h-[48px]"
             >
-              去補我熟悉的學校
+              {t('ui.landing.contribCta')}
             </button>
             <a
               className="text-xs mono text-fog-500 hover:text-accent-500"
@@ -208,7 +214,7 @@ export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, on
               target="_blank"
               rel="noreferrer noopener"
             >
-              查看審核中的貢獻 ↗
+              {t('ui.landing.contribReview')}
             </a>
           </div>
         </div>
@@ -217,25 +223,25 @@ export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, on
       <footer className="w-full max-w-5xl pt-6 border-t border-ink-800">
         <div className="grid gap-3 sm:gap-2">
           <FooterGroup
-            label="姊妹站"
+            label={t('ui.landing.footer.sisterSites')}
             items={[
-              { href: 'https://path.bdfz.net', text: 'path · 你一定不做哪個工作' },
-              { href: 'https://gk.rdfzer.com/#advice-top', text: 'gk · 高考報考' },
-              { href: 'https://my.bdfz.net', text: 'my · 用戶中心' },
+              { href: 'https://path.bdfz.net', text: t('ui.landing.footer.path') },
+              { href: 'https://gk.rdfzer.com/#advice-top', text: t('ui.landing.footer.gk') },
+              { href: 'https://my.bdfz.net', text: t('ui.landing.footer.my') },
             ]}
           />
           <FooterGroup
-            label="權威數據"
+            label={t('ui.landing.footer.authoritative')}
             items={[
-              { href: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202606/t20260618_1441074.html', text: '教育部' },
-              { href: 'https://www.cma.gov.cn/', text: '氣象局' },
-              { href: 'https://www.yicai.com/topic/100311963/', text: '第一財經' },
-              { href: 'https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/', text: '學科評估' },
-              { href: 'https://www.shanghairanking.com/rankings/gras/2026', text: '軟科世界一流學科' },
+              { href: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202606/t20260618_1441074.html', text: t('ui.landing.footer.moe') },
+              { href: 'https://www.cma.gov.cn/', text: t('ui.landing.footer.cma') },
+              { href: 'https://www.yicai.com/topic/100311963/', text: t('ui.landing.footer.yicai') },
+              { href: 'https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/', text: t('ui.landing.footer.disciplineEval') },
+              { href: 'https://www.shanghairanking.com/rankings/gras/2026', text: t('ui.landing.footer.gras') },
             ]}
           />
           <FooterGroup
-            label="開源與貢獻"
+            label={t('ui.landing.footer.openSource')}
             items={[
               { href: 'https://github.com/ieduer/unapply', text: 'ieduer/unapply' },
               { href: 'https://github.com/CollegesChat/university-information', text: 'CollegesChat' },
@@ -243,7 +249,7 @@ export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, on
           />
         </div>
         <div className="mt-3 px-1 text-xs mono text-fog-500 leading-relaxed">
-          非商業公益 · CC BY-NC-SA 4.0 · 不提供志願填報建議
+          {t('ui.landing.footer.licence')}
         </div>
       </footer>
     </main>

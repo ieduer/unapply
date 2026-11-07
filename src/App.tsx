@@ -31,6 +31,7 @@ import {
   subscribeUnapplyAPlusStatus,
 } from './lib/trustedAPlus'
 import type { UnapplyAPlusSyncStatus } from './lib/trustedAPlus'
+import { useLocale } from './i18n/react'
 
 import { Landing } from './components/Landing'
 import { QuestionRunner } from './components/QuestionRunner'
@@ -99,13 +100,14 @@ function CatalogLoading({
   onBack: () => void;
   onRetry: () => void;
 }) {
+  const { t } = useLocale()
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex items-center justify-center px-5">
       <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-xl p-6 flex flex-col gap-4">
-        <p className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">school catalog</p>
-        <h1 className="serif text-2xl">{error ? '目錄載入失敗' : '正在載入官方目錄'}</h1>
+        <p className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">{t('ui.app.catalogKicker')}</p>
+        <h1 className="serif text-2xl">{error ? t('ui.app.catalogLoadFailed') : t('ui.app.catalogLoading')}</h1>
         <p className="text-sm text-fog-500 leading-relaxed">
-          {error ?? '第一次進入問卷時才載入 2952 所普通高校數據與逐校招生專業摘要，首頁不預載完整名單。'}
+          {error ?? t('ui.app.catalogLoadingNote')}
         </p>
         <div className="flex flex-wrap gap-3">
           {error && (
@@ -113,14 +115,14 @@ function CatalogLoading({
               onClick={onRetry}
               className="px-5 py-3 rounded-full bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400"
             >
-              重試載入
+              {t('ui.common.retryLoad')}
             </button>
           )}
           <button
             onClick={onBack}
             className="px-5 py-3 rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500"
           >
-            返回首頁
+            {t('ui.common.backHome')}
           </button>
         </div>
       </section>
@@ -129,15 +131,18 @@ function CatalogLoading({
 }
 
 function PageLoading() {
+  const { t } = useLocale()
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex items-center justify-center px-5">
-      <p className="mono text-xs uppercase tracking-[0.2em] text-fog-500">loading</p>
+      <p className="mono text-xs uppercase tracking-[0.2em] text-fog-500">{t('ui.app.loading')}</p>
     </main>
   )
 }
 
 function EvidenceSyncNotice({ status }: { status: UnapplyAPlusSyncStatus }) {
-  return <SyncNotice phase={status.phase} message={status.message} />
+  const { t } = useLocale()
+  // 提示文字以鍵翻譯（ui.aplus.*）；shared-ui 的 SyncNotice 階段標籤（已核验／核验未完成／同步核验中）與 path.bdfz.net 逐位元組相同，不在本站翻譯。
+  return <SyncNotice phase={status.phase} message={t(status.messageKey)} />
 }
 
 const CANDIDATE_PROVINCE_STORAGE_KEY = 'unapply.candidateProvince.v1'

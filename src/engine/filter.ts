@@ -9,7 +9,7 @@ import { getEnvironment } from '../data/environment';
 import { getVerifiedAdmissionTracks } from '../lib/schoolProfile';
 import type { AdmissionContext } from '../lib/schoolProfile';
 import type { ProgramIndexPayload } from '../data/programsTypes';
-import { PROGRAM_CLASS_WILDCARD, admissibleCombos, describeRequirements, offeredClasses } from './programs';
+import { PROGRAM_CLASS_WILDCARD, admissibleCombos, describeRequirements, offeredClasses, requirementCounts } from './programs';
 import { SUBJECT_COMBOS, comboLabel } from '../data/programPrefs';
 import { programClassByCode } from '../data/programClasses';
 
@@ -40,9 +40,21 @@ export type AnswerMap = Partial<Record<DimensionId, AnswerValue>>;
 
 export interface ExcludeReason {
   questionId: DimensionId;
+  /** 以下三個字串欄固定為 zh-Hant（引擎語言；gk 交接 nope.v1 與既有測試依賴它們）。 */
   questionTitle: string;
   userAnswerLabel: string;
   schoolValue: string;
+  /** 2026-11 批 E1 追加：展示層以鍵翻譯的機器欄；語言不進引擎。 */
+  answerKeys: string[];
+  rule: 'excludes' | 'requires';
+  /** 觸發排除的維度（通常等於 questionId；C5 之類 requires 另一維度時不同）。 */
+  dim: DimensionId;
+  /** 學校取值原文（機器代碼或中文取值）。 */
+  schoolValues: string[];
+  /** requires 規則的可接受取值（選項的 requires.values 併集）。 */
+  wantedValues?: string[];
+  /** S1／S2 的學校取值摘要：u＝本科招生專業（類）數；requirements＝選考要求圖樣分佈（多到少）；classes＝開設的專業類代碼。 */
+  programs?: { u: number; requirements?: { pattern: string; count: number }[]; classes?: string[] };
 }
 
 export interface FilterStats {
@@ -103,7 +115,8 @@ const dimensionValueLabels: Record<string, string> = {
   highland: '高海拔',
 };
 
-function labelForValue(value: string): string {
+/** 取值 → zh-Hant 人話（引擎語言；展示層以 val.* 鍵翻譯，缺鍵時用這裡的文字作後備）。 */
+export function labelForValue(value: string): string {
   const match = /^(CS|EE|Math|Med|Econ|Law|Chn|Hist):(A[+-]?)$/.exec(value);
   const subjects: Record<string, string> = { CS: '計算機', EE: '電子／自動化', Math: '數學', Med: '臨床醫學', Econ: '經濟', Law: '法學', Chn: '中文', Hist: '歷史' };
   if (match) return `${subjects[match[1]]} ${match[2]}`;
@@ -218,6 +231,10 @@ function checkQuestion(
         questionTitle: question.title,
         userAnswerLabel: labels.join('、'),
         schoolValue: formatSchoolValue(val),
+        answerKeys: keys,
+        rule: 'excludes',
+        dim: rule.dim,
+        schoolValues: values,
       };
     }
   }
@@ -229,11 +246,20 @@ function checkQuestion(
     // S2 的通配值：另有試驗班對不到專業類，不能說它沒開——保留。
     if (values.includes(PROGRAM_CLASS_WILDCARD)) continue;
     if (!values.some((item) => okValues.has(item))) {
+      const entry = (dim === 'S1' || dim === 'S2') && ctx?.programs && school.moeCode ? ctx.programs.schools[school.moeCode] : undefined;
       return {
         questionId: question.id,
         questionTitle: question.title,
         userAnswerLabel: labels.join('、'),
         schoolValue: describeProgramSchoolValue(school, dim, val, okValues, ctx),
+        answerKeys: keys,
+        rule: 'requires',
+        dim,
+        schoolValues: values,
+        wantedValues: Array.from(okValues),
+        programs: entry
+          ? { u: entry.u, requirements: dim === 'S1' ? requirementCounts(entry, ctx!.programs!).map(([pattern, count]) => ({ pattern, count })) : undefined, classes: dim === 'S2' ? values.filter((item) => item !== PROGRAM_CLASS_WILDCARD) : undefined }
+          : undefined,
       };
     }
   }
@@ -279,6 +305,19 @@ export function filterSchools(
   };
 }
 
+/** 「你為什麼沒劃掉它」的機器欄：層次／城市等級／校類代碼（展示層以 reason.kept.* 與 tag.type.* 鍵翻譯）；空＝沒有設到會排除它的條件。 */
+export function keptHighlightCodes(school: School): { level?: 'C9' | '985' | '211' | 'doubleFirst'; tier?: 'tier1' | 'newtier1'; type?: string } {
+  const out: { level?: 'C9' | '985' | '211' | 'doubleFirst'; tier?: 'tier1' | 'newtier1'; type?: string } = {};
+  if (school.level === 'C9') out.level = 'C9';
+  else if (school.level === '985非C9') out.level = '985';
+  else if (school.level === '211非985') out.level = '211';
+  else if (school.level === '雙一流非211') out.level = 'doubleFirst';
+  if (school.cityTier === 'tier1') out.tier = 'tier1';
+  else if (school.cityTier === 'newtier1') out.tier = 'newtier1';
+  if (school.type && (out.level ? 1 : 0) + (out.tier ? 1 : 0) < 3) out.type = school.type;
+  return out;
+}
+
 // 給結果頁用的：「你為什麼沒劃掉它」一句話
 export function explainKept(school: School, _answers: AnswerMap): string {
   void _answers;
@@ -294,21 +333,27 @@ export function explainKept(school: School, _answers: AnswerMap): string {
   return bits.slice(0, 3).join(' · ');
 }
 
-// 給結果頁提示：如果剩 0 所，提示放寬哪幾題
-export function suggestRelax(stats: FilterStats, topN = 3): string[] {
+/** 排除最多的幾題（題號；展示層以 q.<id>.title 翻譯）。 */
+export function suggestRelaxIds(stats: FilterStats, topN = 3): DimensionId[] {
   const entries = Object.entries(stats.byQuestion);
   entries.sort((a, b) => b[1] - a[1]);
-  return entries.slice(0, topN).map(([qid]) => {
+  return entries.slice(0, topN).map(([qid]) => qid as DimensionId);
+}
+
+// 給結果頁提示：如果剩 0 所，提示放寬哪幾題
+export function suggestRelax(stats: FilterStats, topN = 3): string[] {
+  return suggestRelaxIds(stats, topN).map((qid) => {
     const q = allQuestions.find(q => q.id === qid);
     return q ? q.title : qid;
   });
 }
 
 // 分佈統計：按省份、層次
+/** code＝機器欄（省名原文／層次取值／城市等級代碼，未知為 'unknown'）；label＝zh-Hant 短寫。展示層以 geo.province.*／dist.level.*／dist.cityTier.* 翻譯。 */
 export interface KeptDistribution {
-  byProvince: { label: string; count: number }[];
-  byLevel: { label: string; count: number }[];
-  byCityTier: { label: string; count: number }[];
+  byProvince: { label: string; code: string; count: number }[];
+  byLevel: { label: string; code: string; count: number }[];
+  byCityTier: { label: string; code: string; count: number }[];
 }
 
 const levelDistLabel: Record<NonNullable<School['level']>, string> = {
@@ -328,18 +373,21 @@ const cityTierDistLabel: Record<NonNullable<School['cityTier']>, string> = {
 };
 
 export function distribute(kept: School[]): KeptDistribution {
-  const prov = new Map<string, number>();
-  const lvl = new Map<string, number>();
-  const tier = new Map<string, number>();
+  const prov = new Map<string, { label: string; count: number }>();
+  const lvl = new Map<string, { label: string; count: number }>();
+  const tier = new Map<string, { label: string; count: number }>();
+  const bump = (m: Map<string, { label: string; count: number }>, code: string, label: string) => {
+    const row = m.get(code) ?? { label, count: 0 };
+    row.count += 1;
+    m.set(code, row);
+  };
   for (const s of kept) {
-    prov.set(s.province, (prov.get(s.province) ?? 0) + 1);
-    const levelLabel = s.level ? levelDistLabel[s.level] : '未知層次';
-    const tierLabel = s.cityTier ? cityTierDistLabel[s.cityTier] : '未知城市等級';
-    lvl.set(levelLabel, (lvl.get(levelLabel) ?? 0) + 1);
-    tier.set(tierLabel, (tier.get(tierLabel) ?? 0) + 1);
+    bump(prov, s.province, s.province);
+    bump(lvl, s.level ?? 'unknown', s.level ? levelDistLabel[s.level] : '未知層次');
+    bump(tier, s.cityTier ?? 'unknown', s.cityTier ? cityTierDistLabel[s.cityTier] : '未知城市等級');
   }
-  const sortDesc = (m: Map<string, number>) =>
-    Array.from(m.entries()).map(([label, count]) => ({ label, count })).sort((a, b) => b.count - a.count);
+  const sortDesc = (m: Map<string, { label: string; count: number }>) =>
+    Array.from(m.entries()).map(([code, { label, count }]) => ({ label, code, count })).sort((a, b) => b.count - a.count);
   return {
     byProvince: sortDesc(prov),
     byLevel: sortDesc(lvl),

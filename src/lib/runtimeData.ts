@@ -1,3 +1,4 @@
+import { t } from '../i18n/core'
 import type { School } from '../data/schools'
 import type { CampusResearchRecord } from '../data/runtimeTypes'
 import { campusBucketFileByProvince } from '../data/campusProvinceBuckets'
@@ -28,7 +29,7 @@ export function loadSchools(): Promise<School[]> {
       if (!Array.isArray(loaded) || loaded.length !== runtimeDataManifest.counts.schools
         || loaded.some((school) => !school || typeof school.moeCode !== 'string')
         || new Set(loaded.map((school) => school.moeCode)).size !== loaded.length) {
-        throw new Error('學校目錄不完整，請重新載入')
+        throw new Error(t('ui.data.error.schools'))
       }
       return loaded
     }).catch((error: unknown) => {

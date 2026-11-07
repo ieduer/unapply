@@ -57,12 +57,14 @@ npm run audit:values
 npm run audit:data
 npm run test:filters
 npm run test:s1
+npm run data:i18n
+npm run test:i18n
 npm run lint
 npm run build
 npm run dev
 ```
 
-`audit:values` 是 2026-09 新增的死值閘門，說明見 §4.3。
+`audit:values` 是 2026-09 新增的死值閘門，說明見 §4.3。`data:i18n`／`test:i18n` 是 2026-11 批 E1 新增的多語言生成與閘門，說明見 §5.3。
 
 部署：
 
@@ -530,6 +532,46 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 - 當剩餘學校 `<= 10` 時，問卷會停在當前題並提示先看報告，不再自動跳轉到結果頁。
 - 結果頁除了剩餘名單，還必須保留「查一所學校」檢索區，讓用戶能看到某所學校是保留還是被哪幾題排掉。
 - 結果頁應保留「回去改條件」與「清空重來」入口。
+
+### 5.3 多語言（2026-11 批 E1 起，路線圖 S4）
+
+介面提供 zh-Hant（正體，來源語言）、zh-Hans（簡體，建置期由正體字級轉換生成）、en（站方翻譯）。語言只是展示層：
+不進 `AnswerMap`、不進 A+ 學習證據、不進 hash 路由；存 `localStorage` 鍵 `unapply.locale.v1`（值 `zh-Hant`／`zh-Hans`／`en`）。
+
+**檔案與模組**
+
+| 路徑 | 作用 |
+| --- | --- |
+| `src/i18n/locales/zh-Hant.json` | 來源字典（鍵→正體文字，鍵依 en 排序）；打包進主包，永不缺鍵 |
+| `src/i18n/locales/en.json` | 英文字典（同鍵集）；建置期壓縮到 `public/i18n/en.json` 懶載 |
+| `src/i18n/zh-hans.overrides.json` | 簡體不能由字形轉換得到的少數鍵（目前只有 `meta.htmlLang`） |
+| `scripts/build_i18n.mjs`（`npm run data:i18n`，在 `build` 鏈 `data:overseas` 之後） | 校驗三語鍵集合／空值／佔位符與標記一致，跑 140 條 fixtures，生成 `public/i18n/zh-Hans.json`、`public/i18n/en.json` 與 `src/data/i18nManifest.ts`（版本雜湊只由內容決定；前端載入時核對鍵數） |
+| `scripts/lib/t2s.mjs` ＋ `scripts/vendor/opencc/`（OpenCC `TSPhrases.txt` 277 條＋`TSCharacters.txt` 4,113 條，Apache-2.0，只在建置期） | 正體→簡體字級轉換：先站內例外表 `SITE_PHRASES`，再 OpenCC 詞組（只處理一繁對多簡的歧義），再字級；不用任何用詞替換表（`tw2sp`／`zh-cn` 類） |
+| `src/i18n/core.ts` | 無 React 依賴：`t(key, params)`、`tOr(key, fallback, params)`、`tpl(key)`、`formatNumber`、語言推測／儲存／懶載、`translatorFor(locale)`、`installDictionary`（測試用） |
+| `src/i18n/react.ts` | `useLocale()`：`{ locale, t, tOr, n, setLocale }`，語言切換時訂閱者重繪 |
+| `src/i18n/rich.tsx`／`richRender.tsx` | `<Rich k params slots/>`：模板允許 `<b>`、`<n>`（等寬數字）、`<x>`（強調色數字）、`<code>`、`<br/>`、`<a1>…<a9>`（鏈接／按鈕文字留在模板，網址留在程式） |
+| `src/lib/i18nLabels.ts` | 把引擎／資料的機器欄翻成人話：題目、選項、取值（`val.*`）、省名、校名顯示規則、卡片標籤、排除理由、鏈接標籤、S1／S2 判定 |
+| `src/components/LocaleSwitcher.tsx` | 頭部三態切換；字典先載再切，載不到就留在原語言 |
+| `tests/i18n.test.ts`（`npm run test:i18n`）＋`tests/fixtures/zh-hans.fixtures.json` | 閘門，見下 |
+
+**鍵名**（研究 `strings_inventory.md` §3 方案；追加式、不改名、不刪）：`q.<題號>.title`／`.subtitle`／`.opt.<key>.label`／`.hint`、`dim.<維度>.label`、`val.<維度>.<取值原文>`（取值就是契約，鍵的最後一段永不改）、`val.C5.subject.<代碼>`＋`val.C5.template`、`dist.level.*`／`dist.cityTier.*`、`subject.*`、`geo.province.<省名>`、`origin.<id>.label`／`.hint`、`section.*`、`tag.*`、`reason.*`、`program.*`、`link.*`、`meta.*`、`ui.<頁>.<項>`（頁 ∈ landing／runner／result／detail／about／world／hkmotw／overseas／contribute／share／evidence／app／common／data／aplus／locale）。模板佔位 `{name}`，由程式代入、永不翻譯。
+
+**語言邊界**（哪些不翻、哪些只轉字形）
+
+- 引擎、資料層、`lib/schoolProfile.ts`、`data/admissionAuthorities.ts`、Function 不得匯入 `src/i18n`（`test:i18n` 斷言）。引擎輸出的 zh-Hant 字串（`ExcludeReason.questionTitle`／`userAnswerLabel`／`schoolValue`、`buildSchoolTags`、`explainKept`）維持不變，另帶機器欄給展示層翻譯；gk 交接 `nope.v1` 固定送 zh-Hant 原文。
+- 契約／紀錄字串不翻不轉：`public/learning-manifest.json`、`lib/learningEvidence.ts`、結果頁下載紀錄、貢獻頁 GitHub issue 標題／正文與用戶中心事件、`trustedAPlus.ts` 的簡體狀態文字（另帶 `messageKey` 供介面顯示）。程式裡這些行以 `// i18n-contract` 標記，CJK 字面量掃描會跳過。
+- 資料驅動名稱不翻譯：學校名、城市名、專業目錄名、省考試院與來源標題、港澳臺院校／世界地圖／海外機構名與 payload 內的原文片段。校名顯示規則（`schoolDisplayName`）：zh-Hant＝原文（教育部主表簡體名照舊，不自行繁化）；zh-Hans＝手工增強層的 `nameSimplified`，其餘原文；en＝原文，有 `nameEn` 時並列。世界地圖學科名用 payload 自帶的 `nameZh`／`nameZhHans`／`nameEn`；地區名 en 用地區代碼（英文名）。payload 內的編輯說明（`statusZh`／`policyZh`／`note`／`roleLabel`／`typeZh`）以代碼經 `ui.overseas.*` 翻譯者優先，其餘照原文顯示。
+- `src/shared-ui/` 與 path.bdfz.net 逐位元組相同：色系面板 6 條與同步提示階段標籤 3 條在英文介面維持中文（待站長裁定兩站是否同批改，見發布記錄的 `PENDING_OWNER_REVIEW.md`）。
+
+**加一條字串**：在 `src/i18n/locales/zh-Hant.json` 與 `en.json` 加同一個鍵（保持排序；`data:i18n` 會擋鍵集合不一致、空值、佔位符或標記不一致）→ `npm run data:i18n` → 在程式裡 `t('key')`／`<Rich k="key"/>` → `npm run test:i18n`。簡體不手寫：若轉換結果有錯（一簡對多繁），在 `scripts/lib/t2s.mjs` 的 `SITE_PHRASES` 加詞組並補一條 fixture，不整體換轉換器；只有無法由字形得到的鍵才進 `zh-hans.overrides.json`。
+
+**英譯審校規則**：題目與選項語義精確（不增減條件）、術語照研究 `glossary.en.md`（Gaokao、Double First-Class、Project 985／211、comprehensive evaluation、HKDSE／JUPAS、GSAT／AST、programme class 等）、站規用語（cross out／subtraction、benefit of the doubt、still standing）、數字格式與貨幣寫明（CNY）、不出現機器腔與鍵名；en 不得含 CJK（白名單：查學校的示例佔位、`高考 / Gaokao` 字樣）。疑義以正體為準（About 頁「語言說明」已寫明）。
+
+**首次語言與切換**：已存的 `unapply.locale.v1` 優先；否則依 `navigator.languages`：`zh-TW`／`zh-HK`／`zh-MO`／`zh-Hant*`→zh-Hant，`zh-CN`／`zh-SG`／`zh-Hans*`→zh-Hans，`en*`→en，其餘（含單獨的 `zh`）→zh-Hant。非 zh-Hant 時 `main.tsx` 先載字典再首繪，載不到就留在 zh-Hant。切換時同步 `<html lang>`（`zh-Hant`／`zh-Hans`／`en`）、`document.title`、`meta[name=description]`；og:* 維持靜態正體。zh-Hans 介面的襯線字型在 `src/index.css` 以 `:root[lang="zh-Hans"]` 優先 Noto Serif SC（`index.html` 字型鏈接已加該家族；只在用到時下載）。
+
+**閘門 `test:i18n`**：三語鍵集合相等、已排序、無空值、佔位符與富文本標記一致且成對；zh-Hans 逐鍵等於字級轉換（覆寫表除外）且 140 條 fixtures 全過、不換用詞；en 無 CJK；zh-Hant 與倉庫原文逐條相等（45 題標題／副標／選項、維度標籤、取值、科目、省名、起點）；程式裡的靜態鍵與動態鍵族都存在；介面檔無未經 `t()` 的 CJK 字面量（資料檔、引擎、shared-ui、契約行除外）；45 題在三語下選項數與 key 不變；manifest 雜湊可重算；語言推測表；引擎不匯入 i18n。對比度閘門 `test:theme` 不受語言影響，但英文字串更長：發布前以內建瀏覽器在三語 × 兩色系 × 1440／390 逐路由量測（批 E1 記錄見 `reports/operations/nope-s4-i18n-origins-20261107/nope-e1/`）。
+
+**體積**（批 E1 當時值）：1,200 鍵；主包從 398 KiB 增到 466 KiB（含正體字典 77 KiB；gzip 143 KiB）；`public/i18n/zh-Hans.json` 77 KiB／`en.json` 91 KiB（gzip 各約 27 KiB），只在切到該語言時載入。無新執行期依賴；建置期字典 92 KiB 已 vendored。
 
 ## 6. 部署與驗證
 

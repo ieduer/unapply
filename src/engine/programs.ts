@@ -53,14 +53,19 @@ export function matchingPatternIndexes(entry: ProgramIndexEntry, prefs: ProgramP
   return entry.g?.includes(intent.classCode) ? [...exact, ...inClass] : exact
 }
 
-/** 排除理由用：全校本科專業的選考要求分佈（出現次數多的在前，最多 limit 種），例：物理＋化學 ×50 / 物理 ×6。 */
-export function describeRequirements(entry: ProgramIndexEntry, lookup: ProgramIndexLookup, limit = 4): string {
+/** 全校本科專業的選考要求圖樣分佈（出現次數多的在前）：[圖樣, 次數][]。展示層與排除理由共用。 */
+export function requirementCounts(entry: ProgramIndexEntry, lookup: ProgramIndexLookup): [string, number][] {
   const counts = new Map<string, number>()
   for (const index of allPatternIndexes(entry)) {
     const pattern = lookup.patterns[index] ?? 'none'
     counts.set(pattern, (counts.get(pattern) ?? 0) + 1)
   }
-  const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1])
+  return [...counts.entries()].sort((a, b) => b[1] - a[1])
+}
+
+/** 排除理由用：全校本科專業的選考要求分佈（出現次數多的在前，最多 limit 種），例：物理＋化學 ×50 / 物理 ×6。 */
+export function describeRequirements(entry: ProgramIndexEntry, lookup: ProgramIndexLookup, limit = 4): string {
+  const sorted = requirementCounts(entry, lookup)
   const shown = sorted.slice(0, limit).map(([pattern, n]) => `${requirementLabel(pattern)} ×${n}`)
   return sorted.length > limit ? `${shown.join(' / ')} 等 ${sorted.length} 種` : shown.join(' / ')
 }
@@ -73,7 +78,10 @@ export type ProgramStrikeKind = 'program' | 'subjects'
 
 export interface ProgramStrikeReason {
   kind: ProgramStrikeKind
+  /** zh-Hant 一句話（引擎語言）。 */
   label: string
+  /** 展示層翻譯用的機器欄：subjects＝選科代碼；u＝本科招生專業（類）數；required＝要求圖樣（最多 3 種）；wanted＝意向專業／專業類名稱（目錄原文）。 */
+  params: { subjects?: SubjectCode[]; u: number; required?: string[]; wanted?: string }
 }
 
 export interface ProgramVerdict {
@@ -98,8 +106,9 @@ export function evaluateSchoolPrograms(entry: ProgramIndexEntry | undefined, pre
   const chosen = prefs.subjects.length === 3 ? new Set(prefs.subjects) : null
   const all = allPatternIndexes(entry)
   if (chosen && !all.some((index) => isAdmissible(lookup.patterns[index], chosen))) {
-    const required = [...new Set(all.map((index) => requirementLabel(lookup.patterns[index])))].slice(0, 3).join('／')
-    reasons.push({ kind: 'subjects', label: `選科 ${subjectLabels(prefs.subjects).join('＋')} 報不了本校 ${entry.u} 個本科招生專業（類）中的任何一個（要求：${required}）` })
+    const requiredPatterns = [...new Set(all.map((index) => lookup.patterns[index] ?? 'none'))].slice(0, 3)
+    const required = requiredPatterns.map(requirementLabel).join('／')
+    reasons.push({ kind: 'subjects', label: `選科 ${subjectLabels(prefs.subjects).join('＋')} 報不了本校 ${entry.u} 個本科招生專業（類）中的任何一個（要求：${required}）`, params: { subjects: prefs.subjects, u: entry.u, required: requiredPatterns } })
   }
 
   const matching = matchingPatternIndexes(entry, prefs, lookup)
@@ -108,7 +117,7 @@ export function evaluateSchoolPrograms(entry: ProgramIndexEntry | undefined, pre
       if (reasons.length === 0) return { state: 'unknown', reasons: [], matchingCount: 0, admissibleCount: 0, experimental: entry.x }
     } else {
       const wanted = prefs.intent.programName ?? prefs.intent.className
-      reasons.push({ kind: 'program', label: `沒有開設「${wanted}」（${entry.u} 個本科招生專業（類）裡都沒有）` })
+      reasons.push({ kind: 'program', label: `沒有開設「${wanted}」（${entry.u} 個本科招生專業（類）裡都沒有）`, params: { u: entry.u, wanted } })
     }
   }
   if (reasons.length > 0) return { state: 'struck', reasons, matchingCount: matching.length, admissibleCount: 0, experimental: entry.x }

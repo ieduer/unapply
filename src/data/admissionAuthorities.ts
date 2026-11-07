@@ -2,10 +2,14 @@ import type { School } from './schools'
 import { provincePortalsByProvince } from './provinceAdmissionPortals'
 
 export interface AdmissionResourceLink {
+  /** zh-Hant 標籤（引擎語言）；展示層用 labelKey＋labelParams 翻譯（link.*）。 */
   label: string
+  labelKey: string
+  labelParams?: { province: string }
   url: string
   kind: 'official' | 'authority'
   note?: string
+  noteKey?: string
 }
 
 export const candidateProvinceOptions = Object.keys(provincePortalsByProvince) as CandidateProvince[]
@@ -28,6 +32,7 @@ export function getAdmissionResourceLinks(
   if (school.website) {
     links.push({
       label: '學校官網',
+      labelKey: 'link.officialSite',
       url: school.website,
       kind: 'official',
     })
@@ -36,6 +41,7 @@ export function getAdmissionResourceLinks(
   if (school.admissionWebsite) {
     links.push({
       label: '本科招生網',
+      labelKey: 'link.admissionSite',
       url: school.admissionWebsite,
       kind: 'official',
     })
@@ -43,14 +49,18 @@ export function getAdmissionResourceLinks(
 
   links.push({
     label: '陽光高考院校庫',
+    labelKey: 'link.chsi',
     url: buildChsiSchoolSearchUrl(school.nameSimplified ?? school.name),
     kind: 'authority',
     note: '教育部學生服務與素質發展中心',
+    noteKey: 'link.chsi.note',
   })
 
   if (provincePortal?.scoreQueryUrl) {
     links.push({
       label: `${candidateProvince}近年錄取/分數線`,
+      labelKey: 'link.provinceScores',
+      labelParams: { province: candidateProvince },
       url: provincePortal.scoreQueryUrl,
       kind: 'official',
       note: provincePortal.authorityName,
@@ -58,6 +68,8 @@ export function getAdmissionResourceLinks(
   } else if (provincePortal?.portalUrl) {
     links.push({
       label: `${candidateProvince}招考入口`,
+      labelKey: 'link.provincePortal',
+      labelParams: { province: candidateProvince },
       url: provincePortal.portalUrl,
       kind: 'official',
       note: provincePortal.authorityName,
@@ -67,6 +79,8 @@ export function getAdmissionResourceLinks(
   if (provincePortal?.planQueryUrl) {
     links.push({
       label: `${candidateProvince}招生計劃`,
+      labelKey: 'link.provincePlan',
+      labelParams: { province: candidateProvince },
       url: provincePortal.planQueryUrl,
       kind: 'official',
       note: provincePortal.authorityName,

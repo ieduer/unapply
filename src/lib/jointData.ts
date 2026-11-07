@@ -1,3 +1,4 @@
+import { t } from '../i18n/core'
 import { jointProgramsManifest } from '../data/jointProgramsManifest'
 import type { JointIndexPayload, JointItemsPayload } from '../data/jointTypes'
 
@@ -16,7 +17,7 @@ export function loadJointIndex(): Promise<JointIndexPayload> {
     indexPromise = fetchPayload<JointIndexPayload>(jointProgramsManifest.indexPath)
       .then((payload) => {
         const entries = Object.values(payload.schools ?? {})
-        if (payload.version !== jointProgramsManifest.version || entries.length !== jointProgramsManifest.counts.schools || entries.reduce((n, e) => n + e.i + e.p, 0) !== jointProgramsManifest.counts.matched) throw new Error('中外合作辦學資料不完整，請重新載入')
+        if (payload.version !== jointProgramsManifest.version || entries.length !== jointProgramsManifest.counts.schools || entries.reduce((n, e) => n + e.i + e.p, 0) !== jointProgramsManifest.counts.matched) throw new Error(t('ui.data.error.jointIndex'))
         return payload
       })
       .catch((error: unknown) => { indexPromise = null; throw error })
@@ -30,7 +31,7 @@ export function loadJointItems(): Promise<JointItemsPayload> {
     itemsPromise = fetchPayload<JointItemsPayload>(jointProgramsManifest.itemsPath)
       .then((payload) => {
         const total = Object.values(payload.items ?? {}).reduce((n, list) => n + list.length, 0)
-        if (payload.version !== jointProgramsManifest.version || total !== jointProgramsManifest.counts.matched || (payload.unmatched?.length ?? -1) !== jointProgramsManifest.counts.unmatched) throw new Error('中外合作辦學清單不完整，請重新載入')
+        if (payload.version !== jointProgramsManifest.version || total !== jointProgramsManifest.counts.matched || (payload.unmatched?.length ?? -1) !== jointProgramsManifest.counts.unmatched) throw new Error(t('ui.data.error.jointItems'))
         return payload
       })
       .catch((error: unknown) => { itemsPromise = null; throw error })

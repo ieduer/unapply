@@ -1,3 +1,4 @@
+import { t } from '../i18n/core'
 import { overseasManifest } from '../data/overseasManifest'
 import type { OverseasIndexPayload, OverseasRegionPayload } from '../data/overseasTypes'
 
@@ -22,7 +23,7 @@ export function loadOverseasIndex(): Promise<OverseasIndexPayload> {
           || institutions.length !== counts.institutions
           || institutions.filter((i) => i.linkLive).length !== counts.admissionsLinksLive
           || institutions.filter((i) => i.status === 'verified').length !== counts.byStatus.verified) {
-          throw new Error('海外可申請學校資料不完整，請重新載入')
+          throw new Error(t('ui.data.error.overseasIndex'))
         }
         return payload
       })
@@ -33,12 +34,12 @@ export function loadOverseasIndex(): Promise<OverseasIndexPayload> {
 
 /** 一個地區的完整資料（機構全欄原文片段、申請平台、簽證頁）；只在進入地區頁時載入。 */
 export function loadOverseasRegion(slug: string): Promise<OverseasRegionPayload> {
-  if (!/^[a-z0-9-]{2,64}$/.test(slug)) return Promise.reject(new Error('地區代碼不合法'))
+  if (!/^[a-z0-9-]{2,64}$/.test(slug)) return Promise.reject(new Error(t('ui.data.error.regionSlug')))
   if (!regionPromises.has(slug)) {
     const promise = fetchPayload<OverseasRegionPayload>(`${overseasManifest.regionsBasePath}/${slug}.json`)
       .then((payload) => {
         if (payload.version !== overseasManifest.version || payload.region?.slug !== slug || !Array.isArray(payload.institutions) || !Array.isArray(payload.portals) || !Array.isArray(payload.visa)) {
-          throw new Error('這個地區的海外學校資料不完整，請重新載入')
+          throw new Error(t('ui.data.error.overseasRegion'))
         }
         return payload
       })

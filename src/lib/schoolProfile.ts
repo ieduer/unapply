@@ -142,20 +142,29 @@ export function getSpecialAdmissionLabels(school: School, ctx?: AdmissionContext
     .map((track) => specialTrackLabelMap[track])
 }
 
-export function buildSchoolTags(school: School, ctx?: AdmissionContext): string[] {
-  const tags: string[] = []
+/** 卡片標籤的機器欄：key＝翻譯鍵（tag.*；自由標籤為 tag.free）、params＝佔位值、fallback＝zh-Hant 文字。語言不進本模組（引擎匯入它）。 */
+export interface SchoolTagSpec {
+  key: string
+  params?: Record<string, string>
+  fallback: string
+}
 
-  if (school.level && levelLabelMap[school.level]) tags.push(levelLabelMap[school.level])
-  if (school.type) tags.push(school.type)
-  if (school.cityTier && cityTierLabelMap[school.cityTier]) tags.push(cityTierLabelMap[school.cityTier])
-  tags.push(`${school.province} · ${school.city}`)
-  if (school.mainCampusType && campusLabelMap[school.mainCampusType]) tags.push(campusLabelMap[school.mainCampusType])
-  if (school.tuitionRange && tuitionLabelMap[school.tuitionRange]) tags.push(tuitionLabelMap[school.tuitionRange])
-  tags.push(...getSpecialAdmissionLabels(school, ctx))
-
-  if (school.tags?.length) {
-    for (const tag of school.tags) tags.push(tag)
+export function buildSchoolTagSpecs(school: School, ctx?: AdmissionContext): SchoolTagSpec[] {
+  const specs: SchoolTagSpec[] = []
+  if (school.level && levelLabelMap[school.level]) specs.push({ key: `tag.level.${school.level}`, fallback: levelLabelMap[school.level] })
+  if (school.type) specs.push({ key: `tag.type.${school.type}`, fallback: school.type })
+  if (school.cityTier && cityTierLabelMap[school.cityTier]) specs.push({ key: `tag.cityTier.${school.cityTier}`, fallback: cityTierLabelMap[school.cityTier] })
+  specs.push({ key: 'tag.provinceCity', params: { province: school.province, city: school.city }, fallback: `${school.province} · ${school.city}` })
+  if (school.mainCampusType && campusLabelMap[school.mainCampusType]) specs.push({ key: `tag.campus.${school.mainCampusType}`, fallback: campusLabelMap[school.mainCampusType] })
+  if (school.tuitionRange && tuitionLabelMap[school.tuitionRange]) specs.push({ key: `tag.tuition.${school.tuitionRange}`, fallback: tuitionLabelMap[school.tuitionRange] })
+  for (const track of getSpecialAdmissionTracks(school, ctx)) {
+    if (track !== 'regular_gaokao') specs.push({ key: `tag.track.${track}`, fallback: specialTrackLabelMap[track] })
   }
+  for (const tag of school.tags ?? []) specs.push({ key: 'tag.free', fallback: tag })
+  const seen = new Set<string>()
+  return specs.filter((spec) => (seen.has(spec.fallback) ? false : (seen.add(spec.fallback), true))).slice(0, 8)
+}
 
-  return Array.from(new Set(tags)).slice(0, 8)
+export function buildSchoolTags(school: School, ctx?: AdmissionContext): string[] {
+  return buildSchoolTagSpecs(school, ctx).map((spec) => spec.fallback)
 }

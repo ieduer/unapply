@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import {
   adultHigherEducationCount,
   officialSchoolCount,
@@ -6,141 +7,180 @@ import {
 } from '../data/schoolCatalogSummary'
 import { programsManifest } from '../data/programsManifest'
 import { overseasManifest } from '../data/overseasManifest'
+import { useLocale } from '../i18n/react'
+import { Rich, type RichParams } from '../i18n/rich'
+import { LocaleSwitcher } from './LocaleSwitcher'
 
 interface Props { onBack: () => void }
 
+const ext = (href: string) => (children: ReactNode) => (
+  <a className="text-accent-500 hover:text-accent-400 mono break-all" href={href} target="_blank" rel="noreferrer noopener">{children}</a>
+)
+const site = (href: string) => (children: ReactNode) => (
+  <a className="text-accent-500 hover:text-accent-400" href={href} target="_blank" rel="noreferrer noopener">{children}</a>
+)
+
+/** 一條來源／方法條目：模板裡的 <a1> 以 href 包成外部鏈接。 */
+function Li({ k, params, href }: { k: string; params?: RichParams; href?: string }) {
+  return <li><Rich k={k} params={params} slots={href ? { a1: ext(href) } : undefined} /></li>
+}
+
+/** 關於頁：長段落逐段一鍵（ui.about.*），鏈接文字在模板裡、網址在這裡；數字由 manifest 帶入。 */
 export function AboutPage({ onBack }: Props) {
+  const { t, n } = useLocale()
+  const o = overseasManifest.counts
   return (
     <main className="min-h-screen app-canvas text-fog-100">
       <header className="sticky top-0 z-10 backdrop-blur bg-ink-950/80 border-b border-ink-800">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-3">
           <button onClick={onBack} className="text-xs mono uppercase tracking-[0.2em] text-fog-500 hover:text-accent-500 min-h-[44px] -my-3 py-3">
-            ← 返回
+            {t('ui.common.back')}
           </button>
-          <span className="mono text-xs text-fog-500">about</span>
+          <div className="flex items-center gap-3">
+            <LocaleSwitcher />
+            <span className="mono text-xs text-fog-500">{t('ui.about.brand')}</span>
+          </div>
         </div>
       </header>
 
       <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8 sm:gap-10 text-fog-300 leading-relaxed text-sm sm:text-base">
         <div>
-          <h1 className="serif text-3xl text-fog-100 mb-4">為什麼做減法？</h1>
-          <p>
-            絕大多數志願填報工具都在告訴你「該考哪」。我們不做這件事。
-            我們只陪你把不能忍的那一批劃掉，讓篩子從教育部 2026 名單的 {officialSchoolCount.toLocaleString()} 所普通高校變成剩下的幾百所。
-          </p>
-          <p className="mt-3">
-            剩下的那些，不是「我們推薦你考」的，而是「你沒有理由排除它」的。
-            判斷權始終在你手上。
-          </p>
+          <h1 className="serif text-3xl text-fog-100 mb-4">{t('ui.about.why.title')}</h1>
+          <p>{t('ui.about.why.p1', { total: n(officialSchoolCount) })}</p>
+          <p className="mt-3">{t('ui.about.why.p2')}</p>
         </div>
 
         <div>
-          <h2 className="serif text-2xl text-fog-100 mb-4">四類維度（基礎 42 維）</h2>
-          <p className="text-sm text-fog-500 mb-4">
-            問卷會按當前數據覆蓋動態出題。沒有任何實際刪減能力的題或限制選項，會先暫時隱藏，避免你白答一輪。
-            隱藏是有代價的——一個題目可能因此悄悄少掉一半選項，所以倉庫裡有一道 audit 閘門：任何「枚舉裡有、數據裡沒有」的取值都必須被顯式聲明，否則構建不通過。
-          </p>
+          <h2 className="serif text-2xl text-fog-100 mb-4">{t('ui.about.dims.title')}</h2>
+          <p className="text-sm text-fog-500 mb-4">{t('ui.about.dims.note')}</p>
           <ul className="flex flex-col gap-3 list-disc pl-5">
-            <li><b className="text-fog-100">A 紅線（6 題）</b>：省份、城市等級、辦學層次、學費口徑、校區位置。一票否決；校區和精確學費未知時保持未知。</li>
-            <li><b className="text-fog-100">E 環境（8 題）</b>：集中供暖、夏冬體感、霧霾、方言、地鐵、沿海、高海拔。從省份+城市由氣象局／生態環境部／軌道交通協會數據<span className="text-fog-100">客觀推導</span>，覆蓋所有學校。</li>
-            <li><b className="text-fog-100">B 生活質量（24 題）</b>：宿舍、空調、澡堂、自習、晨跑、外賣、斷電、熱水、門禁等。眾包維度，缺失就缺失，不默認；匿名回報缺少校區與年份契約，只展示、不作整校排除。</li>
-            <li><b className="text-fog-100">C 特殊（5 題）</b>：飲食禁忌、無障礙、LGBTQ+、外省生源、學科評估。</li>
+            <Li k="ui.about.dims.A" />
+            <Li k="ui.about.dims.E" />
+            <Li k="ui.about.dims.B" />
+            <Li k="ui.about.dims.C" />
           </ul>
         </div>
 
         <div>
-          <h2 className="serif text-2xl text-fog-100 mb-4">數據來源</h2>
-          <h3 className="serif text-lg text-fog-100 mt-3 mb-2">官方／權威（年度基準）</h3>
+          <h2 className="serif text-2xl text-fog-100 mb-4">{t('ui.about.sources.title')}</h2>
+          <h3 className="serif text-lg text-fog-100 mt-3 mb-2">{t('ui.about.sources.officialTitle')}</h3>
           <ul className="flex flex-col gap-2 text-sm">
-            <li>· 教育部 2026 全國普通高等學校名單：{officialSchoolCount.toLocaleString()} 所（本科 {officialUndergraduateCount.toLocaleString()} · 高職專科 {officialVocationalCount.toLocaleString()}；成人高校 {adultHigherEducationCount.toLocaleString()} 所只作口徑說明） <a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202606/t20260618_1441074.html" target="_blank" rel="noreferrer noopener">moe.gov.cn ↗</a></li>
-            <li>· 教育部「雙一流」建設高校名單：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.moe.gov.cn/srcsite/A22/s7065/202202/t20220211_598710.html" target="_blank" rel="noreferrer noopener">moe.gov.cn ↗</a></li>
-            <li>· 教育部「985 工程」名單：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.moe.gov.cn/srcsite/A22/s7065/200612/t20061206_128833.html" target="_blank" rel="noreferrer noopener">moe.gov.cn ↗</a></li>
-            <li>· 教育部第四輪學科評估（2017）：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/" target="_blank" rel="noreferrer noopener">chinadegrees.cn ↗</a></li>
-            <li>· 陽光高考信息平台（學費／分省計劃）：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://gaokao.chsi.com.cn/" target="_blank" rel="noreferrer noopener">chsi.com.cn ↗</a></li>
-            <li>· 中國氣象局（氣候分區）：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.cma.gov.cn/2011xzt/essay/" target="_blank" rel="noreferrer noopener">cma.gov.cn ↗</a></li>
-            <li>· 生態環境部（PM2.5 年均）：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.mee.gov.cn/hjzl/sthjzk/zghjzkgb/" target="_blank" rel="noreferrer noopener">mee.gov.cn ↗</a></li>
-            <li>· 中國城市軌道交通協會：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.camet.org.cn/tjxx/" target="_blank" rel="noreferrer noopener">camet.org.cn ↗</a></li>
-            <li>· 第一財經新一線城市研究所：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.yicai.com/topic/100311963/" target="_blank" rel="noreferrer noopener">yicai.com ↗</a></li>
-            <li>· 民政部《全國行政區劃》：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.mca.gov.cn/" target="_blank" rel="noreferrer noopener">mca.gov.cn ↗</a></li>
-            <li>· 《中國語言地圖集》（商務印書館／中國社科院）：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.cssn.cn/" target="_blank" rel="noreferrer noopener">cssn.cn ↗</a></li>
+            <Li k="ui.about.sources.moeList" params={{ total: n(officialSchoolCount), undergrad: n(officialUndergraduateCount), vocational: n(officialVocationalCount), adult: n(adultHigherEducationCount) }} href="https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202606/t20260618_1441074.html" />
+            <Li k="ui.about.sources.doubleFirst" href="https://www.moe.gov.cn/srcsite/A22/s7065/202202/t20220211_598710.html" />
+            <Li k="ui.about.sources.p985" href="https://www.moe.gov.cn/srcsite/A22/s7065/200612/t20061206_128833.html" />
+            <Li k="ui.about.sources.eval" href="https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/" />
+            <Li k="ui.about.sources.chsi" href="https://gaokao.chsi.com.cn/" />
+            <Li k="ui.about.sources.cma" href="https://www.cma.gov.cn/2011xzt/essay/" />
+            <Li k="ui.about.sources.mee" href="https://www.mee.gov.cn/hjzl/sthjzk/zghjzkgb/" />
+            <Li k="ui.about.sources.camet" href="https://www.camet.org.cn/tjxx/" />
+            <Li k="ui.about.sources.yicai" href="https://www.yicai.com/topic/100311963/" />
+            <Li k="ui.about.sources.mca" href="https://www.mca.gov.cn/" />
+            <Li k="ui.about.sources.langAtlas" href="https://www.cssn.cn/" />
           </ul>
-          <h3 className="serif text-lg text-fog-100 mt-4 mb-2">全球學科地圖（只描述分佈，不作推薦）</h3>
+          <h3 className="serif text-lg text-fog-100 mt-4 mb-2">{t('ui.about.sources.atlasTitle')}</h3>
           <ul className="flex flex-col gap-2 text-sm">
-            <li>· 軟科世界一流學科排名 GRAS 2026（57 個學科、每科前 50 名，公開頁面讀取）：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.shanghairanking.com/rankings/gras/2026" target="_blank" rel="noreferrer noopener">shanghairanking.com ↗</a></li>
-            <li>· 機構座標與正體中文名：Wikidata（CC0）；大陸機構改用教育部校名與本站校區底稿的主校區座標：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.wikidata.org/" target="_blank" rel="noreferrer noopener">wikidata.org ↗</a></li>
-            <li>· 陸地輪廓：Natural Earth 1:110m Land（公有領域），只畫陸地、不畫國界：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.naturalearthdata.com/" target="_blank" rel="noreferrer noopener">naturalearthdata.com ↗</a></li>
-            <li>· 教育部《普通高等學校本科專業目錄（2026 年）》（13 門類、92 專業類、883 種專業；專業名稱用目錄原文）：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="http://www.moe.gov.cn/srcsite/A08/moe_1034/s3882/202604/t20260427_1434931.html" target="_blank" rel="noreferrer noopener">moe.gov.cn ↗</a></li>
-            <li>· 2027 年擬招生普通高校專業（類）選考科目要求彙總表（學校報送、全國統一口徑；本站取能以腳本取得的七省官方表交叉核對，覆蓋表中列出的 {programsManifest.counts.schools.toLocaleString()} 校；問卷「選考科目」「意向專業類」兩題與學校詳情都算在這份資料上；只以查詢系統公布、或本機連不上的省份未納入）：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://jyt.hubei.gov.cn/bmdt/ztzl/gxzs/xxgk/ywgg/202502/t20250228_5559043.shtml" target="_blank" rel="noreferrer noopener">湖北省教育廳 ↗</a> · <a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://jyt.jiangsu.gov.cn/art/2025/2/20/art_58320_11496337.html" target="_blank" rel="noreferrer noopener">江蘇省教育廳 ↗</a> · <a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.shmeea.edu.cn/page/08000/20250221/19115.html" target="_blank" rel="noreferrer noopener">上海市教育考試院 ↗</a> · <a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.zjzs.net/col/col369/index.html" target="_blank" rel="noreferrer noopener">浙江省教育考試院 ↗</a> · <a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.sdzk.cn/NewsInfo.aspx?NewsID=6819" target="_blank" rel="noreferrer noopener">山東省教育招生考試院 ↗</a> · <a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.haeea.cn/a/202504/43488_e2b7c248.shtml" target="_blank" rel="noreferrer noopener">河南省教育考試院 ↗</a> · <a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.nm.zsks.cn/kszs/ptgk/zcfg/202503/t20250318_45530.html" target="_blank" rel="noreferrer noopener">內蒙古招生考試信息網 ↗</a></li>
-            <li>· 強基計劃試點高校名單（教育部 2020 年意見附件 1；2022 年增列三校以各校 2026 年招生簡章為證）：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="http://www.moe.gov.cn/srcsite/A15/moe_776/s3258/202001/t20200115_415589.html" target="_blank" rel="noreferrer noopener">moe.gov.cn ↗</a></li>
-            <li>· 企業直招高中生計劃：各計劃官方頁；缺官方頁時用主流媒體報導並標示可信度與核對日期，條目隨招募年度變動。</li>
-            <li>· 中外合作辦學機構／項目（2026-11-07 批 D2）：教育部中外合作辦學監管工作信息平台「經審批和復核的機構及項目名單」（本科與碩士及以上兩份名單＋各省名單）逐條詳情頁：中方／外方（或內地／港澳臺）合作辦學者、辦學層次、專業、批准書／許可證編號與有效期、招生年份；本站按中方校名對回教育部主表，獨立法人機構以機構本身對回；只展示不判定，平台無學費欄故不產生學費取值：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.crs.jsj.edu.cn/" target="_blank" rel="noreferrer noopener">crs.jsj.edu.cn ↗</a></li>
-            <li>· 港澳臺院校池（#/hkmotw，2026-11-07 批 D3）：只收官方來源——香港各院校的內地高考／非本地學生招生頁、澳門教育及青年發展局「澳門高等院校連結」與各院校招生處頁、臺灣陸生聯招會與海外聯招會官方頁；每條管道帶來源網址、來源網域與機構一致、實際連通與核對日，核不過的留在資料檔待人工覆核不上線：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://portal.dsedj.gov.mo/webdsejspace/internet/Inter_main_page.jsp?id=80123" target="_blank" rel="noreferrer noopener">澳門教育及青年發展局 ↗</a> · <a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://rusen.stust.edu.tw/cpx/index.html" target="_blank" rel="noreferrer noopener">陸生聯招會 ↗</a> · <a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://cmn-hant.overseas.ncnu.edu.tw/" target="_blank" rel="noreferrer noopener">海外聯招會 ↗</a></li>
-            <li>· 海外可申請學校（#/overseas，2026-11-07 批 S3）：全球學科地圖裡 {overseasManifest.counts.institutions} 所非中國大陸機構，從 S0 已核的官網出發，以明示身分、尊重 robots.txt、不登入不繞過驗證的爬蟲讀取各校<b className="text-fog-100">官方國際本科招生頁</b>（每校最多 16 頁、停留在同一官方網域），只抄原文片段（高考採認、接受的學歷資格、英語與其他語言要求、國際生學費、申請管道、申請時程、資料學年）並保留來源網址與抓取日，不解讀、不換算、不用 AI 生成；另核查 {overseasManifest.counts.portals.total} 條各國官方申請平台／資訊入口與 {overseasManifest.counts.visa.total} 條簽證主管機關頁。官方頁已讀到 {overseasManifest.counts.byStatus.verified} 所（同官網網域 {overseasManifest.counts.byConfidence.high}、學校另一官方網域 {overseasManifest.counts.byConfidence.medium}），對聲明身分的爬蟲回驗證頁或 robots 不允許 {overseasManifest.counts.byStatus.blocked} 所、未找到對應頁 {overseasManifest.counts.byStatus.not_found} 所、純 JavaScript 待人工覆核 {overseasManifest.counts.byStatus.needs_review} 所。鏈接規則：機構招生頁只有「已讀到且同官網網域」才上鏈接，另一官方網域待人工確認；各校共用的非政府申請平台要有機構官方頁鏈到它才上鏈接；簽證頁已讀到才上鏈接；被擋者只寫主管機關名與「核查時被擋」。這一層<b className="text-fog-100">不代表錄取可能</b>，排名只描述學科分佈，年度隨 GRAS 更新重核。研究方法與逐校證據：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://github.com/ieduer/unapply/blob/master/docs/MAINTENANCE_MANUAL.md" target="_blank" rel="noreferrer noopener">docs/MAINTENANCE_MANUAL.md §3.7 ↗</a></li>
+            <Li k="ui.about.sources.gras" href="https://www.shanghairanking.com/rankings/gras/2026" />
+            <Li k="ui.about.sources.wikidata" href="https://www.wikidata.org/" />
+            <Li k="ui.about.sources.naturalEarth" href="https://www.naturalearthdata.com/" />
+            <Li k="ui.about.sources.catalog" href="http://www.moe.gov.cn/srcsite/A08/moe_1034/s3882/202604/t20260427_1434931.html" />
+            <li>
+              <Rich
+                k="ui.about.sources.subjectTables"
+                params={{ schools: n(programsManifest.counts.schools) }}
+                slots={{
+                  a1: ext('https://jyt.hubei.gov.cn/bmdt/ztzl/gxzs/xxgk/ywgg/202502/t20250228_5559043.shtml'),
+                  a2: ext('https://jyt.jiangsu.gov.cn/art/2025/2/20/art_58320_11496337.html'),
+                  a3: ext('https://www.shmeea.edu.cn/page/08000/20250221/19115.html'),
+                  a4: ext('https://www.zjzs.net/col/col369/index.html'),
+                  a5: ext('https://www.sdzk.cn/NewsInfo.aspx?NewsID=6819'),
+                  a6: ext('https://www.haeea.cn/a/202504/43488_e2b7c248.shtml'),
+                  a7: ext('https://www.nm.zsks.cn/kszs/ptgk/zcfg/202503/t20250318_45530.html'),
+                }}
+              />
+            </li>
+            <Li k="ui.about.sources.strongBase" href="http://www.moe.gov.cn/srcsite/A15/moe_776/s3258/202001/t20200115_415589.html" />
+            <Li k="ui.about.sources.directHire" />
+            <Li k="ui.about.sources.joint" href="https://www.crs.jsj.edu.cn/" />
+            <li>
+              <Rich
+                k="ui.about.sources.hkmotw"
+                slots={{
+                  a1: ext('https://portal.dsedj.gov.mo/webdsejspace/internet/Inter_main_page.jsp?id=80123'),
+                  a2: ext('https://rusen.stust.edu.tw/cpx/index.html'),
+                  a3: ext('https://cmn-hant.overseas.ncnu.edu.tw/'),
+                }}
+              />
+            </li>
+            <Li
+              k="ui.about.sources.overseasLayer"
+              params={{ institutions: o.institutions, portals: o.portals.total, visa: o.visa.total, verified: o.byStatus.verified, high: o.byConfidence.high, medium: o.byConfidence.medium, blocked: o.byStatus.blocked, notFound: o.byStatus.not_found, needsReview: o.byStatus.needs_review }}
+              href="https://github.com/ieduer/unapply/blob/master/docs/MAINTENANCE_MANUAL.md"
+            />
           </ul>
-          <h3 className="serif text-lg text-fog-100 mt-4 mb-2">眾包（部分覆蓋，缺失不默認）</h3>
+          <h3 className="serif text-lg text-fog-100 mt-4 mb-2">{t('ui.about.sources.crowdTitle')}</h3>
           <ul className="flex flex-col gap-2 text-sm">
-            <li>· CollegesChat 眾包問卷（CC BY-NC-SA 4.0）：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://github.com/CollegesChat/university-information" target="_blank" rel="noreferrer noopener">github.com/CollegesChat ↗</a></li>
-            <li>· 用戶貢獻（經 GitHub Issue 三人審核後入庫）：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://github.com/ieduer/unapply/issues?q=label%3Adata-contribution" target="_blank" rel="noreferrer noopener">ieduer/unapply issues ↗</a></li>
+            <Li k="ui.about.sources.collegeschat" href="https://github.com/CollegesChat/university-information" />
+            <Li k="ui.about.sources.userContrib" href="https://github.com/ieduer/unapply/issues?q=label%3Adata-contribution" />
           </ul>
         </div>
 
         <div>
-          <h2 className="serif text-2xl text-fog-100 mb-4">口徑與缺失處理</h2>
+          <h2 className="serif text-2xl text-fog-100 mb-4">{t('ui.about.scope.title')}</h2>
           <ul className="flex flex-col gap-2 text-sm list-disc pl-5">
-            <li>教育部 2026 版口徑下，普通高校 {officialSchoolCount.toLocaleString()} 所；成人高校 {adultHigherEducationCount.toLocaleString()} 所只作口徑說明，不進篩選主池。</li>
-            <li>人工增強字段目前覆蓋少量重點學校，用來補英文名、校區類型和少量高價值樣本；不是官方主表。</li>
-            <li>數據缺失的維度，本站採用 <b className="text-fog-100">疑罪從無</b>：不排除該校，也不猜測填空。</li>
-            <li>暫時沒有實際刪減能力的題和限制選項，會先隱藏；等數據補齊後再放回問卷。具體口徑和缺口說明統一放在這裡，不打斷做題。</li>
+            <li>{t('ui.about.scope.counts', { total: n(officialSchoolCount), adult: n(adultHigherEducationCount) })}</li>
+            <li>{t('ui.about.scope.curated')}</li>
+            <Li k="ui.about.scope.presumption" />
+            <li>{t('ui.about.scope.hidden')}</li>
           </ul>
         </div>
 
         <div>
-          <h2 className="serif text-2xl text-fog-100 mb-4">方法論</h2>
+          <h2 className="serif text-2xl text-fog-100 mb-4">{t('ui.about.method.title')}</h2>
           <ul className="flex flex-col gap-2 text-sm list-disc pl-5">
-            <li><b className="text-fog-100">疑罪從無</b>：當某所學校某維度數據缺失，不會用該題排除它。</li>
-            <li><b className="text-fog-100">證據範圍門檻</b>：匿名生活回報保留完整填答分母與各種回答的票數；無法判讀不代表不存在，也不把不同校區混票當整校政策。只有當年度明確覆蓋整校的官方生活資料才可參與排除，校區資料僅作參考。</li>
-            <li><b className="text-fog-100">先驗不是結論</b>：絕大多數學校填志願就能錄取，所以那是預設；但預設必須可被章程推翻。本科只走綜合評價（須另行報名 + 校測）的院校，逐省逐年記在招生管道表裡，在校名旁標「綜評校測·無常規批」，並附章程鏈接。查不到章程的一律回到預設，寧可少排除，不誤殺。</li>
-            <li><b className="text-fog-100">不默認</b>：不以「985 通常有這樣」之類推論來填充學校級別的具體字段。缺失就缺失，引導用戶貢獻。</li>
-            <li><b className="text-fog-100">權威層級推導是例外</b>：省份 → 氣候／方言／沿海這種地理事實來自權威機構，不是默認。</li>
-            <li><b className="text-fog-100">中性展示</b>：所有維度以事實 + 時間戳 + 來源呈現。</li>
-            <li><b className="text-fog-100">非商業</b>：本站非商業公益；派生自 CollegesChat 的數據繼承 CC BY-NC-SA 4.0。</li>
-            <li><b className="text-fog-100">不提供志願填報建議</b>：本站不是教育機構，不對錄取結果負責。</li>
+            <Li k="ui.about.method.presumption" />
+            <Li k="ui.about.method.evidence" />
+            <Li k="ui.about.method.prior" />
+            <Li k="ui.about.method.noDefault" />
+            <Li k="ui.about.method.derivation" />
+            <Li k="ui.about.method.neutral" />
+            <Li k="ui.about.method.nonCommercial" />
+            <Li k="ui.about.method.noAdvice" />
           </ul>
         </div>
 
         <div>
-          <h2 className="serif text-2xl text-fog-100 mb-4">全球化路線圖</h2>
-          <p>
-            本站最終要做成全球學生都能用的學校減法：先問你在哪裡升學，再按你的選擇一路做減法，最後落到專業與學校；不同地區的學生可以跨國選，
-            站內同時建一個有來源、有年份、有有效期的全球高校資料庫，連同各校招生情況一起可查。近幾年一些公司繞過高校直接招高中畢業生，這類非大學路徑也列入。
-          </p>
+          <h2 className="serif text-2xl text-fog-100 mb-4">{t('ui.about.language.title')}</h2>
+          <p className="text-sm">{t('ui.about.language.text')}</p>
+        </div>
+
+        <div>
+          <h2 className="serif text-2xl text-fog-100 mb-4">{t('ui.about.roadmap.title')}</h2>
+          <p>{t('ui.about.roadmap.intro')}</p>
           <ul className="flex flex-col gap-2 text-sm list-disc pl-5 mt-3">
-            <li><b className="text-fog-100">S0（現在）</b>：首頁先問所在地；全球學科地圖＋學科／地區減法；企業直招高中生首批條目。</li>
-            <li><b className="text-fog-100">S1</b>：中國大陸高校按專業、錄取條件、招生政策逐校逐年補齊。</li>
-            <li><b className="text-fog-100">S2</b>：中外合作辦學、內地與港澳臺合作辦學，港澳臺院校與管道。</li>
-            <li><b className="text-fog-100">S3（2026-11-07 首批已上線）</b>：海外可申請學校（#/overseas）——GRAS 前 50 的 {overseasManifest.counts.institutions} 所非大陸機構逐校官方招生頁原文（高考採認、學歷資格、語言、學費、申請管道、時程）、{overseasManifest.counts.regions} 個國家地區的官方申請平台與簽證頁；缺的保持未知，待補：被擋與純 JavaScript 機構的人工覆核、名額。</li>
-            <li><b className="text-fog-100">S4–S5</b>：多語言與多起點；全球高校權威資料庫服務化。</li>
+            <Li k="ui.about.roadmap.s0" />
+            <Li k="ui.about.roadmap.s1" />
+            <Li k="ui.about.roadmap.s2" />
+            <Li k="ui.about.roadmap.s3" params={{ institutions: o.institutions, regions: o.regions }} />
+            <Li k="ui.about.roadmap.s45" />
           </ul>
           <p className="mt-3 text-sm text-fog-500">
-            完整目標、分階段定義與資料權威分級：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://github.com/ieduer/unapply/blob/master/docs/GLOBAL_ROADMAP.md" target="_blank" rel="noreferrer noopener">docs/GLOBAL_ROADMAP.md ↗</a>
+            <Rich k="ui.about.roadmap.link" slots={{ a1: ext('https://github.com/ieduer/unapply/blob/master/docs/GLOBAL_ROADMAP.md') }} />
           </p>
         </div>
 
         <div>
-          <h2 className="serif text-2xl text-fog-100 mb-4">和姊妹站的關係</h2>
+          <h2 className="serif text-2xl text-fog-100 mb-4">{t('ui.about.sisters.title')}</h2>
           <ul className="flex flex-col gap-2 text-sm list-disc pl-5">
-            <li><a className="text-accent-500 hover:text-accent-400" href="https://path.bdfz.net" target="_blank" rel="noreferrer noopener">path.bdfz.net</a> — 職業減法（先確定你要做什麼）</li>
-            <li><a className="text-accent-500 hover:text-accent-400" href="https://nope.bdfz.net" target="_blank" rel="noreferrer noopener">nope.bdfz.net</a> — 學校減法（再確定你不去哪）</li>
-            <li><a className="text-accent-500 hover:text-accent-400" href="https://gk.rdfzer.com/#advice-top" target="_blank" rel="noreferrer noopener">gk.rdfzer.com</a> — 高考報考與北京高考補充資料</li>
-            <li><a className="text-accent-500 hover:text-accent-400" href="https://my.bdfz.net" target="_blank" rel="noreferrer noopener">my.bdfz.net</a> — 登錄後，減法結果自動同步</li>
+            <li><Rich k="ui.about.sisters.path" slots={{ a1: site('https://path.bdfz.net') }} /></li>
+            <li><Rich k="ui.about.sisters.nope" slots={{ a1: site('https://nope.bdfz.net') }} /></li>
+            <li><Rich k="ui.about.sisters.gk" slots={{ a1: site('https://gk.rdfzer.com/#advice-top') }} /></li>
+            <li><Rich k="ui.about.sisters.my" slots={{ a1: site('https://my.bdfz.net') }} /></li>
           </ul>
         </div>
 
         <div className="border border-ink-800 bg-ink-900/60 rounded-xl px-4 py-4">
-          <h2 className="serif text-xl text-fog-100 mb-3">如果你覺得它有用</h2>
-          <p className="text-sm text-fog-400 leading-relaxed">
-            歡迎把網站發給熟悉不同學校的學長學姐、在讀同學和校友。每多一條可核驗的補充，問卷就會少一點空白，也更接近真正能幫人做減法的工具。
-          </p>
+          <h2 className="serif text-xl text-fog-100 mb-3">{t('ui.about.useful.title')}</h2>
+          <p className="text-sm text-fog-400 leading-relaxed">{t('ui.about.useful.text')}</p>
         </div>
       </section>
     </main>
