@@ -1,10 +1,17 @@
 # Project State
 
 Last updated: 2026-11-07 UTC
-Current version: 7443bb5（已部署 41a45cad，生效 2026-11-07T10:24:43Z；批 S3 疊加於批 D2 893667b／26154a49）
-Current objective: 全球化路線圖（docs/GLOBAL_ROADMAP.md）：S0、S1 全批（首批、A、B、C、D1＋D4）、S2 兩半（D3 港澳臺院校池、D2 中外合作辦學）與 S3 海外可申請學校層（批 S3）皆已上線並登記 accepted；待站長審核項列於 `reports/operations/nope-s2-coverage-jointprograms-20261107/PENDING_OWNER_REVIEW.md`（conflict 口徑、不可達省表、港澳臺三條待覆核、合作辦學收費→A4）與 `reports/operations/nope-s3-overseas-20261107/nope-s3/PENDING_OWNER_REVIEW.md`（被擋／純 JS 機構與國家層頁人工覆核、medium 7 所是否上鏈接、海外層是否進導航文案）；S4 多語言與起點分支題、S5 服務化由後續會話串行接續；原 43 維效度缺口仍列後續。
+Current version: 84c0fcd（已部署 460b9fcb，生效 2026-11-07T11:52:24Z；批 E1 疊加於批 S3 7443bb5／41a45cad）
+Current objective: 全球化路線圖（docs/GLOBAL_ROADMAP.md）：S0、S1 全批（首批、A、B、C、D1＋D4）、S2 兩半（D3 港澳臺院校池、D2 中外合作辦學）、S3 海外可申請學校層（批 S3）與 S4 批 E1 三語介面皆已上線並登記 accepted；S4 批 E2（起點分支＋跨國結果）實作中；待站長審核項列於 `reports/operations/nope-s2-coverage-jointprograms-20261107/PENDING_OWNER_REVIEW.md`（conflict 口徑、不可達省表、港澳臺三條待覆核、合作辦學收費→A4）與 `reports/operations/nope-s3-overseas-20261107/nope-s3/PENDING_OWNER_REVIEW.md`（被擋／純 JS 機構與國家層頁人工覆核、medium 7 所是否上鏈接、海外層是否進導航文案）；待站長審核項另見 `reports/operations/nope-s4-i18n-origins-20261107/nope-e1/PENDING_OWNER_REVIEW.md`（shared-ui 9 條字串是否兩站同批改、三處英譯口徑）；S5 服務化由後續會話串行接續；原 43 維效度缺口仍列後續。
 
-## 2026-11-07 批 S3：海外可申請學校層 #/overseas（已上線，當前權威）
+## 2026-11-07 批 E1：三語介面 zh-Hant／zh-Hans／en（已上線，當前權威）
+
+正式部署 `460b9fcb-e6b8-4576-aa8f-e3b3d5381f53`，來源 `84c0fcd`，生效 `2026-11-07T11:52:24Z`；回滾 `41a45cad`／`7443bb5`。Status `20261107-nope-s4-i18n-e1` r1。
+- 翻譯層 1,200 鍵（手冊 §5.3）：zh-Hant 來源打包進主包；zh-Hans 由 `data:i18n` 以 vendored OpenCC t2s 字級字典＋站內例外表生成（只轉字形不換用詞，140 條 fixtures 閘門）；en 站方翻譯；兩者自 `public/i18n/` 懶載（manifest `457977554cc4`）。頭部切換存 `unapply.locale.v1`，首次依瀏覽器語言，同步 `<html lang>`／title／description；hash 路由不帶語言。
+- 引擎保持語言中立（機器欄＋展示層翻譯）；gk 交接、用戶中心紀錄、GitHub issue 文字固定 zh-Hant；資料驅動名稱不翻譯、官方名稱原文保留；題集／契約／Function／shared-ui／UC 不變；無付費、無新 Cloudflare 資源。
+- 十六道閘門於 `84c0fcd`（新增 `test:i18n` 10）；候選 `959207b8` 與正式 128/128；三語 × 兩色系 × 1440／390 逐路由對比 0 低於 4.5。待站長：`reports/operations/nope-s4-i18n-origins-20261107/nope-e1/PENDING_OWNER_REVIEW.md`。
+
+## 2026-11-07 批 S3：海外可申請學校層 #/overseas（歷史；批 E1 疊加於其上）
 
 正式部署 `41a45cad-b152-4a16-9f38-3db892008648`，來源 `7443bb5`，生效 `2026-11-07T10:24:43Z`；回滾 `26154a49`／`893667b`。Status `20261107-nope-s3-overseas-admissions` r1。
 - 研究會話三張 CSV 入庫（403 所非大陸 GRAS 前 50 機構、91 條申請平台、90 條簽證頁；零付費、電郵已去識別）→ `build_overseas_layer.mjs` fail-closed → index（gzip 17 KiB）＋44 個地區檔懶載，manifest `23c590c30412`：官方頁已讀到 343（high 336／medium 7）、被擋 42、未找到 16、純 JS 2；招生頁上鏈接 336、平台 63/91、簽證 47/90；高考採認原句 35。
