@@ -13,17 +13,15 @@ import { generateShareImage } from '../lib/share'
 import { ShareCard } from './ShareCard'
 import { recordUnapplyDownload } from '../lib/bdfzIdentity'
 import { allQuestions } from '../data/questions'
-import type { ProgramsLayerState } from '../lib/programsData'
-import type { ProgramFilterOutcome, ProgramVerdict } from '../engine/programs'
-import { countAdmissible, describeProgramPrefs } from '../engine/programs'
-import { programPrefsActive } from '../data/programPrefs'
+import type { ProgramIndexPayload, SubjectCode } from '../data/programsTypes'
+import { countAdmissible } from '../engine/programs'
 import { programsManifest } from '../data/programsManifest'
 
 interface Props {
   result: FilterResult
   answers: AnswerMap
-  /** 起點條件層：在 43 題之後另算，與 stats.byQuestion 分開顯示與計數。 */
-  programs: ProgramsLayerState & { outcome: ProgramFilterOutcome | null; onEdit: () => void }
+  /** 逐校招生專業摘要：卡片上的專業數與「你的選科可報」計數用（篩選本身已由 S1／S2 題在引擎裡完成）。 */
+  programsIndex: ProgramIndexPayload | null
   candidateProvince: CandidateProvince
   onCandidateProvinceChange: (province: CandidateProvince) => void
   onRestart: () => void
@@ -37,7 +35,6 @@ interface Props {
 type LookupEntry =
   | { kind: 'kept'; school: FilterResult['kept'][number] }
   | { kind: 'excluded'; school: FilterResult['excluded'][number]['school']; reasons: ExcludeReason[] }
-  | { kind: 'program-struck'; school: FilterResult['kept'][number]; verdict: ProgramVerdict }
 
 interface NopeHandoffAnswer {
   id: string;
@@ -133,7 +130,7 @@ function buildHandoff(result: FilterResult, answers: AnswerMap) {
 export function ResultPage({
   result,
   answers,
-  programs,
+  programsIndex,
   candidateProvince,
   onCandidateProvinceChange: setCandidateProvince,
   onRestart,
@@ -147,21 +144,21 @@ export function ResultPage({
   const [downloading, setDownloading] = useState(false)
   const [schoolQuery, setSchoolQuery] = useState('')
 
-  // 起點條件生效且資料已到時，在場名單＝43 題保留 − 起點條件劃掉；否則就是 43 題的結果。
-  const prefsActive = programPrefsActive(programs.prefs)
-  const outcome = programs.outcome
-  const finalKept = outcome ? outcome.kept : result.kept
-  const programIndex = programs.index
-  const chosenSubjects = useMemo(() => (programs.prefs.subjects.length === 3 ? new Set(programs.prefs.subjects) : null), [programs.prefs.subjects])
+  const finalKept = result.kept
+  // S1 的答案是固定序組合鍵（'PCB'）：卡片上順手算「你的選科可報幾個」。
+  const chosenSubjects = useMemo(() => {
+    const combo = answers.S1
+    return typeof combo === 'string' && combo !== 'skip' && combo.length === 3 ? new Set([...combo] as SubjectCode[]) : null
+  }, [answers.S1])
   const dist = useMemo(() => distribute(finalKept), [finalKept])
   const relaxHints = useMemo(() => suggestRelax(result.stats, 3), [result.stats])
   const topKept = finalKept.slice(0, 24)
   const programLine = (school: FilterResult['kept'][number]): string | null => {
-    const entry = school.moeCode && programIndex ? programIndex.schools[school.moeCode] : undefined
+    const entry = school.moeCode && programsIndex ? programsIndex.schools[school.moeCode] : undefined
     if (!entry) return null
-    if (entry.u === 0) return `${programsManifest.admissionYear} 年高職（專科）專業 ${entry.v} 個 · 本科專業未公布，起點條件不判定`
+    if (entry.u === 0) return `${programsManifest.admissionYear} 年高職（專科）專業 ${entry.v} 個 · 本科專業未公布，選科與專業兩題不判定`
     const vocational = entry.v > 0 ? ` · 另有專科專業 ${entry.v} 個` : ''
-    if (chosenSubjects) return `${programsManifest.admissionYear} 年本科招生專業（類）${entry.u} 個 · 你的選科可報 ${countAdmissible(entry, chosenSubjects, programIndex!)} 個${vocational}`
+    if (chosenSubjects) return `${programsManifest.admissionYear} 年本科招生專業（類）${entry.u} 個 · 你的選科可報 ${countAdmissible(entry, chosenSubjects, programsIndex!)} 個${vocational}`
     return `${programsManifest.admissionYear} 年本科招生專業（類）${entry.u} 個 · 選考要求已入庫${vocational}`
   }
 
@@ -170,14 +167,13 @@ export function ResultPage({
     if (!query) return [] as LookupEntry[]
     const normalizedQuery = normalizeSchoolName(query)
     const keptMatches: LookupEntry[] = finalKept.map((school) => ({ kind: 'kept', school }))
-    const programStruck: LookupEntry[] = (outcome?.struck ?? []).map(({ school, verdict }) => ({ kind: 'program-struck', school, verdict }))
     const excludedMatches: LookupEntry[] = result.excluded.map(({ school, reasons }) => ({
       kind: 'excluded',
       school,
       reasons,
     }))
 
-    return [...keptMatches, ...programStruck, ...excludedMatches]
+    return [...keptMatches, ...excludedMatches]
       .filter((entry) => {
         const haystacks = [
           entry.school.name,
@@ -193,7 +189,7 @@ export function ResultPage({
         return rightExact - leftExact
       })
       .slice(0, 8)
-  }, [finalKept, outcome, result.excluded, schoolQuery])
+  }, [finalKept, result.excluded, schoolQuery])
   const handoff = useMemo(() => buildHandoff(result, answers), [answers, result])
 
   const share = async () => {
@@ -212,7 +208,6 @@ export function ResultPage({
   const zero = finalKept.length === 0
   const shortlistReached = result.stats.answeredCount > 0 && result.stats.keptCount <= 10
   const showRelaxAction = !zero && result.stats.answeredCount > 0
-  const programStruckCount = outcome ? outcome.struck.length : 0
 
   return (
     <main className="min-h-screen app-canvas text-fog-100">
@@ -235,39 +230,9 @@ export function ResultPage({
             <br />你劃掉了 <span className="text-accent-500 mono">{result.stats.excludedCount}</span> 所。
           </h1>
           <p className="text-fog-300 text-base">
-            {outcome && programStruckCount > 0 ? (
-              <>
-                43 題剩 <span className="mono text-fog-100">{result.stats.keptCount}</span> 所；起點條件另劃掉 <span className="mono text-accent-500">{programStruckCount}</span> 所，
-                剩 <span className="mono text-fog-100 text-lg">{finalKept.length}</span> 所仍在場。
-              </>
-            ) : (
-              <>剩 <span className="mono text-fog-100 text-lg">{finalKept.length}</span> 所仍在場。</>
-            )}
+            剩 <span className="mono text-fog-100 text-lg">{finalKept.length}</span> 所仍在場。
             {result.stats.answeredCount === 0 && '（還沒減任何一題，回去先減一輪？）'}
           </p>
-
-          <div className="max-w-2xl rounded-2xl border border-ink-800 bg-ink-900/80 px-4 py-4 text-sm text-fog-300 leading-relaxed flex flex-col gap-2">
-            <p className="mono text-xs uppercase tracking-[0.2em] text-fog-500">起點條件 · 與 43 題分開計</p>
-            {!prefsActive && (
-              <p>還沒設選考科目或意向專業。設了之後，這裡會另列出「選科報不了」「沒開這個專業」的學校，不混進上面的 43 題計數。</p>
-            )}
-            {prefsActive && describeProgramPrefs(programs.prefs).map((line) => <p key={line} className="text-fog-200">{line}</p>)}
-            {prefsActive && programs.status === 'loading' && <p className="text-fog-500">正在載入 {programsManifest.counts.undergraduateSchools} 所本科校的招生專業與選考要求…</p>}
-            {prefsActive && programs.status === 'error' && <p>招生專業資料載入失敗，這一層暫時不生效；43 題的結果照常。</p>}
-            {outcome && (
-              <p className="text-fog-500">
-                有本科專業資料可判定 {outcome.stats.evaluated} 校（{programsManifest.admissionYear} 年四省公布表，{programsManifest.counts.undergraduateSchools} 所本科校）：
-                沒開意向專業劃掉 {outcome.stats.struckByProgram} 所、選科不符劃掉 {outcome.stats.struckBySubjects} 所、
-                只有試驗班對不到專業類而不判定 {outcome.stats.unknown} 所；沒有本科專業資料的 {outcome.stats.noData} 所（含專科校）不受影響。
-              </p>
-            )}
-            <button
-              onClick={programs.onEdit}
-              className="self-start text-xs mono text-fog-300 hover:text-accent-500 underline min-h-[44px] -my-2 py-2"
-            >
-              {prefsActive ? '改起點條件' : '去首頁設定起點條件'}
-            </button>
-          </div>
           {shortlistReached && (
             <div className="max-w-2xl rounded-2xl border border-accent-500/30 bg-ink-900/80 px-4 py-4 text-sm text-fog-300 leading-relaxed">
               {zero
@@ -415,7 +380,7 @@ export function ResultPage({
                           : 'border-ink-700 text-fog-300 bg-ink-900',
                       ].join(' ')}
                     >
-                      {entry.kind === 'kept' ? '仍在場' : entry.kind === 'program-struck' ? '起點條件劃掉' : `已排除 · ${entry.reasons.length} 題`}
+                      {entry.kind === 'kept' ? '仍在場' : `已排除 · ${entry.reasons.length} 題`}
                     </span>
                   </div>
                   <TagRail tags={buildSchoolTags(entry.school, { candidateProvince })} />
@@ -423,15 +388,6 @@ export function ResultPage({
                     <p className="text-sm text-fog-300 leading-relaxed">
                       還沒被你劃掉：{explainKept(entry.school, answers)}。
                     </p>
-                  ) : entry.kind === 'program-struck' ? (
-                    <div className="flex flex-col gap-2">
-                      <p className="text-sm text-fog-300 leading-relaxed">43 題沒劃掉它，是你的起點條件劃掉的（不計入 43 題）：</p>
-                      <ul className="flex flex-col gap-2">
-                        {entry.verdict.reasons.map((reason) => (
-                          <li key={`${entry.school.id}-${reason.kind}`} className="text-xs text-fog-500 leading-relaxed">· {reason.label}</li>
-                        ))}
-                      </ul>
-                    </div>
                   ) : (
                     <div className="flex flex-col gap-2">
                       <p className="text-sm text-fog-300 leading-relaxed">它這一輪被排掉的原因：</p>
@@ -475,7 +431,6 @@ export function ResultPage({
           <div ref={shareRef}>
             <ShareCard result={result} />
           </div>
-          <p className="text-xs text-fog-500 leading-relaxed">分享圖與帶去 gk 的摘要只算 43 題的結果，不含起點條件那一層。</p>
           <p className="text-sm text-fog-400 leading-relaxed">
             如果這輪減法對你有幫助，歡迎把網站發給熟悉不同學校的學長學姐、在讀同學和校友。人越多，能補上的校區、生活和招生數據就越完整。
           </p>

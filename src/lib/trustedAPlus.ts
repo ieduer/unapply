@@ -1,6 +1,7 @@
 import { candidateProvinceOptions } from '../data/admissionAuthorities';
 import type { CandidateProvince } from '../data/admissionAuthorities';
 import { runtimeDataManifest } from '../data/runtimeManifest';
+import { programsManifest } from '../data/programsManifest';
 import type { AnswerMap } from '../engine/filter';
 
 const RESOURCE_KEY = 'unapply:result:v1';
@@ -361,6 +362,8 @@ async function recoverDurableWork() {
       sessionId: active.sessionId,
       sequence: completion.sequence,
       runtimeVersion: runtimeDataManifest.version,
+      // 釘定 S1／S2 取值所用的逐校招生專業摘要版本；伺服器以同一版本重算。
+      programsVersion: programsManifest.version,
       answers: completion.answers,
       ...(completion.candidateProvince ? { candidateProvince: completion.candidateProvince } : {}),
     });

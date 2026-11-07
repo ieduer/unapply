@@ -17,6 +17,10 @@ import { allQuestions } from '../src/data/questions.ts';
 import { schools } from '../src/data/schools.ts';
 import { getSchoolDimensionValue } from '../src/engine/filter.ts';
 import { analyzeQuestionCoverage } from '../src/engine/coverage.ts';
+import { readFileSync } from 'node:fs';
+// S1／S2 的學校取值來自逐校招生專業摘要（data:programs 的產物），稽核要用和前端一樣的上下文。
+const programs = JSON.parse(readFileSync(new URL('../public/data/programs/index.json', import.meta.url), 'utf8'));
+const ctx = { programs };
 
 const issues = [];
 const notes = [];
@@ -33,7 +37,7 @@ for (const dimensionId of Object.keys(DIMENSIONS)) {
   const observed = new Set();
   const rawObserved = new Set();
   for (const school of schools) {
-    const value = getSchoolDimensionValue(school, dimensionId);
+    const value = getSchoolDimensionValue(school, dimensionId, ctx);
     if (value !== null) {
       for (const item of Array.isArray(value) ? value : [value]) observed.add(item);
     }
@@ -74,7 +78,7 @@ for (const [dimensionId, meta] of Object.entries(DIMENSIONS)) {
   }
 }
 
-const coverage = analyzeQuestionCoverage(schools);
+const coverage = analyzeQuestionCoverage(schools, ctx);
 for (const question of allQuestions) {
   const summary = coverage[question.id];
   if (!summary?.active) continue;
@@ -85,6 +89,11 @@ for (const question of allQuestions) {
     if (rules.length === 0) continue;
     const optionCoverage = summary.optionCoverageByKey[option.key];
     if (!optionCoverage || optionCoverage.excludedCount > 0) continue;
+    if (option.alwaysVisible) {
+      // 考生自身事實／意向（S1 選科組合、S2 專業類）：排除 0 所是真實結論，選項照常顯示並如實告知，不是失效選項。
+      notes.push(`${question.id}/${option.key}「${option.label}」排除 0 所：考生自身事實選項（alwaysVisible），照常顯示並如實告知不劃掉任何學校`);
+      continue;
+    }
 
     const referenced = rules.flatMap((rule) => rule.values);
     const rawObserved = rawObservedByDimension.get(question.id) ?? new Set();

@@ -90,6 +90,8 @@ export function getActiveQuestions(allSchools: School[]): Question[] {
 
 export function getVisibleOptions(question: Question, coverage: QuestionCoverageSummary): Question['options'] {
   return question.options.filter((option) => {
+    // 考生自身事實／意向的選項（S1 選科組合、S2 專業類）排除 0 所也要給選，介面如實告知「不劃掉任何學校」。
+    if (option.alwaysVisible) return true;
     const optionCoverage = coverage.optionCoverageByKey[option.key];
     if (!optionCoverage) return true;
     return !optionCoverage.hasRule || optionCoverage.impactful;

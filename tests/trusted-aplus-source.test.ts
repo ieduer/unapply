@@ -4,6 +4,8 @@ import test from 'node:test';
 import { allQuestions } from '../src/data/questions';
 import { runtimeDataManifest } from '../src/data/runtimeManifest';
 import type { School } from '../src/data/schools';
+import type { ProgramIndexPayload } from '../src/data/programsTypes';
+import { programsManifest } from '../src/data/programsManifest';
 import { analyzeQuestionCoverage, getVisibleOptions } from '../src/engine/coverage';
 import { filterSchools } from '../src/engine/filter';
 import type { AnswerMap } from '../src/engine/filter';
@@ -16,6 +18,11 @@ const schoolCatalogText = await readFile(
   'utf8',
 );
 const schools = JSON.parse(schoolCatalogText) as School[];
+const programsIndexText = await readFile(
+  new URL('../public/data/programs/index.json', import.meta.url),
+  'utf8',
+);
+const programsIndex = JSON.parse(programsIndexText) as ProgramIndexPayload;
 
 function request(
   action: string,
@@ -36,8 +43,10 @@ function request(
 
 function assets() {
   return {
-    async fetch() {
-      return new Response(schoolCatalogText, {
+    async fetch(request: Request) {
+      // 與正式站一樣：學校目錄與逐校招生專業摘要都是釘定的靜態 payload。
+      const body = new URL(request.url).pathname.includes('/data/programs/') ? programsIndexText : schoolCatalogText;
+      return new Response(body, {
         headers: { 'Content-Type': 'application/json' },
       });
     },
@@ -60,7 +69,7 @@ function manifestAssets() {
 }
 
 function completeAnswers() {
-  const coverage = analyzeQuestionCoverage(schools);
+  const coverage = analyzeQuestionCoverage(schools, { programs: programsIndex });
   const active = allQuestions.filter(question => coverage[question.id]?.active);
   const answers: AnswerMap = {};
   active.forEach(question => {
@@ -153,6 +162,7 @@ test('server recomputes the result from the pinned school catalog and sends only
       sessionId: SESSION_ID,
       sequence: Object.keys(answers).length + 1,
       runtimeVersion: runtimeDataManifest.version,
+      programsVersion: programsManifest.version,
       answers,
     }),
     params: { action: 'complete' },
@@ -206,6 +216,77 @@ test('stale runtime versions and client-provided result counts fail closed', asy
     env: { ASSETS: assets(), APLUS_EVIDENCE: {} as never },
   });
   assert.equal(response.status, 400);
+  const stalePrograms = await onRequest({
+    request: request('complete', {
+      sessionId: SESSION_ID,
+      sequence: 1,
+      runtimeVersion: runtimeDataManifest.version,
+      programsVersion: 'stale',
+      answers: completeAnswers(),
+    }),
+    params: { action: 'complete' },
+    env: { ASSETS: assets(), APLUS_EVIDENCE: {} as never },
+  });
+  assert.equal(stalePrograms.status, 400);
+});
+
+test('a transcript from the 43-question page (no programsVersion) still completes; a new page must visit S1/S2', async () => {
+  const evidence = {
+    async recordAPlusInteraction() { return { ok: true }; },
+    async completeAPlusSession() { return { ok: true, status: 'recorded' }; },
+  };
+  const all = completeAnswers();
+  const legacy = Object.fromEntries(Object.entries(all).filter(([id]) => id !== 'S1' && id !== 'S2'));
+  assert.ok('S1' in all && 'S2' in all, 'the new page visits S1 and S2');
+  const legacyResponse = await onRequest({
+    request: request('complete', {
+      sessionId: SESSION_ID,
+      sequence: 1,
+      runtimeVersion: runtimeDataManifest.version,
+      answers: legacy,
+    }),
+    params: { action: 'complete' },
+    env: { ASSETS: assets(), APLUS_EVIDENCE: evidence as never },
+  });
+  assert.equal(legacyResponse.status, 200, 'old sessions keep completing after the 45-question release');
+  // 舊頁面不可能帶 S1／S2；帶了卻沒 programsVersion → 不是舊頁面。
+  const forged = await onRequest({
+    request: request('complete', {
+      sessionId: SESSION_ID,
+      sequence: 1,
+      runtimeVersion: runtimeDataManifest.version,
+      answers: all,
+    }),
+    params: { action: 'complete' },
+    env: { ASSETS: assets(), APLUS_EVIDENCE: evidence as never },
+  });
+  assert.equal(forged.status, 400);
+  // 新頁面（帶 programsVersion）保留超過 10 所卻沒看過 S1／S2 → 未完成。
+  const keptMany = filterSchools(schools, legacy, { programs: programsIndex }).stats.keptCount > 10;
+  const skippedNew = await onRequest({
+    request: request('complete', {
+      sessionId: SESSION_ID,
+      sequence: 1,
+      runtimeVersion: runtimeDataManifest.version,
+      programsVersion: programsManifest.version,
+      answers: legacy,
+    }),
+    params: { action: 'complete' },
+    env: { ASSETS: assets(), APLUS_EVIDENCE: evidence as never },
+  });
+  assert.equal(skippedNew.status, keptMany ? 400 : 200);
+  const complete = await onRequest({
+    request: request('complete', {
+      sessionId: SESSION_ID,
+      sequence: 1,
+      runtimeVersion: runtimeDataManifest.version,
+      programsVersion: programsManifest.version,
+      answers: all,
+    }),
+    params: { action: 'complete' },
+    env: { ASSETS: assets(), APLUS_EVIDENCE: evidence as never },
+  });
+  assert.equal(complete.status, 200);
 });
 
 test('completion recomputes with the candidate province the visitor saw', async () => {
@@ -225,6 +306,7 @@ test('completion recomputes with the candidate province the visitor saw', async 
       sessionId: SESSION_ID,
       sequence: 2,
       runtimeVersion: runtimeDataManifest.version,
+      programsVersion: programsManifest.version,
       answers,
       candidateProvince: '江蘇',
     }),
@@ -232,7 +314,7 @@ test('completion recomputes with the candidate province the visitor saw', async 
     env: { ASSETS: assets(), APLUS_EVIDENCE: evidence as never },
   });
   assert.equal(response.status, 200);
-  const expected = filterSchools(schools, answers, { candidateProvince: '江蘇' }).stats;
+  const expected = filterSchools(schools, answers, { candidateProvince: '江蘇', programs: programsIndex }).stats;
   const result = (completion as Record<string, unknown> | null)?.result as Record<string, unknown>;
   assert.equal(result.keptCount, expected.keptCount);
   assert.equal(result.excludedCount, expected.excludedCount);
@@ -242,6 +324,7 @@ test('completion recomputes with the candidate province the visitor saw', async 
       sessionId: SESSION_ID,
       sequence: 2,
       runtimeVersion: runtimeDataManifest.version,
+      programsVersion: programsManifest.version,
       answers,
       candidateProvince: 'Atlantis',
     }),

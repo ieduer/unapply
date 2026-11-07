@@ -8,12 +8,17 @@ import type { School } from '../data/schools'
 import type { AnswerMap, AnswerValue } from '../engine/filter'
 import { filterSchools } from '../engine/filter'
 import { analyzeQuestionCoverage, getVisibleOptions } from '../engine/coverage'
+import type { ProgramIndexPayload } from '../data/programsTypes'
+import { SUBJECT_OPTIONS, isSubjectCode, subjectsToCombo } from '../data/programPrefs'
+import { programClasses, programDisciplines } from '../data/programClasses'
 
 interface Props {
   allSchools: School[]
   answers: AnswerMap
   candidateProvince: CandidateProvince
   onCandidateProvinceChange: (province: CandidateProvince) => void
+  /** 逐校招生專業摘要：S1／S2 的學校取值由它算；進問卷前已載入（App 把它當成目錄的一部分）。 */
+  programs: ProgramIndexPayload | null
   onAnswerChange: (a: AnswerMap, changedQuestionId: string) => void
   onFinish: () => void
   onBack: () => void
@@ -24,13 +29,16 @@ export function QuestionRunner({
   answers,
   candidateProvince,
   onCandidateProvinceChange,
+  programs,
   onAnswerChange,
   onFinish,
   onBack,
 }: Props) {
   const [idx, setIdx] = useState(0)
+  // S1 的三科在湊滿之前只存在本地，不進 AnswerMap（不送互動紀錄）；S2 的門類選擇同理。綁定題號，換題即視為空。
+  const [pending, setPending] = useState<{ qid: string; subjects: string[]; discipline: string }>({ qid: '', subjects: [], discipline: '' })
 
-  const filterContext = useMemo(() => ({ candidateProvince }), [candidateProvince])
+  const filterContext = useMemo(() => ({ candidateProvince, programs: programs ?? undefined }), [candidateProvince, programs])
   const liveResult = useMemo(
     () => filterSchools(allSchools, answers, filterContext),
     [allSchools, answers, filterContext],
@@ -126,7 +134,30 @@ export function QuestionRunner({
   const sectionLabel =
     q.section === 'A_redline' ? '紅線' :
     q.section === 'E_environment' ? '環境' :
-    q.section === 'B_quality' ? '生活' : '特殊'
+    q.section === 'B_quality' ? '生活' :
+    q.section === 'S_programs' ? '專業' : '特殊'
+
+  // S1：六科挑三科的挑選器；答案＝固定序組合鍵（'PCB'），與選項 key 一致。
+  const pendingSubjects = pending.qid === q.id ? pending.subjects : []
+  const pendingDiscipline = pending.qid === q.id ? pending.discipline : ''
+  const currentCombo = q.id === 'S1' && typeof current === 'string' && current !== 'skip' ? current : null
+  const chosenSubjects = currentCombo ? [...currentCombo] : pendingSubjects
+  const visibleComboKeys = new Set(visibleOptions.map((opt) => opt.key))
+  const currentExcluded = typeof current === 'string' && current !== 'skip' ? coverageByQuestion[q.id]?.optionCoverageByKey[current]?.excludedCount ?? null : null
+  const toggleSubject = (code: string) => {
+    const base = currentCombo ? [...currentCombo] : pendingSubjects
+    const next = base.includes(code) ? base.filter((c) => c !== code) : [...base, code]
+    if (next.length > 3) return
+    const combo = subjectsToCombo(next)
+    if (combo && visibleComboKeys.has(combo)) { setPending({ qid: q.id, subjects: [], discipline: '' }); setAnswer(combo); return }
+    setPending({ qid: q.id, subjects: next.filter(isSubjectCode), discipline: '' })
+    if (currentCombo) onAnswerChange({ ...answers, [q.id]: null }, q.id)
+  }
+  // S2：門類 → 專業類兩層選單；答案＝專業類代碼。
+  const currentClass = q.id === 'S2' && typeof current === 'string' && current !== 'skip' ? current : null
+  const disciplineOfCurrent = currentClass ? programClasses.find((c) => c.code === currentClass)?.discipline ?? '' : ''
+  const activeDiscipline = pendingDiscipline || disciplineOfCurrent
+  const classesInDiscipline = programClasses.filter((c) => c.discipline === activeDiscipline && visibleComboKeys.has(c.code))
 
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex flex-col">
@@ -180,8 +211,75 @@ export function QuestionRunner({
             )}
         </div>
 
+        {q.id === 'S1' && (
+          <div className="flex flex-col gap-3">
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2" role="group" aria-label="選考科目">
+              {SUBJECT_OPTIONS.map((subject) => {
+                const pressed = chosenSubjects.includes(subject.code)
+                const disabled = !pressed && chosenSubjects.length >= 3
+                return (
+                  <button
+                    key={subject.code}
+                    type="button"
+                    onClick={() => toggleSubject(subject.code)}
+                    aria-pressed={pressed}
+                    disabled={disabled}
+                    className={[
+                      'rounded-xl border px-3 py-3 min-h-[56px] text-base serif',
+                      pressed
+                        ? 'border-accent-500 bg-accent-500/10 text-fog-100'
+                        : disabled
+                          ? 'border-ink-800 bg-ink-950 text-fog-500 cursor-not-allowed'
+                          : 'border-ink-700 bg-ink-900 text-fog-300 hover:border-fog-500 hover:text-fog-100',
+                    ].join(' ')}
+                  >
+                    {subject.label}
+                  </button>
+                )
+              })}
+            </div>
+            <p className="text-xs text-fog-500 leading-relaxed">
+              {currentCombo
+                ? `已選 ${visibleOptions.find((opt) => opt.key === currentCombo)?.label ?? currentCombo}；${currentExcluded === 0 ? '這組選科在每所有資料的學校都至少報得了一個本科專業，本題不劃掉任何學校。' : '全部本科專業都報不了的學校會被劃掉；只公布專科專業的學校不判定。'}`
+                : `已選 ${chosenSubjects.length}/3，選滿三科才會參與篩選。`}
+            </p>
+          </div>
+        )}
+        {q.id === 'S2' && (
+          <div className="grid gap-2 sm:grid-cols-2">
+            <label className="flex flex-col gap-1 text-xs text-fog-500">
+              門類
+              <select
+                value={activeDiscipline}
+                onChange={(event) => { setPending({ qid: q.id, subjects: [], discipline: event.target.value }); if (currentClass) onAnswerChange({ ...answers, [q.id]: null }, q.id) }}
+                className="bg-ink-950 border border-ink-700 rounded-lg px-2 py-2 text-sm text-fog-200 min-h-[48px]"
+              >
+                <option value="">— 選門類 —</option>
+                {programDisciplines.map((d) => <option key={d.code} value={d.code}>{d.code} {d.name}</option>)}
+              </select>
+            </label>
+            <label className="flex flex-col gap-1 text-xs text-fog-500">
+              專業類
+              <select
+                value={currentClass ?? ''}
+                disabled={!activeDiscipline}
+                onChange={(event) => { if (event.target.value) setAnswer(event.target.value) }}
+                className="bg-ink-950 border border-ink-700 rounded-lg px-2 py-2 text-sm text-fog-200 min-h-[48px]"
+              >
+                <option value="">— 選專業類 —</option>
+                {classesInDiscipline.map((c) => <option key={c.code} value={c.code}>{c.code} {c.name}</option>)}
+              </select>
+            </label>
+            {currentClass && (
+              <p className="sm:col-span-2 text-xs text-fog-500 leading-relaxed">
+                已選 {visibleOptions.find((opt) => opt.key === currentClass)?.label ?? currentClass}；{currentExcluded === 0 ? '每所有資料的學校都開了這一類，本題不劃掉任何學校。' : '沒開這一類的學校會被劃掉，只有試驗班對不到的保留。'}
+              </p>
+            )}
+          </div>
+        )}
+
         <div className="flex flex-col gap-3">
-          {visibleOptions.map((opt) => {
+          {(q.id === 'S1' || q.id === 'S2' ? [] : visibleOptions).map((opt) => {
             const active = isCurrent(opt.key)
             return (
               <button

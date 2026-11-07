@@ -6,28 +6,24 @@ import {
 } from '../data/schoolCatalogSummary'
 import { contributionHighlights, researchSummary } from '../data/researchSummary'
 import { getOriginOption, originOptions, type OriginRegion } from '../data/origins'
-import type { ProgramPrefs } from '../data/programPrefs'
-import { StartConditions } from './StartConditions'
 
 interface Props {
   origin: OriginRegion | null
   onOriginChange: (origin: OriginRegion) => void
-  programPrefs: ProgramPrefs
-  onProgramPrefsChange: (prefs: ProgramPrefs) => void
   onStart: () => void
   onWorld: () => void
   onAbout: () => void
   onContribute: () => void
 }
 
-export function Landing({ origin, onOriginChange, programPrefs, onProgramPrefsChange, onStart, onWorld, onAbout, onContribute }: Props) {
+export function Landing({ origin, onOriginChange, onStart, onWorld, onAbout, onContribute }: Props) {
   const originOption = origin ? getOriginOption(origin) : null
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex flex-col items-center justify-between px-5 sm:px-6 py-6 sm:py-10">
       <div
         className="w-full max-w-5xl flex items-center justify-between text-xs mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-fog-500"
       >
-        <span>nope.bdfz.net · v1.9</span>
+        <span>nope.bdfz.net · v2.0</span>
         <button
           onClick={onAbout}
           className="hover:text-accent-500 transition-colors min-h-[44px] -my-3 py-3 px-2"
@@ -130,10 +126,6 @@ export function Landing({ origin, onOriginChange, programPrefs, onProgramPrefsCh
             <span className="text-xs mono text-fog-500">按當前有效數據動態出題 · 可隨時跳過</span>
           </div>
         </div>
-
-        {originOption?.hasLocalPool !== false && (
-          <StartConditions prefs={programPrefs} onChange={onProgramPrefsChange} />
-        )}
 
         <EvidenceNotice />
 

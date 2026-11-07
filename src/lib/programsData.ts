@@ -74,10 +74,3 @@ export function loadProgramBucket(province: string): Promise<ProgramBucket> {
   }
   return bucketPromises.get(file)!
 }
-
-/** App 持有的起點條件層狀態：偏好＋懶載入的每校摘要。 */
-export interface ProgramsLayerState {
-  prefs: import('../data/programPrefs').ProgramPrefs
-  index: ProgramIndexPayload | null
-  status: 'idle' | 'loading' | 'ready' | 'error'
-}

@@ -12,15 +12,20 @@ import { getEnvironment } from '../data/environment'
 import { isHardFilterableQuality } from '../engine/filter'
 import { loadCampusesByProvince } from '../lib/runtimeData'
 import { getRegularChannelState } from '../lib/schoolProfile'
-import { loadProgramBucket, type ProgramsLayerState } from '../lib/programsData'
-import type { ProgramOffering } from '../data/programsTypes'
+import { loadProgramBucket } from '../lib/programsData'
+import type { ProgramIndexPayload, ProgramOffering, SubjectCode } from '../data/programsTypes'
+import type { AnswerMap } from '../engine/filter'
 import { evaluateSchoolPrograms, isAdmissible } from '../engine/programs'
-import { programPrefsActive, requirementLabel, subjectLabels } from '../data/programPrefs'
+import { programPrefsActive, requirementLabel, subjectLabels, type ProgramPrefs } from '../data/programPrefs'
+import { programClassByCode } from '../data/programClasses'
 import { programsManifest } from '../data/programsManifest'
 
 interface Props {
   school: School
-  programs: ProgramsLayerState
+  /** 逐校招生專業摘要（問卷前置資料）；詳情頁另按省分桶載完整清單。 */
+  programsIndex: ProgramIndexPayload | null
+  /** 目前的作答：S1（選科組合）與 S2（意向專業類）用來給出逐校判定文字。 */
+  answers: AnswerMap
   candidateProvince: CandidateProvince
   onCandidateProvinceChange: (province: CandidateProvince) => void
   onBack: () => void
@@ -75,8 +80,19 @@ function contribHref(schoolId: string, dim: DimensionId): string {
   return `#/contribute?school=${encodeURIComponent(schoolId)}&dim=${dim}`
 }
 
-export function SchoolDetail({ school, programs, candidateProvince, onCandidateProvinceChange: setCandidateProvince, onBack }: Props) {
+export function SchoolDetail({ school, programsIndex, answers, candidateProvince, onCandidateProvinceChange: setCandidateProvince, onBack }: Props) {
   const [campusMap, setCampusMap] = useState<Record<string, CampusResearchRecord[]>>({})
+  // 由 S1／S2 的作答組成判定偏好（與引擎的 requires 判定同義）。
+  const programPrefs = useMemo<ProgramPrefs>(() => {
+    const combo = answers.S1
+    const klass = answers.S2
+    return {
+      subjects: typeof combo === 'string' && combo !== 'skip' && combo.length === 3 ? ([...combo] as SubjectCode[]) : [],
+      intent: typeof klass === 'string' && klass !== 'skip' && programClassByCode[klass] ? { classCode: klass, className: programClassByCode[klass].name } : null,
+    }
+  }, [answers.S1, answers.S2])
+  // App 把逐校摘要當問卷前置資料，進到詳情頁時一定已載入；這裡只是沿用原本的 {prefs,index} 形狀。
+  const programs = useMemo(() => ({ prefs: programPrefs, index: programsIndex }), [programPrefs, programsIndex])
   const [showAllPrograms, setShowAllPrograms] = useState(false)
   const [programList, setProgramList] = useState<{ moeCode: string; programs: ProgramOffering[] } | null>(null)
   const [programListError, setProgramListError] = useState(false)
@@ -298,11 +314,8 @@ export function SchoolDetail({ school, programs, candidateProvince, onCandidateP
               專業名稱用公布表原文；目錄對應按教育部《本科專業目錄》。
             </p>
           </div>
-          {programs.status === 'loading' && !programs.index && (
+          {!programs.index && (
             <p className="text-sm text-fog-500">正在載入招生專業資料…</p>
-          )}
-          {programs.status === 'error' && (
-            <p className="text-sm text-fog-300">招生專業資料載入失敗，請重新整理後再看。</p>
           )}
           {programs.index && !programEntry && (
             <p className="text-xs text-fog-500 leading-relaxed">
@@ -330,18 +343,18 @@ export function SchoolDetail({ school, programs, candidateProvince, onCandidateP
               )}
               {programPrefsActive(programs.prefs) && programVerdict && (
                 <div className="rounded-xl border border-ink-700 bg-ink-900 px-4 py-3 text-sm text-fog-200 leading-relaxed flex flex-col gap-1">
-                  <span className="mono text-xs uppercase tracking-[0.2em] text-fog-500">你的起點條件</span>
+                  <span className="mono text-xs uppercase tracking-[0.2em] text-fog-500">按你的選科／意向專業（S1／S2 題）</span>
                   {programVerdict.state === 'kept' && (
                     <span>
                       {programs.prefs.intent ? `有開設「${programs.prefs.intent.programName ?? programs.prefs.intent.className}」：${programVerdict.matchingCount} 個本科招生專業（類）` : `${programVerdict.matchingCount} 個本科招生專業（類）`}
                       {chosenSubjects ? `，你的選科 ${subjectLabels(programs.prefs.subjects).join('＋')} 可報 ${programVerdict.admissibleCount} 個。` : '。'}
                     </span>
                   )}
-                  {programVerdict.state === 'struck' && programVerdict.reasons.map((reason) => <span key={reason.kind}>起點條件會劃掉它：{reason.label}</span>)}
+                  {programVerdict.state === 'struck' && programVerdict.reasons.map((reason) => <span key={reason.kind}>這兩題會劃掉它：{reason.label}</span>)}
                   {programVerdict.state === 'unknown' && (
                     <span>沒找到「{programs.prefs.intent?.programName ?? programs.prefs.intent?.className}」，但本校有 {programVerdict.experimental} 個試驗班對不到專業類，本站不替你判定、照常保留。</span>
                   )}
-                  {programVerdict.state === 'no-data' && <span>本校只公布了高職（專科）專業，起點條件不判定、照常保留。</span>}
+                  {programVerdict.state === 'no-data' && <span>本校只公布了高職（專科）專業，選科與專業兩題不判定、照常保留。</span>}
                 </div>
               )}
               {!currentList && !programListError && <p className="text-sm text-fog-500">正在載入本省的招生專業清單…</p>}

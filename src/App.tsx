@@ -13,10 +13,8 @@ import { ThemeCustomizer } from './shared-ui/ThemeCustomizer'
 import { candidateProvinceOptions, defaultCandidateProvince } from './data/admissionAuthorities'
 import type { CandidateProvince } from './data/admissionAuthorities'
 import { readStoredOrigin, saveOrigin, type OriginRegion } from './data/origins'
-import { programPrefsActive, readStoredProgramPrefs, saveProgramPrefs, type ProgramPrefs } from './data/programPrefs'
 import type { ProgramIndexPayload } from './data/programsTypes'
-import { applyProgramPrefs } from './engine/programs'
-import { loadProgramIndex, type ProgramsLayerState } from './lib/programsData'
+import { loadProgramIndex } from './lib/programsData'
 import type { School } from './data/schools'
 import { filterSchools } from './engine/filter'
 import type { AnswerMap } from './engine/filter'
@@ -97,7 +95,7 @@ function CatalogLoading({
         <p className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">school catalog</p>
         <h1 className="serif text-2xl">{error ? '目錄載入失敗' : '正在載入官方目錄'}</h1>
         <p className="text-sm text-fog-500 leading-relaxed">
-          {error ?? '第一次進入問卷時才載入 2952 所普通高校數據，首頁不預載完整名單。'}
+          {error ?? '第一次進入問卷時才載入 2952 所普通高校數據與逐校招生專業摘要，首頁不預載完整名單。'}
         </p>
         <div className="flex flex-wrap gap-3">
           {error && (
@@ -154,10 +152,9 @@ export default function App() {
   const [candidateProvince, setCandidateProvinceState] = useState<CandidateProvince>(readStoredCandidateProvince)
   // 所在地／升學身份是起點（決定從哪個題庫開始），同樣不進 AnswerMap。
   const [origin, setOriginState] = useState<OriginRegion | null>(() => readStoredOrigin())
-  // 起點條件（選考科目、意向專業）：在 43 題之後另算一層，不進 AnswerMap，也不改 A+ 證據。
-  const [programPrefs, setProgramPrefsState] = useState<ProgramPrefs>(() => readStoredProgramPrefs())
+  // 逐校招生專業摘要：S1／S2 兩題的學校取值由它算，所以和學校目錄一樣是問卷的前置資料（Function 重算用同一份）。
   const [programsIndex, setProgramsIndex] = useState<ProgramIndexPayload | null>(null)
-  const [programsError, setProgramsError] = useState(false)
+  const [programsError, setProgramsError] = useState<string | null>(null)
   const [schools, setSchools] = useState<School[] | null>(null)
   const [schoolLoadError, setSchoolLoadError] = useState<string | null>(null)
   const evidenceStatus = useSyncExternalStore(
@@ -195,11 +192,6 @@ export default function App() {
     saveOrigin(next)
   }, [])
 
-  const setProgramPrefs = useCallback((next: ProgramPrefs) => {
-    setProgramPrefsState(next)
-    saveProgramPrefs(next)
-  }, [])
-
   const go = useCallback((r: Route) => {
     navigate(r)
     setRoute(r)
@@ -227,37 +219,28 @@ export default function App() {
     }
   }, [route.name])
 
-  // 每校招生專業摘要（約 150 KiB gzip）只在結果頁、學校詳情，或起點條件生效的問卷頁載入；完整清單在詳情頁按省分桶再載。
-  const routeNeedsPrograms = route.name === 'result' || route.name === 'school'
-    || (route.name === 'filter' && programPrefsActive(programPrefs))
+  // 每校招生專業摘要（約 150 KiB gzip）與學校目錄一起作為問卷／結果／詳情的前置資料；完整清單在詳情頁按省分桶再載。
   useEffect(() => {
-    if (!routeNeedsPrograms || programsIndex || programsError) return
+    if (!routeNeedsSchools(route) || programsIndex || programsError) return
     let alive = true
     // loadProgramIndex 內部快取同一個 promise，重複進入不會重抓。
     loadProgramIndex()
       .then((payload) => { if (alive) setProgramsIndex(payload) })
-      .catch(() => { if (alive) setProgramsError(true) })
+      .catch((err: unknown) => { if (alive) setProgramsError(err instanceof Error ? err.message : String(err)) })
     return () => { alive = false }
-  }, [programsError, programsIndex, routeNeedsPrograms])
-  const programsStatus: ProgramsLayerState['status'] = programsIndex ? 'ready' : programsError ? 'error' : routeNeedsPrograms ? 'loading' : 'idle'
+  }, [programsError, programsIndex, route])
 
-  const filterContext = useMemo(() => ({ candidateProvince }), [candidateProvince])
+  // 篩選上下文：考生省份（A6）＋逐校招生專業摘要（S1／S2）。Function 重算時用同一份釘定的 payload 建同樣的上下文。
+  const filterContext = useMemo(() => ({ candidateProvince, programs: programsIndex ?? undefined }), [candidateProvince, programsIndex])
   const result = useMemo(
     () => schools ? filterSchools(schools, answers, filterContext) : null,
     [answers, filterContext, schools],
   )
-  // 43 題之後再套起點條件；A+ 證據與分享摘要仍用 result（43 題）的 stats。
-  const programOutcome = useMemo(
-    () => (result && programsIndex && programPrefsActive(programPrefs) ? applyProgramPrefs(result.kept, programsIndex, programPrefs) : null),
-    [programPrefs, programsIndex, result],
-  )
-  const programsLayer = useMemo<ProgramsLayerState>(
-    () => ({ prefs: programPrefs, index: programsIndex, status: programsStatus }),
-    [programPrefs, programsIndex, programsStatus],
-  )
   const retrySchoolLoad = useCallback(() => {
     setSchoolLoadError(null)
     setSchools(null)
+    setProgramsError(null)
+    setProgramsIndex(null)
   }, [])
 
   const handleAnswerChange = useCallback((nextAnswers: AnswerMap, changedQuestionId: string) => {
@@ -285,8 +268,6 @@ export default function App() {
     <Landing
       origin={origin}
       onOriginChange={setOrigin}
-      programPrefs={programPrefs}
-      onProgramPrefsChange={setProgramPrefs}
       onStart={startMainland}
       onWorld={() => go({ name: 'world' })}
       onAbout={() => go({ name: 'about' })}
@@ -294,10 +275,10 @@ export default function App() {
     />
   )
 
-  if (routeNeedsSchools(route) && (!schools || schoolLoadError)) {
+  if (routeNeedsSchools(route) && (!schools || schoolLoadError || !programsIndex || programsError)) {
     return (
       <>
-        <CatalogLoading error={schoolLoadError} onBack={() => go({ name: 'landing' })} onRetry={retrySchoolLoad} />
+        <CatalogLoading error={schoolLoadError ?? programsError} onBack={() => go({ name: 'landing' })} onRetry={retrySchoolLoad} />
         <EvidenceSyncNotice status={evidenceStatus} />
       </>
     )
@@ -315,6 +296,7 @@ export default function App() {
           answers={answers}
           candidateProvince={candidateProvince}
           onCandidateProvinceChange={setCandidateProvince}
+          programs={programsIndex}
           onAnswerChange={handleAnswerChange}
           onFinish={handleFinish}
           onBack={() => go({ name: 'landing' })}
@@ -327,7 +309,7 @@ export default function App() {
         <ResultPage
           result={result}
           answers={answers}
-          programs={{ ...programsLayer, outcome: programOutcome, onEdit: () => go({ name: 'landing' }) }}
+          programsIndex={programsIndex}
           candidateProvince={candidateProvince}
           onCandidateProvinceChange={setCandidateProvince}
           onRestart={() => {
@@ -364,7 +346,8 @@ export default function App() {
         ? (
           <SchoolDetail
             school={school}
-            programs={programsLayer}
+            programsIndex={programsIndex}
+            answers={answers}
             candidateProvince={candidateProvince}
             onCandidateProvinceChange={setCandidateProvince}
             onBack={() => history.length > 1 ? history.back() : go({ name: 'result' })}

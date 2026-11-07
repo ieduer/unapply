@@ -8,6 +8,10 @@ import type { School } from '../data/schools';
 import { getEnvironment } from '../data/environment';
 import { getVerifiedAdmissionTracks } from '../lib/schoolProfile';
 import type { AdmissionContext } from '../lib/schoolProfile';
+import type { ProgramIndexPayload } from '../data/programsTypes';
+import { PROGRAM_CLASS_WILDCARD, admissibleCombos, offeredClasses } from './programs';
+import { SUBJECT_COMBOS, comboLabel } from '../data/programPrefs';
+import { programClassByCode } from '../data/programClasses';
 
 // 匿名生活回報缺少校區與觀察年份，票數不能證明適用整所學校。
 // B 系硬排除只接受當年度、明確覆蓋整校的官方結論；其餘保留供閱讀。
@@ -25,9 +29,11 @@ export function isHardFilterableQuality(school: School, dim: DimensionId): boole
   return true;
 }
 
-// 篩選上下文：目前只有考生省份，用來讓 A6 逐省判定招生管道。
-// 不放進 AnswerMap，因為它不是問卷答案，也不能污染學習證據契約。
-export type FilterContext = AdmissionContext;
+// 篩選上下文：考生省份（A6 逐省判定）與逐校招生專業摘要（S1／S2 的學校取值）。
+// 不放進 AnswerMap，因為它們不是問卷答案；Function 重算時以同一份釘定的 payload 建同樣的上下文。
+export interface FilterContext extends AdmissionContext {
+  programs?: ProgramIndexPayload;
+}
 
 export type AnswerValue = string | string[] | 'skip' | null;
 export type AnswerMap = Partial<Record<DimensionId, AnswerValue>>;
@@ -75,6 +81,8 @@ const dimensionValueLabels: Record<string, string> = {
   sports_test: '體育類體測',
   military_police: '軍警類政審體測',
   navigation_flight: '航海/飛行類面試',
+  // S2 通配值
+  [PROGRAM_CLASS_WILDCARD]: '另有試驗班（未對應專業類，不排除）',
   // E 系列
   yes: '是',
   no: '否',
@@ -99,6 +107,8 @@ function labelForValue(value: string): string {
   const match = /^(CS|EE|Math|Med|Econ|Law|Chn|Hist):(A[+-]?)$/.exec(value);
   const subjects: Record<string, string> = { CS: '計算機', EE: '電子／自動化', Math: '數學', Med: '臨床醫學', Econ: '經濟', Law: '法學', Chn: '中文', Hist: '歷史' };
   if (match) return `${subjects[match[1]]} ${match[2]}`;
+  if (SUBJECT_COMBOS.includes(value)) return comboLabel(value);
+  if (/^\d{4}$/.test(value) && programClassByCode[value]) return programClassByCode[value].name;
   return dimensionValueLabels[value] ?? value;
 }
 
@@ -119,6 +129,12 @@ export function getSchoolDimensionValue(
     case 'A4': return school.tuitionRange ?? null;
     case 'A5': return school.campusFreshmanPolicy === 'yes' ? 'separate_freshman' : school.mainCampusType ?? null;
     case 'A6': return getVerifiedAdmissionTracks(school, ctx);
+    // S1／S2 取自逐校招生專業摘要；沒載入或該校沒有本科清單（含只公布專科的）→ null，疑罪從無。
+    case 'S1': case 'S2': {
+      const entry = ctx?.programs && school.moeCode ? ctx.programs.schools[school.moeCode] : undefined;
+      if (!entry || entry.u === 0) return null;
+      return dim === 'S1' ? admissibleCombos(entry, ctx!.programs!) : offeredClasses(entry);
+    }
     case 'E1': case 'E2': case 'E3': case 'E4':
     case 'E5': case 'E6': case 'E7': case 'E8': {
       const env = getEnvironment(school.province, school.city);
@@ -192,6 +208,8 @@ function checkQuestion(
     const val = getSchoolDimensionValue(school, dim, ctx);
     if (val === null) continue;
     const values = Array.isArray(val) ? val : [val];
+    // S2 的通配值：另有試驗班對不到專業類，不能說它沒開——保留。
+    if (values.includes(PROGRAM_CLASS_WILDCARD)) continue;
     if (!values.some((item) => okValues.has(item))) {
       return {
         questionId: question.id,

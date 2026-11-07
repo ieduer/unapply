@@ -1,10 +1,13 @@
-// 43 維減法問卷底表 v1.6
+// 45 維減法問卷底表 v1.7
 //   A 紅線 6（權威/保守推導）+ E 環境 8（省份+城市客觀推導）+ B 生活 24（CollegesChat／用戶貢獻）+ C 特殊 5
+//   + S 專業 2（2026-11-07 批 C 新增：選考科目組合、意向專業類；追加式，舊題 id 與語義不變）
 // 每個選項帶 excludes 或 requires 規則，由 FilterEngine 套用。
 // 文案原則：中性描述，不做價值判斷；所有題都可跳過 = 不參與篩選。
 // 數據原則：缺失就缺失（疑罪從無），不默認。B/C crowdsourced 維度引導用戶貢獻。
 
 import type { DimensionId } from './dimensions';
+import { SUBJECT_COMBOS, comboLabel } from './programPrefs.ts';
+import { programClasses, programDisciplineNameByCode } from './programClasses.ts';
 
 export type QuestionType = 'single' | 'multi';
 
@@ -14,11 +17,16 @@ export interface QuestionOption {
   hint?: string;
   excludes?: { dim: DimensionId; values: string[] }[];
   requires?: { dim: DimensionId; values: string[] }[];
+  /**
+   * 選項是考生自身的事實或意向（選考組合、想讀的專業類），不是對學校的偏好：
+   * 「一所都不劃掉」本身就是有意義的答案，所以不因排除數為 0 而被 getVisibleOptions 隱藏，audit:values 也視為合規。
+   */
+  alwaysVisible?: boolean;
 }
 
 export interface Question {
   id: DimensionId;
-  section: 'A_redline' | 'E_environment' | 'B_quality' | 'C_special';
+  section: 'A_redline' | 'E_environment' | 'B_quality' | 'C_special' | 'S_programs';
   title: string;
   subtitle?: string;
   type: QuestionType;
@@ -538,10 +546,47 @@ const sectionC: Question[] = [
   },
 ];
 
-export const allQuestions: Question[] = [...sectionA, ...sectionE, ...sectionB, ...sectionC];
+// ========== S 專業（2 題；2026-11-07 批 C 新增） ==========
+// 資料：各省 2027 年擬招生專業（類）選考科目要求表（四省聯集、0 衝突）＋教育部本科專業目錄 2026。
+// 兩題都只對有本科招生專業清單的學校生效（1,235 所）；沒有清單的學校（含只公布專科的）一律保留。
+const sectionS: Question[] = [
+  {
+    id: 'S1',
+    section: 'S_programs',
+    dataStatus: 'authoritative',
+    title: '你的選考科目是哪三科？',
+    subtitle: '按各校公布的 2027 年選考科目要求判定：一所學校所有本科招生專業你都報不了，才會被劃掉。3+1+2 省份請把首選科目一起算進來；還沒定可以跳過。沒有公布本科專業清單的學校不受本題影響。',
+    type: 'single',
+    skippable: true,
+    options: SUBJECT_COMBOS.map((combo) => ({
+      key: combo,
+      label: comboLabel(combo),
+      requires: [{ dim: 'S1' as DimensionId, values: [combo] }],
+      alwaysVisible: true,
+    })),
+  },
+  {
+    id: 'S2',
+    section: 'S_programs',
+    dataStatus: 'authoritative',
+    title: '你想讀的專業類，學校一定要有開設嗎？',
+    subtitle: '按教育部《本科專業目錄（2026 年）》的 92 個專業類；按「專業類」招生的學校視為涵蓋該類全部專業。只有試驗班對不到專業類的學校不替你判定、照常保留。不限專業就跳過。',
+    type: 'single',
+    skippable: true,
+    options: programClasses.map((klass) => ({
+      key: klass.code,
+      label: `${klass.name}（${programDisciplineNameByCode[klass.discipline] ?? klass.discipline}）`,
+      requires: [{ dim: 'S2' as DimensionId, values: [klass.code] }],
+      alwaysVisible: true,
+    })),
+  },
+];
+
+export const allQuestions: Question[] = [...sectionA, ...sectionE, ...sectionB, ...sectionC, ...sectionS];
 export const QUESTIONS_BY_SECTION = {
   A: sectionA,
   E: sectionE,
   B: sectionB,
   C: sectionC,
+  S: sectionS,
 };

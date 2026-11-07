@@ -1,5 +1,7 @@
 // 維度元數據：每個維度的題目 id、取值集合、官方／權威數據來源鏈接。
 // 所有可驗證的維度都必須給出外部鏈接，不可驗證的放在 PROJECT_REPORT.md 的數據缺口節。
+import { SUBJECT_COMBOS } from './programPrefs.ts';
+import { programClasses } from './programClasses.ts';
 
 export type DimensionId =
   | 'A1' | 'A2' | 'A3' | 'A4' | 'A5' | 'A6'
@@ -7,12 +9,13 @@ export type DimensionId =
   | 'B1' | 'B2' | 'B3' | 'B4' | 'B5' | 'B6' | 'B7' | 'B8'
   | 'B9' | 'B10' | 'B11' | 'B12' | 'B13' | 'B14' | 'B15' | 'B16'
   | 'B17' | 'B18' | 'B19' | 'B20' | 'B21' | 'B22' | 'B23' | 'B24'
-  | 'C1' | 'C2' | 'C3' | 'C4' | 'C5';
+  | 'C1' | 'C2' | 'C3' | 'C4' | 'C5'
+  | 'S1' | 'S2';
 
 export interface DimensionMeta {
   id: DimensionId;
   label: string;
-  section: 'A_redline' | 'E_environment' | 'B_quality' | 'C_special';
+  section: 'A_redline' | 'E_environment' | 'B_quality' | 'C_special' | 'S_programs';
   // 該維度的可能值枚舉（null 表示未收錄）
   values: readonly string[];
   // 官方或權威數據來源，允許多個
@@ -386,9 +389,36 @@ export const DIMENSIONS: Record<DimensionId, DimensionMeta> = {
     coverage: 'authoritative',
     notes: '目前以第四輪（2017）為準；第五輪結果未全部公開。',
   },
+  // ============ S 專業維度（2026-11-07 批 C 新增，追加式：舊題 id 與語義不變） ============
+  S1: {
+    id: 'S1', label: '選考科目組合', section: 'S_programs',
+    // 值＝該校至少有一個本科招生專業（類）可報的三科組合（六科任選三科 20 種，涵蓋 3+1+2 的 12 種）。
+    // 取自 index.json 的逐校摘要；沒有本科清單的學校（含只公布專科的）為未知，永不因本題被劃掉。
+    values: SUBJECT_COMBOS,
+    authoritativeSources: [
+      { title: '湖北省教育廳 2027 年擬在鄂招生普通高校招生專業（類）選考科目要求彙總表', url: 'https://jyt.hubei.gov.cn/bmdt/ztzl/gxzs/xxgk/ywgg/202502/t20250228_5559043.shtml' },
+      { title: '江蘇省教育廳 2027 年擬在江蘇招生的普通高校專業選考科目要求', url: 'https://jyt.jiangsu.gov.cn/art/2025/2/20/art_58320_11496337.html' },
+      { title: '上海市教育考試院 2027 年普通高校本科專業選考科目要求', url: 'https://www.shmeea.edu.cn/page/08000/20250221/19115.html' },
+      { title: '浙江省教育考試院 2027 年及以後普通高校招生專業選考科目要求', url: 'https://www.zjzs.net/col/col369/index.html' },
+    ],
+    coverage: 'authoritative',
+    notes: '2027 年起各校報送、全國統一口徑；本站取四省官方表聯集並交叉核對，不一致的不收。浙江另有「技術」科，不在全國通用版，忽略。',
+  },
+  S2: {
+    id: 'S2', label: '意向專業類', section: 'S_programs',
+    // 值＝該校本科招生專業對到的國標專業類（92 類）；「*」＝另有試驗班對不到專業類，視為可能涵蓋任何類（requires 判定保留）。
+    values: [...programClasses.map((c) => c.code), '*'],
+    authoritativeSources: [
+      { title: '教育部《普通高等學校本科專業目錄（2026 年）》', url: 'http://www.moe.gov.cn/srcsite/A08/moe_1034/s3882/202604/t20260427_1434931.html' },
+      { title: '各省 2027 年擬招生專業（類）選考科目要求表（同 S1）', url: 'https://jyt.hubei.gov.cn/bmdt/ztzl/gxzs/xxgk/ywgg/202502/t20250228_5559043.shtml' },
+    ],
+    coverage: 'authoritative',
+    notes: '按「專業類」招生（計算機類等）視為涵蓋該類全部專業；高職（專科）專業用《職業教育專業目錄》，不對本表。',
+  },
 };
 
 export const DIMENSION_GROUPS = {
+  S: ['S1', 'S2'] as DimensionId[],
   A: ['A1', 'A2', 'A3', 'A4', 'A5', 'A6'] as DimensionId[],
   E: ['E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8'] as DimensionId[],
   B: [

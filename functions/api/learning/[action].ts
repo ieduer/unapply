@@ -3,6 +3,8 @@ import type { CandidateProvince } from '../../../src/data/admissionAuthorities';
 import { allQuestions } from '../../../src/data/questions';
 import type { Question } from '../../../src/data/questions';
 import { runtimeDataManifest } from '../../../src/data/runtimeManifest';
+import { programsManifest } from '../../../src/data/programsManifest';
+import type { ProgramIndexPayload } from '../../../src/data/programsTypes';
 import type { School } from '../../../src/data/schools';
 import { analyzeQuestionCoverage, getVisibleOptions } from '../../../src/engine/coverage';
 import { filterSchools } from '../../../src/engine/filter';
@@ -169,6 +171,24 @@ async function loadCanonicalSchools(request: Request, env: Env) {
   return schools;
 }
 
+// S1／S2 的學校取值來自逐校招生專業摘要；與前端同一份釘定 payload（版本與計數都核對），重算才會一致。
+async function loadCanonicalPrograms(request: Request, env: Env): Promise<ProgramIndexPayload> {
+  if (typeof env.ASSETS?.fetch !== 'function') throw new Error('assets unavailable');
+  const url = new URL(programsManifest.indexPath, request.url);
+  url.searchParams.set('v', programsManifest.version);
+  const response = await env.ASSETS.fetch(new Request(url, { method: 'GET' }));
+  if (!response.ok) throw new Error('canonical programs index unavailable');
+  const index = await response.json() as ProgramIndexPayload;
+  const entries = index && typeof index.schools === 'object' ? Object.values(index.schools) : [];
+  if (
+    index.version !== programsManifest.version
+    || entries.length !== programsManifest.counts.schools
+    || entries.reduce((n, s) => n + (s?.u ?? 0), 0) !== programsManifest.counts.undergraduateOfferings
+    || index.patterns?.length !== programsManifest.counts.patterns
+  ) throw new Error('canonical programs index mismatch');
+  return index;
+}
+
 function exactReceipt(receipt: Record<string, unknown> | undefined) {
   return receipt?.ok === true
     && receipt.status === 'active'
@@ -269,11 +289,16 @@ async function complete(request: Request, env: Env, cookie: string) {
   const sessionId = String(body.sessionId || '');
   // 考生地區只改變 A6 的逐省判定；與前端同一上下文重算，結果才會與考生看到的一致。
   const candidateProvince = body.candidateProvince;
+  // programsVersion：新版頁面（45 題）帶上它釘定逐校招生專業摘要的版本，必須與伺服器一致；
+  // 沒帶的是 2026-11-07 之前已開始作答的舊頁面（43 題），仍可完成——S1／S2 不在它的題單裡，不要求「每題都看過」。
+  const programsVersion = body.programsVersion;
+  const legacyTranscript = programsVersion === undefined;
   if (
-    !onlyKeys(body, ['sessionId', 'sequence', 'runtimeVersion', 'answers', 'candidateProvince'])
+    !onlyKeys(body, ['sessionId', 'sequence', 'runtimeVersion', 'answers', 'candidateProvince', 'programsVersion'])
     || (candidateProvince !== undefined
       && !(candidateProvinceOptions as string[]).includes(String(candidateProvince)))
     || body.runtimeVersion !== runtimeDataManifest.version
+    || (!legacyTranscript && programsVersion !== programsManifest.version)
     || !SESSION_ID_RE.test(sessionId)
     || !Number.isSafeInteger(sequence)
     || sequence < 1
@@ -285,9 +310,11 @@ async function complete(request: Request, env: Env, cookie: string) {
   ) return fail('learning_evidence_unavailable', 503);
 
   const schools = await loadCanonicalSchools(request, env);
-  const context = candidateProvince === undefined
-    ? undefined
-    : { candidateProvince: candidateProvince as CandidateProvince };
+  const programs = await loadCanonicalPrograms(request, env);
+  const context = {
+    ...(candidateProvince === undefined ? {} : { candidateProvince: candidateProvince as CandidateProvince }),
+    programs,
+  };
   const coverage = analyzeQuestionCoverage(schools, context);
   const activeQuestions = allQuestions.filter(question => coverage[question.id]?.active);
   const visibleQuestions = activeQuestions.map(question => ({
@@ -296,8 +323,11 @@ async function complete(request: Request, env: Env, cookie: string) {
   }));
   const answers = normalizeAnswers(body.answers, visibleQuestions);
   if (!answers) return fail('invalid_transcript', 400);
+  // 舊頁面的紀錄不可能含 S1／S2；帶了就不是舊頁面。
+  if (legacyTranscript && ('S1' in answers || 'S2' in answers)) return fail('invalid_transcript', 400);
   const result = filterSchools(schools, answers, context);
-  const visitedEveryQuestion = activeQuestions.every(question => question.id in answers);
+  const legacyExempt = new Set(legacyTranscript ? ['S1', 'S2'] : []);
+  const visitedEveryQuestion = activeQuestions.every(question => legacyExempt.has(question.id) || question.id in answers);
   if (
     result.stats.answeredCount < 1
     || (result.stats.keptCount > 10 && !visitedEveryQuestion)

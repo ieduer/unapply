@@ -8,8 +8,10 @@ const questionsModule = await import(pathToFileURL(path.join(repoRoot, 'src', 'd
 const coverageModule = await import(pathToFileURL(path.join(repoRoot, 'src', 'engine', 'coverage.ts')).href);
 const schools = JSON.parse(await fs.readFile(path.join(repoRoot, 'public', 'data', 'runtime', 'schools.json'), 'utf8'));
 const schoolCount = schools.length;
+// S1／S2 取值來自逐校招生專業摘要：用和前端／Function 一樣的上下文算覆蓋。
+const programs = JSON.parse(await fs.readFile(path.join(repoRoot, 'public', 'data', 'programs', 'index.json'), 'utf8'));
 
-const coverage = coverageModule.analyzeQuestionCoverage(schools);
+const coverage = coverageModule.analyzeQuestionCoverage(schools, { programs });
 
 const rows = questionsModule.allQuestions.map((question) => {
   const item = coverage[question.id];
