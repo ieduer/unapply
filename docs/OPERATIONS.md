@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Git branch: `master`; deployed source `df6c782`; documentation HEAD is separately recorded by Git
+- Git branch: `master`; deployed source `26bad8c`; documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -35,7 +35,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 
 | Resource | Live type | Readback | Detail |
 | --- | --- | --- | --- |
-| `unapply` | Pages | verified 2026-11-07 | production branch `master`; canonical deployment `c26a1b75-ae96-47f9-8dd8-7c2d931cf423` (source `df6c782`) |
+| `unapply` | Pages | verified 2026-11-07 | production branch `master`; canonical deployment `df4540a2-5657-4676-bd83-9026fa232579` (source `26bad8c`) |
 
 ## Authority and dependencies
 
@@ -54,10 +54,10 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - External/local build inputs, archived paths, receipts, retention, and hydrate commands not stated below are `review_required` and block deletion.
 
 Catalog backup evidence:
-- Cloudflare immutable Pages deployments: current=c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782, batch D1), previous=b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1, batch C), earlier=8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
+- Cloudflare immutable Pages deployments: current=df4540a2-5657-4676-bd83-9026fa232579 (source 26bad8c, batch D3), previous=c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782, batch D1), earlier=b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1, batch C), 8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
 
 Catalog restore evidence:
-- restore previous code/assets by rolling back to production deployment b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1)
+- restore previous code/assets by rolling back to production deployment c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782)
 
 Before deleting any local resource, satisfy the workspace path-preserving archive, remote readback, isolated restore, receipt, handbook, and project-state gates.
 
@@ -120,7 +120,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to deployment `b3e0f4c8-4fe5-4e83-863f-476cd41ce836` (source `5b18cd1`), after a fresh live baseline readback (rolls back batch D1: the seven-province programs payload goes back to the four-province one and the 13 institution websites disappear; S1/S2 questions, the two-tier payload and the Function stay). Direct API rollback without a registered transaction is not release authority.
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to deployment `c26a1b75-ae96-47f9-8dd8-7c2d931cf423` (source `df6c782`), after a fresh live baseline readback (rolls back batch D3: the #/hkmotw pool page and its entry points disappear; the seven-province programs layer, S1/S2, the Function and the atlas stay). Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -147,7 +147,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-11-07 — production df6c782 (batch D1); twelve gates on the release commit, 74 of 74 assets on candidate, custom and immutable hosts, signed-out real path (S1 物生政 26 struck, +计算机类 169 struck / 2783 kept; 河北民族师范学院 detail from the three new provinces; 内蒙古农业大学 conflict labels; #/world), health active. Exact evidence below.
+8. Last verified: 2026-11-07 — production 26bad8c (batch D3); thirteen gates on the release commit (test:hkmotw added), 77 of 77 assets on candidate, custom and immutable hosts, signed-out real path (香港 origin → 看港澳臺院校池 → 條件與學費 expander and region filters; result footer cross-region link; #/world origin note), health active. Exact evidence below.
 
 ## Synchronized documentation and handoff
 
@@ -431,3 +431,15 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 **程式**：`build_s1_programs.mjs` 共用 `alignSchool()`、試算表多工作表／無代碼、PDF 每頁表頭預掃、`assignBy: 'left'` 左緣聚類分欄、要求欄折行文法拼回；`build_programs_layer.mjs` 省表標籤 HA/NM/SD、conflict 圖樣；`engine/programs.ts` `REQUIREMENT_CONFLICT`；`programPrefs.ts` 標籤；`audit_s1_programs.mjs` 衝突逐條列出不阻塞；`test:s1` 11 項（新增七省／衝突／覆蓋不倒退）；About／SchoolDetail 省份列表改由 payload 推出。
 
 **回滾**：`b3e0f4c8`／`5b18cd1`，受審回滾交易；只切 Pages 版本，無資料庫遷移；學習記錄不受影響。證據：`reports/operations/nope-s2-coverage-jointprograms-20261107/nope-d1/`；私密收據與 HTTP 日誌：`reports/private/nope-s2-coverage-jointprograms-20261107/`。
+
+## 2026-11-07 批 D3：港澳臺院校池 `#/hkmotw`（已上線，當前權威）
+
+**授權**：同批 D1（站長 2026-11-07「距離最終goal還有哪些你自行推進」；葉子資料／介面更新走登記的發布交易）。不改題集／DimensionId／AnswerMap／learning manifest／Function／shared-ui；無 UC 或共享樞紐寫入；無付費；無新 Cloudflare 資源。起點分支題屬 S4，未做。
+
+**正式部署**：`df4540a2-5657-4676-bd83-9026fa232579`，來源 `26bad8ce1ceac722722b3babbc0e5b28a88ef30c`，生效 `2026-11-07T07:17:28Z`（Cloudflare `ended_on`）；候選 `d480c991`、正式 nope.bdfz.net 與不可變網址 77/77 一致；health active；正式真實路徑（`nope-d3/production-browser.json`）與候選一致。登記簿 accepted → `df4540a2`／`26bad8c`，rollback → `c26a1b75`／`df6c782`。Status `20261107-nope-s2-hkmotw-pool-d3` r1（new，已發布並讀回 `status-readback-d3.txt`）。收據 `20261107-nope-s2-hkmotw-pool-d3`（5 個 reviewed_changes：index.html、App、Landing、ResultPage、AboutPage）。
+
+**資料**（手冊 §3.5）：`data/research/hkmotw_institutions.2026-11-07.csv`（28 所／會）、`hkmotw_admission_channels.2026-11-07.csv`（23 條）→ `scripts/build_hkmotw_pool.mjs` → `public/data/hkmotw/pool.json` `c9f04be5db8a`＋`src/data/hkmotwManifest.ts`：上線 27 所（香港 15／澳門 10／臺灣 2 個聯招會）、21 條管道、10 所對到 GRAS 地圖；待人工覆核不上線：香港都會大學（官網回 Cloudflare 驗證頁）、香港城市大學內地招生網與澳門理工大學入學頁（純 JavaScript）。來源只收官方：香港各校內地高考／非本地學生招生頁；澳門教青局「澳門高等院校連結」名單與各院校招生處頁；臺灣陸生聯招會（2026 只辦碩博士班、學士班最近簡章 2019、目前未招生）與海外聯招會（港澳學生聯合分發／各校單獨招生）。每條管道帶來源網址（https、與機構同網域）、HTTP 200、讀取日與核對日；build 不認得的代碼、網域不一致或非 200 直接失敗。
+
+**介面**：`#/hkmotw`（`HkMoTwPage`：地區篩選、逐管道「條件與學費」展開、來源與核對日、待覆核註記）；首頁港澳臺起點主按鈕「看港澳臺院校池」（起點提示改寫，`origins.ts`）；結果頁頁尾「跨區看 港澳臺院校池」；世界地圖對得上池的機構面板多「港澳臺院校池：招生管道 →」、港澳臺起點提示帶鏈接；About 加來源。閘門新增 `test:hkmotw`（7），`build` 鏈加 `data:hkmotw`。
+
+**回滾**：`c26a1b75`／`df6c782`，受審回滾交易；只切 Pages 版本，無資料庫遷移；學習記錄不受影響。證據：`reports/operations/nope-s2-coverage-jointprograms-20261107/nope-d3/`。
