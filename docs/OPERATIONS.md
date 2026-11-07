@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Git branch: `master`; deployed source `ccf1770`; documentation HEAD is separately recorded by Git
+- Git branch: `master`; deployed source `df6c782`; documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -35,7 +35,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 
 | Resource | Live type | Readback | Detail |
 | --- | --- | --- | --- |
-| `unapply` | Pages | verified 2026-11-07 | production branch `master`; canonical deployment `8cb266cb-2eb2-409d-915b-a90a28447448` (source `ccf1770`) |
+| `unapply` | Pages | verified 2026-11-07 | production branch `master`; canonical deployment `c26a1b75-ae96-47f9-8dd8-7c2d931cf423` (source `df6c782`) |
 
 ## Authority and dependencies
 
@@ -54,10 +54,10 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - External/local build inputs, archived paths, receipts, retention, and hydrate commands not stated below are `review_required` and block deletion.
 
 Catalog backup evidence:
-- Cloudflare immutable Pages deployments: current=8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), previous=021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), earlier=7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
+- Cloudflare immutable Pages deployments: current=c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782, batch D1), previous=b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1, batch C), earlier=8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
 
 Catalog restore evidence:
-- restore previous code/assets by rolling back to production deployment 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522)
+- restore previous code/assets by rolling back to production deployment b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1)
 
 Before deleting any local resource, satisfy the workspace path-preserving archive, remote readback, isolated restore, receipt, handbook, and project-state gates.
 
@@ -120,7 +120,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to deployment `021e1a3d-164b-408b-a2af-fcec41712d31` (source `6b70522`), after a fresh live baseline readback (rolls back batch B: all-school programs layer and two-tier payload; the 144-school layer and fix batch A stay). Direct API rollback without a registered transaction is not release authority.
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to deployment `b3e0f4c8-4fe5-4e83-863f-476cd41ce836` (source `5b18cd1`), after a fresh live baseline readback (rolls back batch D1: the seven-province programs payload goes back to the four-province one and the 13 institution websites disappear; S1/S2 questions, the two-tier payload and the Function stay). Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -147,7 +147,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-11-07 — production ccf1770 (batch B); twelve gates, 74 of 74 assets, 43 of 43 assets on custom and immutable hosts, signed-out real path (start conditions, programs layer on the result page, per-school programs section), health active. Exact evidence below.
+8. Last verified: 2026-11-07 — production df6c782 (batch D1); twelve gates on the release commit, 74 of 74 assets on candidate, custom and immutable hosts, signed-out real path (S1 物生政 26 struck, +计算机类 169 struck / 2783 kept; 河北民族师范学院 detail from the three new provinces; 内蒙古农业大学 conflict labels; #/world), health active. Exact evidence below.
 
 ## Synchronized documentation and handoff
 
@@ -415,3 +415,19 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 **驗證**：十二道閘門於釋出提交 `5b18cd1` 上執行（`nope-c/check.txt`；`test:s1` 10、`test:trusted` 18、`audit:values` 45 維 0 阻斷、`audit:questions` 45 題、build 74 檔）；候選 `bc3c5927` 上傳、資產逐檔比對、瀏覽器真實路徑與對比度（候選 1024 紙色 6.27 起；本機 390 紙色 4.57／墨色 4.93 起，0 失敗）記錄在 `nope-c/candidate-*.json`；正式讀回 `production-assets.json`／`production-immutable-assets.json`／`production-browser.json`／`production-acceptance.json`。
 
 **回滾**：`8cb266cb`／`ccf1770`，走受審回滾交易（先讀回當時線上基線）；只切 Pages 版本，無資料庫遷移。回滾會把兩題撤回起點條件層；已完成的學習記錄不受影響（UC 契約未變）。
+
+## 2026-11-07 批 D1＋D4：七省 2027 選考要求表（山東／河南／內蒙古）＋ 13 所機構官網補齊（已上線，當前權威）
+
+**授權**：站長 2026-11-07 主會話「距離最終goal還有哪些你自行推進」——葉子站既有契約下的資料與介面更新可自行走登記的發布交易；本批不改題集／DimensionId／AnswerMap／learning manifest／Function 契約，無 UC 或共享樞紐寫入，無付費資源，無新建 Cloudflare 資源（兩個山東 PDF 放進既有私密桶 `bdfz-ops-backups` 的既有前綴 `unapply/s1-sources/v1/`，與批 B 三檔同類）。
+
+**正式部署**：`c26a1b75-ae96-47f9-8dd8-7c2d931cf423`，來源 `df6c7822f96c29bf530d7e5c5aebbb62dd1fa954`，生效 `2026-11-07T06:32:57Z`（Cloudflare `ended_on`）；候選 `589b2a81`、正式 nope.bdfz.net 與不可變網址 74/74 一致；health active；正式真實路徑（`nope-d1/production-browser.json`）與候選完全一致。登記簿 accepted → `c26a1b75`／`df6c782`，rollback → `b3e0f4c8`／`5b18cd1`。Status `20261107-nope-s2-coverage-d1` r1（improvement，已發布並讀回 `status-readback-d1.txt`）。收據 `20261107-nope-s2-coverage-d1`（2 個 reviewed_changes：About、SchoolDetail）。
+
+**資料**（手冊 §3.4，`data/research/s1_sources.json` 23 條來源）：新增山東省教育招生考試院 2027 通用版本科／專科 PDF（external，R2 讀回核對）、河南省教育考試院 2027 xlsx、內蒙古招生考試信息網 2027 xlsx（本科／专科兩表，只有校名）及三個公告頁快照（committed）。`program_offerings.2027.all.csv.gz` 102,241 條（本科 56,511／專科 45,730）、2,608 校；**本科校覆蓋 1,271/1,412（缺 178 → 141）、專科校 1,260/1,540（缺 551 → 280）**；跨省不一致 2 條（內蒙古農業大學 動物醫學／食品質量與安全，HA/HB/SD/ZJ 物＋化 vs NM 物）以圖樣 `conflict` 入庫：引擎視為可報、永不作排除依據，詳情頁標示「各省表寫法不一致（不作排除依據）」。payload 版本 `8b9b28f927d8 → 3d0cc7ed3c79`（manifest 新增 `counts.provinces=7`、`counts.conflicts=2`）；Function 以同一 manifest 核對，舊頁面相容照舊。稽核 `nope-d1/s1-audit-all.md`（含仍缺 141 校清單：職業大學 75、其他 38、獨立學院 18、警察類 10）。
+
+**探測結論（能腳本取得且為官方網域者）**：本機出口為海外 IP（dmit），多數省考試院對它重置 TLS；山東／河南／內蒙古三省可取；湖南公告頁可達但附件主機 `cms.jyt.hunan.gov.cn` 不通；廣東／四川／福建／新疆只以查詢系統公布（不抓）；北京／天津／河北／山西／遼寧／黑龍江／安徽／江西／廣西／海南／重慶／貴州／雲南／西藏／陝西／甘肅／青海／寧夏不通或無表。陽光高考 412 不繞過。
+
+**D4**：`verify_institution_websites.mjs` 新增 `MANUAL_REVIEW`（13 條，各帶證據）與 `--from CSV --recheck`；`gras_institution_websites.2026-11-07.csv` 544/544 verified（high 440／medium 104；Monash／MBZUAI 反爬 403 以瀏覽器核對、澳門旅遊大學憑證鏈不完整以 curl 核對）；世界地圖 payload `8a4beeaa84b5 → fb75382a01b0`。
+
+**程式**：`build_s1_programs.mjs` 共用 `alignSchool()`、試算表多工作表／無代碼、PDF 每頁表頭預掃、`assignBy: 'left'` 左緣聚類分欄、要求欄折行文法拼回；`build_programs_layer.mjs` 省表標籤 HA/NM/SD、conflict 圖樣；`engine/programs.ts` `REQUIREMENT_CONFLICT`；`programPrefs.ts` 標籤；`audit_s1_programs.mjs` 衝突逐條列出不阻塞；`test:s1` 11 項（新增七省／衝突／覆蓋不倒退）；About／SchoolDetail 省份列表改由 payload 推出。
+
+**回滾**：`b3e0f4c8`／`5b18cd1`，受審回滾交易；只切 Pages 版本，無資料庫遷移；學習記錄不受影響。證據：`reports/operations/nope-s2-coverage-jointprograms-20261107/nope-d1/`；私密收據與 HTTP 日誌：`reports/private/nope-s2-coverage-jointprograms-20261107/`。
