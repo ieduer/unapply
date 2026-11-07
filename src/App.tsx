@@ -13,6 +13,7 @@ import { ThemeCustomizer } from './shared-ui/ThemeCustomizer'
 import { candidateProvinceOptions, defaultCandidateProvince } from './data/admissionAuthorities'
 import type { CandidateProvince } from './data/admissionAuthorities'
 import { readStoredOrigin, saveOrigin, type OriginRegion } from './data/origins'
+import { emptyOriginPrefs, normalizeOriginPrefs, readStoredOriginPrefs, saveOriginPrefs, type OriginPrefs } from './data/originBranch'
 import type { ProgramIndexPayload } from './data/programsTypes'
 import { loadProgramIndex } from './lib/programsData'
 import type { School } from './data/schools'
@@ -167,6 +168,8 @@ export default function App() {
   const [candidateProvince, setCandidateProvinceState] = useState<CandidateProvince>(readStoredCandidateProvince)
   // 所在地／升學身份是起點（決定從哪個題庫開始），同樣不進 AnswerMap。
   const [origin, setOriginState] = useState<OriginRegion | null>(() => readStoredOrigin())
+  // 起點分支（批 E2）：資格與範圍，同樣只存 localStorage、不進 AnswerMap；換起點時無效的值歸零。
+  const [originPrefs, setOriginPrefsState] = useState<OriginPrefs>(() => normalizeOriginPrefs(readStoredOrigin(), readStoredOriginPrefs()))
   // 逐校招生專業摘要：S1／S2 兩題的學校取值由它算，所以和學校目錄一樣是問卷的前置資料（Function 重算用同一份）。
   const [programsIndex, setProgramsIndex] = useState<ProgramIndexPayload | null>(null)
   const [programsError, setProgramsError] = useState<string | null>(null)
@@ -205,7 +208,18 @@ export default function App() {
   const setOrigin = useCallback((next: OriginRegion) => {
     setOriginState(next)
     saveOrigin(next)
+    setOriginPrefsState((current) => {
+      const normalized = normalizeOriginPrefs(next, current)
+      saveOriginPrefs(normalized)
+      return normalized
+    })
   }, [])
+
+  const setOriginPrefs = useCallback((next: OriginPrefs) => {
+    const normalized = origin ? normalizeOriginPrefs(origin, next) : emptyOriginPrefs
+    setOriginPrefsState(normalized)
+    saveOriginPrefs(normalized)
+  }, [origin])
 
   const go = useCallback((r: Route) => {
     navigate(r)
@@ -284,7 +298,9 @@ export default function App() {
   const landingPage = (
     <Landing
       origin={origin}
+      originPrefs={originPrefs}
       onOriginChange={setOrigin}
+      onOriginPrefsChange={setOriginPrefs}
       onStart={startMainland}
       onWorld={() => go({ name: 'world' })}
       onHkMoTw={() => go({ name: 'hkmotw' })}
@@ -312,6 +328,7 @@ export default function App() {
       page = (
         <QuestionRunner
           allSchools={schools}
+          origin={origin}
           answers={answers}
           candidateProvince={candidateProvince}
           onCandidateProvinceChange={setCandidateProvince}
@@ -328,6 +345,8 @@ export default function App() {
         <ResultPage
           result={result}
           answers={answers}
+          origin={origin}
+          originPrefs={originPrefs}
           programsIndex={programsIndex}
           candidateProvince={candidateProvince}
           onCandidateProvinceChange={setCandidateProvince}
@@ -364,6 +383,7 @@ export default function App() {
     page = (
       <HkMoTwPage
         origin={origin}
+        originPrefs={originPrefs}
         onBack={() => go({ name: 'landing' })}
         onAbout={() => go({ name: 'about' })}
         onWorld={() => go({ name: 'world' })}
@@ -374,6 +394,8 @@ export default function App() {
     page = (
       <OverseasPage
         origin={origin}
+        originPrefs={originPrefs}
+        onOriginPrefsChange={setOriginPrefs}
         regionSlug={route.region}
         institutionId={route.inst}
         onNavigate={(region, inst) => goOverseas(region, inst ?? null)}

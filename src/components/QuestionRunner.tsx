@@ -12,12 +12,15 @@ import { analyzeQuestionCoverage, getVisibleOptions } from '../engine/coverage'
 import type { ProgramIndexPayload } from '../data/programsTypes'
 import { SUBJECT_OPTIONS, isSubjectCode, subjectsToCombo } from '../data/programPrefs'
 import { programClasses, programDisciplines } from '../data/programClasses'
+import type { OriginRegion } from '../data/origins'
 import { useLocale } from '../i18n/react'
 import { Rich } from '../i18n/rich'
 import { optionHint, optionLabel, provinceLabel, questionSubtitle, questionTitle, sectionLabel, subjectLabel } from '../lib/i18nLabels'
 
 interface Props {
   allSchools: School[]
+  /** 起點（展示用：港澳臺起點在 A6 多一行官方管道提示；不進篩選）。 */
+  origin: OriginRegion | null
   answers: AnswerMap
   candidateProvince: CandidateProvince
   onCandidateProvinceChange: (province: CandidateProvince) => void
@@ -30,6 +33,7 @@ interface Props {
 
 export function QuestionRunner({
   allSchools,
+  origin,
   answers,
   candidateProvince,
   onCandidateProvinceChange,
@@ -212,6 +216,9 @@ export function QuestionRunner({
                 </select>
                 <span className="text-fog-500">{t('ui.runner.a6.provinceNote')}</span>
               </label>
+            )}
+            {q.id === 'A6' && (origin === 'hk' || origin === 'mo' || origin === 'tw') && (
+              <p className="text-xs text-fog-500 leading-relaxed">{t('ui.runner.a6.hkmotwNote')}</p>
             )}
         </div>
 

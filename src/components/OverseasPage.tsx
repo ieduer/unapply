@@ -11,12 +11,17 @@ import type {
 } from '../data/overseasTypes'
 import { loadOverseasIndex, loadOverseasRegion } from '../lib/overseasData'
 import { getOriginOption, type OriginRegion } from '../data/origins'
+import { QUALIFICATION_OPTIONS, QUALIFICATIONS_BY_ORIGIN, isQualification, qualificationTokens, type OriginPrefs } from '../data/originBranch'
+import { countListed, loadQualificationsIndex, markInstitution, type QualificationsPayload } from '../lib/originLayer'
 import { useLocale, type Locale } from '../i18n/react'
 import { Rich } from '../i18n/rich'
 import { LocaleSwitcher } from './LocaleSwitcher'
 
 interface Props {
   origin: OriginRegion | null
+  /** 起點分支（批 E2）：資格決定「校方頁面寫明接受」標示；只標示、不過濾。 */
+  originPrefs: OriginPrefs
+  onOriginPrefsChange: (prefs: OriginPrefs) => void
   /** 目前展開的地區（slug）；null＝地區清單。 */
   regionSlug: string | null
   /** 進入地區頁時要自動展開的機構 id（世界地圖入口用）。 */
@@ -38,11 +43,22 @@ const regionName = (row: { code: string; nameZh: string }, locale: Locale) => (l
  * 它不是題庫、不替任何人劃掉學校；所在地只決定先看哪裡，之後可以跨區看。
  * 原文片段、機構名、平台名、主管機關名與 payload 內的說明文字（note／roleLabel／typeZh）是資料，不翻譯、不轉字形；狀態與分類以代碼經 ui.overseas.* 翻譯。
  */
-export function OverseasPage({ origin, regionSlug, institutionId, onNavigate, onBack, onAbout, onWorld, onHkMoTw, onStartMainland }: Props) {
+export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionSlug, institutionId, onNavigate, onBack, onAbout, onWorld, onHkMoTw, onStartMainland }: Props) {
   const { t } = useLocale()
   const [index, setIndex] = useState<OverseasIndexPayload | null>(null)
   const [loadError, setLoadError] = useState<string | null>(null)
   const [reloadToken, setReloadToken] = useState(0)
+  // 資格標示（批 E2）：token 清單由起點＋資格決定；計數用懶載的 qualifications.json，載不到就只少計數行。
+  const marking = useMemo(() => qualificationTokens(origin, originPrefs), [origin, originPrefs])
+  const markingActive = marking.tokens.length > 0 || marking.gaokao
+  const [qualIndex, setQualIndex] = useState<QualificationsPayload | null>(null)
+  useEffect(() => {
+    if (!markingActive || qualIndex) return
+    let alive = true
+    loadQualificationsIndex().then((payload) => { if (alive) setQualIndex(payload) }).catch(() => undefined)
+    return () => { alive = false }
+  }, [markingActive, qualIndex])
+  const qualificationChoices = origin && origin !== 'cn-mainland' ? QUALIFICATIONS_BY_ORIGIN[origin] : QUALIFICATIONS_BY_ORIGIN.overseas
 
   useEffect(() => {
     let alive = true
@@ -111,6 +127,26 @@ export function OverseasPage({ origin, regionSlug, institutionId, onNavigate, on
           <p className="text-xs mono text-fog-500 leading-relaxed">
             {t('ui.overseas.totals', { ...totals, date: index.generatedAt })}
           </p>
+          <div className="border border-ink-800 bg-ink-950/60 rounded-xl px-4 py-3 flex flex-col gap-2 text-sm" data-qualification-marking={markingActive ? 'on' : 'off'}>
+            <label className="flex flex-wrap items-center gap-2 text-xs mono text-fog-500">
+              <span className="uppercase tracking-[0.2em] shrink-0">{t('ui.overseas.qual.selector')}</span>
+              {origin === 'cn-mainland' ? (
+                <span className="text-fog-200">{t('ui.overseas.qual.gaokaoOption')}</span>
+              ) : (
+                <select
+                  value={originPrefs.qualification ?? ''}
+                  onChange={(event) => onOriginPrefsChange({ ...originPrefs, qualification: isQualification(event.target.value) ? event.target.value : null })}
+                  className="bg-ink-950 border border-ink-700 rounded-lg px-2 py-2 text-fog-200 min-h-[40px] max-w-full"
+                >
+                  <option value="">{t('ui.overseas.qual.none')}</option>
+                  {qualificationChoices.map((qualification) => <option key={qualification} value={qualification}>{t(`origin.qual.${qualification}.label`)}</option>)}
+                </select>
+              )}
+            </label>
+            {markingActive && qualIndex && (() => { const c = countListed(qualIndex, marking.tokens, marking.gaokao); return <p className="text-xs mono text-fog-500">{t('ui.overseas.qual.counts', { listed: c.listed, unread: c.unread })}</p> })()}
+            {markingActive && originPrefs.qualification && QUALIFICATION_OPTIONS[originPrefs.qualification].tokens.length === 0 && <p className="text-xs text-fog-500">{t(`origin.qual.${originPrefs.qualification}.hint`)}</p>}
+            <p className="text-xs text-fog-500 leading-relaxed">{t('ui.overseas.qual.rule')}</p>
+          </div>
           {originOption && !originOption.hasLocalPool && (
             <div className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 text-sm text-fog-300 leading-relaxed">
               <Rich
@@ -136,7 +172,7 @@ export function OverseasPage({ origin, regionSlug, institutionId, onNavigate, on
         )}
 
         {regionRow ? (
-          <RegionSection key={`${regionRow.slug}|${institutionId ?? ''}`} row={regionRow} index={index} institutionId={institutionId} onBackToList={() => onNavigate(null)} onWorld={onWorld} />
+          <RegionSection key={`${regionRow.slug}|${institutionId ?? ''}`} row={regionRow} index={index} institutionId={institutionId} onBackToList={() => onNavigate(null)} onWorld={onWorld} marking={markingActive ? marking : null} qualIndex={qualIndex} />
         ) : (
           <RegionList regions={index.regions} onOpen={(slug) => onNavigate(slug)} />
         )}
@@ -189,7 +225,7 @@ function RegionList({ regions, onOpen }: { regions: OverseasRegionRow[]; onOpen:
   )
 }
 
-function RegionSection({ row, index, institutionId, onBackToList, onWorld }: { row: OverseasRegionRow; index: OverseasIndexPayload; institutionId: string | null; onBackToList: () => void; onWorld: () => void }) {
+function RegionSection({ row, index, institutionId, onBackToList, onWorld, marking, qualIndex }: { row: OverseasRegionRow; index: OverseasIndexPayload; institutionId: string | null; onBackToList: () => void; onWorld: () => void; marking: { tokens: readonly string[]; gaokao: boolean } | null; qualIndex: QualificationsPayload | null }) {
   const { t, locale } = useLocale()
   const [payload, setPayload] = useState<OverseasRegionPayload | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -206,6 +242,7 @@ function RegionSection({ row, index, institutionId, onBackToList, onWorld }: { r
   }, [row.slug, reloadToken])
 
   const summaries = useMemo(() => index.institutions.filter((i) => i.region === row.code), [index, row.code])
+  const regionCounts = marking && qualIndex ? countListed(qualIndex, marking.tokens, marking.gaokao, summaries.map((i) => i.id)) : null
   const ordered = useMemo(() => {
     const list = payload ? payload.institutions : []
     // 官方頁已讀到的排前面（字母序），未讀到的排後面（字母序）；不按任何分數排。
@@ -225,6 +262,7 @@ function RegionSection({ row, index, institutionId, onBackToList, onWorld }: { r
             slots={{ a1: (children) => <button onClick={onWorld} className="underline hover:text-accent-500">{children}</button> }}
           />
         </p>
+        {regionCounts && <p className="text-xs mono text-fog-500" data-region-qual-counts>{t('ui.overseas.qual.counts', { listed: regionCounts.listed, unread: regionCounts.unread })}</p>}
       </div>
 
       {error && (
@@ -252,7 +290,7 @@ function RegionSection({ row, index, institutionId, onBackToList, onWorld }: { r
           <Block title={t('ui.overseas.institutions.title')} count={summaries.length} note={t('ui.overseas.institutions.note')}>
             <ul className="flex flex-col gap-3">
               {ordered.map((inst) => (
-                <InstitutionRow key={inst.id} inst={inst} open={openId === inst.id} onToggle={() => setOpenId(openId === inst.id ? null : inst.id)} autoScroll={institutionId === inst.id} />
+                <InstitutionRow key={inst.id} inst={inst} open={openId === inst.id} onToggle={() => setOpenId(openId === inst.id ? null : inst.id)} autoScroll={institutionId === inst.id} marking={marking} />
               ))}
             </ul>
           </Block>
@@ -290,7 +328,7 @@ function SourceLine({ url, live, date, prefixKey = 'ui.overseas.source' }: { url
   try { host = new URL(url).hostname } catch { /* 原樣顯示 */ }
   return (
     <p className="text-xs mono text-fog-500 break-all leading-relaxed">
-      {t(prefixKey)}：{live ? <a className="underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{url} ↗</a> : <span>{host}{t('ui.overseas.notLinked')}</span>}
+      {t(prefixKey)}{t('ui.common.colon')}{live ? <a className="underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{url} ↗</a> : <span>{host}{t('ui.overseas.notLinked')}</span>}
       {date && <> · {t('ui.overseas.fetched', { date })}</>}
     </p>
   )
@@ -392,9 +430,11 @@ function institutionBadgeKey(inst: OverseasInstitutionSummary): string {
   return `ui.overseas.statusCode.${inst.status}`
 }
 
-function InstitutionRow({ inst, open, onToggle, autoScroll }: { inst: OverseasInstitutionDetail; open: boolean; onToggle: () => void; autoScroll: boolean }) {
+function InstitutionRow({ inst, open, onToggle, autoScroll, marking }: { inst: OverseasInstitutionDetail; open: boolean; onToggle: () => void; autoScroll: boolean; marking: { tokens: readonly string[]; gaokao: boolean } | null }) {
   const { t, locale } = useLocale()
   const ref = useRef<HTMLLIElement | null>(null)
+  // 資格標示（保留語義）：寫明→徽章；未寫明→「官方頁未讀到（保留）」；永不劃掉。
+  const mark = marking && inst.status === 'verified' ? markInstitution(inst.qualifications.listed, inst.gaokaoPolicy, marking.tokens, marking.gaokao) : null
   useEffect(() => {
     if (autoScroll && ref.current) ref.current.scrollIntoView({ block: 'start' })
   }, [autoScroll])
@@ -408,6 +448,11 @@ function InstitutionRow({ inst, open, onToggle, autoScroll }: { inst: OverseasIn
           <p className="text-xs mono text-fog-500">{t('ui.overseas.inst.subjects', { n: inst.subjects })}{inst.dataAcademicYear ? t('ui.overseas.inst.academicYear', { year: inst.dataAcademicYear }) : ''}</p>
         </div>
         <div className="flex flex-wrap items-center gap-2 shrink-0">
+          {marking && (
+            <span data-qual-mark={mark?.listed ? 'listed' : 'unread'} className={['inline-block rounded-full border px-2.5 py-0.5 text-xs leading-5', mark?.listed ? 'border-accent-500/40 bg-accent-500/10 text-accent-600' : 'border-ink-700 bg-ink-950 text-fog-300'].join(' ')}>
+              {mark?.listed ? (mark.gaokao && mark.matched.length === 0 ? t('ui.overseas.qual.listedGaokao') : t('ui.overseas.qual.listed', { tokens: mark.matched.join(' · ') })) : t('ui.overseas.qual.unread')}
+            </span>
+          )}
           <StatusBadge text={t(institutionBadgeKey(inst))} />
           <a className="text-xs mono text-accent-500 hover:text-accent-400" href={inst.website} target="_blank" rel="noreferrer noopener">{t('ui.overseas.inst.website')}</a>
           <button onClick={onToggle} aria-expanded={open} className="text-xs mono text-accent-500 hover:text-accent-400 min-h-[32px] px-1">{open ? t('ui.overseas.inst.collapse') : t('ui.overseas.inst.expand')}</button>

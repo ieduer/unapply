@@ -7,12 +7,16 @@ import {
 } from '../data/schoolCatalogSummary'
 import { contributionHighlights, researchSummary } from '../data/researchSummary'
 import { getOriginOption, originOptions, type OriginRegion } from '../data/origins'
+import type { OriginPrefs } from '../data/originBranch'
+import { OriginBranch } from './OriginBranch'
 import { useLocale } from '../i18n/react'
 import { Rich } from '../i18n/rich'
 
 interface Props {
   origin: OriginRegion | null
+  originPrefs: OriginPrefs
   onOriginChange: (origin: OriginRegion) => void
+  onOriginPrefsChange: (prefs: OriginPrefs) => void
   onStart: () => void
   onWorld: () => void
   onHkMoTw: () => void
@@ -21,7 +25,7 @@ interface Props {
   onContribute: () => void
 }
 
-export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, onOverseas, onAbout, onContribute }: Props) {
+export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChange, onStart, onWorld, onHkMoTw, onOverseas, onAbout, onContribute }: Props) {
   const { t, tOr, n } = useLocale()
   const originOption = origin ? getOriginOption(origin) : null
   const isHkMoTw = origin === 'hk' || origin === 'mo' || origin === 'tw'
@@ -93,6 +97,7 @@ export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, on
           {!originOption && (
             <p className="text-sm text-fog-500">{t('ui.landing.pickOriginHint')}</p>
           )}
+          {origin && <OriginBranch origin={origin} prefs={originPrefs} onChange={onOriginPrefsChange} />}
           {originOption && !originOption.hasLocalPool && (
             <p className="text-sm text-fog-300 leading-relaxed">
               <Rich k="ui.landing.noPool" params={{ origin: t(`origin.${originOption.id}.label`), hint: t(`origin.${originOption.id}.hint`), route: t(routeKey) }} />

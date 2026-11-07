@@ -1,6 +1,6 @@
 import { EvidenceNotice } from './EvidenceNotice'
 import { LocaleSwitcher } from './LocaleSwitcher'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { loadJointIndex } from '../lib/jointData'
 import type { JointIndexPayload } from '../data/jointTypes'
 import type { FilterResult, AnswerMap, ExcludeReason, KeptDistribution } from '../engine/filter'
@@ -19,6 +19,11 @@ import { allQuestions } from '../data/questions'
 import type { ProgramIndexPayload, SubjectCode } from '../data/programsTypes'
 import { countAdmissible } from '../engine/programs'
 import { programsManifest } from '../data/programsManifest'
+import { hkmotwManifest } from '../data/hkmotwManifest'
+import { overseasManifest } from '../data/overseasManifest'
+import type { OriginRegion } from '../data/origins'
+import { qualificationTokens, scopeGroup, showCrossBorder, type OriginPrefs } from '../data/originBranch'
+import { countListed, loadQualificationsIndex, type QualificationsPayload } from '../lib/originLayer'
 import { useLocale } from '../i18n/react'
 import { Rich } from '../i18n/rich'
 import { distributionLabel, explainKeptLocalized, formatReason, linkLabel, linkNote, provinceLabel, questionTitle, schoolDisplayName, tagLabel } from '../lib/i18nLabels'
@@ -26,6 +31,9 @@ import { distributionLabel, explainKeptLocalized, formatReason, linkLabel, linkN
 interface Props {
   result: FilterResult
   answers: AnswerMap
+  /** 起點與起點分支（批 E2）：決定結果頁要不要並列港澳臺池與海外層；不進 AnswerMap。 */
+  origin: OriginRegion | null
+  originPrefs: OriginPrefs
   /** 逐校招生專業摘要：卡片上的專業數與「你的選科可報」計數用（篩選本身已由 S1／S2 題在引擎裡完成）。 */
   programsIndex: ProgramIndexPayload | null
   candidateProvince: CandidateProvince
@@ -139,6 +147,8 @@ function buildHandoff(result: FilterResult, answers: AnswerMap) {
 export function ResultPage({
   result,
   answers,
+  origin,
+  originPrefs,
   programsIndex,
   candidateProvince,
   onCandidateProvinceChange: setCandidateProvince,
@@ -362,6 +372,8 @@ export function ResultPage({
           </div>
         )}
 
+        <CrossBorderSections origin={origin} prefs={originPrefs} onHkMoTw={onHkMoTw} onOverseas={onOverseas} />
+
         <div className="bg-ink-900 border border-ink-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-4">
           <div>
             <h2 className="serif text-xl">{t('ui.result.lookup.title')}</h2>
@@ -510,6 +522,62 @@ export function ResultPage({
         </footer>
       </section>
     </main>
+  )
+}
+
+/**
+ * 跨國並列（批 E2，研究 cross_border_result_design.md）：大陸剩餘集合之後，按範圍並列港澳臺院校池與海外可申請學校兩段，
+ * 各帶機構數、已核計數、來源日與入口；不暗示錄取可能。範圍＝只本地（或未選）時折疊為一行入口。
+ */
+function CrossBorderSections({ origin, prefs, onHkMoTw, onOverseas }: { origin: OriginRegion | null; prefs: OriginPrefs; onHkMoTw: () => void; onOverseas: () => void }) {
+  const { t } = useLocale()
+  const expanded = showCrossBorder(origin, prefs)
+  const marking = qualificationTokens(origin, prefs)
+  const markingActive = marking.tokens.length > 0 || marking.gaokao
+  const [qualIndex, setQualIndex] = useState<QualificationsPayload | null>(null)
+  useEffect(() => {
+    if (!expanded || !markingActive || qualIndex) return
+    let alive = true
+    loadQualificationsIndex().then((payload) => { if (alive) setQualIndex(payload) }).catch(() => undefined)
+    return () => { alive = false }
+  }, [expanded, markingActive, qualIndex])
+  const h = hkmotwManifest.counts
+  const o = overseasManifest.counts
+  const slots = {
+    a1: (children: ReactNode) => <button onClick={onHkMoTw} className="underline hover:text-accent-500">{children}</button>,
+    a2: (children: ReactNode) => <button onClick={onOverseas} className="underline hover:text-accent-500">{children}</button>,
+  }
+  if (!expanded) {
+    return (
+      <p className="text-xs mono text-fog-500 leading-relaxed" data-cross-border="collapsed">
+        <Rich k={prefs.scope ? 'ui.result.cross.collapsed' : 'ui.result.cross.noScope'} slots={slots} />
+      </p>
+    )
+  }
+  const scopeLabel = prefs.scope ? t(`origin.scope.${scopeGroup(origin ?? 'cn-mainland')}.${prefs.scope}`) : null
+  const counts = markingActive && qualIndex ? countListed(qualIndex, marking.tokens, marking.gaokao) : null
+  const qualificationLabel = origin === 'cn-mainland' ? t('ui.overseas.qual.gaokaoOption') : prefs.qualification ? t(`origin.qual.${prefs.qualification}.label`) : ''
+  return (
+    <div className="flex flex-col gap-4" data-cross-border="expanded">
+      <div>
+        <h2 className="serif text-xl">{t('ui.result.cross.title')}{scopeLabel ? <span className="text-fog-500 text-base"> · {t('ui.result.cross.scope', { scope: scopeLabel })}</span> : null}</h2>
+        <p className="mt-2 text-xs text-fog-500 leading-relaxed">{t('ui.result.cross.note')}</p>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2">
+        <section className="bg-ink-900 border border-ink-700 rounded-xl p-4 flex flex-col gap-3" data-cross-border-pool="hkmotw">
+          <h3 className="serif text-lg">{t('ui.common.hkmotwPool')}</h3>
+          <p className="text-xs mono text-fog-500 leading-relaxed">{t('ui.result.cross.hkmotw.line', { institutions: h.institutions, hk: h.byRegion.HK, mo: h.byRegion.MO, tw: h.byRegion.TW, channels: h.channels, date: hkmotwManifest.generatedAt })}</p>
+          {(origin === 'hk' || origin === 'mo' || origin === 'tw') && <p className="text-xs text-fog-300 leading-relaxed">{t('ui.result.cross.hkmotw.channels')}</p>}
+          <button onClick={onHkMoTw} className="self-start px-4 py-2 rounded-full border border-accent-500/40 bg-accent-500/10 text-accent-600 text-sm hover:bg-accent-500/15 min-h-[40px]">{t('ui.result.cross.open')} →</button>
+        </section>
+        <section className="bg-ink-900 border border-ink-700 rounded-xl p-4 flex flex-col gap-3" data-cross-border-pool="overseas">
+          <h3 className="serif text-lg">{t('ui.common.overseasPool')}</h3>
+          <p className="text-xs mono text-fog-500 leading-relaxed">{t('ui.result.cross.overseas.line', { institutions: o.institutions, verified: o.byStatus.verified, linkLive: o.admissionsLinksLive, regions: o.regions, date: overseasManifest.generatedAt })}</p>
+          {counts && <p className="text-xs text-fog-300 leading-relaxed" data-cross-border-qual>{t('ui.result.cross.overseas.qual', { qualification: qualificationLabel, listed: counts.listed, unread: counts.unread })}</p>}
+          <button onClick={onOverseas} className="self-start px-4 py-2 rounded-full border border-accent-500/40 bg-accent-500/10 text-accent-600 text-sm hover:bg-accent-500/15 min-h-[40px]">{t('ui.result.cross.open')} →</button>
+        </section>
+      </div>
+    </div>
   )
 }
 

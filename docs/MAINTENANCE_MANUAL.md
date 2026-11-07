@@ -57,14 +57,16 @@ npm run audit:values
 npm run audit:data
 npm run test:filters
 npm run test:s1
+npm run data:origins
 npm run data:i18n
+npm run test:origins
 npm run test:i18n
 npm run lint
 npm run build
 npm run dev
 ```
 
-`audit:values` 是 2026-09 新增的死值閘門，說明見 §4.3。`data:i18n`／`test:i18n` 是 2026-11 批 E1 新增的多語言生成與閘門，說明見 §5.3。
+`audit:values` 是 2026-09 新增的死值閘門，說明見 §4.3。`data:i18n`／`test:i18n` 是 2026-11 批 E1 新增的多語言生成與閘門（§5.3）；`data:origins`／`test:origins` 是批 E2 的起點分支資料層與閘門（§5.4）。
 
 部署：
 
@@ -572,6 +574,35 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 **閘門 `test:i18n`**：三語鍵集合相等、已排序、無空值、佔位符與富文本標記一致且成對；zh-Hans 逐鍵等於字級轉換（覆寫表除外）且 140 條 fixtures 全過、不換用詞；en 無 CJK；zh-Hant 與倉庫原文逐條相等（45 題標題／副標／選項、維度標籤、取值、科目、省名、起點）；程式裡的靜態鍵與動態鍵族都存在；介面檔無未經 `t()` 的 CJK 字面量（資料檔、引擎、shared-ui、契約行除外）；45 題在三語下選項數與 key 不變；manifest 雜湊可重算；語言推測表；引擎不匯入 i18n。對比度閘門 `test:theme` 不受語言影響，但英文字串更長：發布前以內建瀏覽器在三語 × 兩色系 × 1440／390 逐路由量測（批 E1 記錄見 `reports/operations/nope-s4-i18n-origins-20261107/nope-e1/`）。
 
 **體積**（批 E1 當時值）：1,200 鍵；主包從 398 KiB 增到 466 KiB（含正體字典 77 KiB；gzip 143 KiB）；`public/i18n/zh-Hans.json` 77 KiB／`en.json` 91 KiB（gzip 各約 27 KiB），只在切到該語言時載入。無新執行期依賴；建置期字典 92 KiB 已 vendored。
+
+### 5.4 起點分支與跨國結果（2026-11 批 E2 起，路線圖 S4；研究 origin_branch_design.md 方案 B）
+
+起點（第 0 題，`origins.ts`，5 個值不變）之後，各起點先問「前幾題」——**資格**（港澳臺與海外起點）與**範圍**（所有起點）；皆可跳過。它們是「用戶是誰」，與 `candidateProvince`、`origin` 同性質：
+存 `localStorage` 鍵 `unapply.originPrefs.v1`（`{ qualification, scope }`），**不進 `AnswerMap`、不進 `DimensionId`、不進 A+ 學習證據、不送 Function**（`test:origins` 斷言；若站長要讓起點答案進學習證據，是共享契約追加——方案 A——另批並先報站長）。
+
+**資料與模組**
+
+| 路徑 | 作用 |
+| --- | --- |
+| `src/data/originBranch.ts` | `Qualification`（18 值）、`Scope`（local／abroad／both）、`QUALIFICATIONS_BY_ORIGIN`（hk 3／mo 3／tw 3／overseas 13／cn 無）、`SCOPES_BY_ORIGIN`（海外起點只有 abroad／both）、每個資格對應的 S3 `qualificationsListed` token 與「這是什麼資格」官方頁、港澳臺→大陸官方管道 `MAINLAND_CHANNELS`、儲存與歸零、`qualificationTokens`（大陸起點＝高考 token＋`gaokaoPolicy=accepted`）、`showCrossBorder` |
+| `data/research/origin_sources.2026-11-07.json` | 研究會話 `sources.json` 的子集（65 條：起點制度官方頁與港澳臺→大陸管道），含狀態、網域、SHA-256、抓取時間；不含電郵 |
+| `scripts/build_origin_layer.mjs`（`npm run data:origins`，build 鏈在 `data:overseas` 之後、`data:i18n` 之前） | 讀地區檔 → `public/data/overseas/qualifications.json`（token → 機構 id、`gaokaoAccepted`；gzip ≤ 20 KiB）；讀研究子集 → `src/data/originSources.ts`（url → 標題／網域／狀態／核對日／`live`）；`src/data/originManifest.ts`（版本雜湊只由內容決定，綁 S3 版本）。fail-closed |
+| `src/lib/originLayer.ts` | 懶載索引（核對 manifest）、`markInstitution`（token 子串相等；大陸起點另看 `gaokaoPolicy=accepted`）、`countListed`（listed＋unread＝total，永不過濾） |
+| `src/components/OriginBranch.tsx` | 首頁起點卡內的分支面板：資格單選（含提示與官方頁）、範圍單選、清除；說明不進紀錄 |
+| `src/components/MainlandChannels.tsx` | 港澳臺院校池內的「官方進大陸管道」：每條帶狀態徽章、本站摘要（當時值）、官方頁鏈接與核對日 |
+| `tests/origins.test.ts`（`npm run test:origins`） | 閘門，見下 |
+
+**規則（硬性）**
+
+- 資格只用**保留**語義：海外機構官方頁 `qualificationsListed` 含所選 token → 標「校方頁面寫明接受：…」；大陸起點 `gaokaoPolicy=accepted` → 「校方頁面寫明接受高考」；其餘一律「官方頁未讀到（保留）」。**絕不劃掉**任何機構、計數永遠 listed＋unread＝total；`not_accepted` 也只是不標示（原句照列，由用戶自己決定）。`status≠verified` 的機構不標示。
+- 對外鏈接：只有 `originSources[url].live`（研究 verified＋https＋最終網域在記錄網域下）才渲染為鏈接；blocked／needs_review（IBO、Parcoursup、教育部 education.gouv.fr、CBSE／CISCE、KICE robots、澳門教青局保送專頁、臺灣申請系統登入頁）只寫標題、網域與「官方頁本站未讀到：原因」。`test:origins` 以白名單網域尾綴核對全部上線鏈接。
+- 港澳臺→大陸官方管道的「要點」是本站摘要（當時值：文憑試收生計劃「3、3、2、2」、2026 聯招 3 月報名／5 月 23–24 日考、學測均標等），頁面明寫「以當年辦法與簡章為準」；不代表錄取可能、不替任何人判定資格。
+- 跨國規則：所在地只影響「前幾題」與「可申請管道」，不預設剔除任何國家。結果頁 `CrossBorderSections`：大陸起點看 `scope`（abroad／both 展開；local 或未選折疊為一行入口）；港澳臺／海外起點一律展開；兩段各帶機構數、已核計數、資料日與入口，資格有 token 時加「寫明接受 n／保持未知 m」。
+- 大陸起點的 45 題不變；港澳臺起點進大陸題庫時 A6 多一行官方管道提示（`ui.runner.a6.hkmotwNote`），判定不變。
+
+**加一個資格／管道**：在 `originBranch.ts` 加值與 token（token 必須是 S3 地區檔實際出現的字串，`test:origins` 會擋）；官方頁先進 `data/research/origin_sources.<日期>.json`（由研究會話的 `sources.json` 取子集，或新核查後追加，含狀態與抓取時間）→ `npm run data:origins` → 三語鍵 `origin.qual.<id>.label`／`.hint` 或 `ui.channels.<key>.title`／`.summary` → `npm run data:i18n` → `test:origins`＋`test:i18n`。年度重核：研究目錄 `tools/verify_sources.mjs` 重抓 → 更新子集 → 重跑 `data:origins`（`live` 隨狀態變）。
+
+**閘門 `test:origins`**（7 項）：不進 AnswerMap／DimensionId／learning-manifest／A+ 證據；起點 5 個不變、各起點資格與範圍選項齊、換起點歸零；資格 token 全部存在於 S3 資料且索引與地區檔逐 token 一致；保留語義（標示永不減少機構數、listed＋unread＝total、`not_accepted` 不劃）；官方頁 live 規則、needs_review 管道不上鏈接、網域白名單、無電郵；三語鍵齊；manifest 雜湊可重算、gzip ≤ 20 KiB、綁 S3 版本。
 
 ## 6. 部署與驗證
 

@@ -2,12 +2,15 @@ import { useEffect, useMemo, useState } from 'react'
 import type { HkMoTwChannel, HkMoTwInstitution, HkMoTwPoolPayload, HkMoTwRegion } from '../data/hkmotwTypes'
 import { loadHkMoTwPool } from '../lib/hkmotwData'
 import { getOriginOption, type OriginRegion } from '../data/origins'
+import type { OriginPrefs } from '../data/originBranch'
+import { MainlandChannels } from './MainlandChannels'
 import { useLocale } from '../i18n/react'
 import { Rich } from '../i18n/rich'
 import { LocaleSwitcher } from './LocaleSwitcher'
 
 interface Props {
   origin: OriginRegion | null
+  originPrefs: OriginPrefs
   onBack: () => void
   onAbout: () => void
   onWorld: () => void
@@ -21,7 +24,7 @@ const ORIGIN_REGION: Partial<Record<OriginRegion, HkMoTwRegion>> = { hk: 'HK', m
  * 所在地只決定先看哪個地區，大陸起點的用戶也能跨區來看（跨國規則）。
  * 院校名、地區名、管道與條件文字是 payload 的官方原文（正體），不翻譯、不轉字形；介面文案走 ui.hkmotw.*。
  */
-export function HkMoTwPage({ origin, onBack, onAbout, onWorld, onStartMainland }: Props) {
+export function HkMoTwPage({ origin, originPrefs, onBack, onAbout, onWorld, onStartMainland }: Props) {
   const { t } = useLocale()
   const [payload, setPayload] = useState<HkMoTwPoolPayload | null>(null)
   const [loadError, setLoadError] = useState<string | null>(null)
@@ -98,6 +101,7 @@ export function HkMoTwPage({ origin, onBack, onAbout, onWorld, onStartMainland }
                   a2: (children) => <button onClick={onStartMainland} className="underline hover:text-accent-500">{children}</button>,
                 }}
               />
+              {originPrefs.qualification && <p className="mt-1 text-xs mono text-fog-500">{t('ui.overseas.qual.selector')}{t('ui.common.colon')}{t(`origin.qual.${originPrefs.qualification}.label`)}</p>}
             </div>
           )}
         </div>
@@ -150,6 +154,8 @@ export function HkMoTwPage({ origin, onBack, onAbout, onWorld, onStartMainland }
         </ul>
 
         <ReviewNote payload={payload} />
+
+        {(origin === 'hk' || origin === 'mo' || origin === 'tw') && <MainlandChannels region={origin} />}
 
         <footer className="pt-6 border-t border-ink-800 text-xs mono text-fog-500 leading-relaxed">
           <p>{t('ui.hkmotw.footer.rule')}</p>
