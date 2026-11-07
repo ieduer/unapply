@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Git branch: `master`; deployed source `26bad8c`; documentation HEAD is separately recorded by Git
+- Git branch: `master`; deployed source `893667b`; documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -443,3 +443,15 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 **介面**：`#/hkmotw`（`HkMoTwPage`：地區篩選、逐管道「條件與學費」展開、來源與核對日、待覆核註記）；首頁港澳臺起點主按鈕「看港澳臺院校池」（起點提示改寫，`origins.ts`）；結果頁頁尾「跨區看 港澳臺院校池」；世界地圖對得上池的機構面板多「港澳臺院校池：招生管道 →」、港澳臺起點提示帶鏈接；About 加來源。閘門新增 `test:hkmotw`（7），`build` 鏈加 `data:hkmotw`。
 
 **回滾**：`c26a1b75`／`df6c782`，受審回滾交易；只切 Pages 版本，無資料庫遷移；學習記錄不受影響。證據：`reports/operations/nope-s2-coverage-jointprograms-20261107/nope-d3/`。
+
+## 2026-11-07 批 D2：中外合作辦學機構／項目資料層（已上線，當前權威）
+
+**授權**：同批 D1／D3（站長 2026-11-07「距離最終goal還有哪些你自行推進」；葉子資料／介面更新走登記的發布交易）。不改題集／DimensionId／AnswerMap／learning manifest／Function／shared-ui；無 UC 或共享樞紐寫入；無付費；無新 Cloudflare 資源。這一層不進題目、引擎或 AnswerMap；平台詳情頁沒有學費欄，所以不產生 A4 取值。
+
+**正式部署**：`26154a49-5bf2-4943-9105-c2526cf49e06`，來源 `893667b3e71e58a42ea99f70f98fca109702f99d`，生效 `2026-11-07T09:12:01Z`（Cloudflare `ended_on`）；候選 `9f53e53c`、正式 nope.bdfz.net 與不可變網址 79/79 一致；health active；正式真實路徑（`nope-d2/production-browser.json`）與候選一致。登記簿 accepted → `26154a49`／`893667b`，rollback → `df4540a2`／`26bad8c`。Status `20261107-nope-s2-jointprograms-d2` r1（new，已發布並讀回 `status-readback-d2.txt`）。收據 `20261107-nope-s2-jointprograms-d2`（4 個 reviewed_changes：index.html、SchoolDetail、ResultPage、AboutPage）。
+
+**資料**（手冊 §3.6）：唯一主來源教育部中外合作辦學監管工作信息平台 crs.jsj.edu.cn「教育部審批和復核的機構及項目名單（2026年5月25日更新）」：名單 1,834 條（`orglists/1` 碩士及以上、`orglists/2` 本科、`getbyarea/1..31` 各省四類），詳情 1,834/1,834 條全部讀到（2.5 秒一請求、分段續抓；站方對同一出口約每 500 次請求重置 TLS）→ `data/research/joint_programs.2026-11-07.csv`＋`.meta.json`（快取 SHA-256 `ab3327da5d1380c7b8f7bfb3eb54459c568974eb03e8a1ebc1a53be738b0d2ec`）→ `scripts/build_joint_layer.mjs` → `public/data/joint/index.json`＋`items.json`，manifest `a249d541a01a`：機構 411、項目 1,423（其中內地與港澳臺合作 35、境外高校在海南自貿港獨立辦學 2）；仍在名單 1,781，暫停招生／已併入／已注銷照列並標狀態不刪；對回教育部主表 1,826 條掛到 667 校（獨立法人機構以機構名、校內機構與項目以中方合作辦學者對回），對不到 8 條（非普通高校：中國農業科學院研究生院 2、上海國家會計學院 3、北京國家會計學院 2、廈門國家會計學院 1）只列不掛校。不存個人資料（法定代表人等姓名欄不讀）。原始 HTML 快取打包為 `nope-d2/raw/crs-detail-cache.2026-11-07.tar.gz`（1,433,195 位元組，SHA-256 在 `raw/SHA256SUMS`），本機快取已刪。
+
+**介面**：學校詳情新增「中外合作辦學」區塊（逐條：機構／項目與合作類型、名稱、外方（或港澳臺）合作辦學者、層次、招生年份、專業、批准書／許可證編號與有效期、平台詳情鏈接、讀取日；對不到主表的條目不掛校）；結果卡片在招生專業行下多一行計數（「中外合作辦學 機構 n／項目 n」）；About 加來源。閘門新增 `test:joint`（5），`build` 鏈在 `data:hkmotw` 後加 `data:joint`。
+
+**回滾**：`df4540a2`／`26bad8c`，受審回滾交易；只切 Pages 版本，無資料庫遷移；學習記錄不受影響。證據：`reports/operations/nope-s2-coverage-jointprograms-20261107/nope-d2/`。
