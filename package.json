@@ -24,7 +24,7 @@
     "audit:questions": "node scripts/audit_question_rules.mjs",
     "audit:values": "tsx scripts/audit_dimension_values.mjs",
     "audit:data": "tsx scripts/audit_data_coverage.mjs",
-    "build": "npm run data:runtime && npm run data:atlas && npm run data:programs && npm run data:hkmotw && npm run data:joint && tsc -b && vite build",
+    "build": "npm run data:runtime && npm run data:atlas && npm run data:programs && npm run data:hkmotw && npm run data:joint && npm run data:overseas && tsc -b && vite build",
     "lint": "eslint .",
     "test:evidence": "node --experimental-strip-types --test tests/learning-evidence.test.ts",
     "test:filters": "tsx --test tests/admission-channel.test.ts tests/evidence-threshold.test.ts tests/filter-validity.test.ts",
@@ -41,7 +41,9 @@
     "data:joint-fetch": "node scripts/fetch_joint_programs.mjs",
     "data:joint-build": "node scripts/build_joint_programs.mjs",
     "data:joint": "node scripts/build_joint_layer.mjs",
-    "test:joint": "tsx --test tests/joint-programs.test.ts"
+    "test:joint": "tsx --test tests/joint-programs.test.ts",
+    "data:overseas": "node scripts/build_overseas_layer.mjs",
+    "test:overseas": "tsx --test tests/overseas-layer.test.ts"
   },
   "dependencies": {
     "html-to-image": "^1.11.13",

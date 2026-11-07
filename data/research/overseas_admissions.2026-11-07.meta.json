@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-11-07",
+  "research": {
+    "dir": "/Users/ylsuen/CF/reports/operations/nope-s3-overseas-20261107/research",
+    "session": "nope-s3-research（只讀倉庫、未付費；2026-11-07）",
+    "method": "METHOD.md（抓取：Node 24 原生 fetch、明示身分 UA、同可註冊網域 ≥2 秒、尊重 robots.txt、不登入不填表不繞過挑戰、401/403/429/503 或挑戰殼記 blocked、每機構 ≤16 頁同網域；抽取：只抄頁面原文片段 ≤280 字＋來源 URL，不解讀不換算不用 AI；去識別：電郵一律換成 [email omitted]）",
+    "coverage": "coverage.md",
+    "schema": "S3_SCHEMA_PROPOSAL.md（§3 鏈接上線閘門：verified+high 才上鏈接；medium 待人工確認；blocked/not_found/needs_review 只入資料檔）",
+    "sources": "sources.json（8,951 個 URL 的最終網址、HTTP、SHA-256、位元組、抓取時間）",
+    "evidence": "evidence/institutions/*.json、evidence/national/*.json、evidence/fetch-log.jsonl",
+    "tools": "tools/crawl_admissions.mjs（--only <ids> --force 重抓）、verify_national.mjs、build_institutions_csv.mjs、redact_emails.mjs"
+  },
+  "files": {
+    "overseas_admissions.2026-11-07.csv": { "researchName": "institutions_admissions.csv", "sha256": "bebc108a1e666d30f41ab38ca3cef9236ae3b21c599af696dcfba76dafa5f7ff", "rows": 403, "key": "institutionId = gras_institutions_geo.univCode" },
+    "overseas_national_portals.2026-11-07.csv": { "researchName": "national_portals.csv", "sha256": "cfd51351b78788ee8a5d5e8934e2f0124e645a9af4779eae40445402dde508b0", "rows": 91, "key": "(region, officialUrl)" },
+    "overseas_visa_policies.2026-11-07.csv": { "researchName": "visa_policies.csv", "sha256": "07af058e4c3421cf92c933adf548a0874e4c782e2eed52c37ea262fa64a8ad8d", "rows": 90, "key": "(region, officialUrl)" }
+  },
+  "crawl": {
+    "startedAt": "2026-11-07T05:39:00Z",
+    "finishedAt": "2026-11-07T06:27:19Z",
+    "httpRequests": 9423,
+    "registrableDomains": 587,
+    "downloadedBytes": 918894695,
+    "userAgent": "Mozilla/5.0 (compatible; nope.bdfz.net S3 research crawler; +https://nope.bdfz.net; contact nope@bdfz.net)",
+    "paidResources": "none"
+  },
+  "scope": "GRAS 2026 前 50 機構中 region ≠ China 的 403 所（含香港 7、澳門 4、臺灣 4，標 region 供 S2 對照）；起點為 S0 已核官網",
+  "counts": {
+    "institutions": { "total": 403, "verified": 343, "needs_review": 2, "blocked": 42, "not_found": 16, "high": 336, "medium": 7, "regions": 44 },
+    "portals": { "total": 91, "verified": 63, "needs_review": 13, "blocked": 9, "not_found": 6, "high": 63 },
+    "visa": { "total": 90, "verified": 47, "needs_review": 23, "blocked": 16, "not_found": 4, "high": 47 }
+  },
+  "privacy": "三檔皆無電郵樣式（研究會話 redact_emails.mjs 已處理）、無人名欄；build_overseas_layer.mjs 入庫時再斷言一次（表頭白名單＋全欄電郵掃描）",
+  "caveats": [
+    "ieltsOverall／toeflOverall 是原句第一個分數，可能是總分或單項；頁面只能連同 englishQuotes 原句展示",
+    "tuitionIntlQuotes 不區分本科／研究生；gaokaoPolicy 只看字樣分類，每類都附原句",
+    "pageMatchScore／confidence 是頁面配對與來源信心，不是錄取可能；頁面不得以之暗示錄取"
+  ]
+}

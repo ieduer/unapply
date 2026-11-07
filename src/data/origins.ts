@@ -1,6 +1,6 @@
 // 使用者的「所在地／升學身份」起點。它決定從哪個題庫開始，不是問卷答案，也不進 AnswerMap。
-// 目前只有中國大陸有完整的學校減法題庫；其餘起點先進全球學科地圖，並明說題庫尚未建成
-//（見 docs/GLOBAL_ROADMAP.md 的階段表）。
+// 目前只有中國大陸有完整的學校減法題庫；港澳臺起點先進院校池（#/hkmotw），其他國家或地區先進海外可申請學校（#/overseas），
+// 並明說題庫分支尚未建成（見 docs/GLOBAL_ROADMAP.md 的階段表）。
 
 export type OriginRegion = 'cn-mainland' | 'hk' | 'mo' | 'tw' | 'overseas'
 
@@ -17,7 +17,7 @@ export const originOptions: readonly OriginOption[] = [
   { id: 'hk', label: '香港', hint: '港澳臺院校池已上線（官方招生管道）；本地減法題庫建設中（路線圖 S4）', hasLocalPool: false },
   { id: 'mo', label: '澳門', hint: '港澳臺院校池已上線（官方招生管道）；本地減法題庫建設中（路線圖 S4）', hasLocalPool: false },
   { id: 'tw', label: '臺灣', hint: '港澳臺院校池已上線（官方招生管道）；本地減法題庫建設中（路線圖 S4）', hasLocalPool: false },
-  { id: 'overseas', label: '其他國家或地區', hint: '海外題庫建設中（路線圖 S3）', hasLocalPool: false },
+  { id: 'overseas', label: '其他國家或地區', hint: '海外機構招生頁已上線（S3）；題庫分支建設中（S4）', hasLocalPool: false },
 ]
 
 export const defaultOrigin: OriginRegion = 'cn-mainland'

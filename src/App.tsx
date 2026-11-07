@@ -43,6 +43,8 @@ import { ContributePage } from './components/ContributePage'
 const WorldAtlasPage = lazy(() => import('./components/WorldAtlasPage').then((module) => ({ default: module.WorldAtlasPage })))
 // 港澳臺院校池同樣只在進入 #/hkmotw 時載入。
 const HkMoTwPage = lazy(() => import('./components/HkMoTwPage').then((module) => ({ default: module.HkMoTwPage })))
+// 海外可申請學校（S3）只在進入 #/overseas 時載入；地區檔再按需載。
+const OverseasPage = lazy(() => import('./components/OverseasPage').then((module) => ({ default: module.OverseasPage })))
 
 type Route =
   | { name: 'landing' }
@@ -52,19 +54,21 @@ type Route =
   | { name: 'contribute' }
   | { name: 'world' }
   | { name: 'hkmotw' }
+  | { name: 'overseas'; region: string | null; inst: string | null }
   | { name: 'school'; id: string }
 
 function parseRoute(): Route {
   // 去掉 # 和可能的查詢串（供 ContributePage 自行解析）
   const raw = window.location.hash.replace(/^#\/?/, '').split('?')[0]
   if (!raw) return { name: 'landing' }
-  const [head, id] = raw.split('/')
+  const [head, id, third] = raw.split('/')
   if (head === 'filter') return { name: 'filter' }
   if (head === 'result') return { name: 'result' }
   if (head === 'about') return { name: 'about' }
   if (head === 'contribute') return { name: 'contribute' }
   if (head === 'world') return { name: 'world' }
   if (head === 'hkmotw') return { name: 'hkmotw' }
+  if (head === 'overseas') return { name: 'overseas', region: id ? decodeURIComponent(id) : null, inst: third ? decodeURIComponent(third) : null }
   if (head === 'school' && id) return { name: 'school', id: decodeURIComponent(id) }
   return { name: 'landing' }
 }
@@ -77,6 +81,7 @@ function navigate(route: Route) {
   else if (route.name === 'contribute') hash = '#/contribute'
   else if (route.name === 'world') hash = '#/world'
   else if (route.name === 'hkmotw') hash = '#/hkmotw'
+  else if (route.name === 'overseas') hash = route.region ? `#/overseas/${encodeURIComponent(route.region)}${route.inst ? `/${encodeURIComponent(route.inst)}` : ''}` : '#/overseas'
   else if (route.name === 'school') hash = `#/school/${encodeURIComponent(route.id)}`
   if (window.location.hash !== hash) window.location.hash = hash
 }
@@ -269,6 +274,8 @@ export default function App() {
     go({ name: 'filter' })
   }, [go])
 
+  const goOverseas = useCallback((region: string | null = null, inst: string | null = null) => go({ name: 'overseas', region, inst }), [go])
+
   const landingPage = (
     <Landing
       origin={origin}
@@ -276,6 +283,7 @@ export default function App() {
       onStart={startMainland}
       onWorld={() => go({ name: 'world' })}
       onHkMoTw={() => go({ name: 'hkmotw' })}
+      onOverseas={() => goOverseas()}
       onAbout={() => go({ name: 'about' })}
       onContribute={() => go({ name: 'contribute' })}
     />
@@ -329,6 +337,7 @@ export default function App() {
           onContribute={() => go({ name: 'contribute' })}
           onWorld={() => go({ name: 'world' })}
           onHkMoTw={() => go({ name: 'hkmotw' })}
+          onOverseas={() => goOverseas()}
         />
       )
     }
@@ -343,6 +352,7 @@ export default function App() {
         onSchool={(id) => go({ name: 'school', id })}
         onStartMainland={startMainland}
         onHkMoTw={() => go({ name: 'hkmotw' })}
+        onOverseas={goOverseas}
       />
     )
   } else if (route.name === 'hkmotw') {
@@ -352,6 +362,20 @@ export default function App() {
         onBack={() => go({ name: 'landing' })}
         onAbout={() => go({ name: 'about' })}
         onWorld={() => go({ name: 'world' })}
+        onStartMainland={startMainland}
+      />
+    )
+  } else if (route.name === 'overseas') {
+    page = (
+      <OverseasPage
+        origin={origin}
+        regionSlug={route.region}
+        institutionId={route.inst}
+        onNavigate={(region, inst) => goOverseas(region, inst ?? null)}
+        onBack={() => go({ name: 'landing' })}
+        onAbout={() => go({ name: 'about' })}
+        onWorld={() => go({ name: 'world' })}
+        onHkMoTw={() => go({ name: 'hkmotw' })}
         onStartMainland={startMainland}
       />
     )

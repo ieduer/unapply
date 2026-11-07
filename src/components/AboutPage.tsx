@@ -5,6 +5,7 @@ import {
   officialVocationalCount,
 } from '../data/schoolCatalogSummary'
 import { programsManifest } from '../data/programsManifest'
+import { overseasManifest } from '../data/overseasManifest'
 
 interface Props { onBack: () => void }
 
@@ -74,6 +75,7 @@ export function AboutPage({ onBack }: Props) {
             <li>· 企業直招高中生計劃：各計劃官方頁；缺官方頁時用主流媒體報導並標示可信度與核對日期，條目隨招募年度變動。</li>
             <li>· 中外合作辦學機構／項目（2026-11-07 批 D2）：教育部中外合作辦學監管工作信息平台「經審批和復核的機構及項目名單」（本科與碩士及以上兩份名單＋各省名單）逐條詳情頁：中方／外方（或內地／港澳臺）合作辦學者、辦學層次、專業、批准書／許可證編號與有效期、招生年份；本站按中方校名對回教育部主表，獨立法人機構以機構本身對回；只展示不判定，平台無學費欄故不產生學費取值：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://www.crs.jsj.edu.cn/" target="_blank" rel="noreferrer noopener">crs.jsj.edu.cn ↗</a></li>
             <li>· 港澳臺院校池（#/hkmotw，2026-11-07 批 D3）：只收官方來源——香港各院校的內地高考／非本地學生招生頁、澳門教育及青年發展局「澳門高等院校連結」與各院校招生處頁、臺灣陸生聯招會與海外聯招會官方頁；每條管道帶來源網址、來源網域與機構一致、實際連通與核對日，核不過的留在資料檔待人工覆核不上線：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://portal.dsedj.gov.mo/webdsejspace/internet/Inter_main_page.jsp?id=80123" target="_blank" rel="noreferrer noopener">澳門教育及青年發展局 ↗</a> · <a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://rusen.stust.edu.tw/cpx/index.html" target="_blank" rel="noreferrer noopener">陸生聯招會 ↗</a> · <a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://cmn-hant.overseas.ncnu.edu.tw/" target="_blank" rel="noreferrer noopener">海外聯招會 ↗</a></li>
+            <li>· 海外可申請學校（#/overseas，2026-11-07 批 S3）：全球學科地圖裡 {overseasManifest.counts.institutions} 所非中國大陸機構，從 S0 已核的官網出發，以明示身分、尊重 robots.txt、不登入不繞過驗證的爬蟲讀取各校<b className="text-fog-100">官方國際本科招生頁</b>（每校最多 16 頁、停留在同一官方網域），只抄原文片段（高考採認、接受的學歷資格、英語與其他語言要求、國際生學費、申請管道、申請時程、資料學年）並保留來源網址與抓取日，不解讀、不換算、不用 AI 生成；另核查 {overseasManifest.counts.portals.total} 條各國官方申請平台／資訊入口與 {overseasManifest.counts.visa.total} 條簽證主管機關頁。官方頁已讀到 {overseasManifest.counts.byStatus.verified} 所（同官網網域 {overseasManifest.counts.byConfidence.high}、學校另一官方網域 {overseasManifest.counts.byConfidence.medium}），對聲明身分的爬蟲回驗證頁或 robots 不允許 {overseasManifest.counts.byStatus.blocked} 所、未找到對應頁 {overseasManifest.counts.byStatus.not_found} 所、純 JavaScript 待人工覆核 {overseasManifest.counts.byStatus.needs_review} 所。鏈接規則：機構招生頁只有「已讀到且同官網網域」才上鏈接，另一官方網域待人工確認；各校共用的非政府申請平台要有機構官方頁鏈到它才上鏈接；簽證頁已讀到才上鏈接；被擋者只寫主管機關名與「核查時被擋」。這一層<b className="text-fog-100">不代表錄取可能</b>，排名只描述學科分佈，年度隨 GRAS 更新重核。研究方法與逐校證據：<a className="text-accent-500 hover:text-accent-400 mono break-all" href="https://github.com/ieduer/unapply/blob/master/docs/MAINTENANCE_MANUAL.md" target="_blank" rel="noreferrer noopener">docs/MAINTENANCE_MANUAL.md §3.7 ↗</a></li>
           </ul>
           <h3 className="serif text-lg text-fog-100 mt-4 mb-2">眾包（部分覆蓋，缺失不默認）</h3>
           <ul className="flex flex-col gap-2 text-sm">
@@ -116,7 +118,7 @@ export function AboutPage({ onBack }: Props) {
             <li><b className="text-fog-100">S0（現在）</b>：首頁先問所在地；全球學科地圖＋學科／地區減法；企業直招高中生首批條目。</li>
             <li><b className="text-fog-100">S1</b>：中國大陸高校按專業、錄取條件、招生政策逐校逐年補齊。</li>
             <li><b className="text-fog-100">S2</b>：中外合作辦學、內地與港澳臺合作辦學，港澳臺院校與管道。</li>
-            <li><b className="text-fog-100">S3</b>：澳洲、歐美、日韓新等可申請學校，以學科為主索引補錄取條件、名額、學費、簽證。</li>
+            <li><b className="text-fog-100">S3（2026-11-07 首批已上線）</b>：海外可申請學校（#/overseas）——GRAS 前 50 的 {overseasManifest.counts.institutions} 所非大陸機構逐校官方招生頁原文（高考採認、學歷資格、語言、學費、申請管道、時程）、{overseasManifest.counts.regions} 個國家地區的官方申請平台與簽證頁；缺的保持未知，待補：被擋與純 JavaScript 機構的人工覆核、名額。</li>
             <li><b className="text-fog-100">S4–S5</b>：多語言與多起點；全球高校權威資料庫服務化。</li>
           </ul>
           <p className="mt-3 text-sm text-fog-500">

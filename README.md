@@ -25,6 +25,8 @@ npm run data:gras     # 抓軟科 GRAS 年度學科排名（57 學科 × 前 50�
 npm run data:gras-geo # 機構 → 座標／正體名／教育部代碼（大陸用本站校區底稿，其餘 Wikidata）
 npm run data:atlas    # 組 public/data/atlas/world-atlas.json（#/world 懶載入；build 會先跑）
 npm run test:atlas    # 世界學科地圖資料完整性與減法引擎
+npm run data:overseas # 組 public/data/overseas/{index.json,regions/*.json}（#/overseas 懶載入；build 會先跑；只抄官方頁原文、fail-closed）
+npm run test:overseas # 海外可申請學校層：計數與研究一致、鏈接上線規則、無電郵、體積、雜湊決定性
 npm run audit:questions # 檢查題目規則與維度枚舉是否一致
 npm run audit:data   # 檢查每題實際覆蓋率與最大排除能力
 npm run dev    # Vite 本機啟動
@@ -90,12 +92,15 @@ src/
     theme.ts                # 本地色系狀態與 CSS 變量應用
     origins.ts              # 所在地／升學身份起點（第 0 題，不進 AnswerMap）
     worldAtlasTypes.ts      # 世界學科地圖 payload 型別；worldAtlasManifest.ts 由 data:atlas 生成
+    overseasTypes.ts        # 海外可申請學校層 payload 型別；overseasManifest.ts 由 data:overseas 生成
   engine/
     atlas.ts                # 世界學科地圖的門類／學科／地區減法（純函數）
   lib/
     atlasData.ts            # 懶載入 world-atlas.json 並核對 manifest
+    overseasData.ts         # 懶載入 overseas/index.json 與地區檔並核對 manifest
   components/
     WorldAtlasPage.tsx      # #/world 世界學科地圖＋非大學路徑圖層
+    OverseasPage.tsx        # #/overseas 海外可申請學校（地區 → 申請平台／簽證頁／機構招生頁原文）
     Landing.tsx
     QuestionRunner.tsx
     ResultPage.tsx

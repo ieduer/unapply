@@ -33,6 +33,7 @@ interface Props {
   onContribute: () => void
   onWorld: () => void
   onHkMoTw: () => void
+  onOverseas: () => void
 }
 
 type LookupEntry =
@@ -143,6 +144,7 @@ export function ResultPage({
   onContribute,
   onWorld,
   onHkMoTw,
+  onOverseas,
 }: Props) {
   const shareRef = useRef<HTMLDivElement>(null)
   const [downloading, setDownloading] = useState(false)
@@ -490,7 +492,8 @@ export function ResultPage({
           <p>了解 <button onClick={onAbout} className="hover:text-accent-500 underline">數據來源與方法論</button> ·
             {' '}給我們 <button onClick={onContribute} className="hover:text-accent-500 underline">貢獻數據</button> ·
             {' '}看 <button onClick={onWorld} className="hover:text-accent-500 underline">全球學科地圖</button> ·
-            {' '}跨區看 <button onClick={onHkMoTw} className="hover:text-accent-500 underline">港澳臺院校池</button></p>
+            {' '}跨區看 <button onClick={onHkMoTw} className="hover:text-accent-500 underline">港澳臺院校池</button> ·
+            {' '}<button onClick={onOverseas} className="hover:text-accent-500 underline">海外可申請學校</button></p>
         </footer>
       </section>
     </main>

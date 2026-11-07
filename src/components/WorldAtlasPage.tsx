@@ -12,6 +12,7 @@ import {
 } from '../engine/atlas'
 import { loadWorldAtlas } from '../lib/atlasData'
 import { loadHkMoTwPool } from '../lib/hkmotwData'
+import { loadOverseasIndex } from '../lib/overseasData'
 import { getOriginOption, type OriginRegion } from '../data/origins'
 
 interface Props {
@@ -21,6 +22,8 @@ interface Props {
   onSchool: (id: string) => void
   onStartMainland: () => void
   onHkMoTw: () => void
+  /** 海外可申請學校層：帶地區 slug 與機構 id 直接展開該機構的招生條件。 */
+  onOverseas: (regionSlug: string | null, institutionId: string | null) => void
 }
 
 const confidenceLabel: Record<AtlasProgram['confidence'], string> = {
@@ -37,10 +40,12 @@ function institutionExternalUrl(institution: AtlasInstitution): string | null {
   return institution.univUp ? `https://www.shanghairanking.com/institution/${institution.univUp}` : null
 }
 
-export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainland, onHkMoTw }: Props) {
+export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainland, onHkMoTw, onOverseas }: Props) {
   const [payload, setPayload] = useState<WorldAtlasPayload | null>(null)
   // 港澳臺院校池裡有管道說明的機構（以 GRAS 機構 id 對照）；池載不到就只是少一個鏈接，不影響地圖。
   const [poolAtlasIds, setPoolAtlasIds] = useState<Set<string>>(() => new Set())
+  // 海外可申請學校層（S3）：機構 id → 地區 slug；索引載不到就只是少一個入口。
+  const [overseasRegionById, setOverseasRegionById] = useState<Map<string, string>>(() => new Map())
   const [loadError, setLoadError] = useState<string | null>(null)
   const [reloadToken, setReloadToken] = useState(0)
   const [selection, setSelection] = useState<AtlasSelection>(emptyAtlasSelection)
@@ -60,6 +65,17 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
     let alive = true
     loadHkMoTwPool()
       .then((pool) => { if (alive) setPoolAtlasIds(new Set(pool.institutions.filter((i) => i.atlasId).map((i) => i.atlasId as string))) })
+      .catch(() => undefined)
+    return () => { alive = false }
+  }, [])
+  useEffect(() => {
+    let alive = true
+    loadOverseasIndex()
+      .then((index) => {
+        if (!alive) return
+        const slugByRegion = new Map(index.regions.map((r) => [r.code, r.slug]))
+        setOverseasRegionById(new Map(index.institutions.map((i) => [i.id, slugByRegion.get(i.region) ?? ''] as const).filter(([, slug]) => slug)))
+      })
       .catch(() => undefined)
     return () => { alive = false }
   }, [])
@@ -144,7 +160,8 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
           {originOption && !originOption.hasLocalPool && (
             <div className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 text-sm text-fog-300 leading-relaxed">
               你選的起點是 <b className="text-fog-100">{originOption.label}</b>：{originOption.hint}。目前能用的是這張全球學科地圖
-              {(origin === 'hk' || origin === 'mo' || origin === 'tw') && <>與 <button onClick={onHkMoTw} className="underline hover:text-accent-500">港澳臺院校池</button></>}；
+              {(origin === 'hk' || origin === 'mo' || origin === 'tw') && <>與 <button onClick={onHkMoTw} className="underline hover:text-accent-500">港澳臺院校池</button></>}
+              {origin === 'overseas' && <>與 <button onClick={() => onOverseas(null, null)} className="underline hover:text-accent-500">海外可申請學校</button></>}；
               <button onClick={onStartMainland} className="underline hover:text-accent-500 ml-1">仍要看中國大陸題庫</button>
             </div>
           )}
@@ -290,7 +307,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
 
         {(selected || selectedProgram) && (
           <div className="border border-accent-500/40 bg-ink-900 rounded-2xl px-4 sm:px-6 py-5 flex flex-col gap-3">
-            {selected && <SelectedInstitution entry={selected} regionName={regionNameByCode.get(selected.institution.region) ?? selected.institution.region} onSchool={onSchool} onToggleRegion={toggleRegion} onClose={() => setSelectedId(null)} inHkMoTwPool={poolAtlasIds.has(selected.institution.id)} onHkMoTw={onHkMoTw} />}
+            {selected && <SelectedInstitution entry={selected} regionName={regionNameByCode.get(selected.institution.region) ?? selected.institution.region} onSchool={onSchool} onToggleRegion={toggleRegion} onClose={() => setSelectedId(null)} inHkMoTwPool={poolAtlasIds.has(selected.institution.id)} onHkMoTw={onHkMoTw} overseasRegion={overseasRegionById.get(selected.institution.id) ?? null} onOverseas={onOverseas} />}
             {selectedProgram && <ProgramCard program={selectedProgram} expanded onClose={() => setSelectedProgramId(null)} />}
           </div>
         )}
@@ -446,6 +463,8 @@ function SelectedInstitution({
   onClose,
   inHkMoTwPool,
   onHkMoTw,
+  overseasRegion,
+  onOverseas,
 }: {
   entry: AtlasInstitutionView
   regionName: string
@@ -454,6 +473,8 @@ function SelectedInstitution({
   onClose: () => void
   inHkMoTwPool: boolean
   onHkMoTw: () => void
+  overseasRegion: string | null
+  onOverseas: (regionSlug: string | null, institutionId: string | null) => void
 }) {
   const { institution, seats, struckByRegion } = entry
   const external = institutionExternalUrl(institution)
@@ -491,6 +512,11 @@ function SelectedInstitution({
         {inHkMoTwPool && (
           <button onClick={onHkMoTw} className="px-4 py-2 rounded-full border border-accent-500/40 bg-accent-500/10 text-accent-600 hover:bg-accent-500/15 min-h-[40px]">
             港澳臺院校池：招生管道 →
+          </button>
+        )}
+        {overseasRegion && (
+          <button onClick={() => onOverseas(overseasRegion, institution.id)} className="px-4 py-2 rounded-full border border-accent-500/40 bg-accent-500/10 text-accent-600 hover:bg-accent-500/15 min-h-[40px]" title="海外可申請學校層：官方招生頁原文（只抄原文，不代表錄取可能）">
+            招生條件（官方頁原文）→
           </button>
         )}
         {institution.website && (

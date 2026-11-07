@@ -13,13 +13,15 @@ interface Props {
   onStart: () => void
   onWorld: () => void
   onHkMoTw: () => void
+  onOverseas: () => void
   onAbout: () => void
   onContribute: () => void
 }
 
-export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, onAbout, onContribute }: Props) {
+export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, onOverseas, onAbout, onContribute }: Props) {
   const originOption = origin ? getOriginOption(origin) : null
   const isHkMoTw = origin === 'hk' || origin === 'mo' || origin === 'tw'
+  const isOverseas = origin === 'overseas'
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex flex-col items-center justify-between px-5 sm:px-6 py-6 sm:py-10">
       <div
@@ -55,7 +57,7 @@ export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, on
             <p className="mono text-xs uppercase tracking-[0.24em] text-fog-500">第 0 題 · 起點</p>
             <h2 className="serif text-2xl">你在哪裡升學？</h2>
             <p className="text-sm text-fog-400 leading-relaxed">
-              所在地只決定從哪個題庫開始、有哪些可申請的管道；之後每一步都可以跨國選。目前只有中國大陸有完整題庫；香港、澳門、臺灣先看院校池（官方招生管道），其他起點先看全球學科地圖。
+              所在地只決定從哪個題庫開始、有哪些可申請的管道；之後每一步都可以跨國選。目前只有中國大陸有完整題庫；香港、澳門、臺灣先看院校池（官方招生管道），其他國家或地區先看海外可申請學校（各校招生頁原文）與全球學科地圖。
             </p>
           </div>
           <div className="grid gap-2 sm:grid-cols-5" role="group" aria-label="所在地">
@@ -86,7 +88,7 @@ export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, on
           {originOption && !originOption.hasLocalPool && (
             <p className="text-sm text-fog-300 leading-relaxed">
               <b className="text-fog-100">{originOption.label}</b>：{originOption.hint}。
-              {isHkMoTw ? '先看港澳臺院校池裡各院校的官方招生管道與條件，再用全球學科地圖做學科與地區的減法；' : '先用全球學科地圖做學科與地區的減法；'}
+              {isHkMoTw ? '先看港澳臺院校池裡各院校的官方招生管道與條件，再用全球學科地圖做學科與地區的減法；' : isOverseas ? '先看各國申請平台、簽證主管機關頁與各校官方招生頁的原文（只抄原文，不代表錄取可能），再用全球學科地圖做學科與地區的減法；' : '先用全球學科地圖做學科與地區的減法；'}
               如果你也考慮中國大陸高校，可以直接進大陸題庫。
             </p>
           )}
@@ -135,8 +137,14 @@ export function Landing({ origin, onOriginChange, onStart, onWorld, onHkMoTw, on
             ) : (
               <>
                 <button
-                  onClick={onWorld}
+                  onClick={onOverseas}
                   className="px-7 py-4 sm:py-3 bg-accent-500 text-ink-950 rounded-xl font-semibold text-base hover:bg-accent-400 transition-colors min-h-[52px]"
+                >
+                  看海外可申請學校
+                </button>
+                <button
+                  onClick={onWorld}
+                  className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
                 >
                   看全球學科地圖
                 </button>

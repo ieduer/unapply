@@ -376,6 +376,40 @@ npm run data:programs && npm run test:s1                   # 前端 payload 與�
 
 年度更新：平台名單頁自述更新日（2026-11 時為「2026年5月25日更新」）；重抓時先 `--lists-only` 看名單數有沒有變，再補抓缺的詳情；已注銷／併入的條目平台仍列（名稱帶括註），本層照列並標狀態，不刪。
 
+### 3.7 海外可申請學校層（2026-11 起，路線圖 S3）
+
+目標：讓「其他國家或地區」起點的用戶（以及想跨區看的任何人）看到 GRAS 2026 前 50 的 403 所非中國大陸機構的**官方國際本科招生頁原文片段**、各國官方申請平台與簽證主管機關頁。
+它只抄官方頁原文、不解讀、不換算、不用 AI 生成；任何欄位都不表示錄取可能；排名數字只描述學科分佈。不進任何題目／引擎／AnswerMap／A+ 證據（起點分支題屬 S4）。
+
+| 檔案 | 產生方式 | 內容 |
+| --- | --- | --- |
+| `overseas_admissions.<日期>.csv` | 研究會話 `reports/operations/nope-s3-overseas-20261107/research/tools/crawl_admissions.mjs` → `build_institutions_csv.mjs` → `redact_emails.mjs`，複製入庫 | 一校一列（鍵 `institutionId`＝`gras_institutions_geo` 的 `univCode`）：官網／可註冊網域（S0 已核）、招生頁 URL＋標題＋配對分、高考採認分類＋原句、學歷資格清單＋原句、IELTS／TOEFL 第一個分數＋原句、其他語言、國際生學費原句、申請管道、申請時程原句、資料學年、來源 URL 清單、`domainMatch`、HTTP、抓取頁數、抓取時間、`confidence`（high＝同可註冊網域／medium＝學校另一官方網域）、`status`（verified／needs_review／blocked／not_found）、notes |
+| `overseas_national_portals.<日期>.csv` | 研究 `tools/national_candidates.json` → `verify_national.mjs` | 一平台一列：地區、名稱、類型、網域類別（gov／public-agency／official-platform）、`roleLabel`（編輯標籤）、官方 URL、最終網域、對象／費用／時程原句、`corroboratingInstitutions`（幾所機構官方頁鏈到該網域）、HTTP、SHA-256、抓取時間、`confidence`、`status` |
+| `overseas_visa_policies.<日期>.csv` | 同上 | 一主管機關頁一列：地區、簽證類別、主管機關、官方 URL、財力／語言／保險／費用／時程原句、HTTP、SHA-256、抓取時間、`confidence`、`status` |
+| `overseas_admissions.<日期>.meta.json` | 入庫時手寫 | 研究目錄路徑與方法摘要（指向 `METHOD.md`）、三檔 SHA-256 與列數、抓取期間與請求數、`counts`（與研究 `coverage.md` 一致；build 以此斷言）、去識別聲明、口徑提醒 |
+| `public/data/overseas/index.json`、`regions/<slug>.json`、`src/data/overseasManifest.ts` | `npm run data:overseas`（`scripts/build_overseas_layer.mjs`） | index：每機構一條摘要（中英名、地區、官網、GRAS 前 50 學科數、status／confidence／`linkLive`、高考分類、資料學年、抓取日、各欄位有無旗標）＋地區列（按機構數排序，verified／未讀到／平台／簽證鏈接計數），gzip ≤ 200 KiB；地區檔：該地區機構全欄原文片段＋申請平台＋簽證頁，只在進入地區頁時載入；`build` 在 `data:joint` 之後跑它 |
+
+建置斷言（任一不過就不產出）：三檔 SHA-256 與 meta 一致、表頭白名單（擋任何人名／聯絡人欄）、全欄無電郵樣式、`institutionId` 全部對到 geo／websites 且地區／官網一致、`grasSubjectsTop50` 與 `gras_2026_top50.csv` 一致、status／confidence／domainMatch 相互對應、原文片段每段 ≤ 280 字且都有來源、status／confidence 計數＝meta（研究 coverage 口徑）、平台／簽證 verified 必 HTTP 200 且網域一致、序列化後無電郵／會話字串／`pageMatchScore`。
+
+鏈接上線規則（路線圖「對外鏈接規則」＋研究 `S3_SCHEMA_PROPOSAL.md` §3）：
+
+- 機構招生頁只有 `status=verified` 且 `confidence=high` 才 `linkLive`（同時給 URL）；`medium`（學校另一官方網域，7 所）只給標題與主機名並寫「待人工確認後才上鏈接」；`blocked`／`not_found`／`needs_review` 只進資料檔，頁面寫「官方頁本站未讀到：原因」。
+- 原文片段與來源清單的 URL 只在機構 `linkLive` 且該 URL 為 https、主機在官網可註冊網域之下時成為鏈接，否則只顯示主機名；`;jsessionid=` 之類伺服器會話段在入庫時去掉。
+- 國家層平台 `verified` 且 `confidence=high` 才上鏈接；`official-platform`（UCAS、Common App、各州 TAC 等非政府平台）的 high 需 ≥1 所機構官方頁鏈到該網域（`verify_national.mjs` 已套用，build 再斷言）。簽證頁 `verified` 才上鏈接；被擋者只寫主管機關名與「核查時被擋（HTTP n）」。
+- 高考採認標籤只看字樣（寫明接受／寫明不接受／寫法有矛盾／另有內地考生管道／有提及／未讀到），旁邊一律附原句不改寫；`ieltsOverall`／`toeflOverall` 是原句第一個分數，頁面寫明可能是總分或單項。
+
+前端：`#/overseas`（`src/components/OverseasPage.tsx`：地區清單 → `#/overseas/<slug>` 地區頁（申請平台、簽證頁、機構列表）→ `#/overseas/<slug>/<institutionId>` 自動展開該機構）；首頁「其他國家或地區」起點主按鈕「看海外可申請學校」（`origins.ts` 提示）；世界地圖機構面板「招生條件（官方頁原文）→」；結果頁頁尾鏈接；About 來源段。
+閘門：`npm run test:overseas`（`tests/overseas-layer.test.ts`，9 項：計數與 coverage 一致、兩層一致、機構鏈接規則與片段長度、國家層鏈接規則、無電郵／會話字串、index 體積、manifest 雜湊決定性、與地圖對照、起點提示與 45 題不變）。
+
+年度更新（隨 GRAS 更新重核；研究目錄 `reports/operations/nope-s3-overseas-20261107/research/` 的工具可離線重跑）：
+
+1. 先跑 S0 的 `data:gras`／`data:gras-geo`／`data:gras-websites`，讓新一年的機構與官網先核過（海外層從 S0 已核官網出發）。
+2. 在研究目錄 `export PATH=~/.nvm/versions/node/v24.18.0/bin:$PATH && node tools/crawl_admissions.mjs --only <ids> --force`（全量不帶 `--only`；只重判快取加 `--offline`）；國家層 `node tools/verify_national.mjs`（候選改 `tools/national_candidates.json`）；再 `node tools/build_institutions_csv.mjs && node tools/redact_emails.mjs` 重建三張 CSV 與 `coverage.md`。被擋（Cloudflare／Incapsula 挑戰、robots 全禁）與純 JavaScript 的機構**不繞過**，留 `blocked`／`needs_review` 給人工瀏覽器覆核；人工確認後把結果填回 CSV 並改 `status`／`confidence`。
+3. 複製為 `data/research/overseas_*.<新日期>.csv`，寫新的 `.meta.json`（三檔 SHA-256、列數、`counts` 照新 `coverage.md`、抓取期間）。
+4. `npm run data:overseas` → `npm run test:overseas` → 其餘閘門 → 候選 → Pages 交易（§6）。build 的 `REGION_ZH` 缺新地區會直接失敗，補正體名後重跑。
+
+2026-11-07 批 S3 首批（當時值）：403 所中 verified 343（high 336／medium 7）、blocked 42、not_found 16、needs_review 2；高考採認有原句 35（accepted 4／not_accepted 2／separate_channel 4／mentioned 25）；平台 91 條（上鏈接 63）、簽證 90 條（上鏈接 47）；44 個地區；payload `23c590c30412`。抓取 2026-11-07T05:39–06:27Z、9,423 次 HTTP、587 個可註冊網域、零付費。
+
 ## 4. 覆蓋率與風險判讀
 
 用這條命令看 43 題實際是否有用：
