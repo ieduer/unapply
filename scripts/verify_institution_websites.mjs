@@ -3,6 +3,7 @@
 //
 //   node scripts/verify_institution_websites.mjs --year 2026
 //   node scripts/verify_institution_websites.mjs --year 2026 --from data/research/gras_institution_websites.<日期>.csv   # 離線：用上一輪記錄的候選與連通結果重判，不打網路
+//   node scripts/verify_institution_websites.mjs --year 2026 --from <上一輪 CSV> --recheck   # 只對上一輪未通過的列重打網路（含人工覆核清單 MANUAL_REVIEW），其餘列照抄
 //
 // 候選來源（都是公開、可追溯的）：
 //   sr   軟科機構頁 https://www.shanghairanking.com/institution/<univUp> 裡的官網鏈接（排名機構自己登記的官網）
@@ -19,7 +20,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const args = Object.fromEntries(process.argv.slice(2).map((a, i, all) => a.startsWith('--') ? [a.slice(2), all[i + 1]] : []).filter(Boolean))
+const args = Object.fromEntries(process.argv.slice(2).map((a, i, all) => a.startsWith('--') ? [a.slice(2), all[i + 1] && !all[i + 1].startsWith('--') ? all[i + 1] : true] : []).filter(Boolean))
 const year = Number(args.year || 2026)
 const UA = 'Mozilla/5.0 (compatible; nope.bdfz.net link verifier; contact nope@bdfz.net)'
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
@@ -120,6 +121,25 @@ function decide(domain, list, first, check) {
   return { website: '', domain, sources, confidence: '', status: check.ok ? 'rejected-single-source' : 'unreachable', http: check.status, note: check.error || '' }
 }
 
+// 人工覆核清單（手冊 §3.3 第 3 點：不要手改 CSV 補鏈接，改這裡再重跑）。只收「上一輪未通過」而人工確認過的機構官網：
+// 每條寫明證據（兩個來源的網域經轉址後一致、或單一來源的學術網域實際連通）與覆核日；仍要實際 GET 連通、最終網域一致才收。
+// 2026-11-07（批 D4）：S0 留下的 13 所。
+const MANUAL_REVIEW = {
+  RG00017: { url: 'https://www.utm.edu.mo/', evidence: 'sr 單一來源；.edu.mo 學術網域；2026-11-07 GET 200（該站 TLS 憑證鏈缺中繼憑證，Node fetch 驗證失敗、curl 以系統信任鏈通過）', reviewedAt: '2026-11-07', curlFallback: true },
+  RI00055: { url: 'https://www.monash.edu/', evidence: 'sr monash.edu.au 與 wd monash.edu 同一機構；兩網址對腳本回 403（反爬），以內建瀏覽器開啟確認為 Monash University 官網', reviewedAt: '2026-11-07', allowBlocked: true },
+  RI00101: { url: 'https://www.tuwien.at/', evidence: 'sr tuwien.ac.at 轉址到 tuwien.at，與 wd 一致；GET 200', reviewedAt: '2026-11-07' },
+  RI00128: { url: 'https://www.uantwerpen.be/', evidence: 'sr uantwerp.be 轉址到 uantwerpen.be，與 wd 一致；GET 200', reviewedAt: '2026-11-07' },
+  RI00910: { url: 'https://home.iitd.ac.in/', evidence: 'sr iitd.ernet.in 不通；wd iitd.ac.in（.ac.in 學術網域）轉址到 home.iitd.ac.in；GET 200', reviewedAt: '2026-11-07' },
+  RI01179: { url: 'https://www.unibocconi.it/', evidence: 'sr unibocconi.eu 轉址到 unibocconi.it，與 wd 一致；GET 200', reviewedAt: '2026-11-07' },
+  RI01613: { url: 'https://www.universiteitleiden.nl/', evidence: 'sr leiden.edu 轉址到 universiteitleiden.nl，與 wd 一致；GET 200', reviewedAt: '2026-11-07' },
+  RI01647: { url: 'https://www.bi.no/', evidence: 'sr bi.edu 轉址到 bi.no，與 wd 一致；GET 200', reviewedAt: '2026-11-07' },
+  RI02150: { url: 'https://www.uab.cat/', evidence: 'sr 網址壞掉（http://http//www.uab.cat/en）修正後與 wd 同為 uab.cat；GET 200', reviewedAt: '2026-11-07' },
+  RI02214: { url: 'https://www.usc.gal/', evidence: 'sr usc.es 轉址到 usc.gal，與 wd 一致；GET 200', reviewedAt: '2026-11-07' },
+  RI02745: { url: 'https://indianapolis.iu.edu/', evidence: 'sr iupui.edu 轉址到 indianapolis.iu.edu（IUPUI 2024 年起改為 Indiana University Indianapolis，iu.edu 為印第安納大學官方網域）；GET 200', reviewedAt: '2026-11-07' },
+  RI02940: { url: 'https://www.utsouthwestern.edu/', evidence: 'sr swmed.edu 轉址到 utsouthwestern.edu（.edu 學術網域，UT Southwestern 官網）；wd utswmedicine.org 為其醫療品牌網域；GET 200', reviewedAt: '2026-11-07' },
+  RI03812: { url: 'https://mbzuai.ac.ae/', evidence: 'sr 單一來源 .ac.ae 學術網域；對腳本回 403（反爬），以內建瀏覽器開啟確認為 MBZUAI 官網', reviewedAt: '2026-11-07', allowBlocked: true },
+}
+
 function normalizeCandidate(url) {
   if (!url) return null
   try {
@@ -163,7 +183,44 @@ async function redecideFrom(csvPath) {
   return out
 }
 
+// 只重查上一輪未通過的列：有人工覆核條目的用覆核網址實際 GET；沒有的照原候選重打一次。通過的列逐字照抄（含 verifiedAt）。
+async function recheckFrom(csvPath) {
+  const rows = parseCsv(readFileSync(csvPath, 'utf8'))
+  const out = []
+  for (const r of rows) {
+    if (r.status === 'verified') { out.push({ ...r }); continue }
+    const review = MANUAL_REVIEW[r.univCode]
+    if (review) {
+      let check = await verifyUrl(review.url)
+      // 憑證鏈不完整（缺中繼憑證）時 Node 驗不過、系統 curl 能過：只對人工覆核條目且標了 curlFallback 的用 curl 再試一次，結果照實記進 note。
+      if (!check.ok && review.curlFallback) {
+        const { execFileSync } = await import('node:child_process')
+        try {
+          const out = execFileSync('curl', ['-sS', '-o', '/dev/null', '-L', '--max-time', '20', '-A', UA, '-w', '%{http_code} %{url_effective}', review.url], { encoding: 'utf8' })
+          const [status, finalUrl] = out.trim().split(' ')
+          const sameDomain = registrableDomain(new URL(finalUrl).hostname) === registrableDomain(new URL(review.url).hostname)
+          check = { ok: status === '200' && sameDomain, status: Number(status), finalUrl, error: check.error }
+        } catch (error) { check = { ...check, error: (check.error || '') + ' / curl: ' + String(error.message).slice(0, 60) } }
+      }
+      const domain = registrableDomain(new URL(review.url).hostname)
+      const sources = (r.candidates || '').split(' | ').filter(Boolean).map((c) => c.slice(0, c.indexOf(':'))).sort().join('+') || 'manual'
+      if (check.ok) out.push({ ...r, website: check.finalUrl, domain, sources, confidence: /\+/.test(sources) ? 'high' : 'medium', status: 'verified', http: check.status, note: `manual review ${review.reviewedAt}: ${review.evidence}`, verifiedAt: review.reviewedAt })
+      else if (review.allowBlocked && [401, 403, 412, 429, 503].includes(check.status)) out.push({ ...r, website: review.url, domain, sources, confidence: 'medium', status: 'verified', http: check.status, note: `manual review ${review.reviewedAt}: ${review.evidence}（腳本連通被擋 ${check.status}）`, verifiedAt: review.reviewedAt })
+      else out.push({ ...r, status: 'unreachable', http: check.status, note: `manual review candidate failed: ${check.status} ${check.error || ''}`.trim() })
+      await sleep(300)
+      continue
+    }
+    out.push({ ...r })
+  }
+  return out
+}
+
 async function main() {
+  if (args.from && 'recheck' in args) {
+    const rows = await recheckFrom(args.from)
+    writeRows(rows)
+    return
+  }
   if (args.from) {
     const rows = await redecideFrom(args.from)
     writeRows(rows, args.from)
@@ -218,7 +275,7 @@ async function main() {
 function writeRows(rows, outPathOverride) {
   const verifiedAt = new Date().toISOString().slice(0, 10)
   const header = ['univCode', 'nameEn', 'region', 'website', 'domain', 'sources', 'confidence', 'status', 'http', 'note', 'candidates', 'rankingYear', 'verifiedAt']
-  const out = [header.join(','), ...rows.map((r) => header.map((k) => csvCell(k === 'rankingYear' ? year : k === 'verifiedAt' ? verifiedAt : r[k] ?? '')).join(','))].join('\n') + '\n'
+  const out = [header.join(','), ...rows.map((r) => header.map((k) => csvCell(k === 'rankingYear' ? year : k === 'verifiedAt' ? (r.verifiedAt || verifiedAt) : r[k] ?? '')).join(','))].join('\n') + '\n'
   const outPath = outPathOverride || join(root, 'data/research', `gras_institution_websites.${verifiedAt}.csv`)
   writeFileSync(outPath, out)
   const stats = rows.reduce((acc, r) => { acc[r.status] = (acc[r.status] || 0) + 1; return acc }, {})

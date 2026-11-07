@@ -1,6 +1,6 @@
 {
   "schema": "unapply.s1Sources.v1",
-  "description": "S1 中國大陸高校專業／選考科目／招生政策資料層的官方來源釘定表。store=committed 的原檔入庫在 data/research/raw/s1/，store=external 的大檔只釘 SHA-256／大小／來源網址，重跑時下載到 --cache-dir。任何已釘雜湊不符都 fail closed。 store=external 的大檔另有 r2 欄：既有私密桶 bdfz-ops-backups、前綴 unapply/s1-sources/v1/，上傳後讀回核對 SHA-256；重取用 --from-r2（rclone 遠端 r2:）。",
+  "description": "S1 中國大陸高校專業／選考科目／招生政策資料層的官方來源釘定表。store=committed 的原檔入庫在 data/research/raw/s1/，store=external 的大檔只釘 SHA-256／大小／來源網址，重跑時下載到 --cache-dir。任何已釘雜湊不符都 fail closed。 2026-11-07 批 D1 加入山東（PDF 本科／專科）、河南（xlsx）、內蒙古（xlsx）三省 2027 通用版表。store=external 的大檔另有 r2 欄：既有私密桶 bdfz-ops-backups、前綴 unapply/s1-sources/v1/，上傳後讀回核對 SHA-256；重取用 --from-r2（rclone 遠端 r2:）。",
   "userAgent": "Mozilla/5.0 (compatible; nope.bdfz.net data pipeline; contact nope@bdfz.net)",
   "sources": [
     {
@@ -364,6 +364,199 @@
       "notes": "招生專業：生物育種科學；物理和化學必選；面向 21 省招生。",
       "sha256": "2243a03452859b82defd00fc0626e8926910007d4d19fb4b539f90dbec133f16",
       "bytes": 29502,
+      "fetchedAt": "2026-11-07"
+    },
+    {
+      "id": "shandong-xkkm-2027-bk",
+      "kind": "subject_requirements",
+      "publisher": "山东省教育招生考试院",
+      "authority": "P0",
+      "province": "山東",
+      "admissionYear": 2027,
+      "title": "《2027通用版普通高校拟在山东招生专业（类）选考科目要求》（本科）",
+      "pageUrl": "https://www.sdzk.cn/NewsInfo.aspx?NewsID=6819",
+      "fileUrl": "https://www.sdzk.cn/Floadup/file/20250317/6387782011451330891328200.pdf",
+      "publishedDate": "2025-03-17",
+      "format": "pdf",
+      "store": "external",
+      "file": "shandong_xkkm_2027_bk.pdf",
+      "expected": {
+        "pages": 644,
+        "columns": [
+          "院校代码",
+          "院校名称",
+          "专业代码",
+          "专业（类）",
+          "选考科目要求",
+          "院校所在省份"
+        ]
+      },
+      "notes": "PDF 表格，有院校代碼（＝教育部標識碼末 5 位）與專業代碼，兩行表頭，無水印；同頁另有 2024 通用版（本層不用）與專科版。要求用全國通用長句。公告頁 2025-03-17。 原檔上既有私密桶 R2（見 r2 欄）；本機副本於讀回核對後刪除，重取用 node scripts/fetch_s1_sources.mjs --from-r2。",
+      "sha256": "5cb036c13f6eddfb5e1ca365ff854c7a6540a59fb182e4f53d99b94b2306263b",
+      "bytes": 6325671,
+      "fetchedAt": "2026-11-07",
+      "r2": {
+        "bucket": "bdfz-ops-backups",
+        "key": "unapply/s1-sources/v1/shandong_xkkm_2027_bk.pdf",
+        "sha256": "5cb036c13f6eddfb5e1ca365ff854c7a6540a59fb182e4f53d99b94b2306263b",
+        "bytes": 6325671,
+        "md5": "67139dcea888123248eaa3e2bdfafff8",
+        "uploadedAt": "2026-11-07",
+        "readbackVerified": "2026-11-07",
+        "authority": "owner 2026-11-07 批 D1 任務說明：與既有三檔同類的大省表可放同一 R2 前綴（主會話轉達）；bucket 為既有私密 ops 備份桶，無新建資源"
+      }
+    },
+    {
+      "id": "shandong-xkkm-2027-zk",
+      "kind": "subject_requirements",
+      "publisher": "山东省教育招生考试院",
+      "authority": "P0",
+      "province": "山東",
+      "admissionYear": 2027,
+      "title": "《2027通用版普通高校拟在山东招生专业（类）选考科目要求》（专科）",
+      "pageUrl": "https://www.sdzk.cn/NewsInfo.aspx?NewsID=6819",
+      "fileUrl": "https://www.sdzk.cn/Floadup/file/20250317/6387782012088726936175799.pdf",
+      "publishedDate": "2025-03-17",
+      "format": "pdf",
+      "store": "external",
+      "file": "shandong_xkkm_2027_zk.pdf",
+      "expected": {
+        "pages": 456,
+        "columns": [
+          "院校代码",
+          "院校名称",
+          "专业代码",
+          "专业（类）",
+          "选考科目要求",
+          "院校所在省份"
+        ]
+      },
+      "notes": "高職（專科）層次，欄位同本科版；專科列不對本科目錄，只展示。 原檔上既有私密桶 R2（見 r2 欄）；本機副本於讀回核對後刪除，重取用 node scripts/fetch_s1_sources.mjs --from-r2。",
+      "sha256": "6ddb3712121f5a49e4792ad9045f8835f5c3330d9bc979db1fa2c8800d7c4941",
+      "bytes": 4059543,
+      "fetchedAt": "2026-11-07",
+      "r2": {
+        "bucket": "bdfz-ops-backups",
+        "key": "unapply/s1-sources/v1/shandong_xkkm_2027_zk.pdf",
+        "sha256": "6ddb3712121f5a49e4792ad9045f8835f5c3330d9bc979db1fa2c8800d7c4941",
+        "bytes": 4059543,
+        "md5": "c516f19b8571404d8aadaa73a836170a",
+        "uploadedAt": "2026-11-07",
+        "readbackVerified": "2026-11-07",
+        "authority": "owner 2026-11-07 批 D1 任務說明：與既有三檔同類的大省表可放同一 R2 前綴（主會話轉達）；bucket 為既有私密 ops 備份桶，無新建資源"
+      }
+    },
+    {
+      "id": "shandong-xkkm-2027-page",
+      "kind": "page",
+      "publisher": "山东省教育招生考试院",
+      "authority": "P0",
+      "title": "关于公布普通高校拟在山东招生专业（类）选考科目要求的公告",
+      "pageUrl": "https://www.sdzk.cn/NewsInfo.aspx?NewsID=6819",
+      "fileUrl": "https://www.sdzk.cn/NewsInfo.aspx?NewsID=6819",
+      "publishedDate": "2025-03-17",
+      "format": "html",
+      "store": "committed",
+      "file": "shandong_xkkm_2027.page.html",
+      "notes": "公告頁快照（含 2024／2027 通用版本科／專科四個 PDF 鏈接）。",
+      "sha256": "6da199a3af0f1652604ab4e9d79a59fffee5ce4d884cc201ec11f3625e7310b3",
+      "bytes": 32884,
+      "fetchedAt": "2026-11-07"
+    },
+    {
+      "id": "henan-xkkm-2027",
+      "kind": "subject_requirements",
+      "publisher": "河南省教育考试院",
+      "authority": "P0",
+      "province": "河南",
+      "admissionYear": 2027,
+      "title": "2027年普通高校拟在豫招生专业选考科目要求",
+      "pageUrl": "https://www.haeea.cn/a/202504/43488_e2b7c248.shtml",
+      "fileUrl": "https://www.haeea.cn/attach/file/20250409/20250409162229_1713_af4310c1.xlsx",
+      "publishedDate": "2025-04-09",
+      "format": "xlsx",
+      "store": "committed",
+      "file": "henan_xkkm_2027.xlsx",
+      "expected": {
+        "header": [
+          "院校代码",
+          "院校名称",
+          "专业代码",
+          "专业名称",
+          "层次",
+          "选考科目要求"
+        ],
+        "undergraduateRows": 54174,
+        "undergraduateSchools": 1302
+      },
+      "notes": "單一工作表，層次欄「本科／高职(专科)」；院校代碼＝教育部標識碼末 5 位；要求用全國通用長句。公告頁 2025-04-09。",
+      "sha256": "5bfbcc6d0e134824df2588ed0201aa3f65d15f4691509a0e0571ff01f9588b91",
+      "bytes": 3095355,
+      "fetchedAt": "2026-11-07"
+    },
+    {
+      "id": "henan-xkkm-2027-page",
+      "kind": "page",
+      "publisher": "河南省教育考试院",
+      "authority": "P0",
+      "title": "河南省教育考试院关于公布2027年普通高校拟在豫招生专业选考科目要求的公告",
+      "pageUrl": "https://www.haeea.cn/a/202504/43488_e2b7c248.shtml",
+      "fileUrl": "https://www.haeea.cn/a/202504/43488_e2b7c248.shtml",
+      "publishedDate": "2025-04-09",
+      "format": "html",
+      "store": "committed",
+      "file": "henan_xkkm_2027.page.html",
+      "sha256": "058a43739a7e3aedbe56f5bdbae31e1a3e30cb843ffeb911529129170a1f6a4f",
+      "bytes": 10167,
+      "fetchedAt": "2026-11-07"
+    },
+    {
+      "id": "neimenggu-xkkm-2027",
+      "kind": "subject_requirements",
+      "publisher": "内蒙古自治区教育厅（内蒙古招生考试信息网）",
+      "authority": "P0",
+      "province": "內蒙古",
+      "admissionYear": 2027,
+      "title": "2027年起拟在内蒙古自治区招生普通高校专业（专业类）选考科目要求【本科、高职（专科）】",
+      "pageUrl": "https://www.nm.zsks.cn/kszs/ptgk/zcfg/202503/t20250318_45530.html",
+      "fileUrl": "https://www.nm.zsks.cn/kszs/ptgk/zcfg/202503/P020250318450486309339.xlsx",
+      "publishedDate": "2025-03-18",
+      "documentDate": "2025-03-10",
+      "format": "xlsx",
+      "store": "committed",
+      "file": "neimenggu_xkkm_2027.xlsx",
+      "expected": {
+        "sheets": [
+          "本科",
+          "专科"
+        ],
+        "header": [
+          "院校名称",
+          "专业名称",
+          "考试科目要求"
+        ],
+        "undergraduateRows": 47201,
+        "undergraduateSchools": 1130
+      },
+      "notes": "兩個工作表（本科／专科），只有院校名稱、沒有院校代碼，按校名（含學到的舊校名別名）對齊教育部主表；要求用全國通用長句。公告頁 2025-03-18（文號日期 2025-03-10）。",
+      "sha256": "d4d823cb87032a1fab3f47b3fb0eafe7ee53c37e4597eaf9cd2bd699890a9df0",
+      "bytes": 2039706,
+      "fetchedAt": "2026-11-07"
+    },
+    {
+      "id": "neimenggu-xkkm-2027-page",
+      "kind": "page",
+      "publisher": "内蒙古招生考试信息网",
+      "authority": "P0",
+      "title": "关于发布2027年起拟在内蒙古自治区招生普通高校专业选考科目要求的公告",
+      "pageUrl": "https://www.nm.zsks.cn/kszs/ptgk/zcfg/202503/t20250318_45530.html",
+      "fileUrl": "https://www.nm.zsks.cn/kszs/ptgk/zcfg/202503/t20250318_45530.html",
+      "publishedDate": "2025-03-18",
+      "format": "html",
+      "store": "committed",
+      "file": "neimenggu_xkkm_2027.page.html",
+      "sha256": "5cc1bb525bbcb08f0e1823d59c7fbcc71d434fc31bb82c002e58d36bc8af130b",
+      "bytes": 17625,
       "fetchedAt": "2026-11-07"
     }
   ]

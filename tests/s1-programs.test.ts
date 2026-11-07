@@ -62,7 +62,7 @@ test('教育部本科專業目錄 2026：13 門類／92 專業類／883 專業�
 test('每校摘要：全在教育部主表，圖樣／專業類／專業下標合法，雙一流 144 校都有本科清單', () => {
   const classCodes = new Set(catalog.classes.map((c) => c.code))
   const provinceTags = new Set(Object.keys(index.provinceSources))
-  for (const pattern of index.patterns) assert.match(pattern, /^(none|[PCBZHG]{1,3})$/)
+  for (const pattern of index.patterns) assert.match(pattern, /^(none|conflict|[PCBZHG]{1,3})$/)
   for (const [moeCode, entry] of Object.entries(index.schools)) {
     const school = schoolByCode.get(moeCode)
     assert.ok(school, `${moeCode} 不在 schools.json`)
@@ -105,7 +105,7 @@ test('分桶清單：每校在對的省桶裡，條數與摘要一致，專科�
       assert.equal(programs.filter((p) => p.l === 'u').length, entry.u)
       assert.equal(programs.filter((p) => p.l === 'v').length, entry.v)
       for (const program of programs) {
-        assert.match(program.r, /^(none|[PCBZHG]{1,3})$/)
+        assert.match(program.r, /^(none|conflict|[PCBZHG]{1,3})$/)
         if (program.l === 'v') assert.equal(program.m, 'vocational')
         else assert.notEqual(program.m, 'vocational')
       }
@@ -175,7 +175,9 @@ test('引擎取值與題目：S1／S2 有資料才取值，疑罪從無；選項
   assert.equal(getVisibleOptions(s1, coverage.S1).length, 20)
   assert.equal(getVisibleOptions(s2, coverage.S2).length, 92)
   assert.equal(coverage.S1.optionCoverageByKey.PCB.excludedCount, 0, '物化生在每所有資料的學校至少可報一個專業')
-  assert.ok(coverage.S1.impactfulOptionCount >= 19)
+  // 七省表（2026-11-07 批 D1）起，含物理＋化學的四種組合都報得了每所有資料的學校；其餘 16 種各劃掉 20 校以上。
+  for (const combo of ['PCB', 'PCZ', 'PCH', 'PCG']) assert.equal(coverage.S1.optionCoverageByKey[combo].excludedCount, 0, combo)
+  assert.ok(coverage.S1.impactfulOptionCount >= 16, String(coverage.S1.impactfulOptionCount))
 })
 
 test('S1 題：物生政劃掉全部專業都要物＋化的學校；沒本科資料的學校都在場；在場＋排除＝全部', () => {
@@ -257,4 +259,30 @@ test('學校詳情逐校判定與引擎同義：no-data／kept／struck／unknow
     const detail = evaluateSchoolPrograms(entry, { subjects: ['P', 'B', 'Z'], intent: { classCode: cs.code, className: cs.name } }, index)
     assert.equal(detail.state === 'struck', excluded.has(school.moeCode), `${school.name} 詳情 ${detail.state} vs 引擎 ${excluded.has(school.moeCode) ? '排除' : '在場'}`)
   }
+})
+
+test('批 D1：七省官方表、兩條不一致以 conflict 入庫且恆可報、覆蓋不低於四省時期', () => {
+  assert.equal(Object.keys(index.provinceSources).length, 7)
+  assert.equal(programsManifest.counts.provinces, 7)
+  assert.deepEqual(Object.keys(index.provinceSources).sort(), ['HA', 'HB', 'JS', 'NM', 'SD', 'SH', 'ZJ'])
+  for (const item of Object.values(index.provinceSources)) {
+    const source = index.sources[item.sourceId]
+    assert.ok(source, item.sourceId)
+    assert.match(source.url, /^https?:\/\/(jyt\.hubei\.gov\.cn|jyt\.jiangsu\.gov\.cn|www\.shmeea\.edu\.cn|www\.zjzs\.net|www\.haeea\.cn|www\.nm\.zsks\.cn|www\.sdzk\.cn)\//, source.url)
+    assert.ok(source.province, item.sourceId)
+  }
+  // 不一致的條目：圖樣 conflict，在 patterns 裡，任何選科都「可報」（不知道＝不排除）；數量與 manifest 一致且很少。
+  const conflictIndex = index.patterns.indexOf('conflict')
+  let conflictPrograms = 0
+  for (const [, bucket] of buckets) for (const programs of Object.values(bucket)) for (const program of programs) if (program.r === 'conflict') conflictPrograms += 1
+  assert.equal(conflictPrograms, programsManifest.counts.conflicts)
+  assert.ok(programsManifest.counts.conflicts <= 10, '不一致條數應極少，多了就要回頭看來源')
+  if (programsManifest.counts.conflicts > 0) {
+    assert.ok(conflictIndex >= 0)
+    for (const combo of SUBJECT_COMBOS) assert.equal(isAdmissible('conflict', new Set([...combo] as SubjectCode[])), true)
+    assert.equal(requirementLabel('conflict'), '各省表寫法不一致（不作排除依據）')
+  }
+  // 覆蓋只能往上：四省時期 1,235 所本科校有清單。
+  assert.ok(programsManifest.counts.undergraduateSchools >= 1235, String(programsManifest.counts.undergraduateSchools))
+  assert.ok(programsManifest.counts.schools >= 2289)
 })

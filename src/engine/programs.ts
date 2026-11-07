@@ -11,9 +11,12 @@ export type ProgramIndexLookup = Pick<ProgramIndexPayload, 'patterns' | 'catalog
 /** S2 的通配值：該校另有試驗班對不到專業類，不能說它沒開任何一類。 */
 export const PROGRAM_CLASS_WILDCARD = '*'
 
-/** 一個專業的選考要求圖樣能不能被這組選科滿足：要求的每一科都在選科裡。'none' 恆可報。 */
+/** 各省表對同一專業的要求寫法不一致時的圖樣：不知道要求＝可報（疑罪從無），詳情頁另標示。 */
+export const REQUIREMENT_CONFLICT = 'conflict'
+
+/** 一個專業的選考要求圖樣能不能被這組選科滿足：要求的每一科都在選科裡。'none' 與 'conflict'（不知道）恆可報。 */
 export function isAdmissible(pattern: string, chosen: ReadonlySet<SubjectCode>): boolean {
-  if (!pattern || pattern === 'none') return true
+  if (!pattern || pattern === 'none' || pattern === REQUIREMENT_CONFLICT) return true
   for (const code of pattern) if (!chosen.has(code as SubjectCode)) return false
   return true
 }

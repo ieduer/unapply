@@ -66,5 +66,6 @@ export function comboLabel(combo: string): string {
 /** 'none' → 不提科目要求；'PC' → 物理＋化學。 */
 export function requirementLabel(pattern: string): string {
   if (!pattern || pattern === 'none') return '不提科目要求'
+  if (pattern === 'conflict') return '各省表寫法不一致（不作排除依據）'
   return [...pattern].filter(isSubjectCode).map((c) => subjectLabelByCode[c]).join('＋')
 }

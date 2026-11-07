@@ -66,15 +66,18 @@ if (catalog.programs.length !== catalogSource.expected.programs || catalog.class
 const catalogIndexByCode = new Map(catalog.programs.map((p, i) => [p.code, i]))
 
 // ---------- 逐校：第二層完整清單＋第一層摘要 ----------
-const VALID_PATTERN = /^(none|[PCBZHG]{1,3})$/
+// 'conflict'＝各省表對同一專業寫法不一致：入庫但引擎視為「不知道要求」（恆可報），不得作為排除依據（2026-11-07 批 D1 起，七省交叉後出現 2 條）。
+const VALID_PATTERN = /^(none|conflict|[PCBZHG]{1,3})$/
 const patternIndex = new Map([['none', 0]])
 const patterns = ['none']
 const patIdx = (p) => { if (!patternIndex.has(p)) { patternIndex.set(p, patterns.length); patterns.push(p) } return patternIndex.get(p) }
+let conflictRows = 0
 const full = new Map()   // moeCode → programs[]
 const index = {}         // moeCode → summary
 for (const r of offeringRows) {
-  if (!VALID_PATTERN.test(r.requirementPattern)) die(`${r.schoolName} ${r.programName} 選考圖樣不合法：「${r.requirementPattern}」（衝突列不得進前端）`)
-  if (r.conflict) die(`${r.schoolName} ${r.programName} 有跨省衝突，不得進前端`)
+  if (!VALID_PATTERN.test(r.requirementPattern)) die(`${r.schoolName} ${r.programName} 選考圖樣不合法：「${r.requirementPattern}」`)
+  if (Boolean(r.conflict) !== (r.requirementPattern === 'conflict')) die(`${r.schoolName} ${r.programName} 衝突欄與圖樣不一致`)
+  if (r.conflict) conflictRows += 1
   if (!provinceByCode.has(r.moeCode)) die(`${r.schoolName} ${r.moeCode} 不在教育部主表`)
   const level = r.level === '專科' ? 'v' : 'u'
   const program = { n: r.programName, c: r.campusLabel, l: level, k: r.catalogCode, cl: r.catalogClassCode, r: r.requirementPattern, m: r.catalogMatch, p: r.provinces }
@@ -92,9 +95,10 @@ for (const r of offeringRows) {
 }
 for (const s of Object.values(index)) { s.p = [...s.p].sort().join('|'); s.g = [...s.g].sort(); if (s.g.length === 0) delete s.g; if (s.k.length === 0) delete s.k; if (s.e.length === 0) delete s.e }
 
-const PROVINCE_SOURCE = { HB: 'hubei-xkkm-2027', JS: 'jiangsu-xkkm-2027', SH: 'shanghai-xkkm-2027', ZJ: 'zhejiang-xkkm-2027' }
-const PROVINCE_ZH = { HB: '湖北', JS: '江蘇', SH: '上海', ZJ: '浙江' }
-const usedSourceIds = new Set([...Object.values(PROVINCE_SOURCE), 'moe-bk-catalog-2026', 'moe-qiangji-2020-schools'])
+// 省表標籤 → 來源 id（山東本科／專科是兩個檔，摘要只掛本科表那一條，兩條都進 sources）。
+const PROVINCE_SOURCE = { HB: 'hubei-xkkm-2027', JS: 'jiangsu-xkkm-2027', SH: 'shanghai-xkkm-2027', ZJ: 'zhejiang-xkkm-2027', HA: 'henan-xkkm-2027', NM: 'neimenggu-xkkm-2027', SD: 'shandong-xkkm-2027-bk' }
+const PROVINCE_ZH = { HB: '湖北', JS: '江蘇', SH: '上海', ZJ: '浙江', HA: '河南', NM: '內蒙古', SD: '山東' }
+const usedSourceIds = new Set([...Object.values(PROVINCE_SOURCE), 'shandong-xkkm-2027-zk', 'moe-bk-catalog-2026', 'moe-qiangji-2020-schools'])
 
 // ---------- 強基 ----------
 const strongBase = []
@@ -169,6 +173,8 @@ const manifest = {
     buckets: bucketEntries.length,
     strongBase: strongBase.length,
     sources: Object.keys(sources).length,
+    provinces: Object.keys(PROVINCE_SOURCE).length,
+    conflicts: conflictRows,
   },
 }
 // 題目 S2（意向專業類）與結果理由要用專業類名稱：寫一份小的靜態表進主包（92 類＋13 門類，約 6 KiB）。

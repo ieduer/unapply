@@ -7,7 +7,7 @@
 //
 // 輸入（全部官方，見 data/research/s1_sources.json；先跑 scripts/fetch_s1_sources.mjs 核對雜湊）：
 //   教育部《普通高等学校本科专业目录（2026年）》PDF            → data/research/bk_catalog.2026.csv
-//   湖北／江蘇（xlsx／xls）、上海／浙江（PDF）2027 年選考科目要求表 → data/research/program_offerings.2027.csv（逐校逐專業，四省聯集＋交叉核對）
+//   湖北／江蘇／河南／內蒙古（xlsx／xls）、上海／浙江／山東（PDF）2027 年選考科目要求表 → data/research/program_offerings.2027.csv（逐校逐專業，各省聯集＋交叉核對）
 //                                                             → data/research/program_offerings_summary.2027.csv（逐校彙總）
 //   教育部 2020 強基試點名單 docx ＋ 三校 2026 強基簡章頁        → data/research/strong_base_schools.2026.csv
 //   另寫 data/research/program_offerings.2027.meta.json（輸入雜湊、計數、對不上的名稱）供 audit 使用。
@@ -203,46 +203,58 @@ function matchCatalog(name, codes) {
 const meta = { generatedAt: new Date().toISOString(), scope, inputs: {}, sources: {}, unmatchedSchoolNames: {}, campusMappings: {}, codeFallbackByName: {}, learnedAliases: {}, nameMismatches: [], wrappedRowsMerged: {}, droppedIncompleteRows: {}, droppedUndergraduateRows: {}, droppedWatermarkWords: {} }
 function addInput(id) { const s = sourceById[id]; meta.inputs[id] = { title: s.title, fileUrl: s.fileUrl, sha256: s.sha256, publishedDate: s.publishedDate } }
 
-function parseSpreadsheet(id, { sheetName, headerRowMatch, pick }) {
+// 把省表的一列對到教育部主表：有院校代碼先按代碼（代碼是權威；校名不同就把舊名學成別名給無代碼的表用），
+// 沒代碼或代碼對不上再按校名（含校區／醫學院後綴剝離）。對不上的記進 meta.unmatchedSchoolNames，列被丟棄（疑罪從無：缺＝未知）。
+function alignSchool(id, schoolCode, schoolName) {
+  let school = schoolCode ? byCode5.get(schoolCode) : undefined, campusLabel = ''
+  if (school) {
+    const tableName = normalizeName(schoolName), moeName = normalizeName(school.nameSimplified ?? school.name)
+    if (schoolName && tableName !== moeName) {
+      const campus = resolveSchoolByName(schoolName)
+      if (campus && campus.school === school && campus.campusLabel) campusLabel = campus.campusLabel // 华北电力大学(北京) 這類主代碼帶校區名
+      else {
+        // 省表（2025-02 口徑）用舊校名、教育部 2026 已更名：代碼是權威，順手把舊名登記成別名，PDF 表（無代碼）靠它對上。
+        const key = `${schoolCode} 表寫「${schoolName}」，教育部 2026 為「${school.nameSimplified ?? school.name}」`
+        if (!meta.nameMismatches.includes(key)) meta.nameMismatches.push(key)
+        if (!byName.has(tableName)) { byName.set(tableName, school); meta.learnedAliases[tableName] = school.nameSimplified ?? school.name }
+      }
+    }
+    return { school, campusLabel }
+  }
+  const resolved = resolveSchoolByName(schoolName)
+  const key = `${schoolCode ?? ''} ${schoolName}`.trim()
+  if (!resolved) { if (!(meta.unmatchedSchoolNames[id] ??= []).includes(key)) meta.unmatchedSchoolNames[id].push(key); return null }
+  school = resolved.school; campusLabel = resolved.campusLabel
+  if (campusLabel) (meta.campusMappings[id] ??= {})[key] = `${school.nameSimplified ?? school.name}｜${campusLabel}`
+  else if (schoolCode) (meta.codeFallbackByName[id] ??= {})[key] = `${school.moeCode} ${school.nameSimplified ?? school.name}` // 省表招生代碼≠教育部標識碼，按校名對上
+  return { school, campusLabel }
+}
+
+// 試算表來源：sheets 可給多個工作表各帶固定層次（內蒙古：本科／专科兩表）；pick 可不給 schoolCode（按校名對齊）。
+function parseSpreadsheet(id, { sheetName, sheets, headerRowMatch, pick }) {
   const { source, path } = sourceFile(id); addInput(id)
   const wb = XLSX.readFile(path)
-  const name = sheetName ? wb.SheetNames.find((n) => n === sheetName) : wb.SheetNames[0]
-  if (!name) die(`${id}: 找不到工作表 ${sheetName}`)
-  const rows = XLSX.utils.sheet_to_json(wb.Sheets[name], { header: 1, raw: false, defval: '' }).map((r) => r.map((c) => String(c).trim()))
-  const headerIndex = rows.findIndex((r) => headerRowMatch(r))
-  if (headerIndex < 0) die(`${id}: 找不到表頭 ${source.expected.header.join('/')}`)
+  const specs = sheets ?? [{ name: sheetName ? wb.SheetNames.find((n) => n === sheetName) : wb.SheetNames[0], level: null }]
   const records = []; let undergraduateSchools = new Set()
-  for (const r of rows.slice(headerIndex + 1)) {
-    const rec = pick(r)
-    if (!rec || !rec.schoolCode) continue
-    const level = normalizeLevel(rec.level)
-    if (!level || (level === '專科' && !includeVocational)) continue
-    if (level === '本科') undergraduateSchools.add(rec.schoolCode)
-    let school = byCode5.get(rec.schoolCode), campusLabel = ''
-    if (school) {
-      const tableName = normalizeName(rec.schoolName), moeName = normalizeName(school.nameSimplified ?? school.name)
-      if (rec.schoolName && tableName !== moeName) {
-        const campus = resolveSchoolByName(rec.schoolName)
-        if (campus && campus.school === school && campus.campusLabel) campusLabel = campus.campusLabel // 华北电力大学(北京) 這類主代碼帶校區名
-        else {
-          // 省表（2025-02 口徑）用舊校名、教育部 2026 已更名：代碼是權威，順手把舊名登記成別名，PDF 表（無代碜）靠它對上。
-          const key = `${rec.schoolCode} 表寫「${rec.schoolName}」，教育部 2026 為「${school.nameSimplified ?? school.name}」`
-          if (!meta.nameMismatches.includes(key)) meta.nameMismatches.push(key)
-          if (!byName.has(tableName)) { byName.set(tableName, school); meta.learnedAliases[tableName] = school.nameSimplified ?? school.name }
-        }
-      }
-    } else {
-      const resolved = resolveSchoolByName(rec.schoolName)
-      if (!resolved) { const key = `${rec.schoolCode} ${rec.schoolName}`; if (!(meta.unmatchedSchoolNames[id] ??= []).includes(key)) meta.unmatchedSchoolNames[id].push(key); continue }
-      school = resolved.school; campusLabel = resolved.campusLabel
-      if (campusLabel) (meta.campusMappings[id] ??= {})[`${rec.schoolCode} ${rec.schoolName}`] = `${school.nameSimplified ?? school.name}｜${campusLabel}`
-      else (meta.codeFallbackByName[id] ??= {})[`${rec.schoolCode} ${rec.schoolName}`] = `${school.moeCode} ${school.nameSimplified ?? school.name}` // 省表招生代碼≠教育部標識碼，按校名對上
+  for (const spec of specs) {
+    if (!spec.name || !wb.Sheets[spec.name]) die(`${id}: 找不到工作表 ${spec.name ?? sheetName}（有：${wb.SheetNames.join('、')}）`)
+    const rows = XLSX.utils.sheet_to_json(wb.Sheets[spec.name], { header: 1, raw: false, defval: '' }).map((r) => r.map((c) => String(c).trim()))
+    const headerIndex = rows.findIndex((r) => headerRowMatch(r))
+    if (headerIndex < 0) die(`${id}: 工作表 ${spec.name} 找不到表頭 ${(source.expected?.header ?? []).join('/')}`)
+    for (const r of rows.slice(headerIndex + 1)) {
+      const rec = pick(r)
+      if (!rec || (!rec.schoolCode && !rec.schoolName)) continue
+      const level = normalizeLevel(rec.level ?? spec.level)
+      if (!level || (level === '專科' && !includeVocational)) continue
+      if (level === '本科') undergraduateSchools.add(rec.schoolCode || normalizeName(rec.schoolName))
+      const aligned = alignSchool(id, rec.schoolCode || '', rec.schoolName || '')
+      if (!aligned) continue
+      records.push({ sourceId: id, province: source.province, school: aligned.school, campusLabel: aligned.campusLabel, level, programName: normalizeName(rec.programName), programCode: rec.programCode ?? '', requirementRaw: rec.requirementRaw, pattern: normalizeRequirement(rec.requirementRaw, id) })
     }
-    records.push({ sourceId: id, province: source.province, school, campusLabel, level, programName: normalizeName(rec.programName), programCode: rec.programCode, requirementRaw: rec.requirementRaw, pattern: normalizeRequirement(rec.requirementRaw, id) })
   }
   const undergraduateRows = records.filter((r) => r.level === '本科').length
   const vocationalRows = records.length - undergraduateRows
-  const exp = source.expected
+  const exp = source.expected ?? {}
   if (exp.undergraduateRows && undergraduateRows !== exp.undergraduateRows) console.warn(`  ${id}: 本科列 ${undergraduateRows}（表內 ${exp.undergraduateRows}；差額為對不到教育部主表的院校列，多為軍校與未入主池院校）`)
   meta.sources[id] = { undergraduateRows, vocationalRows, undergraduateSchools: undergraduateSchools.size, unmatchedSchools: (meta.unmatchedSchoolNames[id] ?? []).length }
   console.log(`${id}: 本科 ${undergraduateRows} 列（專科 ${vocationalRows}）、${undergraduateSchools.size} 校（對不到主表 ${(meta.unmatchedSchoolNames[id] ?? []).length} 校）`)
@@ -251,7 +263,10 @@ function parseSpreadsheet(id, { sheetName, headerRowMatch, pick }) {
 
 const REGION_NAMES = ['北京', '天津', '河北', '山西', '内蒙古', '辽宁', '吉林', '黑龙江', '上海', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '重庆', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆']
 // pdftotext -tsv → 依表頭中心 x 分欄、依 top 聚行；剔除散字水印；拼回被折行的專業名。
-function pdfTable(id, pdfPath, { columns, watermark, headerKey, levelColumn }) {
+// assignBy: 'center'（預設；上海／浙江表格置中，按表頭中心取最近欄）或 'left'（山東表每欄靠左對齊、每頁每欄的字左緣完全一致：
+// 以該頁所有資料字的左緣聚類得到各欄左緣，數目必須等於欄數，否則停）。
+// wrapColumns：會折行的欄（折行殘段拼回最近的主線）。山東表的要求欄也會折行（「…方可报」＋「考)」）。
+function pdfTable(id, pdfPath, { columns, watermark, headerKey, levelColumn, fixedLevel, assignBy = 'center', wrapColumns = ['schoolName', 'programName'] }) {
   const tsvPath = join(cacheDir, `${sourceById[id].file}.tsv`)
   if (!existsSync(tsvPath)) {
     mkdirSync(cacheDir, { recursive: true })
@@ -266,26 +281,43 @@ function pdfTable(id, pdfPath, { columns, watermark, headerKey, levelColumn }) {
     const page = Number(f[1]); const left = Number(f[6]), top = Number(f[7]), width = Number(f[8])
     ;(pages.get(page) ?? pages.set(page, []).get(page)).push({ left, top, cx: left + width / 2, text })
   }
-  const rowsOut = []; let merged = 0, dropped = 0; let centers = null
-  const WRAP_COLUMNS = new Set(['schoolName', 'programName'])
+  const rowsOut = []; let merged = 0, dropped = 0; let centers = null; let leftEdges = null
+  const WRAP_COLUMNS = new Set(wrapColumns)
   for (const [, words] of [...pages.entries()].sort((a, b) => a[0] - b[0])) {
     words.sort((a, b) => a.top - b.top || a.left - b.left)
+    let pageHeaderTop = null
     const lines = []
     // 聚行容差 2.0pt：上海表折行校名的第一行只比同列其他格高 1.65pt，要併進同一行；代碼格高 2.8pt 另由下方「欄位不重疊就合併」處理。
     for (const w of words) { const last = lines[lines.length - 1]; if (last && Math.abs(last.top - w.top) <= 2.0) last.words.push(w); else lines.push({ top: w.top, words: [w] }) }
     const parsed = []
+    const headerWords = new Set()
+    // 先找這一頁的表頭行：表頭之上的頁首標題不當資料（每頁都重印表頭的表，如山東）。
+    const headerLine = lines.find((l) => l.words.some((w) => w.text === headerKey))
+    if (headerLine) pageHeaderTop = headerLine.top
     for (const line of lines) {
       const texts = line.words.map((w) => w.text)
-      if (texts.includes(headerKey)) { // 表頭：記每欄中心
-        const found = columns.map((col) => line.words.find((w) => col.header.some((h) => w.text === h || w.text.startsWith(h))))
-        if (found.every(Boolean)) centers = found.map((w) => w.cx)
+      if (texts.includes(headerKey)) { // 表頭：記每欄中心。兩行表頭（山東：「院校／代码」「院校所／在省份」）的字落在相鄰行，一起找；先認完全相同的字再認前綴。
+        const near = lines.filter((l) => Math.abs(l.top - line.top) <= 9).flatMap((l) => l.words)
+        const found = columns.map((col) => near.find((w) => col.header.includes(w.text)) ?? near.find((w) => col.header.some((h) => w.text.startsWith(h))))
+        if (found.every(Boolean)) { centers = found.map((w) => w.cx); for (const w of near) headerWords.add(w); if (assignBy === 'left') leftEdges = null }
         continue
       }
       if (!centers) continue
+      if (line.words.every((w) => headerWords.has(w))) continue // 兩行表頭的另一行
+      if (pageHeaderTop !== null && line.top < pageHeaderTop) continue // 表頭之上的頁首標題（每頁都重印表頭的表）
       if (texts.every((t) => /^第(\d+)?(页)?[，,]?共?$|^\d+(页)?$|^页([，,]共)?$|^共(\d+)?(页)?$|^[，,]共?$/.test(t))) continue // 頁尾「第 N 页，共 914 页」（會被拆成「第7页，共」「914页」或「第」「10」「页」等）
+      if (assignBy === 'left' && !leftEdges) {
+        const lefts = words.filter((w) => !headerWords.has(w) && w.top > (pageHeaderTop ?? line.top - 1) + 5).map((w) => w.left).sort((a, b) => a - b)
+        const clusters = []
+        for (const x of lefts) { const last = clusters[clusters.length - 1]; if (last && x - last.max <= 4) last.max = x; else clusters.push({ min: x, max: x }) }
+        if (clusters.length !== columns.length) die(`${id}: 某頁資料字的左緣聚成 ${clusters.length} 欄（${clusters.map((c) => c.min.toFixed(0)).join('/')}），表頭卻是 ${columns.length} 欄；版面變了，先看再改`)
+        leftEdges = clusters.map((c) => c.min)
+      }
       const cells = columns.map(() => [])
       for (const w of line.words.sort((a, b) => a.left - b.left)) {
-        let best = 0; for (let i = 1; i < centers.length; i += 1) if (Math.abs(w.cx - centers[i]) < Math.abs(w.cx - centers[best])) best = i
+        let best = 0
+        if (assignBy === 'left') { for (let i = 1; i < leftEdges.length; i += 1) if (Math.abs(w.left - leftEdges[i]) < Math.abs(w.left - leftEdges[best])) best = i }
+        else { for (let i = 1; i < centers.length; i += 1) if (Math.abs(w.cx - centers[i]) < Math.abs(w.cx - centers[best])) best = i }
         cells[best].push(w.text)
       }
       const rec = Object.fromEntries(columns.map((c, i) => [c.key, cells[i].join('')]))
@@ -314,6 +346,22 @@ function pdfTable(id, pdfPath, { columns, watermark, headerKey, levelColumn }) {
     for (const frag of parsed.filter((p) => !p.isMain).sort((a, b) => a.top - b.top)) {
       const cols = columns.filter((c) => WRAP_COLUMNS.has(c.key) && frag.rec[c.key])
       if (cols.length === 0) continue
+      // 要求欄折行（山東表）：單元格垂直置中，兩行各離主線約 6pt、而列距 12.35pt，幾何上分不出上下；改用要求文法判：
+      // 以「)」結尾且不以科目／不提開頭的是後半，接到上方最近一條「有 ( 沒 )」的主線；否則是前半，接到下方最近一條要求欄還空著的主線。
+      if (cols.length === 1 && cols[0].key === 'requirement') {
+        const text = frag.rec.requirement
+        const isTailText = (t) => /\)$/.test(t) && !/^(不提科目要求|物理|化学|生物|思想政治|历史|地理|不限)/.test(t)
+        const isHeadText = (t) => /\(/.test(t) && !/\)/.test(t)
+        const isTail = isTailText(text)
+        // 後半接到上方「有 ( 沒 )」的主線；前半接到下方「要求欄空著、或只剩一個尾巴『考)』」的主線（尾巴有時落在主線上、前半在其上方）。
+        const target = isTail
+          ? mains.filter((m) => m.top < frag.top && isHeadText(m.rec.requirement)).sort((a, b) => b.top - a.top)[0]
+          : mains.filter((m) => m.top > frag.top && (!m.rec.requirement || isTailText(m.rec.requirement))).sort((a, b) => a.top - b.top)[0]
+        if (!target) { dropped += 1; if (process.env.S1_DEBUG_DROPPED && dropped <= 12) console.error(`  [${id}] orphan requirement fragment top=${frag.top.toFixed(1)} ${text}`); continue }
+        target.rec.requirement = isTail ? target.rec.requirement + text : text + target.rec.requirement
+        merged += 1
+        continue
+      }
       // 窗口 17pt：主線的 top 可能是較高的代碼格（比同列文字高 2.8pt），續行離它可到 14.7pt；列距約 17–18pt。
       const above = mains.filter((m) => m.top <= frag.top && frag.top - m.top <= 17).sort((a, b) => b.top - a.top)[0]
       const below = mains.filter((m) => m.top > frag.top && m.top - frag.top <= 17).sort((a, b) => a.top - b.top)[0]
@@ -335,24 +383,23 @@ function pdfTable(id, pdfPath, { columns, watermark, headerKey, levelColumn }) {
   }
   meta.wrappedRowsMerged[id] = merged
   meta.droppedIncompleteRows[id] = dropped
-  return rowsOut.map((r) => ({ ...r, level: levelColumn ? normalizeLevel(r[levelColumn]) : '本科' })).filter((r) => r.level && (r.level === '本科' || includeVocational))
+  return rowsOut.map((r) => ({ ...r, level: levelColumn ? normalizeLevel(r[levelColumn]) : (fixedLevel ?? '本科') })).filter((r) => r.level && (r.level === '本科' || includeVocational))
 }
 
 function parsePdfSource(id, pdfPath, options) {
   const source = sourceById[id]; addInput(id)
   const rows = pdfTable(id, pdfPath, options)
-  const records = []; const schools = new Set(); const unmatched = new Set()
+  const records = []; const schools = new Set()
   for (const r of rows) {
-    schools.add(r.schoolName)
-    const resolved = resolveSchoolByName(r.schoolName)
-    if (!resolved) { unmatched.add(r.schoolName); continue }
-    if (resolved.campusLabel) (meta.campusMappings[id] ??= {})[r.schoolName] = `${resolved.school.nameSimplified ?? resolved.school.name}｜${resolved.campusLabel}`
-    records.push({ sourceId: id, province: source.province, school: resolved.school, campusLabel: resolved.campusLabel, level: r.level, programName: normalizeName(r.programName), programCode: r.programCode ?? '', requirementRaw: r.requirement, pattern: normalizeRequirement(r.requirement, id) })
+    schools.add(r.schoolCode || r.schoolName)
+    const aligned = alignSchool(id, r.schoolCode || '', r.schoolName) // 山東表有院校代碼（按代碼對），上海／浙江只有校名
+    if (!aligned) continue
+    records.push({ sourceId: id, province: source.province, school: aligned.school, campusLabel: aligned.campusLabel, level: r.level, programName: normalizeName(r.programName), programCode: r.programCode ?? '', requirementRaw: r.requirement, pattern: normalizeRequirement(r.requirement, id) })
   }
-  meta.unmatchedSchoolNames[id] = [...unmatched]
+  const unmatched = meta.unmatchedSchoolNames[id] ?? (meta.unmatchedSchoolNames[id] = [])
   const undergraduateRows = records.filter((r) => r.level === '本科').length
-  meta.sources[id] = { undergraduateRows, vocationalRows: records.length - undergraduateRows, undergraduateSchools: schools.size, unmatchedSchools: unmatched.size }
-  console.log(`${id}: 本科 ${undergraduateRows} 列（專科 ${records.length - undergraduateRows}）、${schools.size} 校（對不到主表 ${unmatched.size} 校；折行拼回 ${meta.wrappedRowsMerged[id]}；不完整列丟棄 ${meta.droppedIncompleteRows[id]}，其中本科 ${meta.droppedUndergraduateRows[id] ?? 0}；剔除水印字 ${meta.droppedWatermarkWords[id] ?? 0}）`)
+  meta.sources[id] = { undergraduateRows, vocationalRows: records.length - undergraduateRows, undergraduateSchools: schools.size, unmatchedSchools: unmatched.length }
+  console.log(`${id}: 本科 ${undergraduateRows} 列（專科 ${records.length - undergraduateRows}）、${schools.size} 校（對不到主表 ${unmatched.length} 校；折行拼回 ${meta.wrappedRowsMerged[id]}；不完整列丟棄 ${meta.droppedIncompleteRows[id]}，其中本科 ${meta.droppedUndergraduateRows[id] ?? 0}；剔除水印字 ${meta.droppedWatermarkWords[id] ?? 0}）`)
   return records
 }
 
@@ -396,8 +443,32 @@ all.push(...parseSpreadsheet('jiangsu-xkkm-2027', {
   }))
 }
 
+// 2026-11-07 批 D1 新增三省（都是「2027 通用版」全國統一口徑，與前四省交叉核對）：
+all.push(...parseSpreadsheet('henan-xkkm-2027', {
+  headerRowMatch: (r) => r[0] === '院校代码' && r[5] === '选考科目要求',
+  pick: (r) => ({ schoolCode: r[0], schoolName: r[1], programCode: r[2], programName: r[3], level: r[4], requirementRaw: r[5] }),
+}))
+all.push(...parseSpreadsheet('neimenggu-xkkm-2027', {
+  // 只有校名、沒有院校代碼；本科／專科各一個工作表。
+  sheets: [{ name: '本科', level: '本科' }, { name: '专科', level: '高职(专科)' }],
+  headerRowMatch: (r) => r[0] === '院校名称' && r[2] === '考试科目要求',
+  pick: (r) => ({ schoolName: r[0], programName: r[1], requirementRaw: r[2] }),
+}))
+for (const [id, level] of [['shandong-xkkm-2027-bk', '本科'], ['shandong-xkkm-2027-zk', '專科']]) {
+  const { path } = sourceFile(id)
+  // 兩行表頭：「院校／代码」「专业／代码」「院校所／在省份」；用各欄第一行的字（院校、专业、院校所）定欄中心。無水印。
+  all.push(...parsePdfSource(id, path, {
+    headerKey: '院校名称', watermark: new Set(), fixedLevel: level, assignBy: 'left', wrapColumns: ['schoolName', 'programName', 'requirement'],
+    columns: [
+      { key: 'schoolCode', header: ['院校'], required: true }, { key: 'schoolName', header: ['院校名称'], required: true },
+      { key: 'programCode', header: ['专业'], required: false }, { key: 'programName', header: ['专业（类）', '专业(类)'], required: true },
+      { key: 'requirement', header: ['选考科目要求'], required: true }, { key: 'province', header: ['院校所'], required: false },
+    ],
+  }))
+}
+
 // ---------- 聯集與交叉核對 ----------
-const PROVINCE_TAG = { 湖北: 'HB', 江蘇: 'JS', 上海: 'SH', 浙江: 'ZJ' }
+const PROVINCE_TAG = { 湖北: 'HB', 江蘇: 'JS', 上海: 'SH', 浙江: 'ZJ', 河南: 'HA', 內蒙古: 'NM', 山東: 'SD' }
 const bySchool = new Map()
 for (const rec of all) {
   if (!inScope(rec.school)) continue
@@ -434,7 +505,8 @@ for (const [moeCode, programs] of [...bySchool.entries()].sort()) {
       programKind: cat.match === 'none' || cat.match === 'vocational' ? cat.kind : (cat.match === 'class' ? 'class' : 'program'),
       catalogMatch: cat.match, catalogCode: program?.code ?? '', catalogName: program?.name ?? '',
       catalogClassCode: klass?.code ?? '', catalogClassName: klass?.name ?? '', disciplineCode: discipline?.code ?? '', disciplineName: discipline?.name ?? '',
-      requirementPattern: conflict ? '' : (pattern || 'none'), requirementRaw: conflict ? '' : entry.raws.get(pattern),
+      // 跨省不一致：圖樣寫 'conflict'（不是空），原文保留各省寫法；引擎把它視為「不知道要求」＝可報，詳情頁標示不一致。任何下游都不得拿它當排除依據。
+      requirementPattern: conflict ? 'conflict' : (pattern || 'none'), requirementRaw: conflict ? patterns.map((p) => entry.raws.get(p)).join(' / ') : entry.raws.get(pattern),
       requirementVariants: [...entry.variants.entries()].map(([prov, p]) => `${prov}:${p}`).join('|'),
       provinces: [...entry.provinces].sort().join('|'), sourceIds: [...entry.sourceIds].sort().join('|'),
       conflict: conflict ? patterns.map((p) => `${p || 'none'}=${entry.raws.get(p)}`).join(' / ') : '',

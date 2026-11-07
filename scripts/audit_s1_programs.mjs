@@ -72,7 +72,7 @@ if (scope === 'all') {
   out(`## 0. 全部主池覆蓋（按教育部層次）`)
   out()
   out(`- 本科校 ${undergrad.length}：有本科招生專業清單 ${uCovered.length}（${pct(uCovered.length, undergrad.length)}）；缺 ${undergrad.length - uCovered.length} 校（分類與全名單見下）。`)
-  out(`- 專科校 ${vocational.length}：有高職（專科）專業清單 ${vCovered.length}（${pct(vCovered.length, vocational.length)}）；缺 ${vocational.length - vCovered.length} 校（多為只在湖北／江蘇／浙江表外招生或當年未在三省安排計劃；保持未知）。`)
+  out(`- 專科校 ${vocational.length}：有高職（專科）專業清單 ${vCovered.length}（${pct(vCovered.length, vocational.length)}）；缺 ${vocational.length - vCovered.length} 校（多為當年未在已取得的省表安排計劃，或該省只以查詢系統公布；保持未知）。`)
   out(`- 本科校另有專科專業列 ${undergrad.filter((s) => Number(summaryByCode.get(s.moeCode)?.vocationalCount ?? 0) > 0).length} 校；專科列全部不對本科目錄（programKind=vocational），只展示不判定。`)
   out(`- 條數：本科 ${meta.counts.undergraduateOfferings}、專科 ${meta.counts.vocationalOfferings}；跨省衝突 ${meta.counts.conflicts}。`)
   // 缺清單不是阻塞：疑罪從無，缺的保持未知。這裡把缺口分類，給人工查核清單用。
@@ -83,7 +83,7 @@ if (scope === 'all') {
     if (/警察|公安|刑事|司法警官/.test(n)) return '警察／公安類（提前批、不在省表）'
     if (/学院$/.test(n) && /大学.+学院|学院.+学院/.test(n)) return '獨立學院（多已轉設或更名，省表用舊名／舊代碼）'
     if (/军|武警|海军|空军|火箭|国防/.test(n)) return '軍事類'
-    return '其他（當年未在四省安排計劃、更名未對上或合作辦學）'
+    return '其他（當年未在已取得省表安排計劃、更名未對上或合作辦學）'
   }
   const byKind = count(missing, kind)
   out(`- 缺口分類（供人工查核，不猜填）：${byKind.map(([k, v]) => `${k} ${v}`).join('；')}。`)
@@ -110,7 +110,8 @@ out(`## 2. 選考科目要求`)
 out()
 const conflicts = offerings.filter((r) => r.conflict)
 out(`- 有要求（含「不提科目要求」）的條數：${offerings.filter((r) => r.requirementPattern).length}/${offerings.length}；跨省不一致：${conflicts.length} 條。`)
-if (conflicts.length > 0) problems.push(`${conflicts.length} 條跨省要求不一致`)
+// 2026-11-07 批 D1 起：衝突列以圖樣 'conflict' 入庫，引擎視為「不知道要求」恆可報、永不作排除依據；不再阻塞，但逐條列出供人工覆核。
+if (conflicts.length > 0) out(`- 不一致的條目（入庫為 conflict、不作排除依據）：${conflicts.map((r) => `${r.schoolName}「${r.programName}」[${r.provinces}] ${r.conflict}`).join('；')}。`)
 out(`- 要求分佈：${count(offerings, (r) => r.requirementPattern || 'conflict').map(([k, v]) => `${k} ${v}`).join('；')}。`)
 out(`- 可信度：${count(offerings, (r) => r.confidence).map(([k, v]) => `${k} ${v}`).join('；')}（high＝兩個以上省表一致）。`)
 const variants = offerings.filter((r) => r.requirementVariants)
@@ -180,7 +181,7 @@ out()
 
 out(`## 7. 結論`)
 out()
-out(problems.length ? `- 阻塞：${problems.join('；')}` : `- 無阻塞：雙一流 ${covered}/${scopeTotal} 校皆有專業清單與選考要求；跨省要求 0 衝突。`)
+out(problems.length ? `- 阻塞：${problems.join('；')}` : `- 無阻塞：雙一流 ${covered}/${scopeTotal} 校皆有專業清單與選考要求；跨省不一致 ${conflicts.length} 條（入庫為 conflict、引擎視為可報、不作排除依據）。`)
 out(`- 本層以「起點條件」（AnswerMap 之外）接入；成為正式題目（S1.b）前要走 docs/DESIGN_S1_PROGRAMS_ADMISSION.md §6 的閘門與共享契約 fan-out。`)
 
 const text = `${lines.join('\n')}\n`

@@ -124,6 +124,9 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
     return rows
   }, [programEntry, programs.index])
   const programsPayload = programs.index
+  // 已納入交叉核對的省表（來自 payload，省數隨來源增加而變）。
+  const programProvinceNames = useMemo(() => (programsPayload ? Object.values(programsPayload.provinceSources).map((item) => item.nameZh) : []), [programsPayload])
+  const programProvinceList = programProvinceNames.length > 0 ? programProvinceNames.join('、') : '各省'
   const currentList = programList && programList.moeCode === school.moeCode ? programList.programs : null
   const programGroups = useMemo(() => {
     if (!currentList) return [] as { level: 'u' | 'v'; campus: string; programs: ProgramOffering[] }[]
@@ -310,7 +313,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
           <div>
             <h2 className="serif text-xl">招生專業 · 選考科目要求（{programsManifest.admissionYear} 年）</h2>
             <p className="mt-2 text-xs text-fog-500 leading-relaxed">
-              各省教育考試院／教育廳公布的「擬招生專業（類）選考科目要求」是學校自己報送、全國統一口徑的官方表；本站取湖北、江蘇、上海、浙江四省表交叉核對，不一致的一條都不收。
+              各省教育考試院／教育廳公布的「擬招生專業（類）選考科目要求」是學校自己報送、全國統一口徑的官方表；本站取已能取得的 {programProvinceNames.length} 省官方表（{programProvinceList}）交叉核對，不一致的一條都不收。
               專業名稱用公布表原文；目錄對應按教育部《本科專業目錄》。
             </p>
           </div>
@@ -319,7 +322,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
           )}
           {programs.index && !programEntry && (
             <p className="text-xs text-fog-500 leading-relaxed">
-              本校 {programsManifest.admissionYear} 年的招生專業與選考要求沒有出現在湖北、江蘇、上海、浙江四省公布表裡（可能當年未在這四省安排計劃）。沒有資料不影響它在結果裡的去留；要查請用上方的陽光高考院校庫或所在省招考入口。
+              本校 {programsManifest.admissionYear} 年的招生專業與選考要求沒有出現在本站已取得的 {programProvinceNames.length} 省公布表（{programProvinceList}）裡（可能當年未在這些省安排計劃，或只透過查詢系統公布）。沒有資料不影響它在結果裡的去留；要查請用上方的陽光高考院校庫或所在省招考入口。
             </p>
           )}
           {programsPayload && programEntry && (

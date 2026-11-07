@@ -256,6 +256,7 @@ npm run data:research
    腳本的規則：兩個獨立權威來源（軟科機構頁、Wikidata P856、教育部主表）同一可註冊網域且 GET 200、最終網域一致 → `high`；
    單一來源、網域像學術機構且連通 → `medium`；其餘不收（`status` 留 unreachable／rejected，供人工覆核）。
    `build_world_atlas.mjs` 只合併 `verified`，少於 300 所會直接失敗。不要手改 CSV 補鏈接——改腳本的來源或人工覆核清單再重跑。
+   人工覆核清單在腳本的 `MANUAL_REVIEW`（每條寫證據與覆核日）；`--from <上一輪 CSV> --recheck` 只重打上一輪未通過的列（覆核網址實際 GET、最終網域一致才收；標 `allowBlocked` 的反爬 403 以瀏覽器開啟核對、標 `curlFallback` 的憑證鏈不完整站以系統 curl 再試），通過的列逐字照抄。2026-11-07 批 D4 以此把 S0 留下的 13 所補齊到 544/544。
 4. 複核 `direct_hire_programs`：每條重新打開官方頁，更新 `status`／`verifiedAt`；連續兩年沒有招募標 `inactive`，不刪。
    新地區出現時 `build_world_atlas.mjs` 的 `REGION_ZH`／`CONTINENT` 會失敗，補上中文名與洲別。
 5. `npm run data:atlas` → `npm run test:atlas` → 其餘閘門 → 候選預覽 → Pages 交易（§6）。
@@ -284,10 +285,10 @@ S1／S2 取值與題目選項一致、覆蓋與可見選項、兩題在 `filterS
 | 檔案 | 產生方式 | 內容 |
 | --- | --- | --- |
 | `s1_sources.json` | 人工登記＋`data:s1-fetch --repin` 補雜湊 | 官方來源釘定表：出版單位、公告頁、檔案網址、發布日、SHA-256、大小、入庫方式（committed／external）、預期計數 |
-| `raw/s1/*` | `data:s1-fetch` | 入庫原檔：湖北 2027 選考要求 xlsx、教育部本科專業目錄 2026 PDF、強基 2020 名單 docx、各公告頁與三校強基簡章頁快照 |
+| `raw/s1/*` | `data:s1-fetch` | 入庫原檔：湖北／河南／內蒙古 2027 選考要求 xlsx、教育部本科專業目錄 2026 PDF、強基 2020 名單 docx、各公告頁與三校強基簡章頁快照 |
 | `bk_catalog.2026.csv` | `data:s1-build` | 國標本科專業目錄 883 種：代碼（含 T／K 後綴）、名稱、專業類、門類、學位授予註記 |
 | `program_offerings.2027.csv` | `data:s1-build`（預設 scope dfc） | 雙一流 144 校 × 本科招生專業（類）：校區標籤、層次、學校自編代碼、國標對應（code／name／class／none）、選考要求圖樣、原文、列到它的省份、來源、跨省衝突、可信度 |
-| `program_offerings.2027.all.csv.gz`、`_summary.2027.all.csv`、`.all.meta.json` | `data:s1-build -- --scope all` | 全部 2,952 校、本科＋高職（專科）兩層次（88,750 條）；專科列 `programKind=vocational` 不對本科目錄；gzip 入庫，`gzip -dc` 可 diff；前端 payload 由它產生 |
+| `program_offerings.2027.all.csv.gz`、`_summary.2027.all.csv`、`.all.meta.json` | `data:s1-build -- --scope all` | 全部 2,952 校、本科＋高職（專科）兩層次（批 D1 起七省聯集 102,241 條）；專科列 `programKind=vocational` 不對本科目錄；跨省不一致的列圖樣寫 `conflict`（引擎視為可報、永不作排除依據，詳情頁標示）；gzip 入庫，`gzip -dc` 可 diff；前端 payload 由它產生 |
 | `program_offerings_summary.2027.csv` | `data:s1-build` | 逐校彙總：專業數、校區、省表數、要求分佈、目錄對應數、衝突數 |
 | `program_offerings.2027.meta.json` | `data:s1-build` | 輸入雜湊、各省表計數、對不到主表的院校、校區／醫學院代碼映射、學到的舊校名別名、折行與水印處理計數 |
 | `strong_base_schools.2026.csv` | `data:s1-build` | 強基計劃 39 校（教育部 2020 名單 36＋2022 增列 3，以三校 2026 官方簡章為證） |
@@ -298,7 +299,7 @@ S1／S2 取值與題目選項一致、覆蓋與可見選項、兩題在 `filterS
 ```bash
 cd /Users/ylsuen/CF/sites/interactive/unapply
 brew list poppler >/dev/null || brew install poppler     # pdftotext：只用來把官方 PDF 轉文字／座標
-npm run data:s1-fetch -- --cache-dir .tmp/s1-sources --from-r2   # 三個大檔從既有私密桶 bdfz-ops-backups（unapply/s1-sources/v1/）取回；已釘雜湊不符直接 exit 1；--offline 不碰網路；不加 --from-r2 則從原網址下載
+npm run data:s1-fetch -- --cache-dir .tmp/s1-sources --from-r2   # 五個大檔（江蘇 xls、上海 PDF、浙江 zip、山東本科／專科 PDF）從既有私密桶 bdfz-ops-backups（unapply/s1-sources/v1/）取回；已釘雜湊不符直接 exit 1；--offline 不碰網路；不加 --from-r2 則從原網址下載
 npm run data:s1-build -- --cache-dir .tmp/s1-sources --scope all   # 全量（前端用）；不認得的選考要求寫法、目錄計數不符都 exit 1
 npm run data:s1-build -- --cache-dir .tmp/s1-sources               # 雙一流 144 校本科（稽核與設計用）
 npm run audit:s1 -- --scope all --out /Users/ylsuen/CF/reports/operations/<任務>/
@@ -313,18 +314,23 @@ npm run data:programs && npm run test:s1                   # 前端 payload 與�
    另有十餘所院校的招生代碼≠教育部標識碍（金陵科技學院、西交利物浦…），按校名對上，記在 meta 的 `codeFallbackByName`。
 2. **省表是 2025 年 2 月口徑，教育部 2026 名單已有 26 校更名**（常熟理工學院→蘇州工學院、新鄉醫學院→河南醫藥大學…）。
    `moe_former_names` 只含 2025→2026 同碼更名；更早的更名由湖北／江蘇表（有代碼）學成別名再給上海／浙江 PDF（無代碼）用。
-3. **選考要求是封閉詞表**：湖北／江蘇／浙江用長句「物理,化学(2门科目考生均须选考方可报考)」（逗號有半形有全形），上海用簡寫
+3. **選考要求是封閉詞表**：湖北／江蘇／浙江／河南／內蒙古／山東用長句「物理,化学(2门科目考生均须选考方可报考)」（逗號有半形有全形），上海用簡寫
    「物和化」「不限」。浙江 3+3 另有「技术」科，全國通用版沒有，跨省比對時忽略它、只記在 `requirementVariants`。
    出現新寫法腳本會停：先補 `SUBJECT_KEY`，不要猜。
-4. **PDF 解析走座標**（`pdftotext -tsv`）：按表頭中心分欄、按 top 聚行；「浙江省教育考试院／上海市教育考试院」散字水印按單字剔除；
+4. **PDF 解析走座標**（`pdftotext -tsv`）：上海／浙江按表頭中心分欄（`assignBy: 'center'`）、山東每欄靠左對齊改按該頁字左緣聚類分欄（`assignBy: 'left'`，聚出的欄數≠表頭欄數就停）、按 top 聚行；「浙江省教育考试院／上海市教育考试院」散字水印按單字剔除；
+   山東表每頁重印兩行表頭與頁首標題（先找表頭行、表頭之上不當資料），要求欄會折行（「…方可报」＋「考)」，兩行各離主線約 6pt 而列距 12.35pt，幾何分不出上下）——以要求文法判：以「)」結尾且不以科目開頭的是後半接上方「有 ( 沒 )」的主線，其餘是前半接下方要求欄空著（或只剩尾巴）的主線；
    上海表的專業代碼字高不同、會與同列其他格差 2–3pt，相鄰主線欄位不重疊就合併；折行的校名／專業名殘段拼回 ±14pt 內最近的主線。
    `meta.droppedIncompleteRows` 不為 0 時先看是哪些列被丟。
 5. **江蘇 .xls 有 65,536 行上限**，實測截斷發生在專科段、本科完整；公告頁的 .xlsx 鏈接 2026-11-06 回 404，補到後換成 .xlsx 並重釘。
    三個大原檔（22 MB）不入倉庫：在 R2 `bdfz-ops-backups/unapply/s1-sources/v1/`（站長 2026-11-07 批准的儲存），`s1_sources.json` 的 `r2` 欄記 SHA-256；上傳後必須讀回核對再刪本機副本。
-   **缺口不是錯**：四省表沒列到的學校（本科 178、專科 551）保持未知，不猜填；`audit:s1 --scope all` 把本科缺口分類成人工清單。
+   **缺口不是錯**：省表沒列到的學校保持未知，不猜填；`audit:s1 --scope all` 把本科缺口分類成人工清單（四省時本科缺 178、專科缺 551；批 D1 七省後本科缺 141、專科缺 280）。
+   2026-11-07 批 D1 探測的其餘省份：北京 bjeea.cn、天津、河北、山西、遼寧、吉林（JS 頁）、黑龍江、安徽、福建（只有查詢系統）、江西、湖南（公告頁可達、附件主機 cms.jyt.hunan.gov.cn 從本機 TLS 不通）、廣東（只有查詢系統 eeagd.edu.cn/xkcx2027）、廣西、海南、重慶、四川（只有查詢系統 plan.sceea.cn，回 403）、貴州、雲南、西藏、陝西、甘肅（412）、青海、寧夏、新疆（只有查詢系統）——本機出口為海外 IP，多數省考試院對它重置連線；能腳本取得且為官方網域的只有山東、河南、內蒙古三省。查詢系統不當表抓（逐校查詢不能保證完整，也近乎繞過）。
 6. **陽光高考（gaokao.chsi.com.cn）對非瀏覽器請求回 412 的 JavaScript 挑戰**，不可用腳本抓，也不要繞；院校庫／章程／專業庫只能人工在瀏覧器查核。
    北京教育考試院（bjeea.cn）從本機完全連不上；廣東（eeagd.edu.cn）回 /forbid。
 7. 國標目錄對不到的只有各校「試驗班」（118 條），屬預期；`catalogMatch=class` 的是按「專業類」招生（計算機類、經濟學類…）。
+8. **跨省不一致**（批 D1 七省交叉後出現 2 條，都是內蒙古農業大學自家表與他省不同）：`requirementPattern` 寫 `conflict`、`requirementRaw` 保留各省寫法，`build_programs_layer` 照常收進 payload（manifest `counts.conflicts`），
+   `src/engine/programs.ts` 的 `isAdmissible` 把它與 `none` 一樣視為可報（不知道要求＝不排除），`requirementLabel` 顯示「各省表寫法不一致（不作排除依據）」。`audit:s1` 逐條列出但不阻塞；`test:s1` 守住「不一致條數 ≤ 10 且恆可報」。
+9. **內蒙古表沒有院校代碼**，只能按校名對齊：先讓有代碼的表（湖北／江蘇／河南／山東）把 2025 年舊校名學成別名，內蒙古與上海／浙江 PDF 靠它對上；`alignSchool()` 是四種表共用的對齊入口。
 
 年度更新（各省約每年 2 月公布下一屆的要求表；教育部目錄每年 4 月）：
 
