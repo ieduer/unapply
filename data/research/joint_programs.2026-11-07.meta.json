@@ -1,0 +1,144 @@
+{
+  "generatedAt": "2026-11-07",
+  "source": {
+    "publisher": "教育部中外合作办学监管工作信息平台（教育涉外监管信息网）",
+    "homepage": "https://www.crs.jsj.edu.cn/",
+    "lists": [
+      "https://www.crs.jsj.edu.cn/aproval/orglists/1",
+      "https://www.crs.jsj.edu.cn/aproval/orglists/2",
+      "https://www.crs.jsj.edu.cn/aproval/getbyarea/1..31"
+    ],
+    "listUpdatedNote": "名單頁自述「教育部审批和复核的机构及项目名单（2026年5月25日更新）」",
+    "detailCacheSha256": "ab3327da5d1380c7b8f7bfb3eb54459c568974eb03e8a1ebc1a53be738b0d2ec",
+    "detailFilesHashed": 1834
+  },
+  "counts": {
+    "listed": 1834,
+    "withDetail": 1834,
+    "missingDetail": 0,
+    "byKind": {
+      "project": 1423,
+      "institution": 411
+    },
+    "byCategory": {
+      "中外合作办学项目": 1396,
+      "中外合作办学机构": 401,
+      "内地与港澳台地区合作办学项目": 27,
+      "内地与港澳台地区合作办学机构": 8,
+      "境外高校在海南自由贸易港独立办学的大学": 2
+    },
+    "byCooperation": {
+      "sino_foreign": 1797,
+      "mainland_hkmotw": 35,
+      "foreign_independent": 2
+    },
+    "byLevelLists": {
+      "本科": 1387,
+      "硕士及以上": 278,
+      "本科|硕士及以上": 169
+    },
+    "byStatus": {
+      "listed": 1781,
+      "suspended": 35,
+      "merged": 18
+    },
+    "byMatch": {
+      "chinese_partner": 1816,
+      "institution_name": 10,
+      "none": 8
+    },
+    "matchedSchools": 667,
+    "withFeeInfo": 0,
+    "byProvince": {
+      "江蘇": 161,
+      "山東": 149,
+      "河南": 148,
+      "北京": 115,
+      "浙江": 115,
+      "上海": 110,
+      "湖北": 104,
+      "吉林": 91,
+      "遼寧": 86,
+      "河北": 70,
+      "廣東": 67,
+      "黑龍江": 63,
+      "四川": 60,
+      "陝西": 59,
+      "福建": 53,
+      "重慶": 48,
+      "江西": 48,
+      "天津": 47,
+      "湖南": 47,
+      "海南": 43,
+      "雲南": 34,
+      "廣西": 33,
+      "安徽": 28,
+      "貴州": 25,
+      "內蒙古": 9,
+      "甘肅": 8,
+      "山西": 7,
+      "寧夏": 3,
+      "新疆": 2,
+      "青海": 1
+    }
+  },
+  "unmatched": [
+    {
+      "id": 846,
+      "name": "中国农业科学院研究生院与比利时列日大学合作举办农学和生物工程博士学位教育项目",
+      "chinesePartner": "中国农业科学院研究生院",
+      "kind": "project",
+      "region": "北京"
+    },
+    {
+      "id": 929,
+      "name": "上海国家会计学院与美国亚利桑那州立大学合作举办金融财务方向高级管理人员工商管理硕士教育项目",
+      "chinesePartner": "上海国家会计学院",
+      "kind": "project",
+      "region": "上海"
+    },
+    {
+      "id": 942,
+      "name": "上海国家会计学院与香港中文大学合作举办高级财会人员专业会计学硕士学位教育项目",
+      "chinesePartner": "上海国家会计学院",
+      "kind": "project",
+      "region": "上海"
+    },
+    {
+      "id": 1133,
+      "name": "上海国家会计学院与美国亚利桑那州立大学合作举办会计（数据分析）硕士学位教育项目",
+      "chinesePartner": "上海国家会计学院",
+      "kind": "project",
+      "region": "上海"
+    },
+    {
+      "id": 2119,
+      "name": "中国农业科学院研究生院与荷兰瓦赫宁根大学合作举办农业与生命科学博士教育项目",
+      "chinesePartner": "中国农业科学院研究生院",
+      "kind": "project",
+      "region": "北京"
+    },
+    {
+      "id": 2170,
+      "name": "北京国家会计学院与美国天普大学合作举办审计（IT审计）硕士学位教育项目",
+      "chinesePartner": "北京国家会计学院",
+      "kind": "project",
+      "region": "北京"
+    },
+    {
+      "id": 2687,
+      "name": "北京国家会计学院与香港城市大学合作举办智能会计与金融科技应用硕士学位教育项目",
+      "chinesePartner": "北京国家会计学院",
+      "kind": "project",
+      "region": "北京"
+    },
+    {
+      "id": 3704,
+      "name": "厦门国家会计学院与香港理工大学合作举办大数据会计与金融专业硕士学位教育项目",
+      "chinesePartner": "厦门国家会计学院",
+      "kind": "project",
+      "region": "福建"
+    }
+  ],
+  "missingDetail": []
+}

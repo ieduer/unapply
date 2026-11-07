@@ -19,6 +19,9 @@ import { evaluateSchoolPrograms, isAdmissible } from '../engine/programs'
 import { programPrefsActive, requirementLabel, subjectLabels, type ProgramPrefs } from '../data/programPrefs'
 import { programClassByCode } from '../data/programClasses'
 import { programsManifest } from '../data/programsManifest'
+import { loadJointItems } from '../lib/jointData'
+import type { JointItem } from '../data/jointTypes'
+import { jointProgramsManifest } from '../data/jointProgramsManifest'
 
 interface Props {
   school: School
@@ -138,6 +141,15 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
     }
     return [...groups.values()].sort((a, b) => a.level.localeCompare(b.level) || (a.campus === '' ? -1 : b.campus === '' ? 1 : a.campus.localeCompare(b.campus)))
   }, [currentList])
+  // 中外合作辦學（教育部監管平台）：只在詳情頁載入；載不到就不顯示，不影響其他區塊。
+  const [jointItems, setJointItems] = useState<JointItem[] | null>(null)
+  const [jointError, setJointError] = useState(false)
+  useEffect(() => {
+    if (!school.moeCode) return
+    let alive = true
+    loadJointItems().then((payload) => { if (alive) setJointItems(payload.items[school.moeCode!] ?? []) }).catch(() => { if (alive) setJointError(true) })
+    return () => { alive = false }
+  }, [school.moeCode])
   const qualityDims = DIMENSION_GROUPS.B
   const admissionChannels = school.admissionChannels
   const regularChannelState = getRegularChannelState(school, { candidateProvince })
@@ -564,6 +576,41 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
           <p className="mt-1">匿名回報可能分歧；請核對適用校區、年份與逐項來源。</p>
         </footer>
       </section>
+      {school.moeCode && (jointItems === null ? null : (jointItems.length > 0 || jointError) && (
+        <section className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-xl p-5 sm:p-6 flex flex-col gap-4">
+          <div>
+            <h2 className="serif text-xl">中外合作辦學（教育部監管平台）</h2>
+            <p className="mt-2 text-xs text-fog-500 leading-relaxed">
+              教育部中外合作辦學監管工作信息平台公布的「經審批和復核的機構及項目名單」（{jointProgramsManifest.source.note}）；本站按中方合作辦學者對回學校，獨立法人機構以機構本身對回。
+              只展示、不判定；平台沒有學費欄，收費以各校招生章程為準。名稱與專業為平台原文。
+            </p>
+          </div>
+          {jointError && <p className="text-sm text-fog-300">中外合作辦學清單載入失敗，請重新整理後再看。</p>}
+          {jointItems.length > 0 && (
+            <ul className="flex flex-col gap-3">
+              {jointItems.map((item) => (
+                <li key={item.id} className="border border-ink-800 bg-ink-950 rounded-lg px-3 py-3 flex flex-col gap-1.5 text-sm">
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <span className="mono text-xs uppercase tracking-[0.16em] text-fog-500">{item.kind === 'institution' ? '機構' : '項目'}{item.coop === 'mainland_hkmotw' ? ' · 內地與港澳臺' : item.coop === 'foreign_independent' ? ' · 境外高校獨立辦學' : ''}</span>
+                    {item.status !== 'listed' && <span className="rounded-full border border-ink-700 px-2 py-0.5 text-xs text-fog-300">{item.annotation || item.status}</span>}
+                  </div>
+                  <p className="text-fog-100 leading-snug">{item.name}</p>
+                  <p className="text-xs text-fog-300 leading-relaxed">
+                    {item.foreign && <>{item.coop === 'mainland_hkmotw' ? '港澳臺方' : '外方'}：{item.foreign}</>}
+                    {item.level && <> · {item.level}</>}
+                    {item.enrolmentYears && <> · 招生年份 {item.enrolmentYears}</>}
+                  </p>
+                  {item.programs && <p className="text-xs text-fog-300 leading-relaxed">專業／課程：{item.programs}</p>}
+                  <p className="text-xs mono text-fog-500 break-all">
+                    {item.licenseKind}{item.licenseKind ? ' ' : ''}{item.licenseNo}{item.validUntil ? ' · 有效期至 ' + item.validUntil : ''} ·{' '}
+                    <a className="underline hover:text-accent-500" href={item.url} target="_blank" rel="noreferrer noopener">平台詳情 ↗</a> · 讀取 {item.fetchedAt}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      ))}
     </main>
   )
 }

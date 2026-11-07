@@ -1,5 +1,7 @@
 import { EvidenceNotice } from './EvidenceNotice'
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { loadJointIndex } from '../lib/jointData'
+import type { JointIndexPayload } from '../data/jointTypes'
 import type { FilterResult, AnswerMap, ExcludeReason } from '../engine/filter'
 import { explainKept, suggestRelax, distribute } from '../engine/filter'
 import {
@@ -155,6 +157,20 @@ export function ResultPage({
   const dist = useMemo(() => distribute(finalKept), [finalKept])
   const relaxHints = useMemo(() => suggestRelax(result.stats, 3), [result.stats])
   const topKept = finalKept.slice(0, 24)
+  // 中外合作辦學計數（教育部監管平台）：結果頁才載入的小索引；載不到就不顯示。
+  const [jointIndex, setJointIndex] = useState<JointIndexPayload | null>(null)
+  useEffect(() => {
+    let alive = true
+    loadJointIndex().then((payload) => { if (alive) setJointIndex(payload) }).catch(() => undefined)
+    return () => { alive = false }
+  }, [])
+  const jointLine = (school: FilterResult['kept'][number]): string | null => {
+    const entry = school.moeCode && jointIndex ? jointIndex.schools[school.moeCode] : undefined
+    if (!entry) return null
+    const parts = [entry.i > 0 ? `機構 ${entry.i}` : '', entry.p > 0 ? `項目 ${entry.p}` : ''].filter(Boolean).join('／')
+    const extras = [entry.hk > 0 ? `含內地與港澳臺 ${entry.hk}` : '', entry.fi > 0 ? `境外高校獨立辦學 ${entry.fi}` : ''].filter(Boolean).join('、')
+    return `中外合作辦學 ${parts}${extras ? `（${extras}）` : ''}${entry.live < entry.i + entry.p ? ` · 仍在名單 ${entry.live}` : ''}`
+  }
   const programLine = (school: FilterResult['kept'][number]): string | null => {
     const entry = school.moeCode && programsIndex ? programsIndex.schools[school.moeCode] : undefined
     if (!entry) return null
@@ -307,6 +323,7 @@ export function ResultPage({
                     </div>
                     <p className="mt-2 text-xs text-fog-500">{explainKept(school, answers)}</p>
                     {programLine(school) && <p className="mt-1 text-xs text-fog-300">{programLine(school)}</p>}
+                    {jointLine(school) && <p className="mt-1 text-xs text-fog-500">{jointLine(school)}</p>}
                   </button>
                   <TagRail tags={buildSchoolTags(school, { candidateProvince })} />
                   <div className="flex flex-wrap gap-2 pt-3 border-t border-ink-800">
