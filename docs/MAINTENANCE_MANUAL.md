@@ -265,16 +265,19 @@ npm run data:research
 ### 3.4 S1 專業／選考科目／招生政策資料層（2026-11 起）
 
 設計與站長待決點見 `docs/DESIGN_S1_PROGRAMS_ADMISSION.md`。首批（2026-11-07 上線）走的是設計文件的 S1.a：
-資料以**起點條件**（選考科目組合、意向專業類／專業）的形式在 43 題之後另算一層（`src/engine/programs.ts`），
-結果頁分開顯示與計數，學校詳情逐專業展示；不進 43 題、不進 `filterSchools`、不改 AnswerMap／Function／A+ 證據契約（證據仍取 43 題結果）、
-不改 `src/shared-ui`。要把它變成正式題目（S1.b）屬共享契約變更，另立設計與 fan-out。
+資料以**起點條件**的形式在 43 題之後另算一層、分開計數。批 C（S1.b，`1bc3995`，候選階段）把它改成**兩道正式題**：
+S1「你的選考科目是哪三科？」（`src/data/programPrefs.ts` 的 `SUBJECT_COMBOS` 20 個固定序組合鍵）與 S2「你想讀的專業類，學校一定要有開設嗎？」（`src/data/programClasses.ts` 92 個專業類代碼），
+學校取值由 `src/engine/programs.ts` 的 `admissibleCombos`／`offeredClasses`（含通配值 `*`）算在逐校摘要上，經 `FilterContext.programs` 進 `getSchoolDimensionValue`；
+沒有本科資料的學校取值 `null`、永不因兩題被劃掉。兩題選項 `alwaysVisible`（考生自身事實，排除 0 所仍要能作答；`audit:values` 視為符合預期）。
+Function 以同一份釘定摘要重算；新頁面帶 `programsVersion`，舊 43 題頁面（無 `programsVersion`）仍可完成。A+ 證據契約（manifest／互動鍵／聚合）不變，`src/shared-ui` 不變。
 
 前端鏈路（2026-11-07 批 B 起兩層）：`npm run data:programs`（`scripts/build_programs_layer.mjs`）讀全量 `program_offerings.2027.all.csv.gz`，寫
 `public/data/programs/catalog.json`（目錄）、`index.json`（每校一條摘要：本科／專科數、各專業類的圖樣下標、按類招生的類、對到具體專業的 [專業下標, 圖樣下標]、試驗班圖樣；
-結果頁的起點條件層只用它）與 `schools/programs-NN.json`（31 個省桶，完整清單，編號沿用 `campusProvinceBuckets.ts`，只在學校詳情載入），並寫 `src/data/programsManifest.ts`
+問卷前置載入，S1／S2 取值與結果頁卡片計數用它）與 `schools/programs-NN.json`（31 個省桶，完整清單，編號沿用 `campusProvinceBuckets.ts`，只在學校詳情載入），並寫 `src/data/programsManifest.ts`
 （版本雜湊＋各類數量＋省桶對照）；`build` 在 `data:atlas` 之後跑它。`src/lib/programsData.ts` 的 `loadProgramIndex`／`loadProgramBucket`／`loadProgramCatalog` 核對 manifest；
-起點條件存 `unapply.programPrefs.v1`（`src/data/programPrefs.ts`）。`src/engine/programs.ts` 算在摘要上：沒有本科清單的學校（含只公布專科的）為 no-data 保留。
-`npm run test:s1`（`tests/s1-programs.test.ts`）檢查 manifest／摘要／省桶一致（每校都在教育部主表、圖樣與下標合法、雙一流 144 校都有本科清單、專科列不對本科目錄）與引擎純函數。
+學校詳情以 S1／S2 的作答組成偏好（`evaluateSchoolPrograms`，與引擎同義：no-data／kept／struck／unknown）；不再有 localStorage 偏好。
+`npm run test:s1`（`tests/s1-programs.test.ts`，10 項）檢查 manifest／摘要／省桶一致（每校都在教育部主表、圖樣與下標合法、雙一流 144 校都有本科清單、專科列不對本科目錄）、
+S1／S2 取值與題目選項一致、覆蓋與可見選項、兩題在 `filterSchools` 的劃掉／保留行為、詳情判定與引擎等價。
 
 資料檔（都在 `data/research/`）：
 

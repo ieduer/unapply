@@ -390,3 +390,22 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 登記簿 accepted → `8cb266cb`／`ccf1770`，rollback → `021e1a3d`／`6b70522`。Status `20261107-nope-s1-all-schools-b` r1（new）。
 
 **人工查核清單（交站長）**：本科校缺清單 178（分類見上，全名單在 `s1-audit-all.md` §0）；專科校缺 551；陽光高考章程／專項名單／分省計劃只能人工（412 挑戰）；bjeea.cn 本機不通、廣東回 forbid；江蘇公告頁 .xlsx 404（.xls 本科段完整）；三校招生代碼對不到主表（防災科技學院、內蒙古科技大學包頭師範學院／包頭醫學院）；省表 89 個舊校名已按代碼學成別名。
+
+## 2026-11-07 批 C：S1.b 正式兩題（選考科目組合 S1、意向專業類 S2）——候選階段，未部署，待站長放行
+
+**授權**：站長 2026-11-07 主會話「做新題，擴到全部，22 MB放R2，該修正的都修正」之「做新題」。這是**功能授權**，不是對 User Center 生產寫入的放行；本批 nope 側做到候選為止，正式 Pages 交易只在站長從主會話明確放行後執行（流程同批 A／B：`prepare-release.mjs` → `release-pages-transaction.mjs`（倉庫目錄執行）→ `accept-production.mjs` → Status）。
+
+**共享契約變更（`1bc3995`）**：`DimensionId` 追加 `S1`、`S2`（只追加，43 個既有維度、取值、計分皆不動）；`Question.section` 加 `S_programs`；`allQuestions` 45 題（S 區排在 C 區之後）。
+- S1「你的選考科目是哪三科？」：20 個固定序三科組合鍵（`PCB`…`ZHG`，序 物化生政史地）；學校取值＝至少有一個本科招生專業可報的組合集合（`admissibleCombos`）；選項 `requires` 該組合，所以只有「全部本科專業都報不了」的學校被劃掉。
+- S2「你想讀的專業類，學校一定要有開設嗎？」：教育部 2026 本科目錄 92 個專業類，介面按門類→專業類兩層選；學校取值＝開設的專業類代碼＋（另有試驗班對不到專業類時）通配值 `*`；`requires` 遇通配值一律保留。
+- 疑罪從無：沒有本科資料的學校（含只公布專科的）兩題取值皆 `null`，永不因這兩題被劃掉。兩題選項皆 `alwaysVisible`：考生自身事實（如物化生報得了每所有資料的學校、排除 0 所）仍是真實答案，不被 `getVisibleOptions` 隱藏；`audit:values` 對此類選項排除 0 所記為「符合預期」而非失效。
+- `FilterContext.programs`（逐校招生專業摘要 `public/data/programs/index.json`）貫通前端、`analyzeQuestionCoverage`、Function 重算、`audit:values`／`audit:data` 與測試；App 把它當成與學校目錄同級的問卷前置資料（進問卷前載入，約 151 KiB gzip）。
+- Function `complete`：以 ASSETS 載入釘定的 index.json（版本與計數對 `programsManifest`）後用同一上下文重算；新頁面帶 `programsVersion`（必須等於 `programsManifest.version`，否則 400）；**舊頁面（43 題，無 `programsVersion`）仍可完成**——S1／S2 不在其題單，不要求看過；帶了 S1／S2 卻無 `programsVersion` 視為無效。這樣 2026-11-07 之前已開始作答的會話在換版後不會斷。
+- 介面：問卷 S1 六科挑三科、S2 門類／專業類下拉；首頁「起點條件 · 選填」、`unapply.programPrefs.v1` 本地偏好與結果頁「起點條件劃掉」分層計數全部移除（結果只來自引擎）；學校詳情的逐校判定改由 S1／S2 作答推出（`evaluateSchoolPrograms` 與引擎同義：no-data／kept／struck／unknown）。版號 v2.0；About 來源文案改為全部學校口徑。
+- `data:programs` 另寫 `src/data/programClasses.ts`（目錄門類／專業類作為源碼），`questions.ts`／`dimensions.ts` 以 `.ts` 副檔名匯入（`audit:questions` 用純 node 跑）。
+
+**User Center 側（無需變更、無生產寫入）**：UC 只釘 unapply 的資源描述（`manifestVersion unapply-result-v1`、`manifestDigest sha256:136c7868…`、`itemCount 1`、`loaderContractVersion`），互動鍵走自由格式 `^[A-Za-z0-9:_-]{1,100}$`（只有 jiubai 有 requiredInteractionKeys），完成只驗聚合（exact keys、kept＋excluded＝total、不同 `answer:*` 互動數 ≥ answeredCount）；題數 43→45 對 UC 不可見。可執行證據：`reports/operations/nope-s1-programs-admission-20261106/nope-c/uc-contract-evidence.json`（在 accepted `0559b0cf` 的唯讀工作樹上以 node:sqlite 記憶體庫跑 start→answer:A1／answer:S1／answer:S2／result_transcript→completion recorded；不碰 D1／Worker／祕密）與 `uc-accepted-tests.txt`。`public/learning-manifest.json`、`SOURCE_DESCRIPTOR` 不變；歷史證據與計分不動。共享樞紐變更收據：`reports/operations/shared_hub_changes/20261107-user-center-nope-s1b-questions.json`。
+
+**扇出**：my（UC）verified_no_change；path（`src/shared-ui` 同步，`check:shared-ui` 過）verified_no_change；gk（`nope.v1` 交接，`sanitizeNopeContext` 取前 20 題、逐欄截斷，S1／S2 答案以題目標題＋選項標籤進入，不需改）verified_no_change；Pulse／Status／Companion 不涉及題集（Status 記錄在正式發布時才寫）。
+
+**驗證與候選**：十二道閘門於釋出提交上執行（`nope-c/check.txt`；`test:s1` 10、`test:trusted` 18、`audit:values` 45 維 0 阻斷、`audit:questions` 45 題）；候選上傳（`candidate` 分支）、資產逐檔比對、候選瀏覽器真實路徑與對比度記錄在 `nope-c/candidate-*.json`。**正式未部署**：登記簿 accepted 仍為批 B `8cb266cb`／`ccf1770`；回滾錨點不變。放行後的正式交易與 Status 記錄另記於本節之後。

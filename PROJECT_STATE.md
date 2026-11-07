@@ -2,7 +2,18 @@
 
 Last updated: 2026-11-07 UTC
 Current version: ccf1770（已部署 8cb266cb，生效 2026-11-07T03:49:37Z；批 B 疊加於修正批 A 6b70522／021e1a3d 與 S1 首批 2e79f9b／7aa5e5b5）
-Current objective: 全球化路線圖（docs/GLOBAL_ROADMAP.md）：S0、S1 首批、修正批 A、批 B（全部 2,952 校）皆已上線並登記 accepted；下一步批 C（S1.b 新題，共享契約變更：UC 生產寫入前停下回報）；章程層錄取條件、專項計劃、中外合作收費→A4 與港澳臺（S2）待續；原 43 維效度缺口仍列後續。
+Current objective: 全球化路線圖（docs/GLOBAL_ROADMAP.md）：S0、S1 首批、修正批 A、批 B（全部 2,952 校）皆已上線並登記 accepted；批 C（S1.b 兩道正式題 S1／S2，`1bc3995`）已通過閘門、候選上傳待站長放行正式發布（UC 無需變更，未做 UC 生產寫入）；章程層錄取條件、專項計劃、中外合作收費→A4 與港澳臺（S2）待續；原 43 維效度缺口仍列後續。
+
+## 2026-11-07 批 C：S1.b 正式兩題——選考科目組合 S1、意向專業類 S2（候選階段，未部署，待站長放行）
+
+來源 `1bc3995`（master 已推送）；正式**未部署**，登記簿 accepted 仍為批 B `8cb266cb`／`ccf1770`；候選上傳、資產比對、瀏覽器驗收與閘門記錄在 `reports/operations/nope-s1-programs-admission-20261106/nope-c/`。
+站長裁定「做新題」是功能授權；正式 Pages 交易與 Status 記錄待站長從主會話明確放行後執行。
+
+- 共享契約：`DimensionId` 追加 `S1`／`S2`（只追加），45 題；學校取值算在逐校招生專業摘要上（`FilterContext.programs`）；沒有本科資料者取值 null 永不被劃掉；試驗班通配值 `*`；兩題選項 `alwaysVisible`。
+- Function：釘定摘要重算；新頁面帶 `programsVersion`；舊 43 題頁面仍可完成（換版不斷會話）。
+- UC：契約不變（manifest／自由格式互動鍵／聚合校驗），可執行證據 `nope-c/uc-contract-evidence.json`（accepted `0559b0cf` 唯讀工作樹、記憶體庫）＋`uc-accepted-tests.txt`；共享樞紐收據 `reports/operations/shared_hub_changes/20261107-user-center-nope-s1b-questions.json`（status in_progress，nope 為 blocked＝待站長放行）。
+- 移除：首頁起點條件區塊、`unapply.programPrefs.v1`、結果頁分層計數；詳情判定改由 S1／S2 作答推出。版號 v2.0。
+- 閘門：`test:s1` 10、`test:trusted` 18（含 programsVersion 與舊頁面相容）、`audit:values` 45 維 0 阻斷、`audit:questions` 45 題；十二道於釋出提交上執行（`nope-c/check.txt`）。
 
 ## 2026-11-07 批 B：擴到全部 2,952 校＋兩層 payload＋原檔上 R2（已上線，當前權威）
 
