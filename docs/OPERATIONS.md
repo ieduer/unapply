@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Git branch: `master`; deployed source `6b70522`; documentation HEAD is separately recorded by Git
+- Git branch: `master`; deployed source `ccf1770`; documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -35,7 +35,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 
 | Resource | Live type | Readback | Detail |
 | --- | --- | --- | --- |
-| `unapply` | Pages | verified 2026-11-07 | production branch `master`; canonical deployment `021e1a3d-164b-408b-a2af-fcec41712d31` (source `6b70522`) |
+| `unapply` | Pages | verified 2026-11-07 | production branch `master`; canonical deployment `8cb266cb-2eb2-409d-915b-a90a28447448` (source `ccf1770`) |
 
 ## Authority and dependencies
 
@@ -54,10 +54,10 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - External/local build inputs, archived paths, receipts, retention, and hydrate commands not stated below are `review_required` and block deletion.
 
 Catalog backup evidence:
-- Cloudflare immutable Pages deployments: current=021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), previous=7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), earlier=0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
+- Cloudflare immutable Pages deployments: current=8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), previous=021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), earlier=7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
 
 Catalog restore evidence:
-- restore previous code/assets by rolling back to production deployment 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b)
+- restore previous code/assets by rolling back to production deployment 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522)
 
 Before deleting any local resource, satisfy the workspace path-preserving archive, remote readback, isolated restore, receipt, handbook, and project-state gates.
 
@@ -120,7 +120,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to deployment `7aa5e5b5-345e-403b-8cd6-d3d0076178d1` (source `2e79f9b`), after a fresh live baseline readback (rolls back fix batch A: 上海體育大學 level, atlas date determinism, verdict copy). Direct API rollback without a registered transaction is not release authority.
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to deployment `021e1a3d-164b-408b-a2af-fcec41712d31` (source `6b70522`), after a fresh live baseline readback (rolls back batch B: all-school programs layer and two-tier payload; the 144-school layer and fix batch A stay). Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -147,7 +147,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-11-07 — production 6b70522 (fix batch A on top of 2e79f9b); twelve gates, 43 of 43 assets on custom and immutable hosts, signed-out real path (start conditions, programs layer on the result page, per-school programs section), health active. Exact evidence below.
+8. Last verified: 2026-11-07 — production ccf1770 (batch B); twelve gates, 74 of 74 assets, 43 of 43 assets on custom and immutable hosts, signed-out real path (start conditions, programs layer on the result page, per-school programs section), health active. Exact evidence below.
 
 ## Synchronized documentation and handoff
 
@@ -362,7 +362,7 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 
 報告：`/Users/ylsuen/CF/reports/operations/nope-s1-programs-admission-20261106/RELEASE.md`（發布）與 `REPORT.md`（資料層設計與稽核）。
 
-## 2026-11-07 修正批 A：上海體育大學雙一流標籤、世界地圖日期戳、判定文案（已上線，當前權威）
+## 2026-11-07 修正批 A：上海體育大學雙一流標籤、世界地圖日期戳、判定文案（已上線；批 B 疊加於其上）
 
 **授權**：站長 2026-11-07 主會話「做新題，擴到全部，22 MB放R2，該修正的都修正」之「該修正的都修正」。
 
@@ -373,3 +373,20 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 **驗證與發布**：十二道閘門全過（`nope-a/check.txt`）；候選 `45eb204f-78cd-40e6-8fca-62fa241ca7e3` 43/43，候選真實路徑：中國科學技術大學判定文案「報不了這 56 個招生專業（類）」、上海體育大學詳情顯示「雙一流（非 211）」與 24 個招生專業；
 收據 `20261107-nope-s1-fixes-a`（3 個 reviewed_changes）；正式部署 `021e1a3d-164b-408b-a2af-fcec41712d31`，來源 `6b70522e08dea910b2630fdb07ce16cedf1db5b3`，生效 `2026-11-07T03:30:29.192795Z`；
 正式與不可變網址 43/43；health active；正式真實路徑：上海體育大學詳情層次徽章與專業區塊、主控台無錯誤。登記簿 accepted → `021e1a3d`／`6b70522`，rollback → `7aa5e5b5`／`2e79f9b`。Status `20261107-nope-s1-fixes-a` r1（fix）。
+
+## 2026-11-07 批 B：招生專業／選考要求擴到全部 2,952 校，兩層 payload，原檔上 R2（已上線，當前權威）
+
+**授權**：站長 2026-11-07 主會話「做新題，擴到全部，22 MB放R2，該修正的都修正」之「擴到全部」與「22 MB放R2」。
+
+**資料（`ccf1770`）**：`data:s1-build --scope all` 收本科與高職（專科）兩個層次，寫 `data/research/program_offerings.2027.all.csv.gz`（88,750 條：本科 53,220／專科 35,530；2,289 校；跨省 0 衝突）＋ `program_offerings_summary.2027.all.csv`＋`.all.meta.json`；
+`audit:s1 --scope all` 按教育部層次算覆蓋：本科校 1,412 中 1,234 有本科清單（87.4%），缺 178 分類為職業大學 80／其他 63／獨立學院 20／警察類 15（人工查核清單在 `s1-audit-all.md`，缺的保持未知）；專科校 1,540 中 989 有專科清單。
+三個 external 原檔（江蘇 xls、上海 PDF、浙江 zip，共 22,524,774 B）上傳既有私密桶 `bdfz-ops-backups`，鍵 `unapply/s1-sources/v1/<檔名>`，讀回 SHA-256 一致後刪除本機副本；`s1_sources.json` 的 `r2` 欄記 bucket／key／SHA-256／bytes／MD5／上傳日；`fetch_s1_sources.mjs --from-r2` 以 rclone 遠端 `r2:` 取回。
+
+**payload（兩層）**：`data:programs` 寫 `public/data/programs/index.json`（每校摘要：本科／專科數、各專業類圖樣、按類招生、對到具體專業的下標、試驗班圖樣；884 KiB／gzip 151 KiB）與 `schools/programs-NN.json`（31 個省桶，編號沿用校區分桶；只在學校詳情載入）；manifest 計數含 undergraduateSchools 1,235、undergraduateOfferings 53,220、vocationalOfferings 35,530、buckets 31。
+引擎 `src/engine/programs.ts` 改算在摘要上：沒有本科清單的學校（含只公布專科的）為 no-data 保留；只有試驗班對不到專業類者 unknown 保留。結果頁計數改以本科校為口徑；詳情頁載入省桶、分本科／高職（專科）與校區分組。`test:s1` 9 項。
+
+**驗證與發布**：十二道閘門全過（`nope-b/check.txt`）；候選 `70d46f1e-080e-4ab9-b469-4dcd0c752d10` 74/74；候選真實路徑：物生政＋計算機類 → 起點條件劃掉 1,158（沒開 166／選科不符 992／不判定 65；無本科資料 1,717 不受影響）、北京工業職業技術學院 35 個專科專業「不判定」、北方工業大學 45 個本科專業 5 個官方來源；
+收據 `20261107-nope-s1-all-schools-b`（3 個 reviewed_changes）；正式部署 `8cb266cb-2eb2-409d-915b-a90a28447448`，來源 `ccf1770f0e03b469de16c973eab4ae20064b970d`，生效 `2026-11-07T03:49:37Z`；正式與不可變網址 74/74；health active；正式真實路徑北方工業大學詳情省桶載入、主控台無錯誤。
+登記簿 accepted → `8cb266cb`／`ccf1770`，rollback → `021e1a3d`／`6b70522`。Status `20261107-nope-s1-all-schools-b` r1（new）。
+
+**人工查核清單（交站長）**：本科校缺清單 178（分類見上，全名單在 `s1-audit-all.md` §0）；專科校缺 551；陽光高考章程／專項名單／分省計劃只能人工（412 挑戰）；bjeea.cn 本機不通、廣東回 forbid；江蘇公告頁 .xlsx 404（.xls 本科段完整）；三校招生代碼對不到主表（防災科技學院、內蒙古科技大學包頭師範學院／包頭醫學院）；省表 89 個舊校名已按代碼學成別名。

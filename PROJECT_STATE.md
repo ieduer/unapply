@@ -1,10 +1,20 @@
 # Project State
 
 Last updated: 2026-11-07 UTC
-Current version: 6b70522（已部署 021e1a3d，生效 2026-11-07T03:30:29Z；修正批 A 疊加於 S1 首批 2e79f9b／7aa5e5b5）
-Current objective: 全球化路線圖（docs/GLOBAL_ROADMAP.md）：S0 世界學科地圖與 S1 首批（起點條件＋雙一流 144 校招生專業／選考要求）皆已上線並登記 accepted；下一步 S1 續批（全部 2,952 校、章程層錄取條件、專項計劃、中外合作收費→A4）與港澳臺（S2）；原 43 維效度缺口仍列後續。
+Current version: ccf1770（已部署 8cb266cb，生效 2026-11-07T03:49:37Z；批 B 疊加於修正批 A 6b70522／021e1a3d 與 S1 首批 2e79f9b／7aa5e5b5）
+Current objective: 全球化路線圖（docs/GLOBAL_ROADMAP.md）：S0、S1 首批、修正批 A、批 B（全部 2,952 校）皆已上線並登記 accepted；下一步批 C（S1.b 新題，共享契約變更：UC 生產寫入前停下回報）；章程層錄取條件、專項計劃、中外合作收費→A4 與港澳臺（S2）待續；原 43 維效度缺口仍列後續。
 
-## 2026-11-07 修正批 A（已上線，當前權威）
+## 2026-11-07 批 B：擴到全部 2,952 校＋兩層 payload＋原檔上 R2（已上線，當前權威）
+
+正式部署 `8cb266cb-2eb2-409d-915b-a90a28447448`，來源 `ccf1770`，生效 `2026-11-07T03:49:37Z`；回滾 `021e1a3d`／`6b70522`。Status `20261107-nope-s1-all-schools-b` r1。
+站長裁定「擴到全部」「22 MB放R2」。
+
+- 資料：`program_offerings.2027.all.csv.gz` 88,750 條（本科 53,220／專科 35,530；2,289 校；0 衝突）；本科校覆蓋 1,234/1,412（缺 178：職業大學 80、其他 63、獨立學院 20、警察類 15，人工清單在 `s1-audit-all.md`）；專科校 989/1,540。缺的保持未知。
+- 原檔：三個 external 原檔已在 R2 `bdfz-ops-backups/unapply/s1-sources/v1/`（SHA-256 讀回一致，本機副本已刪）；`s1_sources.json` 的 `r2` 欄；`fetch_s1_sources.mjs --from-r2`。
+- payload：`index.json`（每校摘要，151 KiB gzip）＋ 31 個省桶（詳情頁才載）；引擎算在摘要上；只公布專科的學校不判定。`test:s1` 9 項。
+- 驗證：十二道閘門、候選與正式 74/74、真實路徑；報告 `reports/operations/nope-s1-programs-admission-20261106/nope-b/`。
+
+## 2026-11-07 修正批 A（已上線；批 B 疊加於其上）
 
 正式部署 `021e1a3d-164b-408b-a2af-fcec41712d31`，來源 `6b70522`，生效 `2026-11-07T03:30:29Z`；回滾 `7aa5e5b5`／`2e79f9b`。Status `20261107-nope-s1-fixes-a` r1。
 站長裁定（2026-11-07）：「做新題，擴到全部，22 MB放R2，該修正的都修正」——本批是「該修正的都修正」；後續批次：B 擴到全部 2,952 校＋原檔上 R2、C 新題（S1.b，UC 生產寫入前停下回報）。

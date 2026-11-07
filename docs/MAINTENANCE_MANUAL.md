@@ -269,11 +269,12 @@ npm run data:research
 結果頁分開顯示與計數，學校詳情逐專業展示；不進 43 題、不進 `filterSchools`、不改 AnswerMap／Function／A+ 證據契約（證據仍取 43 題結果）、
 不改 `src/shared-ui`。要把它變成正式題目（S1.b）屬共享契約變更，另立設計與 fan-out。
 
-前端鏈路：`npm run data:programs`（`scripts/build_programs_layer.mjs`）把下表的 CSV 組成 `public/data/programs/catalog.json`（目錄）與
-`offerings.json`（逐校招生專業），並寫 `src/data/programsManifest.ts`（版本雜湊＋各類數量）；`build` 在 `data:atlas` 之後跑它。
-`src/lib/programsData.ts` 懶載入並核對 manifest 數量；起點條件存 `unapply.programPrefs.v1`（`src/data/programPrefs.ts`）。
-`npm run test:s1`（`tests/s1-programs.test.ts`）檢查 payload 完整性（144 校都在教育部主表、圖樣合法、目錄 13／92／883、強基 38 在池內）與引擎純函數
-（疑罪從無、選科判定、意向專業含大類招生、試驗班不判定、計數與 43 題分開）。
+前端鏈路（2026-11-07 批 B 起兩層）：`npm run data:programs`（`scripts/build_programs_layer.mjs`）讀全量 `program_offerings.2027.all.csv.gz`，寫
+`public/data/programs/catalog.json`（目錄）、`index.json`（每校一條摘要：本科／專科數、各專業類的圖樣下標、按類招生的類、對到具體專業的 [專業下標, 圖樣下標]、試驗班圖樣；
+結果頁的起點條件層只用它）與 `schools/programs-NN.json`（31 個省桶，完整清單，編號沿用 `campusProvinceBuckets.ts`，只在學校詳情載入），並寫 `src/data/programsManifest.ts`
+（版本雜湊＋各類數量＋省桶對照）；`build` 在 `data:atlas` 之後跑它。`src/lib/programsData.ts` 的 `loadProgramIndex`／`loadProgramBucket`／`loadProgramCatalog` 核對 manifest；
+起點條件存 `unapply.programPrefs.v1`（`src/data/programPrefs.ts`）。`src/engine/programs.ts` 算在摘要上：沒有本科清單的學校（含只公布專科的）為 no-data 保留。
+`npm run test:s1`（`tests/s1-programs.test.ts`）檢查 manifest／摘要／省桶一致（每校都在教育部主表、圖樣與下標合法、雙一流 144 校都有本科清單、專科列不對本科目錄）與引擎純函數。
 
 資料檔（都在 `data/research/`）：
 
@@ -282,20 +283,22 @@ npm run data:research
 | `s1_sources.json` | 人工登記＋`data:s1-fetch --repin` 補雜湊 | 官方來源釘定表：出版單位、公告頁、檔案網址、發布日、SHA-256、大小、入庫方式（committed／external）、預期計數 |
 | `raw/s1/*` | `data:s1-fetch` | 入庫原檔：湖北 2027 選考要求 xlsx、教育部本科專業目錄 2026 PDF、強基 2020 名單 docx、各公告頁與三校強基簡章頁快照 |
 | `bk_catalog.2026.csv` | `data:s1-build` | 國標本科專業目錄 883 種：代碼（含 T／K 後綴）、名稱、專業類、門類、學位授予註記 |
-| `program_offerings.2027.csv` | `data:s1-build` | 雙一流 144 校 × 本科招生專業（類）：校區標籤、學校自編代碼、國標對應（code／name／class／none）、選考要求圖樣、原文、列到它的省份、來源、跨省衝突、可信度 |
+| `program_offerings.2027.csv` | `data:s1-build`（預設 scope dfc） | 雙一流 144 校 × 本科招生專業（類）：校區標籤、層次、學校自編代碼、國標對應（code／name／class／none）、選考要求圖樣、原文、列到它的省份、來源、跨省衝突、可信度 |
+| `program_offerings.2027.all.csv.gz`、`_summary.2027.all.csv`、`.all.meta.json` | `data:s1-build -- --scope all` | 全部 2,952 校、本科＋高職（專科）兩層次（88,750 條）；專科列 `programKind=vocational` 不對本科目錄；gzip 入庫，`gzip -dc` 可 diff；前端 payload 由它產生 |
 | `program_offerings_summary.2027.csv` | `data:s1-build` | 逐校彙總：專業數、校區、省表數、要求分佈、目錄對應數、衝突數 |
 | `program_offerings.2027.meta.json` | `data:s1-build` | 輸入雜湊、各省表計數、對不到主表的院校、校區／醫學院代碼映射、學到的舊校名別名、折行與水印處理計數 |
 | `strong_base_schools.2026.csv` | `data:s1-build` | 強基計劃 39 校（教育部 2020 名單 36＋2022 增列 3，以三校 2026 官方簡章為證） |
-| `public/data/programs/catalog.json`、`offerings.json`、`src/data/programsManifest.ts` | `data:programs` | 前端懶載入 payload 與 manifest（生成物，隨 build 重產；不要手改） |
+| `public/data/programs/catalog.json`、`index.json`、`schools/programs-NN.json`、`src/data/programsManifest.ts` | `data:programs` | 前端懶載入 payload 與 manifest（生成物，隨 build 重產；不要手改） |
 
 重跑（離線可重現；external 大檔不入庫，缺少時腳本會從登記的官方網址下載並核對 SHA-256）：
 
 ```bash
 cd /Users/ylsuen/CF/sites/interactive/unapply
 brew list poppler >/dev/null || brew install poppler     # pdftotext：只用來把官方 PDF 轉文字／座標
-npm run data:s1-fetch -- --cache-dir .tmp/s1-sources      # 已釘雜湊不符直接 exit 1；--offline 不碰網路
-npm run data:s1-build -- --cache-dir .tmp/s1-sources      # 不認得的選考要求寫法、目錄計數不符都 exit 1
-npm run audit:s1 -- --out /Users/ylsuen/CF/reports/operations/<任務>/
+npm run data:s1-fetch -- --cache-dir .tmp/s1-sources --from-r2   # 三個大檔從既有私密桶 bdfz-ops-backups（unapply/s1-sources/v1/）取回；已釘雜湊不符直接 exit 1；--offline 不碰網路；不加 --from-r2 則從原網址下載
+npm run data:s1-build -- --cache-dir .tmp/s1-sources --scope all   # 全量（前端用）；不認得的選考要求寫法、目錄計數不符都 exit 1
+npm run data:s1-build -- --cache-dir .tmp/s1-sources               # 雙一流 144 校本科（稽核與設計用）
+npm run audit:s1 -- --scope all --out /Users/ylsuen/CF/reports/operations/<任務>/
 npm run data:programs && npm run test:s1                   # 前端 payload 與閘門（build 會自動跑 data:programs）
 ```
 
@@ -314,6 +317,8 @@ npm run data:programs && npm run test:s1                   # 前端 payload 與�
    上海表的專業代碼字高不同、會與同列其他格差 2–3pt，相鄰主線欄位不重疊就合併；折行的校名／專業名殘段拼回 ±14pt 內最近的主線。
    `meta.droppedIncompleteRows` 不為 0 時先看是哪些列被丟。
 5. **江蘇 .xls 有 65,536 行上限**，實測截斷發生在專科段、本科完整；公告頁的 .xlsx 鏈接 2026-11-06 回 404，補到後換成 .xlsx 並重釘。
+   三個大原檔（22 MB）不入倉庫：在 R2 `bdfz-ops-backups/unapply/s1-sources/v1/`（站長 2026-11-07 批准的儲存），`s1_sources.json` 的 `r2` 欄記 SHA-256；上傳後必須讀回核對再刪本機副本。
+   **缺口不是錯**：四省表沒列到的學校（本科 178、專科 551）保持未知，不猜填；`audit:s1 --scope all` 把本科缺口分類成人工清單。
 6. **陽光高考（gaokao.chsi.com.cn）對非瀏覽器請求回 412 的 JavaScript 挑戰**，不可用腳本抓，也不要繞；院校庫／章程／專業庫只能人工在瀏覧器查核。
    北京教育考試院（bjeea.cn）從本機完全連不上；廣東（eeagd.edu.cn）回 /forbid。
 7. 國標目錄對不到的只有各校「試驗班」（118 條），屬預期；`catalogMatch=class` 的是按「專業類」招生（計算機類、經濟學類…）。
@@ -322,7 +327,7 @@ npm run data:programs && npm run test:s1                   # 前端 payload 與�
 
 1. 在 `s1_sources.json` 新增該年度的來源條目（新 id、新 `admissionYear`／年份檔名），舊條目保留。
 2. `npm run data:s1-fetch -- --repin` 只對新條目補雜湊；舊條目雜湊不符要先弄清楚上游為何換檔。
-3. `npm run data:s1-build`；改 `--scope all` 可產出全部 2,952 校的 `program_offerings.<年>.all.csv`（約 5 萬條，不預設提交）。
+3. `npm run data:s1-build -- --scope all`（前端 payload 的來源，入庫）與預設 scope（雙一流稽核用）。
 4. `npm run audit:s1`，把報告放進任務的 `reports/operations/` 目錄；跨省衝突不為 0 時這一層不得進任何篩選。
 
 ## 4. 覆蓋率與風險判讀
