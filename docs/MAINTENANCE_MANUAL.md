@@ -1,4 +1,4 @@
-# nope.bdfz.net 維護手冊（v1.9）
+# nope.bdfz.net 維護手冊（v2.0）
 
 本手冊面向接手維護 `nope.bdfz.net` 的工程師。目標不是介紹產品，而是讓你能安全更新數據、核查覆蓋、發布上線並在必要時回滾。
 
@@ -51,10 +51,12 @@ npm run data:campus-extract
 npm run data:research
 npm run data:runtime
 npm run data:admission
+npm run data:programs
 npm run audit:questions
 npm run audit:values
 npm run audit:data
 npm run test:filters
+npm run test:s1
 npm run lint
 npm run build
 npm run dev
@@ -260,10 +262,18 @@ npm run data:research
 
 口徑提醒：排名反映研究產出，不反映本科教學、錄取難度或學費，頁面與 About 已明示；不要把它接進任何「推薦」邏輯。
 
-### 3.4 S1 專業／選考科目／招生政策資料層（2026-11 起，候選，未接前端）
+### 3.4 S1 專業／選考科目／招生政策資料層（2026-11 起）
 
-設計與站長待決點見 `docs/DESIGN_S1_PROGRAMS_ADMISSION.md`。這一層目前**只產生 CSV 與稽核報告**，不進 43 題、不進引擎、
-不改 AnswerMap／Function／A+ 證據契約、不改 `src/shared-ui`；接入任何題目前要先過設計文件 §6 的閘門並另行授權。
+設計與站長待決點見 `docs/DESIGN_S1_PROGRAMS_ADMISSION.md`。首批（2026-11-07 上線）走的是設計文件的 S1.a：
+資料以**起點條件**（選考科目組合、意向專業類／專業）的形式在 43 題之後另算一層（`src/engine/programs.ts`），
+結果頁分開顯示與計數，學校詳情逐專業展示；不進 43 題、不進 `filterSchools`、不改 AnswerMap／Function／A+ 證據契約（證據仍取 43 題結果）、
+不改 `src/shared-ui`。要把它變成正式題目（S1.b）屬共享契約變更，另立設計與 fan-out。
+
+前端鏈路：`npm run data:programs`（`scripts/build_programs_layer.mjs`）把下表的 CSV 組成 `public/data/programs/catalog.json`（目錄）與
+`offerings.json`（逐校招生專業），並寫 `src/data/programsManifest.ts`（版本雜湊＋各類數量）；`build` 在 `data:atlas` 之後跑它。
+`src/lib/programsData.ts` 懶載入並核對 manifest 數量；起點條件存 `unapply.programPrefs.v1`（`src/data/programPrefs.ts`）。
+`npm run test:s1`（`tests/s1-programs.test.ts`）檢查 payload 完整性（144 校都在教育部主表、圖樣合法、目錄 13／92／883、強基 38 在池內）與引擎純函數
+（疑罪從無、選科判定、意向專業含大類招生、試驗班不判定、計數與 43 題分開）。
 
 資料檔（都在 `data/research/`）：
 
@@ -276,6 +286,7 @@ npm run data:research
 | `program_offerings_summary.2027.csv` | `data:s1-build` | 逐校彙總：專業數、校區、省表數、要求分佈、目錄對應數、衝突數 |
 | `program_offerings.2027.meta.json` | `data:s1-build` | 輸入雜湊、各省表計數、對不到主表的院校、校區／醫學院代碼映射、學到的舊校名別名、折行與水印處理計數 |
 | `strong_base_schools.2026.csv` | `data:s1-build` | 強基計劃 39 校（教育部 2020 名單 36＋2022 增列 3，以三校 2026 官方簡章為證） |
+| `public/data/programs/catalog.json`、`offerings.json`、`src/data/programsManifest.ts` | `data:programs` | 前端懶載入 payload 與 manifest（生成物，隨 build 重產；不要手改） |
 
 重跑（離線可重現；external 大檔不入庫，缺少時腳本會從登記的官方網址下載並核對 SHA-256）：
 
@@ -285,6 +296,7 @@ brew list poppler >/dev/null || brew install poppler     # pdftotext：只用來
 npm run data:s1-fetch -- --cache-dir .tmp/s1-sources      # 已釘雜湊不符直接 exit 1；--offline 不碰網路
 npm run data:s1-build -- --cache-dir .tmp/s1-sources      # 不認得的選考要求寫法、目錄計數不符都 exit 1
 npm run audit:s1 -- --out /Users/ylsuen/CF/reports/operations/<任務>/
+npm run data:programs && npm run test:s1                   # 前端 payload 與閘門（build 會自動跑 data:programs）
 ```
 
 口徑與陷阱（都是這一輪實測踩到的）：

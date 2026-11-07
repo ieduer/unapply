@@ -1,26 +1,29 @@
 # Project State
 
 Last updated: 2026-11-07 UTC
-Current version: d4ae514（已部署 0ec6d42f，生效 2026-11-06T22:50:51Z）
-Current objective: 全球化路線圖已立項（docs/GLOBAL_ROADMAP.md）；S0（所在地起點＋世界學科地圖＋已核查官網鏈接＋企業直招高中生層）已上線並登記 accepted；S1 大陸高校專業／錄取條件／招生政策的 schema 設計與首批資料（雙一流 144 校）已產出、**待站長審核，未接前端、未發布**；原 43 維效度缺口仍列後續。
+Current version: 2e79f9b（已部署 7aa5e5b5，生效 2026-11-07T03:01:44Z）
+Current objective: 全球化路線圖（docs/GLOBAL_ROADMAP.md）：S0 世界學科地圖與 S1 首批（起點條件＋雙一流 144 校招生專業／選考要求）皆已上線並登記 accepted；下一步 S1 續批（全部 2,952 校、章程層錄取條件、專項計劃、中外合作收費→A4）與港澳臺（S2）；原 43 維效度缺口仍列後續。
 
-## 2026-11-06 S1 專業／選考科目／招生政策資料層：設計與首批資料（候選，待站長審核，未發布）
+## 2026-11-07 S1 首批：起點條件（選考科目／意向專業）與雙一流招生專業（已上線，當前權威）
 
-線上仍為 `0ec6d42f`／`d4ae514`（S0），本輪**沒有任何前端、引擎、AnswerMap、Function、shared-ui 或發布變更**；工作樹新增的是資料層檔案與腳本，未提交。
+正式部署 `7aa5e5b5-345e-403b-8cd6-d3d0076178d1`，來源 `2e79f9b6c9d356f4283cfcda1e6962a6e3a55187`，生效 `2026-11-07T03:01:44Z`；
+回滾 `0ec6d42f-3b93-4859-bd22-813e7f000c3e`／`d4ae514`（走受審回滾交易，會撤掉起點條件與專業層，保留世界地圖）。Status `20261107-nope-s1-programs-admission` r1。
+站長授權（2026-11-07 主會話）：「入庫實作，依據最終goal繼續推進。」
 
-- 設計：`docs/DESIGN_S1_PROGRAMS_ADMISSION.md`——機構 × 專業（國標目錄）× 年度 × 省份的錄取條件與招生政策 schema、
-  哪些維度能進減法題、哪些只展示、官方來源可取得性核查表、接入閘門與站長待決點。
-- 首批資料（`data/research/`）：`s1_sources.json` 釘定 16 個官方來源（13 個原檔入庫 `raw/s1/`，3 個大檔只釘 SHA-256）；
-  `bk_catalog.2026.csv` 教育部本科專業目錄 883 種；`program_offerings.2027.csv` 雙一流 144 校（第二輪 147 減 3 所軍校；上海體育學院已更名上海體育大學）
-  的本科招生專業（類）與選考科目要求（湖北／江蘇／上海／浙江四省 2027 表聯集，跨省 0 衝突）；`strong_base_schools.2026.csv` 強基 39 校。
-- 腳本：`npm run data:s1-fetch`／`data:s1-build`／`audit:s1`（手冊 §3.4）；離線可重跑，不付費、不用 AI 生成資料；
-  陽光高考對腳本回 412 挑戰，只能人工瀏覽器查核，未繞過。
-- 稽核：`/Users/ylsuen/CF/reports/operations/nope-s1-programs-admission-20261106/s1-audit.md`；報告 `REPORT.md` 同目錄。
-- 待站長決定：選科題要不要成為新題（會改 AnswerMap／A+ 契約）還是先只在學校詳情頁展示；專業題如何與既有 C5 共存；
-  陽光高考人工查核的分工；下一批（全部 2,952 校／章程層／專項計劃）的順序。
-- 附帶發現（未修）：`officialSchools.ts` 的雙一流標籤按 2022 校名比對，上海體育大學（原上海體育學院）因此落為「普通本科」。
+- 資料層（`66c82c3`）：`docs/DESIGN_S1_PROGRAMS_ADMISSION.md`；`data/research/s1_sources.json` 16 個官方來源釘定（13 個原檔入庫 `raw/s1/`，3 個大檔只釘 SHA-256）；
+  `bk_catalog.2026.csv` 883 專業；`program_offerings.2027.csv` 雙一流 144 校（第二輪 147 減 3 所軍校；上海體育學院→上海體育大學）9,534 條，湖北／江蘇／上海／浙江 2027 表聯集 0 衝突；
+  `strong_base_schools.2026.csv` 39 校；`npm run data:s1-fetch`／`data:s1-build`／`audit:s1`；稽核 `reports/operations/nope-s1-programs-admission-20261106/s1-audit.md`。
+- 產品（`2e79f9b`）：首頁「起點條件 · 選填」（3 門選考科目／意向專業類或具體專業，`unapply.programPrefs.v1`，不進 AnswerMap）；`src/engine/programs.ts` 在 43 題之後另算一層並分開計數；
+  結果頁起點條件區塊、查校理由、卡片專業數；學校詳情「招生專業 · 選考科目要求（2027 年）」；About 補來源。`public/data/programs/{catalog,offerings}.json` 懶載入，`src/data/programsManifest.ts` 版本 `948a2190ff3b`；新閘門 `test:s1`。
+- 不變：43 題、引擎、Function、AnswerMap、A+ 證據契約（仍取 43 題結果）、`src/shared-ui`、依賴、binding。
+- 驗證：十二道閘門全過（`nope/check.txt`）；候選 `6b1dbce5` 與正式、不可變網址 43/43 檔一致；本機雙色系桌面 1440／手機 390 逐路由對比度最低 6.27:1、無新增低對比、無橫向溢出；
+  正式站真實路徑：物生政 → 起點條件劃掉 7 所（與稽核模擬一致）、中國科學技術大學詳情 56 專業／強基／6 個官方來源。
+- 已知限制：陽光高考對腳本回 412 挑戰（章程層、分省計劃、專項名單只能人工）；bjeea.cn 本機不通；選科單獨生效時詳情文案缺一空格（下版修）；
+  `officialSchools.ts` 把上海體育大學標成普通本科（A3，需另批）；已登入 A+ 路徑本次未改未測。
+- 下一步（待站長定序）：擴到全部 2,952 校（`data:s1-build --scope all`）→ 專項計劃名單（人工）→ 中外合作專業收費→A4 → 章程層錄取條件；選科／專業要不要成為新題（改契約）另議。
+- 報告：`/Users/ylsuen/CF/reports/operations/nope-s1-programs-admission-20261106/RELEASE.md`、`REPORT.md`。
 
-## 2026-11-06 全球化立項與 S0 世界學科地圖（已上線，當前權威）
+## 2026-11-06 全球化立項與 S0 世界學科地圖（歷史；S0 內容仍在線）
 
 正式部署 `0ec6d42f-3b93-4859-bd22-813e7f000c3e`，來源 `d4ae5141bd04a0024a4054f2e4bf16c20cace891`，生效 `2026-11-06T22:50:51Z`；
 回滾 `d7a7924d-dfa2-49b8-ae19-52054b56266c`／`6fa8a4e`（走受審回滾交易，會撤掉起點問題、世界地圖與官網鏈接）。Status `20261106-nope-global-atlas-s0` r1。
