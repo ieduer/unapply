@@ -24,7 +24,7 @@
     "audit:questions": "node scripts/audit_question_rules.mjs",
     "audit:values": "tsx scripts/audit_dimension_values.mjs",
     "audit:data": "tsx scripts/audit_data_coverage.mjs",
-    "build": "npm run data:runtime && npm run data:atlas && npm run data:programs && tsc -b && vite build",
+    "build": "npm run data:runtime && npm run data:atlas && npm run data:programs && npm run data:hkmotw && tsc -b && vite build",
     "lint": "eslint .",
     "test:evidence": "node --experimental-strip-types --test tests/learning-evidence.test.ts",
     "test:filters": "tsx --test tests/admission-channel.test.ts tests/evidence-threshold.test.ts tests/filter-validity.test.ts",
@@ -35,7 +35,9 @@
     "check:shared-ui": "node scripts/check_shared_ui.mjs",
     "preview": "vite preview",
     "pages:deploy": "npm run build && bash /Users/ylsuen/CF/scripts/git-deploy-gate.sh && npx wrangler pages deploy dist --project-name unapply --branch master --commit-dirty=false",
-    "prepages:deploy": "bash /Users/ylsuen/CF/scripts/git-deploy-gate.sh"
+    "prepages:deploy": "bash /Users/ylsuen/CF/scripts/git-deploy-gate.sh",
+    "data:hkmotw": "node scripts/build_hkmotw_pool.mjs",
+    "test:hkmotw": "tsx --test tests/hkmotw-pool.test.ts"
   },
   "dependencies": {
     "html-to-image": "^1.11.13",

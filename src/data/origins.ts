@@ -14,9 +14,9 @@ export interface OriginOption {
 
 export const originOptions: readonly OriginOption[] = [
   { id: 'cn-mainland', label: '中國大陸', hint: '教育部 2026 名單 2,952 所普通高校的減法題庫', hasLocalPool: true },
-  { id: 'hk', label: '香港', hint: '本地題庫建設中（路線圖 S2）', hasLocalPool: false },
-  { id: 'mo', label: '澳門', hint: '本地題庫建設中（路線圖 S2）', hasLocalPool: false },
-  { id: 'tw', label: '臺灣', hint: '本地題庫建設中（路線圖 S2）', hasLocalPool: false },
+  { id: 'hk', label: '香港', hint: '港澳臺院校池已上線（官方招生管道）；本地減法題庫建設中（路線圖 S4）', hasLocalPool: false },
+  { id: 'mo', label: '澳門', hint: '港澳臺院校池已上線（官方招生管道）；本地減法題庫建設中（路線圖 S4）', hasLocalPool: false },
+  { id: 'tw', label: '臺灣', hint: '港澳臺院校池已上線（官方招生管道）；本地減法題庫建設中（路線圖 S4）', hasLocalPool: false },
   { id: 'overseas', label: '其他國家或地區', hint: '海外題庫建設中（路線圖 S3）', hasLocalPool: false },
 ]
 

@@ -41,6 +41,8 @@ import { ContributePage } from './components/ContributePage'
 
 // 世界學科地圖只在進入 #/world 時載入，首頁與問卷的主包不帶它。
 const WorldAtlasPage = lazy(() => import('./components/WorldAtlasPage').then((module) => ({ default: module.WorldAtlasPage })))
+// 港澳臺院校池同樣只在進入 #/hkmotw 時載入。
+const HkMoTwPage = lazy(() => import('./components/HkMoTwPage').then((module) => ({ default: module.HkMoTwPage })))
 
 type Route =
   | { name: 'landing' }
@@ -49,6 +51,7 @@ type Route =
   | { name: 'about' }
   | { name: 'contribute' }
   | { name: 'world' }
+  | { name: 'hkmotw' }
   | { name: 'school'; id: string }
 
 function parseRoute(): Route {
@@ -61,6 +64,7 @@ function parseRoute(): Route {
   if (head === 'about') return { name: 'about' }
   if (head === 'contribute') return { name: 'contribute' }
   if (head === 'world') return { name: 'world' }
+  if (head === 'hkmotw') return { name: 'hkmotw' }
   if (head === 'school' && id) return { name: 'school', id: decodeURIComponent(id) }
   return { name: 'landing' }
 }
@@ -72,6 +76,7 @@ function navigate(route: Route) {
   else if (route.name === 'about') hash = '#/about'
   else if (route.name === 'contribute') hash = '#/contribute'
   else if (route.name === 'world') hash = '#/world'
+  else if (route.name === 'hkmotw') hash = '#/hkmotw'
   else if (route.name === 'school') hash = `#/school/${encodeURIComponent(route.id)}`
   if (window.location.hash !== hash) window.location.hash = hash
 }
@@ -270,6 +275,7 @@ export default function App() {
       onOriginChange={setOrigin}
       onStart={startMainland}
       onWorld={() => go({ name: 'world' })}
+      onHkMoTw={() => go({ name: 'hkmotw' })}
       onAbout={() => go({ name: 'about' })}
       onContribute={() => go({ name: 'contribute' })}
     />
@@ -322,6 +328,7 @@ export default function App() {
           onAbout={() => go({ name: 'about' })}
           onContribute={() => go({ name: 'contribute' })}
           onWorld={() => go({ name: 'world' })}
+          onHkMoTw={() => go({ name: 'hkmotw' })}
         />
       )
     }
@@ -334,6 +341,17 @@ export default function App() {
         onBack={() => go({ name: 'landing' })}
         onAbout={() => go({ name: 'about' })}
         onSchool={(id) => go({ name: 'school', id })}
+        onStartMainland={startMainland}
+        onHkMoTw={() => go({ name: 'hkmotw' })}
+      />
+    )
+  } else if (route.name === 'hkmotw') {
+    page = (
+      <HkMoTwPage
+        origin={origin}
+        onBack={() => go({ name: 'landing' })}
+        onAbout={() => go({ name: 'about' })}
+        onWorld={() => go({ name: 'world' })}
         onStartMainland={startMainland}
       />
     )

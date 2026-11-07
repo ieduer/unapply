@@ -339,6 +339,26 @@ npm run data:programs && npm run test:s1                   # 前端 payload 與�
 3. `npm run data:s1-build -- --scope all`（前端 payload 的來源，入庫）與預設 scope（雙一流稽核用）。
 4. `npm run audit:s1`，把報告放進任務的 `reports/operations/` 目錄；跨省衝突不為 0 時這一層不得進任何篩選。
 
+### 3.5 港澳臺院校池資料層（2026-11 起，路線圖 S2 後半）
+
+目標：讓香港／澳門／臺灣起點的用戶（以及想跨區看的大陸用戶）看到**官方來源核查通過**的院校與招生管道；它不是題庫、不進任何題目與引擎、不進 AnswerMap 與 A+ 證據。
+資料形狀刻意做成「機構／招生管道／條件／來源／有效期」五層（`src/data/hkmotwTypes.ts`），S3 海外學校沿用同一形狀。
+
+| 檔案 | 產生方式 | 內容 |
+| --- | --- | --- |
+| `hkmotw_institutions.<日期>.csv` | 人工登記（來源見各列） | 機構：地區、正體校名（照官方）、英文名、類型、官網、名單來源與日期、在 GRAS 地圖上的英文名（對 `gras_institutions_geo`）、status |
+| `hkmotw_admission_channels.<日期>.csv` | 人工登記＋逐條連通核對 | 管道：對象（內地高考生／港澳學生）、管道類型、層次、適用年度、成績／報考方式、英語、學費、時程、來源標題／網址／日期、HTTP 狀態、核對日、status、備註 |
+| `public/data/hkmotw/pool.json`、`src/data/hkmotwManifest.ts` | `npm run data:hkmotw`（`scripts/build_hkmotw_pool.mjs`） | 前端懶載入 payload（約 30 KiB）與 manifest；`build` 在 `data:programs` 之後跑它 |
+
+規則（路線圖「對外鏈接規則」）：來源網址必須 https、來源可註冊網域與機構官網一致、HTTP 200、帶讀取日與核對日；`status` 不是 `verified` 的機構／管道**不進 payload**，只把數量與原因寫進 `reviewRequired`（頁面底部列出名字）。
+不認得的地區／類型／管道代碼直接失敗。核不過的常見原因：官網對腳本回 Cloudflare 驗證頁（香港都會大學）、招生頁純 JavaScript（香港城市大學內地招生網、澳門理工大學）——**不繞過**，留待人工覆核。
+
+2026-11-07 批 D3 首批：香港 15 所（各校自己的內地高考／非本地學生招生頁為名單來源；教資會網站沒有可腳本讀取的資助院校名單頁，故不自行標「教資會資助」）、澳門 10 所（教青局「澳門高等院校連結」官方名單）、臺灣 2 個聯招會（陸生聯招會：2026 只辦碩博士班、學士班最近簡章 2019；海外聯招會：港澳學生聯合分發／各校單獨招生）；21 條管道、10 所對到 GRAS 地圖。
+前端：`#/hkmotw`（`src/components/HkMoTwPage.tsx`，地區篩選、逐管道「條件與學費」展開、來源與核對日）；首頁港澳臺起點的主按鈕改為「看港澳臺院校池」；結果頁頁尾「跨區看港澳臺院校池」；世界地圖機構面板對得上池的機構多一個「港澳臺院校池：招生管道 →」。
+閘門：`npm run test:hkmotw`（`tests/hkmotw-pool.test.ts`，7 項：manifest／payload 一致、三地區數量、每條管道 https＋同網域＋200＋日期、核不過的不上線、臺灣兩會狀態、GRAS 對照、起點提示）。
+
+年度更新：各院校招生年度頁（多在每年 10–12 月更新下一屆）逐條重開、更新 `validFor`／條件／學費與 `verifiedAt`；管道消失（如暫停招生）改 `channel`，不刪列；新增院校先核官網網域。改完跑 `data:hkmotw → test:hkmotw → 其餘閘門 → 候選 → Pages 交易`。
+
 ## 4. 覆蓋率與風險判讀
 
 用這條命令看 43 題實際是否有用：

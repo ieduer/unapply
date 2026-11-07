@@ -30,6 +30,7 @@ interface Props {
   onAbout: () => void
   onContribute: () => void
   onWorld: () => void
+  onHkMoTw: () => void
 }
 
 type LookupEntry =
@@ -139,6 +140,7 @@ export function ResultPage({
   onAbout,
   onContribute,
   onWorld,
+  onHkMoTw,
 }: Props) {
   const shareRef = useRef<HTMLDivElement>(null)
   const [downloading, setDownloading] = useState(false)
@@ -470,7 +472,8 @@ export function ResultPage({
           <p>數據缺失的維度不會誤殺學校（疑罪從無）。</p>
           <p>了解 <button onClick={onAbout} className="hover:text-accent-500 underline">數據來源與方法論</button> ·
             {' '}給我們 <button onClick={onContribute} className="hover:text-accent-500 underline">貢獻數據</button> ·
-            {' '}看 <button onClick={onWorld} className="hover:text-accent-500 underline">全球學科地圖</button></p>
+            {' '}看 <button onClick={onWorld} className="hover:text-accent-500 underline">全球學科地圖</button> ·
+            {' '}跨區看 <button onClick={onHkMoTw} className="hover:text-accent-500 underline">港澳臺院校池</button></p>
         </footer>
       </section>
     </main>

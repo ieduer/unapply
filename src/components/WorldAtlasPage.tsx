@@ -11,6 +11,7 @@ import {
   type AtlasTopN,
 } from '../engine/atlas'
 import { loadWorldAtlas } from '../lib/atlasData'
+import { loadHkMoTwPool } from '../lib/hkmotwData'
 import { getOriginOption, type OriginRegion } from '../data/origins'
 
 interface Props {
@@ -19,6 +20,7 @@ interface Props {
   onAbout: () => void
   onSchool: (id: string) => void
   onStartMainland: () => void
+  onHkMoTw: () => void
 }
 
 const confidenceLabel: Record<AtlasProgram['confidence'], string> = {
@@ -35,8 +37,10 @@ function institutionExternalUrl(institution: AtlasInstitution): string | null {
   return institution.univUp ? `https://www.shanghairanking.com/institution/${institution.univUp}` : null
 }
 
-export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainland }: Props) {
+export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainland, onHkMoTw }: Props) {
   const [payload, setPayload] = useState<WorldAtlasPayload | null>(null)
+  // 港澳臺院校池裡有管道說明的機構（以 GRAS 機構 id 對照）；池載不到就只是少一個鏈接，不影響地圖。
+  const [poolAtlasIds, setPoolAtlasIds] = useState<Set<string>>(() => new Set())
   const [loadError, setLoadError] = useState<string | null>(null)
   const [reloadToken, setReloadToken] = useState(0)
   const [selection, setSelection] = useState<AtlasSelection>(emptyAtlasSelection)
@@ -52,6 +56,13 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
       .catch((error: unknown) => { if (alive) setLoadError(error instanceof Error ? error.message : String(error)) })
     return () => { alive = false }
   }, [reloadToken])
+  useEffect(() => {
+    let alive = true
+    loadHkMoTwPool()
+      .then((pool) => { if (alive) setPoolAtlasIds(new Set(pool.institutions.filter((i) => i.atlasId).map((i) => i.atlasId as string))) })
+      .catch(() => undefined)
+    return () => { alive = false }
+  }, [])
   const retryLoad = () => {
     setLoadError(null)
     setReloadToken((token) => token + 1)
@@ -132,7 +143,8 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
           </p>
           {originOption && !originOption.hasLocalPool && (
             <div className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 text-sm text-fog-300 leading-relaxed">
-              你選的起點是 <b className="text-fog-100">{originOption.label}</b>：{originOption.hint}。目前能用的是這張全球學科地圖；
+              你選的起點是 <b className="text-fog-100">{originOption.label}</b>：{originOption.hint}。目前能用的是這張全球學科地圖
+              {(origin === 'hk' || origin === 'mo' || origin === 'tw') && <>與 <button onClick={onHkMoTw} className="underline hover:text-accent-500">港澳臺院校池</button></>}；
               <button onClick={onStartMainland} className="underline hover:text-accent-500 ml-1">仍要看中國大陸題庫</button>
             </div>
           )}
@@ -278,7 +290,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
 
         {(selected || selectedProgram) && (
           <div className="border border-accent-500/40 bg-ink-900 rounded-2xl px-4 sm:px-6 py-5 flex flex-col gap-3">
-            {selected && <SelectedInstitution entry={selected} regionName={regionNameByCode.get(selected.institution.region) ?? selected.institution.region} onSchool={onSchool} onToggleRegion={toggleRegion} onClose={() => setSelectedId(null)} />}
+            {selected && <SelectedInstitution entry={selected} regionName={regionNameByCode.get(selected.institution.region) ?? selected.institution.region} onSchool={onSchool} onToggleRegion={toggleRegion} onClose={() => setSelectedId(null)} inHkMoTwPool={poolAtlasIds.has(selected.institution.id)} onHkMoTw={onHkMoTw} />}
             {selectedProgram && <ProgramCard program={selectedProgram} expanded onClose={() => setSelectedProgramId(null)} />}
           </div>
         )}
@@ -432,12 +444,16 @@ function SelectedInstitution({
   onSchool,
   onToggleRegion,
   onClose,
+  inHkMoTwPool,
+  onHkMoTw,
 }: {
   entry: AtlasInstitutionView
   regionName: string
   onSchool: (id: string) => void
   onToggleRegion: (code: string) => void
   onClose: () => void
+  inHkMoTwPool: boolean
+  onHkMoTw: () => void
 }) {
   const { institution, seats, struckByRegion } = entry
   const external = institutionExternalUrl(institution)
@@ -470,6 +486,11 @@ function SelectedInstitution({
         {institution.schoolId && (
           <button onClick={() => onSchool(institution.schoolId!)} className="px-4 py-2 rounded-full bg-accent-500 text-ink-950 font-semibold hover:bg-accent-400 min-h-[40px]">
             看本站學校詳情 →
+          </button>
+        )}
+        {inHkMoTwPool && (
+          <button onClick={onHkMoTw} className="px-4 py-2 rounded-full border border-accent-500/40 bg-accent-500/10 text-accent-600 hover:bg-accent-500/15 min-h-[40px]">
+            港澳臺院校池：招生管道 →
           </button>
         )}
         {institution.website && (
