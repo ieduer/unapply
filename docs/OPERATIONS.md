@@ -127,7 +127,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to deployment `c26a1b75-ae96-47f9-8dd8-7c2d931cf423` (source `df6c782`), after a fresh live baseline readback (rolls back batch D3: the #/hkmotw pool page and its entry points disappear; the seven-province programs layer, S1/S2, the Function and the atlas stay). Direct API rollback without a registered transaction is not release authority.
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after batch F1: `9753bdc3-ebe9-4488-80a4-32db2fbcb728`, source `55eb014`, batch E2), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -489,7 +489,7 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 
 **回滾**：`41a45cad`／`7443bb5`，受審回滾交易；只切 Pages 版本，無資料庫遷移；學習記錄不受影響；回滾後 `unapply.locale.v1` 殘留無害（舊版不讀它）。證據：`reports/operations/nope-s4-i18n-origins-20261107/nope-e1/`；資源記錄 `nope-e1/resources.md`；待站長 `nope-e1/PENDING_OWNER_REVIEW.md`。
 
-## 2026-11-07 批 E2：起點分支（資格／範圍）＋官方進大陸管道＋海外層資格標示＋結果頁跨國並列（已上線，當前權威）
+## 2026-11-07 批 E2：起點分支（資格／範圍）＋官方進大陸管道＋海外層資格標示＋結果頁跨國並列（已上線；批 F1 疊加於其上）
 
 **授權**：同批 E1（站長 2026-11-07 睡前裁定）。採研究方案 B：起點／資格／範圍為展示層分支，只存 localStorage（`unapply.origin.v1`、`unapply.originPrefs.v1`），不進 AnswerMap／DimensionId／learning manifest／Function；A+ 學習證據仍只有 45 題；無 UC 或共享樞紐寫入；無付費或計量資源（來源核查只用既有研究產出與本機 fetch）；無新 Cloudflare 資源或綁定；不改導航／門戶／Pulse／UC 登記；shared-ui 不動。需站長裁定的只寫入 `nope-e2/PENDING_OWNER_REVIEW.md`（方案 A 是否進學習證據；未核官方頁清單）。
 
@@ -500,3 +500,15 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 **驗證**：本機（Vite 5181，`nope-e2/local-browser.json`：港／澳／海外／大陸四條流程真實點擊；首輪 390 寬發現海外頁資格 `<select>` 以最長選項撐到 381 px、右緣 414 px 溢出，加 `max-w-full` 後右緣 357 px 重測乾淨）、候選 `42982ad7`（`candidate-browser.json`：三語 × 紙色／墨色 × 1440／390 共 12 輪 × 11 路由，0 低於 4.5，最低 4.57（紙）／4.93（墨）＝強調色按鈕文字，最小字 12px，無橫向溢出；新原點首繪依瀏覽器語言 en；色系以面板真實點擊切換）、正式（`production-browser.json`：三語 × 紙色 × 1440，主控台無錯誤）三處一致；十七道閘門於 `55eb014`（`nope-e2/check.txt`，dist 129 檔）。
 
 **回滾**：`460b9fcb`／`84c0fcd`（批 E1），受審回滾交易；只切 Pages 版本，無資料庫遷移；學習記錄不受影響；回滾後 `unapply.originPrefs.v1` 殘留無害（舊版不讀它）。證據：`reports/operations/nope-s4-i18n-origins-20261107/nope-e2/`；資源 `nope-e2/resources.md`；待站長 `nope-e2/PENDING_OWNER_REVIEW.md`。
+
+## 2026-11-07 批 F1：路線圖橫切項——企業直招擴充、壞鏈修正、權威分級標籤、鏈接年檢工具（已上線，當前權威）
+
+**授權**：站長 2026-11-07 睡前裁定「不涉及付費都可以推進，使用到的資源做好記錄。s1直至s5，包括橫切，最終完成全部。我睡，你持續推進，必須我審核的留到最後。」葉子資料／介面更新走登記的發布交易。不改題集／DimensionId／AnswerMap／learning manifest／Function／shared-ui；無 UC 或共享樞紐寫入；無付費或計量資源；無新 Cloudflare 資源或綁定；不改導航／門戶／Pulse／UC 登記。需站長裁定的只寫入 `nope-f1/PENDING_OWNER_REVIEW.md`。
+
+**正式部署**：`8385ac10-f587-44c8-ac43-f0dece8fc60f`，來源 `2d3323cd72f777aa3af55501af76f851a0162e01`，生效 `2026-11-07T14:08:23Z`（Cloudflare `ended_on`）；候選 `c8336b80`、正式 nope.bdfz.net 與不可變網址 130/130 一致；health active（manifest `unapply-result-v1` 不變）；正式真實路徑（`nope-f1/production-browser.json`）與候選一致。登記簿 accepted → `8385ac10`／`2d3323c`，rollback → `9753bdc3`／`55eb014`。Status `20261107-nope-xcut-directhire-links-f1` r1（improvement，已發布並讀回 `status-readback-f1.txt`：API／列表／RSS／`/api/status`）。收據 `20261107-nope-xcut-directhire-links-f1`（41 個 reviewed_changes；HTTP 11/40）。
+
+**實作**（手冊 §3.3／§3.8／§3.9）：直招層 `data/research/direct_hire_programs.2026-11-07.csv` 32 列＝既有 10（按只讀研究重核：8 條 `verifiedAt` 2026-11-07；Dyson、Goldman Sachs 官方頁對檢查器回 403 非壞鏈、保留鏈接；騰訊青科 low→medium）＋14 條官方頁讀到原文的候選（Accenture、Rolls-Royce、Airbus、KPMG UK、UBS 瑞士／英國、Siemens 學徒、BMW 學徒／雙元制、VW、DB、Bosch、Toyota 高卒採用、國泰見習機師）＋8 條 `unverified`（只留檔不渲染）；渲染 24。新 kind 四類、`degree=partial`；`degree=yes／partial` 標「含在職學位」（沿用既有口徑）；`build_world_atlas.mjs` 斷言渲染者 `status≠unverified`、confidence high／medium、URL https。壞鏈 6（教育部舊版中外合作辦學信息表 3 → crs.jsj.edu.cn 詳情頁；第一財經專題 404 → 專題總頁＋註記；camet `/tjxx/` → `/xytj/tjxx/`；campus_locations 備註兩 URL 分隔）＋ school_websites 跨網域轉址 5 條；POSTECH、CU Denver 的 GRAS 官網轉址已核但暫緩（S3 錨點，首輪 `build`／`test:overseas` 擋下，見 `nope-f1/link_fixes.md`）。權威分級 `data/research/authority_tiers.2026-11-07.csv`（106 條）→ `src/data/authorityTiers.ts`（`data:tiers`，build 鏈最前）、`src/lib/authorityTier.ts`、`TierBadge`（頁尾、About、學校詳情證據、直招條目）、About「權威分級說明」。年檢基線 `link_check.2026-11-07.csv.gz`＋`.summary.json`（6,139 URL）→ `linkCheckBaseline.ts`；`scripts/check_links.mjs`（`audit:links`，網路依賴，不進閘門）。i18n 1,331 鍵（＋35，版本 `6f33ab449298`）；主包 504→415 KiB（新 `rich` 共用分塊）；world-atlas.json 334 KiB（gzip 82 KiB，版本 `2ee64d95a443`）。十七道閘門於 `2d3323c`（`nope-f1/check.txt`，dist 130 檔）。
+
+**驗證**：本機（Vite 5177，`local-browser.json`）、候選 `c8336b80`（`candidate-browser.json`：真實點擊 正體 與色系面板 墨色；三語 × 紙色／墨色 × 1440／390 共 12 輪 × 3 路由（/、#/about、#/world 開直招層），0 低於 4.5，最低 4.57（紙）／4.93（墨）＝既有強調色按鈕；最小字 12px；無橫向溢出；頁尾 10 條鏈接皆可點且標籤正確）、正式（`production-browser.json`：三語 × 紙色 × 1440，主控台無錯誤）三處一致。
+
+**回滾**：`9753bdc3`／`55eb014`（批 E2），受審回滾交易；只切 Pages 版本，無資料庫遷移；學習記錄不受影響。回滾後直招層回到 10 條、標籤與 About 分級段消失，失效鏈接回到舊值。證據：`reports/operations/nope-s5-db-xcut-20261107/nope-f1/`；資源 `nope-f1/resources.md`；待站長 `nope-f1/PENDING_OWNER_REVIEW.md`。

@@ -1,10 +1,17 @@
 # Project State
 
 Last updated: 2026-11-07 UTC
-Current version: 55eb014（已部署 9753bdc3，生效 2026-11-07T12:56:17Z；批 E2 疊加於批 E1 84c0fcd／460b9fcb）
+Current version: 2d3323c（已部署 8385ac10，生效 2026-11-07T14:08:23Z；批 F1 疊加於批 E2 55eb014／9753bdc3）
 Current objective: 全球化路線圖（docs/GLOBAL_ROADMAP.md）：S0、S1 全批（首批、A、B、C、D1＋D4）、S2 兩半（D3 港澳臺院校池、D2 中外合作辦學）、S3 海外可申請學校層（批 S3）與 S4 兩批（E1 三語介面、E2 起點分支＋跨國結果）皆已上線並登記 accepted；待站長審核項列於 `reports/operations/nope-s2-coverage-jointprograms-20261107/PENDING_OWNER_REVIEW.md`（conflict 口徑、不可達省表、港澳臺三條待覆核、合作辦學收費→A4）與 `reports/operations/nope-s3-overseas-20261107/nope-s3/PENDING_OWNER_REVIEW.md`（被擋／純 JS 機構與國家層頁人工覆核、medium 7 所是否上鏈接、海外層是否進導航文案）；待站長審核項另見 `reports/operations/nope-s4-i18n-origins-20261107/nope-e1/PENDING_OWNER_REVIEW.md`（shared-ui 9 條字串是否兩站同批改、三處英譯口徑）與 `nope-e2/PENDING_OWNER_REVIEW.md`（起點／資格／範圍是否進 A+ 學習證據＝方案 A；未核官方頁人工核查清單）；S5 服務化由後續會話串行接續；原 43 維效度缺口仍列後續。
 
-## 2026-11-07 批 E2：起點分支（資格／範圍）＋官方進大陸管道＋海外層資格標示＋結果頁跨國並列（已上線，當前權威）
+## 2026-11-07 批 F1：路線圖橫切項——企業直招擴充、壞鏈修正、權威分級標籤、鏈接年檢工具（已上線，當前權威）
+
+正式部署 `8385ac10-f587-44c8-ac43-f0dece8fc60f`，來源 `2d3323c`，生效 `2026-11-07T14:08:23Z`；回滾 `9753bdc3`／`55eb014`。Status `20261107-nope-xcut-directhire-links-f1` r1。
+- 直招層 24 條上線（既有 10 重核＋14 核過候選；含在職學位者標示，沿用既有口徑）、8 條 `unverified` 只留檔；壞鏈 6 處＋school_websites 轉址 5 處已修，GRAS 兩所轉址因是 S3 錨點暫緩。
+- 權威分級規則表 106 條 → 鏈接旁「官方／權威平台／第三方」標籤＋About 說明；鏈接年檢基線（6,139 URL）入庫，`npm run audit:links` 為年度工具（不進閘門）。
+- 十七道閘門於 `2d3323c`；候選 `c8336b80` 與正式 130/130；三語 × 兩色系 × 1440／390 對比 0 低於 4.5。待站長：`reports/operations/nope-s5-db-xcut-20261107/nope-f1/PENDING_OWNER_REVIEW.md`。
+
+## 2026-11-07 批 E2：起點分支（資格／範圍）＋官方進大陸管道＋海外層資格標示＋結果頁跨國並列（歷史；批 F1 疊加於其上）
 
 正式部署 `9753bdc3-ebe9-4488-80a4-32db2fbcb728`，來源 `55eb014`，生效 `2026-11-07T12:56:17Z`；回滾 `460b9fcb`／`84c0fcd`。Status `20261107-nope-s4-origins-e2` r1。
 - 方案 B 展示層（手冊 §5.4）：港澳臺／海外起點先答資格（18 種）與範圖（只本地／只海外／都考慮，可跳過），只存 `unapply.originPrefs.v1`，不進 AnswerMap／學習證據／Function；A+ 證據仍只有 45 題。
