@@ -64,21 +64,25 @@ const S = {
   dseMeasures2023: 'https://www.gatzs.com.cn/gatzs/pz/hongkong/202301/20230116/2254669446.html', dseList2023: 'https://www.gatzs.com.cn/gatzs/pz/hongkong/202301/20230116/2254669442.html',
   joint2026: 'https://www.gatzs.com.cn/gatzs/pz/hongkong/202601/20260120/2293447012.html', gatzs: 'https://www.gatzs.com.cn/', gatzsGuide: 'https://www.gatzs.com.cn/bkzn/',
   moJae2021: 'https://www.gatzs.com.cn/gatzs/pz/aomen/202103/20210308/2035687239.html',
+  // 2026-11-08 批 G4：真實瀏覽器覆核讀到的官方頁（data/research/origin_sources 新增）
+  edbWay2026: 'https://www.edb.gov.hk/attachment/tc/edu-system/postsecondary/policy-doc/pilot-scheme/scheme_2026/way.pdf', edbList2026: 'https://www.edb.gov.hk/attachment/tc/edu-system/postsecondary/policy-doc/pilot-scheme/scheme_2026/list.pdf',
+  ugc: 'https://www.ugc.edu.hk/eng/ugc/index.html', cspe: 'https://www.cspe.edu.hk/tc/', dsedj: 'https://portal.dsedj.gov.mo/webdsejspace/internet/Inter_main_page.jsp?id=80073',
+  cac: 'https://www.cac.edu.tw/apply116/index.php', jbcrc: 'https://www.jbcrc.edu.tw/', frBac: 'https://www.education.gouv.fr/reussir-au-lycee/le-baccalaureat-general-10457', parcoursup: 'https://www.parcoursup.gouv.fr/',
   twGsat2023: 'https://www.gatzs.com.cn/gatzs/pz/tw/202301/20230116/2254669447.html', twGsat2019: 'https://www.gatzs.com.cn/gatzs/pz/tw/201901/20190130/1762061276.html', twSystem: 'https://www.gatzs.com.cn/z/tw/',
 } as const
 
 export const QUALIFICATION_OPTIONS: Record<Qualification, QualificationOption> = {
-  hkdse: { id: 'hkdse', tokens: ['HKDSE'], sources: [S.hkeaaTc, S.hkeaaEn, S.jupas, S.edb] },
+  hkdse: { id: 'hkdse', tokens: ['HKDSE'], sources: [S.hkeaaTc, S.hkeaaEn, S.jupas, S.edb, S.ugc, S.cspe] },
   'hkdse-or-intl': { id: 'hkdse-or-intl', tokens: ['HKDSE', 'International Baccalaureate', 'A-Level'], sources: [S.hkeaaTc, S.ucasTariff] },
-  'four-univ-jae': { id: 'four-univ-jae', tokens: [], sources: [S.dsedjList, S.must] },
-  'gsat-ast': { id: 'gsat-ast', tokens: ['Taiwan GSAT / 學測'], sources: [S.ceec, S.ceecGsat, S.ceecAst, S.ceecProcess, S.uacTw] },
+  'four-univ-jae': { id: 'four-univ-jae', tokens: [], sources: [S.dsedjList, S.must, S.dsedj] },
+  'gsat-ast': { id: 'gsat-ast', tokens: ['Taiwan GSAT / 學測'], sources: [S.ceec, S.ceecGsat, S.ceecAst, S.ceecProcess, S.uacTw, S.cac, S.jbcrc] },
   'ib-or-alevel': { id: 'ib-or-alevel', tokens: ['International Baccalaureate', 'A-Level'], sources: [S.ucasTariff, S.ukLevels, S.ibo] },
   'uk-alevel': { id: 'uk-alevel', tokens: ['A-Level', 'GCSE / O-Level', 'BTEC', 'Scottish Highers', 'Cambridge Pre-U'], sources: [S.ukLevels, S.ucasTariff, S.ofqual, S.ucas] },
   ib: { id: 'ib', tokens: ['International Baccalaureate'], sources: [S.ibo, S.ucasTariff] },
   'us-hs': { id: 'us-hs', tokens: ['High School Diploma (US)', 'SAT', 'ACT', 'Advanced Placement (AP)'], sources: [S.sat, S.act, S.ap, S.commonApp] },
   'au-atar': { id: 'au-atar', tokens: ['ATAR'], sources: [S.atar, S.vtac, S.qtac, S.studyAu] },
   'de-abitur': { id: 'de-abitur', tokens: ['Abitur'], sources: [S.kmk, S.anabin, S.uniAssist, S.hochschulstart, S.daad] },
-  'fr-bac': { id: 'fr-bac', tokens: ['Baccalauréat (France)'], sources: [S.onisep, S.campusFrance] },
+  'fr-bac': { id: 'fr-bac', tokens: ['Baccalauréat (France)'], sources: [S.onisep, S.campusFrance, S.frBac, S.parcoursup] },
   jp: { id: 'jp', tokens: ['EJU (Japan)'], sources: [S.dnc, S.ejuJa, S.ejuEn, S.mext, S.studyJp] },
   kr: { id: 'kr', tokens: ['Suneung / CSAT (Korea)'], sources: [S.studyKr] },
   sg: { id: 'sg', tokens: ['A-Level', 'Pre-university / Junior College'], sources: [S.seab, S.moeSg] },
@@ -104,7 +108,7 @@ export interface MainlandChannel {
 /** 港澳臺起點進大陸高校的官方管道（研究 origin_branch_design.md §4 實際核查）。 */
 export const MAINLAND_CHANNELS: Record<'hk' | 'mo' | 'tw', readonly MainlandChannel[]> = {
   hk: [
-    { id: 'hk-dse-scheme', key: 'hk.dse', sources: [S.edbScheme2027, S.edbScheme2026, S.dseMeasures2023, S.dseList2023], status: 'verified' },
+    { id: 'hk-dse-scheme', key: 'hk.dse', sources: [S.edbScheme2027, S.edbScheme2026, S.edbWay2026, S.edbList2026, S.dseMeasures2023, S.dseList2023], status: 'verified' },
     { id: 'joint-admission', key: 'hk.joint', sources: [S.joint2026, S.gatzs, S.gatzsGuide], status: 'verified' },
   ],
   mo: [

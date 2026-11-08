@@ -201,6 +201,9 @@ if (datasetMeta.institutions.gzipBytes > 500 * 1024) die(`institutions.json gzip
 const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/
 for (const [k, s] of Object.entries(serialized)) if (EMAIL.test(s)) die(`${k}: email-like string`)
 for (const s of sources) if (!/^https:\/\//.test(s.url) || !s.tier) die(`source ${s.id} not https or no tier`)
+// unsafe 網域（2026-11-08 批 G4：官方網域疑遭劫持）：任何資料集、manifest、latest 都不得出現其網址或網域字樣
+if (!L.unsafeDomains.length) die('expected unsafe domain list from db_layers (overseas national portals)')
+for (const d of L.unsafeDomains) for (const [k, s] of [...Object.entries(serialized), ['manifest', manifestText], ['latest', latestText]]) if (s.includes(d)) die(`${k}: contains unsafe domain ${d}`)
 
 const outRoot = join(root, 'public', 'db', 'v1')
 mkdirSync(join(outRoot, version), { recursive: true })

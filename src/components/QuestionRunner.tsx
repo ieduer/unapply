@@ -166,7 +166,6 @@ export function QuestionRunner({
 
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex flex-col">
-      <div className="max-w-2xl w-full mx-auto px-4 pt-4"><EvidenceNotice /></div>
       <SiteHeader
         sticky
         width="max-w-2xl"
@@ -187,7 +186,9 @@ export function QuestionRunner({
         }
       />
 
-      <section className="flex-1 max-w-2xl w-full mx-auto px-4 sm:px-6 pt-6 pb-32 sm:pt-10 sm:pb-10 flex flex-col gap-8 sm:gap-10">
+      {/* 頁頭在最上；生活回報說明在頁頭下方，手機收成一行（2026-11-08 批 G4） */}
+      <div className="max-w-2xl w-full mx-auto px-4 sm:px-6 pt-3 sm:pt-4"><EvidenceNotice collapseOnMobile /></div>
+      <section className="flex-1 max-w-2xl w-full mx-auto px-4 sm:px-6 pt-5 pb-32 sm:pt-8 sm:pb-10 flex flex-col gap-8 sm:gap-10">
         <div key={q.id} className="question-enter flex flex-col gap-3 sm:gap-4">
             <h2 className="serif text-2xl sm:text-3xl leading-snug">{questionTitle(q.id)}</h2>
             {subtitle && (

@@ -28,11 +28,11 @@ const options = globalOptions(items, GLOBAL_POOLS, atlas)
 const sel = (patch: Partial<GlobalSelection> = {}): GlobalSelection => normalizeGlobalSelection({ ...emptyGlobalSelection(), ...patch }, options, familyOf)
 const ctx = { familyOf, userAudience: audienceForOrigin('cn-mainland') }
 
-test('池：海外層 403＋港澳臺院校池 27（當時值）；地區碼與 GRAS 一致；港澳臺池地區對到海外層同一套地區碼；GRAS 學科只取前 50', () => {
+test('池：海外層 403＋港澳臺院校池 28（當時值；2026-11-08 批 G4 香港都會大學上線，前為 27）；地區碼與 GRAS 一致；港澳臺池地區對到海外層同一套地區碼；GRAS 學科只取前 50', () => {
   assert.equal(items.filter((i) => i.pool === 'overseas').length, overseas.institutions.length)
   assert.equal(items.filter((i) => i.pool === 'hkmotw').length, hkmotw.institutions.length)
   assert.equal(overseas.institutions.length, 403)
-  assert.equal(hkmotw.institutions.length, 27)
+  assert.equal(hkmotw.institutions.length, 28)
   assert.equal(new Set(items.map((i) => i.key)).size, items.length)
   const overseasRegions = new Set(overseas.regions.map((r) => r.code))
   for (const code of Object.values(HKMOTW_REGION_CODE)) assert.ok(overseasRegions.has(code), code)
@@ -47,7 +47,7 @@ test('池：海外層 403＋港澳臺院校池 27（當時值）；地區碼與 
   const none = computeGlobal(items, sel(), ctx)
   assert.equal(none.counts.crossed, 0)
   assert.equal(none.counts.kept, items.length)
-  assert.equal(none.counts.pool, 430)
+  assert.equal(none.counts.pool, 431)
 })
 
 test('(a) 地區：劃掉的地區全部機構劃掉、原因帶該校地區碼；兩個池同時作用；地區全劃則剩 0 且每所都有原因', () => {

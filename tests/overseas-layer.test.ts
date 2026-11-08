@@ -32,15 +32,16 @@ const allDetails = (): OverseasInstitutionDetail[] => regionList.flatMap((r) => 
 
 // 研究 coverage.md 2026-11-07 的口徑（當時值）：verified 343／needs_review 2／blocked 42／not_found 16；高信心 336、中信心 7；平台 91（verified 63）；簽證 90（verified 47）。
 // 2026-11-08 批 G1（DECISIONS C2）：中信心 7 所中 4 所人工確認升 high、3 所改 not_found → verified 340／not_found 19；高信心 340、中信心 0。
-test('計數與研究 coverage＋G1 人工確認一致：403 所、340／2／42／19、高信心 340、中信心 0；平台 63/91、簽證 47/90；44 個地區', () => {
+// 2026-11-08 批 G4（真實瀏覽器覆核入庫）：機構 +39 verified → 379／0／13／11；平台 77/91（另 1 條 unsafe）、簽證 61/90。
+test('計數與研究 coverage＋G1 人工確認＋G4 瀏覽器覆核一致：403 所、379／0／13／11、高信心 379；平台 77/91（unsafe 1）、簽證 61/90；44 個地區', () => {
   const c = overseasManifest.counts
   assert.equal(c.institutions, 403)
-  assert.deepEqual(c.byStatus, { verified: 340, needs_review: 2, blocked: 42, not_found: 19 })
-  assert.deepEqual(c.byConfidence, { high: 340, medium: 0 })
-  assert.equal(c.admissionsLinksLive, 340)
+  assert.deepEqual(c.byStatus, { verified: 379, needs_review: 0, blocked: 13, not_found: 11 })
+  assert.deepEqual(c.byConfidence, { high: 379, medium: 0 })
+  assert.equal(c.admissionsLinksLive, 379)
   assert.equal(c.regions, 44)
-  assert.deepEqual(c.portals, { total: 91, verified: 63, live: 63 })
-  assert.deepEqual(c.visa, { total: 90, verified: 47, live: 47 })
+  assert.deepEqual(c.portals, { total: 91, verified: 77, live: 77, unsafe: 1 })
+  assert.deepEqual(c.visa, { total: 90, verified: 61, live: 61 })
   assert.equal(c.byStatus.verified, c.byConfidence.high + c.byConfidence.medium)
   // meta.json（入庫時寫入）與 manifest 一致
   assert.equal(meta.counts.institutions.verified, c.byStatus.verified)
@@ -233,15 +234,41 @@ test('人工確認（2026-11-08 批 G1，DECISIONS C2）：official-external 只
     const w = websites.find((x) => x.univCode === id)!
     assert.equal(w.website, site); assert.equal(w.status, 'verified'); assert.equal(w.verifiedAt, '2026-11-08')
   }
-  for (const id of ['RI00074', 'RI00555', 'RI02259']) {
+  // G1 改 not_found 的三所，G4 真實瀏覽器覆核在該校自有網域讀到國際本科申請頁 → verified＋high（domainMatch=true）
+  for (const [id, domain] of [['RI00074', 'utas.edu.au'], ['RI00555', 'hec.edu'], ['RI02259', 'gu.se']] as const) {
     const i = byId.get(id)!
-    assert.equal(i.status, 'not_found'); assert.equal(i.linkLive, false); assert.equal(i.admissions.url, undefined)
-    assert.ok(i.admissions.note?.startsWith('官方頁本站未讀到：招生頁落在') && i.admissions.note.includes('2026-11-08 裁定'), i.admissions.note)
-    assert.equal([i.gaokao, i.qualifications, i.english, i.otherLanguage, i.tuition, i.channels, i.timeline].reduce((n, b) => n + b.quotes.length, 0), 0)
-    assert.equal(i.qualifications.listed.length, 0)
+    assert.equal(i.status, 'verified'); assert.ok(i.linkLive); assert.ok(new URL(i.admissions.url!).hostname.endsWith(domain), i.admissions.url)
+    assert.equal(i.admissions.externalDomain, undefined)
   }
   // CU Denver 不動（F1-7）
   assert.match(byId.get('RI02976')!.website, /ucdenver\.edu/)
-  const m = meta as unknown as { revisions: { at: string; changes: { institutionId: string }[] }[] }
-  assert.deepEqual(m.revisions.at(-1)!.changes.map((c) => c.institutionId).sort(), ['RI00074', 'RI00555', 'RI01434', 'RI02126', 'RI02259', 'RI02493', 'RI02779'])
+  const m = meta as unknown as { revisions: { at: string; batch: string; changes: { institutionId: string }[] }[] }
+  assert.deepEqual(m.revisions.find((r) => r.batch === 'G1')!.changes.map((c) => c.institutionId).sort(), ['RI00074', 'RI00555', 'RI01434', 'RI02126', 'RI02259', 'RI02493', 'RI02779'])
+})
+
+test('批 G4（真實瀏覽器覆核入庫）：verified 片段照抄、跨網域只收 Institut Agro；unsafe 不出網址與網域；港入境處不再當內地居民頁；Tilburg 原句在學歷資格欄', () => {
+  const byId = new Map(allDetails().map((i) => [i.id, i]))
+  const m = meta as unknown as { revisions: { batch: string; changes: { institutions: { institutionId: string; result: string }[] } }[] }
+  const g4 = m.revisions.find((r) => r.batch === 'G4')!
+  assert.equal(g4.changes.institutions.filter((c) => c.result === 'verified-in-browser').length, 39)
+  for (const c of g4.changes.institutions.filter((x) => x.result === 'verified-in-browser')) {
+    const i = byId.get(c.institutionId)!
+    assert.equal(i.status, 'verified', c.institutionId); assert.ok(i.linkLive, c.institutionId)
+  }
+  const agro = byId.get('RI00502')!
+  assert.equal(agro.admissions.externalDomain, 'www.institut-agro-montpellier.fr'); assert.equal(agro.admissions.reviewedAt, '2026-11-08')
+  for (const id of ['RI02012', 'RI00063']) assert.ok(byId.get(id)!.linkLive, id) // NUS、Melbourne
+  const tilburg = byId.get('RI01621')!
+  assert.ok(tilburg.qualifications.quotes.some((q) => /cannot be admitted directly/.test(q.text) && q.label === 'Diploma requirements – Asia'))
+  assert.equal(tilburg.gaokao.quotes.length, 0)
+  const regionFile = (code: string) => regionList.find((r) => r.region.code === code)!
+  const eth = regionFile('Ethiopia')
+  const unsafe = eth.portals.filter((p) => p.status === 'unsafe')
+  assert.equal(unsafe.length, 1); assert.equal(unsafe[0].domain, null); assert.equal(unsafe[0].url, undefined); assert.equal(unsafe[0].linkLive, false)
+  for (const r of regionList) assert.ok(!JSON.stringify(r).includes('moe.gov.et'), r.region.code)
+  assert.ok(!indexText.includes('moe.gov.et'))
+  const hk = regionFile('China-Hong Kong').visa.find((v) => v.authority.startsWith('Immigration Department'))!
+  assert.ok(!/Mainland residents\)$/.test(hk.category)); assert.ok(hk.quotes.other.some((q) => q.includes('does not apply to: Chinese residents of the Mainland and Taiwan')))
+  const ca = regionFile('Canada').portals.find((p) => p.name.startsWith('OUAC'))!
+  assert.equal(ca.domain, 'ouac.on.ca'); assert.ok(ca.linkLive); assert.ok(ca.corroborating >= 1)
 })

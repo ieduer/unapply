@@ -3,8 +3,14 @@
 export type AuthorityTier = 'P0' | 'P1' | 'P2' | 'OWN'
 export type AuthorityTierMatch = 'prefix' | 'host' | 'registrable'
 export interface AuthorityTierRule { domain: string; match: AuthorityTierMatch; tier: AuthorityTier; nameZh: string }
-export const authorityTiersSource = {"file":"authority_tiers.2026-11-07.csv","checkedAt":"2026-11-08","counts":{"rules":107,"byTier":{"P0":74,"P1":13,"P2":14,"OWN":6},"byMatch":{"prefix":5,"host":9,"registrable":93}}} as const
+export const authorityTiersSource = {"file":"authority_tiers.2026-11-07.csv","checkedAt":"2026-11-08","counts":{"rules":108,"byTier":{"P0":75,"P1":13,"P2":14,"OWN":6},"byMatch":{"prefix":6,"host":9,"registrable":93}}} as const
 export const authorityTierRules: readonly AuthorityTierRule[] = [
+  {
+    "domain": "https://www.google.com/about/careers/",
+    "match": "prefix",
+    "tier": "P0",
+    "nameZh": "Google Careers"
+  },
   {
     "domain": "https://github.com/ieduer/unapply",
     "match": "prefix",

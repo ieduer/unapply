@@ -84,12 +84,12 @@ export const originSources: Record<string, OriginSource> = {
     "reason": ""
   },
   "https://www.gatzs.com.cn/z/tw/": {
-    "title": "祖国大陆普通高校依据台湾地区学测成绩招收台湾高中毕业生系统",
+    "title": "祖国大陆普通高校依据台湾地区学测成绩招收台湾高中毕业生",
     "domain": "gatzs.com.cn",
-    "status": "needs_review",
-    "live": false,
-    "fetchedAt": "2026-11-07",
-    "reason": "可見文字只有 219 字（可能純 JavaScript 載入）"
+    "status": "verified",
+    "live": true,
+    "fetchedAt": "2026-11-08",
+    "reason": ""
   },
   "https://www.hkeaa.edu.hk/en/hkdse/": {
     "title": "Hong Kong Examinations and Assessment Authority - HKDSE",
@@ -204,12 +204,12 @@ export const originSources: Record<string, OriginSource> = {
     "reason": ""
   },
   "https://gaokao.chsi.com.cn/": {
-    "title": "",
+    "title": "阳光高考_教育部高校招生阳光工程指定平台",
     "domain": "chsi.com.cn",
-    "status": "blocked",
-    "live": false,
-    "fetchedAt": "2026-11-07",
-    "reason": "HTTP 412（反自動化前置條件），不繞過"
+    "status": "verified",
+    "live": true,
+    "fetchedAt": "2026-11-08",
+    "reason": ""
   },
   "https://www.gov.uk/what-different-qualification-levels-mean/list-of-qualification-levels": {
     "title": "What qualification levels mean: England, Wales and Northern Ireland - GOV.UK",
@@ -249,7 +249,7 @@ export const originSources: Record<string, OriginSource> = {
     "status": "blocked",
     "live": false,
     "fetchedAt": "2026-11-07",
-    "reason": "HTTP 403／挑戰頁，不繞過"
+    "reason": "真實瀏覽器覆核（2026-11-08）仍遇驗證頁或伺服器拒絕；HTTP 403／挑戰頁，不繞過"
   },
   "https://satsuite.collegeboard.org/sat": {
     "title": "The SAT – SAT Suite | College Board",
@@ -484,12 +484,12 @@ export const originSources: Record<string, OriginSource> = {
     "reason": ""
   },
   "https://www.cbse.gov.in/": {
-    "title": "Access Denied",
+    "title": "CBSE - Central Board of Secondary Education",
     "domain": "cbse.gov.in",
-    "status": "blocked",
-    "live": false,
-    "fetchedAt": "2026-11-07",
-    "reason": "HTTP 403／挑戰頁，不繞過"
+    "status": "verified",
+    "live": true,
+    "fetchedAt": "2026-11-08",
+    "reason": ""
   },
   "https://cisce.org/": {
     "title": "403 Forbidden",
@@ -497,7 +497,7 @@ export const originSources: Record<string, OriginSource> = {
     "status": "blocked",
     "live": false,
     "fetchedAt": "2026-11-07",
-    "reason": "HTTP 403／挑戰頁，不繞過"
+    "reason": "真實瀏覽器覆核（2026-11-08）仍遇驗證頁或伺服器拒絕；HTTP 403／挑戰頁，不繞過"
   },
   "https://www2.nzqa.govt.nz/ncea/": {
     "title": "NCEA and secondary - NZQA",
@@ -521,6 +521,78 @@ export const originSources: Record<string, OriginSource> = {
     "status": "verified",
     "live": true,
     "fetchedAt": "2026-11-07",
+    "reason": ""
+  },
+  "https://portal.dsedj.gov.mo/webdsejspace/internet/Inter_main_page.jsp?id=80073": {
+    "title": "教育及青年發展局 — 中國內地普通高校聯合招收澳門保送生",
+    "domain": "dsedj.gov.mo",
+    "status": "verified",
+    "live": true,
+    "fetchedAt": "2026-11-08",
+    "reason": ""
+  },
+  "https://www.cac.edu.tw/apply116/index.php": {
+    "title": "申請入學-大學甄選入學委員會",
+    "domain": "cac.edu.tw",
+    "status": "verified",
+    "live": true,
+    "fetchedAt": "2026-11-08",
+    "reason": ""
+  },
+  "https://www.jbcrc.edu.tw/": {
+    "title": "大學招生委員會聯合會",
+    "domain": "jbcrc.edu.tw",
+    "status": "verified",
+    "live": true,
+    "fetchedAt": "2026-11-08",
+    "reason": ""
+  },
+  "https://www.ugc.edu.hk/eng/ugc/index.html": {
+    "title": "UGC",
+    "domain": "ugc.edu.hk",
+    "status": "verified",
+    "live": true,
+    "fetchedAt": "2026-11-08",
+    "reason": ""
+  },
+  "https://www.cspe.edu.hk/tc/": {
+    "title": "自資專上教育資訊平台",
+    "domain": "cspe.edu.hk",
+    "status": "verified",
+    "live": true,
+    "fetchedAt": "2026-11-08",
+    "reason": ""
+  },
+  "https://www.edb.gov.hk/attachment/tc/edu-system/postsecondary/policy-doc/pilot-scheme/scheme_2026/way.pdf": {
+    "title": "2026 年内地高校招收香港中学文凭考试学生办法",
+    "domain": "edb.gov.hk",
+    "status": "verified",
+    "live": true,
+    "fetchedAt": "2026-11-08",
+    "reason": ""
+  },
+  "https://www.edb.gov.hk/attachment/tc/edu-system/postsecondary/policy-doc/pilot-scheme/scheme_2026/list.pdf": {
+    "title": "Scheme for Admission of Hong Kong Students to Mainland Higher Education Institutions for 2026/27 Academic Year — List of Participating Institutions",
+    "domain": "edb.gov.hk",
+    "status": "verified",
+    "live": true,
+    "fetchedAt": "2026-11-08",
+    "reason": ""
+  },
+  "https://www.education.gouv.fr/reussir-au-lycee/le-baccalaureat-general-10457": {
+    "title": "Le baccalauréat général",
+    "domain": "education.gouv.fr",
+    "status": "verified",
+    "live": true,
+    "fetchedAt": "2026-11-08",
+    "reason": ""
+  },
+  "https://www.parcoursup.gouv.fr/": {
+    "title": "Parcoursup, la plateforme d'accès à l'enseignement supérieur | Parcoursup",
+    "domain": "parcoursup.gouv.fr",
+    "status": "verified",
+    "live": true,
+    "fetchedAt": "2026-11-08",
     "reason": ""
   }
 }

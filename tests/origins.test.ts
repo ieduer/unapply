@@ -81,7 +81,7 @@ test('資格 token 全部存在於 S3 資料（qualifications.json 與地區檔�
   assert.deepEqual(qualificationTokens('hk', { qualification: 'hkdse', scope: null }), { tokens: ['HKDSE'], gaokao: false })
   assert.deepEqual(qualificationTokens('hk', emptyOriginPrefs), { tokens: [], gaokao: false })
   assert.deepEqual(payload.gaokaoAccepted, institutions.filter((i) => i.gaokaoPolicy === 'accepted').map((i) => i.id).sort())
-  assert.equal(payload.gaokaoAccepted.length, 4)
+  assert.equal(payload.gaokaoAccepted.length, 7) // 2026-11-08 批 G4 瀏覽器覆核後（當時值；G4 前為 4）
   // payload 與地區檔逐 token 一致
   for (const [token, ids] of Object.entries(payload.tokens)) {
     assert.deepEqual(ids, institutions.filter((i) => i.qualifications.listed.includes(token)).map((i) => i.id).sort(), token)
@@ -138,7 +138,7 @@ test('官方頁：只有 verified＋https＋同網域才 live；needs_review／b
     }
   }
   // 政府／官方網域白名單：全部上線鏈接的網域都在這些尾綴下
-  const allowed = ['.gov.hk', '.gov.mo', '.gov.cn', '.gov.uk', '.gov.au', '.gov.sg', '.gov.my', '.gov.in', '.govt.nz', '.go.jp', '.go.kr', '.edu.hk', '.edu.mo', '.edu.tw', '.edu.cn', '.edu.au', '.edu.my', '.ac.jp', '.kmk.org', 'gatzs.com.cn', 'ucas.com', 'collegeboard.org', 'act.org', 'commonapp.org', 'uni-assist.de', 'hochschulstart.de', 'daad.de', 'onisep.fr', 'campusfrance.org', 'dongzong.my', 'ontario.ca', 'canada.ca', 'cao.ie', 'nuffic.nl', 'jupas.edu.hk', 'moe.gov.sg']
+  const allowed = ['.gov.hk', '.gov.mo', '.gov.cn', '.gov.uk', '.gov.au', '.gov.sg', '.gov.my', '.gov.in', '.govt.nz', '.go.jp', '.go.kr', '.edu.hk', '.edu.mo', '.edu.tw', '.edu.cn', '.edu.au', '.edu.my', '.ac.jp', '.kmk.org', 'gatzs.com.cn', 'ucas.com', 'collegeboard.org', 'act.org', 'commonapp.org', 'uni-assist.de', 'hochschulstart.de', 'daad.de', 'onisep.fr', 'campusfrance.org', 'dongzong.my', 'ontario.ca', 'canada.ca', 'cao.ie', 'nuffic.nl', 'jupas.edu.hk', 'moe.gov.sg', 'chsi.com.cn', '.gouv.fr']
   for (const [url, entry] of Object.entries(originSources)) if (entry.live) assert.ok(allowed.some((suffix) => entry.domain.endsWith(suffix.replace(/^\./, '')) || new URL(url).hostname.endsWith(suffix)), `${url} 網域不在白名單`)
   // 不存個人資料
   assert.equal(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(read('src/data/originSources.ts') + payloadText), false)

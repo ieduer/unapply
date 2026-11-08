@@ -2,7 +2,8 @@
 // 兩層：index 給地區清單與機構列表（每機構一條摘要）；地區檔只在進入地區頁時載入（全欄原文片段＋國家層申請平台＋簽證主管機關頁）。
 // 這一層只抄官方頁原文、不解讀、不進任何題目／引擎／AnswerMap／A+ 證據；任何欄位都不表示錄取可能。
 
-export type OverseasStatus = 'verified' | 'needs_review' | 'blocked' | 'not_found'
+/** unsafe（2026-11-08 批 G4，只見於國家層）：官方網域疑遭劫持，不上鏈接也不輸出網址與網域。 */
+export type OverseasStatus = 'verified' | 'needs_review' | 'blocked' | 'not_found' | 'unsafe'
 export type OverseasConfidence = 'high' | 'medium'
 export type GaokaoPolicy = 'accepted' | 'not_accepted' | 'conflicting' | 'separate_channel' | 'mentioned' | 'not_stated'
 
@@ -98,7 +99,7 @@ export interface OverseasPortal {
   /** 幾所機構的官方頁鏈到這個平台網域。 */
   corroborating: number
   fetchedAt: string
-  quotes: { audience: string[]; fees: string[]; timeline: string[] }
+  quotes: { audience: string[]; fees: string[]; timeline: string[]; other: string[] }
   url?: string
   pageTitle?: string | null
   note?: string
@@ -113,7 +114,7 @@ export interface OverseasVisa {
   /** verified 才上鏈接；被擋者只寫主管機關名與「核查時被擋」。 */
   linkLive: boolean
   fetchedAt: string
-  quotes: { financial: string[]; language: string[]; insurance: string[]; fee: string[]; timeline: string[] }
+  quotes: { financial: string[]; language: string[]; insurance: string[]; fee: string[]; timeline: string[]; other: string[] }
   url?: string
   pageTitle?: string | null
   note?: string

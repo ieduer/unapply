@@ -360,7 +360,7 @@ function UnreadLine({ note, domain, fetchedAt }: { note?: string; domain: string
 function PortalCard({ portal }: { portal: OverseasPortal }) {
   const { t } = useLocale()
   const unread = t('ui.overseas.unread')
-  const hasQuotes = portal.quotes.audience.length + portal.quotes.fees.length + portal.quotes.timeline.length > 0
+  const hasQuotes = portal.quotes.audience.length + portal.quotes.fees.length + portal.quotes.timeline.length + portal.quotes.other.length > 0
   return (
     <li className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-xl p-4 flex flex-col gap-2">
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
@@ -376,6 +376,7 @@ function PortalCard({ portal }: { portal: OverseasPortal }) {
           <PlainQuotes label={t('ui.overseas.portal.quotes.audience')} items={portal.quotes.audience} />
           <PlainQuotes label={t('ui.overseas.portal.quotes.fees')} items={portal.quotes.fees} />
           <PlainQuotes label={t('ui.overseas.portal.quotes.timeline')} items={portal.quotes.timeline} />
+          <PlainQuotes label={t('ui.overseas.portal.quotes.other')} items={portal.quotes.other} />
         </dl>
       ) : <p className="text-xs text-fog-500">{t('ui.overseas.portal.noQuotes', { unread })}</p>}
       {portal.linkLive && portal.url ? <SourceLine url={portal.url} live date={portal.fetchedAt} prefixKey="ui.overseas.officialPage" /> : (
@@ -389,7 +390,7 @@ function VisaCard({ visa }: { visa: OverseasVisa }) {
   const { t } = useLocale()
   const unread = t('ui.overseas.unread')
   const q = visa.quotes
-  const hasQuotes = q.financial.length + q.language.length + q.insurance.length + q.fee.length + q.timeline.length > 0
+  const hasQuotes = q.financial.length + q.language.length + q.insurance.length + q.fee.length + q.timeline.length + q.other.length > 0
   return (
     <li className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-xl p-4 flex flex-col gap-2">
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
@@ -406,6 +407,7 @@ function VisaCard({ visa }: { visa: OverseasVisa }) {
           <PlainQuotes label={t('ui.overseas.visa.quotes.insurance')} items={q.insurance} />
           <PlainQuotes label={t('ui.overseas.visa.quotes.fee')} items={q.fee} />
           <PlainQuotes label={t('ui.overseas.visa.quotes.timeline')} items={q.timeline} />
+          <PlainQuotes label={t('ui.overseas.visa.quotes.other')} items={q.other} />
         </dl>
       ) : <p className="text-xs text-fog-500">{t('ui.overseas.visa.noQuotes', { unread })}</p>}
       {visa.linkLive && visa.url ? <SourceLine url={visa.url} live date={visa.fetchedAt} prefixKey="ui.overseas.officialPage" /> : (

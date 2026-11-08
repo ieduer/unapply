@@ -11,9 +11,30 @@
     "tools": "tools/crawl_admissions.mjs（--only <ids> --force 重抓）、verify_national.mjs、build_institutions_csv.mjs、redact_emails.mjs"
   },
   "files": {
-    "overseas_admissions.2026-11-07.csv": { "researchName": "institutions_admissions.csv", "sha256": "fb4ba8d8fe612705219f451752aaf50d323b26e118cbfb8633067cd0100898bf", "researchSha256": "bebc108a1e666d30f41ab38ca3cef9236ae3b21c599af696dcfba76dafa5f7ff", "rows": 403, "key": "institutionId = gras_institutions_geo.univCode", "note": "2026-11-08 起與研究原檔不再逐位元組相同：見 revisions（研究原檔 SHA-256 記在 researchSha256）" },
-    "overseas_national_portals.2026-11-07.csv": { "researchName": "national_portals.csv", "sha256": "cfd51351b78788ee8a5d5e8934e2f0124e645a9af4779eae40445402dde508b0", "rows": 91, "key": "(region, officialUrl)" },
-    "overseas_visa_policies.2026-11-07.csv": { "researchName": "visa_policies.csv", "sha256": "07af058e4c3421cf92c933adf548a0874e4c782e2eed52c37ea262fa64a8ad8d", "rows": 90, "key": "(region, officialUrl)" }
+    "overseas_admissions.2026-11-07.csv": {
+      "researchName": "institutions_admissions.csv",
+      "sha256": "1e47666c95d1aecff8a56eedca15d19786825604100590d23f2a94eaa8b1306a",
+      "researchSha256": "bebc108a1e666d30f41ab38ca3cef9236ae3b21c599af696dcfba76dafa5f7ff",
+      "rows": 403,
+      "key": "institutionId = gras_institutions_geo.univCode",
+      "note": "2026-11-08 起與研究原檔不再逐位元組相同：見 revisions（研究原檔 SHA-256 記在 researchSha256 或第一筆 revision 的 previousSha256）"
+    },
+    "overseas_national_portals.2026-11-07.csv": {
+      "researchName": "national_portals.csv",
+      "sha256": "6d0ac625265341df6c14895f713b1f9a971fae8e40fa3222c97761a271a5fd0a",
+      "rows": 91,
+      "key": "(region, officialUrl)",
+      "note": "2026-11-08 起與研究原檔不再逐位元組相同：見 revisions（研究原檔 SHA-256 記在 researchSha256 或第一筆 revision 的 previousSha256）",
+      "researchSha256": "cfd51351b78788ee8a5d5e8934e2f0124e645a9af4779eae40445402dde508b0"
+    },
+    "overseas_visa_policies.2026-11-07.csv": {
+      "researchName": "visa_policies.csv",
+      "sha256": "4fdcf2c801d82dc0cbec99df683f8fc8844ec26d482a851fdf301f2418ae6e93",
+      "rows": 90,
+      "key": "(region, officialUrl)",
+      "note": "2026-11-08 起與研究原檔不再逐位元組相同：見 revisions（研究原檔 SHA-256 記在 researchSha256 或第一筆 revision 的 previousSha256）",
+      "researchSha256": "07af058e4c3421cf92c933adf548a0874e4c782e2eed52c37ea262fa64a8ad8d"
+    }
   },
   "crawl": {
     "startedAt": "2026-11-07T05:39:00Z",
@@ -26,9 +47,33 @@
   },
   "scope": "GRAS 2026 前 50 機構中 region ≠ China 的 403 所（含香港 7、澳門 4、臺灣 4，標 region 供 S2 對照）；起點為 S0 已核官網",
   "counts": {
-    "institutions": { "total": 403, "verified": 340, "needs_review": 2, "blocked": 42, "not_found": 19, "high": 340, "medium": 0, "regions": 44 },
-    "portals": { "total": 91, "verified": 63, "needs_review": 13, "blocked": 9, "not_found": 6, "high": 63 },
-    "visa": { "total": 90, "verified": 47, "needs_review": 23, "blocked": 16, "not_found": 4, "high": 47 }
+    "institutions": {
+      "total": 403,
+      "verified": 379,
+      "needs_review": 0,
+      "blocked": 13,
+      "not_found": 11,
+      "high": 379,
+      "medium": 0,
+      "regions": 44
+    },
+    "portals": {
+      "total": 91,
+      "verified": 77,
+      "needs_review": 0,
+      "blocked": 3,
+      "not_found": 10,
+      "unsafe": 1,
+      "high": 77
+    },
+    "visa": {
+      "total": 90,
+      "verified": 61,
+      "needs_review": 0,
+      "blocked": 7,
+      "not_found": 22,
+      "high": 61
+    }
   },
   "privacy": "三檔皆無電郵樣式（研究會話 redact_emails.mjs 已處理）、無人名欄；build_overseas_layer.mjs 入庫時再斷言一次（表頭白名單＋全欄電郵掃描）",
   "caveats": [
@@ -44,19 +89,1167 @@
   },
   "revisions": [
     {
-      "at": "2026-11-08", "batch": "G1",
+      "at": "2026-11-08",
+      "batch": "G1",
       "authority": "reports/operations/nope-global-roadmap-20261107/DECISIONS.md C2（站長 2026-11-08 授權主會話裁定）",
       "previousSha256": "bebc108a1e666d30f41ab38ca3cef9236ae3b21c599af696dcfba76dafa5f7ff",
-      "addedColumns": ["reviewedBy", "reviewedAt", "reviewNote"],
+      "addedColumns": [
+        "reviewedBy",
+        "reviewedAt",
+        "reviewNote"
+      ],
       "changes": [
-        { "institutionId": "RI02779", "name": "Massachusetts Institute of Technology", "change": "confidence medium→high（official-external，人工確認 mitadmissions.org 為 MIT 官方招生站）" },
-        { "institutionId": "RI02493", "name": "Lancaster University", "change": "confidence medium→high（official-external，人工確認 lancaster.ac.uk 為該校自有網域）" },
-        { "institutionId": "RI01434", "name": "Institute of Science Tokyo", "change": "officialWebsite http://www.titech.ac.jp/→https://www.isct.ac.jp/、officialDomain titech.ac.jp→isct.ac.jp（與 S0 gras_institution_websites.2026-11-08.csv 同步）；domainMatch official-external→true；confidence medium→high" },
-        { "institutionId": "RI02126", "name": "Pohang University of Science and Technology", "change": "officialWebsite http://www.postech.edu/→https://www.postech.ac.kr/kor/index.do、officialDomain postech.edu→postech.ac.kr（與 S0 同步）；domainMatch official-external→true；confidence medium→high" },
-        { "institutionId": "RI00074", "name": "University of Tasmania", "change": "status verified→not_found：招生頁落在 UAC，非該校自有本科入口；招生頁 URL／標題與抽取欄位移出本檔（研究原檔保留）" },
-        { "institutionId": "RI00555", "name": "HEC Paris", "change": "status verified→not_found：招生頁落在 Bocconi，非該校自有本科入口；同上" },
-        { "institutionId": "RI02259", "name": "University of Gothenburg", "change": "status verified→not_found：招生頁落在全國平台 antagning.se，非該校自有本科入口；同上" }
+        {
+          "institutionId": "RI02779",
+          "name": "Massachusetts Institute of Technology",
+          "change": "confidence medium→high（official-external，人工確認 mitadmissions.org 為 MIT 官方招生站）"
+        },
+        {
+          "institutionId": "RI02493",
+          "name": "Lancaster University",
+          "change": "confidence medium→high（official-external，人工確認 lancaster.ac.uk 為該校自有網域）"
+        },
+        {
+          "institutionId": "RI01434",
+          "name": "Institute of Science Tokyo",
+          "change": "officialWebsite http://www.titech.ac.jp/→https://www.isct.ac.jp/、officialDomain titech.ac.jp→isct.ac.jp（與 S0 gras_institution_websites.2026-11-08.csv 同步）；domainMatch official-external→true；confidence medium→high"
+        },
+        {
+          "institutionId": "RI02126",
+          "name": "Pohang University of Science and Technology",
+          "change": "officialWebsite http://www.postech.edu/→https://www.postech.ac.kr/kor/index.do、officialDomain postech.edu→postech.ac.kr（與 S0 同步）；domainMatch official-external→true；confidence medium→high"
+        },
+        {
+          "institutionId": "RI00074",
+          "name": "University of Tasmania",
+          "change": "status verified→not_found：招生頁落在 UAC，非該校自有本科入口；招生頁 URL／標題與抽取欄位移出本檔（研究原檔保留）"
+        },
+        {
+          "institutionId": "RI00555",
+          "name": "HEC Paris",
+          "change": "status verified→not_found：招生頁落在 Bocconi，非該校自有本科入口；同上"
+        },
+        {
+          "institutionId": "RI02259",
+          "name": "University of Gothenburg",
+          "change": "status verified→not_found：招生頁落在全國平台 antagning.se，非該校自有本科入口；同上"
+        }
       ]
+    },
+    {
+      "at": "2026-11-08",
+      "batch": "G4",
+      "authority": "reports/operations/nope-global-roadmap-20261107/DECISIONS.md（站長 2026-11-08 授權主會話裁定）＋主會話 2026-11-08 G4 入庫裁定 1–7",
+      "review": {
+        "dir": "reports/operations/nope-global-roadmap-20261107/browser-review",
+        "report": "REVIEW.md",
+        "reviewer": "claude-in-chrome（覆核會話 nope-browser-review；reviewedBy 角色代碼）",
+        "files": {
+          "institutions_review.csv": "3104e290dd40f800e0bed3973ebb04180c35ef1517879dcc01301f29240c18bc",
+          "national_review.csv": "04cc0c11a14742c166d0125b5d3f52cb14db0ceed6357e11947ba00c3a8a16d6",
+          "raw/c1_institutions.jsonl": "1d443f06e195b358457087d52f25bdb0c273098a028a0e16f3719c39081c5052",
+          "raw/c3_national.jsonl": "514fb19414b7414aecdf63e5e9f9f86878971a57caf2a60d58cdee5ddf3f733c"
+        }
+      },
+      "tool": "reports/operations/nope-global-roadmap-20261107/nope-g4/tools/apply_browser_review.mjs（片段照抄；覆核者句尾位置註記移到片段標籤；gaokaoPolicy／qualificationsListed／englishTests／ieltsOverall／toeflOverall／otherLanguage／applicationChannels 以研究 extract.mjs 從新原文重算）",
+      "previousSha256": {
+        "overseas_admissions.2026-11-07.csv": "fb4ba8d8fe612705219f451752aaf50d323b26e118cbfb8633067cd0100898bf",
+        "overseas_national_portals.2026-11-07.csv": "cfd51351b78788ee8a5d5e8934e2f0124e645a9af4779eae40445402dde508b0",
+        "overseas_visa_policies.2026-11-07.csv": "07af058e4c3421cf92c933adf548a0874e4c782e2eed52c37ea262fa64a8ad8d"
+      },
+      "previousCounts": {
+        "institutions": {
+          "total": 403,
+          "verified": 340,
+          "needs_review": 2,
+          "blocked": 42,
+          "not_found": 19,
+          "high": 340,
+          "medium": 0,
+          "regions": 44
+        },
+        "portals": {
+          "total": 91,
+          "verified": 63,
+          "needs_review": 13,
+          "blocked": 9,
+          "not_found": 6,
+          "high": 63
+        },
+        "visa": {
+          "total": 90,
+          "verified": 47,
+          "needs_review": 23,
+          "blocked": 16,
+          "not_found": 4,
+          "high": 47
+        }
+      },
+      "addedColumns": {
+        "overseas_national_portals.2026-11-07.csv": [
+          "otherQuote",
+          "reviewedBy",
+          "reviewedAt",
+          "reviewNote"
+        ],
+        "overseas_visa_policies.2026-11-07.csv": [
+          "otherQuote",
+          "reviewedBy",
+          "reviewedAt",
+          "reviewNote"
+        ]
+      },
+      "addedStatus": {
+        "unsafe": "官方網域疑遭劫持：不上鏈接、payload 與 /db 都不輸出網址或網域（衣索比亞教育部 moe.gov.et）"
+      },
+      "changes": {
+        "institutions": [
+          {
+            "institutionId": "RI02012",
+            "name": "National University of Singapore",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "mentioned",
+            "dataAcademicYear": "2026"
+          },
+          {
+            "institutionId": "RI02581",
+            "name": "University of Oxford",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02548",
+            "name": "University College London",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": "2027 entry"
+          },
+          {
+            "institutionId": "RI03012",
+            "name": "University of Michigan, Ann Arbor",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": "2026-2027 application cycle"
+          },
+          {
+            "institutionId": "RI02677",
+            "name": "Columbia University",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RG00013",
+            "name": "City University of Hong Kong",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "separate_channel",
+            "dataAcademicYear": "2027/28"
+          },
+          {
+            "institutionId": "RI00063",
+            "name": "The University of Melbourne",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": "2027 start year intake"
+          },
+          {
+            "institutionId": "RI00055",
+            "name": "Monash University",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "accepted",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI01608",
+            "name": "Erasmus University Rotterdam",
+            "result": "verified-in-browser",
+            "change": "status not_found→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": "2027-2028"
+          },
+          {
+            "institutionId": "RI00317",
+            "name": "University of Alberta",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI00046",
+            "name": "Deakin University",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02114",
+            "name": "Korea University",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02148",
+            "name": "Yonsei University",
+            "result": "verified-in-browser",
+            "change": "status needs_review→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": "2027 학년도"
+          },
+          {
+            "institutionId": "RI02259",
+            "name": "University of Gothenburg",
+            "result": "verified-in-browser",
+            "change": "status not_found→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02289",
+            "name": "University of Geneva",
+            "result": "not-found-in-browser",
+            "change": "status not_found→not_found",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI01992",
+            "name": "King Saud University",
+            "result": "verified-in-browser",
+            "change": "status not_found→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI00047",
+            "name": "Edith Cowan University",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": "Semester 1, 2027"
+          },
+          {
+            "institutionId": "RI00050",
+            "name": "Griffith University",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": "2026"
+          },
+          {
+            "institutionId": "RI00057",
+            "name": "Queensland University of Technology",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI00065",
+            "name": "The University of Newcastle, Australia",
+            "result": "verified-in-browser",
+            "change": "status not_found→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": "2026"
+          },
+          {
+            "institutionId": "RI00502",
+            "name": "Institut Agro",
+            "result": "verified-in-browser",
+            "change": "status not_found→verified、confidence ∅→high（official-external，招生頁在成員校網域）",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": "2026-2027"
+          },
+          {
+            "institutionId": "RI00717",
+            "name": "Humboldt University of Berlin",
+            "result": "blocked-in-browser",
+            "change": "status not_found→blocked",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI00758",
+            "name": "University of Konstanz",
+            "result": "verified-in-browser",
+            "change": "status not_found→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI01157",
+            "name": "University College Dublin",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "mentioned",
+            "dataAcademicYear": "2027 entry"
+          },
+          {
+            "institutionId": "RI01986",
+            "name": "King Abdulaziz University",
+            "result": "verified-in-browser",
+            "change": "status not_found→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02014",
+            "name": "Singapore Management University",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "mentioned",
+            "dataAcademicYear": "AY2026-27"
+          },
+          {
+            "institutionId": "RI02092",
+            "name": "Hanyang University",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02475",
+            "name": "Durham University",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "accepted",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02498",
+            "name": "London Business School",
+            "result": "not-found-in-browser",
+            "change": "status not_found→not_found",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02514",
+            "name": "Queen's University Belfast",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "accepted",
+            "dataAcademicYear": "2026-27 fees; 2027 UCAS deadline"
+          },
+          {
+            "institutionId": "RI00757",
+            "name": "Kiel University",
+            "result": "skipped-robots",
+            "change": "status blocked→blocked",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02201",
+            "name": "University of Cordoba",
+            "result": "skipped-robots",
+            "change": "status blocked→blocked",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02496",
+            "name": "Liverpool John Moores University",
+            "result": "skipped-robots",
+            "change": "status blocked→blocked",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RG00010",
+            "name": "The Education University of Hong Kong",
+            "result": "verified-in-browser",
+            "change": "status not_found→verified、confidence ∅→high",
+            "gaokaoPolicy": "separate_channel",
+            "dataAcademicYear": "2027/28"
+          },
+          {
+            "institutionId": "RG00015",
+            "name": "City University of Macau",
+            "result": "not-found-in-browser",
+            "change": "status not_found→not_found",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI00038",
+            "name": "Australian Catholic University",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI00051",
+            "name": "James Cook University",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": "2027"
+          },
+          {
+            "institutionId": "RI00053",
+            "name": "La Trobe University",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI00054",
+            "name": "Macquarie University",
+            "result": "verified-in-browser",
+            "change": "status not_found→verified、confidence ∅→high",
+            "gaokaoPolicy": "mentioned",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI00074",
+            "name": "University of Tasmania",
+            "result": "verified-in-browser",
+            "change": "status not_found→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": "Semester 1, 2027"
+          },
+          {
+            "institutionId": "RI00099",
+            "name": "University of Veterinary Medicine, Vienna",
+            "result": "not-found-in-browser",
+            "change": "status not_found→not_found",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI00555",
+            "name": "HEC Paris",
+            "result": "verified-in-browser",
+            "change": "status not_found→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": "2026-27"
+          },
+          {
+            "institutionId": "RI00762",
+            "name": "Johannes Gutenberg University Mainz",
+            "result": "not-found-in-browser",
+            "change": "status not_found→not_found",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI01566",
+            "name": "National Autonomous University of Mexico",
+            "result": "not-found-in-browser",
+            "change": "status blocked→not_found",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI01621",
+            "name": "Tilburg University",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI01631",
+            "name": "Auckland University of Technology",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "mentioned",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI01637",
+            "name": "University of Otago",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "mentioned",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02045",
+            "name": "University of Johannesburg",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": "2027 intake"
+          },
+          {
+            "institutionId": "RI02048",
+            "name": "University of Pretoria",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": "2027"
+          },
+          {
+            "institutionId": "RI02174",
+            "name": "Pompeu Fabra University",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": "2026"
+          },
+          {
+            "institutionId": "RI02304",
+            "name": "Chulalongkorn University",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": "2027（頁內日期表為 2024–2025，頁內不一致）"
+          },
+          {
+            "institutionId": "RI02326",
+            "name": "Universite de Monastir",
+            "result": "not-found-in-browser",
+            "change": "status not_found→not_found",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02465",
+            "name": "Bournemouth University",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02470",
+            "name": "Cardiff University",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02502",
+            "name": "London School of Hygiene & Tropical Medicine",
+            "result": "not-found-in-browser",
+            "change": "status blocked→not_found",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02536",
+            "name": "The Open University",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02537",
+            "name": "The Royal Veterinary College",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02575",
+            "name": "University of Leicester",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02612",
+            "name": "American University",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02623",
+            "name": "Baylor College of Medicine",
+            "result": "not-found-in-browser",
+            "change": "status not_found→not_found",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI02833",
+            "name": "Oklahoma State University",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified、confidence ∅→high",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI03008",
+            "name": "University of Massachusetts Chan Medical School",
+            "result": "not-found-in-browser",
+            "change": "status blocked→not_found",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          },
+          {
+            "institutionId": "RI03812",
+            "name": "Mohamed Bin Zayed University of Artificial Intelligence",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked",
+            "gaokaoPolicy": "not_stated",
+            "dataAcademicYear": ""
+          }
+        ],
+        "portals": [
+          {
+            "rowKey": "portal:5",
+            "region": "United States",
+            "name": "ApplyTexas",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified"
+          },
+          {
+            "rowKey": "portal:6",
+            "region": "United States",
+            "name": "Cal State Apply",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified；網址改為現行頁"
+          },
+          {
+            "rowKey": "portal:7",
+            "region": "United States",
+            "name": "EducationUSA (U.S. Department of State)",
+            "result": "skipped-robots",
+            "change": "status blocked→blocked"
+          },
+          {
+            "rowKey": "portal:12",
+            "region": "Australia",
+            "name": "UAC — International applicants",
+            "result": "verified-in-browser",
+            "change": "status needs_review→verified；網址改為現行頁"
+          },
+          {
+            "rowKey": "portal:16",
+            "region": "Australia",
+            "name": "TISC (Western Australia)",
+            "result": "verified-in-browser",
+            "change": "status needs_review→verified；網址改為現行頁"
+          },
+          {
+            "rowKey": "portal:27",
+            "region": "France",
+            "name": "Parcoursup",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified"
+          },
+          {
+            "rowKey": "portal:90",
+            "region": "France",
+            "name": "Campus France — Chine (中國)",
+            "result": "not-found-in-browser",
+            "change": "status not_found→not_found"
+          },
+          {
+            "rowKey": "portal:42",
+            "region": "Japan",
+            "name": "JASSO — Admission procedures for international students",
+            "result": "verified-in-browser",
+            "change": "status needs_review→verified；網址改為現行頁"
+          },
+          {
+            "rowKey": "portal:85",
+            "region": "Brazil",
+            "name": "PEC-G (Programa de Estudantes-Convênio de Graduação)",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "portal:18",
+            "region": "Canada",
+            "name": "OUAC — Ontario Universities' Application Centre",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified"
+          },
+          {
+            "rowKey": "portal:19",
+            "region": "Canada",
+            "name": "OUAC 105 (applicants outside Ontario high schools)",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked"
+          },
+          {
+            "rowKey": "portal:20",
+            "region": "Canada",
+            "name": "ApplyAlberta",
+            "result": "verified-in-browser",
+            "change": "status needs_review→verified；網址改為現行頁"
+          },
+          {
+            "rowKey": "portal:48",
+            "region": "China-Hong Kong",
+            "name": "Education Bureau — Non-local students",
+            "result": "not-found-in-browser",
+            "change": "status not_found→not_found"
+          },
+          {
+            "rowKey": "portal:49",
+            "region": "China-Macau",
+            "name": "教育及青年發展局（DSEDJ）",
+            "result": "verified-in-browser",
+            "change": "status needs_review→verified；網址改為現行頁"
+          },
+          {
+            "rowKey": "portal:74",
+            "region": "Czech Republic",
+            "name": "Study in Czechia (DZS)",
+            "result": "verified-in-browser",
+            "change": "status needs_review→verified；網址改為現行頁"
+          },
+          {
+            "rowKey": "portal:83",
+            "region": "Ethiopia",
+            "name": "Ministry of Education Ethiopia",
+            "result": "skipped-unsafe",
+            "change": "status needs_review→unsafe"
+          },
+          {
+            "rowKey": "portal:38",
+            "region": "Finland",
+            "name": "Studyinfo (Opintopolku)",
+            "result": "verified-in-browser",
+            "change": "status needs_review→verified"
+          },
+          {
+            "rowKey": "portal:87",
+            "region": "Germany",
+            "name": "uni-assist — Pay all fees",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "portal:76",
+            "region": "Hungary",
+            "name": "felvi.hu (Oktatási Hivatal)",
+            "result": "not-found-in-browser",
+            "change": "status not_found→not_found"
+          },
+          {
+            "rowKey": "portal:77",
+            "region": "Hungary",
+            "name": "Study in Hungary (Tempus Public Foundation)",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked"
+          },
+          {
+            "rowKey": "portal:63",
+            "region": "Israel",
+            "name": "Study in Israel (Council for Higher Education)",
+            "result": "not-found-in-browser",
+            "change": "status not_found→not_found"
+          },
+          {
+            "rowKey": "portal:28",
+            "region": "Netherlands",
+            "name": "Studielink",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified"
+          },
+          {
+            "rowKey": "portal:62",
+            "region": "New Zealand",
+            "name": "Study with New Zealand (Education New Zealand)",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified；網址改為現行頁"
+          },
+          {
+            "rowKey": "portal:65",
+            "region": "Saudi Arabia",
+            "name": "Study in Saudi Arabia (Ministry of Education)",
+            "result": "not-found-in-browser",
+            "change": "status not_found→not_found"
+          },
+          {
+            "rowKey": "portal:44",
+            "region": "South Korea",
+            "name": "TOPIK (Test of Proficiency in Korean)",
+            "result": "verified-in-browser",
+            "change": "status needs_review→verified；網址改為現行頁"
+          },
+          {
+            "rowKey": "portal:56",
+            "region": "Spain",
+            "name": "Ministerio de Universidades — Acceso a la universidad",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "portal:82",
+            "region": "Tunisia",
+            "name": "Ministère de l'Enseignement Supérieur et de la Recherche Scientifique",
+            "result": "not-found-in-browser",
+            "change": "status not_found→not_found"
+          },
+          {
+            "rowKey": "portal:71",
+            "region": "United Arab Emirates",
+            "name": "Ministry of Higher Education and Scientific Research",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "portal:18",
+            "region": "Canada",
+            "name": "OUAC — Ontario Universities' Application Centre",
+            "result": "domain-fix",
+            "change": "domain on.ca→ouac.on.ca；corroboratingInstitutions 0→9（機構招生頁申請管道寫明 OUAC）"
+          },
+          {
+            "rowKey": "portal:6",
+            "region": "United States",
+            "name": "Cal State Apply",
+            "result": "domain-class-fix",
+            "change": "domainClass official-platform→public-agency（calstate.edu 為加州州立大學系統本身網域）"
+          }
+        ],
+        "visa": [
+          {
+            "rowKey": "visa:2",
+            "region": "United States",
+            "name": "F-1 Student Visa",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked"
+          },
+          {
+            "rowKey": "visa:5",
+            "region": "United States",
+            "name": "Visa fees",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked"
+          },
+          {
+            "rowKey": "visa:10",
+            "region": "Australia",
+            "name": "Student visa (subclass 500)",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified"
+          },
+          {
+            "rowKey": "visa:11",
+            "region": "Australia",
+            "name": "Student visa (subclass 500) — Genuine Student requirement",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified"
+          },
+          {
+            "rowKey": "visa:12",
+            "region": "Australia",
+            "name": "Overseas Student Health Cover (OSHC)",
+            "result": "not-found-in-browser",
+            "change": "status not_found→not_found"
+          },
+          {
+            "rowKey": "visa:20",
+            "region": "France",
+            "name": "Long-stay student visa (VLS-TS étudiant)",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified；網址改為現行頁"
+          },
+          {
+            "rowKey": "visa:34",
+            "region": "Japan",
+            "name": "Student visa (在留資格「留学」)",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified"
+          },
+          {
+            "rowKey": "visa:36",
+            "region": "Japan",
+            "name": "Visa fees",
+            "result": "not-found-in-browser",
+            "change": "status blocked→not_found"
+          },
+          {
+            "rowKey": "visa:52",
+            "region": "Austria",
+            "name": "Residence permit — Students",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "visa:53",
+            "region": "Austria",
+            "name": "Entry and residence",
+            "result": "not-found-in-browser",
+            "change": "status blocked→not_found"
+          },
+          {
+            "rowKey": "visa:54",
+            "region": "Belgium",
+            "name": "Long stay — Students",
+            "result": "verified-in-browser",
+            "change": "status needs_review→verified；網址改為現行頁"
+          },
+          {
+            "rowKey": "visa:43",
+            "region": "China-Hong Kong",
+            "name": "Study in Hong Kong (Mainland residents)",
+            "result": "verified-in-browser",
+            "change": "status needs_review→verified；網址改為現行頁"
+          },
+          {
+            "rowKey": "visa:44",
+            "region": "China-Hong Kong",
+            "name": "Fees",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "visa:45",
+            "region": "China-Macau",
+            "name": "外地學生逗留許可",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "visa:46",
+            "region": "China-Macau",
+            "name": "治安警察局出入境事務",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "visa:47",
+            "region": "China-Taiwan",
+            "name": "停留簽證／居留簽證（就學）",
+            "result": "verified-in-browser",
+            "change": "status needs_review→verified；網址改為現行頁"
+          },
+          {
+            "rowKey": "visa:73",
+            "region": "Czech Republic",
+            "name": "Long-term residence — study",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "visa:85",
+            "region": "Ethiopia",
+            "name": "e-Visa",
+            "result": "verified-in-browser",
+            "change": "status needs_review→verified"
+          },
+          {
+            "rowKey": "visa:32",
+            "region": "Finland",
+            "name": "Residence permit for studies",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked"
+          },
+          {
+            "rowKey": "visa:33",
+            "region": "Finland",
+            "name": "Residence permit application for studies",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked"
+          },
+          {
+            "rowKey": "visa:17",
+            "region": "Germany",
+            "name": "Visa for studying",
+            "result": "verified-in-browser",
+            "change": "status needs_review→verified；網址改為現行頁"
+          },
+          {
+            "rowKey": "visa:19",
+            "region": "Germany",
+            "name": "Blocked account / proof of financial resources",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "visa:74",
+            "region": "Greece",
+            "name": "Visas",
+            "result": "not-found-in-browser",
+            "change": "status blocked→not_found"
+          },
+          {
+            "rowKey": "visa:75",
+            "region": "Hungary",
+            "name": "Residence permit for study",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "visa:76",
+            "region": "Hungary",
+            "name": "Visa information",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified；網址改為現行頁；網域 →konzinfo.mfa.gov.hu"
+          },
+          {
+            "rowKey": "visa:65",
+            "region": "India",
+            "name": "Student visa",
+            "result": "not-found-in-browser",
+            "change": "status not_found→not_found"
+          },
+          {
+            "rowKey": "visa:77",
+            "region": "Iran",
+            "name": "Student visa (e-Visa)",
+            "result": "verified-in-browser",
+            "change": "status not_found→verified；網址改為現行頁；網域 →evisatraveller.mfa.ir"
+          },
+          {
+            "rowKey": "visa:58",
+            "region": "Israel",
+            "name": "A/2 Student visa",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked"
+          },
+          {
+            "rowKey": "visa:59",
+            "region": "Israel",
+            "name": "Visas (MFA)",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked"
+          },
+          {
+            "rowKey": "visa:49",
+            "region": "Italy",
+            "name": "Study visa (Visto per studio)",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "visa:23",
+            "region": "Netherlands",
+            "name": "Residence permit — university or higher professional education",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "visa:31",
+            "region": "Norway",
+            "name": "Study permit — university and university college",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "visa:86",
+            "region": "Pakistan",
+            "name": "Student visa",
+            "result": "verified-in-browser",
+            "change": "status blocked→verified"
+          },
+          {
+            "rowKey": "visa:66",
+            "region": "Portugal",
+            "name": "Study visa (national visa)",
+            "result": "blocked-in-browser",
+            "change": "status blocked→blocked"
+          },
+          {
+            "rowKey": "visa:63",
+            "region": "South Africa",
+            "name": "Study visa",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "visa:38",
+            "region": "South Korea",
+            "name": "Hi Korea — e-Government for Foreigners",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "visa:50",
+            "region": "Spain",
+            "name": "Visado de estudios",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "visa:27",
+            "region": "Sweden",
+            "name": "Residence permit for studies at university",
+            "result": "verified-in-browser",
+            "change": "status needs_review→verified；網址改為現行頁"
+          },
+          {
+            "rowKey": "visa:28",
+            "region": "Sweden",
+            "name": "Residence permit for studies (legacy URL)",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "visa:25",
+            "region": "Switzerland",
+            "name": "Entry and residence for education",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "visa:82",
+            "region": "Thailand",
+            "name": "Non-Immigrant Visa ED",
+            "result": "not-found-in-browser",
+            "change": "status needs_review→not_found"
+          },
+          {
+            "rowKey": "visa:83",
+            "region": "Thailand",
+            "name": "Thai e-Visa",
+            "result": "verified-in-browser",
+            "change": "status needs_review→verified"
+          },
+          {
+            "rowKey": "visa:84",
+            "region": "Tunisia",
+            "name": "Visas",
+            "result": "not-found-in-browser",
+            "change": "status not_found→not_found"
+          },
+          {
+            "rowKey": "visa:43",
+            "region": "China-Hong Kong",
+            "name": "Study in Hong Kong (Students; page states the arrangement does not apply to Mainland or Taiwan residents)",
+            "result": "recategorised",
+            "change": "類別改為頁面所寫的一般學生入境安排（頁面明言不適用於內地與臺灣居民），不再當成內地居民就學頁"
+          }
+        ],
+        "movedQuotes": [
+          {
+            "id": "RI00317",
+            "from": "gaokaoQuotes",
+            "to": "qualificationsQuotes",
+            "quotes": [
+              "China All of: Senior High School (Gao Zhong) Transcript (document must include final transcript of grades and courses fo"
+            ]
+          },
+          {
+            "id": "RI01621",
+            "from": "gaokaoQuotes",
+            "to": "qualificationsQuotes",
+            "quotes": [
+              "China Students with a secondary education diploma from China cannot be admitted directly because the level is not equiva"
+            ]
+          }
+        ]
+      }
     }
   ]
 }

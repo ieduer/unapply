@@ -51,6 +51,8 @@ const CHANNEL_ZH = {
   jee_early_batch: '統招提前批（經省考試院填報志願）',
   jee_volunteer: '統招（經省考試院填報志願）',
   mainland_gaokao: '內地高考招生（管道細節待人工覆核）',
+  // 2026-11-08 批 G4：港城大報考須知原文「中国内地高考单独招生」、不參加統招、不佔統招志願
+  mainland_gaokao_separate: '內地高考單獨招生（不參加統招、不佔統招志願）',
   mainland_students_admitted: '招收內地學生（報名方式待人工覆核）',
   joint_admission_overseas: '海外聯招（聯合分發／各校單獨招生）',
   postgraduate_only: '目前只招碩博士班；學士班未招生',

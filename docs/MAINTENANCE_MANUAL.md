@@ -455,6 +455,8 @@ npm run data:programs && npm run test:s1                   # 前端 payload 與�
 
 2026-11-08 批 G1（`DECISIONS.md` C2，當時值）：medium 7 所——MIT（mitadmissions.org）、Lancaster（lancaster.ac.uk）人工確認升 high；Institute of Science Tokyo、POSTECH 的 S0 官網同步改為 `https://www.isct.ac.jp/`、`https://www.postech.ac.kr/kor/index.do`（`gras_institution_websites.2026-11-08.csv`，`verify_institution_websites.mjs` `MANUAL_REVIEW` 以 `--recheck --only RI01434,RI02126` 重打），招生頁落回官網網域內而為 high；UTAS（UAC）、HEC Paris（Bocconi）、Gothenburg（antagning.se）改 `not_found`（招生頁非該校自有本科入口，抽取欄位移出、研究原檔保留）。結果 verified 340／needs_review 2／blocked 42／not_found 19；high 340、medium 0；招生頁上鏈接 340。CU Denver 不動（F1-7）。
 
+2026-11-08 批 G4（真實瀏覽器覆核入庫，當時值）：覆核會話以 Claude in Chrome 逐頁讀官方頁（`reports/operations/nope-global-roadmap-20261107/browser-review/REVIEW.md`），入庫工具 `nope-g4/tools/apply_browser_review.mjs`（從 git HEAD 的原檔重跑、可重現）：verified 的片段照抄（覆核者句尾位置註記改成片段標籤）、`reviewedBy=claude-in-chrome`（角色代碼）；`gaokaoPolicy` 只由高考欄原文以研究 `extract.mjs` 重算（高考欄原文沒有高考字樣者移到學歷資格欄並列，如 Tilburg「中國高中文憑不能直接入學」、Alberta）、其餘粗分類以全部新原文重算；跨網域只收 Institut Agro（成員校 `institut-agro-montpellier.fr`，official-external＋reviewedAt）。結果：機構 verified 379／blocked 13／not_found 11（+39，含 G1 改 not_found 的 UTAS、HEC、Gothenburg 在自有網域讀到）；平台 verified 77（另 1 條 `unsafe`）、簽證 verified 61；瀏覽器仍讀不到者 notes 前置原因並依結果改 blocked／not_found。國家層兩檔追加 `otherQuote`（介面「其他原文」）與 `reviewedBy`／`reviewedAt`／`reviewNote`；OUAC 網域由 `on.ca` 改 `ouac.on.ca`、佐證數依機構申請管道重算為 8；Cal State Apply 改 `public-agency`（加州州立大學系統本身網域）；香港入境處學生頁不再當內地居民就學頁（頁面原文：不適用於內地與臺灣居民）。**`unsafe`**（國家層新狀態）：官方網域疑遭劫持（衣索比亞教育部 moe.gov.et，研究證據頁面標題為博彩站）——不上鏈接、payload 與 `/db` 不輸出網址與網域（`build_overseas_layer.mjs` 與 `build_db.mjs` 斷言）。
+
 ### 3.10 只讀資料庫 `/db/v1`（2026-11 批 F2 起，路線圖 S5）
 
 把 §3.1–§3.9 的各層統一成有版本、有來源、有有效期的靜態資料庫，供 path／gk 等站內產品與任何人只讀取用。**只是索引與註記**：不改任何既有 payload 形狀、不新增判斷、不進題目／引擎／AnswerMap／A+ 證據；任何欄位都不表示錄取可能。不新增任何 Cloudflare 資源：檔案隨既有 Pages 專案發布，CORS／快取頭在 `public/_headers`（只匹配 `/db/*`）。
@@ -598,6 +600,7 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 - 新增 `A6 特殊招生／特長門檻`，目前是基於院校類型、校名和公開招生方式做的保守啟發式：藝術/體育院校、軍警院校、航海/飛行類優先標記；拿不準的不硬貼。
 - `B7 假期節奏` 只在明確識別出 `有小學期` 或 `暑假短` 時才進負面值；含混文本一律不做硬結論。
 - 當剩餘學校 `<= 10` 時，問卷會停在當前題並提示先看報告，不再自動跳轉到結果頁。
+- 生活回報暫緩說明（`EvidenceNotice collapseOnMobile`，2026-11-08 批 G4）：問卷頁頁頭在最上、說明在頁頭下方；手機（<640px）收成一行可展開的摘要（標題截斷、展開後完整），桌面維持完整說明。其他頁面頁頭之上沒有內容。
 - 結果頁除了剩餘名單，還必須保留「查一所學校」檢索區，讓用戶能看到某所學校是保留還是被哪幾題排掉。
 - 結果頁應保留「回去改條件」與「清空重來」入口。
 
@@ -661,7 +664,7 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 **規則（硬性）**
 
 - 資格只用**保留**語義：海外機構官方頁 `qualificationsListed` 含所選 token → 標「校方頁面寫明接受：…」；大陸起點 `gaokaoPolicy=accepted` → 「校方頁面寫明接受高考」；其餘一律「官方頁未讀到（保留）」。**絕不劃掉**任何機構、計數永遠 listed＋unread＝total；`not_accepted` 也只是不標示（原句照列，由用戶自己決定）。`status≠verified` 的機構不標示。
-- 對外鏈接：只有 `originSources[url].live`（研究 verified＋https＋最終網域在記錄網域下）才渲染為鏈接；blocked／needs_review（IBO、Parcoursup、教育部 education.gouv.fr、CBSE／CISCE、KICE robots、澳門教青局保送專頁、臺灣申請系統登入頁）只寫標題、網域與「官方頁本站未讀到：原因」。`test:origins` 以白名單網域尾綴核對全部上線鏈接。
+- 對外鏈接：只有 `originSources[url].live`（研究 verified＋https＋最終網域在記錄網域下）才渲染為鏈接；blocked／needs_review 只寫標題、網域與「官方頁本站未讀到：原因」。2026-11-08 批 G4 真實瀏覽器覆核後：學信網高考頁、CBSE、臺灣學測申請系統改 verified；新增 9 頁 verified（2026 文憑試收生辦法與參與院校名單 PDF、教資會、自資專上聯盟、澳門教青局、大學甄選入學委員會、技專校院招生委員會聯合會、法國教育部高中會考頁、Parcoursup）並掛到對應資格／管道；IBO、CISCE 仍被擋。`ui.channels.hk.dse.summary` 依 2026 辦法原文改為「3、3、2、A」（公民科達標）與校長推薦計劃新口徑。`test:origins` 以白名單網域尾綴核對全部上線鏈接。
 - 港澳臺→大陸官方管道的「要點」是本站摘要（當時值：文憑試收生計劃「3、3、2、2」、2026 聯招 3 月報名／5 月 23–24 日考、學測均標等），頁面明寫「以當年辦法與簡章為準」；不代表錄取可能、不替任何人判定資格。
 - 跨國規則：所在地只影響「前幾題」與「可申請管道」，不預設剔除任何國家。結果頁 `CrossBorderSections`：大陸起點看 `scope`（abroad／both 展開；local 或未選折疊為一行入口）；港澳臺／海外起點一律展開；兩段各帶機構數、已核計數、資料日與入口，資格有 token 時加「寫明接受 n／保持未知 m」。
 - 大陸起點的 45 題不變；港澳臺起點進大陸題庫時 A6 多一行官方管道提示（`ui.runner.a6.hkmotwNote`），判定不變。
@@ -674,7 +677,7 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 
 港澳臺與海外起點答完資格與範圍後，首頁主按鈕「開始全球減法」進 `#/global`（「直接看港澳臺院校池／海外可申請學校」保留為次按鈕）；結果頁跨國並列段與 About 路線圖段也有入口。它是**展示層**：選擇只存 `localStorage` 鍵 `unapply.globalSubtraction.v1`（`{ v: 1, origin, selection }`；存的選擇綁定起點，換起點就回到該起點的預設），**不進 `AnswerMap`、不進 `DimensionId`、不進 A+ 學習證據、不送 Function**；45 題與學習記錄完全不變（`test:global` 斷言）。
 
-**池**：海外可申請學校層（§3.7，當時值 403 所）＋港澳臺院校池（§3.5，27 所）；預設依起點與範圍（`defaultPools`：港澳臺起點兩者，`local`＝只院校池、`abroad`＝只海外層；海外起點只海外層；大陸或未選兩者），可切換、至少留一個。同一所港澳臺機構可能在兩池各算一次（看的是不同資料：國際本科招生頁 vs 內地生／港澳生管道）。港澳臺池地區 HK／MO／TW 對到 GRAS 地區碼 `China-Hong Kong`／`China-Macau`／`China-Taiwan`，讓地區題同時作用於兩池。
+**池**：海外可申請學校層（§3.7，當時值 403 所）＋港澳臺院校池（§3.5，27 所；2026-11-08 批 G4 香港都會大學上線後 28 所）；預設依起點與範圍（`defaultPools`：港澳臺起點兩者，`local`＝只院校池、`abroad`＝只海外層；海外起點只海外層；大陸或未選兩者），可切換、至少留一個。同一所港澳臺機構可能在兩池各算一次（看的是不同資料：國際本科招生頁 vs 內地生／港澳生管道）。港澳臺池地區 HK／MO／TW 對到 GRAS 地區碼 `China-Hong Kong`／`China-Macau`／`China-Taiwan`，讓地區題同時作用於兩池。
 
 **題目**（全部可跳過；只用已入庫的官方或權威資料）：
 

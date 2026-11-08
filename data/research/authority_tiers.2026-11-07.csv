@@ -62,10 +62,10 @@ db.jobs,registrable,P0,Deutsche Bahn,企業職涯自有網域,2026-11-07
 bosch.de,registrable,P0,Robert Bosch GmbH,企業自有網域上的計劃官方頁,2026-11-07
 recruit.toyota,registrable,P0,Toyota Motor Corporation,企業招聘自有網域,2026-11-07
 cathaypacific.com,registrable,P0,Cathay Pacific Airways,企業自有網域上的計劃官方頁,2026-11-07
-tesla.com,registrable,P0,Tesla,企業自有網域（候選條目，未核）,2026-11-07
-mercedes-benz.com,registrable,P0,Mercedes-Benz Group,企業自有網域（候選條目，未核）,2026-11-07
-pwc.co.uk,registrable,P0,PwC UK,企業自有網域（候選條目，未核）,2026-11-07
-baesystems.com,registrable,P0,BAE Systems,企業自有網域（候選條目，未核）,2026-11-07
+tesla.com,registrable,P0,Tesla,企業自有網域（2026-11-08 批 G4 真實瀏覽器覆核讀到官方頁）,2026-11-08
+mercedes-benz.com,registrable,P0,Mercedes-Benz Group,企業自有網域（2026-11-08 批 G4 真實瀏覽器覆核讀到官方頁）,2026-11-08
+pwc.co.uk,registrable,P0,PwC UK,企業自有網域（2026-11-08 批 G4 真實瀏覽器覆核讀到官方頁）,2026-11-08
+baesystems.com,registrable,P0,BAE Systems,企業自有網域（2026-11-08 批 G4 真實瀏覽器覆核讀到官方頁，careers.baesystems.com）,2026-11-08
 sap.com,registrable,P0,SAP,企業自有網域（候選條目，未核）,2026-11-07
 samsungcareers.com,registrable,P0,Samsung Electronics,企業招聘自有網域（候選條目，未核）,2026-11-07
 mtr.com.hk,registrable,P0,港鐵公司,企業自有網域（候選條目，未核）,2026-11-07
@@ -94,6 +94,7 @@ fortune.com,registrable,P2,Fortune,媒體報導,2026-11-07
 sixthtone.com,registrable,P2,Sixth Tone,媒體報導,2026-11-07
 cdsb.com,registrable,P2,成都商報,媒體報導,2026-11-07
 laosheng.top,registrable,P2,laosheng.top 高校名錄,第三方人工維護名錄；只作官網補缺,2026-11-07
+https://www.google.com/about/careers/,prefix,P0,Google Careers,Google 自有網域的招聘頁（只匹配此路徑前綴；2026-11-08 批 G4 真實瀏覽器覆核讀到學徒計劃官方頁）,2026-11-08
 https://github.com/ieduer/unapply,prefix,OWN,本站開源倉庫,ieduer/unapply,2026-11-07
 https://github.com/CollegesChat/,prefix,P2,CollegesChat 眾包問卷,開源社群（CC BY-NC-SA 4.0）,2026-11-07
 https://github.com/Naptie/,prefix,P2,Naptie/cn-university-geocoder,開源社群資料集,2026-11-07

@@ -76,7 +76,9 @@ const REGION_ZH = {
   Ghana: '加納', Uganda: '烏干達', Bangladesh: '孟加拉國', 'Sri Lanka': '斯里蘭卡', Kazakhstan: '哈薩克斯坦', Uruguay: '烏拉圭', Slovakia: '斯洛伐克',
 }
 const STATUS = ['verified', 'needs_review', 'blocked', 'not_found']
-const STATUS_ZH = { verified: '官方頁已讀到', needs_review: '待人工覆核', blocked: '核查時被擋', not_found: '官方頁未找到' }
+/** 國家層另有 unsafe（2026-11-08 批 G4）：官方網域疑遭劫持——不上鏈接，payload 不輸出網址也不輸出網域。 */
+const NATIONAL_STATUS = [...STATUS, 'unsafe']
+const STATUS_ZH = { verified: '官方頁已讀到', needs_review: '待人工覆核', blocked: '核查時被擋', not_found: '官方頁未找到', unsafe: '網域疑遭劫持，不提供鏈接' }
 const GAOKAO = ['accepted', 'not_accepted', 'conflicting', 'separate_channel', 'mentioned', 'not_stated']
 const GAOKAO_ZH = { accepted: '寫明接受', not_accepted: '寫明不接受', conflicting: '寫法有矛盾', separate_channel: '另有內地考生管道', mentioned: '有提及', not_stated: '未讀到' }
 const PORTAL_TYPE_ZH = {
@@ -88,8 +90,8 @@ const DOMAIN_CLASS_ZH = { gov: '政府主管機關', 'public-agency': '政府設
 // ---- 表頭白名單（同時擋掉任何人名／聯絡人欄）----
 const HEADERS = {
   admissions: ['institutionId', 'nameEn', 'nameZhHant', 'region', 'wikidata', 'grasSubjectsTop50', 'officialWebsite', 'officialDomain', 'websiteStatusS0', 'admissionsPageUrl', 'admissionsPageTitle', 'pageMatchScore', 'gaokaoPageUrl', 'gaokaoPolicy', 'gaokaoQuotes', 'qualificationsListed', 'qualificationsQuotes', 'englishTests', 'ieltsOverall', 'toeflOverall', 'englishQuotes', 'otherLanguage', 'otherLanguageQuotes', 'tuitionIntlQuotes', 'applicationChannels', 'applicationChannelQuotes', 'applicationTimelineQuotes', 'dataAcademicYear', 'sourceUrls', 'candidatePages', 'domainMatch', 'http', 'pagesFetched', 'fetchedAt', 'confidence', 'status', 'notes', 'reviewedBy', 'reviewedAt', 'reviewNote'],
-  portals: ['region', 'portalName', 'portalType', 'domainClass', 'roleLabel', 'officialUrl', 'originalCandidateUrl', 'finalUrl', 'domain', 'pageTitle', 'audienceQuote', 'feesQuote', 'timelineQuote', 'corroboratingInstitutions', 'http', 'sha256', 'fetchedAt', 'confidence', 'status', 'notes'],
-  visa: ['region', 'visaCategory', 'authority', 'officialUrl', 'originalCandidateUrl', 'finalUrl', 'domain', 'pageTitle', 'financialRequirementQuote', 'languageRequirementQuote', 'insuranceQuote', 'feeQuote', 'timelineQuote', 'http', 'sha256', 'fetchedAt', 'confidence', 'status', 'notes'],
+  portals: ['region', 'portalName', 'portalType', 'domainClass', 'roleLabel', 'officialUrl', 'originalCandidateUrl', 'finalUrl', 'domain', 'pageTitle', 'audienceQuote', 'feesQuote', 'timelineQuote', 'corroboratingInstitutions', 'http', 'sha256', 'fetchedAt', 'confidence', 'status', 'notes', 'otherQuote', 'reviewedBy', 'reviewedAt', 'reviewNote'],
+  visa: ['region', 'visaCategory', 'authority', 'officialUrl', 'originalCandidateUrl', 'finalUrl', 'domain', 'pageTitle', 'financialRequirementQuote', 'languageRequirementQuote', 'insuranceQuote', 'feeQuote', 'timelineQuote', 'http', 'sha256', 'fetchedAt', 'confidence', 'status', 'notes', 'otherQuote', 'reviewedBy', 'reviewedAt', 'reviewNote'],
 }
 const PERSON_COLUMN = /person|contact|staff|officer|legal|phone|tel\b|email|mail|姓名|聯絡|联系|法定代表/i
 
@@ -260,11 +262,22 @@ function nationalReason(r) {
   if (r.status === 'not_found') return '不可達或未找到對應頁'
   return ''
 }
+/** 國家層人工覆核欄（2026-11-08 批 G4）：三欄同有同無；reviewedBy 是角色代碼；unsafe 一律不出網址與網域。 */
+function checkNationalReview(r, where) {
+  const reviewed = Boolean(r.reviewedAt)
+  if (reviewed !== Boolean(r.reviewedBy) || reviewed !== Boolean(r.reviewNote)) die(`${where} reviewedBy／reviewedAt／reviewNote 須同有同無`)
+  if (reviewed && !/^\d{4}-\d{2}-\d{2}$/.test(r.reviewedAt)) die(`${where} reviewedAt 格式 ${r.reviewedAt}`)
+  if (reviewed && !/^[a-z][a-z-]*$/.test(r.reviewedBy)) die(`${where} reviewedBy 必須是角色代碼：${r.reviewedBy}`)
+  if (r.status === 'unsafe' && (r.confidence || !r.notes)) die(`${where} unsafe 不得帶 confidence，且須寫原因`)
+  if (r.status !== 'verified' && r.otherQuote) die(`${where} 非 verified 卻帶 otherQuote`)
+}
+const unsafeDomains = new Set()
 const portals = []
 for (const r of csv.portals) {
   const where = `平台 ${r.region}／${r.portalName}`
   if (!regionsSeen.has(r.region)) die(`${where} 的地區不在機構表`)
-  if (!STATUS.includes(r.status)) die(`${where} status ${r.status}`)
+  if (!NATIONAL_STATUS.includes(r.status)) die(`${where} status ${r.status}`)
+  checkNationalReview(r, where)
   if (!['high', ''].includes(r.confidence)) die(`${where} confidence ${r.confidence}`)
   if (!PORTAL_TYPE_ZH[r.portalType]) die(`${where} portalType ${r.portalType}`)
   if (!DOMAIN_CLASS_ZH[r.domainClass]) die(`${where} domainClass ${r.domainClass}`)
@@ -280,9 +293,14 @@ for (const r of csv.portals) {
   const item = {
     name: r.portalName, type: r.portalType, typeZh: PORTAL_TYPE_ZH[r.portalType], domainClass: r.domainClass, domainClassZh: DOMAIN_CLASS_ZH[r.domainClass], roleLabel: r.roleLabel,
     domain: r.domain || null, status: r.status, statusZh: STATUS_ZH[r.status], linkLive, corroborating, fetchedAt: dateOf(r.fetchedAt),
-    quotes: { audience: parseNationalQuotes(r.audienceQuote, where), fees: parseNationalQuotes(r.feesQuote, where), timeline: parseNationalQuotes(r.timelineQuote, where) },
+    quotes: { audience: parseNationalQuotes(r.audienceQuote, where), fees: parseNationalQuotes(r.feesQuote, where), timeline: parseNationalQuotes(r.timelineQuote, where), other: parseNationalQuotes(r.otherQuote, where) },
   }
   if (linkLive) { item.url = cleanUrl(r.officialUrl); item.pageTitle = r.pageTitle || null } else item.note = nationalReason(r)
+  if (r.status === 'unsafe') {
+    item.domain = null; item.linkLive = false
+    for (const q of Object.values(item.quotes)) if (q.length) die(`${where} unsafe 不得帶原文片段`)
+    unsafeDomains.add(r.domain); unsafeDomains.add(new URL(r.officialUrl).hostname.replace(/^www\./, ''))
+  }
   portals.push({ region: r.region, item })
 }
 const visa = []
@@ -290,6 +308,7 @@ for (const r of csv.visa) {
   const where = `簽證 ${r.region}／${r.visaCategory}`
   if (!regionsSeen.has(r.region)) die(`${where} 的地區不在機構表`)
   if (!STATUS.includes(r.status)) die(`${where} status ${r.status}`)
+  checkNationalReview(r, where)
   if (!['high', ''].includes(r.confidence)) die(`${where} confidence ${r.confidence}`)
   if (!/^https?:\/\//.test(r.officialUrl)) die(`${where} officialUrl ${r.officialUrl}`)
   if (!r.authority) die(`${where} 缺主管機關名`)
@@ -301,7 +320,7 @@ for (const r of csv.visa) {
   }
   const item = {
     category: r.visaCategory, authority: r.authority, domain: r.domain || null, status: r.status, statusZh: STATUS_ZH[r.status], linkLive, fetchedAt: dateOf(r.fetchedAt),
-    quotes: { financial: parseNationalQuotes(r.financialRequirementQuote, where), language: parseNationalQuotes(r.languageRequirementQuote, where), insurance: parseNationalQuotes(r.insuranceQuote, where), fee: parseNationalQuotes(r.feeQuote, where), timeline: parseNationalQuotes(r.timelineQuote, where) },
+    quotes: { financial: parseNationalQuotes(r.financialRequirementQuote, where), language: parseNationalQuotes(r.languageRequirementQuote, where), insurance: parseNationalQuotes(r.insuranceQuote, where), fee: parseNationalQuotes(r.feeQuote, where), timeline: parseNationalQuotes(r.timelineQuote, where), other: parseNationalQuotes(r.otherQuote, where) },
   }
   if (linkLive) { item.url = cleanUrl(r.officialUrl); item.pageTitle = r.pageTitle || null } else item.note = nationalReason(r)
   visa.push({ region: r.region, item })
@@ -315,7 +334,7 @@ const instCounts = {
   blocked: count(institutions, (i) => i.summary.status === 'blocked'), not_found: count(institutions, (i) => i.summary.status === 'not_found'),
   high: count(institutions, (i) => i.summary.confidence === 'high'), medium: count(institutions, (i) => i.summary.confidence === 'medium'), regions: regionsSeen.size,
 }
-const portalCounts = { total: portals.length, verified: count(portals, (p) => p.item.status === 'verified'), needs_review: count(portals, (p) => p.item.status === 'needs_review'), blocked: count(portals, (p) => p.item.status === 'blocked'), not_found: count(portals, (p) => p.item.status === 'not_found'), high: count(portals, (p) => p.item.linkLive) }
+const portalCounts = { total: portals.length, verified: count(portals, (p) => p.item.status === 'verified'), needs_review: count(portals, (p) => p.item.status === 'needs_review'), blocked: count(portals, (p) => p.item.status === 'blocked'), not_found: count(portals, (p) => p.item.status === 'not_found'), unsafe: count(portals, (p) => p.item.status === 'unsafe'), high: count(portals, (p) => p.item.linkLive) }
 const visaCounts = { total: visa.length, verified: count(visa, (v) => v.item.status === 'verified'), needs_review: count(visa, (v) => v.item.status === 'needs_review'), blocked: count(visa, (v) => v.item.status === 'blocked'), not_found: count(visa, (v) => v.item.status === 'not_found'), high: count(visa, (v) => v.item.linkLive) }
 for (const [name, actual, expected] of [['institutions', instCounts, meta.counts?.institutions], ['portals', portalCounts, meta.counts?.portals], ['visa', visaCounts, meta.counts?.visa]]) {
   if (!expected) die(`meta.json 缺 counts.${name}`)
@@ -368,6 +387,8 @@ for (const text of allJson) {
   if (EMAIL.test(text)) die('payload 含電郵樣式')
   if (/jsessionid|PHPSESSID|sessionid=/i.test(text)) die('payload 含會話字串')
   if (/pageMatchScore/.test(text)) die('payload 不得帶 pageMatchScore')
+  // unsafe 網域（批 G4）：任何 payload 都不得出現其網址或網域字樣
+  for (const d of unsafeDomains) if (d && text.includes(d)) die(`payload 含 unsafe 網域 ${d}`)
 }
 const indexGzip = gzipSync(Buffer.from(indexJson)).length
 if (indexGzip > 200 * 1024) die(`index.json gzip ${indexGzip} B 超過 200 KiB`)
@@ -384,7 +405,7 @@ const manifest = {
     regions: regionCodes.length, institutions: instCounts.total, byStatus: { verified: instCounts.verified, needs_review: instCounts.needs_review, blocked: instCounts.blocked, not_found: instCounts.not_found },
     byConfidence: { high: instCounts.high, medium: instCounts.medium }, admissionsLinksLive: count(institutions, (i) => i.summary.linkLive), nameZhHant: count(institutions, (i) => Boolean(i.summary.nameZh)),
     gaokao: gaokaoCounts,
-    portals: { total: portalCounts.total, verified: portalCounts.verified, live: portalCounts.high }, visa: { total: visaCounts.total, verified: visaCounts.verified, live: visaCounts.high },
+    portals: { total: portalCounts.total, verified: portalCounts.verified, live: portalCounts.high, unsafe: portalCounts.unsafe }, visa: { total: visaCounts.total, verified: visaCounts.verified, live: visaCounts.high },
     indexGzipBytes: indexGzip,
   },
 }

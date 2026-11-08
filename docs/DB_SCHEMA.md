@@ -79,7 +79,7 @@ public/db/v1/<version>/validity.json         validity（每筆 channel／conditi
 | `valueNorm` | 機器正規化值（只在來源層已有時給）：高考採認分類、資格 token 清單、`{ tests, ielts, toefl }`（原句第一個分數，可能是總分或單項）、`{ policy:'strong_base_pilot', since }`、`{ category, authority }`…；null＝未正規化 |
 | `academicYear` | 資料學年／招生年度（原文；`2027`、`2027/28`）；null＝來源未標 |
 | `sourceId`／`sourceRefs` | 來源；資料集級條件用 `sourceRefs`（`/data/programs/index.json` 的 `sources` 鍵） |
-| `status`／`confidence` | 照來源層（verified／needs_review／blocked／not_found；high／medium） |
+| `status`／`confidence` | 照來源層（verified／needs_review／blocked／not_found；high／medium）；國家層平台另有 `unsafe`（2026-11-08 批 G4：官方網域疑遭劫持，`url`／`sourceUrl` 為 null、不收錄為來源，全庫不出現其網域） |
 
 ### 2.6 source（`sources.json`）
 

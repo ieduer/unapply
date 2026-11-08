@@ -159,20 +159,24 @@ export function collectLayers(root) {
   const portalsFile = latest(rd, /^overseas_national_portals\.\d{4}-\d{2}-\d{2}\.csv$/)
   const visaFile = latest(rd, /^overseas_visa_policies\.\d{4}-\d{2}-\d{2}\.csv$/)
   const pc = {}, vc = {}
+  const unsafeDomains = new Set()
   for (const r of parseCsv(readFileSync(join(rd, portalsFile), 'utf8'))) {
     const slug = slugOf.get(r.region); if (!slug) throw new Error(`portal region ${r.region}`)
     pc[slug] = (pc[slug] || 0) + 1
     const id = `portal:${slug}:${pc[slug]}`
-    const https = /^https:\/\//.test(r.officialUrl)
+    // unsafe（2026-11-08 批 G4）：官方網域疑遭劫持——不作來源、channel 不輸出網址
+    const unsafe = r.status === 'unsafe'
+    if (unsafe) unsafeDomains.add(r.domain)
+    const https = !unsafe && /^https:\/\//.test(r.officialUrl)
     if (https) hint(r.officialUrl, { family: 'overseas', kind: r.domainClass, siteLive: r.status === 'verified' && r.confidence === 'high', title: r.pageTitle || r.portalName, date: r.fetchedAt }, { finalUrl: r.finalUrl || null, http: Number(r.http) || null, sha256: r.sha256 || null, fetchedAt: r.fetchedAt, status: r.status, evidence: portalsFile })
-    channels.push({ id, kind: 'national_portal', institutionId: null, region: r.region, name: { original: r.portalName }, portalType: r.portalType, domainClass: r.domainClass, status: r.status, confidence: r.confidence || null, url: https ? r.officialUrl : null, sourceUrl: https ? r.officialUrl : null, note: https ? null : '候選網址非 https 且官方頁本站未讀到，不收錄為來源', family: 'overseas', validity: { academicYear: null, validFrom: null, validTo: null, fetchedAt: r.fetchedAt, reviewedAt: r.fetchedAt.slice(0, 10) } })
+    channels.push({ id, kind: 'national_portal', institutionId: null, region: r.region, name: { original: r.portalName }, portalType: r.portalType, domainClass: r.domainClass, status: r.status, confidence: r.confidence || null, url: https ? r.officialUrl : null, sourceUrl: https ? r.officialUrl : null, note: unsafe ? '官方網域疑遭劫持（2026-11-08 批 G4），不收錄為來源、不輸出網址' : https ? null : '候選網址非 https 且官方頁本站未讀到，不收錄為來源', family: 'overseas', validity: { academicYear: null, validFrom: null, validTo: null, fetchedAt: r.fetchedAt, reviewedAt: r.reviewedAt || r.fetchedAt.slice(0, 10) } })
   }
   for (const r of parseCsv(readFileSync(join(rd, visaFile), 'utf8'))) {
     const slug = slugOf.get(r.region); if (!slug) throw new Error(`visa region ${r.region}`)
     vc[slug] = (vc[slug] || 0) + 1
     const id = `visa:${slug}:${vc[slug]}`
     hint(r.officialUrl, { family: 'overseas', kind: 'gov', siteLive: r.status === 'verified', title: r.pageTitle || r.authority, date: r.fetchedAt }, { finalUrl: r.finalUrl || null, http: Number(r.http) || null, sha256: r.sha256 || null, fetchedAt: r.fetchedAt, status: r.status, evidence: visaFile })
-    conditions.push({ id, subjectId: `region:${r.region}`, type: 'visa', valueRaw: null, valueRawRef: { path: `/data/overseas/regions/${slug}.json`, pointer: `visa[${vc[slug] - 1}].quotes` }, valueNorm: { category: r.visaCategory, authority: r.authority }, academicYear: null, sourceUrl: r.officialUrl, status: r.status, confidence: r.confidence || null, family: 'overseas', validity: { academicYear: null, validFrom: null, validTo: null, fetchedAt: r.fetchedAt, reviewedAt: r.fetchedAt.slice(0, 10) } })
+    conditions.push({ id, subjectId: `region:${r.region}`, type: 'visa', valueRaw: null, valueRawRef: { path: `/data/overseas/regions/${slug}.json`, pointer: `visa[${vc[slug] - 1}].quotes` }, valueNorm: { category: r.visaCategory, authority: r.authority }, academicYear: null, sourceUrl: r.officialUrl, status: r.status, confidence: r.confidence || null, family: 'overseas', validity: { academicYear: null, validFrom: null, validTo: null, fetchedAt: r.fetchedAt, reviewedAt: r.reviewedAt || r.fetchedAt.slice(0, 10) } })
   }
   const TYPE_FIELDS = [['gaokao', 'gaokao'], ['qualification', 'qualifications'], ['english', 'english'], ['other-language', 'otherLanguage'], ['tuition', 'tuition'], ['timeline', 'timeline']]
   for (const region of oIndex.regions) {
@@ -250,5 +254,5 @@ export function collectLayers(root) {
     conditions.push({ id: `${id}:eligibility`, subjectId: id, type: 'eligibility', valueRaw: p.eligibilityZh, valueNorm: null, academicYear: null, sourceUrl: p.officialUrl || p.sourceUrl, status: p.status, confidence: p.confidence, family: 'direct_hire', validity: { academicYear: null, validFrom: null, validTo: null, fetchedAt: p.verifiedAt, reviewedAt: p.verifiedAt } })
   }
 
-  return { files, refs, institutions, crosswalk, channels, conditions, sourceHints, inputs: { geoFile, jointFile, hkInstFile, hkChFile, portalsFile, visaFile, originFile, a6File, atlasVersion: atlas.version, overseasVersion: oIndex.version, programsVersion: pIndex.version, jointCounts: jointMeta.counts } }
+  return { files, refs, institutions, crosswalk, channels, conditions, sourceHints, unsafeDomains: [...unsafeDomains], inputs: { geoFile, jointFile, hkInstFile, hkChFile, portalsFile, visaFile, originFile, a6File, atlasVersion: atlas.version, overseasVersion: oIndex.version, programsVersion: pIndex.version, jointCounts: jointMeta.counts } }
 }

@@ -69,8 +69,14 @@ test('核不過的不上線：待覆核清單帶原因，且不出現在機構�
   const live = new Set(payload.institutions.map((i) => i.id))
   for (const row of payload.reviewRequired.institutions) { assert.ok(!live.has(row.id), row.id); assert.ok(row.reason.length > 0, row.id) }
   for (const row of payload.reviewRequired.channels) assert.ok(row.reason.length > 0, row.institutionId)
-  // 香港都會大學對腳本回驗證頁，按規則留在待覆核清單。
-  assert.ok(payload.reviewRequired.institutions.some((r) => r.id === 'hk-hkmu'))
+  // 香港都會大學：研究時對腳本回驗證頁留在待覆核清單；2026-11-08 批 G4 真實瀏覽器覆核讀到 → 上線，管道為獨立招生（原文）。
+  const hkmu = payload.institutions.find((i) => i.id === 'hk-hkmu')!
+  assert.ok(hkmu && !payload.reviewRequired.institutions.some((r) => r.id === 'hk-hkmu'))
+  assert.equal(hkmu.channels[0].channel, 'independent'); assert.match(hkmu.channels[0].notes, /independent enrollment methods/)
+  // 港城大：頁面原文為「中国内地高考单独招生」、不參加統招（批 G4 矛盾處理）
+  const cityu = payload.institutions.find((i) => i.id === 'hk-cityu')!
+  assert.equal(cityu.channels[0].channel, 'mainland_gaokao_separate'); assert.match(cityu.channels[0].channelZh, /不參加統招/)
+  assert.match(cityu.channels[0].conditions.tuition, /240,000/); assert.match(cityu.channels[0].conditions.english, /110分或以上/)
 })
 
 test('臺灣：陸生聯招會學士班未招生、只有碩博；海外聯招會為港澳學生管道', () => {
