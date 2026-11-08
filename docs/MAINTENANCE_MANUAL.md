@@ -663,7 +663,7 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 
 ### 5.5 全球池減法 `#/global`（2026-11-08 批 G2 起，路線圖 S4 完成定義）
 
-港澳臺與海外起點答完資格與範圍後，首頁主按鈕「開始全球減法」進 `#/global`（「直接看港澳臺院校池／海外可申請學校」保留為次按鈕）；結果頁跨國並列段與 About 路線圖段也有入口。它是**展示層**：選擇只存 `localStorage` 鍵 `unapply.globalSubtraction.v1`（`{ v: 1, selection }`），**不進 `AnswerMap`、不進 `DimensionId`、不進 A+ 學習證據、不送 Function**；45 題與學習記錄完全不變（`test:global` 斷言）。
+港澳臺與海外起點答完資格與範圍後，首頁主按鈕「開始全球減法」進 `#/global`（「直接看港澳臺院校池／海外可申請學校」保留為次按鈕）；結果頁跨國並列段與 About 路線圖段也有入口。它是**展示層**：選擇只存 `localStorage` 鍵 `unapply.globalSubtraction.v1`（`{ v: 1, origin, selection }`；存的選擇綁定起點，換起點就回到該起點的預設），**不進 `AnswerMap`、不進 `DimensionId`、不進 A+ 學習證據、不送 Function**；45 題與學習記錄完全不變（`test:global` 斷言）。
 
 **池**：海外可申請學校層（§3.7，當時值 403 所）＋港澳臺院校池（§3.5，27 所）；預設依起點與範圍（`defaultPools`：港澳臺起點兩者，`local`＝只院校池、`abroad`＝只海外層；海外起點只海外層；大陸或未選兩者），可切換、至少留一個。同一所港澳臺機構可能在兩池各算一次（看的是不同資料：國際本科招生頁 vs 內地生／港澳生管道）。港澳臺池地區 HK／MO／TW 對到 GRAS 地區碼 `China-Hong Kong`／`China-Macau`／`China-Taiwan`，讓地區題同時作用於兩池。
 

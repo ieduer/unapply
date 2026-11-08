@@ -48,21 +48,22 @@ interface Loaded { overseas: OverseasIndexPayload; hkmotw: HkMoTwPoolPayload; at
 
 const KEPT_PAGE = 60
 
-function readStored(): Partial<GlobalSelection> | null {
+/** 存的選擇綁定起點：換了起點（池的預設跟著變）就回到預設，不沿用別的起點留下的選擇。 */
+function readStored(origin: OriginRegion | null): Partial<GlobalSelection> | null {
   try {
     const raw = window.localStorage.getItem(GLOBAL_STORAGE_KEY)
     if (!raw) return null
-    const parsed = JSON.parse(raw) as { v?: number; selection?: Partial<GlobalSelection> }
-    return parsed?.v === 1 ? parsed.selection ?? null : null
+    const parsed = JSON.parse(raw) as { v?: number; origin?: string | null; selection?: Partial<GlobalSelection> }
+    return parsed?.v === 1 && (parsed.origin ?? null) === origin ? parsed.selection ?? null : null
   } catch {
     return null
   }
 }
 
-function saveStored(selection: GlobalSelection | null) {
+function saveStored(selection: GlobalSelection | null, origin: OriginRegion | null) {
   try {
     if (!selection) window.localStorage.removeItem(GLOBAL_STORAGE_KEY)
-    else window.localStorage.setItem(GLOBAL_STORAGE_KEY, JSON.stringify({ v: 1, selection }))
+    else window.localStorage.setItem(GLOBAL_STORAGE_KEY, JSON.stringify({ v: 1, origin, selection }))
   } catch {
     // 存不下就算了，本次會話仍然生效
   }
@@ -134,30 +135,30 @@ export function GlobalSubtraction({ origin, originPrefs, onBack, onAbout, onWorl
     if (!data || !allOptions) return null
     const shared = decodeGlobalSelection(shareQuery, allOptions, familyOf)
     if (shared) return { selection: shared, shared: true }
-    return { selection: normalizeGlobalSelection(readStored() ?? { pools: fallbackPools }, allOptions, familyOf, fallbackPools), shared: false }
-  }, [data, allOptions, familyOf, fallbackPools, shareQuery])
+    return { selection: normalizeGlobalSelection(readStored(origin) ?? { pools: fallbackPools }, allOptions, familyOf, fallbackPools), shared: false }
+  }, [data, allOptions, familyOf, fallbackPools, shareQuery, origin])
   const selection = edited ?? initial?.selection ?? null
   const sharedLoaded = Boolean(initial?.shared) && !sharedDismissed && !edited
   useEffect(() => {
     // 分享鏈接載入後：存成自己的選擇並把網址收回 #/global（只含選項鍵，存著也無害）
     if (!initial?.shared) return
-    saveStored(initial.selection)
+    saveStored(initial.selection, origin)
     try { window.history.replaceState(null, '', '#/global') } catch { /* 留著查詢串也無害 */ }
-  }, [initial])
+  }, [initial, origin])
 
   const update = useCallback((next: Partial<GlobalSelection>) => {
     if (!allOptions || !selection) return
     const normalized = normalizeGlobalSelection({ ...selection, ...next }, allOptions, familyOf, selection.pools)
     setEdited(normalized)
-    saveStored(normalized)
+    saveStored(normalized, origin)
     setKeptLimit(KEPT_PAGE)
-  }, [allOptions, familyOf, selection])
+  }, [allOptions, familyOf, selection, origin])
 
   const redo = () => {
     if (!allOptions) return
     const fresh = normalizeGlobalSelection(emptyGlobalSelection(fallbackPools), allOptions, familyOf, fallbackPools)
     setEdited(fresh)
-    saveStored(null)
+    saveStored(null, origin)
     setSharedDismissed(true)
     setKeptLimit(KEPT_PAGE)
   }
