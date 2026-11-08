@@ -7,6 +7,8 @@ import { MainlandChannels } from './MainlandChannels'
 import { useLocale } from '../i18n/react'
 import { Rich } from '../i18n/rich'
 import { SiteHeader } from './SiteHeader'
+import { SiteFooter } from './SiteFooter'
+import { publicNote } from '../lib/publicNote'
 
 interface Props {
   origin: OriginRegion | null
@@ -72,8 +74,8 @@ export function HkMoTwPage({ origin, originPrefs, onBack, onAbout, onWorld, onSt
   }
 
   return (
-    <main className="min-h-screen app-canvas text-fog-100 page-end-space">
-      <SiteHeader brand={t('ui.hkmotw.brand', { version: payload.version })} back={{ label: t('ui.hkmotw.backHome'), onClick: onBack }} actions={[{ label: t('ui.common.about'), onClick: onAbout }]} />
+    <main className="min-h-screen app-canvas text-fog-100">
+      <SiteHeader brand={t('ui.hkmotw.brand', { version: payload.version })} back={{ label: t('ui.hkmotw.backHome'), onClick: onBack }} />
 
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8">
         <div className="max-w-3xl flex flex-col gap-3">
@@ -137,7 +139,7 @@ export function HkMoTwPage({ origin, originPrefs, onBack, onAbout, onWorld, onSt
                   ))}
                 </ul>
               )}
-              {inst.notes && <p className="text-xs text-fog-500 leading-relaxed">{inst.notes}</p>}
+              {publicNote(inst.notes) && <p className="text-xs text-fog-500 leading-relaxed">{publicNote(inst.notes)}</p>}
               <p className="text-xs mono text-fog-500 break-all">{t('ui.hkmotw.listSource')}<a className="hover:text-accent-500 underline" href={inst.listSource.url} target="_blank" rel="noreferrer noopener">{inst.listSource.title}</a> · {inst.listSource.date}</p>
             </li>
           ))}
@@ -160,6 +162,7 @@ export function HkMoTwPage({ origin, originPrefs, onBack, onAbout, onWorld, onSt
           </p>
         </footer>
       </section>
+      <SiteFooter width="max-w-5xl" />
     </main>
   )
 }
@@ -167,12 +170,13 @@ export function HkMoTwPage({ origin, originPrefs, onBack, onAbout, onWorld, onSt
 function ChannelRow({ channel, open, onToggle }: { channel: HkMoTwChannel; open: boolean; onToggle: () => void }) {
   const { t } = useLocale()
   const c = channel.conditions
-  const hasDetails = Boolean(c.score || c.english || c.tuition || c.applicationWindow || channel.notes)
+  const notes = publicNote(channel.notes)
+  const hasDetails = Boolean(c.score || c.english || c.tuition || c.applicationWindow || notes)
   return (
     <li className="border border-ink-800 bg-ink-950 rounded-lg px-3 py-3 flex flex-col gap-2">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
         <span className="text-fog-100 font-semibold">{channel.audienceZh}</span>
-        <span className="text-fog-300">{channel.channelZh}</span>
+        <span className="text-fog-300">{t(`ui.global.channel.${channel.channel}`)}</span>
         <span className="text-xs mono text-fog-500">{channel.level}{channel.validFor ? ` · ${channel.validFor}` : t('ui.hkmotw.channel.yearMissing')}</span>
         {hasDetails && (
           <button onClick={onToggle} aria-expanded={open} className="ml-auto text-xs mono text-accent-500 hover:text-accent-400 min-h-[40px]">
@@ -186,7 +190,7 @@ function ChannelRow({ channel, open, onToggle }: { channel: HkMoTwChannel; open:
           {c.english && <Row label={t('ui.hkmotw.channel.english')}>{c.english}</Row>}
           {c.tuition && <Row label={t('ui.hkmotw.channel.tuition')}>{c.tuition}</Row>}
           {c.applicationWindow && <Row label={t('ui.hkmotw.channel.window')}>{c.applicationWindow}</Row>}
-          {channel.notes && <Row label={t('ui.hkmotw.channel.notes')}>{channel.notes}</Row>}
+          {notes && <Row label={t('ui.hkmotw.channel.notes')}>{notes}</Row>}
         </dl>
       )}
       <p className="text-xs mono text-fog-500 break-all">

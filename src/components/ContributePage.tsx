@@ -7,6 +7,7 @@ import { useLocale } from '../i18n/react'
 import { Rich } from '../i18n/rich'
 import { dimensionLabel, schoolDisplayName, valueLabel } from '../lib/i18nLabels'
 import { SiteHeader } from './SiteHeader'
+import { SiteFooter } from './SiteFooter'
 
 interface Props {
   schools: School[]
@@ -234,7 +235,7 @@ export function ContributePage({ schools, onBack }: Props) {
   const inputClass = 'w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]'
 
   return (
-    <main className="min-h-screen app-canvas text-fog-100 page-end-space">
+    <main className="min-h-screen app-canvas text-fog-100">
       <SiteHeader sticky width="max-w-2xl" brand={t('ui.contribute.kicker')} back={{ label: t('ui.common.back'), onClick: onBack }} />
 
       <section className="max-w-2xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-6">
@@ -419,6 +420,7 @@ export function ContributePage({ schools, onBack }: Props) {
           {t('ui.contribute.footer')}
         </p>
       </section>
+      <SiteFooter width="max-w-2xl" />
     </main>
   )
 }

@@ -26,6 +26,7 @@ import { TierBadge } from './TierBadge'
 import { useLocale } from '../i18n/react'
 import { dimensionLabel, linkLabel, linkNote, programStrikeLabel, provinceLabel, requirementLabel, schoolDisplayName, subjectsLabel, valueLabel } from '../lib/i18nLabels'
 import { SiteHeader } from './SiteHeader'
+import { SiteFooter } from './SiteFooter'
 
 interface Props {
   school: School
@@ -169,7 +170,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
   }, [campusMap, school.moeCode, school.province, campusRetry])
 
   return (
-    <main className="min-h-screen app-canvas text-fog-100 page-end-space">
+    <main className="min-h-screen app-canvas text-fog-100">
       <SiteHeader sticky width="max-w-3xl" brand={t('ui.detail.header')} back={{ label: t('ui.common.back'), onClick: onBack }} />
 
       <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-10">
@@ -557,6 +558,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
           )}
         </section>
       ))}
+      <SiteFooter width="max-w-3xl" />
     </main>
   )
 }

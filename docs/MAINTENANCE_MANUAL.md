@@ -643,7 +643,21 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 
 **體積**（批 E1 當時值）：1,200 鍵；主包從 398 KiB 增到 466 KiB（含正體字典 77 KiB；gzip 143 KiB）；`public/i18n/zh-Hans.json` 77 KiB／`en.json` 91 KiB（gzip 各約 27 KiB），只在切到該語言時載入。無新執行期依賴；建置期字典 92 KiB 已 vendored。
 
-### 5.4 起點分支與跨國結果（2026-11 批 E2 起，路線圖 S4；研究 origin_branch_design.md 方案 B）
+### 5.3a 起點、目的地與流程（2026-11-08 批 G6 起，取代 §5.4 的「範圍」題與 §5.5 的「池」切換；當前權威）
+
+站長回報：起點選中國大陸、範圍選「只看港澳臺與海外」，按「開始減法」仍進大陸第一題 A1「哪些地區你一定不去？」。根因：範圍只影響結果頁並列，從沒參與流程；三套範圍題文案互不一致、換起點不重設。批 G6 起：
+
+- **起點之後只問兩題**（`src/components/OriginBranch.tsx`）：資格（只對非大陸起點，可跳過，只標示不劃掉）＋「你考慮去哪裡讀？」——多選中國大陸／香港／澳門／臺灣／海外，至少一個，預設＝起點本地。存 `localStorage` 鍵 `unapply.originPrefs.v2`（`{ qualification, destinations[] }`）；讀到 v1（`{qualification, scope}`）時遷移並刪除舊鍵：local→起點本地；abroad→起點以外全部（海外起點的舊選項寫明「只看海外與港澳臺」，故為海外＋港澳臺）；both→全部。**換起點**：資格清空、目的地回到該起點預設、全球減法選擇清空（`App.setOrigin`；點同一個起點不動）。
+- **流程由純函式決定**：`src/engine/flowPlan.ts` 的 `planFlow(origin, destinations, qualification)`（語言中立、只匯入型別、不碰 AnswerMap）。含中國大陸 → 先大陸題（`#/filter`，題目、選項鍵、學習證據契約不變）；含港澳臺或海外 → 全球減法（`#/global`）；兩者都有先大陸、結果頁「下一步：…的減法（池 N 所）」主按鈕再進全球；只有非大陸目的地直接進全球，**不經任何大陸題**。首頁只有一個主按鈕「開始減法」＋一行預告（「先做中國大陸的題，再做香港的減法。」）；其餘入口縮成一行「只瀏覽：全球學科地圖 · 港澳臺院校池 · 海外可申請學校」。
+- **S1 自動略過**：非大陸起點進大陸題（任何入口：首頁、瀏覽頁「進中國大陸題庫」、深鏈）時，`mainlandAutoSkip(origin)` 讓 S1 選考科目組合不出現，並以手動「跳過」同一條路徑、同一個值 `'skip'` 寫入一次（`QuestionRunner`），Function 對任何題都接受 `'skip'`，證據形狀不變；題頁一行說明。從瀏覽頁「進中國大陸題庫」時目的地自動補上中國大陸。
+- **全球階段**（`src/engine/globalFilter.ts`）：池＝所選目的地；香港／澳門／臺灣＝港澳臺院校池該地區＋海外層同地區未重複者（院校池 `atlasId`＝海外層 id 的 10 所只算一所，卡片帶海外層招生頁）；海外＝海外層去掉港澳臺三地區。題目按相關性出現：地區題池內地區 ≥2、學科兩題池內有 GRAS 資料 ≥5、管道題只列**適用你起點的本科管道**且 ≥2 種（`globalQuestionPlan`；不出的題的選擇在正規化時丟掉）。機構卡只列適用你的管道，沒有記錄者寫「本站未記錄適用你的管道，請看官網」並保留；港澳臺考生看自己所在地的院校時顯示本地入學入口（香港 JUPAS、澳門四校聯考、臺灣甄選與分發；`LOCAL_ENTRY_SOURCES`，只有 live 才上鏈接）。官方明確「目前不招本科」的條目（已記錄管道全為 `postgraduate_only`：陸生聯招會 2026 只辦碩博）不算進池與剩下，另列「官方：目前不招本科」一節。聯合招生委員會（陸生聯招會、海外聯招會）是某類考生的管道彙整：資料記錄它只服務別類考生、而你這類考生已知時不屬於你的池（`relevantTo`）。存 `unapply.globalSubtraction.v2`（綁起點）；分享 `#/global?d=…&r=…&f=…&w=…&c=…`（目的地、地區、門類、學科、管道碼），舊 G2 鏈接 `p=` 換算成目的地。
+- **參與你這條管道的官方名單**（展示層，不改剩餘計數與學習證據）：香港起點（資格為文憑試或未答）結果頁標「在文憑試收生計劃名單內（2026/27）」並可「只看名單內」。名單＝教育局 PDF `data/research/participation/edb_hk_dse_scheme_2026_27_list.pdf`（SHA-256 `c8bf73cb…92da` 釘在 `scripts/build_participation_lists.mjs`）→ 開發期 `node scripts/extract_hk_dse_participation.mjs`（需 pdftotext）轉 CSV（165 所，20 所新增；兩所寫法不同已人工對到教育部 id：紹興文理學院→绍兴大学、廈門華夏學院→厦门华厦学院）→ `npm run data:participation`（build 鏈第一步之一）產生 `src/data/participationLists.ts`。全國聯招招生院校、依學測招收臺灣學生院校兩份名單官方頁為動態頁或回「访问出错」，**未取得**，結果頁「你這條管道」只放官方說明鏈接並註明。
+- **官方頁鏈接文字**：一律用乾淨機構名（`SOURCE_ORG_BY_DOMAIN` → 三語鍵 `ui.source.<slug>`；`liveSourceLinks` 只留 live、同網域只留一個），不再用原始網頁標題；選項提示與管道摘要不含內部核查備註（被擋、robots、連線重置、403、JavaScript、待人工覆核…，`test:origins` 斷言三語）。資料卡的來源行只寫一次「官方頁本站未讀到」；港澳臺院校池的資料備註經 `src/lib/publicNote.ts` 去掉內部核查子句後顯示（資料檔照留完整紀錄）。方法論仍在 About。
+- **About 在頁尾**：`src/components/SiteFooter.tsx`（三行頁尾，第一行末端「關於」）用於所有頁面；頁頭不再有 about。
+- **互動**：站內導航捲到頂部、瀏覽器返回／前進還原離開時的捲動位置（`src/lib/router.ts`；`history.scrollRestoration='manual'`）；路由變化後焦點移到頁面主標題，換題時移到題目標題（`tabindex=-1`，不畫焦點框）；大陸題作答與「走完大陸階段」存 `sessionStorage`（`unapply.answers.v1`、`unapply.mainlandDone.v1`；重新載入後從第一題未答處接著做，關分頁即清）；「重做」只清該階段；換語言、換色系不丟狀態。
+- **閘門** `npm run test:flow`（`tests/flow-plan.test.ts`，加入發布閘門）：5 起點 × 31 種目的地組合不含中國大陸就不進大陸題、含則先進 `#/filter`；非大陸起點略過 S1；全球階段題目出現條件；v1→v2 遷移；換起點重設；`planFlow` 不碰 AnswerMap；參與名單雜湊與 165 所對回教育部名單；資料備註過濾。
+
+### 5.4 起點分支與跨國結果（2026-11 批 E2 起；**範圍題與結果頁跨國並列已由批 G6 取代，見 §5.3a**，下列為歷史）
 
 起點（第 0 題，`origins.ts`，5 個值不變）之後，各起點先問「前幾題」——**資格**（港澳臺與海外起點）與**範圍**（所有起點）；皆可跳過。它們是「用戶是誰」，與 `candidateProvince`、`origin` 同性質：
 存 `localStorage` 鍵 `unapply.originPrefs.v1`（`{ qualification, scope }`），**不進 `AnswerMap`、不進 `DimensionId`、不進 A+ 學習證據、不送 Function**（`test:origins` 斷言；2026-11-08 已裁定維持方案 B，起點答案不進學習證據——`DECISIONS.md` A1）。
@@ -672,7 +686,7 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 
 **閘門 `test:origins`**（7 項）：不進 AnswerMap／DimensionId／learning-manifest／A+ 證據；起點 5 個不變、各起點資格與範圍選項齊、換起點歸零；資格 token 全部存在於 S3 資料且索引與地區檔逐 token 一致；保留語義（標示永不減少機構數、listed＋unread＝total、`not_accepted` 不劃）；官方頁 live 規則、needs_review 管道不上鏈接、網域白名單、無電郵；三語鍵齊；manifest 雜湊可重算、gzip ≤ 20 KiB、綁 S3 版本。
 
-### 5.5 全球池減法 `#/global`（2026-11-08 批 G2 起，路線圖 S4 完成定義）
+### 5.5 全球池減法 `#/global`（2026-11-08 批 G2 起；**池切換、管道對象題已由批 G6 改為目的地與適用管道，見 §5.3a**，下列為 G2 原設計）
 
 港澳臺與海外起點答完資格與範圍後，首頁主按鈕「開始全球減法」進 `#/global`（「直接看港澳臺院校池／海外可申請學校」保留為次按鈕）；結果頁跨國並列段與 About 路線圖段也有入口。它是**展示層**：選擇只存 `localStorage` 鍵 `unapply.globalSubtraction.v1`（`{ v: 1, origin, selection }`；存的選擇綁定起點，換起點就回到該起點的預設），**不進 `AnswerMap`、不進 `DimensionId`、不進 A+ 學習證據、不送 Function**；45 題與學習記錄完全不變（`test:global` 斷言）。
 

@@ -35,6 +35,7 @@ Owner: suen。目的：每一層資料按官方發布節奏重核、入庫、重
 | 合作辦學 | 名單全數有詳情、編號／層次／讀取日齊、對回主表 | `test:joint` |
 | 海外層 | 三檔 SHA-256 與 meta 一致、表頭白名單、無電郵、計數＝coverage | `test:overseas` |
 | 起點 | 來源狀態合法、只有 verified 上鏈接 | `test:origins` |
+| 參與院校名單（批 G6） | 教育局文憑試收生計劃名單 PDF SHA-256 釘定、CSV 列數、每所對回教育部名單、無重複；每年 10 月前後教育局公布下一學年名單：新 PDF 另存新檔名 → 改 `extract_hk_dse_participation.mjs` 路徑 → 跑抽取（需 pdftotext）→ 改 `build_participation_lists.mjs` 的 sha256／rows／year → `data:participation` | `test:flow` |
 | 權威分級 | 規則表欄位、枚舉、無重複 | `test:atlas` |
 | 資料庫 `/db/v1` | 來源全 https 且有分級、id 格式、crosswalk 端點存在、每筆 channel／condition 有 validity、latest ≤10 KiB、institutions gzip ≤500 KiB、無電郵 | `test:db` |
 | 三語 | 鍵集合相等、佔位符一致、zh-Hans fixtures | `test:i18n` |

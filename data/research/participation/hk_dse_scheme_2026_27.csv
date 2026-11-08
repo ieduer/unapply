@@ -1,0 +1,166 @@
+province,nameZhHant,nameEn,isNew,schoolId,match
+北京市,中央美術學院,Central Academy of Fine Arts,0,中央美術學院,exact
+北京市,中央音樂學院,Central Conservatory of Music,0,中央音樂學院,exact
+北京市,中央財經大學,Central University of Finance and Economics,0,中央財經大學,exact
+北京市,中央戲劇學院,The Central Academy of Drama,0,moe:4111010048,zh-Hans
+北京市,中國人民大學,Renmin University of China,0,中國人民大學,exact
+北京市,中國政法大學,China University of Political Science and Law,0,中國政法大學,exact
+北京市,中國傳媒大學,Communication University of China,0,中國傳媒大學,exact
+北京市,北京大學,Peking University,0,北京大學,exact
+北京市,北京中醫藥大學,Beijing University of Chinese Medicine,0,北京中醫藥大學,exact
+北京市,北京外國語大學,Beijing Foreign Studies University,0,moe:4111010030,zh-Hans
+北京市,北京服裝學院,Beijing Institute of Fashion Technology,0,moe:4111010012,zh-Hans
+北京市,北京師範大學,Beijing Normal University,0,北京師範大學,exact
+北京市,北京理工大學,Beijing Institute of Technology,0,北京理工大學,exact
+北京市,北京郵電大學,Beijing University of Posts and Telecommunications,0,北京郵電大學,exact
+北京市,北京電影學院,Beijing Film Academy,0,moe:4111010050,zh-Hans
+北京市,北京語言大學,Beijing Language and Culture University,0,moe:4111010032,zh-Hans
+北京市,北京體育大學,Beijing Sport University,0,moe:4111010043,zh-Hans
+北京市,北京科技大學,University of Science and Technology Beijing,0,北京科技大學,exact
+北京市,北京交通大學,Beijing Jiaotong University,0,北京交通大學,exact
+北京市,首都師範大學,Capital Normal University,0,首都師範大學,exact
+北京市,清華大學,Tsinghua University,0,清華大學,exact
+北京市,對外經濟貿易大學,University of International Business and Economics,0,對外經濟貿易大學,exact
+天津市,天津工業大學,Tiangong University,0,天津工業大學,exact
+天津市,天津大學,Tianjin University,0,天津大學,exact
+天津市,天津中醫藥大學,Tianjin University of Traditional Chinese Medicine,0,moe:4112010063,zh-Hans
+天津市,天津外國語大學,Tianjin Foreign Studies University,0,moe:4112010068,zh-Hans
+天津市,天津師範大學,Tianjin Normal University,0,moe:4112010065,zh-Hans
+天津市,中國民航大學,Civil Aviation University of China,0,moe:4112010059,zh-Hans
+天津市,南開大學,Nankai University,0,moe:4112010055,zh-Hans
+內蒙古自治區,內蒙古師範大學,Inner Mongolia Normal University,1,moe:4115010135,zh-Hans
+內蒙古自治區,內蒙古藝術學院,Inner Mongolia Arts University,1,moe:4115014531,zh-Hans
+遼寧省,大連理工大學,Dalian University of Technology,0,大連理工大學,exact
+遼寧省,東北大學,Northeastern University,0,東北大學,exact
+遼寧省,東北財經大學,Dongbei University of Finance & Economics,0,moe:4121010173,zh-Hans
+遼寧省,遼寧中醫藥大學,Liaoning University of Traditional Chinese Medicine,0,moe:4121010162,zh-Hans
+吉林省,吉林大學,Jilin University,0,吉林大學,exact
+吉林省,東北師範大學,Northeast Normal University,0,東北師範大學,exact
+吉林省,長春大學,Changchun University,1,moe:4122011726,zh-Hans
+上海市,上海大學,Shanghai University,0,上海大學,exact
+上海市,上海中醫藥大學,Shanghai University of Traditional Chinese Medicine,0,上海中醫藥大學,exact
+上海市,上海外國語大學,Shanghai International Studies University,0,moe:4131010271,zh-Hans
+上海市,上海交通大學,Shanghai Jiao Tong University,0,上海交通大學,exact
+上海市,上海紐約大學,NYU Shanghai,0,moe:4131016404,zh-Hans
+上海市,上海財經大學,Shanghai University of Finance and Economics,0,上海財經大學,exact
+上海市,上海師範大學,Shanghai Normal University,0,moe:4131010270,zh-Hans
+上海市,同濟大學,Tongji University,0,同濟大學,exact
+上海市,東華大學,Donghua University,0,東華大學,exact
+上海市,復旦大學,Fudan University,0,moe:4131010246,zh-Hans
+上海市,華東政法大學,East China University of Political Science and Law,0,moe:4131010276,zh-Hans
+上海市,華東師範大學,East China Normal University,0,華東師範大學,exact
+上海市,華東理工大學,East China University of Science and Technology,0,華東理工大學,exact
+江蘇省,中國藥科大學,China Pharmaceutical University,1,中國藥科大學,exact
+江蘇省,西交利物浦大學,Xi’an Jiaotong-Liverpool University,0,moe:4132016403,zh-Hans
+江蘇省,崑山杜克大學,Duke Kunshan University,1,moe:4132016406,zh-Hans
+江蘇省,東南大學,Southeast University,0,東南大學,exact
+江蘇省,南京大學,Nanjing University,0,南京大學,exact
+江蘇省,南京中醫藥大學,Nanjing University of Chinese Medicine,0,moe:4132010315,zh-Hans
+江蘇省,南京信息工程大學,Nanjing University of Information Science &,0,南京信息工程大學,exact
+江蘇省,南京師範大學,Nanjing Normal University,0,南京師範大學,exact
+浙江省,中國美術學院,China Academy of Art,0,中國美術學院,exact
+浙江省,浙江工業大學,Zhejiang University of Technology,0,moe:4133010337,zh-Hans
+浙江省,浙江大學,Zhejiang University,0,浙江大學,exact
+浙江省,浙江中醫藥大學,Zhejiang Chinese Medical University,0,moe:4133010344,zh-Hans
+浙江省,浙江科技大學,Zhejiang University of Science & Technology,1,moe:4133011057,zh-Hans
+浙江省,浙江師範大學,Zhejiang Normal University,0,moe:4133010345,zh-Hans
+浙江省,浙江理工大學,Zhejiang Sci-Tech University,0,moe:4133010338,zh-Hans
+浙江省,浙江傳媒學院,Communication University of Zhejiang,0,moe:4133011647,zh-Hans
+浙江省,紹興文理學院,Shaoxing University,0,moe:4133010349,alias: 教育部 2026 名單更名（data/research/moe_former_names.2026-06-17.csv：4133010349 绍兴文理学院→绍兴大学）
+浙江省,溫州肯恩大學,Wenzhou-Kean University,0,moe:4133016405,zh-Hans
+浙江省,溫州醫科大學,Wenzhou Medical University,0,moe:4133010343,zh-Hans
+浙江省,寧波大學,Ningbo University,0,寧波大學,exact
+浙江省,寧波諾丁漢大學,University of Nottingham Ningbo China,0,moe:4133016301,zh-Hans
+安徽省,中國科學技術大學,University of Science and Technology of China,0,中國科學技術大學,exact
+福建省,泉州信息工程學院,Quanzhou University of Information Engineering,1,moe:4135013766,zh-Hans
+福建省,集美大學,Jimei University,0,moe:4135010390,zh-Hans
+福建省,華僑大學,Huaqiao University,0,moe:4135010385,zh-Hans
+福建省,福州大學,Fuzhou University,0,福州大學,exact
+福建省,福州大學至誠學院,Fuzhou University Zhicheng College,1,moe:4135013470,zh-Hans
+福建省,福州理工學院,Fuzhou Institute of Technology,1,moe:4135013773,zh-Hans
+福建省,廈門大學,Xiamen University,0,廈門大學,exact
+福建省,廈門工學院,Xiamen Institute of Technology,1,moe:4135013115,zh-Hans
+福建省,廈門大學嘉庚學院,Xiamen University Tan Kah Kee College,1,moe:4135013469,zh-Hans
+福建省,廈門華夏學院,Xiamen Huaxia University,1,moe:4135012709,alias: 教育局名單寫作「華夏」，教育部名單為「华厦」（厦门，4135012709；英文名 Xiamen Huaxia University 相同）
+福建省,福建中醫藥大學,Fujian University of Traditional Chinese Medicine,0,moe:4135010393,zh-Hans
+福建省,福建師範大學,Fujian Normal University,0,moe:4135010394,zh-Hans
+福建省,福建師範大學協和學院,Concord University College Fujian Normal University,1,moe:4135013472,zh-Hans
+福建省,福建農林大學金山學院,Jinshan College of Fujian Agriculture and Forestry,1,moe:4135014046,zh-Hans
+福建省,福建醫科大學,Fujian Medical University,0,moe:4135010392,zh-Hans
+福建省,閩南理工學院,Minnan University of Science and Technology,1,moe:4135012710,zh-Hans
+江西省,江西中醫藥大學,Jiangxi University of Chinese Medicine,0,moe:4136010412,zh-Hans
+江西省,南昌大學,Nanchang University,0,moe:4136010403,zh-Hans
+山東省,山東大學,Shandong University,0,山東大學,exact
+山東省,山東中醫藥大學,Shandong University of Traditional Chinese Medicine,0,moe:4137010441,zh-Hans
+山東省,中國石油大學（華東）,China University of Petroleum,0,moe:4137010425,zh-Hans
+山東省,中國海洋大學,Ocean University of China,0,中國海洋大學,exact
+河南省,鄭州大學,Zhengzhou University,0,鄭州大學,exact
+湖北省,三峽大學,China Three Gorges University,0,moe:4142011075,zh-Hans
+湖北省,中南財經政法大學,Zhongnan University of Economics and Law,0,中南財經政法大學,exact
+湖北省,中國地質大學（武漢）,China University of Geosciences (Wuhan),0,moe:4142010491,zh-Hans
+湖北省,武漢大學,Wuhan University,0,moe:4142010486,zh-Hans
+湖北省,武漢理工大學,Wuhan University of Technology,0,moe:4142010497,zh-Hans
+湖北省,華中科技大學,Huazhong University of Science and Technology,0,華中科技大學,exact
+湖北省,華中師範大學,Central China Normal University,0,華中師範大學,exact
+湖北省,湖北大學,Hubei University,0,moe:4142010512,zh-Hans
+湖南省,中南大學,Central South University,0,中南大學,exact
+湖南省,湖南大學,Hunan University,0,湖南大學,exact
+湖南省,湖南工業大學,Hunan University of Technology,0,moe:4143011535,zh-Hans
+湖南省,湖南師範大學,Hunan Normal University,0,湖南師範大學,exact
+湖南省,湘潭大學,Xiangtan University,0,湘潭大學,exact
+廣東省,中山大學,Sun Yat-sen University,0,中山大學,exact
+廣東省,五邑大學,Wuyi University,1,moe:4144011349,zh-Hans
+廣東省,北師香港浸會大學,Beijing Normal – Hong Kong Baptist University,1,moe:4144016401,zh-Hans
+廣東省,汕頭大學,Shantou University,0,moe:4144010560,zh-Hans
+廣東省,佛山大學,Foshan University,0,moe:4144011847,zh-Hans
+廣東省,南方醫科大學,Southern Medical University,0,moe:4144012121,zh-Hans
+廣東省,香港中文大學（深圳）,"The Chinese University of Hong Kong, Shenzhen",0,moe:4144016407,zh-Hans
+廣東省,香港城市大學（東莞）,City University of Hong Kong (Dongguan),1,moe:4144014851,zh-Hans
+廣東省,香港科技大學（廣州）,The Hong Kong University of Science and Technology,0,moe:4144016412,zh-Hans
+廣東省,星海音樂學院,Xinghai Conservatory of Music,0,moe:4144010587,zh-Hans
+廣東省,深圳大學,Shenzhen University,0,深圳大學,exact
+廣東省,華南師範大學,South China Normal University,0,華南師範大學,exact
+廣東省,華南理工大學,South China University of Technology,0,華南理工大學,exact
+廣東省,華南農業大學,South China Agricultural University,0,華南農業大學,exact
+廣東省,暨南大學,Jinan University,0,暨南大學,exact
+廣東省,肇慶學院,Zhaoqing University,0,moe:4144010580,zh-Hans
+廣東省,韶關學院,Shaoguan University,0,moe:4144010576,zh-Hans
+廣東省,廣州大學,Guangzhou University,0,moe:4144011078,zh-Hans
+廣東省,廣州中醫藥大學,Guangzhou University of Chinese Medicine,0,廣州中醫藥大學,exact
+廣東省,廣州美術學院,Guangzhou Academy of Fine Arts,0,moe:4144010586,zh-Hans
+廣東省,廣州華商學院,Guangzhou Huashang College,1,moe:4144012621,zh-Hans
+廣東省,廣州醫科大學,Guangzhou Medical University,0,廣州醫科大學,exact
+廣東省,廣東工業大學,Guangdong University of Technology,0,moe:4144011845,zh-Hans
+廣東省,廣東以色列理工學院,Guangdong Technion - Israel Institute of Technology,0,moe:4144016410,zh-Hans
+廣東省,廣東外語外貿大學,Guangdong University of Foreign Studies,0,moe:4144011846,zh-Hans
+廣東省,廣東金融學院,Guangdong University of Finance,0,moe:4144011540,zh-Hans
+廣東省,廣東海洋大學,Guangdong Ocean University,0,moe:4144010566,zh-Hans
+廣東省,廣東財經大學,Guangdong University of Finance & Economics,0,moe:4144010592,zh-Hans
+廣東省,廣東醫科大學,Guangdong Medical University,0,moe:4144010571,zh-Hans
+廣東省,廣東藥科大學,Guangdong Pharmaceutical University,0,moe:4144010573,zh-Hans
+廣西壯族自治區,廣西大學,Guangxi University,0,廣西大學,exact
+廣西壯族自治區,廣西中醫藥大學,Guangxi University of Chinese Medicine,0,moe:4145010600,zh-Hans
+廣西壯族自治區,廣西師範大學,Guangxi Normal University,0,moe:4145010602,zh-Hans
+廣西壯族自治區,廣西醫科大學,Guangxi Medical University,0,moe:4145010598,zh-Hans
+海南省,海南大學,Hainan University,0,海南大學,exact
+海南省,海南師範大學,Hainan Normal University,0,moe:4146011658,zh-Hans
+重慶市,西南大學,Southwest University,0,西南大學,exact
+重慶市,西南政法大學,Southwest University of Political Science & Law,0,moe:4150010652,zh-Hans
+重慶市,重慶大學,Chongqing University,0,重慶大學,exact
+四川省,四川大學,Sichuan University,0,四川大學,exact
+四川省,四川師範大學,Sichuan Normal University,0,moe:4151010636,zh-Hans
+四川省,西南交通大學,Southwest Jiaotong University,0,西南交通大學,exact
+四川省,西南財經大學,Southwestern University of Finance and Economics,0,西南財經大學,exact
+四川省,成都中醫藥大學,Chengdu University of Traditional Chinese Medicine,0,moe:4151010633,zh-Hans
+四川省,成都理工大學,Chengdu University of Technology,1,成都理工大學,exact
+四川省,電子科技大學,University of Electronic Science and Technology of,0,電子科技大學,exact
+雲南省,雲南大學,Yunnan University,0,雲南大學,exact
+雲南省,雲南師範大學,Yunnan Normal University,0,moe:4153010681,zh-Hans
+陝西省,西北工業大學,Northwestern Polytechnical University,0,西北工業大學,exact
+陝西省,西北大學,Northwest University,0,moe:4161010697,zh-Hans
+陝西省,西安工程大學,Xi’an Polytechnic University,0,moe:4161010709,zh-Hans
+陝西省,西安交通大學,Xi’an Jiaotong University,0,西安交通大學,exact
+陝西省,西安電子科技大學,Xidian University,0,moe:4161010701,zh-Hans
+陝西省,長安大學,Chang’an University,0,moe:4161010710,zh-Hans
+陝西省,陝西師範大學,Shaanxi Normal University,0,moe:4161010718,zh-Hans
+甘肅省,蘭州大學,Lanzhou University,0,蘭州大學,exact

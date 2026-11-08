@@ -1,4 +1,4 @@
-// 起點分支（批 E2）閘門：資格／範圍不進 AnswerMap 與 learning-manifest；資格 token 全部存在於 S3 資料；過濾只用保留語義、永不減少機構數；
+// 起點分支（批 E2；2026-11-08 批 G6 改為資格＋目的地）閘門：資格／目的地不進 AnswerMap 與 learning-manifest；資格 token 全部存在於 S3 資料；過濾只用保留語義、永不減少機構數；
 // 官方管道與資格來源只有 verified＋https＋同網域才上鏈接；三語鍵齊；manifest 雜湊可重算。
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
@@ -8,8 +8,8 @@ import { gzipSync } from 'node:zlib'
 import { originManifest } from '../src/data/originManifest.ts'
 import { originSources } from '../src/data/originSources.ts'
 import {
-  GAOKAO_TOKEN, MAINLAND_CHANNELS, MAINLAND_ORIGIN_SOURCES, ORIGIN_PREFS_STORAGE_KEY, QUALIFICATIONS_BY_ORIGIN, QUALIFICATION_OPTIONS, SCOPES_BY_ORIGIN,
-  emptyOriginPrefs, isQualification, normalizeOriginPrefs, qualificationTokens, scopeGroup, showCrossBorder, type Qualification,
+  DESTINATIONS, GAOKAO_TOKEN, LEGACY_ORIGIN_PREFS_STORAGE_KEY, LOCAL_ENTRY_SOURCES, MAINLAND_CHANNELS, MAINLAND_ORIGIN_SOURCES, ORIGIN_PREFS_STORAGE_KEY, QUALIFICATIONS_BY_ORIGIN, QUALIFICATION_OPTIONS,
+  SOURCE_ORG_BY_DOMAIN, defaultDestinations, emptyOriginPrefs, isQualification, liveSourceLinks, migrateOriginPrefsV1, normalizeOriginPrefs, originPrefsFor, qualificationTokens, type Qualification,
 } from '../src/data/originBranch.ts'
 import { originOptions } from '../src/data/origins.ts'
 import { DIMENSIONS } from '../src/data/dimensions.ts'
@@ -30,42 +30,58 @@ const en = JSON.parse(read('src/i18n/locales/en.json')) as Record<string, string
 const zhHans = JSON.parse(read('public/i18n/zh-Hans.json')) as Record<string, string>
 const research = JSON.parse(read('data/research/origin_sources.2026-11-07.json')) as { sources: { url: string; status: string; finalUrl: string; domain: string }[] }
 
-test('起點／資格／範圍不進 AnswerMap、DimensionId、learning-manifest 與 A+ 證據', () => {
-  assert.equal(ORIGIN_PREFS_STORAGE_KEY, 'unapply.originPrefs.v1')
+test('起點／資格／目的地不進 AnswerMap、DimensionId、learning-manifest 與 A+ 證據', () => {
+  assert.equal(ORIGIN_PREFS_STORAGE_KEY, 'unapply.originPrefs.v2')
+  assert.equal(LEGACY_ORIGIN_PREFS_STORAGE_KEY, 'unapply.originPrefs.v1')
   assert.equal(Object.keys(DIMENSIONS).length, 45)
   assert.equal(allQuestions.length, 45)
   assert.ok(!Object.keys(DIMENSIONS).some((k) => /^O\d/.test(k)))
   const fn = read('functions/api/learning/[action].ts')
-  assert.equal(/originPrefs|qualification|scope/i.test(fn), false, 'Function 不認識起點分支欄位')
+  assert.equal(/originPrefs|qualification|scope|destination/i.test(fn), false, 'Function 不認識起點分支欄位')
   const manifest = JSON.parse(read('public/learning-manifest.json')) as { manifestDigest: string; itemCount: number }
   assert.equal(manifest.manifestDigest, 'sha256:136c786802e02d452210574756f5bef291c120e5edd7beee0c30856826636a99')
   assert.equal(manifest.itemCount, 1)
   const evidence = buildUnapplyResultEvidence({ totalInput: 2952, keptCount: 9, excludedCount: 2943, answeredCount: 8, byQuestion: {} }, 'canary', 'https://nope.bdfz.net/#/result')!
-  assert.equal(/qualification|scope|origin/i.test(JSON.stringify(evidence)), false)
+  assert.equal(/qualification|scope|origin|destination/i.test(JSON.stringify(evidence)), false)
   // originBranch 只碰 localStorage，不匯入 bdfzIdentity／trustedAPlus／learningEvidence
   const src = read('src/data/originBranch.ts')
   assert.equal(/bdfzIdentity|trustedAPlus|learningEvidence|i18n\//.test(src), false)
 })
 
-test('起點集合不變（5 個），各起點的資格與範圍選項齊，換起點時無效值歸零', () => {
+test('起點集合不變（5 個）；資格只對非大陸起點；目的地多選至少一個、預設＝起點本地；換起點重設；v1 範圍遷移', () => {
   assert.deepEqual(originOptions.map((o) => o.id), ['cn-mainland', 'hk', 'mo', 'tw', 'overseas'])
+  assert.deepEqual([...DESTINATIONS], originOptions.map((o) => o.id))
   assert.deepEqual(QUALIFICATIONS_BY_ORIGIN['cn-mainland'], [])
   assert.equal(QUALIFICATIONS_BY_ORIGIN.hk.length, 3)
   assert.equal(QUALIFICATIONS_BY_ORIGIN.mo.length, 3)
   assert.equal(QUALIFICATIONS_BY_ORIGIN.tw.length, 3)
   assert.equal(QUALIFICATIONS_BY_ORIGIN.overseas.length, 13)
   assert.equal(Object.keys(QUALIFICATION_OPTIONS).length, 18)
-  assert.deepEqual(SCOPES_BY_ORIGIN.overseas, ['abroad', 'both'])
-  assert.deepEqual(SCOPES_BY_ORIGIN['cn-mainland'], ['local', 'abroad', 'both'])
   for (const q of Object.keys(QUALIFICATION_OPTIONS)) assert.ok(isQualification(q))
-  assert.deepEqual(normalizeOriginPrefs('hk', { qualification: 'uk-alevel', scope: 'both' }), { qualification: null, scope: 'both' })
-  assert.deepEqual(normalizeOriginPrefs('overseas', { qualification: 'uk-alevel', scope: 'local' }), { qualification: 'uk-alevel', scope: null })
-  assert.deepEqual(normalizeOriginPrefs(null, { qualification: 'ib', scope: 'both' }), emptyOriginPrefs)
-  assert.equal(scopeGroup('cn-mainland'), 'cn'); assert.equal(scopeGroup('hk'), 'local'); assert.equal(scopeGroup('overseas'), 'overseas')
-  assert.equal(showCrossBorder('cn-mainland', { qualification: null, scope: null }), false)
-  assert.equal(showCrossBorder('cn-mainland', { qualification: null, scope: 'local' }), false)
-  assert.equal(showCrossBorder('cn-mainland', { qualification: null, scope: 'both' }), true)
-  assert.equal(showCrossBorder('hk', emptyOriginPrefs), true)
+  // 預設＝起點本地；未選起點＝中國大陸
+  for (const o of originOptions) assert.deepEqual(defaultDestinations(o.id), [o.id])
+  assert.deepEqual(defaultDestinations(null), ['cn-mainland'])
+  assert.deepEqual(emptyOriginPrefs, { qualification: null, destinations: ['cn-mainland'] })
+  // 換起點：資格清空、目的地回到該起點預設
+  for (const o of originOptions) assert.deepEqual(originPrefsFor(o.id), { qualification: null, destinations: [o.id] })
+  // 正規化：資格不屬於該起點→null；大陸起點沒有資格；目的地排序去重、去掉無效值、空＝預設
+  assert.deepEqual(normalizeOriginPrefs('hk', { qualification: 'uk-alevel', destinations: ['overseas', 'hk', 'hk'] }), { qualification: null, destinations: ['hk', 'overseas'] })
+  assert.deepEqual(normalizeOriginPrefs('overseas', { qualification: 'uk-alevel', destinations: [] }), { qualification: 'uk-alevel', destinations: ['overseas'] })
+  assert.deepEqual(normalizeOriginPrefs('cn-mainland', { qualification: 'hkdse', destinations: ['mars' as never, 'tw'] }), { qualification: null, destinations: ['tw'] })
+  assert.deepEqual(normalizeOriginPrefs(null, { qualification: 'ib', destinations: [] }), emptyOriginPrefs)
+  // v1 → v2：local→起點本地；abroad→起點以外全部（海外起點＝海外＋港澳臺）；both→全部；沒有 scope→預設
+  assert.deepEqual(migrateOriginPrefsV1('mo', { qualification: null, scope: 'local' }).destinations, ['mo'])
+  assert.deepEqual(migrateOriginPrefsV1('hk', { qualification: 'hkdse', scope: 'local' }), { qualification: 'hkdse', destinations: ['hk'] })
+  assert.deepEqual(migrateOriginPrefsV1('cn-mainland', { scope: 'abroad' }).destinations, ['hk', 'mo', 'tw', 'overseas'])
+  assert.deepEqual(migrateOriginPrefsV1('hk', { scope: 'abroad' }).destinations, ['cn-mainland', 'mo', 'tw', 'overseas'])
+  assert.deepEqual(migrateOriginPrefsV1('overseas', { scope: 'abroad' }).destinations, ['hk', 'mo', 'tw', 'overseas'])
+  assert.deepEqual(migrateOriginPrefsV1('tw', { scope: 'both' }).destinations, [...DESTINATIONS])
+  assert.deepEqual(migrateOriginPrefsV1('tw', { qualification: 'nonsense', scope: 'weird' }), { qualification: null, destinations: ['tw'] })
+  assert.deepEqual(migrateOriginPrefsV1(null, null), emptyOriginPrefs)
+  // 澳門的 local 不會被帶到香港起點：換起點一律重設（App.setOrigin 用 originPrefsFor）
+  const app = read('src/App.tsx')
+  assert.ok(/const fresh = originPrefsFor\(next\)/.test(app), 'setOrigin 重設資格與目的地')
+  assert.ok(/removeItem\(GLOBAL_STORAGE_KEY\)/.test(app), 'setOrigin 重設全球減法選擇')
 })
 
 test('資格 token 全部存在於 S3 資料（qualifications.json 與地區檔），大陸起點以高考 token＋gaokaoPolicy=accepted', () => {
@@ -78,7 +94,7 @@ test('資格 token 全部存在於 S3 資料（qualifications.json 與地區檔�
   }
   assert.ok(listedTokens.has(GAOKAO_TOKEN))
   assert.deepEqual(qualificationTokens('cn-mainland', emptyOriginPrefs), { tokens: [GAOKAO_TOKEN], gaokao: true })
-  assert.deepEqual(qualificationTokens('hk', { qualification: 'hkdse', scope: null }), { tokens: ['HKDSE'], gaokao: false })
+  assert.deepEqual(qualificationTokens('hk', { qualification: 'hkdse', destinations: ['hk'] }), { tokens: ['HKDSE'], gaokao: false })
   assert.deepEqual(qualificationTokens('hk', emptyOriginPrefs), { tokens: [], gaokao: false })
   assert.deepEqual(payload.gaokaoAccepted, institutions.filter((i) => i.gaokaoPolicy === 'accepted').map((i) => i.id).sort())
   assert.equal(payload.gaokaoAccepted.length, 7) // 2026-11-08 批 G4 瀏覽器覆核後（當時值；G4 前為 4）
@@ -91,7 +107,7 @@ test('資格 token 全部存在於 S3 資料（qualifications.json 與地區檔�
 
 test('過濾只用保留語義：標示永不減少機構數，listed＋unread＝total，未寫明一律未知', () => {
   for (const q of Object.keys(QUALIFICATION_OPTIONS) as Qualification[]) {
-    const { tokens } = qualificationTokens('overseas', { qualification: q, scope: null })
+    const { tokens } = qualificationTokens('overseas', { qualification: q, destinations: ['overseas'] })
     const marks = institutions.map((i) => markInstitution(i.qualifications.listed, i.gaokaoPolicy, tokens, false))
     assert.equal(marks.length, institutions.length)
     const counts = countListed(payload, tokens, false)
@@ -144,19 +160,57 @@ test('官方頁：只有 verified＋https＋同網域才 live；needs_review／b
   assert.equal(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(read('src/data/originSources.ts') + payloadText), false)
 })
 
-test('三語鍵齊：資格、範圍、起點分支面板、官方管道、海外層標示、結果頁並列', () => {
+test('官方頁鏈接文字用乾淨機構名：每個 live 官方頁的網域都有三語名稱；本地入學入口與管道來源都在清單裡', () => {
+  for (const entry of Object.values(originSources)) {
+    if (!entry.live) continue
+    const org = SOURCE_ORG_BY_DOMAIN[entry.domain]
+    assert.ok(org, `${entry.domain} 缺乾淨名稱`)
+    for (const dict of [zhHant, en, zhHans]) assert.ok(dict[`ui.source.${org}`]?.trim(), `ui.source.${org}`)
+  }
+  for (const [region, urls] of Object.entries(LOCAL_ENTRY_SOURCES)) {
+    for (const url of urls) assert.ok(url in originSources, `${region} ${url}`)
+    assert.ok(liveSourceLinks(urls).length > 0, `${region} 本地入學入口至少一個 live`)
+  }
+  // liveSourceLinks：只留 live、同網域只留第一個
+  const sample = [...MAINLAND_ORIGIN_SOURCES]
+  const links = liveSourceLinks(sample)
+  assert.ok(links.every(({ url }) => originSources[url].live))
+  assert.equal(new Set(links.map(({ url }) => originSources[url].domain)).size, links.length)
+  assert.equal(links.some(({ url }) => url === 'http://www.moe.gov.cn/'), false, 'http 的教育部首頁不上鏈接')
+})
+
+test('使用者可見的選項提示與管道摘要不含內部核查備註（三語）', () => {
+  const internal = /被擋|robots|連線重置|连线重置|403|本站未讀到|本站未读到|驗證頁|验证页|JavaScript|核查時|核查时|按規則不上鏈接|blocked|crawl|connection reset|could not be read|did not read/i
+  const keys = [
+    ...Object.keys(QUALIFICATION_OPTIONS).map((q) => `origin.qual.${q}.hint`),
+    ...Object.values(MAINLAND_CHANNELS).flat().map((c) => `ui.channels.${c.key}.summary`),
+    'ui.branch.officialInfo', 'ui.branch.destTitle', 'ui.branch.destNote',
+  ]
+  for (const k of keys) for (const [name, dict] of [['zh-Hant', zhHant], ['en', en], ['zh-Hans', zhHans]] as const) {
+    assert.ok(dict[k]?.trim(), `${name} ${k}`)
+    assert.equal(internal.test(dict[k]), false, `${name} ${k}: ${dict[k]}`)
+  }
+  // 「本站未讀到：verified」這類自相矛盾的拼接不再存在
+  assert.equal('ui.branch.sourceUnread' in zhHant, false)
+  assert.equal(/sourceUnread|statusVerified|statusUnread/.test(read('src/components/OriginBranch.tsx') + read('src/components/MainlandChannels.tsx')), false)
+})
+
+test('三語鍵齊：資格、目的地、官方管道、海外層標示、結果頁「下一步」與「你這條管道」', () => {
   const keys: string[] = []
   for (const q of Object.keys(QUALIFICATION_OPTIONS)) keys.push(`origin.qual.${q}.label`, `origin.qual.${q}.hint`)
-  for (const group of ['cn', 'local']) for (const scope of ['local', 'abroad', 'both']) keys.push(`origin.scope.${group}.${scope}`)
-  for (const scope of ['abroad', 'both']) keys.push(`origin.scope.overseas.${scope}`)
-  keys.push('ui.branch.qualTitle', 'ui.branch.scopeTitle.cn', 'ui.branch.scopeTitle.local', 'ui.branch.scopeTitle.overseas', 'ui.branch.note', 'ui.branch.sources', 'ui.branch.sourceUnread', 'ui.branch.skip')
-  keys.push('ui.channels.title', 'ui.channels.note', 'ui.channels.statusVerified', 'ui.channels.statusUnread', 'ui.channels.sources')
+  for (const d of DESTINATIONS) keys.push(`ui.dest.${d}`)
+  keys.push('ui.branch.qualTitle', 'ui.branch.destTitle', 'ui.branch.destNote', 'ui.branch.destLastAria', 'ui.branch.officialInfo', 'ui.branch.skip')
+  keys.push('ui.channels.title', 'ui.channels.note')
   keys.push('ui.overseas.qual.listed', 'ui.overseas.qual.listedGaokao', 'ui.overseas.qual.unread', 'ui.overseas.qual.counts', 'ui.overseas.qual.selector', 'ui.overseas.qual.none', 'ui.overseas.qual.gaokaoOption', 'ui.overseas.qual.rule')
-  keys.push('ui.result.cross.title', 'ui.result.cross.note', 'ui.result.cross.scope', 'ui.result.cross.hkmotw.line', 'ui.result.cross.hkmotw.channels', 'ui.result.cross.overseas.line', 'ui.result.cross.overseas.qual', 'ui.result.cross.open', 'ui.result.cross.collapsed', 'ui.result.cross.noScope', 'ui.runner.a6.hkmotwNote')
+  keys.push('ui.result.next.title', 'ui.result.next.note', 'ui.result.next.go', 'ui.result.next.goPool', 'ui.result.next.onlyMainland', 'ui.result.next.addDestinations')
+  keys.push('ui.result.route.title', 'ui.result.route.listed', 'ui.result.route.noList', 'ui.result.route.listPdf', 'ui.result.route.listLine', 'ui.result.route.onlyListed', 'ui.result.route.listedEmpty', 'ui.result.route.badge', 'ui.runner.a6.hkmotwNote')
+  keys.push('ui.landing.plan.mainland', 'ui.landing.plan.both', 'ui.landing.plan.global', 'ui.landing.plan.pickOrigin', 'ui.landing.browse', 'ui.landing.browse.world', 'ui.landing.browse.hkmotw', 'ui.landing.browse.overseas', 'ui.runner.autoSkipS1')
   for (const k of keys) {
     assert.ok(k in zhHant && k in en && k in zhHans, k)
     assert.ok(zhHant[k].trim() && en[k].trim() && zhHans[k].trim(), k)
   }
+  // 舊三套範圍題的鍵已刪
+  for (const k of Object.keys(zhHant)) assert.equal(/^origin\.scope\.|^ui\.branch\.scopeTitle\.|^ui\.result\.cross\./.test(k), false, k)
   // 2026-11-08 批 G5：起點卡不帶提示文字，origin.<id>.hint 鍵已刪
   for (const o of originOptions) assert.equal(`origin.${o.id}.hint` in zhHant, false)
 })

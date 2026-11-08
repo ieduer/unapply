@@ -1,14 +1,12 @@
 import type { OriginRegion } from '../data/origins'
 import {
-  MAINLAND_ORIGIN_SOURCES,
+  DESTINATIONS,
   QUALIFICATIONS_BY_ORIGIN,
   QUALIFICATION_OPTIONS,
-  SCOPES_BY_ORIGIN,
-  scopeGroup,
-  sourceEntry,
+  liveSourceLinks,
+  type Destination,
   type OriginPrefs,
   type Qualification,
-  type Scope,
 } from '../data/originBranch'
 import { useLocale } from '../i18n/react'
 
@@ -19,24 +17,29 @@ interface Props {
 }
 
 /**
- * 起點分支（批 E2，展示層）：各起點的「前幾題」——資格（港澳臺／海外起點）與範圍（所有起點）。皆可跳過（2026-11-08 批 G5：每題末尾一個「跳過」選項，選中＝未答）；
- * 只存 localStorage（unapply.originPrefs.v1），不進 AnswerMap、不進 A+ 證據。資格只用來在海外層標示「校方頁面寫明接受」，不劃掉任何學校。
+ * 起點之後的題（2026-11-08 批 G6 重做，展示層）：
+ *  - 資格：只對非大陸起點出現，可跳過；只用來在海外層標示「校方頁面寫明接受」，不劃掉任何學校。
+ *  - 「你考慮去哪裡讀？」：多選中國大陸／香港／澳門／臺灣／海外，至少一個；預設＝起點本地。取代批 E2 三套互不一致的範圍題。
+ * 只存 localStorage（unapply.originPrefs.v2），不進 AnswerMap、不進 A+ 證據；流程由 planFlow 依目的地決定。
  */
 export function OriginBranch({ origin, prefs, onChange }: Props) {
   const { t } = useLocale()
   const qualifications = QUALIFICATIONS_BY_ORIGIN[origin]
-  const scopes = SCOPES_BY_ORIGIN[origin]
-  const group = scopeGroup(origin)
   const pick = (qualification: Qualification) => onChange({ ...prefs, qualification: prefs.qualification === qualification ? null : qualification })
-  const pickScope = (scope: Scope) => onChange({ ...prefs, scope: prefs.scope === scope ? null : scope })
+  const toggleDestination = (destination: Destination) => {
+    const on = prefs.destinations.includes(destination)
+    if (on && prefs.destinations.length === 1) return
+    const next = on ? prefs.destinations.filter((d) => d !== destination) : [...prefs.destinations, destination]
+    onChange({ ...prefs, destinations: DESTINATIONS.filter((d) => next.includes(d)) })
+  }
   const chosen = prefs.qualification ? QUALIFICATION_OPTIONS[prefs.qualification] : null
-  const sources = chosen ? chosen.sources : origin === 'cn-mainland' ? MAINLAND_ORIGIN_SOURCES : []
+  const links = chosen ? liveSourceLinks(chosen.sources) : []
   return (
-    <div className="border border-ink-800 bg-ink-950/60 rounded-xl p-4 flex flex-col gap-4" data-origin-branch={origin}>
+    <div className="border border-ink-800 bg-ink-950/60 rounded-xl p-4 flex flex-col gap-5" data-origin-branch={origin}>
       {qualifications.length > 0 && (
-        <div className="flex flex-col gap-2">
-          <h3 className="serif text-lg">{t('ui.branch.qualTitle')}</h3>
-          <div className="grid gap-2 sm:grid-cols-2" role="group" aria-label={t('ui.branch.qualTitle')}>
+        <fieldset className="flex flex-col gap-2" data-branch-question="qualification">
+          <legend className="serif text-lg mb-2">{t('ui.branch.qualTitle')}</legend>
+          <div className="grid gap-2 sm:grid-cols-2">
             {qualifications.map((qualification) => {
               const active = prefs.qualification === qualification
               return (
@@ -45,6 +48,7 @@ export function OriginBranch({ origin, prefs, onChange }: Props) {
                   type="button"
                   onClick={() => pick(qualification)}
                   aria-pressed={active}
+                  data-branch-qualification={qualification}
                   className={[
                     'text-left rounded-xl border px-3 py-3 min-h-[56px] flex flex-col gap-1',
                     active ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-900 text-fog-300 hover:border-fog-500 hover:text-fog-100',
@@ -57,52 +61,47 @@ export function OriginBranch({ origin, prefs, onChange }: Props) {
             })}
             <SkipButton active={prefs.qualification === null} onClick={() => onChange({ ...prefs, qualification: null })} label={t('ui.branch.skip')} />
           </div>
-        </div>
+          {links.length > 0 && (
+            <p className="text-xs mono text-fog-500 leading-relaxed flex flex-wrap items-center gap-x-2" data-branch-sources>
+              <span>{t('ui.branch.officialInfo')}</span>
+              {links.map(({ url, org }, index) => (
+                <span key={url} className="inline-flex items-center gap-x-2">
+                  {index > 0 && <span aria-hidden="true">·</span>}
+                  <a className="inline-flex items-center min-h-[40px] underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{t(`ui.source.${org}`)} ↗</a>
+                </span>
+              ))}
+            </p>
+          )}
+        </fieldset>
       )}
 
-      <div className="flex flex-col gap-2">
-        <h3 className="serif text-lg">{t(`ui.branch.scopeTitle.${group}`)}</h3>
-        <div className="flex flex-wrap gap-2" role="group" aria-label={t(`ui.branch.scopeTitle.${group}`)}>
-          {scopes.map((scope) => {
-            const active = prefs.scope === scope
+      <fieldset className="flex flex-col gap-2" data-branch-question="destinations">
+        <legend className="serif text-lg mb-2">{t('ui.branch.destTitle')}</legend>
+        <div className="flex flex-wrap gap-2">
+          {DESTINATIONS.map((destination) => {
+            const active = prefs.destinations.includes(destination)
+            const last = active && prefs.destinations.length === 1
             return (
               <button
-                key={scope}
+                key={destination}
                 type="button"
-                onClick={() => pickScope(scope)}
+                onClick={() => toggleDestination(destination)}
                 aria-pressed={active}
+                aria-label={last ? t('ui.branch.destLastAria', { place: t(`ui.dest.${destination}`) }) : t(`ui.dest.${destination}`)}
+                data-branch-destination={destination}
                 className={[
-                  'px-4 min-h-[44px] rounded-full border text-sm',
+                  'px-4 min-h-[44px] rounded-full border text-sm inline-flex items-center gap-2',
                   active ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-900 text-fog-300 hover:border-fog-500 hover:text-fog-100',
                 ].join(' ')}
               >
-                {t(`origin.scope.${group}.${scope}`)}
+                <span aria-hidden="true" className="mono text-xs">{active ? '✓' : '+'}</span>
+                {t(`ui.dest.${destination}`)}
               </button>
             )
           })}
-          <SkipButton active={prefs.scope === null} onClick={() => onChange({ ...prefs, scope: null })} label={t('ui.branch.skip')} />
         </div>
-      </div>
-
-      {sources.length > 0 && (
-        <p className="text-xs mono text-fog-500 leading-relaxed break-words">
-          {t('ui.branch.sources')}
-          {sources.map((url, index) => {
-            const entry = sourceEntry(url)
-            if (!entry) return null
-            return (
-              <span key={url}>
-                {index > 0 && ' · '}
-                {entry.live
-                  ? <a className="underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{entry.title || entry.domain} ↗</a>
-                  : <span>{t('ui.branch.sourceUnread', { title: entry.title || entry.domain, domain: entry.domain, reason: entry.reason || entry.status })}</span>}
-              </span>
-            )
-          })}
-        </p>
-      )}
-
-      <p className="text-xs text-fog-500 leading-relaxed">{t('ui.branch.note')}</p>
+        <p className="text-xs text-fog-500 leading-relaxed">{t('ui.branch.destNote')}</p>
+      </fieldset>
     </div>
   )
 }

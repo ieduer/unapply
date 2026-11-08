@@ -1,6 +1,7 @@
 import { EvidenceNotice } from './EvidenceNotice'
 import { SiteHeader } from './SiteHeader'
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { SiteFooter } from './SiteFooter'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { loadJointIndex } from '../lib/jointData'
 import type { JointIndexPayload } from '../data/jointTypes'
 import type { FilterResult, AnswerMap, ExcludeReason, KeptDistribution } from '../engine/filter'
@@ -19,11 +20,13 @@ import { allQuestions } from '../data/questions'
 import type { ProgramIndexPayload, SubjectCode } from '../data/programsTypes'
 import { countAdmissible } from '../engine/programs'
 import { programsManifest } from '../data/programsManifest'
-import { hkmotwManifest } from '../data/hkmotwManifest'
-import { overseasManifest } from '../data/overseasManifest'
 import type { OriginRegion } from '../data/origins'
-import { qualificationTokens, scopeGroup, showCrossBorder, type OriginPrefs } from '../data/originBranch'
-import { countListed, loadQualificationsIndex, type QualificationsPayload } from '../lib/originLayer'
+import { MAINLAND_CHANNELS, liveSourceLinks, type OriginPrefs } from '../data/originBranch'
+import { participationLists, type ParticipationList } from '../data/participationLists'
+import type { FlowPlan } from '../engine/flowPlan'
+import { buildGlobalPool, poolFor } from '../engine/globalFilter'
+import { loadHkMoTwPool } from '../lib/hkmotwData'
+import { loadOverseasIndex } from '../lib/overseasData'
 import { useLocale } from '../i18n/react'
 import { Rich } from '../i18n/rich'
 import { distributionLabel, explainKeptLocalized, formatReason, linkLabel, linkNote, provinceLabel, questionTitle, schoolDisplayName, tagLabel } from '../lib/i18nLabels'
@@ -31,9 +34,10 @@ import { distributionLabel, explainKeptLocalized, formatReason, linkLabel, linkN
 interface Props {
   result: FilterResult
   answers: AnswerMap
-  /** 起點與起點分支（批 E2）：決定結果頁要不要並列港澳臺池與海外層；不進 AnswerMap。 */
+  /** 起點、資格與目的地（批 G6）：決定「下一步」與「你這條管道」兩段；不進 AnswerMap。 */
   origin: OriginRegion | null
   originPrefs: OriginPrefs
+  plan: FlowPlan
   /** 逐校招生專業摘要：卡片上的專業數與「你的選科可報」計數用（篩選本身已由 S1／S2 題在引擎裡完成）。 */
   programsIndex: ProgramIndexPayload | null
   candidateProvince: CandidateProvince
@@ -47,6 +51,7 @@ interface Props {
   onHkMoTw: () => void
   onOverseas: () => void
   onGlobal: () => void
+  onHome: () => void
 }
 
 type LookupEntry =
@@ -150,6 +155,7 @@ export function ResultPage({
   answers,
   origin,
   originPrefs,
+  plan,
   programsIndex,
   candidateProvince,
   onCandidateProvinceChange: setCandidateProvince,
@@ -162,8 +168,22 @@ export function ResultPage({
   onHkMoTw,
   onOverseas,
   onGlobal,
+  onHome,
 }: Props) {
   const { t } = useLocale()
+  // 「參與你這條管道」的官方名單（批 G6）：只對香港起點（文憑試或未答資格）；展示層，不改剩餘計數與學習證據
+  const routeList = useMemo<ParticipationList | null>(() => {
+    if (origin !== 'hk' || (originPrefs.qualification && originPrefs.qualification !== 'hkdse')) return null
+    return Object.values(participationLists).find((list) => list.origin === 'hk') ?? null
+  }, [origin, originPrefs.qualification])
+  const listedIds = useMemo(() => new Set(routeList?.schoolIds ?? []), [routeList])
+  // 「只看名單內」是本分頁的檢視偏好：返回／前進、重新載入後保持（sessionStorage）
+  const [onlyListed, setOnlyListedState] = useState(() => { try { return window.sessionStorage.getItem('unapply.onlyListed.v1') === '1' } catch { return false } })
+  const setOnlyListed = (update: (value: boolean) => boolean) => setOnlyListedState((value) => {
+    const next = update(value)
+    try { if (next) window.sessionStorage.setItem('unapply.onlyListed.v1', '1'); else window.sessionStorage.removeItem('unapply.onlyListed.v1') } catch { /* 存不下就算了 */ }
+    return next
+  })
   const shareRef = useRef<HTMLDivElement>(null)
   const [downloading, setDownloading] = useState(false)
   const [schoolQuery, setSchoolQuery] = useState('')
@@ -177,7 +197,9 @@ export function ResultPage({
   const dist = useMemo(() => distribute(finalKept), [finalKept])
   // 題目標題隨語言變；計算便宜，不用 useMemo（避免把 locale 放進假依賴）。
   const relaxHints = suggestRelaxIds(result.stats, 3).map((id) => questionTitle(id))
-  const topKept = finalKept.slice(0, 24)
+  const listedKept = useMemo(() => (routeList ? finalKept.filter((school) => listedIds.has(school.id)) : []), [finalKept, listedIds, routeList])
+  const shownKept = routeList && onlyListed ? listedKept : finalKept
+  const topKept = shownKept.slice(0, 24)
   // 中外合作辦學計數（教育部監管平台）：結果頁才載入的小索引；載不到就不顯示。
   const [jointIndex, setJointIndex] = useState<JointIndexPayload | null>(null)
   useEffect(() => {
@@ -251,8 +273,8 @@ export function ResultPage({
   const showRelaxAction = !zero && result.stats.answeredCount > 0
 
   return (
-    <main className="min-h-screen app-canvas text-fog-100 page-end-space">
-      <SiteHeader sticky width="max-w-3xl" brand={t('ui.result.brand')} actions={[{ label: t('ui.common.about'), onClick: onAbout }, { label: t('ui.common.contribute'), onClick: onContribute }]} />
+    <main className="min-h-screen app-canvas text-fog-100">
+      <SiteHeader sticky width="max-w-3xl" brand={t('ui.result.brand')} actions={[{ label: t('ui.common.contribute'), onClick: onContribute }]} />
 
       <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 pb-24 sm:pt-12 flex flex-col gap-10 sm:gap-14">
         <EvidenceNotice />
@@ -319,6 +341,16 @@ export function ResultPage({
                 </select>
               </div>
             </div>
+            {routeList && (
+              <div className="flex flex-wrap items-center gap-3 border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-route-list={routeList.id}>
+                <p className="text-sm text-fog-300 leading-relaxed flex-1 min-w-[12rem]">{t('ui.result.route.listLine', { year: routeList.year, count: routeList.count, kept: finalKept.length, listed: listedKept.length })}</p>
+                <button type="button" aria-pressed={onlyListed} onClick={() => setOnlyListed((v) => !v)} data-route-only-listed
+                  className={['px-4 min-h-[44px] rounded-full border text-sm', onlyListed ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')}>
+                  {t('ui.result.route.onlyListed')}
+                </button>
+              </div>
+            )}
+            {routeList && onlyListed && listedKept.length === 0 && <p className="text-sm text-fog-300" data-route-listed-empty>{t('ui.result.route.listedEmpty')}</p>}
             <div className="grid gap-3 sm:grid-cols-2">
               {topKept.map((school) => (
                 <div
@@ -332,6 +364,7 @@ export function ResultPage({
                         {cityTierBadge(school.cityTier)}
                       </span>
                     </div>
+                    {routeList && listedIds.has(school.id) && <p className="mt-2 text-xs text-fog-100" data-route-listed>{t('ui.result.route.badge', { year: routeList.year })}</p>}
                     <p className="mt-2 text-xs text-fog-500">{explainKeptLocalized(school)}</p>
                     {programLine(school) && <p className="mt-1 text-xs text-fog-300">{programLine(school)}</p>}
                     {jointLine(school) && <p className="mt-1 text-xs text-fog-500">{jointLine(school)}</p>}
@@ -365,7 +398,9 @@ export function ResultPage({
           </div>
         )}
 
-        <CrossBorderSections origin={origin} prefs={originPrefs} onHkMoTw={onHkMoTw} onOverseas={onOverseas} onGlobal={onGlobal} />
+        {(origin === 'hk' || origin === 'mo' || origin === 'tw') && <YourRoute origin={origin} list={routeList} />}
+
+        <NextStage plan={plan} origin={origin} onGlobal={onGlobal} onHome={onHome} />
 
         <div className="bg-ink-900 border border-ink-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-4">
           <div>
@@ -514,64 +549,80 @@ export function ResultPage({
           </p>
         </footer>
       </section>
+      <SiteFooter width="max-w-3xl" />
     </main>
   )
 }
 
 /**
- * 跨國並列（批 E2，研究 cross_border_result_design.md）：大陸剩餘集合之後，按範圍並列港澳臺院校池與海外可申請學校兩段，
- * 各帶機構數、已核計數、來源日與入口；不暗示錄取可能。範圍＝只本地（或未選）時折疊為一行入口。
+ * 你這條管道（批 G6）：港澳臺起點進大陸高校的官方管道；有官方參與院校名單的（香港文憑試收生計劃）標出名單與計數，
+ * 取不到名單的只放官方說明鏈接（live 才鏈，鏈接文字用機構名）並註明。
  */
-function CrossBorderSections({ origin, prefs, onHkMoTw, onOverseas, onGlobal }: { origin: OriginRegion | null; prefs: OriginPrefs; onHkMoTw: () => void; onOverseas: () => void; onGlobal: () => void }) {
+function YourRoute({ origin, list }: { origin: 'hk' | 'mo' | 'tw'; list: ParticipationList | null }) {
   const { t } = useLocale()
-  const expanded = showCrossBorder(origin, prefs)
-  const marking = qualificationTokens(origin, prefs)
-  const markingActive = marking.tokens.length > 0 || marking.gaokao
-  const [qualIndex, setQualIndex] = useState<QualificationsPayload | null>(null)
+  return (
+    <section className="flex flex-col gap-3" data-your-route={origin}>
+      <h2 className="serif text-xl">{t('ui.result.route.title')}</h2>
+      <ul className="flex flex-col gap-2">
+        {MAINLAND_CHANNELS[origin].map((channel) => {
+          const links = liveSourceLinks(channel.sources)
+          const hasList = list && list.channel === channel.id
+          return (
+            <li key={channel.id} className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 flex flex-col gap-1" data-route-channel={channel.id}>
+              <p className="text-sm text-fog-100 leading-snug">{t(`ui.channels.${channel.key}.title`)}</p>
+              <p className="text-xs text-fog-500 leading-relaxed">{hasList ? t('ui.result.route.listed', { year: list.year, count: list.count }) : t('ui.result.route.noList')}</p>
+              {(links.length > 0 || hasList) && (
+                <p className="text-xs mono text-fog-500 flex flex-wrap items-center gap-x-2">
+                  <span>{t('ui.branch.officialInfo')}</span>
+                  {hasList && <a className="inline-flex items-center min-h-[40px] underline hover:text-accent-500" href={list.source.url} target="_blank" rel="noreferrer noopener">{t('ui.result.route.listPdf', { publisher: t(`ui.source.${list.source.publisher}`) })} ↗</a>}
+                  {links.map(({ url, org }) => <a key={url} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{t(`ui.source.${org}`)} ↗</a>)}
+                </p>
+              )}
+            </li>
+          )
+        })}
+      </ul>
+    </section>
+  )
+}
+
+/**
+ * 下一步（批 G6，裁定 B）：目的地含港澳臺或海外時，大陸剩餘之後是「下一步：…減法（池 N 所）」主按鈕；
+ * 只選中國大陸時，一行說明可回首頁加選目的地。池數由與 #/global 同一套引擎算（去重、扣除官方不招本科的）。
+ */
+function NextStage({ plan, origin, onGlobal, onHome }: { plan: FlowPlan; origin: OriginRegion | null; onGlobal: () => void; onHome: () => void }) {
+  const { t, n } = useLocale()
+  const hasGlobal = plan.stages.includes('global')
+  const destinationsKey = plan.globalDestinations.join('|')
+  const [pool, setPool] = useState<number | null>(null)
   useEffect(() => {
-    if (!expanded || !markingActive || qualIndex) return
+    if (!hasGlobal) return
     let alive = true
-    loadQualificationsIndex().then((payload) => { if (alive) setQualIndex(payload) }).catch(() => undefined)
+    Promise.all([loadOverseasIndex(), loadHkMoTwPool()])
+      .then(([overseas, hkmotw]) => { if (alive) setPool(poolFor(buildGlobalPool(overseas, hkmotw), destinationsKey.split('|') as FlowPlan['globalDestinations'], origin).length) })
+      .catch(() => { if (alive) setPool(null) })
     return () => { alive = false }
-  }, [expanded, markingActive, qualIndex])
-  const h = hkmotwManifest.counts
-  const o = overseasManifest.counts
-  const slots = {
-    a1: (children: ReactNode) => <button onClick={onHkMoTw} className="underline hover:text-accent-500">{children}</button>,
-    a2: (children: ReactNode) => <button onClick={onOverseas} className="underline hover:text-accent-500">{children}</button>,
-  }
-  if (!expanded) {
+  }, [hasGlobal, destinationsKey, origin])
+  const places = plan.globalDestinations.map((d) => t(`ui.dest.${d}`)).join(t('ui.common.listJoiner'))
+  if (!hasGlobal) {
     return (
-      <p className="text-xs mono text-fog-500 leading-relaxed" data-cross-border="collapsed">
-        <Rich k={prefs.scope ? 'ui.result.cross.collapsed' : 'ui.result.cross.noScope'} slots={slots} />
-      </p>
+      <div className="flex flex-col gap-2" data-next-stage="none">
+        <p className="text-sm text-fog-300 leading-relaxed">
+          {t('ui.result.next.onlyMainland')}{' '}
+          <button type="button" onClick={onHome} className="underline hover:text-accent-500 min-h-[40px]">{t('ui.result.next.addDestinations')}</button>
+        </p>
+        <p className="text-xs text-fog-500 leading-relaxed">{t('ui.result.next.note')}</p>
+      </div>
     )
   }
-  const scopeLabel = prefs.scope ? t(`origin.scope.${scopeGroup(origin ?? 'cn-mainland')}.${prefs.scope}`) : null
-  const counts = markingActive && qualIndex ? countListed(qualIndex, marking.tokens, marking.gaokao) : null
-  const qualificationLabel = origin === 'cn-mainland' ? t('ui.overseas.qual.gaokaoOption') : prefs.qualification ? t(`origin.qual.${prefs.qualification}.label`) : ''
   return (
-    <div className="flex flex-col gap-4" data-cross-border="expanded">
-      <div>
-        <h2 className="serif text-xl">{t('ui.result.cross.title')}{scopeLabel ? <span className="text-fog-500 text-base"> · {t('ui.result.cross.scope', { scope: scopeLabel })}</span> : null}</h2>
-        <p className="mt-2 text-xs text-fog-500 leading-relaxed">{t('ui.result.cross.note')}</p>
-        <button onClick={onGlobal} data-cross-border-global className="mt-3 px-4 py-2 rounded-full border border-accent-500/40 bg-accent-500/10 text-accent-600 text-sm hover:bg-accent-500/15 min-h-[40px]">{t('ui.result.cross.global')} →</button>
-      </div>
-      <div className="grid gap-3 sm:grid-cols-2">
-        <section className="bg-ink-900 border border-ink-700 rounded-xl p-4 flex flex-col gap-3" data-cross-border-pool="hkmotw">
-          <h3 className="serif text-lg">{t('ui.common.hkmotwPool')}</h3>
-          <p className="text-xs mono text-fog-500 leading-relaxed">{t('ui.result.cross.hkmotw.line', { institutions: h.institutions, hk: h.byRegion.HK, mo: h.byRegion.MO, tw: h.byRegion.TW, channels: h.channels, date: hkmotwManifest.generatedAt })}</p>
-          {(origin === 'hk' || origin === 'mo' || origin === 'tw') && <p className="text-xs text-fog-300 leading-relaxed">{t('ui.result.cross.hkmotw.channels')}</p>}
-          <button onClick={onHkMoTw} className="self-start px-4 py-2 rounded-full border border-accent-500/40 bg-accent-500/10 text-accent-600 text-sm hover:bg-accent-500/15 min-h-[40px]">{t('ui.result.cross.open')} →</button>
-        </section>
-        <section className="bg-ink-900 border border-ink-700 rounded-xl p-4 flex flex-col gap-3" data-cross-border-pool="overseas">
-          <h3 className="serif text-lg">{t('ui.common.overseasPool')}</h3>
-          <p className="text-xs mono text-fog-500 leading-relaxed">{t('ui.result.cross.overseas.line', { institutions: o.institutions, verified: o.byStatus.verified, linkLive: o.admissionsLinksLive, regions: o.regions, date: overseasManifest.generatedAt })}</p>
-          {counts && <p className="text-xs text-fog-300 leading-relaxed" data-cross-border-qual>{t('ui.result.cross.overseas.qual', { qualification: qualificationLabel, listed: counts.listed, unread: counts.unread })}</p>}
-          <button onClick={onOverseas} className="self-start px-4 py-2 rounded-full border border-accent-500/40 bg-accent-500/10 text-accent-600 text-sm hover:bg-accent-500/15 min-h-[40px]">{t('ui.result.cross.open')} →</button>
-        </section>
-      </div>
-    </div>
+    <section className="border border-accent-500/40 bg-accent-500/10 rounded-2xl p-5 flex flex-col gap-3" data-next-stage="global">
+      <h2 className="serif text-xl">{t('ui.result.next.title', { places })}</h2>
+      <p className="text-xs text-fog-500 leading-relaxed">{t('ui.result.next.note')}</p>
+      <button type="button" onClick={onGlobal} data-next-stage-go className="self-start px-6 min-h-[48px] rounded-xl bg-accent-500 text-ink-950 font-semibold text-base hover:bg-accent-400">
+        {pool === null ? t('ui.result.next.go') : t('ui.result.next.goPool', { n: n(pool) })} →
+      </button>
+    </section>
   )
 }
 

@@ -17,6 +17,7 @@ import { getOriginOption, type OriginRegion } from '../data/origins'
 import { useLocale, type Locale } from '../i18n/react'
 import { Rich } from '../i18n/rich'
 import { SiteHeader } from './SiteHeader'
+import { SiteFooter } from './SiteFooter'
 import { TierBadge } from './TierBadge'
 import { worldAtlasManifest } from '../data/worldAtlasManifest'
 
@@ -154,8 +155,8 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
   const seatText = (seat: AtlasInstitutionView['seats'][number]) => t('ui.world.seatRank', { subject: subjectName(seat.subject, locale), rank: seat.rank })
 
   return (
-    <main className="min-h-screen app-canvas text-fog-100 page-end-space">
-      <SiteHeader sticky brand={t('ui.world.brand')} back={{ label: t('ui.common.back'), onClick: onBack }} actions={[{ label: t('ui.common.about'), onClick: onAbout }]} />
+    <main className="min-h-screen app-canvas text-fog-100">
+      <SiteHeader sticky brand={t('ui.world.brand')} back={{ label: t('ui.common.back'), onClick: onBack }} />
 
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8">
         <div className="max-w-3xl flex flex-col gap-3">
@@ -488,6 +489,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
           </p>
         </footer>
       </section>
+      <SiteFooter width="max-w-5xl" />
     </main>
   )
 }

@@ -184,5 +184,6 @@ test('三語鍵齊全：About 資料庫段（zh-Hant／en 來源與 zh-Hans 生�
   const aboutHits = Object.entries(zh).filter(([k, v]) => k.startsWith('ui.about.') && /錄取可能/.test(v)).map(([k]) => k)
   assert.deepEqual(aboutHits, ['ui.about.method.noAdvice'])
   const allHits = Object.entries(zh).filter(([, v]) => /不代表錄取可能/.test(v)).map(([k]) => k).sort()
-  assert.deepEqual(allHits, ['ui.about.method.noAdvice', 'ui.result.cross.note'])
+  // 2026-11-08 批 G6：結果頁那一次移到「下一步」段（ui.result.next.note；跨國並列段已刪）
+  assert.deepEqual(allHits, ['ui.about.method.noAdvice', 'ui.result.next.note'])
 })

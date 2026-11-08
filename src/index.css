@@ -97,3 +97,9 @@
 .theme-switching *::after {
   transition: none !important;
 }
+
+/* 2026-11-08 批 G6：路由切換後焦點移到頁面主標題（tabindex=-1），不畫焦點框 */
+main h1[tabindex="-1"]:focus,
+main h2[tabindex="-1"]:focus {
+  outline: none;
+}

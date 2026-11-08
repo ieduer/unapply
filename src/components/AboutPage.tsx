@@ -10,6 +10,7 @@ import { overseasManifest } from '../data/overseasManifest'
 import { useLocale } from '../i18n/react'
 import { Rich, type RichParams } from '../i18n/rich'
 import { SiteHeader } from './SiteHeader'
+import { SiteFooter } from './SiteFooter'
 import { TierBadge } from './TierBadge'
 import { worldAtlasManifest } from '../data/worldAtlasManifest'
 import { authorityTiersSource } from '../data/authorityTiers'
@@ -42,7 +43,7 @@ export function AboutPage({ onBack }: Props) {
   const { t, n } = useLocale()
   const o = overseasManifest.counts
   return (
-    <main className="min-h-screen app-canvas text-fog-100 page-end-space">
+    <main className="min-h-screen app-canvas text-fog-100">
       <SiteHeader sticky width="max-w-3xl" brand={t('ui.about.brand')} back={{ label: t('ui.common.back'), onClick: onBack }} />
 
       <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8 sm:gap-10 text-fog-300 leading-relaxed text-sm sm:text-base">
@@ -221,6 +222,7 @@ export function AboutPage({ onBack }: Props) {
           <p className="text-sm text-fog-400 leading-relaxed">{t('ui.about.useful.text')}</p>
         </div>
       </section>
+      <SiteFooter width="max-w-3xl" />
     </main>
   )
 }

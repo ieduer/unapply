@@ -1,6 +1,7 @@
 import { EvidenceNotice } from './EvidenceNotice'
 import { SiteHeader } from './SiteHeader'
-import { useMemo, useState, useEffect } from 'react'
+import { SiteFooter } from './SiteFooter'
+import { useMemo, useState, useEffect, useRef } from 'react'
 import { candidateProvinceOptions } from '../data/admissionAuthorities'
 import type { CandidateProvince } from '../data/admissionAuthorities'
 import { allQuestions } from '../data/questions'
@@ -21,6 +22,8 @@ interface Props {
   allSchools: School[]
   /** 起點（展示用：港澳臺起點在 A6 多一行官方管道提示；不進篩選）。 */
   origin: OriginRegion | null
+  /** 這個流程自動略過的題號（planFlow：非大陸起點略過 S1 選考科目組合）；略過＝寫入與手動「跳過」相同的值 'skip'。 */
+  autoSkip: readonly string[]
   answers: AnswerMap
   candidateProvince: CandidateProvince
   onCandidateProvinceChange: (province: CandidateProvince) => void
@@ -34,6 +37,7 @@ interface Props {
 export function QuestionRunner({
   allSchools,
   origin,
+  autoSkip,
   answers,
   candidateProvince,
   onCandidateProvinceChange,
@@ -43,7 +47,6 @@ export function QuestionRunner({
   onBack,
 }: Props) {
   const { t } = useLocale()
-  const [idx, setIdx] = useState(0)
   // S1 的三科在湊滿之前只存在本地，不進 AnswerMap（不送互動紀錄）；S2 的門類選擇同理。綁定題號，換題即視為空。
   const [pending, setPending] = useState<{ qid: string; subjects: string[]; discipline: string }>({ qid: '', subjects: [], discipline: '' })
 
@@ -56,12 +59,29 @@ export function QuestionRunner({
     () => analyzeQuestionCoverage(allSchools, filterContext),
     [allSchools, filterContext],
   )
+  const autoSkipKey = autoSkip.join('|')
   const visibleQuestions = useMemo(
-    () => allQuestions.filter((question) => coverageByQuestion[question.id]?.active),
-    [coverageByQuestion],
+    () => allQuestions.filter((question) => coverageByQuestion[question.id]?.active && !autoSkipKey.split('|').includes(question.id)),
+    [coverageByQuestion, autoSkipKey],
   )
   const total = visibleQuestions.length
+  // 從第一題未答的題開始（重新載入後接著做）；只在掛載時取一次
+  const [idx, setIdx] = useState(() => Math.max(0, visibleQuestions.findIndex((question) => answers[question.id] === undefined)))
   const activeIdx = total > 0 ? Math.min(idx, total - 1) : 0
+
+  // 自動略過（批 G6）：與手動「跳過」同一條路徑、同一個值，學習證據形狀不變；只寫一次。
+  const autoSkipped = useRef(false)
+  useEffect(() => {
+    if (autoSkipped.current || !autoSkipKey) return
+    const pending = autoSkipKey.split('|').filter((id) => answers[id as keyof AnswerMap] !== 'skip')
+    autoSkipped.current = true
+    if (pending.length === 0) return
+    let next = answers
+    for (const id of pending) {
+      next = { ...next, [id]: 'skip' }
+      onAnswerChange(next, id)
+    }
+  }, [answers, autoSkipKey, onAnswerChange])
   const q: Question | null = visibleQuestions[activeIdx] ?? null
   const visibleOptions = useMemo(
     () => (q ? getVisibleOptions(q, coverageByQuestion[q.id]) : []),
@@ -70,8 +90,13 @@ export function QuestionRunner({
   const shortlistReached = liveResult.stats.keptCount <= 10 && liveResult.stats.answeredCount > 0
   const showShortlistPanel = shortlistReached && liveResult.stats.keptCount > 0
 
+  // 換題：捲到頂部，焦點移到新題目的標題（鍵盤與讀屏使用者從題目開始）；第一次掛載由 App 處理
+  const firstQuestion = useRef(true)
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (firstQuestion.current) { firstQuestion.current = false; return }
+    const heading = document.querySelector<HTMLElement>('[data-question-title]')
+    if (heading) { heading.setAttribute('tabindex', '-1'); heading.focus({ preventScroll: true }) }
   }, [activeIdx])
 
   if (!q) {
@@ -187,10 +212,13 @@ export function QuestionRunner({
       />
 
       {/* 頁頭在最上；生活回報說明在頁頭下方，手機收成一行（2026-11-08 批 G4） */}
-      <div className="max-w-2xl w-full mx-auto px-4 sm:px-6 pt-3 sm:pt-4"><EvidenceNotice collapseOnMobile /></div>
+      <div className="max-w-2xl w-full mx-auto px-4 sm:px-6 pt-3 sm:pt-4 flex flex-col gap-2">
+        <EvidenceNotice collapseOnMobile />
+        {autoSkip.includes('S1') && <p className="text-xs text-fog-500 leading-relaxed" data-runner-autoskip="S1">{t('ui.runner.autoSkipS1')}</p>}
+      </div>
       <section className="flex-1 max-w-2xl w-full mx-auto px-4 sm:px-6 pt-5 pb-32 sm:pt-8 sm:pb-10 flex flex-col gap-8 sm:gap-10">
         <div key={q.id} className="question-enter flex flex-col gap-3 sm:gap-4">
-            <h2 className="serif text-2xl sm:text-3xl leading-snug">{questionTitle(q.id)}</h2>
+            <h2 className="serif text-2xl sm:text-3xl leading-snug" data-question-title>{questionTitle(q.id)}</h2>
             {subtitle && (
               <p className="text-sm text-fog-500 leading-relaxed">{subtitle}</p>
             )}
@@ -360,6 +388,7 @@ export function QuestionRunner({
           {nextLabel}
         </button>
       </div>
+      <SiteFooter width="max-w-2xl" />
     </main>
   )
 }

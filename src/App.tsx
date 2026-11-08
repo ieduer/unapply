@@ -4,6 +4,8 @@ import {
   useState,
   useCallback,
   useEffect,
+  useLayoutEffect,
+  useRef,
   useSyncExternalStore,
   Suspense,
   type ReactNode,
@@ -12,12 +14,16 @@ import { SyncNotice } from './shared-ui/SyncNotice'
 import { candidateProvinceOptions, defaultCandidateProvince } from './data/admissionAuthorities'
 import type { CandidateProvince } from './data/admissionAuthorities'
 import { readStoredOrigin, saveOrigin, type OriginRegion } from './data/origins'
-import { emptyOriginPrefs, normalizeOriginPrefs, readStoredOriginPrefs, saveOriginPrefs, type OriginPrefs } from './data/originBranch'
+import { normalizeOriginPrefs, originPrefsFor, readStoredOriginPrefs, saveOriginPrefs, type OriginPrefs } from './data/originBranch'
+import { mainlandAutoSkip, planFlow } from './engine/flowPlan'
+import { GLOBAL_STORAGE_KEY } from './engine/globalFilter'
+import { consumeExplicitNavigation, hashOf, markExplicitNavigation, recallScroll, rememberScroll } from './lib/router'
 import type { ProgramIndexPayload } from './data/programsTypes'
 import { loadProgramIndex } from './lib/programsData'
 import type { School } from './data/schools'
 import { filterSchools } from './engine/filter'
-import type { AnswerMap } from './engine/filter'
+import type { AnswerMap, AnswerValue } from './engine/filter'
+import { allQuestions } from './data/questions'
 import { getSessionKey, recordUnapplyEvent, syncUnapplyProgress } from './lib/bdfzIdentity'
 import { buildUnapplyResultEvidence } from './lib/learningEvidence'
 import { loadSchools } from './lib/runtimeData'
@@ -78,7 +84,7 @@ function parseRoute(): Route {
   return { name: 'landing' }
 }
 
-function navigate(route: Route) {
+function hashFor(route: Route): string {
   let hash = '#/'
   if (route.name === 'filter') hash = '#/filter'
   else if (route.name === 'result') hash = '#/result'
@@ -89,7 +95,57 @@ function navigate(route: Route) {
   else if (route.name === 'global') hash = '#/global'
   else if (route.name === 'overseas') hash = route.region ? `#/overseas/${encodeURIComponent(route.region)}${route.inst ? `/${encodeURIComponent(route.inst)}` : ''}` : '#/overseas'
   else if (route.name === 'school') hash = `#/school/${encodeURIComponent(route.id)}`
+  return hash
+}
+
+function navigate(route: Route) {
+  const hash = hashFor(route)
   if (window.location.hash !== hash) window.location.hash = hash
+}
+
+// 大陸 45 題的作答只存在本分頁（sessionStorage）：重新載入後接著做，關掉分頁就清掉；不含個人資料。
+const ANSWERS_STORAGE_KEY = 'unapply.answers.v1'
+/** 本分頁是否走完過大陸階段（到過結果頁）：全球頁的「回到大陸結果」用。 */
+const MAINLAND_DONE_STORAGE_KEY = 'unapply.mainlandDone.v1'
+
+function readMainlandDone(): boolean {
+  try { return window.sessionStorage.getItem(MAINLAND_DONE_STORAGE_KEY) === '1' } catch { return false }
+}
+
+function saveMainlandDone(done: boolean) {
+  try {
+    if (done) window.sessionStorage.setItem(MAINLAND_DONE_STORAGE_KEY, '1')
+    else window.sessionStorage.removeItem(MAINLAND_DONE_STORAGE_KEY)
+  } catch {
+    // 存不下就算了
+  }
+}
+
+function readStoredAnswers(): AnswerMap {
+  try {
+    const raw = window.sessionStorage.getItem(ANSWERS_STORAGE_KEY)
+    if (!raw) return {}
+    const parsed = JSON.parse(raw) as unknown
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {}
+    const ids = new Set<string>(allQuestions.map((question) => question.id))
+    const out: AnswerMap = {}
+    for (const [key, value] of Object.entries(parsed as Record<string, unknown>)) {
+      if (!ids.has(key)) continue
+      if (value === null || typeof value === 'string' || (Array.isArray(value) && value.every((v) => typeof v === 'string'))) out[key as keyof AnswerMap] = value as AnswerValue
+    }
+    return out
+  } catch {
+    return {}
+  }
+}
+
+function saveStoredAnswers(answers: AnswerMap) {
+  try {
+    if (Object.keys(answers).length === 0) window.sessionStorage.removeItem(ANSWERS_STORAGE_KEY)
+    else window.sessionStorage.setItem(ANSWERS_STORAGE_KEY, JSON.stringify(answers))
+  } catch {
+    // 存不下就算了，本次會話仍然生效
+  }
 }
 
 function routeNeedsSchools(route: Route): boolean {
@@ -166,14 +222,23 @@ function readStoredCandidateProvince(): CandidateProvince {
 
 export default function App() {
   const [route, setRoute] = useState<Route>(() => parseRoute())
-  const [answers, setAnswers] = useState<AnswerMap>({})
+  const [answers, setAnswersState] = useState<AnswerMap>(() => readStoredAnswers())
+  const setAnswers = useCallback((next: AnswerMap) => {
+    setAnswersState(next)
+    saveStoredAnswers(next)
+  }, [])
+  const [mainlandDone, setMainlandDoneState] = useState(() => readMainlandDone())
+  const setMainlandDone = useCallback((done: boolean) => {
+    setMainlandDoneState(done)
+    saveMainlandDone(done)
+  }, [])
   // 考生地區是篩選上下文，不是問卷答案：A6 的招生管道逐省不同，
   // 但它不能進 AnswerMap，否則會污染學習證據契約。
   const [candidateProvince, setCandidateProvinceState] = useState<CandidateProvince>(readStoredCandidateProvince)
   // 所在地／升學身份是起點（決定從哪個題庫開始），同樣不進 AnswerMap。
   const [origin, setOriginState] = useState<OriginRegion | null>(() => readStoredOrigin())
-  // 起點分支（批 E2）：資格與範圍，同樣只存 localStorage、不進 AnswerMap；換起點時無效的值歸零。
-  const [originPrefs, setOriginPrefsState] = useState<OriginPrefs>(() => normalizeOriginPrefs(readStoredOrigin(), readStoredOriginPrefs()))
+  // 起點之後的資格與目的地（批 G6），同樣只存 localStorage、不進 AnswerMap；換起點時重設。
+  const [originPrefs, setOriginPrefsState] = useState<OriginPrefs>(() => readStoredOriginPrefs(readStoredOrigin()))
   // 逐校招生專業摘要：S1／S2 兩題的學校取值由它算，所以和學校目錄一樣是問卷的前置資料（Function 重算用同一份）。
   const [programsIndex, setProgramsIndex] = useState<ProgramIndexPayload | null>(null)
   const [programsError, setProgramsError] = useState<string | null>(null)
@@ -185,11 +250,42 @@ export default function App() {
     getUnapplyAPlusStatus,
   )
 
+  // 捲動與焦點（批 G6）：站內導航捲到頂部；瀏覽器返回／前進還原離開時的位置；路由變化後焦點移到頁面主標題。
+  const routeKey = hashFor(route)
+  const routeKeyRef = useRef(routeKey)
+  const firstRoute = useRef(true)
   useEffect(() => {
-    const onHash = () => setRoute(parseRoute())
+    // 捲動位置由本站按路由記錄與還原；關掉瀏覽器的自動還原，免得返回時先套用上一頁的位置
+    try { if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual' } catch { /* 舊瀏覽器 */ }
+    const onHash = (event: HashChangeEvent) => {
+      // go() 已經渲染了新路由時不要記（那時已捲到頂部）；返回／前進與頁內鏈接才記離開頁的位置
+      if (routeKeyRef.current !== hashOf(event.newURL)) rememberScroll(hashOf(event.oldURL), window.scrollY)
+      setRoute(parseRoute())
+    }
     window.addEventListener('hashchange', onHash)
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
+  useLayoutEffect(() => {
+    routeKeyRef.current = routeKey
+    if (firstRoute.current) { firstRoute.current = false; consumeExplicitNavigation(); return }
+    const top = consumeExplicitNavigation() ? 0 : recallScroll(routeKey)
+    window.scrollTo(0, top)
+    const restore = window.setTimeout(() => { if (top > 0) window.scrollTo(0, top) }, 120)
+    // 懶載頁面與資料載入後才有主標題：最多等 3 秒；使用者已經把焦點移走就不搶
+    let tries = 0
+    const focusHeading = () => {
+      const heading = document.querySelector<HTMLElement>('main h1') ?? document.querySelector<HTMLElement>('main h2')
+      const idle = !document.activeElement || document.activeElement === document.body
+      if (heading && idle) {
+        if (!heading.hasAttribute('tabindex')) heading.setAttribute('tabindex', '-1')
+        heading.focus({ preventScroll: true })
+        return
+      }
+      if (!heading && idle && tries < 20) { tries += 1; focusTimer = window.setTimeout(focusHeading, 150) }
+    }
+    let focusTimer = window.setTimeout(focusHeading, 0)
+    return () => { window.clearTimeout(restore); window.clearTimeout(focusTimer) }
+  }, [routeKey])
 
   useEffect(() => {
     const recover = () => {
@@ -209,26 +305,32 @@ export default function App() {
     }
   }, [])
 
+  // 換起點：資格清空、目的地重設為該起點預設、全球減法選擇重設（批 G6 裁定 A）；點同一個起點不動。
   const setOrigin = useCallback((next: OriginRegion) => {
+    if (next === origin) return
     setOriginState(next)
     saveOrigin(next)
-    setOriginPrefsState((current) => {
-      const normalized = normalizeOriginPrefs(next, current)
-      saveOriginPrefs(normalized)
-      return normalized
-    })
-  }, [])
+    const fresh = originPrefsFor(next)
+    setOriginPrefsState(fresh)
+    saveOriginPrefs(fresh)
+    try { window.localStorage.removeItem(GLOBAL_STORAGE_KEY) } catch { /* 存不下就算了 */ }
+  }, [origin])
 
   const setOriginPrefs = useCallback((next: OriginPrefs) => {
-    const normalized = origin ? normalizeOriginPrefs(origin, next) : emptyOriginPrefs
+    const normalized = normalizeOriginPrefs(origin, next)
     setOriginPrefsState(normalized)
     saveOriginPrefs(normalized)
   }, [origin])
 
   const go = useCallback((r: Route) => {
+    rememberScroll(window.location.hash ? hashOf(window.location.hash) : '#/', window.scrollY)
+    markExplicitNavigation()
     navigate(r)
     setRoute(r)
   }, [])
+
+  // 起點與目的地 → 流程（純函式 planFlow；不碰 AnswerMap）
+  const plan = useMemo(() => planFlow(origin, originPrefs.destinations, originPrefs.qualification), [origin, originPrefs])
 
   useEffect(() => {
     if (!routeNeedsSchools(route) || schools || schoolLoadError) return
@@ -279,7 +381,7 @@ export default function App() {
   const handleAnswerChange = useCallback((nextAnswers: AnswerMap, changedQuestionId: string) => {
     setAnswers(nextAnswers)
     recordUnapplyAPlusAnswers(nextAnswers, changedQuestionId).then(() => undefined).catch(() => undefined)
-  }, [])
+  }, [setAnswers])
 
   const handleFinish = useCallback(() => {
     if (!result) return
@@ -289,13 +391,24 @@ export default function App() {
       void recordUnapplyEvent(evidence.event)
     }
     completeUnapplyAPlusSession(answers, candidateProvince).then(() => undefined).catch(() => undefined)
+    setMainlandDone(true)
     go({ name: 'result' })
-  }, [answers, candidateProvince, result, go])
+  }, [answers, candidateProvince, result, go, setMainlandDone])
 
+  // 進大陸題（任何入口）：使用者明確要看中國大陸，目的地補上中國大陸，流程與「下一步」「回到大陸結果」才一致
   const startMainland = useCallback(() => {
+    if (!originPrefs.destinations.includes('cn-mainland')) setOriginPrefs({ ...originPrefs, destinations: ['cn-mainland', ...originPrefs.destinations] })
     beginUnapplyAPlusSession().then(() => undefined).catch(() => undefined)
     go({ name: 'filter' })
-  }, [go])
+  }, [go, originPrefs, setOriginPrefs])
+
+  // 首頁唯一的主按鈕：含中國大陸先進大陸 45 題，否則直接進全球減法
+  const startFlow = useCallback(() => {
+    if (plan.entry === 'filter') startMainland()
+    else go({ name: 'global' })
+  }, [plan.entry, startMainland, go])
+
+  const mainlandAnswered = mainlandDone
 
   const goOverseas = useCallback((region: string | null = null, inst: string | null = null) => go({ name: 'overseas', region, inst }), [go])
 
@@ -305,12 +418,10 @@ export default function App() {
       originPrefs={originPrefs}
       onOriginChange={setOrigin}
       onOriginPrefsChange={setOriginPrefs}
-      onStart={startMainland}
+      onStart={startFlow}
       onWorld={() => go({ name: 'world' })}
       onHkMoTw={() => go({ name: 'hkmotw' })}
       onOverseas={() => goOverseas()}
-      onGlobal={() => go({ name: 'global' })}
-      onAbout={() => go({ name: 'about' })}
       onContribute={() => go({ name: 'contribute' })}
     />
   )
@@ -334,6 +445,7 @@ export default function App() {
         <QuestionRunner
           allSchools={schools}
           origin={origin}
+          autoSkip={mainlandAutoSkip(origin)}
           answers={answers}
           candidateProvince={candidateProvince}
           onCandidateProvinceChange={setCandidateProvince}
@@ -352,12 +464,14 @@ export default function App() {
           answers={answers}
           origin={origin}
           originPrefs={originPrefs}
+          plan={plan}
           programsIndex={programsIndex}
           candidateProvince={candidateProvince}
           onCandidateProvinceChange={setCandidateProvince}
           onRestart={() => {
             resetUnapplyAPlusSession()
             setAnswers({})
+            setMainlandDone(false)
             go({ name: 'filter' })
           }}
           onRelax={() => go({ name: 'filter' })}
@@ -368,6 +482,7 @@ export default function App() {
           onHkMoTw={() => go({ name: 'hkmotw' })}
           onOverseas={() => goOverseas()}
           onGlobal={() => go({ name: 'global' })}
+          onHome={() => go({ name: 'landing' })}
         />
       )
     }
@@ -417,9 +532,10 @@ export default function App() {
       <GlobalSubtraction
         origin={origin}
         originPrefs={originPrefs}
+        onOriginPrefsChange={setOriginPrefs}
+        mainlandStage={plan.stages.includes('mainland') ? (mainlandAnswered ? 'answered' : 'unanswered') : null}
+        onBackToMainland={() => (mainlandAnswered ? go({ name: 'result' }) : startMainland())}
         onBack={() => go({ name: 'landing' })}
-        onAbout={() => go({ name: 'about' })}
-        onWorld={() => go({ name: 'world' })}
         onHkMoTw={() => go({ name: 'hkmotw' })}
         onOverseas={(region, inst) => goOverseas(region ?? null, inst ?? null)}
       />

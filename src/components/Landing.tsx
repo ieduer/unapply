@@ -1,13 +1,14 @@
-import type { ReactNode } from 'react'
 import { SiteHeader } from './SiteHeader'
+import { SiteFooter } from './SiteFooter'
 import {
   officialSchoolCount,
   officialUndergraduateCount,
   officialVocationalCount,
 } from '../data/schoolCatalogSummary'
 import { researchSummary } from '../data/researchSummary'
-import { getOriginOption, originOptions, type OriginRegion } from '../data/origins'
+import { originOptions, type OriginRegion } from '../data/origins'
 import type { OriginPrefs } from '../data/originBranch'
+import { planFlow } from '../engine/flowPlan'
 import { OriginBranch } from './OriginBranch'
 import { useLocale } from '../i18n/react'
 
@@ -16,23 +17,26 @@ interface Props {
   originPrefs: OriginPrefs
   onOriginChange: (origin: OriginRegion) => void
   onOriginPrefsChange: (prefs: OriginPrefs) => void
+  /** 「開始減法」：App 依 planFlow 進 #/filter 或 #/global。 */
   onStart: () => void
   onWorld: () => void
   onHkMoTw: () => void
   onOverseas: () => void
-  onGlobal: () => void
-  onAbout: () => void
   onContribute: () => void
 }
 
-export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChange, onStart, onWorld, onHkMoTw, onOverseas, onGlobal, onAbout, onContribute }: Props) {
+export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChange, onStart, onWorld, onHkMoTw, onOverseas, onContribute }: Props) {
   const { t, n } = useLocale()
-  const originOption = origin ? getOriginOption(origin) : null
-  const isHkMoTw = origin === 'hk' || origin === 'mo' || origin === 'tw'
+  // 2026-11-08 批 G6：首頁只有一個主按鈕；流程由目的地決定（planFlow），其餘入口縮成一行「只瀏覽」文字鏈接
+  const plan = origin ? planFlow(origin, originPrefs.destinations, originPrefs.qualification) : null
+  const places = plan ? plan.globalDestinations.map((d) => t(`ui.dest.${d}`)).join(t('ui.common.listJoiner')) : ''
+  const planLine = !plan ? '' : plan.stages.length === 2
+    ? t('ui.landing.plan.both', { places })
+    : plan.entry === 'filter' ? t('ui.landing.plan.mainland') : t('ui.landing.plan.global', { places })
   return (
     <div className="min-h-screen app-canvas text-fog-100 flex flex-col">
-    <SiteHeader brand={t('ui.landing.brand')} actions={[{ label: t('ui.common.about'), onClick: onAbout }]} />
-    <main className="flex-1 text-fog-100 flex flex-col items-center justify-between px-5 sm:px-6 py-6 sm:py-10 page-end-space">
+    <SiteHeader brand={t('ui.landing.brand')} />
+    <main className="flex-1 text-fog-100 flex flex-col items-center justify-between px-5 sm:px-6 py-6 sm:py-10">
 
       <section className="w-full max-w-5xl flex flex-1 flex-col justify-center gap-8 sm:gap-12 py-10 sm:py-16">
         {/* 2026-11-08 批 G5：首頁只留大標、校數、起點題與按鈕；方法與說明在 About */}
@@ -46,15 +50,19 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
         </div>
 
         <div className="border border-ink-800 bg-ink-900/78 p-5 sm:p-6 flex flex-col gap-4 backdrop-blur-xl">
-          <h2 className="serif text-2xl">{t('ui.landing.originTitle')}</h2>
-          <div className="grid gap-2 sm:grid-cols-5" role="group" aria-label={t('ui.landing.originGroupAria')}>
+          <h2 className="serif text-2xl" id="landing-origin-title">{t('ui.landing.originTitle')}</h2>
+          <div className="grid gap-2 sm:grid-cols-5" role="group" aria-labelledby="landing-origin-title">
             {originOptions.map((option) => {
               const active = option.id === origin
+              const label = t(`origin.${option.id}.label`)
               return (
                 <button
                   key={option.id}
+                  type="button"
                   onClick={() => onOriginChange(option.id)}
                   aria-pressed={active}
+                  aria-label={label}
+                  data-origin-card={option.id}
                   className={[
                     'text-left rounded-xl border px-3 py-3 min-h-[52px] flex items-center',
                     active
@@ -62,7 +70,7 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
                       : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100',
                   ].join(' ')}
                 >
-                  <span className="serif text-base leading-snug">{t(`origin.${option.id}.label`)}</span>
+                  <span className="serif text-base leading-snug">{label}</span>
                 </button>
               )
             })}
@@ -70,85 +78,30 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
 
           {origin && <OriginBranch origin={origin} prefs={originPrefs} onChange={onOriginPrefsChange} />}
 
-          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-            {originOption?.hasLocalPool !== false ? (
-              <>
-                <button
-                  onClick={onStart}
-                  disabled={!originOption}
-                  className={[
-                    'px-7 py-4 sm:py-3 rounded-xl font-semibold text-base transition-colors min-h-[52px]',
-                    originOption ? 'bg-accent-500 text-ink-950 hover:bg-accent-400' : 'bg-ink-800 text-fog-500 cursor-not-allowed',
-                  ].join(' ')}
-                >
-                  {t('ui.landing.start')}
-                </button>
-                <button
-                  onClick={onWorld}
-                  className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
-                >
-                  {t('ui.landing.world')}
-                </button>
-              </>
-            ) : isHkMoTw ? (
-              <>
-                {/* 2026-11-08 批 G2：港澳臺／海外起點在資格與範圍之後先走全球減法（展示層，不進 AnswerMap）；直接看池的入口保留為次按鈕 */}
-                <button
-                  onClick={onGlobal}
-                  data-landing-global
-                  className="px-7 py-4 sm:py-3 bg-accent-500 text-ink-950 rounded-xl font-semibold text-base hover:bg-accent-400 transition-colors min-h-[52px]"
-                >
-                  {t('ui.landing.global')}
-                </button>
-                <button
-                  onClick={onHkMoTw}
-                  className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
-                >
-                  {t('ui.landing.hkmotwDirect')}
-                </button>
-                <button
-                  onClick={onWorld}
-                  className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
-                >
-                  {t('ui.landing.world')}
-                </button>
-                <button
-                  onClick={onStart}
-                  className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
-                >
-                  {t('ui.landing.enterMainland')}
-                </button>
-              </>
-            ) : (
-              <>
-                {/* 2026-11-08 批 G2：港澳臺／海外起點在資格與範圍之後先走全球減法（展示層，不進 AnswerMap）；直接看池的入口保留為次按鈕 */}
-                <button
-                  onClick={onGlobal}
-                  data-landing-global
-                  className="px-7 py-4 sm:py-3 bg-accent-500 text-ink-950 rounded-xl font-semibold text-base hover:bg-accent-400 transition-colors min-h-[52px]"
-                >
-                  {t('ui.landing.global')}
-                </button>
-                <button
-                  onClick={onOverseas}
-                  className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
-                >
-                  {t('ui.landing.overseasDirect')}
-                </button>
-                <button
-                  onClick={onWorld}
-                  className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
-                >
-                  {t('ui.landing.world')}
-                </button>
-                <button
-                  onClick={onStart}
-                  className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
-                >
-                  {t('ui.landing.enterMainland')}
-                </button>
-              </>
-            )}
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+              <button
+                type="button"
+                onClick={onStart}
+                disabled={!plan}
+                data-landing-start={plan?.entry ?? 'none'}
+                className={[
+                  'px-7 py-4 sm:py-3 rounded-xl font-semibold text-base transition-colors min-h-[52px]',
+                  plan ? 'bg-accent-500 text-ink-950 hover:bg-accent-400' : 'bg-ink-800 text-fog-500 cursor-not-allowed',
+                ].join(' ')}
+              >
+                {t('ui.landing.start')}
+              </button>
+              <p className="text-sm text-fog-300 leading-relaxed" data-landing-plan aria-live="polite">{plan ? planLine : t('ui.landing.plan.pickOrigin')}</p>
+            </div>
+            <p className="text-sm text-fog-500 flex flex-wrap items-center gap-x-2" data-landing-browse>
+              <span>{t('ui.landing.browse')}</span>
+              <button type="button" onClick={onWorld} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{t('ui.landing.browse.world')}</button>
+              <span aria-hidden="true">·</span>
+              <button type="button" onClick={onHkMoTw} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{t('ui.landing.browse.hkmotw')}</button>
+              <span aria-hidden="true">·</span>
+              <button type="button" onClick={onOverseas} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{t('ui.landing.browse.overseas')}</button>
+            </p>
           </div>
         </div>
 
@@ -191,36 +144,8 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
         </div>
       </section>
 
-      {/* 2026-11-08 批 G5（站長指示，取代 G1 的頁尾分組）：三行精簡頁尾；分級標籤只在 About */}
-      <footer className="w-full max-w-5xl pt-4 border-t border-ink-800 text-xs mono text-fog-500 leading-relaxed flex flex-col" data-landing-footer>
-        <p className="flex flex-wrap items-center gap-x-2" data-footer-line="sisters">
-          <span className="text-fog-300">{t('ui.landing.footer.sisters')}</span>
-          <FooterLink href="https://path.bdfz.net" title={t('ui.landing.footer.path')}>path</FooterLink>
-          <Dot />
-          <FooterLink href="https://gk.rdfzer.com/#advice-top" title={t('ui.landing.footer.gk')}>gk</FooterLink>
-          <Dot />
-          <FooterLink href="https://my.bdfz.net" title={t('ui.landing.footer.my')}>my</FooterLink>
-        </p>
-        <p className="flex flex-wrap items-center gap-x-2" data-footer-line="sources">
-          <span className="text-fog-300">{t('ui.landing.footer.sources')}</span>
-          <FooterLink href="https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202606/t20260618_1441074.html" title={t('ui.landing.footer.moe.title')}>{t('ui.landing.footer.moe')}</FooterLink>
-          <Dot />
-          <FooterLink href="https://www.cma.gov.cn/" title={t('ui.landing.footer.cma.title')}>{t('ui.landing.footer.cma')}</FooterLink>
-          <Dot />
-          <FooterLink href="https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/" title={t('ui.landing.footer.disciplineEval.title')}>{t('ui.landing.footer.disciplineEval')}</FooterLink>
-          <Dot />
-          <FooterLink href="https://www.shanghairanking.com/rankings/gras/2026" title={t('ui.landing.footer.gras.title')}>{t('ui.landing.footer.gras')}</FooterLink>
-          <Dot />
-          <FooterLink href="https://www.yicai.com/topic/" title={t('ui.landing.footer.yicai.title')}>{t('ui.landing.footer.yicai')}</FooterLink>
-          <Dot />
-          <span className="text-fog-300">{t('ui.landing.footer.openSource')}</span>
-          <FooterLink href="https://github.com/ieduer/unapply" title={t('ui.landing.footer.unapply.title')}>ieduer/unapply</FooterLink>
-          <Dot />
-          <FooterLink href="https://github.com/CollegesChat/university-information" title={t('ui.landing.footer.collegeschat.title')}>CollegesChat</FooterLink>
-        </p>
-        <p className="py-2.5" data-footer-line="licence">{t('ui.landing.footer.licence')}</p>
-      </footer>
     </main>
+    <SiteFooter />
     </div>
   )
 }
@@ -232,16 +157,4 @@ function MetricCard({ label, value }: { label: string; value: string }) {
       <p className="serif text-3xl text-fog-100">{value}</p>
     </div>
   )
-}
-
-function FooterLink({ href, title, children }: { href: string; title: string; children: ReactNode }) {
-  return (
-    <a className="inline-flex items-center min-h-[40px] hover:text-accent-500" href={href} title={title} aria-label={title} target="_blank" rel="noreferrer noopener">
-      {children}
-    </a>
-  )
-}
-
-function Dot() {
-  return <span aria-hidden="true">·</span>
 }

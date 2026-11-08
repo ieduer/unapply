@@ -16,6 +16,7 @@ import { countListed, loadQualificationsIndex, markInstitution, type Qualificati
 import { useLocale, type Locale } from '../i18n/react'
 import { Rich } from '../i18n/rich'
 import { SiteHeader } from './SiteHeader'
+import { SiteFooter } from './SiteFooter'
 
 interface Props {
   origin: OriginRegion | null
@@ -105,8 +106,8 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
   const unread = t('ui.overseas.unread')
 
   return (
-    <main className="min-h-screen app-canvas text-fog-100 page-end-space">
-      <SiteHeader brand={t('ui.overseas.brand', { version: index.version })} back={{ label: t('ui.hkmotw.backHome'), onClick: onBack }} actions={[{ label: t('ui.common.about'), onClick: onAbout }]} />
+    <main className="min-h-screen app-canvas text-fog-100">
+      <SiteHeader brand={t('ui.overseas.brand', { version: index.version })} back={{ label: t('ui.hkmotw.backHome'), onClick: onBack }} />
 
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8">
         <div className="max-w-3xl flex flex-col gap-3">
@@ -180,6 +181,7 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
           </p>
         </footer>
       </section>
+      <SiteFooter width="max-w-5xl" />
     </main>
   )
 }
@@ -346,11 +348,13 @@ function PlainQuotes({ label, items }: { label: string; items: string[] }) {
   )
 }
 
-/** 未上鏈接的說明行：前綴以鍵翻譯；note 是 payload 原文（資料），網域與核對日照列。 */
-function UnreadLine({ note, domain, fetchedAt }: { note?: string; domain: string | null; fetchedAt: string }) {
+/**
+ * 未上鏈接的說明行：資料卡的來源行只寫一次「官方頁本站未讀到」、網域與核對日（2026-11-08 批 G6：不再顯示被擋、驗證頁、403 之類的內部核查原因；原因仍留在資料檔）。
+ */
+function UnreadLine({ domain, fetchedAt }: { note?: string; domain: string | null; fetchedAt: string }) {
   const { t } = useLocale()
   return (
-    <p className="text-xs mono text-fog-500 leading-relaxed break-words">{t('ui.overseas.unreadPrefix')}{note ? `：${note}` : ''}{domain ? ` · ${domain}` : ''} · {t('ui.overseas.checked', { date: fetchedAt })}</p>
+    <p className="text-xs mono text-fog-500 leading-relaxed break-words">{t('ui.overseas.unreadPrefix')}{domain ? ` · ${domain}` : ''} · {t('ui.overseas.checked', { date: fetchedAt })}</p>
   )
 }
 
@@ -496,7 +500,7 @@ function InstitutionDetail({ inst }: { inst: OverseasInstitutionDetail }) {
             <p className="text-fog-100 break-words">{a.title || t('ui.overseas.inst.titleMissing')}</p>
             <p className="text-xs mono text-fog-500 break-all">{a.externalDomain} · {a.note}</p>
           </>
-        ) : <p>{a.note}</p>}
+        ) : <p data-admissions-unread>{t('ui.overseas.unreadPrefix')}</p>}
       </Field>
 
       <Field label={t('ui.overseas.field.gaokao')}>
