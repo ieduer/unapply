@@ -582,6 +582,15 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 元件裡不要用降低透明度（`opacity-*`）來表示次要或停用——用 `text-fog-500` 這類仍過對比度的字色；
 字級不低於 12px（`text-xs`）。
 
+### 5.1a 共用頁頭與手機版面（2026-11-08 批 G3 後續：修右上角色系與頁頭重疊、手機整體優化）
+
+- 全站頁頭只有一個元件 `src/components/SiteHeader.tsx`（Landing、QuestionRunner、ResultPage、SchoolDetail、AboutPage、WorldAtlasPage、HkMoTwPage、OverseasPage、GlobalSubtraction、ContributePage 共用）：返回 · 站名 ·（問卷頁的進度，只在 ≥640px）·（彈性空白）· 色系 · 動作 · 語言切換。`flex-wrap` 從尾端換行，放不下時只有語言切換掉到第二行（靠右）；<640px 站名縮為「nope」、版本號隱藏；語言切換與各按鈕 `whitespace-nowrap`。問卷頁在 <640px 把進度文字放到頁頭第一行下方。
+- 色系不再是全域右上角浮鈕：`App.tsx` 不再渲染 `<ThemeCustomizer />`，改由 SiteHeader 以 `placement="inline"` 放在頁頭裡（shared-ui；彈層錨定觸發鈕、點外部或 Esc 關閉、焦點回到觸發鈕、四邊至少留 12px；窄螢幕只顯示色點，名稱在 `aria-label`）。path.bdfz.net 不傳 `placement`，維持 floating。
+- 觸控區：獨立的鏈接／按鈕至少 40px 高（`src/index.css` 的 `.tap`；頁頭控制項 44px）；段落文字中的行內鏈接維持行內。
+- 手機底部留白：各頁主欄加 `page-end-space`（<640px 末尾留 7rem＋安全區），讓最後的內容捲出右下角 BDFZ 共用導航圓標（`site-auth.js`，`data-mobile-inset-bottom="92"`，不改它）；問卷頁在固定底欄上方另留 6rem。
+- `#/world` 剩餘機構：<640px 改堆疊卡片（機構、地區、席位、最強學科），≥640px 維持表格。
+- 驗收量測（每次動頁頭或版面都要跑）：全部路由 × 360／390／430／1024／1280／1440 × 兩色系 × 三語，頁頭控制項與任何文字矩形（`getBoundingClientRect`／Range client rects，排除 aria-hidden 與未展開的 `<details>` 內容）零相交、無橫向溢出、獨立控制項 ≥40px、最小字 12px、對比 ≥4.5、語言切換不折行、色系彈層完整在視窗內。量測輔助見批 G3 後續的發布證據。
+
 ### 5.2 問題頁與結果頁
 
 - 問卷頁不再展示覆蓋率與排除量說明，避免打斷答題；這些方法論統一放到 About。

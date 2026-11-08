@@ -1,5 +1,5 @@
 import { EvidenceNotice } from './EvidenceNotice'
-import { LocaleSwitcher } from './LocaleSwitcher'
+import { SiteHeader } from './SiteHeader'
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { loadJointIndex } from '../lib/jointData'
 import type { JointIndexPayload } from '../data/jointTypes'
@@ -251,17 +251,8 @@ export function ResultPage({
   const showRelaxAction = !zero && result.stats.answeredCount > 0
 
   return (
-    <main className="min-h-screen app-canvas text-fog-100">
-      <header className="sticky top-0 z-10 backdrop-blur bg-ink-950/80 border-b border-ink-800">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between text-xs mono uppercase tracking-[0.2em] text-fog-500">
-          <span>{t('ui.result.brand')}</span>
-          <div className="flex items-center gap-3 sm:gap-4">
-            <LocaleSwitcher />
-            <button onClick={onAbout} className="hover:text-accent-500 min-h-[44px] -my-3 py-3">{t('ui.common.about')}</button>
-            <button onClick={onContribute} className="hover:text-accent-500 min-h-[44px] -my-3 py-3">{t('ui.common.contribute')}</button>
-          </div>
-        </div>
-      </header>
+    <main className="min-h-screen app-canvas text-fog-100 page-end-space">
+      <SiteHeader sticky width="max-w-3xl" brand={t('ui.result.brand')} actions={[{ label: t('ui.common.about'), onClick: onAbout }, { label: t('ui.common.contribute'), onClick: onContribute }]} />
 
       <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 pb-24 sm:pt-12 flex flex-col gap-10 sm:gap-14">
         <EvidenceNotice />

@@ -15,7 +15,7 @@ import { QUALIFICATION_OPTIONS, QUALIFICATIONS_BY_ORIGIN, isQualification, quali
 import { countListed, loadQualificationsIndex, markInstitution, type QualificationsPayload } from '../lib/originLayer'
 import { useLocale, type Locale } from '../i18n/react'
 import { Rich } from '../i18n/rich'
-import { LocaleSwitcher } from './LocaleSwitcher'
+import { SiteHeader } from './SiteHeader'
 
 interface Props {
   origin: OriginRegion | null
@@ -105,17 +105,8 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
   const unread = t('ui.overseas.unread')
 
   return (
-    <main className="min-h-screen app-canvas text-fog-100">
-      <header className="border-b border-ink-800 bg-ink-900/70 backdrop-blur-xl">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3 text-xs mono uppercase tracking-[0.2em] text-fog-500">
-          <button onClick={onBack} className="hover:text-accent-500 min-h-[44px] -my-3 py-3">{t('ui.hkmotw.backHome')}</button>
-          <span className="hidden sm:inline">{t('ui.overseas.brand', { version: index.version })}</span>
-          <div className="flex items-center gap-2 sm:gap-3">
-            <LocaleSwitcher />
-            <button onClick={onAbout} className="hover:text-accent-500 min-h-[44px] -my-3 py-3">{t('ui.common.about')}</button>
-          </div>
-        </div>
-      </header>
+    <main className="min-h-screen app-canvas text-fog-100 page-end-space">
+      <SiteHeader brand={t('ui.overseas.brand', { version: index.version })} back={{ label: t('ui.hkmotw.backHome'), onClick: onBack }} actions={[{ label: t('ui.common.about'), onClick: onAbout }]} />
 
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8">
         <div className="max-w-3xl flex flex-col gap-3">
@@ -454,8 +445,8 @@ function InstitutionRow({ inst, open, onToggle, autoScroll, marking }: { inst: O
             </span>
           )}
           <StatusBadge text={t(institutionBadgeKey(inst))} />
-          <a className="text-xs mono text-accent-500 hover:text-accent-400" href={inst.website} target="_blank" rel="noreferrer noopener">{t('ui.overseas.inst.website')}</a>
-          <button onClick={onToggle} aria-expanded={open} className="text-xs mono text-accent-500 hover:text-accent-400 min-h-[32px] px-1">{open ? t('ui.overseas.inst.collapse') : t('ui.overseas.inst.expand')}</button>
+          <a className="tap text-xs mono text-accent-500 hover:text-accent-400" href={inst.website} target="_blank" rel="noreferrer noopener">{t('ui.overseas.inst.website')}</a>
+          <button onClick={onToggle} aria-expanded={open} className="text-xs mono text-accent-500 hover:text-accent-400 min-h-[40px] px-1">{open ? t('ui.overseas.inst.collapse') : t('ui.overseas.inst.expand')}</button>
         </div>
       </div>
       {open && <InstitutionDetail inst={inst} />}

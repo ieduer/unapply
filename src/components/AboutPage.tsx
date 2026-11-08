@@ -9,7 +9,7 @@ import { programsManifest } from '../data/programsManifest'
 import { overseasManifest } from '../data/overseasManifest'
 import { useLocale } from '../i18n/react'
 import { Rich, type RichParams } from '../i18n/rich'
-import { LocaleSwitcher } from './LocaleSwitcher'
+import { SiteHeader } from './SiteHeader'
 import { TierBadge } from './TierBadge'
 import { worldAtlasManifest } from '../data/worldAtlasManifest'
 import { authorityTiersSource } from '../data/authorityTiers'
@@ -19,8 +19,9 @@ import { dbManifest } from '../data/dbManifest'
 interface Props { onBack: () => void }
 
 const ext = (href: string) => (children: ReactNode) => (
-  <span className="inline-flex items-center gap-1 align-baseline">
-    <a className="text-accent-500 hover:text-accent-400 mono break-all" href={href} target="_blank" rel="noreferrer noopener">{children}</a>
+  <span className="inline-flex items-center gap-1 align-middle">
+    {/* 來源鏈接與分級標籤自成一組（不是段落文字中的行內鏈接）：觸控區 40px（2026-11-08 手機版面） */}
+    <a className="tap text-accent-500 hover:text-accent-400 mono break-all" href={href} target="_blank" rel="noreferrer noopener">{children}</a>
     <TierBadge url={href} />
   </span>
 )
@@ -41,18 +42,8 @@ export function AboutPage({ onBack }: Props) {
   const { t, n } = useLocale()
   const o = overseasManifest.counts
   return (
-    <main className="min-h-screen app-canvas text-fog-100">
-      <header className="sticky top-0 z-10 backdrop-blur bg-ink-950/80 border-b border-ink-800">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-3">
-          <button onClick={onBack} className="text-xs mono uppercase tracking-[0.2em] text-fog-500 hover:text-accent-500 min-h-[44px] -my-3 py-3">
-            {t('ui.common.back')}
-          </button>
-          <div className="flex items-center gap-3">
-            <LocaleSwitcher />
-            <span className="mono text-xs text-fog-500">{t('ui.about.brand')}</span>
-          </div>
-        </div>
-      </header>
+    <main className="min-h-screen app-canvas text-fog-100 page-end-space">
+      <SiteHeader sticky width="max-w-3xl" brand={t('ui.about.brand')} back={{ label: t('ui.common.back'), onClick: onBack }} />
 
       <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8 sm:gap-10 text-fog-300 leading-relaxed text-sm sm:text-base">
         <div>

@@ -25,7 +25,7 @@ import { jointProgramsManifest } from '../data/jointProgramsManifest'
 import { TierBadge } from './TierBadge'
 import { useLocale } from '../i18n/react'
 import { dimensionLabel, linkLabel, linkNote, programStrikeLabel, provinceLabel, requirementLabel, schoolDisplayName, subjectsLabel, valueLabel } from '../lib/i18nLabels'
-import { LocaleSwitcher } from './LocaleSwitcher'
+import { SiteHeader } from './SiteHeader'
 
 interface Props {
   school: School
@@ -169,18 +169,8 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
   }, [campusMap, school.moeCode, school.province, campusRetry])
 
   return (
-    <main className="min-h-screen app-canvas text-fog-100">
-      <header className="sticky top-0 z-10 backdrop-blur bg-ink-950/80 border-b border-ink-800">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
-          <button onClick={onBack} className="text-xs mono uppercase tracking-[0.2em] text-fog-500 hover:text-accent-500 min-h-[44px] -my-3 py-3">
-            {t('ui.common.back')}
-          </button>
-          <div className="flex items-center gap-3">
-            <LocaleSwitcher />
-            <span className="mono text-xs text-fog-500">{t('ui.detail.header')}</span>
-          </div>
-        </div>
-      </header>
+    <main className="min-h-screen app-canvas text-fog-100 page-end-space">
+      <SiteHeader sticky width="max-w-3xl" brand={t('ui.detail.header')} back={{ label: t('ui.common.back'), onClick: onBack }} />
 
       <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-10">
         <div className="flex flex-col gap-3">
@@ -269,7 +259,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                 href={admissionChannels.source.url}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="mono text-xs text-accent-500 hover:text-accent-400 break-all"
+                className="tap mono text-xs text-accent-500 hover:text-accent-400 break-all"
               >
                 {admissionChannels.source.title}
                 {admissionChannels.year ? t('ui.detail.channels.sourceYear', { year: admissionChannels.year }) : ''} ↗
@@ -311,7 +301,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                   href={programsPayload.sources[strongBase.sourceId].url}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="mono text-xs text-accent-500 hover:text-accent-400 break-all"
+                  className="tap mono text-xs text-accent-500 hover:text-accent-400 break-all"
                 >
                   {programsPayload.sources[strongBase.sourceId].title}（{programsPayload.sources[strongBase.sourceId].date}） ↗
                 </a>
@@ -385,7 +375,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
             </div>
             <a
               href={contribHref(school.id, 'A5')}
-              className="mono text-xs text-accent-500 hover:text-accent-400 shrink-0"
+              className="tap mono text-xs text-accent-500 hover:text-accent-400 shrink-0"
             >
               {t('ui.detail.campus.addCta')}
             </a>
@@ -470,7 +460,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
             <h2 className="serif text-xl">{t('ui.detail.life.title')}</h2>
             <a
               href={contribHref(school.id, 'B1')}
-              className="mono text-xs text-accent-500 hover:text-accent-400 shrink-0"
+              className="tap mono text-xs text-accent-500 hover:text-accent-400 shrink-0"
             >
               {t('ui.detail.life.addAll')}
             </a>
@@ -520,7 +510,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                       <p>{source.date ?? t('ui.detail.life.sourceDateMissing')} · {source.note}</p>
                     </div>
                   ))}
-                  <a className="mt-3 inline-block text-xs text-accent-500" href={contribHref(school.id, d)}>{t('ui.detail.life.addOne')}</a>
+                  <a className="tap mt-3 text-xs text-accent-500" href={contribHref(school.id, d)}>{t('ui.detail.life.addOne')}</a>
                 </div>
               )
             })}
@@ -599,7 +589,7 @@ function EvidenceRow({ label, items }: { label: string; items: ResearchEvidence[
             href={item.url}
             target="_blank"
             rel="noreferrer noopener"
-            className="inline-flex max-w-full items-center rounded-full border border-ink-700 bg-ink-900 px-3 py-2 text-xs text-fog-300 hover:border-fog-500"
+            className="inline-flex max-w-full items-center min-h-[40px] rounded-full border border-ink-700 bg-ink-900 px-3 py-2 text-xs text-fog-300 hover:border-fog-500"
             title={item.note}
           >
             <span className="truncate">

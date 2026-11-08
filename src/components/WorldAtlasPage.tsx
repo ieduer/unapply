@@ -16,7 +16,7 @@ import { loadOverseasIndex } from '../lib/overseasData'
 import { getOriginOption, type OriginRegion } from '../data/origins'
 import { useLocale, type Locale } from '../i18n/react'
 import { Rich } from '../i18n/rich'
-import { LocaleSwitcher } from './LocaleSwitcher'
+import { SiteHeader } from './SiteHeader'
 import { TierBadge } from './TierBadge'
 import { worldAtlasManifest } from '../data/worldAtlasManifest'
 
@@ -154,17 +154,8 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
   const seatText = (seat: AtlasInstitutionView['seats'][number]) => t('ui.world.seatRank', { subject: subjectName(seat.subject, locale), rank: seat.rank })
 
   return (
-    <main className="min-h-screen app-canvas text-fog-100">
-      <header className="sticky top-0 z-10 backdrop-blur bg-ink-950/80 border-b border-ink-800">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-3 text-xs mono uppercase tracking-[0.2em] text-fog-500">
-          <button onClick={onBack} className="hover:text-accent-500 min-h-[44px] -my-3 py-3">{t('ui.common.back')}</button>
-          <span className="hidden sm:inline">{t('ui.world.brand')}</span>
-          <div className="flex items-center gap-2 sm:gap-3">
-            <LocaleSwitcher />
-            <button onClick={onAbout} className="hover:text-accent-500 min-h-[44px] -my-3 py-3">{t('ui.common.about')}</button>
-          </div>
-        </div>
-      </header>
+    <main className="min-h-screen app-canvas text-fog-100 page-end-space">
+      <SiteHeader sticky brand={t('ui.world.brand')} back={{ label: t('ui.common.back'), onClick: onBack }} actions={[{ label: t('ui.common.about'), onClick: onAbout }]} />
 
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8">
         <div className="max-w-3xl flex flex-col gap-3">
@@ -435,7 +426,25 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
             <h2 className="serif text-2xl">{t('ui.world.remaining.title')}</h2>
             <span className="text-xs mono text-fog-500">{t('ui.world.remaining.hint', { n: Math.min(60, keptList.length) })}</span>
           </div>
-          <div className="overflow-x-auto border border-ink-800 rounded-xl bg-ink-900">
+          {/* 手機（<640px）：堆疊卡片，避免表格在 390 寬撐到 474px 橫捲；≥640px 維持表格 */}
+          <ul className="sm:hidden flex flex-col gap-2" data-world-remaining-cards>
+            {keptList.slice(0, 60).map(({ institution, seats }) => (
+              <li key={institution.id}>
+                <button
+                  type="button"
+                  onClick={() => { setSelectedId(institution.id); setSelectedProgramId(null); window.scrollTo({ top: 0, behavior: 'instant' }) }}
+                  className="w-full text-left border border-ink-800 rounded-xl bg-ink-900 px-4 py-3 flex flex-col gap-1 min-h-[44px] hover:border-accent-500"
+                >
+                  <span className="text-sm text-fog-100">{primaryName(institution)}</span>
+                  {secondaryName(institution) && <span className="text-xs text-fog-500">{secondaryName(institution)}</span>}
+                  <span className="text-xs text-fog-300">{regionLabel(institution.region)} · <span className="mono">{t('ui.world.table.seats')} {seats.length}</span></span>
+                  <span className="text-xs text-fog-300 leading-relaxed">{seats.slice(0, 3).map(seatText).join(' · ')}</span>
+                </button>
+              </li>
+            ))}
+            {keptList.length === 0 && <li className="px-3 py-6 text-center text-sm text-fog-500">{t('ui.world.table.empty')}</li>}
+          </ul>
+          <div className="hidden sm:block overflow-x-auto border border-ink-800 rounded-xl bg-ink-900">
             <table className="w-full text-sm">
               <thead>
                 <tr className="text-left mono text-xs uppercase tracking-[0.16em] text-fog-500 border-b border-ink-800">
@@ -568,7 +577,7 @@ function SelectedInstitution({
           </a>
         )}
         {external && (
-          <a className="mono text-xs text-fog-500 hover:text-accent-500 underline" href={external} target="_blank" rel="noreferrer noopener">
+          <a className="tap mono text-xs text-fog-500 hover:text-accent-500 underline" href={external} target="_blank" rel="noreferrer noopener">
             {t('ui.world.selected.srPage')}
           </a>
         )}

@@ -9,7 +9,6 @@ import {
   type ReactNode,
 } from 'react'
 import { SyncNotice } from './shared-ui/SyncNotice'
-import { ThemeCustomizer } from './shared-ui/ThemeCustomizer'
 import { candidateProvinceOptions, defaultCandidateProvince } from './data/admissionAuthorities'
 import type { CandidateProvince } from './data/admissionAuthorities'
 import { readStoredOrigin, saveOrigin, type OriginRegion } from './data/origins'
@@ -166,17 +165,6 @@ function readStoredCandidateProvince(): CandidateProvince {
 }
 
 export default function App() {
-  const { t } = useLocale()
-  // shared-ui 色系面板文字由本站傳入三語值（2026-11-08 批 G3）；path.bdfz.net 不傳 labels，維持原字串
-  const themeLabels = useMemo(() => ({
-    title: t('ui.theme.title'),
-    close: t('ui.common.close'),
-    sample: t('ui.theme.text'),
-    presets: {
-      paper: { label: t('ui.theme.paper.label'), description: t('ui.theme.paper.hint') },
-      ink: { label: t('ui.theme.ink.label'), description: t('ui.theme.ink.hint') },
-    },
-  }), [t])
   const [route, setRoute] = useState<Route>(() => parseRoute())
   const [answers, setAnswers] = useState<AnswerMap>({})
   // 考生地區是篩選上下文，不是問卷答案：A6 的招生管道逐省不同，
@@ -461,7 +449,7 @@ export default function App() {
       <Suspense fallback={<PageLoading />}>
         {page}
       </Suspense>
-      <ThemeCustomizer labels={themeLabels} />
+      {/* 色系切換改在各頁共用頁頭 SiteHeader 內（inline），不再全域浮在右上角（2026-11-08 修頁頭重疊） */}
       <EvidenceSyncNotice status={evidenceStatus} />
     </>
   )

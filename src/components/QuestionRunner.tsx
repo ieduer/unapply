@@ -1,5 +1,5 @@
 import { EvidenceNotice } from './EvidenceNotice'
-import { LocaleSwitcher } from './LocaleSwitcher'
+import { SiteHeader } from './SiteHeader'
 import { useMemo, useState, useEffect } from 'react'
 import { candidateProvinceOptions } from '../data/admissionAuthorities'
 import type { CandidateProvince } from '../data/admissionAuthorities'
@@ -167,34 +167,25 @@ export function QuestionRunner({
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex flex-col">
       <div className="max-w-2xl w-full mx-auto px-4 pt-4"><EvidenceNotice /></div>
-      <header className="sticky top-0 z-10 backdrop-blur bg-ink-950/80 border-b border-ink-800">
-        <div className="max-w-2xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-3">
-          <button
-            onClick={prev}
-            className="text-xs mono uppercase tracking-[0.2em] text-fog-500 hover:text-accent-500 min-h-[44px] -my-3 py-3 px-1"
-          >
-            ← {activeIdx === 0 ? t('ui.runner.back') : t('ui.runner.prev')}
-          </button>
-          <div className="text-xs mono text-fog-500 shrink-0">
-            {t('ui.runner.progress', { section: sectionLabel(q.section), index: activeIdx + 1, total })}
+      <SiteHeader
+        sticky
+        width="max-w-2xl"
+        brand={t('ui.landing.brand')}
+        back={{ label: <>← {activeIdx === 0 ? t('ui.runner.back') : t('ui.runner.prev')}</>, onClick: prev }}
+        center={<span className="mono text-fog-500">{t('ui.runner.progress', { section: sectionLabel(q.section), index: activeIdx + 1, total })}</span>}
+        actions={[{ label: shortlistReached ? t('ui.runner.results') : t('ui.runner.skip'), onClick: skip }]}
+        footer={
+          <>
+          <p className="sm:hidden px-3 pb-1.5 text-xs mono text-fog-500">{t('ui.runner.progress', { section: sectionLabel(q.section), index: activeIdx + 1, total })}</p>
+          <div className="h-[2px] bg-ink-800">
+            <div
+              className="h-full bg-accent-500 transition-all duration-500"
+              style={{ width: `${total > 0 ? ((activeIdx + 1) / total) * 100 : 0}%` }}
+            />
           </div>
-          <div className="flex items-center gap-2">
-            <LocaleSwitcher className="max-sm:hidden" />
-            <button
-              onClick={skip}
-              className="text-xs mono uppercase tracking-[0.2em] text-fog-500 hover:text-accent-500 min-h-[44px] -my-3 py-3 px-1"
-            >
-              {shortlistReached ? t('ui.runner.results') : t('ui.runner.skip')}
-            </button>
-          </div>
-        </div>
-        <div className="h-[2px] bg-ink-800">
-          <div
-            className="h-full bg-accent-500 transition-all duration-500"
-            style={{ width: `${total > 0 ? ((activeIdx + 1) / total) * 100 : 0}%` }}
-          />
-        </div>
-      </header>
+          </>
+        }
+      />
 
       <section className="flex-1 max-w-2xl w-full mx-auto px-4 sm:px-6 pt-6 pb-32 sm:pt-10 sm:pb-10 flex flex-col gap-8 sm:gap-10">
         <div key={q.id} className="question-enter flex flex-col gap-3 sm:gap-4">
@@ -349,6 +340,8 @@ export function QuestionRunner({
         </div>
       </section>
 
+      {/* 手機：在固定底欄之上留出 BDFZ 導航圓標的高度（它在底欄上方 92px），最後的內容可捲出圓標範圍 */}
+      <div className="sm:hidden h-24 shrink-0" aria-hidden="true" />
       <div className="sm:hidden sticky bottom-0 left-0 right-0 z-20 bg-ink-950/95 backdrop-blur border-t border-ink-800 px-4 py-3 flex items-center justify-between gap-3">
         <div className="mono text-xs text-fog-500 leading-tight">
           <Rich k="ui.runner.live.short" params={{ excluded: <span className="text-sm">{liveResult.stats.excludedCount}</span>, kept: <span className="text-sm">{liveResult.stats.keptCount}</span> }} />

@@ -73,3 +73,20 @@
   stroke: var(--color-accent-500);
   stroke-width: 2;
 }
+
+/* 2026-11-08（批 G3 後續）：手機上右下角有 BDFZ 共用導航圓標（site-auth.js，不改它），
+   各頁主欄末尾留出約 7rem＋安全區，讓最後的按鈕與文字可以捲出圓標範圍。 */
+@media (max-width: 639.98px) {
+  .page-end-space::after {
+    content: "";
+    display: block;
+    height: calc(7rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* 2026-11-08：獨立的鏈接／按鈕（不在段落文字中）觸控區至少 40px 高 */
+.tap {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+}

@@ -2,7 +2,7 @@
   "files": {
     "src/shared-ui/theme.css": "07148b34cbdbaa08cd65480ad749ecff073023555abcb012d2f3991fb65e2424",
     "src/shared-ui/theme.ts": "529f32cb586342b97f8ece64a154813bd164a41ab998e8ff8923498ffb0baa5a",
-    "src/shared-ui/ThemeCustomizer.tsx": "ccd63047230e58217c3df6c2be1ee9490818a6ee0e87ac15293b870e04cae272",
+    "src/shared-ui/ThemeCustomizer.tsx": "a2d21d3f32470a4c02be27b8121901e36419d4b52c48e9463db5e29b763cd143",
     "src/shared-ui/SyncNotice.tsx": "44f6721478b4295b725b8a0f3785b6ad3adec0247aba77f7eadcb02a25aa605a",
     "tests/theme-contrast.test.ts": "4bde2ea9d9b0b76f50eaaccc122740b3ad19e0d58ed9ac5959f8c7d58ce7f2ba",
     "scripts/check_shared_ui.mjs": "27f0961719d6e41d62f10f6ecb57cbd28de9fa88c82d9953ac732caec32f8b8a"

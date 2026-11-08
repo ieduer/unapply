@@ -1,5 +1,5 @@
 import { EvidenceNotice } from './EvidenceNotice'
-import { LocaleSwitcher } from './LocaleSwitcher'
+import { SiteHeader } from './SiteHeader'
 import { TierBadge } from './TierBadge'
 import {
   officialSchoolCount,
@@ -34,21 +34,9 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
   const isOverseas = origin === 'overseas'
   const routeKey = isHkMoTw ? 'ui.landing.noPool.route.hkmotw' : isOverseas ? 'ui.landing.noPool.route.overseas' : 'ui.landing.noPool.route.other'
   return (
-    <main className="min-h-screen app-canvas text-fog-100 flex flex-col items-center justify-between px-5 sm:px-6 py-6 sm:py-10">
-      <div
-        className="w-full max-w-5xl flex items-center justify-between gap-3 text-xs mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-fog-500"
-      >
-        <span>{t('ui.landing.brand')}</span>
-        <div className="flex items-center gap-2 sm:gap-3">
-          <LocaleSwitcher />
-          <button
-            onClick={onAbout}
-            className="hover:text-accent-500 transition-colors min-h-[44px] -my-3 py-3 px-2"
-          >
-            {t('ui.common.about')}
-          </button>
-        </div>
-      </div>
+    <div className="min-h-screen app-canvas text-fog-100 flex flex-col">
+    <SiteHeader brand={t('ui.landing.brand')} actions={[{ label: t('ui.common.about'), onClick: onAbout }]} />
+    <main className="flex-1 text-fog-100 flex flex-col items-center justify-between px-5 sm:px-6 py-6 sm:py-10 page-end-space">
 
       <section className="w-full max-w-5xl flex flex-1 flex-col justify-center gap-8 sm:gap-12 py-10 sm:py-16">
         <div
@@ -232,7 +220,7 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
               {t('ui.landing.contribCta')}
             </button>
             <a
-              className="text-xs mono text-fog-500 hover:text-accent-500"
+              className="tap text-xs mono text-fog-500 hover:text-accent-500"
               href="https://github.com/ieduer/unapply/issues?q=is%3Aissue+label%3Adata-contribution"
               target="_blank"
               rel="noreferrer noopener"
@@ -286,6 +274,7 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
         </div>
       </footer>
     </main>
+    </div>
   )
 }
 
@@ -315,7 +304,7 @@ function FooterGroup({
         {items.map((item) => (
           <span key={item.href} className="inline-flex items-center gap-1">
             <a
-              className="hover:text-accent-500 break-all"
+              className="tap hover:text-accent-500 break-all"
               href={item.href}
               target="_blank"
               rel="noreferrer noopener"

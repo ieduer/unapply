@@ -9,7 +9,7 @@ export function EvidenceNotice() {
       <p className="text-fog-100 font-medium">{t('ui.evidence.title')}</p>
       <p className="mt-1">{t('ui.evidence.note')}</p>
       <details className="mt-2">
-        <summary className="cursor-pointer text-accent-500">{t('ui.evidence.details')}</summary>
+        <summary className="cursor-pointer text-accent-500 py-2.5">{t('ui.evidence.details')}</summary>
         <p className="mt-2">{DIMENSION_GROUPS.B.map((id) => dimensionLabel(id)).join(t('ui.common.listJoiner'))}。</p>
         <p className="mt-1">{t('ui.evidence.detailsNote')}</p>
       </details>

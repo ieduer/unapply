@@ -6,7 +6,7 @@ import type { OriginPrefs } from '../data/originBranch'
 import { MainlandChannels } from './MainlandChannels'
 import { useLocale } from '../i18n/react'
 import { Rich } from '../i18n/rich'
-import { LocaleSwitcher } from './LocaleSwitcher'
+import { SiteHeader } from './SiteHeader'
 
 interface Props {
   origin: OriginRegion | null
@@ -72,17 +72,8 @@ export function HkMoTwPage({ origin, originPrefs, onBack, onAbout, onWorld, onSt
   }
 
   return (
-    <main className="min-h-screen app-canvas text-fog-100">
-      <header className="border-b border-ink-800 bg-ink-900/70 backdrop-blur-xl">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3 text-xs mono uppercase tracking-[0.2em] text-fog-500">
-          <button onClick={onBack} className="hover:text-accent-500 min-h-[44px] -my-3 py-3">{t('ui.hkmotw.backHome')}</button>
-          <span className="hidden sm:inline">{t('ui.hkmotw.brand', { version: payload.version })}</span>
-          <div className="flex items-center gap-2 sm:gap-3">
-            <LocaleSwitcher />
-            <button onClick={onAbout} className="hover:text-accent-500 min-h-[44px] -my-3 py-3">{t('ui.common.about')}</button>
-          </div>
-        </div>
-      </header>
+    <main className="min-h-screen app-canvas text-fog-100 page-end-space">
+      <SiteHeader brand={t('ui.hkmotw.brand', { version: payload.version })} back={{ label: t('ui.hkmotw.backHome'), onClick: onBack }} actions={[{ label: t('ui.common.about'), onClick: onAbout }]} />
 
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8">
         <div className="max-w-3xl flex flex-col gap-3">
@@ -136,7 +127,7 @@ export function HkMoTwPage({ origin, originPrefs, onBack, onAbout, onWorld, onSt
                     {inst.atlasId && <> · <button onClick={onWorld} className="underline hover:text-accent-500">{t('ui.hkmotw.onAtlas')}</button></>}
                   </p>
                 </div>
-                <a className="text-xs mono text-accent-500 hover:text-accent-400 break-all" href={inst.website} target="_blank" rel="noreferrer noopener">{t('ui.hkmotw.website')}</a>
+                <a className="tap text-xs mono text-accent-500 hover:text-accent-400 break-all" href={inst.website} target="_blank" rel="noreferrer noopener">{t('ui.hkmotw.website')}</a>
               </div>
               {inst.channels.length === 0 ? (
                 <p className="text-sm text-fog-500">{t('ui.hkmotw.noChannels')}</p>
@@ -186,7 +177,7 @@ function ChannelRow({ channel, open, onToggle }: { channel: HkMoTwChannel; open:
         <span className="text-fog-300">{channel.channelZh}</span>
         <span className="text-xs mono text-fog-500">{channel.level}{channel.validFor ? ` · ${channel.validFor}` : t('ui.hkmotw.channel.yearMissing')}</span>
         {hasDetails && (
-          <button onClick={onToggle} aria-expanded={open} className="ml-auto text-xs mono text-accent-500 hover:text-accent-400 min-h-[32px]">
+          <button onClick={onToggle} aria-expanded={open} className="ml-auto text-xs mono text-accent-500 hover:text-accent-400 min-h-[40px]">
             {open ? t('ui.hkmotw.channel.collapse') : t('ui.hkmotw.channel.expand')}
           </button>
         )}

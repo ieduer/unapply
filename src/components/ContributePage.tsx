@@ -6,7 +6,7 @@ import { recordUnapplyEvent } from '../lib/bdfzIdentity'
 import { useLocale } from '../i18n/react'
 import { Rich } from '../i18n/rich'
 import { dimensionLabel, schoolDisplayName, valueLabel } from '../lib/i18nLabels'
-import { LocaleSwitcher } from './LocaleSwitcher'
+import { SiteHeader } from './SiteHeader'
 
 interface Props {
   schools: School[]
@@ -234,18 +234,8 @@ export function ContributePage({ schools, onBack }: Props) {
   const inputClass = 'w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]'
 
   return (
-    <main className="min-h-screen app-canvas text-fog-100">
-      <header className="sticky top-0 z-10 backdrop-blur bg-ink-950/80 border-b border-ink-800">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
-          <button onClick={onBack} className="text-xs mono uppercase tracking-[0.2em] text-fog-500 hover:text-accent-500 min-h-[44px] -my-3 py-3">
-            {t('ui.common.back')}
-          </button>
-          <div className="flex items-center gap-3">
-            <LocaleSwitcher />
-            <span className="mono text-xs text-fog-500">{t('ui.contribute.kicker')}</span>
-          </div>
-        </div>
-      </header>
+    <main className="min-h-screen app-canvas text-fog-100 page-end-space">
+      <SiteHeader sticky width="max-w-2xl" brand={t('ui.contribute.kicker')} back={{ label: t('ui.common.back'), onClick: onBack }} />
 
       <section className="max-w-2xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-6">
         <div className="flex flex-col gap-3">

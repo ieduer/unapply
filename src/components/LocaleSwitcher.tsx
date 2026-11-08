@@ -17,7 +17,7 @@ export function LocaleSwitcher({ className = '' }: { className?: string }) {
     setLocale(next).catch(() => setFailed(next)).finally(() => setBusy(null))
   }
   return (
-    <div role="group" aria-label={t('ui.locale.aria')} className={['inline-flex rounded-full border border-ink-700 bg-ink-900 overflow-hidden text-xs', className].join(' ')}>
+    <div role="group" aria-label={t('ui.locale.aria')} className={['inline-flex shrink-0 rounded-full border border-ink-700 bg-ink-900 overflow-hidden text-xs', className].join(' ')}>
       {LOCALES.map((item) => {
         const active = item === locale
         return (
@@ -30,7 +30,7 @@ export function LocaleSwitcher({ className = '' }: { className?: string }) {
             disabled={busy !== null}
             title={failed === item ? t('ui.locale.loadFailed') : undefined}
             className={[
-              'px-3 min-h-[36px] font-semibold tracking-normal normal-case',
+              'px-3 min-h-[40px] whitespace-nowrap font-semibold tracking-normal normal-case font-sans',
               active ? 'bg-accent-500 text-ink-950' : 'text-fog-300 hover:text-fog-100',
               busy === item ? 'text-fog-500' : '',
             ].join(' ')}

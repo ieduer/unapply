@@ -32,7 +32,7 @@ import { generateShareImage } from '../lib/share'
 import { useLocale } from '../i18n/react'
 import type { Locale } from '../i18n/core'
 import { Rich } from '../i18n/rich'
-import { LocaleSwitcher } from './LocaleSwitcher'
+import { SiteHeader } from './SiteHeader'
 
 interface Props {
   origin: OriginRegion | null
@@ -244,17 +244,8 @@ export function GlobalSubtraction({ origin, originPrefs, onBack, onAbout, onWorl
   ].join(' ')
 
   return (
-    <main className="min-h-screen app-canvas text-fog-100">
-      <header className="border-b border-ink-800 bg-ink-900/70 backdrop-blur-xl">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3 text-xs mono uppercase tracking-[0.2em] text-fog-500">
-          <button onClick={onBack} className="hover:text-accent-500 min-h-[44px] -my-3 py-3">{t('ui.global.backHome')}</button>
-          <span className="hidden sm:inline">{t('ui.global.brand')}</span>
-          <div className="flex items-center gap-2 sm:gap-3">
-            <LocaleSwitcher />
-            <button onClick={onAbout} className="hover:text-accent-500 min-h-[44px] -my-3 py-3">{t('ui.common.about')}</button>
-          </div>
-        </div>
-      </header>
+    <main className="min-h-screen app-canvas text-fog-100 page-end-space">
+      <SiteHeader brand={t('ui.global.brand')} back={{ label: t('ui.global.backHome'), onClick: onBack }} actions={[{ label: t('ui.common.about'), onClick: onAbout }]} />
 
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8" data-global-page>
         <div className="max-w-3xl flex flex-col gap-3">
@@ -361,7 +352,7 @@ export function GlobalSubtraction({ origin, originPrefs, onBack, onAbout, onWorl
             {platformRegions.length === 0 ? <p className="text-sm text-fog-500">{t('ui.global.platforms.none')}</p> : (
               <p className="text-sm text-fog-300 leading-relaxed flex flex-wrap gap-x-3 gap-y-1">
                 {platformRegions.map((code) => (
-                  <button key={code} type="button" onClick={() => onOverseas(regionRows.get(code)!.slug)} className="underline hover:text-accent-500 min-h-[32px]">
+                  <button key={code} type="button" onClick={() => onOverseas(regionRows.get(code)!.slug)} className="underline hover:text-accent-500 min-h-[40px]">
                     {t('ui.global.platforms.item', { region: regionLabel(code), n: regionRows.get(code)!.portalsLive })}
                   </button>
                 ))}
@@ -480,16 +471,16 @@ function ItemRow({ item, locale, overseas, hkmotw, regionLabel, qual, qualificat
         <p className="text-xs mono text-fog-500">{regionLabel(item.region)} · {t(`ui.global.item.pool.${item.pool}`)}</p>
       </div>
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs mono">
-        {website && <a className="text-accent-500 hover:text-accent-400 underline break-all" href={website} target="_blank" rel="noreferrer noopener">{t('ui.global.item.website')}</a>}
+        {website && <a className="tap text-accent-500 hover:text-accent-400 underline break-all" href={website} target="_blank" rel="noreferrer noopener">{t('ui.global.item.website')}</a>}
         {item.pool === 'overseas' && overseas && (
-          <button type="button" onClick={onOverseas} className="text-fog-300 hover:text-accent-500 underline text-left">
+          <button type="button" onClick={onOverseas} className="tap text-fog-300 hover:text-accent-500 underline text-left">
             {overseas.linkLive ? t('ui.global.item.admissions.live') : t('ui.global.item.admissions.unread')}
           </button>
         )}
         {item.pool === 'hkmotw' && hkmotw && (
           <>
             <span className="text-fog-300">{hkmotw.channels.length ? t('ui.global.item.hkmotw.channels', { channels: [...new Set(hkmotw.channels.map((c) => c.channelZh))].join(t('ui.common.listJoiner')) }) : t('ui.global.item.hkmotw.none')}</span>
-            <button type="button" onClick={onHkMoTw} className="text-fog-300 hover:text-accent-500 underline">{t('ui.global.item.hkmotw.open')}</button>
+            <button type="button" onClick={onHkMoTw} className="tap text-fog-300 hover:text-accent-500 underline">{t('ui.global.item.hkmotw.open')}</button>
           </>
         )}
         {qual === 'listed' && <span className="text-fog-100 border border-accent-500/40 rounded-full px-2 py-0.5" data-global-qual="listed">{t('ui.global.qual.listed', { qualification: qualificationLabel })}</span>}
