@@ -1,10 +1,17 @@
 # Project State
 
-Last updated: 2026-11-07 UTC
-Current version: 2d3323c（已部署 8385ac10，生效 2026-11-07T14:08:23Z；批 F1 疊加於批 E2 55eb014／9753bdc3）
-Current objective: 全球化路線圖（docs/GLOBAL_ROADMAP.md）：S0、S1 全批（首批、A、B、C、D1＋D4）、S2 兩半（D3 港澳臺院校池、D2 中外合作辦學）、S3 海外可申請學校層（批 S3）與 S4 兩批（E1 三語介面、E2 起點分支＋跨國結果）皆已上線並登記 accepted；待站長審核項列於 `reports/operations/nope-s2-coverage-jointprograms-20261107/PENDING_OWNER_REVIEW.md`（conflict 口徑、不可達省表、港澳臺三條待覆核、合作辦學收費→A4）與 `reports/operations/nope-s3-overseas-20261107/nope-s3/PENDING_OWNER_REVIEW.md`（被擋／純 JS 機構與國家層頁人工覆核、medium 7 所是否上鏈接、海外層是否進導航文案）；待站長審核項另見 `reports/operations/nope-s4-i18n-origins-20261107/nope-e1/PENDING_OWNER_REVIEW.md`（shared-ui 9 條字串是否兩站同批改、三處英譯口徑）與 `nope-e2/PENDING_OWNER_REVIEW.md`（起點／資格／範圍是否進 A+ 學習證據＝方案 A；未核官方頁人工核查清單）；S5 服務化由後續會話串行接續；原 43 維效度缺口仍列後續。
+Last updated: 2026-11-08 UTC
+Current version: 987c934（已部署 46a33556，生效 2026-11-08T01:21:33Z；批 F2 疊加於批 F1 2d3323c／8385ac10）
+Current objective: **路線圖 S0–S5 全部上線（2026-11-07；S5 生效時間為 UTC 2026-11-08T01:21:33Z），剩餘為待站長項與年度維護。** 全球化路線圖（docs/GLOBAL_ROADMAP.md）S0、S1 全批、S2 兩半、S3、S4 兩批、橫切項（批 F1）與 S5 只讀資料庫（批 F2）皆已上線並登記 accepted；年度維護照 `docs/ANNUAL_UPDATE.md`（各層 `nextReviewDue` 見 `/db/v1` 的 validity.calendar；各省 2028 選考表依慣例應已公布，下一次維護先核）。待站長審核項分列於各批 `PENDING_OWNER_REVIEW.md`（S2、S3、E1、E2、F1、F2），彙整索引在 `reports/operations/nope-global-roadmap-20261107/OWNER_REVIEW.md`；原 43 維效度缺口仍列後續。
 
-## 2026-11-07 批 F1：路線圖橫切項——企業直招擴充、壞鏈修正、權威分級標籤、鏈接年檢工具（已上線，當前權威）
+## 2026-11-07／08 批 F2：路線圖 S5——只讀全球高校資料庫 `/db/v1`（已上線，當前權威）
+
+正式部署 `46a33556-daee-42ea-9f10-0c75cc5843e8`，來源 `987c934`，生效 `2026-11-08T01:21:33Z`；回滾 `8385ac10`／`2d3323c`。Status `20261107-nope-s5-db-f2` r1。
+- `https://nope.bdfz.net/db/v1/latest.json` → 版本 `7926db10b4c6`：機構 3,935、對照 561、管道 2,051、條件 1,223、來源 3,516（全 https、帶分級）、有效期 3,274、引用既有 payload 84 檔；`/db/*` CORS GET、版本目錄 immutable、latest 300 秒；未新增 Cloudflare 資源。
+- 文件：`docs/DB_SCHEMA.md`、`docs/DB_API.md`（對 path／gk 的只讀契約與「不得暗示錄取可能」規範）、`docs/ANNUAL_UPDATE.md`；手冊 §3.10；閘門 `test:db`；About「資料庫開放只讀」。
+- 十八道閘門於 `987c934`；候選 `a8799d46` 與正式 138/138；三語 × 兩色系 × 1440／390 About 對比 0 低於 4.5。待站長：`reports/operations/nope-s5-db-xcut-20261107/nope-f2/PENDING_OWNER_REVIEW.md`。
+
+## 2026-11-07 批 F1：路線圖橫切項——企業直招擴充、壞鏈修正、權威分級標籤、鏈接年檢工具（歷史；批 F2 疊加於其上）
 
 正式部署 `8385ac10-f587-44c8-ac43-f0dece8fc60f`，來源 `2d3323c`，生效 `2026-11-07T14:08:23Z`；回滾 `9753bdc3`／`55eb014`。Status `20261107-nope-xcut-directhire-links-f1` r1。
 - 直招層 24 條上線（既有 10 重核＋14 核過候選；含在職學位者標示，沿用既有口徑）、8 條 `unverified` 只留檔；壞鏈 6 處＋school_websites 轉址 5 處已修，GRAS 兩所轉址因是 S3 錨點暫緩。

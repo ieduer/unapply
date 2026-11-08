@@ -132,7 +132,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after batch F1: `9753bdc3-ebe9-4488-80a4-32db2fbcb728`, source `55eb014`, batch E2), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after batch F2: `8385ac10-f587-44c8-ac43-f0dece8fc60f`, source `2d3323c`, batch F1), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -159,7 +159,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-11-07 — production 26bad8c (batch D3); thirteen gates on the release commit (test:hkmotw added), 77 of 77 assets on candidate, custom and immutable hosts, signed-out real path (香港 origin → 看港澳臺院校池 → 條件與學費 expander and region filters; result footer cross-region link; #/world origin note), health active. Exact evidence below.
+8. Last verified: 2026-11-08 UTC — production `46a33556` from `987c934` (batch F2, roadmap S5); eighteen gates on the release commit (`test:db` added), 138 of 138 served assets (139 with the `_headers` control file) on candidate, custom and immutable hosts; `/db/v1/latest.json` and version files readable with one `access-control-allow-origin: *` and the designed Cache-Control; cross-origin fetch from nope.bdfz.net to the candidate verified with Web Crypto SHA-256; health active. Exact evidence in the batch F2 section below.
 
 ## Synchronized documentation and handoff
 
@@ -506,7 +506,7 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 
 **回滾**：`460b9fcb`／`84c0fcd`（批 E1），受審回滾交易；只切 Pages 版本，無資料庫遷移；學習記錄不受影響；回滾後 `unapply.originPrefs.v1` 殘留無害（舊版不讀它）。證據：`reports/operations/nope-s4-i18n-origins-20261107/nope-e2/`；資源 `nope-e2/resources.md`；待站長 `nope-e2/PENDING_OWNER_REVIEW.md`。
 
-## 2026-11-07 批 F1：路線圖橫切項——企業直招擴充、壞鏈修正、權威分級標籤、鏈接年檢工具（已上線，當前權威）
+## 2026-11-07 批 F1：路線圖橫切項——企業直招擴充、壞鏈修正、權威分級標籤、鏈接年檢工具（已上線；批 F2 疊加於其上）
 
 **授權**：站長 2026-11-07 睡前裁定「不涉及付費都可以推進，使用到的資源做好記錄。s1直至s5，包括橫切，最終完成全部。我睡，你持續推進，必須我審核的留到最後。」葉子資料／介面更新走登記的發布交易。不改題集／DimensionId／AnswerMap／learning manifest／Function／shared-ui；無 UC 或共享樞紐寫入；無付費或計量資源；無新 Cloudflare 資源或綁定；不改導航／門戶／Pulse／UC 登記。需站長裁定的只寫入 `nope-f1/PENDING_OWNER_REVIEW.md`。
 
@@ -517,3 +517,15 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 **驗證**：本機（Vite 5177，`local-browser.json`）、候選 `c8336b80`（`candidate-browser.json`：真實點擊 正體 與色系面板 墨色；三語 × 紙色／墨色 × 1440／390 共 12 輪 × 3 路由（/、#/about、#/world 開直招層），0 低於 4.5，最低 4.57（紙）／4.93（墨）＝既有強調色按鈕；最小字 12px；無橫向溢出；頁尾 10 條鏈接皆可點且標籤正確）、正式（`production-browser.json`：三語 × 紙色 × 1440，主控台無錯誤）三處一致。
 
 **回滾**：`9753bdc3`／`55eb014`（批 E2），受審回滾交易；只切 Pages 版本，無資料庫遷移；學習記錄不受影響。回滾後直招層回到 10 條、標籤與 About 分級段消失，失效鏈接回到舊值。證據：`reports/operations/nope-s5-db-xcut-20261107/nope-f1/`；資源 `nope-f1/resources.md`；待站長 `nope-f1/PENDING_OWNER_REVIEW.md`。
+
+## 2026-11-07／08 批 F2：路線圖 S5——只讀全球高校資料庫 `/db/v1`（已上線，當前權威）
+
+**授權**：同批 F1（站長 2026-11-07 睡前裁定）。靜態、版本化、只讀；**不新增任何 Cloudflare 資源或綁定**（檔案隨既有 Pages 專案發布，回應頭在倉庫 `public/_headers`，只匹配 `/db/*`）。不改既有 payload 形狀／題集／DimensionId／AnswerMap／learning manifest／Function／shared-ui；無 UC 或共享樞紐寫入；無付費或計量資源；不改導航／門戶／Pulse／UC 登記；不改 path／gk 倉庫（消費端整合是它們的後續）。需站長裁定的只寫入 `nope-f2/PENDING_OWNER_REVIEW.md`。
+
+**正式部署**：`46a33556-daee-42ea-9f10-0c75cc5843e8`，來源 `987c9344d78dbb287b1d9f138df24d7b09fabeb2`，生效 `2026-11-08T01:21:33Z`（Cloudflare `ended_on`；本機時間 2026-11-07 17:21 PST）；候選 `a8799d46`、正式 nope.bdfz.net 與不可變網址 138/138 一致（139 含 `_headers` 控制檔）；health active（manifest `unapply-result-v1` 不變）；正式真實路徑（`nope-f2/production-browser.json`）與候選一致；`/db/` 回應頭讀回 `nope-f2/production-db-headers.txt`。登記簿 accepted → `46a33556`／`987c934`，rollback → `8385ac10`／`2d3323c`。Status `20261107-nope-s5-db-f2` r1（new，已發布並讀回 `status-readback-f2.txt`）。收據 `20261107-nope-s5-db-f2`（2 個 reviewed_changes：package.json、AboutPage；HTTP 10/40）。
+
+**實作**（手冊 §3.10；`docs/DB_SCHEMA.md`、`docs/DB_API.md`、`docs/ANNUAL_UPDATE.md`）：`scripts/build_db.mjs`（`data:db`，build 鏈 `data:i18n` 之後）共用 `scripts/lib/db_layers.mjs`（讀各層）與 `scripts/lib/authority_tier.mjs`（Node 端分級，`check_links.mjs` 改用它，輸出不變）→ `public/db/v1/7926db10b4c6/`（manifest＋institutions／crosswalk／channels／conditions.index／sources／validity，合計約 5.7 MB、gzip 約 0.6 MB）＋ `latest.json`（1.8 KiB）＋ `src/data/dbManifest.ts`。當時值：機構 3,935（moe 2,952／gras 544／crs 411／hkmotw 28）、對照 561（same_institution 164／part_of 397）、管道 2,051（合作辦學 1,834／海外平台 91／起點 65／港澳臺 23／直招 24／A6 14）、條件 1,223（海外原文片段以 `valueRawRef` 指向地區檔）、來源 3,516（全 https；P0 3,430／P1 82／P2 4；可上鏈接 3,411）、有效期 3,274、引用既有 payload 84 檔（29.9 MB，不重複存）。來源證據：`data/research/db_source_evidence.2026-11-07.json.gz`（`scripts/assemble_db_evidence.mjs` 從 S3／S4／橫切研究的 sources.json 取 1,430 條，不連網、決定性）、`data/research/db_https_entry.2026-11-07.json`（11 條 http 來源的 https 入口：10 可用、突尼斯高教部平台 1 條不可用，不收為來源）。版本＝內容雜湊、同輸入重建位元組相同、只保留當前版本目錄。新閘門 `test:db`（9 項）；About 新增「資料庫開放只讀」；十八道閘門於 `987c934`（`nope-f2/check.txt`，dist 139 檔）。
+
+**驗證**：本機（`local-browser.json`）；候選 `a8799d46`（`candidate-browser.json`：真實點擊 正體 與 墨色；三語 × 紙色／墨色 × 1440／390 共 12 輪 About，0 低於 4.5，最低 6.94（紙）／7.93（墨）；latest.json 在瀏覽器可讀；從 nope.bdfz.net 跨域 `fetch` 候選 latest／manifest／crosswalk 成功並以 Web Crypto 核對 SHA-256；`candidate-db-headers.txt`：`/db/*` 單一 `access-control-allow-origin: *`＋`access-control-allow-methods: GET`、latest `public, max-age=300`、版本檔 `public, max-age=31536000, immutable`，`/data/` 與 `/` 不變、`/api/learning/health` GET 200（HEAD 405 與正式相同））；正式（三語 × 紙色 × 1440，主控台無錯誤；custom domain `cf-cache-status: DYNAMIC`，無區域瀏覽器 TTL 覆寫）。候選驗收從 14:32Z 開始、會話暫停後於 01:20Z 完成，`candidate-browser.json` 內 `at` 為暫停前預填值（檔案時間為準，已記於 `nope-f2/resources.md`）。
+
+**回滾**：`8385ac10`／`2d3323c`（批 F1），受審回滾交易；只切 Pages 版本，無資料庫遷移；回滾後 `/db/` 路徑消失（F1 尚無資料庫），學習記錄不受影響。證據：`reports/operations/nope-s5-db-xcut-20261107/nope-f2/`；資源 `nope-f2/resources.md`；待站長 `nope-f2/PENDING_OWNER_REVIEW.md`。
