@@ -851,7 +851,7 @@
  "ui.global.reason.value.wanted": "前 50 學科 {subjects}（你只想讀：{wanted}）",
  "ui.global.redo": "重做",
  "ui.global.share.card.counts": "剩 {kept} 所／池 {pool} 所",
- "ui.global.share.card.none": "沒有劃掉",
+ "ui.global.share.card.none": "未選",
  "ui.global.share.card.title": "我在全球池劃掉的",
  "ui.global.share.copied": "已複製",
  "ui.global.share.copy": "複製分享鏈接",

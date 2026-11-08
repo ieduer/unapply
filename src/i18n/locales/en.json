@@ -851,7 +851,7 @@
  "ui.global.reason.value.wanted": "top-50 subjects {subjects} (you only want: {wanted})",
  "ui.global.redo": "Start over",
  "ui.global.share.card.counts": "{kept} left of {pool}",
- "ui.global.share.card.none": "nothing crossed out",
+ "ui.global.share.card.none": "none",
  "ui.global.share.card.title": "What I crossed out worldwide",
  "ui.global.share.copied": "Copied",
  "ui.global.share.copy": "Copy share link",
