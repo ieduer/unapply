@@ -620,7 +620,7 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 - 引擎、資料層、`lib/schoolProfile.ts`、`data/admissionAuthorities.ts`、Function 不得匯入 `src/i18n`（`test:i18n` 斷言）。引擎輸出的 zh-Hant 字串（`ExcludeReason.questionTitle`／`userAnswerLabel`／`schoolValue`、`buildSchoolTags`、`explainKept`）維持不變，另帶機器欄給展示層翻譯；gk 交接 `nope.v1` 固定送 zh-Hant 原文。
 - 契約／紀錄字串不翻不轉：`public/learning-manifest.json`、`lib/learningEvidence.ts`、結果頁下載紀錄、貢獻頁 GitHub issue 標題／正文與用戶中心事件、`trustedAPlus.ts` 的簡體狀態文字（另帶 `messageKey` 供介面顯示）。程式裡這些行以 `// i18n-contract` 標記，CJK 字面量掃描會跳過。
 - 資料驅動名稱不翻譯：學校名、城市名、專業目錄名、省考試院與來源標題、港澳臺院校／世界地圖／海外機構名與 payload 內的原文片段。校名顯示規則（`schoolDisplayName`）：zh-Hant＝原文（教育部主表簡體名照舊，不自行繁化）；zh-Hans＝手工增強層的 `nameSimplified`，其餘原文；en＝原文，有 `nameEn` 時並列。世界地圖學科名用 payload 自帶的 `nameZh`／`nameZhHans`／`nameEn`；地區名 en 用地區代碼（英文名）。payload 內的編輯說明（`statusZh`／`policyZh`／`note`／`roleLabel`／`typeZh`）以代碼經 `ui.overseas.*` 翻譯者優先，其餘照原文顯示。
-- `src/shared-ui/` 與 path.bdfz.net 逐位元組相同：色系面板 6 條與同步提示階段標籤 3 條在英文介面維持中文（2026-11-08 裁定 A2：兩站同批改，批 G3）。
+- `src/shared-ui/` 與 path.bdfz.net 逐位元組相同。2026-11-08 批 G3（裁定 A2）起 `ThemeCustomizer` 與 `SyncNotice` 各有可選 `labels` prop，預設值就是原字串（逐字不變）：nope 在 `App.tsx` 傳入 `ui.theme.title`／`ui.common.close`／`ui.theme.text`／`ui.theme.<preset>.label`／`.hint` 與 `ui.sync.verified`／`error`／`syncing` 的三語值；path.bdfz.net 不傳，畫面與行為不變。改共用檔：先在一站改、`node scripts/check_shared_ui.mjs --write`，再把 `src/shared-ui/` 整個逐位元組複製到姊妹倉庫，兩站各跑 `check:shared-ui`（會互相比對）與 `test:theme`。
 
 **加一條字串**：在 `src/i18n/locales/zh-Hant.json` 與 `en.json` 加同一個鍵（保持排序；`data:i18n` 會擋鍵集合不一致、空值、佔位符或標記不一致）→ `npm run data:i18n` → 在程式裡 `t('key')`／`<Rich k="key"/>` → `npm run test:i18n`。簡體不手寫：若轉換結果有錯（一簡對多繁），在 `scripts/lib/t2s.mjs` 的 `SITE_PHRASES` 加詞組並補一條 fixture，不整體換轉換器；只有無法由字形得到的鍵才進 `zh-hans.overrides.json`。
 

@@ -147,8 +147,8 @@ function PageLoading() {
 
 function EvidenceSyncNotice({ status }: { status: UnapplyAPlusSyncStatus }) {
   const { t } = useLocale()
-  // 提示文字以鍵翻譯（ui.aplus.*）；shared-ui 的 SyncNotice 階段標籤（已核验／核验未完成／同步核验中）與 path.bdfz.net 逐位元組相同，不在本站翻譯。
-  return <SyncNotice phase={status.phase} message={t(status.messageKey)} />
+  // 提示文字以鍵翻譯（ui.aplus.*）；shared-ui 的 SyncNotice 階段標籤由本站傳入三語值（2026-11-08 批 G3；path.bdfz.net 不傳，維持原字串）。
+  return <SyncNotice phase={status.phase} message={t(status.messageKey)} labels={{ verified: t('ui.sync.verified'), error: t('ui.sync.error'), syncing: t('ui.sync.syncing') }} />
 }
 
 const CANDIDATE_PROVINCE_STORAGE_KEY = 'unapply.candidateProvince.v1'
@@ -166,6 +166,17 @@ function readStoredCandidateProvince(): CandidateProvince {
 }
 
 export default function App() {
+  const { t } = useLocale()
+  // shared-ui 色系面板文字由本站傳入三語值（2026-11-08 批 G3）；path.bdfz.net 不傳 labels，維持原字串
+  const themeLabels = useMemo(() => ({
+    title: t('ui.theme.title'),
+    close: t('ui.common.close'),
+    sample: t('ui.theme.text'),
+    presets: {
+      paper: { label: t('ui.theme.paper.label'), description: t('ui.theme.paper.hint') },
+      ink: { label: t('ui.theme.ink.label'), description: t('ui.theme.ink.hint') },
+    },
+  }), [t])
   const [route, setRoute] = useState<Route>(() => parseRoute())
   const [answers, setAnswers] = useState<AnswerMap>({})
   // 考生地區是篩選上下文，不是問卷答案：A6 的招生管道逐省不同，
@@ -450,7 +461,7 @@ export default function App() {
       <Suspense fallback={<PageLoading />}>
         {page}
       </Suspense>
-      <ThemeCustomizer />
+      <ThemeCustomizer labels={themeLabels} />
       <EvidenceSyncNotice status={evidenceStatus} />
     </>
   )

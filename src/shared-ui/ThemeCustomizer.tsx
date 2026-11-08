@@ -1,8 +1,30 @@
 import { useEffect, useState } from 'react'
-import { applyThemeState, loadThemeState, saveThemeState, themePresets, type ThemeState } from './theme'
+import { applyThemeState, getThemePreset, loadThemeState, saveThemeState, themePresets, type ThemePreset, type ThemeState } from './theme'
+
+/**
+ * 色系面板的文字（可選）。不傳就用下面的預設值——就是原本寫死的字串，逐字不變；
+ * 姊妹站 path.bdfz.net 不傳，nope.bdfz.net 傳入三語翻譯（2026-11-08 批 G3）。
+ */
+export interface ThemeCustomizerLabels {
+  title: string
+  close: string
+  sample: string
+  presets: Record<ThemePreset['id'], { label: string; description: string }>
+}
+
+const defaultLabels: ThemeCustomizerLabels = {
+  title: '色系',
+  close: '關閉',
+  sample: '文字',
+  presets: {
+    paper: { label: getThemePreset('paper').label, description: getThemePreset('paper').description },
+    ink: { label: getThemePreset('ink').label, description: getThemePreset('ink').description },
+  },
+}
 
 /** 右上角的色系切換。只有兩套，每一套的文字對比度都過了閘門。 */
-export function ThemeCustomizer() {
+export function ThemeCustomizer({ labels }: { labels?: Partial<ThemeCustomizerLabels> } = {}) {
+  const text: ThemeCustomizerLabels = { ...defaultLabels, ...labels, presets: { ...defaultLabels.presets, ...labels?.presets } }
   const [open, setOpen] = useState(false)
   const [themeState, setThemeState] = useState<ThemeState>(() => loadThemeState())
 
@@ -19,13 +41,13 @@ export function ThemeCustomizer() {
         {open && (
           <section className="w-full rounded-2xl border border-ink-700 bg-ink-900 px-4 py-4 shadow-[0_18px_60px_rgba(0,0,0,0.25)]">
             <div className="flex items-center justify-between gap-4">
-              <h2 className="serif text-lg text-fog-100">色系</h2>
+              <h2 className="serif text-lg text-fog-100">{text.title}</h2>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
                 className="text-sm text-fog-300 hover:text-fog-100 min-h-[40px] px-2"
               >
-                關閉
+                {text.close}
               </button>
             </div>
 
@@ -45,15 +67,15 @@ export function ThemeCustomizer() {
                   >
                     <div className="flex items-center justify-between gap-3">
                       <div>
-                        <p className="serif text-base text-fog-100">{preset.label}</p>
-                        <p className="mt-1 text-xs text-fog-300">{preset.description}</p>
+                        <p className="serif text-base text-fog-100">{text.presets[preset.id].label}</p>
+                        <p className="mt-1 text-xs text-fog-300">{text.presets[preset.id].description}</p>
                       </div>
                       <span
                         aria-hidden="true"
                         className="flex h-7 w-12 shrink-0 items-center justify-center rounded-md border border-ink-700 text-xs"
                         style={{ backgroundColor: preset.palette.ink950, color: preset.palette.fog100 }}
                       >
-                        文字
+                        {text.sample}
                       </span>
                     </div>
                   </button>
@@ -70,7 +92,7 @@ export function ThemeCustomizer() {
           className="inline-flex items-center gap-2 rounded-2xl border border-ink-700 bg-ink-900 px-3.5 py-2.5 text-sm text-fog-100 hover:border-accent-500 min-h-[44px] shadow-[0_10px_30px_rgba(0,0,0,0.18)]"
         >
           <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: active.palette.accent500 }} />
-          <span>色系 · {active.label}</span>
+          <span>{text.title} · {text.presets[active.id].label}</span>
         </button>
       </div>
     </div>
