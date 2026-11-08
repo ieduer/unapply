@@ -271,7 +271,7 @@ export default function App() {
     const top = consumeExplicitNavigation() ? 0 : recallScroll(routeKey)
     window.scrollTo(0, top)
     const restore = window.setTimeout(() => { if (top > 0) window.scrollTo(0, top) }, 120)
-    // 懶載頁面與資料載入後才有主標題：最多等 3 秒；使用者已經把焦點移走就不搶
+    // 懶載頁面與資料載入後才有主標題：最多等 9 秒；使用者已經把焦點移走就不搶
     let tries = 0
     const focusHeading = () => {
       // 載入畫面（data-loading）的標題不算：它馬上會被頁面換掉
@@ -282,7 +282,7 @@ export default function App() {
         heading.focus({ preventScroll: true })
         return
       }
-      if (!heading && idle && tries < 20) { tries += 1; focusTimer = window.setTimeout(focusHeading, 150) }
+      if (!heading && idle && tries < 60) { tries += 1; focusTimer = window.setTimeout(focusHeading, 150) }
     }
     let focusTimer = window.setTimeout(focusHeading, 0)
     return () => { window.clearTimeout(restore); window.clearTimeout(focusTimer) }

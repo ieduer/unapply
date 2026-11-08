@@ -442,7 +442,7 @@ function InstitutionRow({ inst, open, onToggle, autoScroll, marking }: { inst: O
           <p className="text-xs mono text-fog-500">{t('ui.overseas.inst.subjects', { n: inst.subjects })}{inst.dataAcademicYear ? t('ui.overseas.inst.academicYear', { year: inst.dataAcademicYear }) : ''}</p>
         </div>
         <div className="flex flex-wrap items-center gap-2 shrink-0">
-          {marking && (
+          {marking && (inst.status === 'verified' || mark?.listed) && (
             <span data-qual-mark={mark?.listed ? 'listed' : 'unread'} className={['inline-block rounded-full border px-2.5 py-0.5 text-xs leading-5', mark?.listed ? 'border-accent-500/40 bg-accent-500/10 text-accent-600' : 'border-ink-700 bg-ink-950 text-fog-300'].join(' ')}>
               {mark?.listed ? (mark.gaokao && mark.matched.length === 0 ? t('ui.overseas.qual.listedGaokao') : t('ui.overseas.qual.listed', { tokens: mark.matched.join(' · ') })) : t('ui.overseas.qual.unread')}
             </span>

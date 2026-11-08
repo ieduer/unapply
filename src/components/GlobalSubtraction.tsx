@@ -544,7 +544,7 @@ function ItemRow({ item, locale, origin, overseas, hkmotw, regionLabel, channelL
         )}
         {item.pool === 'hkmotw' && <button type="button" onClick={onHkMoTw} className="tap text-fog-300 hover:text-accent-500 underline">{t('ui.global.item.hkmotw.open')}</button>}
         {qual === 'listed' && <span className="text-fog-100 border border-accent-500/40 rounded-full px-2 py-0.5" data-global-qual="listed">{t('ui.global.qual.listed', { qualification: qualificationLabel })}</span>}
-        {qual === 'unread' && <span className="text-fog-500" data-global-qual="unread">{t('ui.global.qual.unread')}</span>}
+        {qual === 'unread' && item.status === 'verified' && <span className="text-fog-500" data-global-qual="unread">{t('ui.global.qual.unread')}</span>}
       </div>
       {children}
     </li>
