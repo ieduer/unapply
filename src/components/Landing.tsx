@@ -22,10 +22,11 @@ interface Props {
   onWorld: () => void
   onHkMoTw: () => void
   onOverseas: () => void
+  onSearch: () => void
   onContribute: () => void
 }
 
-export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChange, onStart, onWorld, onHkMoTw, onOverseas, onContribute }: Props) {
+export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChange, onStart, onWorld, onHkMoTw, onOverseas, onSearch, onContribute }: Props) {
   const { t, n } = useLocale()
   // 2026-11-08 批 G6：首頁只有一個主按鈕；流程由目的地決定（planFlow），其餘入口縮成一行「只瀏覽」文字鏈接
   const plan = origin ? planFlow(origin, originPrefs.destinations, originPrefs.qualification) : null
@@ -96,6 +97,8 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
             </div>
             <p className="text-sm text-fog-500 flex flex-wrap items-center gap-x-2" data-landing-browse>
               <span>{t('ui.landing.browse')}</span>
+              <button type="button" onClick={onSearch} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500" data-landing-search>{t('ui.landing.browse.search')}</button>
+              <span aria-hidden="true">·</span>
               <button type="button" onClick={onWorld} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{t('ui.landing.browse.world')}</button>
               <span aria-hidden="true">·</span>
               <button type="button" onClick={onHkMoTw} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{t('ui.landing.browse.hkmotw')}</button>

@@ -37,6 +37,8 @@ import { loadWorldAtlas } from '../lib/atlasData'
 import { loadQualificationsIndex, type QualificationsPayload } from '../lib/originLayer'
 import { generateShareImage } from '../lib/share'
 import { useTransientNotice } from '../lib/useTransientNotice'
+import { DIRECT_HIRE_QUESTION, normalizePathAnswer, planDirectHire, type PathAnswer } from '../engine/directHire'
+import { GrasSummary, NonUniversityPaths } from './ResultExtras'
 import { useLocale } from '../i18n/react'
 import type { Locale } from '../i18n/core'
 import { Rich } from '../i18n/rich'
@@ -178,31 +180,40 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
   } : null), [data, origin])
   const pools = useMemo(() => new Map(destinations.map((d) => [d, poolFor(items, [d], origin)])), [items, destinations, origin])
   const plans = useMemo<BankPlan[]>(() => (ctx ? destinations.map((d) => evaluateBank(d, pools.get(d) ?? [], ctx)) : []), [ctx, destinations, pools])
-  const steps = useMemo(() => plans.flatMap((plan) => plan.questions.map((q, i) => ({ plan, q, index: i }))), [plans])
+  // 非大學路徑題（批 G7）：該目的地已核企業直招 ≥2 條且覆蓋 ≥60% 才在題庫最後一步出現（src/engine/directHire.ts）
+  const pathPlans = useMemo(() => new Map(destinations.map((d) => [d, planDirectHire(d, data?.atlas.programs ?? [])])), [data, destinations])
+  const pathBanks = useMemo(() => new Set(destinations.filter((d) => pathPlans.get(d)?.question)), [destinations, pathPlans])
+  const steps = useMemo(() => plans.flatMap((plan) => {
+    const total = plan.questions.length + (pathBanks.has(plan.bank) ? 1 : 0)
+    return [
+      ...plan.questions.map((q, i) => ({ plan, q: q as EvaluatedQuestion | typeof DIRECT_HIRE_QUESTION, index: i, total })),
+      ...(pathBanks.has(plan.bank) ? [{ plan, q: DIRECT_HIRE_QUESTION as EvaluatedQuestion | typeof DIRECT_HIRE_QUESTION, index: plan.questions.length, total }] : []),
+    ]
+  }), [plans, pathBanks])
 
   // 作答初始化：自己改過的 > 分享鏈接 > 已存（同起點）> 空（由資料推出，不在 render 裡 setState）
   const effectiveAnswers = useMemo<BankAnswers>(() => {
     if (!plans.length) return {}
-    if (answers) return normalizeBankAnswers(answers, plans)
-    if (shared && !sharedLoaded) return normalizeBankAnswers(shared.answers, plans)
-    return normalizeBankAnswers(readStoredAnswers(origin), plans)
-  }, [answers, plans, shared, sharedLoaded, origin])
+    if (answers) return normalizeBankAnswers(answers, plans, pathBanks)
+    if (shared && !sharedLoaded) return normalizeBankAnswers(shared.answers, plans, pathBanks)
+    return normalizeBankAnswers(readStoredAnswers(origin), plans, pathBanks)
+  }, [answers, plans, pathBanks, shared, sharedLoaded, origin])
 
   useEffect(() => {
     if (!shared || sharedLoaded || !plans.length) return
     const keepMainland = originPrefs.destinations.includes('cn-mainland')
     if (shared.destinations.length) onOriginPrefsChange({ ...originPrefs, destinations: [...(keepMainland ? ['cn-mainland' as const] : []), ...shared.destinations] })
-    saveStoredAnswers(normalizeBankAnswers(shared.answers, plans), origin)
+    saveStoredAnswers(normalizeBankAnswers(shared.answers, plans, pathBanks), origin)
     try { window.history.replaceState(null, '', '#/global') } catch { /* 留著查詢串也無害 */ }
     // 只做一次：分享的目的地寫回首頁後，prefKey 就等於分享的目的地
   }, [shared, sharedLoaded, plans]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const setAnswers = useCallback((next: BankAnswers) => {
-    const normalized = normalizeBankAnswers(next, plans)
+    const normalized = normalizeBankAnswers(next, plans, pathBanks)
     setAnswersState(normalized)
     setSharedLoaded(true)
     saveStoredAnswers(normalized, origin)
-  }, [plans, origin])
+  }, [plans, pathBanks, origin])
 
   const currentStep: number | 'result' = step === 'result' || !steps.length ? 'result' : Math.min(step ?? 0, steps.length - 1)
   const goStep = useCallback((next: number | 'result') => {
@@ -268,15 +279,18 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
 
   // ---------------- 一題一頁 ----------------
   if (currentStep !== 'result') {
-    const { plan, q, index } = steps[currentStep]
-    const chosen = effectiveAnswers[plan.bank]?.[q.id] ?? []
-    const live = computeBank(plan, pools.get(plan.bank) ?? [], effectiveAnswers, ctx, index + 1)
-    const pick = (value: string) => setAnswers({ ...effectiveAnswers, [plan.bank]: { ...(effectiveAnswers[plan.bank] ?? {}), [q.id]: toggle(chosen, value) } })
+    const { plan, q, index, total } = steps[currentStep]
+    const isPath = q === DIRECT_HIRE_QUESTION
+    const qid = isPath ? DIRECT_HIRE_QUESTION : q.id
+    const chosen = effectiveAnswers[plan.bank]?.[qid] ?? []
+    const live = computeBank(plan, pools.get(plan.bank) ?? [], effectiveAnswers, ctx, isPath ? Infinity : index + 1)
+    // 路徑題單選：再點一次＝取消
+    const pick = (value: string) => setAnswers({ ...effectiveAnswers, [plan.bank]: { ...(effectiveAnswers[plan.bank] ?? {}), [qid]: isPath ? (chosen[0] === value ? [] : [value]) : toggle(chosen, value) } })
     const isLast = currentStep === steps.length - 1
     const next = () => goStep(isLast ? 'result' : currentStep + 1)
-    const skip = () => { setAnswers({ ...effectiveAnswers, [plan.bank]: { ...(effectiveAnswers[plan.bank] ?? {}), [q.id]: [] } }); next() }
+    const skip = () => { setAnswers({ ...effectiveAnswers, [plan.bank]: { ...(effectiveAnswers[plan.bank] ?? {}), [qid]: [] } }); next() }
     const prev = () => (currentStep === 0 ? onBack() : goStep(currentStep - 1))
-    const progress = t('ui.global.step.progress', { bank: t(`ui.dest.${plan.bank}`), index: index + 1, total: plan.questions.length })
+    const progress = t('ui.global.step.progress', { bank: t(`ui.dest.${plan.bank}`), index: index + 1, total })
     return (
       <main className="min-h-screen app-canvas text-fog-100 flex flex-col">
         <SiteHeader
@@ -293,13 +307,24 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
             </>
           }
         />
-        <section className="flex-1 max-w-2xl w-full mx-auto px-4 sm:px-6 pt-6 pb-10 flex flex-col gap-6" data-global-step={`${plan.bank}:${q.id}`}>
-          <div key={`${plan.bank}:${q.id}`} className="question-enter flex flex-col gap-3">
+        <section className="flex-1 max-w-2xl w-full mx-auto px-4 sm:px-6 pt-6 pb-10 flex flex-col gap-6" data-global-step={`${plan.bank}:${qid}`}>
+          <div key={`${plan.bank}:${qid}`} className="question-enter flex flex-col gap-3">
             <p className="mono text-xs uppercase tracking-[0.2em] text-accent-500">{t(`ui.dest.${plan.bank}`)}</p>
-            <h2 className="serif text-2xl sm:text-3xl leading-snug" data-question-title>{t(`ui.global.q.${q.id}.title`)}</h2>
-            <p className="text-sm text-fog-500 leading-relaxed">{t(`ui.global.q.${q.id}.hint`)}</p>
+            <h2 className="serif text-2xl sm:text-3xl leading-snug" data-question-title>{t(`ui.global.q.${qid}.title`)}</h2>
+            <p className="text-sm text-fog-500 leading-relaxed">{t(`ui.global.q.${qid}.hint`, { n: n(pathPlans.get(plan.bank)?.verified.length ?? 0) })}</p>
           </div>
-          <QuestionOptions q={q} chosen={chosen} pick={pick} optionLabel={optionLabel} familyOf={ctx.familyOf} familyOrder={ctx.familyOrder} familyLabel={familyLabel} />
+          {isPath
+            ? (
+              <div className="flex flex-wrap gap-2" role="group" aria-label={t('ui.global.q.directHire.title')} data-global-options={DIRECT_HIRE_QUESTION}>
+                {(['consider', 'no'] as const).map((value) => (
+                  <button key={value} type="button" aria-pressed={chosen.includes(value)} data-global-option={value} onClick={() => pick(value)}
+                    className={['px-4 min-h-[44px] rounded-full border text-sm text-left', chosen.includes(value) ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')}>
+                    {t(`ui.paths.answer.${value}`, { n: n(pathPlans.get(plan.bank)?.verified.length ?? 0) })}
+                  </button>
+                ))}
+              </div>
+            )
+            : <QuestionOptions q={q} chosen={chosen} pick={pick} optionLabel={optionLabel} familyOf={ctx.familyOf} familyOrder={ctx.familyOrder} familyLabel={familyLabel} />}
         </section>
         <div className="sticky bottom-0 z-30 border-t border-ink-800 bg-ink-950/95 backdrop-blur" data-global-step-bar>
           <div className="max-w-2xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
@@ -316,6 +341,12 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
 
   // ---------------- 結果 ----------------
   const shareUrl = `${window.location.origin}${window.location.pathname}#/global${(() => { const q = encodeBankAnswers(destinations, effectiveAnswers); return q ? `?${q}` : '' })()}`
+  const itemDisplayName = (item: GlobalPoolItem): string => {
+    const hk = item.pool === 'hkmotw' ? hkmotwById.get(item.id) : undefined
+    const os = overseasById.get(item.overseasId ?? item.id)
+    const en = hk?.nameEn ?? os?.nameEn ?? item.id
+    return locale === 'en' ? en : hk?.nameZh ?? os?.nameZh ?? en
+  }
   const reasonText = (reason: BankReason): string => t('ui.global.reason.short', { question: t(`ui.global.q.${reason.question}.title`), value: reason.values.map((v) => optionLabel(reason.question, v)).join(joiner) })
   const redo = () => { setAnswers({}); saveStoredAnswers(null, origin); setKeptLimit({}); goStep(steps.length ? 0 : 'result') }
   const syncDestinations = (next: readonly GlobalDestination[]) => {
@@ -452,6 +483,14 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
             </section>
           )
         })}
+
+        {/* 批 G7：按 GRAS 學科彙總剩下機構（只是彙總，不改剩下的）；非大學路徑（企業直招，依目的地與路徑題作答） */}
+        <GrasSummary items={results.flatMap((r) => r.kept.map((k) => k.item))} subjects={data.atlas.subjects} itemName={itemDisplayName} />
+        <NonUniversityPaths
+          destinations={destinations}
+          answers={Object.fromEntries(destinations.map((d) => [d, normalizePathAnswer(effectiveAnswers[d]?.directHire) as PathAnswer | null]))}
+          struckCountries={new Set(effectiveAnswers.overseas?.regions ?? [])}
+        />
 
         <section className="flex flex-col gap-3 border border-ink-800 bg-ink-900 rounded-xl p-4" data-global-share>
           <h2 className="serif text-xl">{t('ui.global.share.title')}</h2>

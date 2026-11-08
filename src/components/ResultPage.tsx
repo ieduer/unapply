@@ -1,6 +1,7 @@
 import { EvidenceNotice } from './EvidenceNotice'
 import { SiteHeader } from './SiteHeader'
 import { SiteFooter } from './SiteFooter'
+import { MajorSummary, NonUniversityPaths } from './ResultExtras'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { loadJointIndex } from '../lib/jointData'
 import type { JointIndexPayload } from '../data/jointTypes'
@@ -397,6 +398,10 @@ export function ResultPage({
             </p>
           </div>
         )}
+
+        {/* 批 G7：剩下學校的專業（按專業類彙總，不改剩下的）；非大學路徑（中國大陸已核企業直招） */}
+        {!zero && <MajorSummary kept={finalKept} programsIndex={programsIndex} combo={chosenSubjects} schoolName={schoolDisplayName} onSchool={onSchool} />}
+        <NonUniversityPaths destinations={['cn-mainland']} inlineQuestion />
 
         {(origin === 'hk' || origin === 'mo' || origin === 'tw') && <YourRoute origin={origin} list={routeList} />}
 

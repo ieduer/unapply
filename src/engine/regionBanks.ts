@@ -132,21 +132,24 @@ export function evaluateBank(bank: BankId, pool: readonly GlobalPoolItem[], ctx:
   return { bank, pool: pool.length, questions: passed.slice(0, VALIDITY.maxQuestions), rejected }
 }
 
-/** 作答：題庫 → 題號 → 選中的選項值。 */
-export type BankAnswers = Partial<Record<BankId, Partial<Record<RegionQuestionId, string[]>>>>
+/** 作答：題庫 → 題號 → 選中的選項值；'directHire'＝非大學路徑題（批 G7，src/engine/directHire.ts，不劃掉學校）。 */
+export type BankAnswers = Partial<Record<BankId, Partial<Record<RegionQuestionId | 'directHire', string[]>>>>
 
 /** 只留出題計畫裡存在的題與選項。 */
-export function normalizeBankAnswers(answers: BankAnswers | null | undefined, plans: readonly BankPlan[]): BankAnswers {
+export function normalizeBankAnswers(answers: BankAnswers | null | undefined, plans: readonly BankPlan[], pathQuestionBanks: ReadonlySet<BankId> = new Set()): BankAnswers {
   const out: BankAnswers = {}
   for (const plan of plans) {
     const given = answers?.[plan.bank]
     if (!given) continue
-    const bankOut: Partial<Record<RegionQuestionId, string[]>> = {}
+    const bankOut: Partial<Record<RegionQuestionId | 'directHire', string[]>> = {}
     for (const q of plan.questions) {
       const allowed = new Set(q.options.map((o) => o.value))
       const picked = [...new Set((given[q.id] ?? []).filter((v) => typeof v === 'string' && allowed.has(v)))].sort()
       if (picked.length) bankOut[q.id] = picked
     }
+    // 非大學路徑題只在該題庫出題時保留，值只能是 consider／no 其一
+    const path = given.directHire?.[0]
+    if (pathQuestionBanks.has(plan.bank) && (path === 'consider' || path === 'no')) bankOut.directHire = [path]
     if (Object.keys(bankOut).length) out[plan.bank] = bankOut
   }
   return out
@@ -205,9 +208,9 @@ export function decodeBankAnswers(query: string): { destinations: BankId[]; answ
   const answers: BankAnswers = {}
   for (const key of keys) {
     const [bank, q] = key.split('.')
-    if (!q || !(BANKS as readonly string[]).includes(bank) || !CANDIDATES.some((c) => c.id === q)) continue
+    if (!q || !(BANKS as readonly string[]).includes(bank) || !(CANDIDATES.some((c) => c.id === q) || q === 'directHire')) continue
     const target = (answers[bank as BankId] ??= {})
-    target[q as RegionQuestionId] = (params.get(key) ?? '').split('|').filter(Boolean)
+    target[q as RegionQuestionId | 'directHire'] = (params.get(key) ?? '').split('|').filter(Boolean)
   }
   if (!destinations.length && !Object.keys(answers).length) return null
   return { destinations, answers }

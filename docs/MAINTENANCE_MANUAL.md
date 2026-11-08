@@ -665,6 +665,28 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 - **互動**：站內導航捲到頂部、瀏覽器返回／前進還原離開時的捲動位置（`src/lib/router.ts`；`history.scrollRestoration='manual'`）；路由變化後焦點移到頁面主標題，換題時移到題目標題（`tabindex=-1`，不畫焦點框）；大陸題作答與「走完大陸階段」存 `sessionStorage`（`unapply.answers.v1`、`unapply.mainlandDone.v1`；重新載入後從第一題未答處接著做，關分頁即清）；「重做」只清該階段；換語言、換色系不丟狀態。
 - **閘門** `npm run test:flow`（`tests/flow-plan.test.ts`，加入發布閘門）：5 起點 × 31 種目的地組合不含中國大陸就不進大陸題、含則先進 `#/filter`；非大陸起點略過 S1、A6；v1→v2 遷移；換起點重設；`planFlow` 不碰 AnswerMap；參與名單雜湊與 165 所對回教育部名單；資料備註過濾。
 
+### 5.3b 查詢、結果頁彙總與非大學路徑（2026-11-08 批 G7 起；路線圖目標第 2、4、5 條）
+
+- **`#/search`**（`src/components/SearchPage.tsx`，引擎 `src/engine/search.ts`）：首頁「只瀏覽」第一個入口。只讀、即時、三語，不進 AnswerMap 與學習證據。
+  - 查學校：執行期讀 `/db/v1` 的 `institutions.json`（約 150 KB gzip）＋`crosswalk.json`，same_institution 合併成一條。比對範圍：正體、簡體（與 `data:i18n` 同一份 OpenCC 字級表折疊）、英文（詞開頭）、站方整理的常見簡稱、教育部名單比對出的舊名。別名與舊名只在完全或開頭相同時採用；拉丁字母少於 4 個時不做「包含」比對。結果點進既有頁：大陸 `siteRoute`、港澳臺池、海外招生條件、全球學科地圖、合作辦學的中方院校。
+  - 查專業：國標 92 類／883 專業（含代碼）；英文按 GRAS 學科名查，經對照表回到專業類。大陸列開設學校，可按學校所在省份與選考組合（選滿三科）過濾；顯示該校該專業（類）的選考要求分佈與列到它的省表，省表來源鏈接在頂部。海外列對應 GRAS 學科前 50 的非大陸機構。
+  - 排序：比對程度 → 層級 → 代碼，不是推薦。
+- **生成層** `npm run data:search`（`scripts/build_search_layer.mjs`，build 鏈在 `data:db` 之後）→ `src/data/searchLayer.ts`，內容：
+  - 折疊表：只留語料用得到的字。
+  - 別名：`data/research/search/school_aliases.<日期>.csv`，每條必須唯一對到一筆院校；有歧義的簡稱（南大、山大、NTU…）不收。
+  - 舊名：`data/research/moe_former_names.<日期>.csv`。
+  - 國標專業類 → GRAS 學科對照：`data/research/search/major_class_gras_map.<日期>.csv`。這是站方對照、非官方，介面寫明；沒有對應學科的類必須寫原因。
+  - fail-closed：類與目錄不一致、代碼不存在、別名對不到或對到多筆、舊名的學校不在名單、舊名等於別的學校現名，都會停。
+- **結果頁彙總**（`src/components/ResultExtras.tsx`）：只是彙總，不改剩下的名單。
+  - 大陸結果頁「剩下學校的專業」：按專業類列剩下學校中開設的校數；S1 有作答時另列「你的選科可報」校數；點一類看學校。
+  - `#/global` 結果頁「按學科看剩下的機構」：按 GRAS 前 50 席位彙總。
+- **非大學路徑**（`src/engine/directHire.ts`）：依目的地列已核企業直招，可只看支薪、只看含在職學位。
+  - 「你考不考慮不讀大學、直接進企業的路徑？」照 `docs/QUESTION_VALIDITY.md` 的直招規則出題。
+  - `#/global`：作為該目的地題庫最後一步，作答存在 `unapply.regionBanks.v1` 的 `directHire`，分享鍵 `<bank>.directHire`。
+  - 大陸結果頁：在區內問，存 `localStorage` `unapply.directHire.v1`。
+  - 答「不考慮」就不列。直招卡片 `DirectHireCard` 與全球學科地圖共用。
+- **閘門**：`npm run test:search`（`tests/search.test.ts`）；直招題的規則在 `test:regions` 與 `audit:regions`。
+
 ### 5.4 起點分支與跨國結果（2026-11 批 E2 起；**範圍題與結果頁跨國並列已由批 G6 取代，見 §5.3a**，下列為歷史）
 
 起點（第 0 題，`origins.ts`，5 個值不變）之後，各起點先問「前幾題」——**資格**（港澳臺與海外起點）與**範圍**（所有起點）；皆可跳過。它們是「用戶是誰」，與 `candidateProvince`、`origin` 同性質：

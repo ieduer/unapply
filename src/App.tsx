@@ -54,6 +54,7 @@ const HkMoTwPage = lazy(() => import('./components/HkMoTwPage').then((module) =>
 const OverseasPage = lazy(() => import('./components/OverseasPage').then((module) => ({ default: module.OverseasPage })))
 // 全球池減法（批 G2，展示層）只在進入 #/global 時載入。
 const GlobalSubtraction = lazy(() => import('./components/GlobalSubtraction').then((module) => ({ default: module.GlobalSubtraction })))
+const SearchPage = lazy(() => import('./components/SearchPage').then((module) => ({ default: module.SearchPage })))
 
 type Route =
   | { name: 'landing' }
@@ -65,6 +66,7 @@ type Route =
   | { name: 'hkmotw' }
   | { name: 'overseas'; region: string | null; inst: string | null }
   | { name: 'global' }
+  | { name: 'search' }
   | { name: 'school'; id: string }
 
 function parseRoute(): Route {
@@ -79,6 +81,7 @@ function parseRoute(): Route {
   if (head === 'world') return { name: 'world' }
   if (head === 'hkmotw') return { name: 'hkmotw' }
   if (head === 'global') return { name: 'global' }
+  if (head === 'search') return { name: 'search' }
   if (head === 'overseas') return { name: 'overseas', region: id ? decodeURIComponent(id) : null, inst: third ? decodeURIComponent(third) : null }
   if (head === 'school' && id) return { name: 'school', id: decodeURIComponent(id) }
   return { name: 'landing' }
@@ -93,6 +96,7 @@ function hashFor(route: Route): string {
   else if (route.name === 'world') hash = '#/world'
   else if (route.name === 'hkmotw') hash = '#/hkmotw'
   else if (route.name === 'global') hash = '#/global'
+  else if (route.name === 'search') hash = '#/search'
   else if (route.name === 'overseas') hash = route.region ? `#/overseas/${encodeURIComponent(route.region)}${route.inst ? `/${encodeURIComponent(route.inst)}` : ''}` : '#/overseas'
   else if (route.name === 'school') hash = `#/school/${encodeURIComponent(route.id)}`
   return hash
@@ -431,6 +435,7 @@ export default function App() {
       onStart={startFlow}
       onWorld={() => go({ name: 'world' })}
       onHkMoTw={() => go({ name: 'hkmotw' })}
+      onSearch={() => go({ name: 'search' })}
       onOverseas={() => goOverseas()}
       onContribute={() => go({ name: 'contribute' })}
     />
@@ -550,6 +555,8 @@ export default function App() {
         onOverseas={(region, inst) => goOverseas(region ?? null, inst ?? null)}
       />
     )
+  } else if (route.name === 'search') {
+    page = <SearchPage onBack={() => go({ name: 'landing' })} />
   } else if (route.name === 'contribute') {
     if (schools) page = <ContributePage schools={schools} onBack={() => go({ name: 'result' })} />
   } else if (route.name === 'school') {

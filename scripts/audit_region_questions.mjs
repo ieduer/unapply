@@ -8,6 +8,7 @@ import { buildGlobalPool, poolFor } from '../src/engine/globalFilter.ts'
 import { BANKS, CANDIDATES, VALIDITY, evaluateBank } from '../src/engine/regionBanks.ts'
 import { questionEvidence } from '../src/data/questionEvidence.ts'
 import { tierOf } from '../src/lib/authorityTier.ts'
+import { DIRECT_HIRE_RULE, planDirectHire } from '../src/engine/directHire.ts'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const read = (p) => JSON.parse(readFileSync(join(root, p), 'utf8'))
@@ -70,8 +71,16 @@ const offline = [
 ]
 for (const o of offline) if (o.known / o.pool >= VALIDITY.minCoverage && o.reason === 'coverage') fail(`${o.bank}/${o.id} now passes coverage (${o.known}/${o.pool}) — re-evaluate`)
 
+// 批 G7：非大學路徑題（企業直招）——來源 P0、已核 ≥2、覆蓋 ≥60% 才出題；只看目的地，與起點無關
+const pathPlans = ['cn-mainland', 'hk', 'mo', 'tw', 'overseas'].map((d) => planDirectHire(d, atlas.programs))
+for (const p of pathPlans) {
+  for (const e of p.verified) if (tierOf(e.officialUrl) !== 'P0') fail(`directHire/${p.destination}/${e.id}: official page not P0`)
+  const should = p.verified.length >= DIRECT_HIRE_RULE.minVerified && p.coverage >= DIRECT_HIRE_RULE.minCoverage
+  if (p.question !== should) fail(`directHire/${p.destination}: question ${p.question} but rule says ${should}`)
+}
+
 const pct = (x) => `${(x * 100).toFixed(0)}%`
-console.log(JSON.stringify({ origins: ORIGINS.length, banks: BANKS.length, plans: plans.map((p) => `${p.origin}/${p.bank}:${p.questions.map((q) => q.id).join('+') || '-'}`), offline: offline.map((o) => `${o.bank}/${o.id} ${o.known}/${o.pool}`), channelChecks: `${checks.confirmed.length} confirmed / ${checks.checked}`, errors: errors.length }))
+console.log(JSON.stringify({ origins: ORIGINS.length, banks: BANKS.length, plans: plans.map((p) => `${p.origin}/${p.bank}:${p.questions.map((q) => q.id).join('+') || '-'}`), offline: offline.map((o) => `${o.bank}/${o.id} ${o.known}/${o.pool}`), directHire: pathPlans.map((p) => `${p.destination}:${p.verified.length}/${p.total}${p.question ? ' asked' : ''}`), channelChecks: `${checks.confirmed.length} confirmed / ${checks.checked}`, errors: errors.length }))
 
 const mdIndex = process.argv.indexOf('--md')
 if (mdIndex !== -1) {
@@ -89,6 +98,9 @@ if (mdIndex !== -1) {
     for (const o of offline.filter((x) => x.bank === bank)) out.push('', `- 不進引擎的候選 \`${o.id}\`：${o.known}/${o.pool}（${pct(o.known / o.pool)}）→ 捨棄（${o.reason === 'source' ? '官方來源未取得' : '覆蓋未達 60%'}）；${o.note}`)
     out.push('')
   }
+  out.push('## 非大學路徑題：你考不考慮不讀大學、直接進企業的路徑？（批 G7）', '', '不劃掉任何學校；選「不考慮」結果頁就不列企業直招。來源＝條目自己的官方頁（authority_tiers P0）且核對信心 high／medium＝已核；已核 ≥2 條且已核／全部 ≥60% 才出題。', '', '| 目的地 | 條目 | 已核 | 覆蓋 | 結論 |', '| --- | --- | --- | --- | --- |')
+  for (const p of pathPlans) out.push(`| ${{ 'cn-mainland': '中國大陸', hk: '香港', mo: '澳門', tw: '臺灣', overseas: '海外' }[p.destination]} | ${p.total} | ${p.verified.length} | ${p.total ? pct(p.coverage) : '—'} | ${p.question ? '出題' : p.total ? '不出題（已核少於 2 條）：照列已核條目' : '不出題（沒有條目）'} |`)
+  out.push('')
   writeFileSync(process.argv[mdIndex + 1], out.join('\n') + '\n')
 }
 

@@ -69,8 +69,8 @@ test('zh-Hans＝zh-Hant 逐鍵字級轉換（覆寫表除外），140 條 fixtur
   assert.equal(t2s('覆蓋'), '覆盖')
 })
 
-test('en 無 CJK（白名單：查學校的佔位例、Gaokao 字樣）；meta.htmlLang 三語各自正確', () => {
-  const allow = new Set(['ui.result.lookup.placeholder', 'ui.overseas.gaokao.emptyNote'])
+test('en 無 CJK（白名單：查學校與查詢頁的佔位例——示範可輸入中文、Gaokao 字樣）；meta.htmlLang 三語各自正確', () => {
+  const allow = new Set(['ui.result.lookup.placeholder', 'ui.overseas.gaokao.emptyNote', 'ui.search.school.placeholder', 'ui.search.major.placeholder'])
   for (const k of keys) if (!allow.has(k)) assert.equal(CJK.test(enSource[k]), false, `en ${k} 含 CJK：${enSource[k]}`)
   assert.equal(zhHant['meta.htmlLang'], 'zh-Hant')
   assert.equal(zhHans['meta.htmlLang'], 'zh-Hans')

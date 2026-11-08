@@ -152,3 +152,43 @@ test('題文三語齊：每個候選題的標題與說明、香港院校類型�
   // 題目文字一句
   for (const c of CANDIDATES) assert.ok(!/[。.].+[。.]/.test(zhHant[`ui.global.q.${c.id}.title`]), c.id)
 })
+
+// ---- 批 G7：非大學路徑題（企業直招，src/engine/directHire.ts）
+import { DIRECT_HIRE_RULE, entriesFor, isVerifiedDirectHire, planDirectHire, visibleDirectHire } from '../src/engine/directHire.ts'
+
+test('直招題效度：官方頁 P0 且信心 high／medium＝已核；已核 ≥2 且覆蓋 ≥60% 才出題（當時值：大陸 2/3 出、海外 24/25 出、香港 1 條不出、澳門臺灣 0）', () => {
+  const programs = atlas.programs
+  const plan = (d: Parameters<typeof planDirectHire>[0]) => planDirectHire(d, programs)
+  const mainland = plan('cn-mainland'), hk = plan('hk'), overseasPlan = plan('overseas'), mo = plan('mo'), tw = plan('tw')
+  assert.deepEqual([mainland.verified.length, mainland.total, mainland.question], [2, 3, true])
+  assert.deepEqual([hk.verified.length, hk.total, hk.question], [1, 1, false])
+  assert.deepEqual([overseasPlan.verified.length, overseasPlan.total, overseasPlan.question], [24, 25, true])
+  assert.deepEqual([mo.total, mo.question, tw.total, tw.question], [0, false, 0, false])
+  for (const p of [mainland, hk, overseasPlan]) {
+    for (const e of p.verified) { assert.equal(tierOf(e.officialUrl), 'P0', e.id); assert.ok(['high', 'medium'].includes(e.confidence)) }
+    assert.equal(p.question, p.verified.length >= DIRECT_HIRE_RULE.minVerified && p.coverage >= DIRECT_HIRE_RULE.minCoverage)
+  }
+  // 目的地互不重疊、合起來是全部條目
+  const all = (['cn-mainland', 'hk', 'mo', 'tw', 'overseas'] as const).flatMap((d) => entriesFor(d, programs).map((e) => e.id))
+  assert.equal(all.length, programs.length)
+  assert.equal(new Set(all).size, programs.length)
+  assert.equal(programs.filter(isVerifiedDirectHire).length, 27)
+})
+
+test('直招題作答：不考慮＝不列；海外去掉已劃掉的國家；可只看支薪／含在職學位；只在出題的題庫保留作答，分享可往返', () => {
+  const overseasPlan = planDirectHire('overseas', atlas.programs)
+  assert.deepEqual(visibleDirectHire(overseasPlan, 'no'), [])
+  const struck = new Set(['United Kingdom'])
+  const left = visibleDirectHire(overseasPlan, 'consider', { struckCountries: struck })
+  assert.ok(left.length > 0 && left.every((e) => e.country !== 'United Kingdom'))
+  assert.ok(visibleDirectHire(overseasPlan, 'consider', { paidOnly: true }).every((e) => e.paid === 'yes' || e.paid === 'stipend'))
+  assert.ok(visibleDirectHire(overseasPlan, 'consider', { degreeOnly: true }).every((e) => e.degree === 'yes' || e.degree === 'partial'))
+  const plans = BANKS.map((b) => planFor(b, 'hk'))
+  const normalized = normalizeBankAnswers({ overseas: { directHire: ['consider'] }, hk: { directHire: ['no'] } }, plans, new Set<BankId>(['overseas']))
+  assert.deepEqual(normalized.overseas?.directHire, ['consider'])
+  assert.equal(normalized.hk?.directHire, undefined)
+  const decoded = decodeBankAnswers(encodeBankAnswers(['overseas'], normalized))!
+  assert.deepEqual(decoded.answers.overseas?.directHire, ['consider'])
+  const zhHant = JSON.parse(read('src/i18n/locales/zh-Hant.json')) as Record<string, string>
+  for (const k of ['ui.global.q.directHire.title', 'ui.global.q.directHire.hint', 'ui.paths.answer.consider', 'ui.paths.answer.no']) assert.ok(zhHant[k], k)
+})
