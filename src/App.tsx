@@ -47,6 +47,8 @@ const WorldAtlasPage = lazy(() => import('./components/WorldAtlasPage').then((mo
 const HkMoTwPage = lazy(() => import('./components/HkMoTwPage').then((module) => ({ default: module.HkMoTwPage })))
 // 海外可申請學校（S3）只在進入 #/overseas 時載入；地區檔再按需載。
 const OverseasPage = lazy(() => import('./components/OverseasPage').then((module) => ({ default: module.OverseasPage })))
+// 全球池減法（批 G2，展示層）只在進入 #/global 時載入。
+const GlobalSubtraction = lazy(() => import('./components/GlobalSubtraction').then((module) => ({ default: module.GlobalSubtraction })))
 
 type Route =
   | { name: 'landing' }
@@ -57,6 +59,7 @@ type Route =
   | { name: 'world' }
   | { name: 'hkmotw' }
   | { name: 'overseas'; region: string | null; inst: string | null }
+  | { name: 'global' }
   | { name: 'school'; id: string }
 
 function parseRoute(): Route {
@@ -70,6 +73,7 @@ function parseRoute(): Route {
   if (head === 'contribute') return { name: 'contribute' }
   if (head === 'world') return { name: 'world' }
   if (head === 'hkmotw') return { name: 'hkmotw' }
+  if (head === 'global') return { name: 'global' }
   if (head === 'overseas') return { name: 'overseas', region: id ? decodeURIComponent(id) : null, inst: third ? decodeURIComponent(third) : null }
   if (head === 'school' && id) return { name: 'school', id: decodeURIComponent(id) }
   return { name: 'landing' }
@@ -83,6 +87,7 @@ function navigate(route: Route) {
   else if (route.name === 'contribute') hash = '#/contribute'
   else if (route.name === 'world') hash = '#/world'
   else if (route.name === 'hkmotw') hash = '#/hkmotw'
+  else if (route.name === 'global') hash = '#/global'
   else if (route.name === 'overseas') hash = route.region ? `#/overseas/${encodeURIComponent(route.region)}${route.inst ? `/${encodeURIComponent(route.inst)}` : ''}` : '#/overseas'
   else if (route.name === 'school') hash = `#/school/${encodeURIComponent(route.id)}`
   if (window.location.hash !== hash) window.location.hash = hash
@@ -305,6 +310,7 @@ export default function App() {
       onWorld={() => go({ name: 'world' })}
       onHkMoTw={() => go({ name: 'hkmotw' })}
       onOverseas={() => goOverseas()}
+      onGlobal={() => go({ name: 'global' })}
       onAbout={() => go({ name: 'about' })}
       onContribute={() => go({ name: 'contribute' })}
     />
@@ -362,6 +368,7 @@ export default function App() {
           onWorld={() => go({ name: 'world' })}
           onHkMoTw={() => go({ name: 'hkmotw' })}
           onOverseas={() => goOverseas()}
+          onGlobal={() => go({ name: 'global' })}
         />
       )
     }
@@ -404,6 +411,18 @@ export default function App() {
         onWorld={() => go({ name: 'world' })}
         onHkMoTw={() => go({ name: 'hkmotw' })}
         onStartMainland={startMainland}
+      />
+    )
+  } else if (route.name === 'global') {
+    page = (
+      <GlobalSubtraction
+        origin={origin}
+        originPrefs={originPrefs}
+        onBack={() => go({ name: 'landing' })}
+        onAbout={() => go({ name: 'about' })}
+        onWorld={() => go({ name: 'world' })}
+        onHkMoTw={() => go({ name: 'hkmotw' })}
+        onOverseas={(region, inst) => goOverseas(region ?? null, inst ?? null)}
       />
     )
   } else if (route.name === 'contribute') {

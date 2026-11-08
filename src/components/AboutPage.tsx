@@ -210,6 +210,7 @@ export function AboutPage({ onBack }: Props) {
             <Li k="ui.about.roadmap.s2" />
             <Li k="ui.about.roadmap.s3" params={{ institutions: o.institutions, regions: o.regions }} />
             <Li k="ui.about.roadmap.s45" />
+            <Li k="ui.about.roadmap.global" />
           </ul>
           <p className="mt-3 text-sm text-fog-500">
             <Rich k="ui.about.roadmap.link" slots={{ a1: ext('https://github.com/ieduer/unapply/blob/master/docs/GLOBAL_ROADMAP.md') }} />

@@ -22,11 +22,12 @@ interface Props {
   onWorld: () => void
   onHkMoTw: () => void
   onOverseas: () => void
+  onGlobal: () => void
   onAbout: () => void
   onContribute: () => void
 }
 
-export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChange, onStart, onWorld, onHkMoTw, onOverseas, onAbout, onContribute }: Props) {
+export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChange, onStart, onWorld, onHkMoTw, onOverseas, onGlobal, onAbout, onContribute }: Props) {
   const { t, tOr, n } = useLocale()
   const originOption = origin ? getOriginOption(origin) : null
   const isHkMoTw = origin === 'hk' || origin === 'mo' || origin === 'tw'
@@ -127,11 +128,19 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
               </>
             ) : isHkMoTw ? (
               <>
+                {/* 2026-11-08 批 G2：港澳臺／海外起點在資格與範圍之後先走全球減法（展示層，不進 AnswerMap）；直接看池的入口保留為次按鈕 */}
                 <button
-                  onClick={onHkMoTw}
+                  onClick={onGlobal}
+                  data-landing-global
                   className="px-7 py-4 sm:py-3 bg-accent-500 text-ink-950 rounded-xl font-semibold text-base hover:bg-accent-400 transition-colors min-h-[52px]"
                 >
-                  {t('ui.landing.hkmotw')}
+                  {t('ui.landing.global')}
+                </button>
+                <button
+                  onClick={onHkMoTw}
+                  className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
+                >
+                  {t('ui.landing.hkmotwDirect')}
                 </button>
                 <button
                   onClick={onWorld}
@@ -148,11 +157,19 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
               </>
             ) : (
               <>
+                {/* 2026-11-08 批 G2：港澳臺／海外起點在資格與範圍之後先走全球減法（展示層，不進 AnswerMap）；直接看池的入口保留為次按鈕 */}
                 <button
-                  onClick={onOverseas}
+                  onClick={onGlobal}
+                  data-landing-global
                   className="px-7 py-4 sm:py-3 bg-accent-500 text-ink-950 rounded-xl font-semibold text-base hover:bg-accent-400 transition-colors min-h-[52px]"
                 >
-                  {t('ui.landing.overseas')}
+                  {t('ui.landing.global')}
+                </button>
+                <button
+                  onClick={onOverseas}
+                  className="px-6 py-4 sm:py-3 rounded-xl border border-ink-700 text-base text-fog-100 hover:border-accent-500 min-h-[52px]"
+                >
+                  {t('ui.landing.overseasDirect')}
                 </button>
                 <button
                   onClick={onWorld}

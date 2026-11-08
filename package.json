@@ -52,7 +52,8 @@
     "audit:links": "node scripts/check_links.mjs",
     "data:db": "node scripts/build_db.mjs",
     "data:db-evidence": "node scripts/assemble_db_evidence.mjs",
-    "test:db": "tsx --test tests/db.test.ts"
+    "test:db": "tsx --test tests/db.test.ts",
+    "test:global": "tsx --test tests/global-subtraction.test.ts"
   },
   "dependencies": {
     "html-to-image": "^1.11.13",

@@ -661,6 +661,36 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 
 **閘門 `test:origins`**（7 項）：不進 AnswerMap／DimensionId／learning-manifest／A+ 證據；起點 5 個不變、各起點資格與範圍選項齊、換起點歸零；資格 token 全部存在於 S3 資料且索引與地區檔逐 token 一致；保留語義（標示永不減少機構數、listed＋unread＝total、`not_accepted` 不劃）；官方頁 live 規則、needs_review 管道不上鏈接、網域白名單、無電郵；三語鍵齊；manifest 雜湊可重算、gzip ≤ 20 KiB、綁 S3 版本。
 
+### 5.5 全球池減法 `#/global`（2026-11-08 批 G2 起，路線圖 S4 完成定義）
+
+港澳臺與海外起點答完資格與範圍後，首頁主按鈕「開始全球減法」進 `#/global`（「直接看港澳臺院校池／海外可申請學校」保留為次按鈕）；結果頁跨國並列段與 About 路線圖段也有入口。它是**展示層**：選擇只存 `localStorage` 鍵 `unapply.globalSubtraction.v1`（`{ v: 1, selection }`），**不進 `AnswerMap`、不進 `DimensionId`、不進 A+ 學習證據、不送 Function**；45 題與學習記錄完全不變（`test:global` 斷言）。
+
+**池**：海外可申請學校層（§3.7，當時值 403 所）＋港澳臺院校池（§3.5，27 所）；預設依起點與範圍（`defaultPools`：港澳臺起點兩者，`local`＝只院校池、`abroad`＝只海外層；海外起點只海外層；大陸或未選兩者），可切換、至少留一個。同一所港澳臺機構可能在兩池各算一次（看的是不同資料：國際本科招生頁 vs 內地生／港澳生管道）。港澳臺池地區 HK／MO／TW 對到 GRAS 地區碼 `China-Hong Kong`／`China-Macau`／`China-Taiwan`，讓地區題同時作用於兩池。
+
+**題目**（全部可跳過；只用已入庫的官方或權威資料）：
+
+| 題 | 取值來源 | 劃掉規則（機器原因碼） | 未知時 |
+| --- | --- | --- | --- |
+| (a) 哪些國家／地區一定不去 | GRAS 地區碼（池內實際出現者，按機構數排序） | 所在地區被劃（`region_struck`，帶該校地區碼） | 地區永遠已知 |
+| (b1) 哪些學科門類一定不讀 | GRAS 2026 五門類；機構的前 50 學科取自世界地圖 payload 的 `ranks` | 所有前 50 學科都落在被劃門類（`all_top50_in_struck_families`，帶門類與學科） | GRAS 無資料（港澳臺池 17 所）→ 保留（`subjects_no_gras`） |
+| (b2) 只想讀哪些學科（requires） | GRAS 2026 57 學科；已劃門類下的學科由 `normalizeGlobalSelection` 移除 | 在所選學科沒有前 50 席位（`no_top50_in_wanted`，帶該校學科與所選） | 同上，保留 |
+| (c) 哪類港澳臺招生管道你不會走 | `hkmotw_admission_channels` 的 `audience`（內地高考生／港澳學生） | 只作用於院校池：已記錄的管道全部被劃、**且其中有你這類考生的管道**（`all_recorded_channels_struck`） | 未記錄任何管道（`channels_none_recorded`）、或你這類考生的管道未入庫（`channels_own_route_unrecorded`：臺灣／海外起點、港澳學生對只錄內地生的院校）→ 保留；起點對應管道未入庫時本題不給選項 |
+| (d) 申請平台 | 海外層地區列的 `portalsLive` | **不作題**，只列有已核官方平台的地區並鏈到地區頁 | — |
+
+「你這類考生」由起點推出（`audienceForOrigin`：大陸＝內地高考生；港／澳＝港澳學生；臺灣／海外／未選＝未入庫）。這條是疑罪從無的補充：本池只記錄了兩類對象的管道，別類考生自己的管道沒有記錄就是未知，不能因為「別人的管道被劃」而劃掉。
+
+**資格**：`originPrefs.qualification`（大陸起點＝高考）只標示——海外層 verified 機構在 `qualifications.json` 命中 token → 「校方頁面寫明接受」，其餘海外層「官方頁未讀到（保留）」，院校池不標；`computeGlobal` 根本不接收資格參數。`status` 也不是取值：「官方頁本站未讀到」的機構只會被地區或學科題劃掉。
+
+**結果**：剩餘集合（所在地區與院校池在前；每所顯示中英名、地區、所屬池、S0 已核官網、海外層的「招生條件（官方頁原文）→」深鏈到 `#/overseas/<slug>/<id>`——上鏈接規則沿用 S3，院校池列已記錄管道與入口）；劃掉的集合可展開看逐條原因「題目；規則；該校取值」；計數分池顯示；「重做」回到起點預設。分享：網址 `#/global?p=…&r=…&f=…&w=…&c=…`（池、地區碼、門類、學科、管道對象；`|` 分隔）與 `src/lib/share.ts` 產生的分享圖都**只含選項鍵**，不含起點、資格或個人資料；打開分享鏈接時套用並存成自己的選擇、網址收回 `#/global`、頁面提示。
+
+| 路徑 | 作用 |
+| --- | --- |
+| `src/engine/globalFilter.ts` | 純函式、語言中立：`buildGlobalPool`、`defaultPools`、`audienceForOrigin`、`normalizeGlobalSelection`、`computeGlobal`（輸出 kept／crossed＋原因碼＋分池／分題計數）、`globalOptions`、`qualificationMark`、`encode／decodeGlobalSelection` |
+| `src/components/GlobalSubtraction.tsx` | 展示層：懶載海外層索引、港澳臺院校池、世界地圖 payload（＋需要時資格索引），翻譯原因碼（`ui.global.*`） |
+| `tests/global-subtraction.test.ts`（`npm run test:global`） | 閘門 11 項：池規模、每題規則、未知永不劃、狀態與資格永不作劃掉依據、地區全劃剩 0 且原因可追溯、預設池與正規化、分享往返與只含選項鍵、與 AnswerMap／DimensionId／learning manifest／Function／A+ 證據無交集、三語鍵與原因碼一一對應 |
+
+改題或加題：先在引擎加規則與原因碼（一律保留未知）→ 三語鍵 `ui.global.reason.rule.<碼>`／`ui.global.q.<題>.*` → `data:i18n` → `test:global`＋`test:i18n`。資料層更新（GRAS 年版、海外層重抓、院校池年度更新）後本頁自動跟著 payload 走，不需改程式。
+
 ## 6. 部署與驗證
 
 部署前：

@@ -46,6 +46,7 @@ interface Props {
   onWorld: () => void
   onHkMoTw: () => void
   onOverseas: () => void
+  onGlobal: () => void
 }
 
 type LookupEntry =
@@ -160,6 +161,7 @@ export function ResultPage({
   onWorld,
   onHkMoTw,
   onOverseas,
+  onGlobal,
 }: Props) {
   const { t } = useLocale()
   const shareRef = useRef<HTMLDivElement>(null)
@@ -372,7 +374,7 @@ export function ResultPage({
           </div>
         )}
 
-        <CrossBorderSections origin={origin} prefs={originPrefs} onHkMoTw={onHkMoTw} onOverseas={onOverseas} />
+        <CrossBorderSections origin={origin} prefs={originPrefs} onHkMoTw={onHkMoTw} onOverseas={onOverseas} onGlobal={onGlobal} />
 
         <div className="bg-ink-900 border border-ink-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-4">
           <div>
@@ -529,7 +531,7 @@ export function ResultPage({
  * 跨國並列（批 E2，研究 cross_border_result_design.md）：大陸剩餘集合之後，按範圍並列港澳臺院校池與海外可申請學校兩段，
  * 各帶機構數、已核計數、來源日與入口；不暗示錄取可能。範圍＝只本地（或未選）時折疊為一行入口。
  */
-function CrossBorderSections({ origin, prefs, onHkMoTw, onOverseas }: { origin: OriginRegion | null; prefs: OriginPrefs; onHkMoTw: () => void; onOverseas: () => void }) {
+function CrossBorderSections({ origin, prefs, onHkMoTw, onOverseas, onGlobal }: { origin: OriginRegion | null; prefs: OriginPrefs; onHkMoTw: () => void; onOverseas: () => void; onGlobal: () => void }) {
   const { t } = useLocale()
   const expanded = showCrossBorder(origin, prefs)
   const marking = qualificationTokens(origin, prefs)
@@ -562,6 +564,7 @@ function CrossBorderSections({ origin, prefs, onHkMoTw, onOverseas }: { origin: 
       <div>
         <h2 className="serif text-xl">{t('ui.result.cross.title')}{scopeLabel ? <span className="text-fog-500 text-base"> · {t('ui.result.cross.scope', { scope: scopeLabel })}</span> : null}</h2>
         <p className="mt-2 text-xs text-fog-500 leading-relaxed">{t('ui.result.cross.note')}</p>
+        <button onClick={onGlobal} data-cross-border-global className="mt-3 px-4 py-2 rounded-full border border-accent-500/40 bg-accent-500/10 text-accent-600 text-sm hover:bg-accent-500/15 min-h-[40px]">{t('ui.result.cross.global')} →</button>
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
         <section className="bg-ink-900 border border-ink-700 rounded-xl p-4 flex flex-col gap-3" data-cross-border-pool="hkmotw">

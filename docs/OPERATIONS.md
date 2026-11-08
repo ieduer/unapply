@@ -113,6 +113,8 @@ Data-layer entrypoints and their preconditions:
   `data/research/db_source_evidence.<date>.json.gz` (no network); `run test:db` is its gate. Response headers for
   `/db/*` (CORS GET; immutable version dirs; latest 300 s) live in `public/_headers` and match nothing else.
   Contract `docs/DB_API.md`, schema `docs/DB_SCHEMA.md`, annual procedure `docs/ANNUAL_UPDATE.md`.
+- `run test:global` (batch G2, 2026-11-08) is the gate for the presentation-layer global-pool subtraction `#/global`
+  (`src/engine/globalFilter.ts`; manual §5.5); it has no data input of its own and reads the committed overseas／HK-MO-TW／atlas payloads.
 
 Run only commands supported by the current project toolchain and verify expected outputs in the project before using them as release evidence.
 
