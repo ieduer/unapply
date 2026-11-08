@@ -275,16 +275,23 @@ export default function App() {
     let tries = 0
     // 點擊導航時被點的按鈕可能還握著焦點（舊頁還沒卸載）：它或 body 都算「使用者還沒自己移走焦點」
     const before = document.activeElement
+    // 懶載頁面切換期間舊頁還留在畫面上（React 保留舊內容直到新頁載好）：先拿到的可能是舊頁標題，
+    // 它被換掉後焦點會掉回 body——所以在等待期內持續檢查，已聚焦的標題不在了就改聚焦新頁標題。
+    let focused: HTMLElement | null = null
     const focusHeading = () => {
-      // 載入畫面（data-loading）的標題不算：它馬上會被頁面換掉
-      const heading = document.querySelector<HTMLElement>('main:not([data-loading]) h1') ?? document.querySelector<HTMLElement>('main:not([data-loading]) h2')
-      const idle = !document.activeElement || document.activeElement === document.body || document.activeElement === before
-      if (heading && idle) {
-        if (!heading.hasAttribute('tabindex')) heading.setAttribute('tabindex', '-1')
-        heading.focus({ preventScroll: true })
-        return
+      const active = document.activeElement
+      const idle = !active || active === document.body || active === before || (focused !== null && active === focused)
+      if (!idle) return // 使用者（或頁面自己的換題焦點）已經移走焦點，不搶
+      if (!focused || !focused.isConnected) {
+        // 載入畫面（data-loading）的標題不算：它馬上會被頁面換掉
+        const heading = document.querySelector<HTMLElement>('main:not([data-loading]) h1') ?? document.querySelector<HTMLElement>('main:not([data-loading]) h2')
+        if (heading) {
+          if (!heading.hasAttribute('tabindex')) heading.setAttribute('tabindex', '-1')
+          heading.focus({ preventScroll: true })
+          focused = heading
+        }
       }
-      if (!heading && idle && tries < 60) { tries += 1; focusTimer = window.setTimeout(focusHeading, 150) }
+      if (tries < 60) { tries += 1; focusTimer = window.setTimeout(focusHeading, 150) }
     }
     let focusTimer = window.setTimeout(focusHeading, 0)
     return () => { window.clearTimeout(restore); window.clearTimeout(focusTimer) }
