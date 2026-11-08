@@ -153,7 +153,6 @@ export function AboutPage({ onBack }: Props) {
           <p className="mt-3 text-sm text-fog-500">
             <Rich
               k="ui.about.db.links"
-              params={{ version: <code className="mono">{dbManifest.version}</code> }}
               slots={{
                 a1: own(dbManifest.latestPath),
                 a2: own('https://github.com/ieduer/unapply/blob/master/docs/DB_API.md'),

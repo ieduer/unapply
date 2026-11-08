@@ -112,7 +112,8 @@ test('三語鍵齊全：管道碼、目的地、本地入學、不招本科、�
   const keys = [
     ...channelCodes.map((c) => `ui.global.channel.${c}`),
     ...all.map((d) => `ui.dest.${d}`),
-    ...['hk', 'mo', 'tw'].map((d) => `ui.global.localEntry.${d}`),
+    ...['hk', 'mo', 'tw'].map((d) => `ui.global.localEntry.line.${d}`),
+    'ui.global.item.admissions.nonLocal', 'ui.global.item.admissions.nonLocalUnread', 'ui.branch.destKeepOne',
     'ui.global.counts', 'ui.global.share.note', 'ui.global.footer.rule', 'ui.global.dest.title', 'ui.global.dest.note', 'ui.global.dest.fallback',
     'ui.global.noUndergrad.title', 'ui.global.noUndergrad.note', 'ui.global.noUndergrad.source', 'ui.global.item.channels', 'ui.global.item.channelsNone',
     'ui.global.backToMainland', 'ui.global.doMainland', 'ui.global.noOrigin', 'ui.global.kept.emptyPool', 'ui.about.roadmap.global',
@@ -120,4 +121,26 @@ test('三語鍵齊全：管道碼、目的地、本地入學、不招本科、�
     'ui.global.result.title', 'ui.global.result.bank', 'ui.global.result.noQuestions', 'ui.global.result.edit', 'ui.global.reason.short',
   ]
   for (const k of keys) for (const [name, dict] of [['zh-Hant', zhHant], ['en', en], ['zh-Hans', zhHans]] as const) assert.ok(dict[k] && dict[k].trim(), `${name} ${k}`)
+})
+
+test('批 G6c：本地入學是一句話（鏈接在句中）、頁頭與可見文字不帶版本雜湊、港澳臺卡片的國際招生頁標明非本地生、至少保留一個目的地有提示', () => {
+  const zhHant = JSON.parse(read('src/i18n/locales/zh-Hant.json')) as Record<string, string>
+  const en = JSON.parse(read('src/i18n/locales/en.json')) as Record<string, string>
+  const zhHans = JSON.parse(read('public/i18n/zh-Hans.json')) as Record<string, string>
+  for (const dict of [zhHant, en, zhHans]) {
+    for (const d of ['hk', 'mo', 'tw']) {
+      const line = dict[`ui.global.localEntry.line.${d}`]
+      assert.match(line, /<a1>[^<]+<\/a1>/, d)
+      assert.doesNotMatch(line, /^[;；，,]/, d)
+      assert.match(line, /[。.]$/, d)
+    }
+    for (const k of Object.keys(dict)) assert.equal(/^ui\.global\.localEntry\.(prefix|hk|mo|tw)(\.more)?$/.test(k), false, k)
+    for (const k of ['ui.hkmotw.brand', 'ui.overseas.brand', 'ui.about.db.links']) assert.equal(dict[k].includes('{version}'), false, k)
+  }
+  const page = read('src/components/GlobalSubtraction.tsx')
+  assert.match(page, /const localStudent = item\.destination !== 'overseas' && item\.destination === origin/)
+  assert.match(page, /overseas && !localStudent &&/)
+  assert.match(page, /destinations\.includes\('overseas'\) && <p[^>]*data-global-qual-note/)
+  for (const f of ['src/components/OverseasPage.tsx', 'src/components/HkMoTwPage.tsx']) assert.equal(/brand=\{t\('[^']+', \{ version/.test(read(f)), false, f)
+  for (const f of ['src/components/OriginBranch.tsx', 'src/components/GlobalSubtraction.tsx']) assert.match(read(f), /aria-live="polite" data-dest-keep-one=/, f)
 })

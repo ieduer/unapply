@@ -107,7 +107,7 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
 
   return (
     <main className="min-h-screen app-canvas text-fog-100">
-      <SiteHeader brand={t('ui.overseas.brand', { version: index.version })} back={{ label: t('ui.hkmotw.backHome'), onClick: onBack }} />
+      <SiteHeader brand={t('ui.overseas.brand')} back={{ label: t('ui.hkmotw.backHome'), onClick: onBack }} />
 
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8">
         <div className="max-w-3xl flex flex-col gap-3">

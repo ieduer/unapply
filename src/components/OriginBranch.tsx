@@ -9,6 +9,7 @@ import {
   type Qualification,
 } from '../data/originBranch'
 import { useLocale } from '../i18n/react'
+import { useTransientNotice } from '../lib/useTransientNotice'
 
 interface Props {
   origin: OriginRegion
@@ -20,15 +21,18 @@ interface Props {
  * 起點之後的題（2026-11-08 批 G6 重做，展示層）：
  *  - 資格：只對非大陸起點出現，可跳過；只用來在海外層標示「校方頁面寫明接受」，不劃掉任何學校。
  *  - 「你考慮去哪裡讀？」：多選中國大陸／香港／澳門／臺灣／海外，至少一個；預設＝起點本地。取代批 E2 三套互不一致的範圍題。
+ * 點唯一已選的目的地時不取消，出一行短暫提示「至少保留一個目的地」（批 G6c）。
  * 只存 localStorage（unapply.originPrefs.v2），不進 AnswerMap、不進 A+ 證據；流程由 planFlow 依目的地決定。
  */
 export function OriginBranch({ origin, prefs, onChange }: Props) {
   const { t } = useLocale()
   const qualifications = offeredQualifications(origin)
   const pick = (qualification: Qualification) => onChange({ ...prefs, qualification: prefs.qualification === qualification ? null : qualification })
+  const [keepOne, showKeepOne] = useTransientNotice()
   const toggleDestination = (destination: Destination) => {
     const on = prefs.destinations.includes(destination)
-    if (on && prefs.destinations.length === 1) return
+    // 至少留一個：點唯一已選的目的地不取消，改出一行短暫提示（aria-live，讀屏會讀）
+    if (on && prefs.destinations.length === 1) { showKeepOne(); return }
     const next = on ? prefs.destinations.filter((d) => d !== destination) : [...prefs.destinations, destination]
     onChange({ ...prefs, destinations: DESTINATIONS.filter((d) => next.includes(d)) })
   }
@@ -101,6 +105,7 @@ export function OriginBranch({ origin, prefs, onChange }: Props) {
           })}
         </div>
         <p className="text-xs text-fog-500 leading-relaxed">{t('ui.branch.destNote')}</p>
+        <p className="text-xs text-accent-600 leading-relaxed min-h-[1.25rem]" role="status" aria-live="polite" data-dest-keep-one={keepOne ? 'shown' : ''}>{keepOne ? t('ui.branch.destKeepOne') : ''}</p>
       </fieldset>
     </div>
   )

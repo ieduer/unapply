@@ -36,6 +36,7 @@ import { loadOverseasIndex } from '../lib/overseasData'
 import { loadWorldAtlas } from '../lib/atlasData'
 import { loadQualificationsIndex, type QualificationsPayload } from '../lib/originLayer'
 import { generateShareImage } from '../lib/share'
+import { useTransientNotice } from '../lib/useTransientNotice'
 import { useLocale } from '../i18n/react'
 import type { Locale } from '../i18n/core'
 import { Rich } from '../i18n/rich'
@@ -127,6 +128,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
   const [qualPayload, setQualPayload] = useState<QualificationsPayload | null>(null)
   const [keptLimit, setKeptLimit] = useState<Record<string, number>>({})
   const [copied, setCopied] = useState(false)
+  const [keepOne, showKeepOne] = useTransientNotice()
   const shareRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -372,15 +374,16 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
               return (
                 <button key={destination} type="button" aria-pressed={active} data-global-destination={destination} className={chip(active)}
                   aria-label={last ? t('ui.branch.destLastAria', { place: t(`ui.dest.${destination}`) }) : t(`ui.dest.${destination}`)}
-                  onClick={() => { if (!last) syncDestinations(toggle(destinations, destination)) }}>
+                  onClick={() => { if (last) showKeepOne(); else syncDestinations(toggle(destinations, destination)) }}>
                   <span aria-hidden="true" className="mono text-xs mr-1">{active ? '✓' : '+'}</span>{t(`ui.dest.${destination}`)}
                 </button>
               )
             })}
           </div>
+          <p className="text-xs text-accent-600 leading-relaxed min-h-[1.25rem]" role="status" aria-live="polite" data-dest-keep-one={keepOne ? 'shown' : ''}>{keepOne ? t('ui.branch.destKeepOne') : ''}</p>
         </section>
 
-        {qualHits && qualificationLabel && <p className="text-sm text-fog-300 border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-global-qual-note>{t('ui.global.qual.note', { qualification: qualificationLabel })}</p>}
+        {qualHits && qualificationLabel && destinations.includes('overseas') && <p className="text-sm text-fog-300 border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-global-qual-note>{t('ui.global.qual.note', { qualification: qualificationLabel })}</p>}
 
         {results.map((result) => {
           const plan = plans.find((p) => p.bank === result.bank)!
@@ -531,6 +534,10 @@ function ItemRow({ item, locale, origin, overseas, hkmotw, regionLabel, channelL
   // 港澳臺考生看自己所在地的院校（聯合招生委員會這類管道彙整除外）：本地入學入口，只有官方頁 live 才上鏈接
   const localEntry = (origin === 'hk' || origin === 'mo' || origin === 'tw') && item.destination === origin && !item.committee ? origin : null
   const localLinks = localEntry ? liveSourceLinks(LOCAL_ENTRY_SOURCES[localEntry]) : []
+  // 港澳臺機構在海外層的頁是「非本地生」國際招生頁（批 G6c）：起點＝該機構所在地的本地考生不顯示（本地管道已有本地入學行），
+  // 其他起點標明是非本地生的招生條件；資格標示也來自同一頁，本地考生同樣不顯示。
+  const localStudent = item.destination !== 'overseas' && item.destination === origin
+  const nonLocalPage = item.destination !== 'overseas'
   return (
     <li className={['border rounded-xl px-4 py-3 flex flex-col gap-2', crossed ? 'border-ink-800 bg-ink-950' : 'border-ink-800 bg-ink-900/78'].join(' ')} data-global-item={item.key}>
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1">
@@ -538,13 +545,15 @@ function ItemRow({ item, locale, origin, overseas, hkmotw, regionLabel, channelL
         <p className="text-xs mono text-fog-500">{regionLabel(item.region)}</p>
       </div>
       {localEntry ? (
-        <p className="text-xs text-fog-300 leading-relaxed flex flex-wrap items-center gap-x-1" data-global-channels="local">
-          <span>{t('ui.global.localEntry.prefix')}</span>
-          {localLinks.length > 0
-            ? <a className="tap underline hover:text-accent-500" href={localLinks[0].url} target="_blank" rel="noreferrer noopener">{t(`ui.global.localEntry.${localEntry}`)} ↗</a>
-            : <span>{t(`ui.global.localEntry.${localEntry}`)}</span>}
-          <span>{t(`ui.global.localEntry.${localEntry}.more`)}</span>
-          {localLinks.slice(1).map(({ url, org }) => <span key={url} className="inline-flex items-center gap-x-1"><span aria-hidden="true">·</span><a className="tap underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{t(`ui.source.${org}`)} ↗</a></span>)}
+        // 本地入學一句話（批 G6c）：鏈接嵌在句中，分號／句號跟著文字走，不再被拆成以分號開頭的另一行
+        <p className="text-xs text-fog-300 leading-relaxed" data-global-channels="local">
+          <Rich
+            k={`ui.global.localEntry.line.${localEntry}`}
+            slots={{ a1: (children) => (localLinks.length > 0
+              ? <a className="underline hover:text-accent-500" href={localLinks[0].url} target="_blank" rel="noreferrer noopener" data-local-entry-link>{children} ↗</a>
+              : <span>{children}</span>) }}
+          />
+          {localLinks.slice(1).map(({ url, org }) => <span key={url}> · <a className="underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{t(`ui.source.${org}`)} ↗</a></span>)}
         </p>
       ) : item.pool === 'overseas' && item.destination !== 'overseas' && audienceForOrigin(origin) ? (
         <p className="text-xs text-fog-500 leading-relaxed" data-global-channels="none">{t('ui.global.item.channelsNone')}</p>
@@ -557,14 +566,16 @@ function ItemRow({ item, locale, origin, overseas, hkmotw, regionLabel, channelL
       ) : null}
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs mono">
         {website && <a className="tap text-accent-500 hover:text-accent-400 underline break-all" href={website} target="_blank" rel="noreferrer noopener">{t('ui.global.item.website')}</a>}
-        {overseas && (
-          <button type="button" onClick={onOverseas} className="tap text-fog-300 hover:text-accent-500 underline text-left">
-            {overseas.linkLive ? t('ui.global.item.admissions.live') : t('ui.global.item.admissions.unread')}
+        {overseas && !localStudent && (
+          <button type="button" onClick={onOverseas} className="tap text-fog-300 hover:text-accent-500 underline text-left" data-global-admissions={nonLocalPage ? 'non-local' : 'international'}>
+            {nonLocalPage
+              ? (overseas.linkLive ? t('ui.global.item.admissions.nonLocal') : t('ui.global.item.admissions.nonLocalUnread'))
+              : (overseas.linkLive ? t('ui.global.item.admissions.live') : t('ui.global.item.admissions.unread'))}
           </button>
         )}
         {item.pool === 'hkmotw' && <button type="button" onClick={onHkMoTw} className="tap text-fog-300 hover:text-accent-500 underline">{t('ui.global.item.hkmotw.open')}</button>}
-        {qual === 'listed' && <span className="text-fog-100 border border-accent-500/40 rounded-full px-2 py-0.5" data-global-qual="listed">{t('ui.global.qual.listed', { qualification: qualificationLabel })}</span>}
-        {qual === 'unread' && item.status === 'verified' && <span className="text-fog-500" data-global-qual="unread">{t('ui.global.qual.unread')}</span>}
+        {qual === 'listed' && !localStudent && <span className="text-fog-100 border border-accent-500/40 rounded-full px-2 py-0.5" data-global-qual="listed">{t('ui.global.qual.listed', { qualification: qualificationLabel })}</span>}
+        {qual === 'unread' && item.status === 'verified' && !localStudent && <span className="text-fog-500" data-global-qual="unread">{t('ui.global.qual.unread')}</span>}
       </div>
       {children}
     </li>
