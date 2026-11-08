@@ -1,5 +1,6 @@
 import type { School } from './schools'
 import { provincePortalsByProvince } from './provinceAdmissionPortals'
+import { sortProvinces } from './provinceOrder'
 
 export interface AdmissionResourceLink {
   /** zh-Hant 標籤（引擎語言）；展示層用 labelKey＋labelParams 翻譯（link.*）。 */
@@ -12,7 +13,8 @@ export interface AdmissionResourceLink {
   noteKey?: string
 }
 
-export const candidateProvinceOptions = Object.keys(provincePortalsByProvince) as CandidateProvince[]
+// 批 G8b：照行政區劃代碼排序（北京 11 … 新疆 65），不再用物件鍵的拼音序
+export const candidateProvinceOptions = sortProvinces(Object.keys(provincePortalsByProvince) as CandidateProvince[])
 
 export type CandidateProvince = keyof typeof provincePortalsByProvince
 

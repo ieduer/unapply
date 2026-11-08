@@ -59,6 +59,7 @@
     "data:validity": "node scripts/build_question_evidence.mjs",
     "test:regions": "tsx --test tests/region-banks.test.ts",
     "test:search": "tsx --test tests/search.test.ts",
+    "test:provinces": "tsx --test tests/province-order.test.ts",
     "data:search": "node scripts/build_search_layer.mjs",
     "data:requirements": "node scripts/build_overseas_requirements.mjs",
     "audit:regions": "tsx scripts/audit_region_questions.mjs"

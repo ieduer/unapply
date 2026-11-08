@@ -2,6 +2,7 @@ import { EvidenceNotice } from './EvidenceNotice'
 import { SiteHeader } from './SiteHeader'
 import { SiteFooter } from './SiteFooter'
 import { MajorSummary, NonUniversityPaths } from './ResultExtras'
+import { compareProvinces } from '../data/provinceOrder'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { loadJointIndex } from '../lib/jointData'
 import type { JointIndexPayload } from '../data/jointTypes'
@@ -319,7 +320,7 @@ export function ResultPage({
 
         {!zero && (
           <div className="grid sm:grid-cols-2 gap-6">
-            <DistCard title={t('ui.result.dist.byProvince')} kind="byProvince" items={dist.byProvince.slice(0, 8)} />
+            <DistCard title={t('ui.result.dist.byProvince')} kind="byProvince" items={[...dist.byProvince].sort((a, b) => b.count - a.count || compareProvinces(a.code, b.code)).slice(0, 8)} />
             <DistCard title={t('ui.result.dist.byLevel')} kind="byLevel" items={dist.byLevel} />
           </div>
         )}

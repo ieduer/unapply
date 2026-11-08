@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { compareProvinces, sortProvinces } from '../data/provinceOrder'
 import type { School } from '../data/schools'
 import { DIMENSION_GROUPS } from '../data/dimensions'
 import type { DimensionId } from '../data/dimensions'
@@ -79,6 +80,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
     const rows: ResearchEvidence[] = programEntry.p.split('|')
       .map((tag) => payload.provinceSources[tag])
       .filter((item): item is { sourceId: string; nameZh: string } => Boolean(item))
+      .sort((a, b) => compareProvinces(a.nameZh, b.nameZh))
       .map((item) => {
         const source = payload.sources[item.sourceId]
         return { title: t('ui.detail.programs.sourceTitle', { province: provinceLabel(item.nameZh), publisher: source.publisher, year: payload.admissionYear }), url: source.url, date: source.date, confidence: 'high' as const }
@@ -89,7 +91,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
   }, [programEntry, programs.index, t])
   const programsPayload = programs.index
   // 已納入交叉核對的省表（來自 payload，省數隨來源增加而變）。
-  const programProvinceNames = programsPayload ? Object.values(programsPayload.provinceSources).map((item) => provinceLabel(item.nameZh)) : []
+  const programProvinceNames = programsPayload ? sortProvinces(Object.values(programsPayload.provinceSources).map((item) => item.nameZh)).map((name) => provinceLabel(name)) : []
   const programProvinceList = programProvinceNames.length > 0 ? programProvinceNames.join(t('ui.common.listJoiner')) : t('ui.detail.programs.provincesFallback')
   const currentList = programList && programList.moeCode === school.moeCode ? programList.programs : null
   const programGroups = useMemo(() => {

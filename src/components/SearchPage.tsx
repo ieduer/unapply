@@ -5,6 +5,7 @@ import type { OverseasIndexPayload } from '../data/overseasTypes'
 import type { WorldAtlasPayload } from '../data/worldAtlasTypes'
 import { SUBJECT_OPTIONS, isSubjectCode } from '../data/programPrefs'
 import { searchLayer } from '../data/searchLayer'
+import { compareProvinces, sortProvinces } from '../data/provinceOrder'
 import {
   buildSchoolIndex, grasTop50ForClass, makeFold, schoolsForMajor, searchMajors, searchSchools,
   type CrosswalkPair, type MajorHit, type MajorTarget, type SchoolGroup, type SearchRecord,
@@ -116,7 +117,7 @@ export function SearchPage({ onBack }: { onBack: () => void }) {
     return { offering: all.offering, rows: filtered.rows }
   }, [majorData, target, province, comboSet, schoolData])
   const overseas = useMemo(() => (majorData && target ? grasTop50ForClass(target.classCode, searchLayer.classGras, majorData.atlas.institutions) : null), [majorData, target])
-  const provinces = useMemo(() => (schoolData ? [...new Set([...schoolData.byId.values()].filter((r) => r.scheme === 'moe' && r.province).map((r) => r.province!))] : []), [schoolData])
+  const provinces = useMemo(() => (schoolData ? sortProvinces(new Set([...schoolData.byId.values()].filter((r) => r.scheme === 'moe' && r.province).map((r) => r.province!))) : []), [schoolData])
 
   const toggleSubject = (code: SubjectCode) => setCombo((c) => (c.includes(code) ? c.filter((x) => x !== code) : c.length >= 3 ? c : [...c, code]))
   const tab = (value: Mode, label: string) => (
@@ -235,7 +236,7 @@ export function SearchPage({ onBack }: { onBack: () => void }) {
                 </p>
                 <p className="text-xs text-fog-500 leading-relaxed flex flex-wrap gap-x-2" data-major-sources>
                   <span>{t('ui.search.major.sources', { year: majorData.index.admissionYear })}</span>
-                  {Object.entries(majorData.index.provinceSources).map(([code, s]) => {
+                  {Object.entries(majorData.index.provinceSources).sort(([, a], [, b]) => compareProvinces(a.nameZh, b.nameZh)).map(([code, s]) => {
                     const src = majorData.index.sources[s.sourceId]
                     return <a key={code} href={src?.url} target="_blank" rel="noreferrer noopener" className="tap underline hover:text-accent-500">{provinceLabel(s.nameZh)} ↗</a>
                   })}
@@ -252,7 +253,7 @@ export function SearchPage({ onBack }: { onBack: () => void }) {
                           <span className="text-xs mono text-fog-500">{rec?.province ? provinceLabel(rec.province) : ''}</span>
                         </div>
                         <p className="text-xs text-fog-300">{t('ui.search.major.requirement')}{row.patterns.map(([p, n]) => (n > 1 ? `${requirementLabel(p)} ×${n}` : requirementLabel(p))).join(t('ui.common.listJoiner'))}</p>
-                        <p className="text-xs text-fog-500">{t('ui.search.major.sourceTables')}{row.provinces.map((p) => provinceLabel(majorData.index.provinceSources[p]?.nameZh ?? p)).join(t('ui.common.listJoiner'))}</p>
+                        <p className="text-xs text-fog-500">{t('ui.search.major.sourceTables')}{sortProvinces(row.provinces.map((p) => majorData.index.provinceSources[p]?.nameZh ?? p)).map((name) => provinceLabel(name)).join(t('ui.common.listJoiner'))}</p>
                       </li>
                     )
                   })}
