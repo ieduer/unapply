@@ -1,17 +1,15 @@
-import { EvidenceNotice } from './EvidenceNotice'
+import type { ReactNode } from 'react'
 import { SiteHeader } from './SiteHeader'
-import { TierBadge } from './TierBadge'
 import {
   officialSchoolCount,
   officialUndergraduateCount,
   officialVocationalCount,
 } from '../data/schoolCatalogSummary'
-import { contributionHighlights, researchSummary } from '../data/researchSummary'
+import { researchSummary } from '../data/researchSummary'
 import { getOriginOption, originOptions, type OriginRegion } from '../data/origins'
 import type { OriginPrefs } from '../data/originBranch'
 import { OriginBranch } from './OriginBranch'
 import { useLocale } from '../i18n/react'
-import { Rich } from '../i18n/rich'
 
 interface Props {
   origin: OriginRegion | null
@@ -28,40 +26,27 @@ interface Props {
 }
 
 export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChange, onStart, onWorld, onHkMoTw, onOverseas, onGlobal, onAbout, onContribute }: Props) {
-  const { t, tOr, n } = useLocale()
+  const { t, n } = useLocale()
   const originOption = origin ? getOriginOption(origin) : null
   const isHkMoTw = origin === 'hk' || origin === 'mo' || origin === 'tw'
-  const isOverseas = origin === 'overseas'
-  const routeKey = isHkMoTw ? 'ui.landing.noPool.route.hkmotw' : isOverseas ? 'ui.landing.noPool.route.overseas' : 'ui.landing.noPool.route.other'
   return (
     <div className="min-h-screen app-canvas text-fog-100 flex flex-col">
     <SiteHeader brand={t('ui.landing.brand')} actions={[{ label: t('ui.common.about'), onClick: onAbout }]} />
     <main className="flex-1 text-fog-100 flex flex-col items-center justify-between px-5 sm:px-6 py-6 sm:py-10 page-end-space">
 
       <section className="w-full max-w-5xl flex flex-1 flex-col justify-center gap-8 sm:gap-12 py-10 sm:py-16">
-        <div
-          className="max-w-3xl"
-        >
-          <p className="mono text-xs uppercase tracking-[0.28em] text-accent-500">{t('ui.landing.kicker')}</p>
-          <h1 className="mt-5 serif text-5xl sm:text-7xl leading-none text-fog-100">
+        {/* 2026-11-08 批 G5：首頁只留大標、校數、起點題與按鈕；方法與說明在 About */}
+        <div className="max-w-3xl">
+          <h1 className="serif text-5xl sm:text-7xl leading-none text-fog-100">
             {t('ui.landing.title')}
           </h1>
-          <p className="mt-6 max-w-2xl text-base sm:text-lg text-fog-300 leading-relaxed">
-            {t('ui.landing.lede')}
-          </p>
-          <p className="mt-4 mono text-sm text-fog-500">
+          <p className="mt-5 mono text-sm text-fog-500">
             {t('ui.landing.counts', { total: n(officialSchoolCount), undergrad: n(officialUndergraduateCount), vocational: n(officialVocationalCount) })}
           </p>
         </div>
 
         <div className="border border-ink-800 bg-ink-900/78 p-5 sm:p-6 flex flex-col gap-4 backdrop-blur-xl">
-          <div className="flex flex-col gap-2">
-            <p className="mono text-xs uppercase tracking-[0.24em] text-fog-500">{t('ui.landing.originKicker')}</p>
-            <h2 className="serif text-2xl">{t('ui.landing.originTitle')}</h2>
-            <p className="text-sm text-fog-400 leading-relaxed">
-              {t('ui.landing.originLede')}
-            </p>
-          </div>
+          <h2 className="serif text-2xl">{t('ui.landing.originTitle')}</h2>
           <div className="grid gap-2 sm:grid-cols-5" role="group" aria-label={t('ui.landing.originGroupAria')}>
             {originOptions.map((option) => {
               const active = option.id === origin
@@ -71,28 +56,19 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
                   onClick={() => onOriginChange(option.id)}
                   aria-pressed={active}
                   className={[
-                    'text-left rounded-xl border px-3 py-3 min-h-[56px] flex flex-col gap-1',
+                    'text-left rounded-xl border px-3 py-3 min-h-[52px] flex items-center',
                     active
                       ? 'border-accent-500 bg-accent-500/10 text-fog-100'
                       : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100',
                   ].join(' ')}
                 >
                   <span className="serif text-base leading-snug">{t(`origin.${option.id}.label`)}</span>
-                  <span className="text-xs text-fog-500 leading-snug">{option.hasLocalPool ? t('ui.landing.poolReady') : t('ui.landing.poolBuilding')}</span>
                 </button>
               )
             })}
           </div>
 
-          {!originOption && (
-            <p className="text-sm text-fog-500">{t('ui.landing.pickOriginHint')}</p>
-          )}
           {origin && <OriginBranch origin={origin} prefs={originPrefs} onChange={onOriginPrefsChange} />}
-          {originOption && !originOption.hasLocalPool && (
-            <p className="text-sm text-fog-300 leading-relaxed">
-              <Rich k="ui.landing.noPool" params={{ origin: t(`origin.${originOption.id}.label`), hint: t(`origin.${originOption.id}.hint`), route: t(routeKey) }} />
-            </p>
-          )}
 
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
             {originOption?.hasLocalPool !== false ? (
@@ -173,44 +149,28 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
                 </button>
               </>
             )}
-            <span className="text-xs mono text-fog-500">{t('ui.landing.dynamicNote')}</span>
           </div>
         </div>
-
-        <EvidenceNotice />
 
         <div className="grid border-y border-ink-800 bg-ink-900/70 backdrop-blur-xl sm:grid-cols-3">
           <MetricCard
             label={t('ui.landing.metric.crowdSchools.label')}
             value={n(researchSummary.crowdMatchedSchools)}
-            detail={t('ui.landing.metric.crowdSchools.detail')}
           />
           <MetricCard
             label={t('ui.landing.metric.crowdValues.label')}
             value={n(researchSummary.crowdValuesAccepted)}
-            detail={t('ui.landing.metric.crowdValues.detail')}
           />
           <MetricCard
             label={t('ui.landing.metric.portals.label')}
             value={n(researchSummary.provincePortals)}
-            detail={t('ui.landing.metric.portals.detail')}
           />
         </div>
 
         <div className="border border-ink-800 bg-ink-900/78 p-5 sm:p-6 flex flex-col gap-4 backdrop-blur-xl">
           <div className="flex flex-col gap-2">
-            <p className="mono text-xs uppercase tracking-[0.24em] text-fog-500">{t('ui.landing.contribKicker')}</p>
             <h2 className="serif text-2xl">{t('ui.landing.contribTitle')}</h2>
-            <p className="text-sm text-fog-400 leading-relaxed">
-              {t('ui.landing.contribLede')}
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {contributionHighlights.map((item, index) => (
-              <span key={item} className="rounded-full border border-ink-700 bg-ink-950 px-3 py-1 text-xs text-fog-300">
-                {tOr(`ui.landing.contribHighlight.${index + 1}`, item)}
-              </span>
-            ))}
+            <p className="text-sm text-fog-400 leading-relaxed">{t('ui.landing.contribLede')}</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <button
@@ -231,90 +191,57 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
         </div>
       </section>
 
-      <footer className="w-full max-w-5xl pt-6 border-t border-ink-800">
-        <div className="grid gap-3 sm:gap-2">
-          <FooterGroup
-            group="sister"
-            label={t('ui.landing.footer.sisterSites')}
-            items={[
-              { href: 'https://path.bdfz.net', text: t('ui.landing.footer.path') },
-              { href: 'https://gk.rdfzer.com/#advice-top', text: t('ui.landing.footer.gk') },
-              { href: 'https://my.bdfz.net', text: t('ui.landing.footer.my') },
-            ]}
-          />
-          {/* 2026-11-08 裁定 B3：分區名與權威分級一致——官方與權威來源（P0／P1）、第三方參考（P2）；鏈接旁 tier 標籤保留 */}
-          <FooterGroup
-            group="official"
-            label={t('ui.landing.footer.officialSources')}
-            items={[
-              { href: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202606/t20260618_1441074.html', text: t('ui.landing.footer.moe') },
-              { href: 'https://www.cma.gov.cn/', text: t('ui.landing.footer.cma') },
-              { href: 'https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/', text: t('ui.landing.footer.disciplineEval') },
-              { href: 'https://www.shanghairanking.com/rankings/gras/2026', text: t('ui.landing.footer.gras') },
-            ]}
-          />
-          <FooterGroup
-            group="third-party"
-            label={t('ui.landing.footer.thirdParty')}
-            items={[
-              { href: 'https://www.yicai.com/topic/', text: t('ui.landing.footer.yicai') },
-            ]}
-          />
-          <FooterGroup
-            group="open-source"
-            label={t('ui.landing.footer.openSource')}
-            items={[
-              { href: 'https://github.com/ieduer/unapply', text: 'ieduer/unapply' },
-              { href: 'https://github.com/CollegesChat/university-information', text: 'CollegesChat' },
-            ]}
-          />
-        </div>
-        <div className="mt-3 px-1 text-xs mono text-fog-500 leading-relaxed">
-          {t('ui.landing.footer.licence')}
-        </div>
+      {/* 2026-11-08 批 G5（站長指示，取代 G1 的頁尾分組）：三行精簡頁尾；分級標籤只在 About */}
+      <footer className="w-full max-w-5xl pt-4 border-t border-ink-800 text-xs mono text-fog-500 leading-relaxed flex flex-col" data-landing-footer>
+        <p className="flex flex-wrap items-center gap-x-2" data-footer-line="sisters">
+          <span className="text-fog-300">{t('ui.landing.footer.sisters')}</span>
+          <FooterLink href="https://path.bdfz.net" title={t('ui.landing.footer.path')}>path</FooterLink>
+          <Dot />
+          <FooterLink href="https://gk.rdfzer.com/#advice-top" title={t('ui.landing.footer.gk')}>gk</FooterLink>
+          <Dot />
+          <FooterLink href="https://my.bdfz.net" title={t('ui.landing.footer.my')}>my</FooterLink>
+        </p>
+        <p className="flex flex-wrap items-center gap-x-2" data-footer-line="sources">
+          <span className="text-fog-300">{t('ui.landing.footer.sources')}</span>
+          <FooterLink href="https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202606/t20260618_1441074.html" title={t('ui.landing.footer.moe.title')}>{t('ui.landing.footer.moe')}</FooterLink>
+          <Dot />
+          <FooterLink href="https://www.cma.gov.cn/" title={t('ui.landing.footer.cma.title')}>{t('ui.landing.footer.cma')}</FooterLink>
+          <Dot />
+          <FooterLink href="https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/" title={t('ui.landing.footer.disciplineEval.title')}>{t('ui.landing.footer.disciplineEval')}</FooterLink>
+          <Dot />
+          <FooterLink href="https://www.shanghairanking.com/rankings/gras/2026" title={t('ui.landing.footer.gras.title')}>{t('ui.landing.footer.gras')}</FooterLink>
+          <Dot />
+          <FooterLink href="https://www.yicai.com/topic/" title={t('ui.landing.footer.yicai.title')}>{t('ui.landing.footer.yicai')}</FooterLink>
+          <Dot />
+          <span className="text-fog-300">{t('ui.landing.footer.openSource')}</span>
+          <FooterLink href="https://github.com/ieduer/unapply" title={t('ui.landing.footer.unapply.title')}>ieduer/unapply</FooterLink>
+          <Dot />
+          <FooterLink href="https://github.com/CollegesChat/university-information" title={t('ui.landing.footer.collegeschat.title')}>CollegesChat</FooterLink>
+        </p>
+        <p className="py-2.5" data-footer-line="licence">{t('ui.landing.footer.licence')}</p>
       </footer>
     </main>
     </div>
   )
 }
 
-function MetricCard({ label, value, detail }: { label: string; value: string; detail: string }) {
+function MetricCard({ label, value }: { label: string; value: string }) {
   return (
     <div className="border-b border-ink-800 p-4 flex flex-col gap-2 sm:border-b-0 sm:border-r sm:last:border-r-0">
       <p className="mono text-xs uppercase tracking-[0.22em] text-fog-500">{label}</p>
       <p className="serif text-3xl text-fog-100">{value}</p>
-      <p className="text-xs text-fog-500 leading-relaxed">{detail}</p>
     </div>
   )
 }
 
-function FooterGroup({
-  group,
-  label,
-  items,
-}: {
-  group?: string
-  label: string
-  items: { href: string; text: string }[]
-}) {
+function FooterLink({ href, title, children }: { href: string; title: string; children: ReactNode }) {
   return (
-    <section data-footer-group={group} className="border border-ink-800 sm:border-0 bg-ink-900/65 sm:bg-transparent px-4 py-3 sm:px-0 sm:py-0">
-      <p className="mono text-xs uppercase tracking-[0.18em] text-fog-300">{label}</p>
-      <div className="mt-2 flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-x-3 sm:gap-y-1 text-xs mono text-fog-500 leading-relaxed">
-        {items.map((item) => (
-          <span key={item.href} className="inline-flex items-center gap-1">
-            <a
-              className="tap hover:text-accent-500 break-all"
-              href={item.href}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              {item.text}
-            </a>
-            <TierBadge url={item.href} />
-          </span>
-        ))}
-      </div>
-    </section>
+    <a className="inline-flex items-center min-h-[40px] hover:text-accent-500" href={href} title={title} aria-label={title} target="_blank" rel="noreferrer noopener">
+      {children}
+    </a>
   )
+}
+
+function Dot() {
+  return <span aria-hidden="true">·</span>
 }

@@ -1,47 +1,47 @@
 {
  "schema": "nope.db.latest.v1",
  "schemaVersion": 1,
- "version": "e37642910355",
+ "version": "11bdc13613b3",
  "generatedAt": "2026-11-08",
- "base": "/db/v1/e37642910355/",
+ "base": "/db/v1/11bdc13613b3/",
  "manifest": {
-  "path": "/db/v1/e37642910355/manifest.json",
-  "sha256": "4fdbb5b35efbbfa3f0b8b4508392eb0ad89ec9dd589c837860103091a782b8a5",
+  "path": "/db/v1/11bdc13613b3/manifest.json",
+  "sha256": "a48d7ba14b39f4e559ed191c0275056a90134af099d8ef2f82062486d860696f",
   "bytes": 33505
  },
  "datasets": {
   "institutions": {
-   "path": "/db/v1/e37642910355/institutions.json",
+   "path": "/db/v1/11bdc13613b3/institutions.json",
    "count": 3935,
    "sha256": "f0f43ec2bb800ddfc8830b2ce2239ae7098a5f1480d2042d3e95ad800e463267",
    "bytes": 1826078
   },
   "crosswalk": {
-   "path": "/db/v1/e37642910355/crosswalk.json",
+   "path": "/db/v1/11bdc13613b3/crosswalk.json",
    "count": 561,
    "sha256": "5eefac18604d36a91e3afe587dd0cfd701f2ab029a90a7209c7e9eb158a6c0a8",
    "bytes": 138265
   },
   "channels": {
-   "path": "/db/v1/e37642910355/channels.json",
+   "path": "/db/v1/11bdc13613b3/channels.json",
    "count": 2066,
    "sha256": "870249963a368034b7c5575ba32cc6f078e7a0b7e4a82011eaf5bdbe531d41ed",
    "bytes": 1139523
   },
   "conditions.index": {
-   "path": "/db/v1/e37642910355/conditions.index.json",
+   "path": "/db/v1/11bdc13613b3/conditions.index.json",
    "count": 1351,
    "sha256": "8b2c7b94462df0a1b3190cd42d20ffb5aa82aee20407474d83fb8fec04bed789",
    "bytes": 541188
   },
   "sources": {
-   "path": "/db/v1/e37642910355/sources.json",
+   "path": "/db/v1/11bdc13613b3/sources.json",
    "count": 3564,
    "sha256": "e8169788de0467ca1928826a33ddfbab6e4a29422dbc068133998b936a197fc9",
    "bytes": 1775600
   },
   "validity": {
-   "path": "/db/v1/e37642910355/validity.json",
+   "path": "/db/v1/11bdc13613b3/validity.json",
    "count": 3417,
    "sha256": "1caa281b480495930fec34ff4c32506bb6ebd151e02ebfab37c46b354f6db3b8",
    "bytes": 599271
@@ -49,7 +49,7 @@
  },
  "references": {
   "count": 84,
-  "bytes": 30046248
+  "bytes": 30046169
  },
  "contract": "https://github.com/ieduer/unapply/blob/master/docs/DB_API.md",
  "usage": "只讀、公開官方資訊的統一索引；任何欄位都不表示錄取可能或推薦，排名只描述學科分佈。Read-only index of public official information; no field indicates admission chances or a recommendation."

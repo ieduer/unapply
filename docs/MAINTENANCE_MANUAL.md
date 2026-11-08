@@ -563,35 +563,34 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 
 ## 5. 前端與交互維護
 
-### 5.1 色系
+### 5.1 色系（2026-11-08 批 G5 起：單一切換按鈕；硬規則——每一套色系下所有文字都必須清晰）
 
-- 色系、畫布、字體與進場動畫放在 `src/shared-ui/`，與姊妹站 path.bdfz.net **逐位元組相同**
-  （`theme.css`、`theme.ts`、`ThemeCustomizer.tsx`、`tests/theme-contrast.test.ts`、`scripts/check_shared_ui.mjs`）。
-  本站自己的樣式只寫在 `src/index.css`。
-- 色系只有兩套：`紙色`（淺）與 `墨色`（深）。不提供自選強調色——任意顏色無法保證文字對比度。
-- 本地存儲鍵：`bdfz.subtraction.theme.v1`
-- `npm run test:theme` 逐一計算每套色系的對比度：文字色對畫布／卡片底 ≥ 4.5:1、按鈕文字 ≥ 4.5:1、
-  選項邊框 ≥ 3:1。不過就不發布。
-- `npm run check:shared-ui` 核對共用檔與 `manifest.json` 一致，姊妹倉庫在旁邊時一併逐檔比對。
+**介面**：色系＝頁頭裡一個按鈕（`src/components/ThemeToggle.tsx`），點一下就切到下一套（`src/lib/themeCycle.ts`：只在 `themePresets` 之間依序循環，目前紙色⇄墨色；日後新增預設就照陣列順序輪下去），即時生效並記在 `localStorage` 鍵 `bdfz.subtraction.theme.v1`；沒有面板。按鈕顯示色點＋目前色系名（三語 `ui.theme.<id>.label`；<640px 只顯示色點），`aria-label`／`title` 為「色系：紙色，點擊切換為墨色」這類句子（`ui.theme.toggleAria`），觸控區 ≥44px。切換當下在 `<html>` 加 `.theme-switching`（`src/index.css`）關掉所有 transition、先算完新樣式再拿掉，避免文字出現看不清的中間色。本站不再使用 shared-ui 的 `ThemeCustomizer`；`src/shared-ui/` 一個檔都不改（path.bdfz.net 仍用它的 floating 面板，`check:shared-ui` 照過）。
 
-改共用模板：
+**硬規則（不過就不發布）**：
+- 正文、次要文字、按鈕文字對其實際底色（含半透明疊色後的結果）對比 **≥ 4.5:1**；邊框（選項、輸入框、卡片分隔）對底色 **≥ 3:1**。
+- 不得用 `opacity-*`（或任何降低透明度的方式）淡化文字來表示次要或停用——用 `text-fog-500` 這類本身就過對比的字色；停用按鈕用 `bg-ink-800 text-fog-500`。
+- 字級不得小於 12px（`text-xs`）。
+- 每次發布，在**每一套色系 × 全部路由 × 三語（正體／简体／EN）× 手機（360／390／430）與桌面（1024／1280／1440）寬度**逐元素量測（可見文字節點逐一算前景／背景合成後的對比、最小字級、獨立控制項 ≥40px、頁頭零重疊、無橫向溢出）；任何一處不達標就不發布。量測輔助見批 G3 後續與 G5 的發布證據。
+- 新增或修改色系：先過 `npm run test:theme`（`tests/theme-contrast.test.ts` 逐色系計算文字色對畫布／卡片 ≥4.5、按鈕文字 ≥4.5、邊框 ≥3；`tests/theme-toggle.test.ts` 斷言切換只在 `themePresets` 間循環、每套都過對比），再跑上面的逐路由量測；兩者都過才可上線。
 
-1. 在任一站改 `src/shared-ui/` 裡的檔案，跑 `npm run test:theme`
-2. `node scripts/check_shared_ui.mjs --write` 重寫 manifest
-3. 把同樣的五個檔案與 manifest 複製到姊妹倉庫，兩邊各跑 `npm run check:shared-ui`
-4. 兩站一起發布
-
-元件裡不要用降低透明度（`opacity-*`）來表示次要或停用——用 `text-fog-500` 這類仍過對比度的字色；
-字級不低於 12px（`text-xs`）。
+**共用模板**：色系調色盤、畫布、字體與進場動畫在 `src/shared-ui/`，與姊妹站 path.bdfz.net **逐位元組相同**（`theme.css`、`theme.ts`、`ThemeCustomizer.tsx`、`SyncNotice.tsx`、`tests/theme-contrast.test.ts`、`scripts/check_shared_ui.mjs`）；本站自己的樣式只寫在 `src/index.css`。色系只有兩套：`紙色`（淺）與 `墨色`（深），不提供自選強調色——任意顏色無法保證文字對比度。改共用模板：(1) 在任一站改 `src/shared-ui/`，跑 `npm run test:theme`；(2) `node scripts/check_shared_ui.mjs --write` 重寫 manifest；(3) 同樣的檔案與 manifest 複製到姊妹倉庫，兩邊各跑 `npm run check:shared-ui`；(4) 兩站一起發布。
 
 ### 5.1a 共用頁頭與手機版面（2026-11-08 批 G3 後續：修右上角色系與頁頭重疊、手機整體優化）
 
 - 全站頁頭只有一個元件 `src/components/SiteHeader.tsx`（Landing、QuestionRunner、ResultPage、SchoolDetail、AboutPage、WorldAtlasPage、HkMoTwPage、OverseasPage、GlobalSubtraction、ContributePage 共用）：返回 · 站名 ·（問卷頁的進度，只在 ≥640px）·（彈性空白）· 色系 · 動作 · 語言切換。`flex-wrap` 從尾端換行，放不下時只有語言切換掉到第二行（靠右）；<640px 站名縮為「nope」、版本號隱藏；語言切換與各按鈕 `whitespace-nowrap`。問卷頁在 <640px 把進度文字放到頁頭第一行下方。
-- 色系不再是全域右上角浮鈕：`App.tsx` 不再渲染 `<ThemeCustomizer />`，改由 SiteHeader 以 `placement="inline"` 放在頁頭裡（shared-ui；彈層錨定觸發鈕、點外部或 Esc 關閉、焦點回到觸發鈕、四邊至少留 12px；窄螢幕只顯示色點，名稱在 `aria-label`）。path.bdfz.net 不傳 `placement`，維持 floating。
+- 色系不再是全域右上角浮鈕：`App.tsx` 不再渲染 `<ThemeCustomizer />`。G3 後續曾改為頁頭內 `placement="inline"` 彈層；**2026-11-08 批 G5 起改為一鍵切換按鈕 `ThemeToggle`（§5.1）**，頁頭不再匯入 `ThemeCustomizer`。path.bdfz.net 不傳 `placement`，維持 floating。
 - 觸控區：獨立的鏈接／按鈕至少 40px 高（`src/index.css` 的 `.tap`；頁頭控制項 44px）；段落文字中的行內鏈接維持行內。
 - 手機底部留白：各頁主欄加 `page-end-space`（<640px 末尾留 7rem＋安全區），讓最後的內容捲出右下角 BDFZ 共用導航圓標（`site-auth.js`，`data-mobile-inset-bottom="92"`，不改它）；問卷頁在固定底欄上方另留 6rem。
 - `#/world` 剩餘機構：<640px 改堆疊卡片（機構、地區、席位、最強學科），≥640px 維持表格，表格校名按鈕 `block w-full min-h-[40px]`（1024／1440 量到 36px 後補）。
-- 驗收量測（每次動頁頭或版面都要跑）：全部路由 × 360／390／430／1024／1280／1440 × 兩色系 × 三語，頁頭控制項與任何文字矩形（`getBoundingClientRect`／Range client rects，排除 aria-hidden 與未展開的 `<details>` 內容）零相交、無橫向溢出、獨立控制項 ≥40px、最小字 12px、對比 ≥4.5、語言切換不折行、色系彈層完整在視窗內。量測輔助見批 G3 後續的發布證據。
+- 驗收量測（每次動頁頭或版面都要跑）：全部路由 × 360／390／430／1024／1280／1440 × 兩色系 × 三語，頁頭控制項與任何文字矩形（`getBoundingClientRect`／Range client rects，排除 aria-hidden 與未展開的 `<details>` 內容）零相交、無橫向溢出、獨立控制項 ≥40px、最小字 12px、對比 ≥4.5、語言切換不折行；色系按鈕真實點擊來回切換、重新載入保持。量測輔助見批 G3 後續與 G5 的發布證據。
+
+### 5.1b 介面文字精簡（2026-11-08 批 G5，站長指示）
+
+- 首頁只留：大標、校數一行、「你在哪裡升學？」、起點卡（只顯示地名，不帶「題庫完整／建設中」）、資格與範圍兩題（每題末尾「跳過」選項）、各起點按鈕、指標卡（只標籤與數字）、貢獻卡（標題＋一句＋按鈕）。
+- 頁尾三行：姊妹站 path · gk · my（鏈接文字短，`title`／`aria-label` 帶全名）；來源 教育部 · 氣象局 · 學科評估 · 軟科 · 第一財經 · 開源 ieduer/unapply · CollegesChat；非商業公益 · CC BY-NC-SA 4.0 · 不提供志願填報建議。頁尾不分組、不標分級；每條來源的 P0／P1／P2 只在 About。
+- 其他頁面開頭說明最多一句；方法、來源、免責長段落只在 About（同一件事只說一次）；資料頁只留一行小字來源標示。「不代表錄取可能」全站只在 About（方法論「不提供志願填報建議」條）與結果頁（跨區兩池說明）各一次。
+- 介面不得出現開發術語：「建設中／under construction」、路線圖階段代號（S0–S5）、批次代號、「已上線」「路線圖」；資料檔裡會被渲染的 notes 也一樣（批 G5 已改字面）。不刪任何資料、鏈接、題目、選項或功能。
 
 ### 5.2 問題頁與結果頁
 

@@ -13,7 +13,7 @@
   "files": {
     "overseas_admissions.2026-11-07.csv": {
       "researchName": "institutions_admissions.csv",
-      "sha256": "1e47666c95d1aecff8a56eedca15d19786825604100590d23f2a94eaa8b1306a",
+      "sha256": "fddfd57a19b1a81ca70358f10911335ba268436fb794cdc691b955c26b462cf1",
       "researchSha256": "bebc108a1e666d30f41ab38ca3cef9236ae3b21c599af696dcfba76dafa5f7ff",
       "rows": 403,
       "key": "institutionId = gras_institutions_geo.univCode",
@@ -21,7 +21,7 @@
     },
     "overseas_national_portals.2026-11-07.csv": {
       "researchName": "national_portals.csv",
-      "sha256": "6d0ac625265341df6c14895f713b1f9a971fae8e40fa3222c97761a271a5fd0a",
+      "sha256": "8e6c7c765a51f98c659c90fcfbfe024689c418f325ecdb8174d36b98d0899389",
       "rows": 91,
       "key": "(region, officialUrl)",
       "note": "2026-11-08 起與研究原檔不再逐位元組相同：見 revisions（研究原檔 SHA-256 記在 researchSha256 或第一筆 revision 的 previousSha256）",
@@ -29,7 +29,7 @@
     },
     "overseas_visa_policies.2026-11-07.csv": {
       "researchName": "visa_policies.csv",
-      "sha256": "4fdcf2c801d82dc0cbec99df683f8fc8844ec26d482a851fdf301f2418ae6e93",
+      "sha256": "9bc95b3d956b1138c5ffc3061d3b786f1cc7ec4b24987cf25a79b90933ef8942",
       "rows": 90,
       "key": "(region, officialUrl)",
       "note": "2026-11-08 起與研究原檔不再逐位元組相同：見 revisions（研究原檔 SHA-256 記在 researchSha256 或第一筆 revision 的 previousSha256）",
@@ -1250,6 +1250,22 @@
           }
         ]
       }
+    },
+    {
+      "at": "2026-11-08",
+      "batch": "G5",
+      "authority": "站長 2026-11-08 介面精簡指示（主會話 G5 裁定 1：介面不出現批次等路線圖術語）",
+      "previousSha256": {
+        "overseas_admissions.2026-11-07.csv": "1e47666c95d1aecff8a56eedca15d19786825604100590d23f2a94eaa8b1306a",
+        "overseas_national_portals.2026-11-07.csv": "6d0ac625265341df6c14895f713b1f9a971fae8e40fa3222c97761a271a5fd0a",
+        "overseas_visa_policies.2026-11-07.csv": "4fdcf2c801d82dc0cbec99df683f8fc8844ec26d482a851fdf301f2418ae6e93"
+      },
+      "changes": [
+        {
+          "scope": "notes 欄字面",
+          "change": "「2026-11-08 批 G4 真實瀏覽器覆核讀到」改為「2026-11-08 真實瀏覽器覆核讀到」；unsafe 列「（2026-11-08 批 G4）」改為「（2026-11-08 核查）」；資料值、狀態、鏈接、原文片段不變"
+        }
+      ]
     }
   ]
 }

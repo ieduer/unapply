@@ -159,7 +159,6 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
 
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8">
         <div className="max-w-3xl flex flex-col gap-3">
-          <p className="mono text-xs uppercase tracking-[0.28em] text-accent-500">{t('ui.world.stepKicker')}</p>
           <h1 className="serif text-3xl sm:text-5xl leading-tight">{t('ui.world.title')}</h1>
           <p className="text-sm sm:text-base text-fog-300 leading-relaxed">
             {t('ui.world.lede', { ranking: locale === 'en' ? payload.ranking.name : payload.ranking.nameZh, year: payload.ranking.year, subjects: payload.subjects.length, topN: selection.topN })}
@@ -170,7 +169,6 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
                 k="ui.world.originNote"
                 params={{
                   origin: t(`origin.${originOption.id}.label`),
-                  hint: t(`origin.${originOption.id}.hint`),
                   pools: (origin === 'hk' || origin === 'mo' || origin === 'tw')
                     ? <Rich k="ui.world.originNote.poolHkmotw" slots={{ a2: (children) => <button onClick={onHkMoTw} className="underline hover:text-accent-500">{children}</button> }} />
                     : origin === 'overseas'
@@ -477,15 +475,16 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
         </section>
 
         <footer className="pt-6 border-t border-ink-800 text-xs mono text-fog-500 leading-relaxed flex flex-col gap-2">
+          {/* 2026-11-08 批 G5：資料頁只留一行來源；座標、官網、陸地輪廓與排名限制見 About */}
           <p>
             <Rich
               k="ui.world.footer.sources"
-              params={{ ranking: payload.ranking.name, year: payload.ranking.year, fetchedAt: payload.ranking.fetchedAt, topNMax: payload.ranking.topNMax, geo: payload.sources.geo.name, websites: payload.sources.websites.name, land: payload.sources.land.name }}
-              slots={{ a1: (children) => <a className="hover:text-accent-500 underline" href={payload.ranking.url} target="_blank" rel="noreferrer noopener">{children}</a> }}
+              params={{ ranking: payload.ranking.name, year: payload.ranking.year, fetchedAt: payload.ranking.fetchedAt, topNMax: payload.ranking.topNMax }}
+              slots={{
+                a1: (children) => <a className="hover:text-accent-500 underline" href={payload.ranking.url} target="_blank" rel="noreferrer noopener">{children}</a>,
+                a2: (children) => <button onClick={onAbout} className="underline hover:text-accent-500">{children}</button>,
+              }}
             />
-          </p>
-          <p>
-            <Rich k="ui.world.footer.caveat" slots={{ a1: (children) => <button onClick={onAbout} className="underline hover:text-accent-500">{children}</button> }} />
           </p>
         </footer>
       </section>

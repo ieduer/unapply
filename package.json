@@ -29,7 +29,7 @@
     "test:evidence": "node --experimental-strip-types --test tests/learning-evidence.test.ts",
     "test:filters": "tsx --test tests/admission-channel.test.ts tests/evidence-threshold.test.ts tests/filter-validity.test.ts",
     "test:trusted": "tsx --test tests/trusted-aplus-*.test.ts",
-    "test:theme": "tsx --test tests/theme-contrast.test.ts",
+    "test:theme": "tsx --test tests/theme-contrast.test.ts tests/theme-toggle.test.ts",
     "test:atlas": "tsx --test tests/world-atlas.test.ts",
     "test:s1": "tsx --test tests/s1-programs.test.ts",
     "check:shared-ui": "node scripts/check_shared_ui.mjs",

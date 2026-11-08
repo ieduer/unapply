@@ -110,7 +110,6 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
 
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8">
         <div className="max-w-3xl flex flex-col gap-3">
-          <p className="mono text-xs uppercase tracking-[0.28em] text-accent-500">{t('ui.overseas.stepKicker')}</p>
           <h1 className="serif text-3xl sm:text-5xl leading-tight">{t('ui.overseas.title')}</h1>
           <p className="text-sm sm:text-base text-fog-300 leading-relaxed">
             <Rich k="ui.overseas.lede" params={{ institutions: totals.institutions, unread }} />
@@ -144,7 +143,6 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
                 k="ui.overseas.originNote"
                 params={{
                   origin: t(`origin.${originOption.id}.label`),
-                  hint: t(`origin.${originOption.id}.hint`),
                   hkmotw: (origin === 'hk' || origin === 'mo' || origin === 'tw') ? <Rich k="ui.overseas.originNote.hkmotw" slots={{ a3: (children) => <button onClick={onHkMoTw} className="underline hover:text-accent-500">{children}</button> }} /> : '',
                 }}
                 slots={{
@@ -169,7 +167,6 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
         )}
 
         <footer className="pt-6 border-t border-ink-800 text-xs mono text-fog-500 leading-relaxed">
-          <p>{t('ui.overseas.footer.rule')}</p>
           <p>
             <Rich
               k="ui.overseas.footer.links"

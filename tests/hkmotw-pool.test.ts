@@ -102,10 +102,10 @@ test('與世界學科地圖對得上：atlasId 都在地圖 payload 裡且地區
   assert.ok(hkmotwManifest.counts.linkedToAtlas >= 8)
 })
 
-test('起點選項：港澳臺三個起點的提示指向院校池，仍沒有本地題庫', () => {
+test('起點選項：港澳臺三個起點沒有本地題庫（2026-11-08 批 G5 起起點卡不帶提示文字）', () => {
   for (const id of ['hk', 'mo', 'tw']) {
     const option = originOptions.find((o) => o.id === id)!
     assert.equal(option.hasLocalPool, false)
-    assert.match(option.hint, /港澳臺院校池/)
+    assert.equal('hint' in option, false)
   }
 })

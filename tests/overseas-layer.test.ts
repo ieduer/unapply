@@ -198,10 +198,9 @@ test('與世界學科地圖對得上：每所機構都是地圖上的非大陸�
   assert.equal(index.institutions.length, atlas.institutions.filter((i) => i.region !== 'China').length, '地圖上的非大陸機構全部入層')
 })
 
-test('起點選項：其他國家或地區的提示指向海外機構招生頁（S3）；這一層不進題目（45 題不變）', () => {
+test('起點選項：其他國家或地區沒有本地題庫；這一層不進題目（45 題不變）', () => {
   const overseas = originOptions.find((o) => o.id === 'overseas')!
   assert.equal(overseas.hasLocalPool, false)
-  assert.match(overseas.hint, /海外機構招生頁已上線（S3）/)
   assert.equal(Object.keys(DIMENSIONS).length, 45)
   assert.equal(allQuestions.length, 45)
   assert.ok(!Object.keys(DIMENSIONS).some((k) => /overseas|visa|gaokao/i.test(k)))

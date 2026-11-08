@@ -101,7 +101,6 @@ test('zh-Hant 來源與倉庫原文逐條相等：45 題標題／副標／選項
   for (const subject of SUBJECT_OPTIONS) assert.equal(zhHant[`subject.${subject.code}`], subject.label)
   for (const option of originOptions) {
     assert.equal(zhHant[`origin.${option.id}.label`], option.label, option.id)
-    assert.equal(zhHant[`origin.${option.id}.hint`], option.hint, option.id)
   }
   for (const code of ['CS', 'EE', 'Math', 'Med', 'Econ', 'Law', 'Chn', 'Hist']) assert.ok(`val.C5.subject.${code}` in zhHant)
   assert.equal(zhHant['val.C5.template'], '{subject} {grade}')
@@ -148,14 +147,13 @@ test('程式裡的靜態翻譯鍵都存在於 zh-Hant；動態鍵族逐值存在
     ...['warm', 'mild', 'cold', 'extreme_cold'].map((v) => `ui.detail.env.winter.${v}`),
     ...['low', 'medium', 'high', 'extreme'].map((v) => `ui.detail.env.haze.${v}`),
     ...['high', 'medium', 'low'].flatMap((v) => [`ui.detail.confidence.${v}`, `ui.world.confidence.${v}`, `ui.contribute.confidence.${v}`]),
-    ...['verified', 'needs_review', 'blocked', 'not_found'].map((v) => `ui.overseas.statusCode.${v}`),
+    ...['verified', 'needs_review', 'blocked', 'not_found', 'unsafe'].map((v) => `ui.overseas.statusCode.${v}`),
     ...['accepted', 'not_accepted', 'conflicting', 'separate_channel', 'mentioned', 'not_stated'].map((v) => `ui.overseas.gaokao.${v}`),
     ...['high', 'medium'].map((v) => `ui.overseas.confidence.${v}`),
     ...['campus_location', 'tuition_fee', 'dormitory', 'management_rules', 'academic_major', 'employment', 'mobility_transfer', 'accessibility', 'food_safety', 'student_life', 'other'].map((v) => `ui.contribute.category.${v}`),
     ...['official', 'school', 'student', 'news', 'map', 'github', 'other'].map((v) => `ui.contribute.sourceType.${v}`),
     ...['verified', 'syncing', 'rejected', 'pending', 'idle'].map((v) => `ui.aplus.${v}`),
-    ...originOptions.flatMap((o) => [`origin.${o.id}.label`, `origin.${o.id}.hint`]),
-    ...[1, 2, 3].map((i) => `ui.landing.contribHighlight.${i}`),
+    ...originOptions.map((o) => `origin.${o.id}.label`),
     ...['P0', 'P1', 'P2'].map((v) => `ui.tier.${v}`),
     ...['fellowship_to_hire', 'fellowship_grant', 'employer_degree', 'degree_apprenticeship', 'talent_program_with_degree', 'research_trainee', 'youth_internship_camp', 'apprenticeship', 'apprenticeship_mixed', 'direct_hire_school_leaver', 'sponsored_training_to_hire'].map((v) => `ui.world.program.kind.${v}`),
     ...['united-states', 'united-kingdom', 'canada', 'germany', 'china', 'switzerland', 'japan', 'hong-kong', 'south-korea'].map((v) => `ui.world.program.country.${v}`),

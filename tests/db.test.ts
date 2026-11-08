@@ -178,5 +178,11 @@ test('三語鍵齊全：About 資料庫段（zh-Hant／en 來源與 zh-Hans 生�
   const en = JSON.parse(read('src/i18n/locales/en.json').toString('utf8')) as Record<string, string>
   const hans = JSON.parse(read('public/i18n/zh-Hans.json').toString('utf8')) as Record<string, string>
   for (const k of ['ui.about.db.title', 'ui.about.db.intro', 'ui.about.db.links', 'ui.about.db.rule']) for (const d of [zh, en, hans]) assert.ok(d[k]?.trim(), k)
-  assert.match(zh['ui.about.db.rule'], /不表示錄取可能/)
+  // 2026-11-08 批 G5：「不代表錄取可能」全站在 About 只說一次（方法論「不提供志願填報建議」條），資料庫段改寫「不作推薦」
+  assert.match(zh['ui.about.db.rule'], /不作推薦/)
+  assert.match(zh['ui.about.method.noAdvice'], /不代表錄取可能/)
+  const aboutHits = Object.entries(zh).filter(([k, v]) => k.startsWith('ui.about.') && /錄取可能/.test(v)).map(([k]) => k)
+  assert.deepEqual(aboutHits, ['ui.about.method.noAdvice'])
+  const allHits = Object.entries(zh).filter(([, v]) => /不代表錄取可能/.test(v)).map(([k]) => k).sort()
+  assert.deepEqual(allHits, ['ui.about.method.noAdvice', 'ui.result.cross.note'])
 })

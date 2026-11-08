@@ -149,7 +149,7 @@ test('三語鍵齊：資格、範圍、起點分支面板、官方管道、海�
   for (const q of Object.keys(QUALIFICATION_OPTIONS)) keys.push(`origin.qual.${q}.label`, `origin.qual.${q}.hint`)
   for (const group of ['cn', 'local']) for (const scope of ['local', 'abroad', 'both']) keys.push(`origin.scope.${group}.${scope}`)
   for (const scope of ['abroad', 'both']) keys.push(`origin.scope.overseas.${scope}`)
-  keys.push('ui.branch.kicker', 'ui.branch.qualTitle', 'ui.branch.scopeTitle.cn', 'ui.branch.scopeTitle.local', 'ui.branch.scopeTitle.overseas', 'ui.branch.note', 'ui.branch.sources', 'ui.branch.sourceUnread', 'ui.branch.clear', 'ui.branch.gaokaoNote', 'ui.branch.hkmotwNote', 'ui.branch.overseasNote')
+  keys.push('ui.branch.qualTitle', 'ui.branch.scopeTitle.cn', 'ui.branch.scopeTitle.local', 'ui.branch.scopeTitle.overseas', 'ui.branch.note', 'ui.branch.sources', 'ui.branch.sourceUnread', 'ui.branch.skip')
   keys.push('ui.channels.title', 'ui.channels.note', 'ui.channels.statusVerified', 'ui.channels.statusUnread', 'ui.channels.sources')
   keys.push('ui.overseas.qual.listed', 'ui.overseas.qual.listedGaokao', 'ui.overseas.qual.unread', 'ui.overseas.qual.counts', 'ui.overseas.qual.selector', 'ui.overseas.qual.none', 'ui.overseas.qual.gaokaoOption', 'ui.overseas.qual.rule')
   keys.push('ui.result.cross.title', 'ui.result.cross.note', 'ui.result.cross.scope', 'ui.result.cross.hkmotw.line', 'ui.result.cross.hkmotw.channels', 'ui.result.cross.overseas.line', 'ui.result.cross.overseas.qual', 'ui.result.cross.open', 'ui.result.cross.collapsed', 'ui.result.cross.noScope', 'ui.runner.a6.hkmotwNote')
@@ -157,8 +157,8 @@ test('三語鍵齊：資格、範圍、起點分支面板、官方管道、海�
     assert.ok(k in zhHant && k in en && k in zhHans, k)
     assert.ok(zhHant[k].trim() && en[k].trim() && zhHans[k].trim(), k)
   }
-  // 起點提示與倉庫一致（test:i18n 也查）；其他國家或地區仍含 S3 字樣（test:overseas）
-  for (const o of originOptions) assert.equal(zhHant[`origin.${o.id}.hint`], o.hint)
+  // 2026-11-08 批 G5：起點卡不帶提示文字，origin.<id>.hint 鍵已刪
+  for (const o of originOptions) assert.equal(`origin.${o.id}.hint` in zhHant, false)
 })
 
 test('manifest：雜湊可重算、gzip ≤ 20 KiB、與 S3 版本綁定', () => {

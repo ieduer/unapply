@@ -77,7 +77,6 @@ export function HkMoTwPage({ origin, originPrefs, onBack, onAbout, onWorld, onSt
 
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8">
         <div className="max-w-3xl flex flex-col gap-3">
-          <p className="mono text-xs uppercase tracking-[0.28em] text-accent-500">{t('ui.hkmotw.stepKicker')}</p>
           <h1 className="serif text-3xl sm:text-5xl leading-tight">{t('ui.hkmotw.title')}</h1>
           <p className="text-sm sm:text-base text-fog-300 leading-relaxed">
             <Rich k="ui.hkmotw.lede" />
@@ -149,7 +148,6 @@ export function HkMoTwPage({ origin, originPrefs, onBack, onAbout, onWorld, onSt
         {(origin === 'hk' || origin === 'mo' || origin === 'tw') && <MainlandChannels region={origin} />}
 
         <footer className="pt-6 border-t border-ink-800 text-xs mono text-fog-500 leading-relaxed">
-          <p>{t('ui.hkmotw.footer.rule')}</p>
           <p>
             <Rich
               k="ui.hkmotw.footer.links"

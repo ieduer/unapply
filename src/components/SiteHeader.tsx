@@ -1,6 +1,5 @@
 import { type ReactNode } from 'react'
-import { ThemeCustomizer } from '../shared-ui/ThemeCustomizer'
-import { useLocale } from '../i18n/react'
+import { ThemeToggle } from './ThemeToggle'
 import { LocaleSwitcher } from './LocaleSwitcher'
 
 export interface SiteHeaderAction {
@@ -30,21 +29,11 @@ const actionClass = 'inline-flex items-center min-h-[44px] px-2 whitespace-nowra
 
 /**
  * 全站共用頁頭（2026-11-08 批 G3 後續：修右上角色系浮鈕與頁頭重疊、手機版面）。
- * 一行：返回 · 站名 · 中間資訊 ·（彈性空白）· 色系（inline）· 動作 · 語言切換；
+ * 一行：返回 · 站名 · 中間資訊 ·（彈性空白）· 色系切換按鈕（2026-11-08 批 G5：一鍵切換，不再有面板）· 動作 · 語言切換；
  * 放不下時只有最後的語言切換換到第二行（flex-wrap 從尾端換行），控制項之間不重疊。
  * 窄螢幕（<640px）站名縮為「nope」、版本號隱藏、語言切換不折行。
  */
 export function SiteHeader({ brand, back, center, actions = [], sticky = false, width = 'max-w-5xl', footer }: Props) {
-  const { t } = useLocale()
-  const themeLabels = {
-    title: t('ui.theme.title'),
-    close: t('ui.common.close'),
-    sample: t('ui.theme.text'),
-    presets: {
-      paper: { label: t('ui.theme.paper.label'), description: t('ui.theme.paper.hint') },
-      ink: { label: t('ui.theme.ink.label'), description: t('ui.theme.ink.hint') },
-    },
-  }
   return (
     <header
       data-site-header
@@ -65,7 +54,7 @@ export function SiteHeader({ brand, back, center, actions = [], sticky = false, 
         </span>
         {center && <span className="max-sm:hidden inline-flex items-center min-h-[44px] whitespace-nowrap normal-case tracking-normal">{center}</span>}
         <span className="flex-1 min-w-0" aria-hidden="true" />
-        <ThemeCustomizer placement="inline" labels={themeLabels} />
+        <ThemeToggle />
         {actions.map((action, index) => (
           <button key={index} type="button" onClick={action.onClick} className={[actionClass, action.wideOnly ? 'max-sm:hidden' : ''].join(' ')}>
             {action.label}

@@ -168,8 +168,6 @@ export function AboutPage({ onBack }: Props) {
           <ul className="flex flex-col gap-2 text-sm list-disc pl-5">
             <li>{t('ui.about.scope.counts', { total: n(officialSchoolCount), adult: n(adultHigherEducationCount) })}</li>
             <li>{t('ui.about.scope.curated')}</li>
-            <Li k="ui.about.scope.presumption" />
-            <li>{t('ui.about.scope.hidden')}</li>
           </ul>
         </div>
 

@@ -90,3 +90,10 @@
   align-items: center;
   min-height: 40px;
 }
+
+/* 色系一鍵切換當下關掉所有過渡，避免文字出現看不清的中間色（2026-11-08 批 G5，ThemeToggle） */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
+}
