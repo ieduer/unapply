@@ -1,6 +1,6 @@
 # nope.bdfz.net 全球化路線圖（2026-11-06 立項）
 
-Owner: suen　｜　Status: **S0–S5 全部上線**（S0 2026-11-06；S1–S4 與橫切項 2026-11-07；S5 生效 UTC 2026-11-08T01:21:33Z）；原待審事項已於 2026-11-08 全部裁定（`reports/operations/nope-global-roadmap-20261107/DECISIONS.md`），裁定落地批 G1–G4 已全部上線（2026-11-08），剩餘為年度維護（`docs/ANNUAL_UPDATE.md`）　｜　上次更新：2026-11-08（UTC，批 G4 後）
+Owner: suen　｜　Status: **S0–S5 全部上線**（S0 2026-11-06；S1–S4 與橫切項 2026-11-07；S5 生效 UTC 2026-11-08T01:21:33Z）；原待審事項已於 2026-11-08 全部裁定（`reports/operations/nope-global-roadmap-20261107/DECISIONS.md`），裁定落地批 G1–G4 已全部上線（2026-11-08），之後的介面精簡批 G5 亦已上線，剩餘為年度維護（`docs/ANNUAL_UPDATE.md`）　｜　上次更新：2026-11-08（UTC，批 G5 後）
 
 本文件是站點的**最終目標與分階段計劃**的權威記錄。目標一次寫清楚，實作一步一步來；
 每一階段完成後只更新本文的「階段狀態」與 `PROJECT_STATE.md`，不改寫目標本身。
@@ -39,6 +39,7 @@ Owner: suen　｜　Status: **S0–S5 全部上線**（S0 2026-11-06；S1–S4 �
 - **G3 已上線**（nope `9f8f500`／`5ac934ec`，生效 2026-11-08T04:33:27Z，回滾 `79c3c1b2`；path.bdfz.net `3affc0d`／`fef18140`，生效 04:33:45Z，回滾 `8771ae93`；Status `20261108-nope-shared-ui-labels-g3`、`20261108-path-shared-ui-labels-g3`）：shared-ui 色系面板與同步提示多語標籤，兩站同批，path 行為不變。
 - **G3 後續已上線**（站長回報頁頭重疊與手機版面；nope `647525f`／`b5b74217`，生效 2026-11-08T07:14:26Z，回滾 `5ac934ec`；path.bdfz.net `c907611`／`a2719f97`，生效 05:35:14Z，回滾 `fef18140`；Status `20261108-nope-header-mobile-g3b`、`20261108-path-shared-ui-placement-g3b`）：全站統一頁頭、色系改頁頭內彈層、手機版面整體優化，path 行為不變。
 - **G4 已上線**（nope `3c22aae`／`d0f6b69e`，生效 2026-11-08T07:54:28Z，回滾 `b5b74217`；Status `20261108-nope-browser-review-g4`）：真實瀏覽器覆核 165 項、讀到 86 項入庫（海外機構 379、平台 77、簽證 61 讀到；港澳臺池 28 所；起點官方頁 +12；企業直招 29 條；`moe.gov.et` 標 unsafe 不出網址）；仍讀不到：機構 24、平台 13、簽證 29。問卷頁說明移到頁頭下方。裁定落地批 G1–G4 全部完成。
+- **G5 已上線**（nope `7ba4882`／`ec5dc3aa`，生效 2026-11-08T09:33:30Z，回滾 `d0f6b69e`；Status `20261108-nope-text-footer-theme-g5`）：首頁與各頁精簡說明文字（起點卡只寫地名，介面不再出現建設中、路線圖、批次字樣）、頁尾合併三行、色系改為一鍵切換；色系清晰硬規則見 `docs/MAINTENANCE_MANUAL.md` §5.1。
 
 橫切項（每一階段都要遵守）：
 

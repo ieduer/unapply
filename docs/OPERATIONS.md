@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Git branch: `master`; deployed source `3c22aae` (batch G4, deployment `d0f6b69e`); documentation HEAD is separately recorded by Git
+- Git branch: `master`; deployed source `7ba4882` (batch G5, deployment `ec5dc3aa`); documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -35,7 +35,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 
 | Resource | Live type | Readback | Detail |
 | --- | --- | --- | --- |
-| `unapply` | Pages | verified 2026-11-08 | production branch `master`; canonical deployment `d0f6b69e-4363-4822-8a86-97dd9e535db3` (source `3c22aae`, batch G4) |
+| `unapply` | Pages | verified 2026-11-08 | production branch `master`; canonical deployment `ec5dc3aa-b97b-4d96-b1ff-5f1916bb4b40` (source `7ba4882`, batch G5) |
 
 ## Authority and dependencies
 
@@ -54,10 +54,10 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - External/local build inputs, archived paths, receipts, retention, and hydrate commands not stated below are `review_required` and block deletion.
 
 Catalog backup evidence:
-- Cloudflare immutable Pages deployments: current=d0f6b69e-4363-4822-8a86-97dd9e535db3 (source 3c22aae, batch G4), previous=b5b74217-4cd5-49a8-90bc-2a0f8f95d6bc (source 647525f, batch G3 follow-up), earlier=5ac934ec-f693-4788-abdd-c5fd32dd2932 (source 9f8f500, batch G3), 79c3c1b2-6ec2-4320-95e3-6f74a51f04a4 (source f7f3484, batch G2), 01022627-65fe-4987-ac32-15b78c6d913c (source 18bf5f2, batch G1), df4540a2-5657-4676-bd83-9026fa232579 (source 26bad8c, batch D3), c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782, batch D1), earlier=b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1, batch C), 8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
+- Cloudflare immutable Pages deployments: current=ec5dc3aa-b97b-4d96-b1ff-5f1916bb4b40 (source 7ba4882, batch G5), previous=d0f6b69e-4363-4822-8a86-97dd9e535db3 (source 3c22aae, batch G4), earlier=b5b74217-4cd5-49a8-90bc-2a0f8f95d6bc (source 647525f, batch G3 follow-up), 5ac934ec-f693-4788-abdd-c5fd32dd2932 (source 9f8f500, batch G3), 79c3c1b2-6ec2-4320-95e3-6f74a51f04a4 (source f7f3484, batch G2), 01022627-65fe-4987-ac32-15b78c6d913c (source 18bf5f2, batch G1), df4540a2-5657-4676-bd83-9026fa232579 (source 26bad8c, batch D3), c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782, batch D1), earlier=b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1, batch C), 8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
 
 Catalog restore evidence:
-- restore previous code/assets by rolling back to production deployment b5b74217-4cd5-49a8-90bc-2a0f8f95d6bc (source 647525f, batch G3 follow-up) through the reviewed rollback transaction
+- restore previous code/assets by rolling back to production deployment d0f6b69e-4363-4822-8a86-97dd9e535db3 (source 3c22aae, batch G4) through the reviewed rollback transaction
 
 Before deleting any local resource, satisfy the workspace path-preserving archive, remote readback, isolated restore, receipt, handbook, and project-state gates.
 
@@ -134,7 +134,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after batch G4: `b5b74217-4cd5-49a8-90bc-2a0f8f95d6bc`, source `647525f`, batch G3 follow-up), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after batch G5: `d0f6b69e-4363-4822-8a86-97dd9e535db3`, source `3c22aae`, batch G4), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -161,7 +161,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-11-08 UTC — production `d0f6b69e` from `3c22aae` (batch G4: real-browser review ingested into the overseas, HK／Macao／Taiwan, origin and direct-hire layers; /db/v1 `e37642910355`; question-page notice under the header); nineteen gates on the release commit, 140 of 140 served assets on candidate, custom and immutable hosts; changed pages × three languages × 360／390／1440 layout checks and content checks (new admissions links, unsafe row absent, five direct-hire entries, /db latest); health active. Exact evidence in the batch G4 section below.
+8. Last verified: 2026-11-08 UTC — production `ec5dc3aa` from `7ba4882` (batch G5: landing and page text trimmed, footer merged into three lines, one-click theme toggle; /db/v1 `11bdc13613b3` because only data notes changed); nineteen gates on the release commit, 140 of 140 served assets on candidate, custom and immutable hosts; 11 routes × three languages × six widths (360–1440) × two schemes = 396 samples with zero header overlaps, overflow, sub-40 px controls or forbidden roadmap wording, contrast ≥4.57 (ink ≥4.93), smallest font 12 px; real toggle clicks on candidate and the immutable production URL; health active. Exact evidence in the batch G5 section below.
 
 ## Synchronized documentation and handoff
 
@@ -556,7 +556,26 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 
 **回滾**：`01022627`／`18bf5f2`（批 G1），受審回滾交易；只切 Pages 版本，無資料庫遷移；回滾後 `#/global` 路由消失（回首頁）、首頁主按鈕回到「看港澳臺院校池／看海外可申請學校」，`unapply.globalSubtraction.v1` 殘留無害（舊版不讀它），學習記錄不受影響。證據：`reports/operations/nope-global-roadmap-20261107/nope-g2/`；資源 `nope-g2/resources.md`。
 
-## 2026-11-08 批 G4：真實瀏覽器覆核結果入庫＋問卷頁說明移到頁頭下方（已上線，當前權威）
+## 2026-11-08 批 G5：首頁與各頁精簡說明文字、頁尾合併三行、色系改為一鍵切換（已上線，當前權威）
+
+**授權**：主會話 2026-11-08 G5 指令轉述站長原話（「香港 題庫建設中…色系改寫成一個button點擊後可以自動切換，加入運維文件內色系確保文字都清晰。刪除一下冗余文字說明…底部的如下說明合併下以免過長」），主會話裁定 1–7（同 `DECISIONS.md` 站長授權「直接判斷做選擇即可，推進到goal，部署」）。不改題集／AnswerMap／DimensionId／選項鍵／learning manifest／Function；不改 `src/shared-ui`（兩站同步檔）；無 UC 或共享樞紐寫入；無付費或計量資源；無新 Cloudflare 資源；不改導航／門戶／Pulse／UC 登記。
+
+**正式部署**：`ec5dc3aa-b97b-4d96-b1ff-5f1916bb4b40`，來源 `7ba4882d3bdc652b247a7f37f2d094d6c70fdbe7`，生效 `2026-11-08T09:33:30Z`；候選 `4eadefd4`、正式與不可變網址各 140/140；health active（學習清單摘要不變）；`/db/v1` 版本 `11bdc13613b3`（前 `e37642910355`；只改資料備註中的批次字樣）。登記簿 accepted → `ec5dc3aa`／`7ba4882`，rollback → `d0f6b69e`／`3c22aae`。Status `20261108-nope-text-footer-theme-g5` r1（improvement）。
+
+**改動**：
+- 首頁只留標題、校數、「你在哪裡升學？」、起點卡（只寫地名，不再標「題庫完整／建設中」）、資格與範圍兩問（各以「跳過」結尾）、按鈕、只有名稱與數字的指標卡、一句話的貢獻卡；刪除小標、導語、第 0 題小標、所在地說明、起點分支小標、非大陸長提示、「按當前有效數據動態出題」與指標卡註腳。`origins.ts` 去掉 `hint`。
+- 其他頁開頭最多一句；方法、來源與免責集中到關於頁並去重（「不代表錄取可能」全站只在關於頁與結果頁各一次）；資料頁只留一行來源標示；介面不再出現「建設中」、路線圖、批次、S0–S5、「已上線」等字樣（資料備註同步改掉批次字樣）。資料、鏈接、題目、選項、功能都沒有刪除。
+- 頁尾合併為三行：「姊妹站 path · gk · my」「來源 教育部 · 氣象局 · 學科評估 · 軟科 · 第一財經 · 開源 ieduer/unapply · CollegesChat」「非商業公益 · CC BY-NC-SA 4.0 · 不提供志願填報建議」；全名在 `title`／`aria-label`，每個鏈接 40px 觸控高度；來源分級只在關於頁標示（取代 G1 的頁尾分組，見 `DECISIONS.md`）。
+- 色系改為單一按鈕 `src/components/ThemeToggle.tsx`（`src/lib/themeCycle.ts` 依 `themePresets` 順序循環紙色⇄墨色），點擊即時生效並記住，切換時 `.theme-switching` 暫停過渡；圓點＋目前名稱（窄螢幕只留圓點），44px。頁頭不再引用 `ThemeCustomizer`。
+- 字串鍵：每種語言刪 48、增 11、改 60（正體）／63（英文），1418→1381；簡體由 `data:i18n` 產生。
+
+**色系硬規則**：見 `docs/MAINTENANCE_MANUAL.md` §5.1——每一套色系下所有文字對比 ≥4.5:1、邊框 ≥3:1、不用透明度降低文字、字號 ≥12px；每次發布都量「每套色系 × 全部路由 × 三語 × 手機與桌面」；新增色系須先過 `npm run test:theme`（含新 `tests/theme-toggle.test.ts`：循環順序、每套色系文字對比、頁頭用 ThemeToggle）再逐路由實測。
+
+**驗證**：十九道閘門於 `7ba4882`（`nope-g5/check.txt`）。候選（`nope-g5/candidate-browser.json`）：真實點擊紙→墨→紙、重新載入保留；11 路由 × 三語 × 360／390／430／1024／1280／1440 × 兩色系 = 396 樣本，頁頭零相交、語言切換不換行、無溢出、無 <40px 控制項、禁用字樣零命中、對比 ≥4.57（墨 ≥4.93）、最小字號 12px；頁尾 1440 寬三行各 40px。截圖 `nope-g5/screenshots/`（首頁 × 三語 × 兩色系 × 360／390／1440）。正式站（`production-browser.json`）只讀首頁同樣通過、來源儲存未改；不可變網址真實點擊切換與重新載入通過。
+
+**回滾**：`d0f6b69e`／`3c22aae`（批 G4），受審回滾交易；回滾會回到長說明、頁尾分組與色系面板，`/db` 版本回到 `e37642910355`。證據：`reports/operations/nope-global-roadmap-20261107/nope-g5/`；資源 `nope-g5/resources.md`。
+
+## 2026-11-08 批 G4：真實瀏覽器覆核結果入庫＋問卷頁說明移到頁頭下方（已上線；批 G5 疊加於其上）
 
 **授權**：主會話 2026-11-08 G4 指令（同 `DECISIONS.md` 站長授權「直接判斷做選擇即可，推進到goal，部署」，入庫裁定 1–7）。不改題集／AnswerMap／DimensionId／選項鍵／learning manifest／Function；無 UC 或共享樞紐寫入；無付費或計量資源；無新 Cloudflare 資源；不改導航／門戶／Pulse／UC 登記；`link_check` 基線不動。
 
