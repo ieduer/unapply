@@ -11,7 +11,7 @@
     "tools": "tools/crawl_admissions.mjs（--only <ids> --force 重抓）、verify_national.mjs、build_institutions_csv.mjs、redact_emails.mjs"
   },
   "files": {
-    "overseas_admissions.2026-11-07.csv": { "researchName": "institutions_admissions.csv", "sha256": "bebc108a1e666d30f41ab38ca3cef9236ae3b21c599af696dcfba76dafa5f7ff", "rows": 403, "key": "institutionId = gras_institutions_geo.univCode" },
+    "overseas_admissions.2026-11-07.csv": { "researchName": "institutions_admissions.csv", "sha256": "fb4ba8d8fe612705219f451752aaf50d323b26e118cbfb8633067cd0100898bf", "researchSha256": "bebc108a1e666d30f41ab38ca3cef9236ae3b21c599af696dcfba76dafa5f7ff", "rows": 403, "key": "institutionId = gras_institutions_geo.univCode", "note": "2026-11-08 起與研究原檔不再逐位元組相同：見 revisions（研究原檔 SHA-256 記在 researchSha256）" },
     "overseas_national_portals.2026-11-07.csv": { "researchName": "national_portals.csv", "sha256": "cfd51351b78788ee8a5d5e8934e2f0124e645a9af4779eae40445402dde508b0", "rows": 91, "key": "(region, officialUrl)" },
     "overseas_visa_policies.2026-11-07.csv": { "researchName": "visa_policies.csv", "sha256": "07af058e4c3421cf92c933adf548a0874e4c782e2eed52c37ea262fa64a8ad8d", "rows": 90, "key": "(region, officialUrl)" }
   },
@@ -26,7 +26,7 @@
   },
   "scope": "GRAS 2026 前 50 機構中 region ≠ China 的 403 所（含香港 7、澳門 4、臺灣 4，標 region 供 S2 對照）；起點為 S0 已核官網",
   "counts": {
-    "institutions": { "total": 403, "verified": 343, "needs_review": 2, "blocked": 42, "not_found": 16, "high": 336, "medium": 7, "regions": 44 },
+    "institutions": { "total": 403, "verified": 340, "needs_review": 2, "blocked": 42, "not_found": 19, "high": 340, "medium": 0, "regions": 44 },
     "portals": { "total": 91, "verified": 63, "needs_review": 13, "blocked": 9, "not_found": 6, "high": 63 },
     "visa": { "total": 90, "verified": 47, "needs_review": 23, "blocked": 16, "not_found": 4, "high": 47 }
   },
@@ -35,5 +35,28 @@
     "ieltsOverall／toeflOverall 是原句第一個分數，可能是總分或單項；頁面只能連同 englishQuotes 原句展示",
     "tuitionIntlQuotes 不區分本科／研究生；gaokaoPolicy 只看字樣分類，每類都附原句",
     "pageMatchScore／confidence 是頁面配對與來源信心，不是錄取可能；頁面不得以之暗示錄取"
+  ],
+  "reviewColumns": {
+    "reviewedBy": "人工確認者的角色代碼（不存人名；owner-ruling＝站長裁定）",
+    "reviewedAt": "人工確認日（YYYY-MM-DD）",
+    "reviewNote": "確認依據與網域；domainMatch=official-external 的列只有 reviewedAt 非空才可為 high，且 reviewNote 必須寫出招生頁網域",
+    "rule": "build_overseas_layer.mjs：verified＋high 才上鏈接；official-external 只有 reviewedAt 非空才允許 high"
+  },
+  "revisions": [
+    {
+      "at": "2026-11-08", "batch": "G1",
+      "authority": "reports/operations/nope-global-roadmap-20261107/DECISIONS.md C2（站長 2026-11-08 授權主會話裁定）",
+      "previousSha256": "bebc108a1e666d30f41ab38ca3cef9236ae3b21c599af696dcfba76dafa5f7ff",
+      "addedColumns": ["reviewedBy", "reviewedAt", "reviewNote"],
+      "changes": [
+        { "institutionId": "RI02779", "name": "Massachusetts Institute of Technology", "change": "confidence medium→high（official-external，人工確認 mitadmissions.org 為 MIT 官方招生站）" },
+        { "institutionId": "RI02493", "name": "Lancaster University", "change": "confidence medium→high（official-external，人工確認 lancaster.ac.uk 為該校自有網域）" },
+        { "institutionId": "RI01434", "name": "Institute of Science Tokyo", "change": "officialWebsite http://www.titech.ac.jp/→https://www.isct.ac.jp/、officialDomain titech.ac.jp→isct.ac.jp（與 S0 gras_institution_websites.2026-11-08.csv 同步）；domainMatch official-external→true；confidence medium→high" },
+        { "institutionId": "RI02126", "name": "Pohang University of Science and Technology", "change": "officialWebsite http://www.postech.edu/→https://www.postech.ac.kr/kor/index.do、officialDomain postech.edu→postech.ac.kr（與 S0 同步）；domainMatch official-external→true；confidence medium→high" },
+        { "institutionId": "RI00074", "name": "University of Tasmania", "change": "status verified→not_found：招生頁落在 UAC，非該校自有本科入口；招生頁 URL／標題與抽取欄位移出本檔（研究原檔保留）" },
+        { "institutionId": "RI00555", "name": "HEC Paris", "change": "status verified→not_found：招生頁落在 Bocconi，非該校自有本科入口；同上" },
+        { "institutionId": "RI02259", "name": "University of Gothenburg", "change": "status verified→not_found：招生頁落在全國平台 antagning.se，非該校自有本科入口；同上" }
+      ]
+    }
   ]
 }

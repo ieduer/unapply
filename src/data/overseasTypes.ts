@@ -59,8 +59,10 @@ export interface OverseasAdmissions {
   /** 只在 linkLive 時給。 */
   url?: string
   title?: string
-  /** medium：學校另一官方網域（只顯示主機名，不出鏈接）。 */
+  /** medium：學校另一官方網域（只顯示主機名，不出鏈接）；high＋reviewedAt：人工確認屬該校的另一官方網域（已上鏈接）。 */
   externalDomain?: string
+  /** 2026-11-08 批 G1 起：招生頁在學校另一官方網域、人工確認後上鏈接者的確認日（overseas_admissions 的 reviewedAt）。 */
+  reviewedAt?: string
   /** 不上鏈接時的說明（正體中文）。 */
   note?: string
 }

@@ -31,12 +31,13 @@ const hostUnder = (url: string, domain: string | null) => {
 const allDetails = (): OverseasInstitutionDetail[] => regionList.flatMap((r) => r.institutions)
 
 // 研究 coverage.md 2026-11-07 的口徑（當時值）：verified 343／needs_review 2／blocked 42／not_found 16；高信心 336、中信心 7；平台 91（verified 63）；簽證 90（verified 47）。
-test('計數與研究 coverage 一致：403 所、343／2／42／16、高信心 336、中信心 7；平台 63/91、簽證 47/90；44 個地區', () => {
+// 2026-11-08 批 G1（DECISIONS C2）：中信心 7 所中 4 所人工確認升 high、3 所改 not_found → verified 340／not_found 19；高信心 340、中信心 0。
+test('計數與研究 coverage＋G1 人工確認一致：403 所、340／2／42／19、高信心 340、中信心 0；平台 63/91、簽證 47/90；44 個地區', () => {
   const c = overseasManifest.counts
   assert.equal(c.institutions, 403)
-  assert.deepEqual(c.byStatus, { verified: 343, needs_review: 2, blocked: 42, not_found: 16 })
-  assert.deepEqual(c.byConfidence, { high: 336, medium: 7 })
-  assert.equal(c.admissionsLinksLive, 336)
+  assert.deepEqual(c.byStatus, { verified: 340, needs_review: 2, blocked: 42, not_found: 19 })
+  assert.deepEqual(c.byConfidence, { high: 340, medium: 0 })
+  assert.equal(c.admissionsLinksLive, 340)
   assert.equal(c.regions, 44)
   assert.deepEqual(c.portals, { total: 91, verified: 63, live: 63 })
   assert.deepEqual(c.visa, { total: 90, verified: 47, live: 47 })
@@ -102,9 +103,12 @@ test('鏈接規則：招生頁只有 verified+high 才 linkLive 且 https；medi
       assert.ok(a.url && /^https:\/\//.test(a.url), `${inst.id} 招生頁 https`)
       assert.ok(!/jsessionid/i.test(a.url!), inst.id)
       const site = new URL(inst.website).hostname
-      // 招生頁主機與官網同可註冊網域：取官網主機去掉 www 後的尾段比對
+      // 招生頁主機與官網同可註冊網域：取官網主機去掉 www 後的尾段比對；人工確認的另一官方網域（G1）則必須等於確認的主機
       const base = site.replace(/^www\./, '')
-      assert.ok(hostUnder(a.url!, base) || new URL(a.url!).hostname.split('.').slice(-2).join('.') === base.split('.').slice(-2).join('.'), `${inst.id} ${a.url} 不在 ${site} 網域`)
+      if (a.reviewedAt) {
+        assert.match(a.reviewedAt, /^\d{4}-\d{2}-\d{2}$/, inst.id)
+        assert.equal(new URL(a.url!).hostname, a.externalDomain, `${inst.id} 人工確認網域`)
+      } else assert.ok(hostUnder(a.url!, base) || new URL(a.url!).hostname.split('.').slice(-2).join('.') === base.split('.').slice(-2).join('.'), `${inst.id} ${a.url} 不在 ${site} 網域`)
       assert.equal(a.note, undefined)
     } else {
       assert.equal(a.url, undefined, `${inst.id} 非 verified+high 不得有 URL`)
@@ -200,4 +204,44 @@ test('起點選項：其他國家或地區的提示指向海外機構招生頁�
   assert.equal(Object.keys(DIMENSIONS).length, 45)
   assert.equal(allQuestions.length, 45)
   assert.ok(!Object.keys(DIMENSIONS).some((k) => /overseas|visa|gaokao/i.test(k)))
+})
+
+test('人工確認（2026-11-08 批 G1，DECISIONS C2）：official-external 只有 reviewedAt 非空才 high；四所升 high 上鏈接、三所改 not_found；S0 官網同步', () => {
+  const parse = (t: string) => { const rows: string[][] = []; let r: string[] = [], c = '', q = false; for (let i = 0; i < t.length; i += 1) { const ch = t[i]; if (q) { if (ch === '"') { if (t[i + 1] === '"') { c += '"'; i += 1 } else q = false } else c += ch } else if (ch === '"') q = true; else if (ch === ',') { r.push(c); c = '' } else if (ch === '\n') { r.push(c); rows.push(r); r = []; c = '' } else if (ch !== '\r') c += ch } if (c || r.length) { r.push(c); rows.push(r) } return rows }
+  const csv = (name: string) => { const [h, ...b] = parse(readFileSync(new URL(`../data/research/${name}`, import.meta.url), 'utf8')); return b.filter((r) => r.length > 1).map((r) => Object.fromEntries(h.map((k, i) => [k, r[i] ?? '']))) }
+  const rows = csv('overseas_admissions.2026-11-07.csv')
+  // 規則：official-external＋high ⇒ reviewedAt 非空且 reviewNote 寫出網域；三欄同有同無；reviewedBy 是角色代碼
+  for (const r of rows) {
+    assert.equal(Boolean(r.reviewedAt), Boolean(r.reviewedBy), r.institutionId)
+    assert.equal(Boolean(r.reviewedAt), Boolean(r.reviewNote), r.institutionId)
+    if (r.reviewedBy) assert.match(r.reviewedBy, /^[a-z][a-z-]*$/)
+    if (r.domainMatch === 'official-external' && r.confidence === 'high') {
+      assert.ok(r.reviewedAt, `${r.institutionId} official-external high 必須有人工確認`)
+      assert.ok(r.reviewNote.includes(new URL(r.admissionsPageUrl).hostname.replace(/^www\./, '')), r.institutionId)
+    }
+  }
+  const byId = new Map(allDetails().map((i) => [i.id, i]))
+  for (const [id, host] of [['RI02779', 'mitadmissions.org'], ['RI02493', 'www.lancaster.ac.uk']] as const) {
+    const i = byId.get(id)!
+    assert.equal(i.confidence, 'high'); assert.ok(i.linkLive); assert.equal(i.admissions.externalDomain, host); assert.equal(i.admissions.reviewedAt, '2026-11-08')
+    assert.ok([...i.qualifications.quotes, ...i.english.quotes].some((q) => q.live), `${id} 確認網域下的片段上鏈接`)
+  }
+  const websites = csv('gras_institution_websites.2026-11-08.csv')
+  for (const [id, site] of [['RI01434', 'https://www.isct.ac.jp/'], ['RI02126', 'https://www.postech.ac.kr/kor/index.do']] as const) {
+    const i = byId.get(id)!
+    assert.equal(i.website, site); assert.equal(i.confidence, 'high'); assert.ok(i.linkLive); assert.equal(i.admissions.reviewedAt, undefined)
+    const w = websites.find((x) => x.univCode === id)!
+    assert.equal(w.website, site); assert.equal(w.status, 'verified'); assert.equal(w.verifiedAt, '2026-11-08')
+  }
+  for (const id of ['RI00074', 'RI00555', 'RI02259']) {
+    const i = byId.get(id)!
+    assert.equal(i.status, 'not_found'); assert.equal(i.linkLive, false); assert.equal(i.admissions.url, undefined)
+    assert.ok(i.admissions.note?.startsWith('官方頁本站未讀到：招生頁落在') && i.admissions.note.includes('2026-11-08 裁定'), i.admissions.note)
+    assert.equal([i.gaokao, i.qualifications, i.english, i.otherLanguage, i.tuition, i.channels, i.timeline].reduce((n, b) => n + b.quotes.length, 0), 0)
+    assert.equal(i.qualifications.listed.length, 0)
+  }
+  // CU Denver 不動（F1-7）
+  assert.match(byId.get('RI02976')!.website, /ucdenver\.edu/)
+  const m = meta as unknown as { revisions: { at: string; changes: { institutionId: string }[] }[] }
+  assert.deepEqual(m.revisions.at(-1)!.changes.map((c) => c.institutionId).sort(), ['RI00074', 'RI00555', 'RI01434', 'RI02126', 'RI02259', 'RI02493', 'RI02779'])
 })

@@ -193,7 +193,8 @@ export function collectLayers(root) {
           valueRawRef: { path: `/data/overseas/regions/${region.file}`, pointer: `institutions[${idx}].${field}.quotes`, quotes: quotes.length },
           valueNorm, academicYear: inst.dataAcademicYear || null, sourceUrl: quotes[0]?.url || inst.admissions.url || null,
           status: inst.status, confidence: inst.confidence || null, family: 'overseas',
-          validity: { academicYear: inst.dataAcademicYear || null, validFrom: null, validTo: null, fetchedAt: inst.fetchedAt, reviewedAt: inst.fetchedAt },
+          // reviewedAt：人工確認日（2026-11-08 批 G1 起，overseas_admissions 的 reviewedAt，只在招生頁位於人工確認的另一官方網域時給）優先，否則抓取日
+          validity: { academicYear: inst.dataAcademicYear || null, validFrom: null, validTo: null, fetchedAt: inst.fetchedAt, reviewedAt: inst.admissions.reviewedAt || inst.fetchedAt },
         })
       }
     })

@@ -96,7 +96,7 @@ public/db/v1/<version>/validity.json         validity（每筆 channel／conditi
 
 ### 2.7 validity（`validity.json`）
 
-每筆 channel 與 condition 一筆（`records[<id>]`）：`academicYear`、`validFrom`、`validTo`（**null＝未知**；只在來源明寫時給，如合作辦學批准書有效期）、`fetchedAt`、`reviewedAt`、`nextReviewDue`、`family`。`calendar` 是各族下一次應重核的日期（`scripts/lib/db_layers.mjs` 的 `NEXT_REVIEW`，與 `docs/ANNUAL_UPDATE.md` 同步）。
+每筆 channel 與 condition 一筆（`records[<id>]`）：`academicYear`、`validFrom`、`validTo`（**null＝未知**；只在來源明寫時給，如合作辦學批准書有效期）、`fetchedAt`、`reviewedAt`、`nextReviewDue`、`family`。海外層（`family=overseas`）條件的 `reviewedAt` 在 2026-11-08 批 G1 起取 `overseas_admissions` 的人工確認欄 `reviewedAt`（招生頁位於人工確認的另一官方網域時：MIT、Lancaster），其餘為抓取日；該欄與 `reviewedBy`（角色代碼，不存人名）／`reviewNote` 只在研究入庫檔，資料庫不另存。`calendar` 是各族下一次應重核的日期（`scripts/lib/db_layers.mjs` 的 `NEXT_REVIEW`，與 `docs/ANNUAL_UPDATE.md` 同步）。
 
 ## 3. id 規則
 

@@ -11,6 +11,8 @@
 //
 // 原則：只抄官方頁原文、不解讀；鏈接上線規則沿用研究 S3_SCHEMA_PROPOSAL.md §3 與路線圖「對外鏈接規則」——
 //   機構招生頁只有 status=verified 且 confidence=high 才 linkLive；medium 只給名稱與「學校另一官方網域，待人工確認」；
+//   high 須 domainMatch=true（招生頁在 S0 官網網域內），或 domainMatch=official-external 且人工確認欄 reviewedAt 非空（2026-11-08 批 G1，
+//   DECISIONS C2；reviewNote 必須寫出招生頁網域；該網域之下的原文片段與來源才成為鏈接）；非 verified 的列不得帶任何抽取欄位；
 //   blocked／not_found／needs_review 只進資料檔並寫「官方頁本站未讀到（原因）」；國家層 official-platform 需 confidence=high（有機構頁佐證）；
 //   簽證頁 verified 才上鏈接；所有上線鏈接 https 且主機在記錄的可註冊網域之下。任何斷言不過就不產出（fail-closed）。
 // 決定性：payload 不含建置時間；generatedAt 取輸入檔日期；版本雜湊只由內容決定。不寫 public/data/runtime/。
@@ -85,7 +87,7 @@ const DOMAIN_CLASS_ZH = { gov: '政府主管機關', 'public-agency': '政府設
 
 // ---- 表頭白名單（同時擋掉任何人名／聯絡人欄）----
 const HEADERS = {
-  admissions: ['institutionId', 'nameEn', 'nameZhHant', 'region', 'wikidata', 'grasSubjectsTop50', 'officialWebsite', 'officialDomain', 'websiteStatusS0', 'admissionsPageUrl', 'admissionsPageTitle', 'pageMatchScore', 'gaokaoPageUrl', 'gaokaoPolicy', 'gaokaoQuotes', 'qualificationsListed', 'qualificationsQuotes', 'englishTests', 'ieltsOverall', 'toeflOverall', 'englishQuotes', 'otherLanguage', 'otherLanguageQuotes', 'tuitionIntlQuotes', 'applicationChannels', 'applicationChannelQuotes', 'applicationTimelineQuotes', 'dataAcademicYear', 'sourceUrls', 'candidatePages', 'domainMatch', 'http', 'pagesFetched', 'fetchedAt', 'confidence', 'status', 'notes'],
+  admissions: ['institutionId', 'nameEn', 'nameZhHant', 'region', 'wikidata', 'grasSubjectsTop50', 'officialWebsite', 'officialDomain', 'websiteStatusS0', 'admissionsPageUrl', 'admissionsPageTitle', 'pageMatchScore', 'gaokaoPageUrl', 'gaokaoPolicy', 'gaokaoQuotes', 'qualificationsListed', 'qualificationsQuotes', 'englishTests', 'ieltsOverall', 'toeflOverall', 'englishQuotes', 'otherLanguage', 'otherLanguageQuotes', 'tuitionIntlQuotes', 'applicationChannels', 'applicationChannelQuotes', 'applicationTimelineQuotes', 'dataAcademicYear', 'sourceUrls', 'candidatePages', 'domainMatch', 'http', 'pagesFetched', 'fetchedAt', 'confidence', 'status', 'notes', 'reviewedBy', 'reviewedAt', 'reviewNote'],
   portals: ['region', 'portalName', 'portalType', 'domainClass', 'roleLabel', 'officialUrl', 'originalCandidateUrl', 'finalUrl', 'domain', 'pageTitle', 'audienceQuote', 'feesQuote', 'timelineQuote', 'corroboratingInstitutions', 'http', 'sha256', 'fetchedAt', 'confidence', 'status', 'notes'],
   visa: ['region', 'visaCategory', 'authority', 'officialUrl', 'originalCandidateUrl', 'finalUrl', 'domain', 'pageTitle', 'financialRequirementQuote', 'languageRequirementQuote', 'insuranceQuote', 'feeQuote', 'timelineQuote', 'http', 'sha256', 'fetchedAt', 'confidence', 'status', 'notes'],
 }
@@ -136,7 +138,7 @@ function parseInstitutionQuotes(cell, inst, field) {
     if (body.length > 280) die(`${inst.institutionId} ${field} 片段超過 280 字（${body.length}）`)
     if (!body.trim()) die(`${inst.institutionId} ${field} 片段為空`)
     const url = m[3]
-    const quote = { text, url: cleanUrl(url), live: inst.linkLive && isHttps(url) && hostUnder(url, inst.officialDomain) }
+    const quote = { text, url: cleanUrl(url), live: inst.linkLive && isHttps(url) && inst.linkDomains.some((d) => hostUnder(url, d)) }
     if (m[1]) quote.label = m[1]
     return quote
   })
@@ -179,7 +181,18 @@ for (const r of csv.admissions) {
   if (!STATUS.includes(r.status)) die(`${id} status ${r.status}`)
   if (!['high', 'medium', ''].includes(r.confidence)) die(`${id} confidence ${r.confidence}`)
   if ((r.status === 'verified') !== (r.confidence !== '')) die(`${id} status／confidence 不對應：${r.status}／${r.confidence}`)
-  if (r.confidence === 'high' && r.domainMatch !== 'true') die(`${id} high 卻 domainMatch=${r.domainMatch}`)
+  // 人工確認欄（2026-11-08 批 G1）：三欄同有同無；reviewedBy 是角色代碼（不存人名）；日期格式
+  const reviewed = Boolean(r.reviewedAt)
+  if (reviewed !== Boolean(r.reviewedBy) || reviewed !== Boolean(r.reviewNote)) die(`${id} reviewedBy／reviewedAt／reviewNote 須同有同無`)
+  if (reviewed && !/^\d{4}-\d{2}-\d{2}$/.test(r.reviewedAt)) die(`${id} reviewedAt 格式 ${r.reviewedAt}`)
+  if (reviewed && !/^[a-z][a-z-]*$/.test(r.reviewedBy)) die(`${id} reviewedBy 必須是角色代碼：${r.reviewedBy}`)
+  let reviewedExternalDomain = null
+  if (r.confidence === 'high' && r.domainMatch === 'official-external') {
+    if (!reviewed) die(`${id} official-external 只有人工確認（reviewedAt）後才允許 high`)
+    reviewedExternalDomain = new URL(r.admissionsPageUrl).hostname.replace(/^www\./, '')
+    if (!r.reviewNote.includes(reviewedExternalDomain)) die(`${id} reviewNote 必須寫出人工確認的招生頁網域 ${reviewedExternalDomain}`)
+  } else if (r.confidence === 'high' && r.domainMatch !== 'true') die(`${id} high 卻 domainMatch=${r.domainMatch}`)
+  if (r.status !== 'verified') for (const k of ['admissionsPageUrl', 'admissionsPageTitle', 'gaokaoQuotes', 'qualificationsListed', 'qualificationsQuotes', 'englishTests', 'ieltsOverall', 'toeflOverall', 'englishQuotes', 'otherLanguage', 'otherLanguageQuotes', 'tuitionIntlQuotes', 'applicationChannels', 'applicationChannelQuotes', 'applicationTimelineQuotes', 'domainMatch']) if (r[k]) die(`${id} status=${r.status} 卻帶抽取欄位 ${k}（官方頁本站未讀到的機構不得顯示任何頁面內容）`)
   if (r.confidence === 'medium' && r.domainMatch !== 'official-external') die(`${id} medium 卻 domainMatch=${r.domainMatch}`)
   if (!GAOKAO.includes(r.gaokaoPolicy)) die(`${id} gaokaoPolicy ${r.gaokaoPolicy}`)
   if (r.gaokaoPolicy !== 'not_stated' && !r.gaokaoQuotes) die(`${id} gaokaoPolicy=${r.gaokaoPolicy} 卻沒有原句`)
@@ -192,10 +205,11 @@ for (const r of csv.admissions) {
   }
   if (linkLive) {
     if (!isHttps(r.admissionsPageUrl)) die(`${id} 招生頁不是 https：${r.admissionsPageUrl}`)
-    if (!hostUnder(r.admissionsPageUrl, r.officialDomain)) die(`${id} 招生頁主機不在 ${r.officialDomain} 之下：${r.admissionsPageUrl}`)
+    if (!hostUnder(r.admissionsPageUrl, reviewedExternalDomain ?? r.officialDomain)) die(`${id} 招生頁主機不在 ${reviewedExternalDomain ?? r.officialDomain} 之下：${r.admissionsPageUrl}`)
   }
   if (r.confidence === 'medium' && hostUnder(r.admissionsPageUrl, r.officialDomain)) die(`${id} medium 卻在官網網域內（應為 high）`)
-  const inst = { institutionId: id, officialDomain: r.officialDomain, linkLive }
+  const linkDomains = [r.officialDomain, ...(reviewedExternalDomain ? [reviewedExternalDomain] : [])]
+  const inst = { institutionId: id, linkDomains, linkLive }
   const nameZh = overrideById.get(id) ?? r.nameZhHant
   const fetched = dateOf(r.fetchedAt)
   regionsSeen.add(r.region)
@@ -206,9 +220,12 @@ for (const r of csv.admissions) {
   const tuitionQuotes = parseInstitutionQuotes(r.tuitionIntlQuotes, inst, 'tuitionIntlQuotes')
   const channelQuotes = parseInstitutionQuotes(r.applicationChannelQuotes, inst, 'applicationChannelQuotes')
   const timelineQuotes = parseInstitutionQuotes(r.applicationTimelineQuotes, inst, 'applicationTimelineQuotes')
-  const sources = r.sourceUrls ? r.sourceUrls.split(' | ').map((s) => s.trim()).filter(Boolean).map((url) => ({ url: cleanUrl(url), live: linkLive && isHttps(url) && hostUnder(url, r.officialDomain) })) : []
+  const sources = r.sourceUrls ? r.sourceUrls.split(' | ').map((s) => s.trim()).filter(Boolean).map((url) => ({ url: cleanUrl(url), live: linkLive && isHttps(url) && linkDomains.some((d) => hostUnder(url, d)) })) : []
   const admissions = { status: r.status, statusZh: STATUS_ZH[r.status], confidence: r.confidence || null, linkLive }
-  if (linkLive) { admissions.url = cleanUrl(r.admissionsPageUrl); admissions.title = r.admissionsPageTitle }
+  if (linkLive) {
+    admissions.url = cleanUrl(r.admissionsPageUrl); admissions.title = r.admissionsPageTitle
+    if (reviewedExternalDomain) { admissions.externalDomain = new URL(r.admissionsPageUrl).hostname; admissions.reviewedAt = r.reviewedAt }
+  }
   else if (r.confidence === 'medium') {
     admissions.title = r.admissionsPageTitle
     admissions.externalDomain = new URL(r.admissionsPageUrl).hostname

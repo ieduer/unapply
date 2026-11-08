@@ -241,7 +241,7 @@ npm run data:research
 | `gras_institutions_geo.<日期>.csv` | `npm run data:gras-geo` | 機構 → 座標、正體名、（大陸）教育部代碼與本站學校 id、座標來源 |
 | `gras_institution_names_zh_hant.<日期>.csv` | 人工 | Wikidata zh-hant 標籤其實是簡體字形時的覆寫（只轉字形不換用詞；里／托／范等正體本字不改） |
 | `gras_institution_websites.<日期>.csv` | `npm run data:gras-websites` | 機構官網：候選來自軟科機構頁、Wikidata P856、教育部主表；逐條 HTTP 核查；只收 `verified` 且 high／medium |
-| `direct_hire_programs.<日期>.csv` | 人工維護（候選由只讀研究會話核官方頁後提供） | 企業直招高中生計劃：條件、給什麼、支薪、學位（yes／no／partial／unknown）、座標、官方頁、來源、核對日、可信度、`status`（active／…／`unverified`）。**2026-11-07 批 F1 起**：`status=unverified`（官方頁對聲明身分的檢查器回驗證頁、純 JavaScript 或站點維護中，條件欄未填）的候選只留在檔內供年檢重試，`build_world_atlas.mjs` 不渲染；渲染的條目 `confidence` 必為 high／medium、`sourceUrl` 必 https、`officialUrl` 有則必 https；`kind` 詞表：fellowship_to_hire／fellowship_grant／employer_degree／degree_apprenticeship／talent_program_with_degree／research_trainee／youth_internship_camp／apprenticeship（非學位學徒）／apprenticeship_mixed（同一入口含學位與非學位）／direct_hire_school_leaver（日本高卒採用類正職直聘）／sponsored_training_to_hire（公司資助培訓後任職），每個 kind 與國家名都有 `ui.world.program.kind.*`／`ui.world.program.country.*` 三語鍵（`test:atlas` 斷言）；`degree=yes／partial` 在介面標「含在職學位」——沿用 Dyson／Goldman Sachs／Siemens／Shopify 既有口徑（學徒制含在職學位是否算「繞過高校」仍是站長待審項）。2026-11-07 當時值：32 列＝既有 10（重核）＋14 核過候選＋8 unverified；渲染 24 |
+| `direct_hire_programs.<日期>.csv` | 人工維護（候選由只讀研究會話核官方頁後提供） | 企業直招高中生計劃：條件、給什麼、支薪、學位（yes／no／partial／unknown）、座標、官方頁、來源、核對日、可信度、`status`（active／…／`unverified`）。**2026-11-07 批 F1 起**：`status=unverified`（官方頁對聲明身分的檢查器回驗證頁、純 JavaScript 或站點維護中，條件欄未填）的候選只留在檔內供年檢重試，`build_world_atlas.mjs` 不渲染；渲染的條目 `confidence` 必為 high／medium、`sourceUrl` 必 https、`officialUrl` 有則必 https；`kind` 詞表：fellowship_to_hire／fellowship_grant／employer_degree／degree_apprenticeship／talent_program_with_degree／research_trainee／youth_internship_camp／apprenticeship（非學位學徒）／apprenticeship_mixed（同一入口含學位與非學位）／direct_hire_school_leaver（日本高卒採用類正職直聘）／sponsored_training_to_hire（公司資助培訓後任職），每個 kind 與國家名都有 `ui.world.program.kind.*`／`ui.world.program.country.*` 三語鍵（`test:atlas` 斷言）；`degree=yes／partial` 在介面標「含在職學位」——沿用 Dyson／Goldman Sachs／Siemens／Shopify 既有口徑（學徒制含在職學位算直招：2026-11-08 已裁定 D1，維持「含在職學位」標示）。2026-11-07 當時值：32 列＝既有 10（重核）＋14 核過候選＋8 unverified；渲染 24 |
 | `ne_110m_land.geojson` | 一次性下載 | Natural Earth 1:110m Land（公有領域），只畫陸地 |
 
 `npm run data:atlas`（`scripts/build_world_atlas.mjs`）把以上組成 `public/data/atlas/world-atlas.json`
@@ -260,7 +260,7 @@ npm run data:research
    腳本的規則：兩個獨立權威來源（軟科機構頁、Wikidata P856、教育部主表）同一可註冊網域且 GET 200、最終網域一致 → `high`；
    單一來源、網域像學術機構且連通 → `medium`；其餘不收（`status` 留 unreachable／rejected，供人工覆核）。
    `build_world_atlas.mjs` 只合併 `verified`，少於 300 所會直接失敗。不要手改 CSV 補鏈接——改腳本的來源或人工覆核清單再重跑。
-   人工覆核清單在腳本的 `MANUAL_REVIEW`（每條寫證據與覆核日）；`--from <上一輪 CSV> --recheck` 只重打上一輪未通過的列（覆核網址實際 GET、最終網域一致才收；標 `allowBlocked` 的反爬 403 以瀏覽器開啟核對、標 `curlFallback` 的憑證鏈不完整站以系統 curl 再試），通過的列逐字照抄。2026-11-07 批 D4 以此把 S0 留下的 13 所補齊到 544/544。
+   人工覆核清單在腳本的 `MANUAL_REVIEW`（每條寫證據與覆核日）；`--from <上一輪 CSV> --recheck` 只重打上一輪未通過的列（覆核網址實際 GET、最終網域一致才收；標 `allowBlocked` 的反爬 403 以瀏覽器開啟核對、標 `curlFallback` 的憑證鏈不完整站以系統 curl 再試），通過的列逐字照抄。2026-11-07 批 D4 以此把 S0 留下的 13 所補齊到 544/544。2026-11-08 批 G1 以同法套用鏈接年檢的兩條轉址（`--recheck --only RI01434,RI02126` → `gras_institution_websites.2026-11-08.csv`；`MANUAL_REVIEW` 新增 `keepUrl`（記根網址）與 `confidence`（兩來源網域不一致時人工指定 medium）兩個可選欄）；改 S0 官網必須與 `overseas_admissions` 同批改（S3 錨點）。
 4. 複核 `direct_hire_programs`：每條重新打開官方頁，更新 `status`／`verifiedAt`；連續兩年沒有招募標 `inactive`，不刪；官方頁對檢查器回 403／412 的（Dyson、Goldman Sachs 等）不算壞鏈，改人工瀏覽器核對並在 `notesZh` 記錄；`unverified` 候選人工在真實瀏覽器讀到條件原句後填齊欄位、改 `status=active` 與 `confidence`，否則維持不渲染。新 kind 要同時加 `KIND_ZH` 與三語鍵。
    新地區出現時 `build_world_atlas.mjs` 的 `REGION_ZH`／`CONTINENT` 會失敗，補上中文名與洲別；新國家的條目要加 `ui.world.program.country.<slug>` 三語鍵。
 5. `npm run data:atlas` → `npm run test:atlas` → 其餘閘門 → 候選預覽 → Pages 交易（§6）。
@@ -273,19 +273,19 @@ npm run data:research
 
 | 層級 | 定義 | 本站實例 |
 | --- | --- | --- |
-| **P0 官方** | 政府／教育主管機關／官方考試機構／機構本身的官方網域（學校官網、招生處、企業自有網域上的計劃官方頁） | moe.gov.cn、crs.jsj.edu.cn、各省教育考試院、dsedj.gov.mo、edb.gov.hk、`*.edu.cn`／`*.edu`／`*.ac.*` 校網、S0 兩來源核查的 GRAS 機構官網、palantir.com／goldmansachs.com 等 |
-| **P1 權威平台** | 非主管機關本級但受官方委託／授權，或有公開方法論且本站只用於「描述」的平台 | chsi.com.cn（陽光高考）、chinadegrees.cn（學科評估）、shanghairanking.com（GRAS）、陸生／海外聯招會（寄存於大學網域）、camet.org.cn、cssn.cn、lever.co（企業職缺寄存）、findyou2026.com（吉利專站）、ucas.com／commonapp.org |
+| **P0 官方** | 政府／教育主管機關及其直屬機構／官方考試機構／機構本身的官方網域（學校官網、招生處、企業自有網域或主辦方專站上的計劃官方頁） | moe.gov.cn、crs.jsj.edu.cn、chinadegrees.cn（教育部學位中心，2026-11-08 B4 升 P0）、findyou2026.com（吉利計劃專站，B4 升 P0）、mitadmissions.org（MIT 官方招生站，2026-11-08 C2 新增）、各省教育考試院、dsedj.gov.mo、edb.gov.hk、`*.edu.cn`／`*.edu`／`*.ac.*` 校網、S0 兩來源核查的 GRAS 機構官網、palantir.com／goldmansachs.com 等 |
+| **P1 權威平台** | 非主管機關本級但受官方委託／授權，或有公開方法論且本站只用於「描述」的平台 | chsi.com.cn（陽光高考）、shanghairanking.com（GRAS）、陸生／海外聯招會（寄存於大學網域）、camet.org.cn、cssn.cn、lever.co（企業職缺寄存）、ucas.com／commonapp.org |
 | **P2 第三方** | 媒體、開源社群、眾包；只作旁證或貢獻入口 | yicai.com、wikidata.org、naturalearthdata.com、fortune.com／36kr.com／sixthtone.com／cdsb.com、github.com（CollegesChat／Naptie／DaoSword／jtchen2k）、laosheng.top |
 | **OWN** | 本站與姊妹站，不標 | nope／path／my.bdfz.net、gk.rdfzer.com、status.bdfz.net、github.com/ieduer/unapply |
 
 | 檔案 | 產生方式 | 內容 |
 | --- | --- | --- |
-| `data/research/authority_tiers.<日期>.csv` | 人工維護（`domain,match,tier,nameZh,reason,checkedAt`；`match`＝`prefix`（URL 前綴，GitHub 路徑用）／`host`（精確主機，如 www.gov.cn、www.edu.cn）／`registrable`（含子網域）） | 規則表；2026-11-07 當時值 106 條（P0 71／P1 15／P2 14／OWN 6） |
+| `data/research/authority_tiers.<日期>.csv` | 人工維護（`domain,match,tier,nameZh,reason,checkedAt`；`match`＝`prefix`（URL 前綴，GitHub 路徑用）／`host`（精確主機，如 www.gov.cn、www.edu.cn）／`registrable`（含子網域）） | 規則表；2026-11-07 當時值 106 條（P0 71／P1 15／P2 14／OWN 6）；2026-11-08 批 G1 後 107 條（P0 74／P1 13／P2 14／OWN 6） |
 | `src/data/authorityTiers.ts`、`src/data/linkCheckBaseline.ts` | `npm run data:tiers`（`scripts/build_authority_tiers.mjs`；build 鏈最前） | 規則表（prefix → host → registrable、長網域先比）＋年檢基線計數（讀 §3.9 的 summary.json） |
 | `src/lib/authorityTier.ts` | 程式 | `tierOf(url)`：先查規則表，再用網域型態啟發式（gov／gob／gouv／go／gc／mil 類與 edu／ac 類 → P0），都不認得回 `null`（頁面不標，不猜 P2）；`displayTier()` 把 OWN 收成不標 |
 | `src/components/TierBadge.tsx` | 程式 | 鏈接旁的標籤「官方／權威平台／第三方」（`ui.tier.*` 三語；`data-tier` 屬性供驗收） |
 
-標籤出現位置：首頁頁尾三組鏈接、About 全部來源鏈接（含多鏈接條目）、學校詳情的證據鏈接與校園生活來源、世界地圖直招條目的官方頁與來源頁。頁尾「權威數據」分區標題與第一財經（P2）是否移出、chinadegrees.cn／findyou2026.com 是否升 P0，屬站長待審項（`reports/operations/nope-s5-db-xcut-20261107/nope-f1/PENDING_OWNER_REVIEW.md`），未改。
+標籤出現位置：首頁頁尾四組鏈接（2026-11-08 起）、About 全部來源鏈接（含多鏈接條目）、學校詳情的證據鏈接與校園生活來源、世界地圖直招條目的官方頁與來源頁。2026-11-08 裁定（`reports/operations/nope-global-roadmap-20261107/DECISIONS.md` B3／B4，批 G1）：首頁頁尾原「權威數據」組拆為「官方與權威來源」（只列 P0／P1：教育部、氣象局、學位中心學科評估、軟科 GRAS）與「第三方參考」（P2：第一財經），鏈接旁標籤保留（`data-footer-group`＝sister／official／third-party／open-source），About 分級段加一句說明；chinadegrees.cn、findyou2026.com 升 P0。
 
 新增網域規則：改 CSV（同日期檔可直接改；跨年改日期另存）→ `npm run data:tiers` → `npm run test:atlas`（斷言規則無重複、順序正確、站內已知鏈接判得出）。排名與第三方資料只用來描述分佈，不作錄取可能或推薦依據。
 
@@ -295,7 +295,7 @@ npm run data:research
 
 禮貌與邊界（不得放寬）：UA 明示身分與聯絡方式；尊重 robots.txt（5xx 視為全禁、Crawl-delay 最多 10 秒）；同可註冊網域 ≥2 秒；全程同時連線 ≤6（`NOPE_MAX_INFLIGHT` 只能調小）；逾時 12 秒；403／404／412 不重試、只對連線重置重試 1 次；不停用 TLS 驗證；不登入、不填表、不繞過任何挑戰；不存頁面本文。
 
-狀態口徑：`ok`／`redirect-cross-domain`／`broken`（404／410／5xx）／`blocked`（401／403／412／429／503 或 200 挑戰殼）／`robots-disallow`／`unreachable`（DNS／TLS／連線／逾時）／`reused-baseline`。**預設口徑（研究 PENDING 第 6、7 項，待站長確認）**：對聲明身分的檢查器被擋（blocked）**不標不可達**、鏈接保留、改人工瀏覽器抽查；大陸校網 `unreachable` 多為海外出口被重置或 TLS 鏈不完整，**連續兩輪不可達才標「官方頁暫不可達」**（工具以 `--since` 基線狀態＋本輪狀態在 notes 標「連續兩輪不可達」，人工確認後才改資料檔），單輪不可達不動。
+狀態口徑：`ok`／`redirect-cross-domain`／`broken`（404／410／5xx）／`blocked`（401／403／412／429／503 或 200 挑戰殼）／`robots-disallow`／`unreachable`（DNS／TLS／連線／逾時）／`reused-baseline`。**口徑（研究 PENDING 第 6、7 項；2026-11-08 已裁定，DECISIONS B5）**：對聲明身分的檢查器被擋（blocked）**不標不可達**、鏈接保留、改人工瀏覽器抽查；大陸校網 `unreachable` 多為海外出口被重置或 TLS 鏈不完整，**連續兩輪不可達才標「官方頁暫不可達」**（工具以 `--since` 基線狀態＋本輪狀態在 notes 標「連續兩輪不可達」，人工確認後才改資料檔），單輪不可達不動。
 
 年度流程（隨 GRAS 更新，約每年 11 月）：
 
@@ -426,7 +426,7 @@ npm run data:programs && npm run test:s1                   # 前端 payload 與�
 
 | 檔案 | 產生方式 | 內容 |
 | --- | --- | --- |
-| `overseas_admissions.<日期>.csv` | 研究會話 `reports/operations/nope-s3-overseas-20261107/research/tools/crawl_admissions.mjs` → `build_institutions_csv.mjs` → `redact_emails.mjs`，複製入庫 | 一校一列（鍵 `institutionId`＝`gras_institutions_geo` 的 `univCode`）：官網／可註冊網域（S0 已核）、招生頁 URL＋標題＋配對分、高考採認分類＋原句、學歷資格清單＋原句、IELTS／TOEFL 第一個分數＋原句、其他語言、國際生學費原句、申請管道、申請時程原句、資料學年、來源 URL 清單、`domainMatch`、HTTP、抓取頁數、抓取時間、`confidence`（high＝同可註冊網域／medium＝學校另一官方網域）、`status`（verified／needs_review／blocked／not_found）、notes |
+| `overseas_admissions.<日期>.csv` | 研究會話 `reports/operations/nope-s3-overseas-20261107/research/tools/crawl_admissions.mjs` → `build_institutions_csv.mjs` → `redact_emails.mjs`，複製入庫 | 一校一列（鍵 `institutionId`＝`gras_institutions_geo` 的 `univCode`）：官網／可註冊網域（S0 已核）、招生頁 URL＋標題＋配對分、高考採認分類＋原句、學歷資格清單＋原句、IELTS／TOEFL 第一個分數＋原句、其他語言、國際生學費原句、申請管道、申請時程原句、資料學年、來源 URL 清單、`domainMatch`、HTTP、抓取頁數、抓取時間、`confidence`（high＝同可註冊網域或人工確認的另一官方網域／medium＝學校另一官方網域待確認）、`status`（verified／needs_review／blocked／not_found）、notes；**2026-11-08 批 G1 起**追加人工確認三欄 `reviewedBy`（角色代碼，不存人名；`owner-ruling`＝站長裁定）／`reviewedAt`／`reviewNote`（三欄同有同無；改動同步寫進 `.meta.json` 的 `revisions`） |
 | `overseas_national_portals.<日期>.csv` | 研究 `tools/national_candidates.json` → `verify_national.mjs` | 一平台一列：地區、名稱、類型、網域類別（gov／public-agency／official-platform）、`roleLabel`（編輯標籤）、官方 URL、最終網域、對象／費用／時程原句、`corroboratingInstitutions`（幾所機構官方頁鏈到該網域）、HTTP、SHA-256、抓取時間、`confidence`、`status` |
 | `overseas_visa_policies.<日期>.csv` | 同上 | 一主管機關頁一列：地區、簽證類別、主管機關、官方 URL、財力／語言／保險／費用／時程原句、HTTP、SHA-256、抓取時間、`confidence`、`status` |
 | `overseas_admissions.<日期>.meta.json` | 入庫時手寫 | 研究目錄路徑與方法摘要（指向 `METHOD.md`）、三檔 SHA-256 與列數、抓取期間與請求數、`counts`（與研究 `coverage.md` 一致；build 以此斷言）、去識別聲明、口徑提醒 |
@@ -436,7 +436,7 @@ npm run data:programs && npm run test:s1                   # 前端 payload 與�
 
 鏈接上線規則（路線圖「對外鏈接規則」＋研究 `S3_SCHEMA_PROPOSAL.md` §3）：
 
-- 機構招生頁只有 `status=verified` 且 `confidence=high` 才 `linkLive`（同時給 URL）；`medium`（學校另一官方網域，7 所）只給標題與主機名並寫「待人工確認後才上鏈接」；`blocked`／`not_found`／`needs_review` 只進資料檔，頁面寫「官方頁本站未讀到：原因」。
+- 機構招生頁只有 `status=verified` 且 `confidence=high` 才 `linkLive`（同時給 URL）；`high` 須 `domainMatch=true`（招生頁在 S0 官網網域內），或 `domainMatch=official-external` 且人工確認欄 `reviewedAt` 非空（2026-11-08 批 G1 起；`reviewNote` 必須寫出招生頁網域，該網域之下的片段與來源才成為鏈接，頁面加註「人工確認屬該校後上鏈接」）；`medium`（學校另一官方網域、未經人工確認）只給標題與主機名並寫「待人工確認後才上鏈接」（G1 後 0 所）；非 `verified` 的列不得帶任何抽取欄位（build 斷言）；`blocked`／`not_found`／`needs_review` 只進資料檔，頁面寫「官方頁本站未讀到：原因」。
 - 原文片段與來源清單的 URL 只在機構 `linkLive` 且該 URL 為 https、主機在官網可註冊網域之下時成為鏈接，否則只顯示主機名；`;jsessionid=` 之類伺服器會話段在入庫時去掉。
 - 國家層平台 `verified` 且 `confidence=high` 才上鏈接；`official-platform`（UCAS、Common App、各州 TAC 等非政府平台）的 high 需 ≥1 所機構官方頁鏈到該網域（`verify_national.mjs` 已套用，build 再斷言）。簽證頁 `verified` 才上鏈接；被擋者只寫主管機關名與「核查時被擋（HTTP n）」。
 - 高考採認標籤只看字樣（寫明接受／寫明不接受／寫法有矛盾／另有內地考生管道／有提及／未讀到），旁邊一律附原句不改寫；`ieltsOverall`／`toeflOverall` 是原句第一個分數，頁面寫明可能是總分或單項。
@@ -452,6 +452,8 @@ npm run data:programs && npm run test:s1                   # 前端 payload 與�
 4. `npm run data:overseas` → `npm run test:overseas` → 其餘閘門 → 候選 → Pages 交易（§6）。build 的 `REGION_ZH` 缺新地區會直接失敗，補正體名後重跑。
 
 2026-11-07 批 S3 首批（當時值）：403 所中 verified 343（high 336／medium 7）、blocked 42、not_found 16、needs_review 2；高考採認有原句 35（accepted 4／not_accepted 2／separate_channel 4／mentioned 25）；平台 91 條（上鏈接 63）、簽證 90 條（上鏈接 47）；44 個地區；payload `23c590c30412`。抓取 2026-11-07T05:39–06:27Z、9,423 次 HTTP、587 個可註冊網域、零付費。
+
+2026-11-08 批 G1（`DECISIONS.md` C2，當時值）：medium 7 所——MIT（mitadmissions.org）、Lancaster（lancaster.ac.uk）人工確認升 high；Institute of Science Tokyo、POSTECH 的 S0 官網同步改為 `https://www.isct.ac.jp/`、`https://www.postech.ac.kr/kor/index.do`（`gras_institution_websites.2026-11-08.csv`，`verify_institution_websites.mjs` `MANUAL_REVIEW` 以 `--recheck --only RI01434,RI02126` 重打），招生頁落回官網網域內而為 high；UTAS（UAC）、HEC Paris（Bocconi）、Gothenburg（antagning.se）改 `not_found`（招生頁非該校自有本科入口，抽取欄位移出、研究原檔保留）。結果 verified 340／needs_review 2／blocked 42／not_found 19；high 340、medium 0；招生頁上鏈接 340。CU Denver 不動（F1-7）。
 
 ### 3.10 只讀資料庫 `/db/v1`（2026-11 批 F2 起，路線圖 S5）
 
@@ -618,7 +620,7 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 - 引擎、資料層、`lib/schoolProfile.ts`、`data/admissionAuthorities.ts`、Function 不得匯入 `src/i18n`（`test:i18n` 斷言）。引擎輸出的 zh-Hant 字串（`ExcludeReason.questionTitle`／`userAnswerLabel`／`schoolValue`、`buildSchoolTags`、`explainKept`）維持不變，另帶機器欄給展示層翻譯；gk 交接 `nope.v1` 固定送 zh-Hant 原文。
 - 契約／紀錄字串不翻不轉：`public/learning-manifest.json`、`lib/learningEvidence.ts`、結果頁下載紀錄、貢獻頁 GitHub issue 標題／正文與用戶中心事件、`trustedAPlus.ts` 的簡體狀態文字（另帶 `messageKey` 供介面顯示）。程式裡這些行以 `// i18n-contract` 標記，CJK 字面量掃描會跳過。
 - 資料驅動名稱不翻譯：學校名、城市名、專業目錄名、省考試院與來源標題、港澳臺院校／世界地圖／海外機構名與 payload 內的原文片段。校名顯示規則（`schoolDisplayName`）：zh-Hant＝原文（教育部主表簡體名照舊，不自行繁化）；zh-Hans＝手工增強層的 `nameSimplified`，其餘原文；en＝原文，有 `nameEn` 時並列。世界地圖學科名用 payload 自帶的 `nameZh`／`nameZhHans`／`nameEn`；地區名 en 用地區代碼（英文名）。payload 內的編輯說明（`statusZh`／`policyZh`／`note`／`roleLabel`／`typeZh`）以代碼經 `ui.overseas.*` 翻譯者優先，其餘照原文顯示。
-- `src/shared-ui/` 與 path.bdfz.net 逐位元組相同：色系面板 6 條與同步提示階段標籤 3 條在英文介面維持中文（待站長裁定兩站是否同批改，見發布記錄的 `PENDING_OWNER_REVIEW.md`）。
+- `src/shared-ui/` 與 path.bdfz.net 逐位元組相同：色系面板 6 條與同步提示階段標籤 3 條在英文介面維持中文（2026-11-08 裁定 A2：兩站同批改，批 G3）。
 
 **加一條字串**：在 `src/i18n/locales/zh-Hant.json` 與 `en.json` 加同一個鍵（保持排序；`data:i18n` 會擋鍵集合不一致、空值、佔位符或標記不一致）→ `npm run data:i18n` → 在程式裡 `t('key')`／`<Rich k="key"/>` → `npm run test:i18n`。簡體不手寫：若轉換結果有錯（一簡對多繁），在 `scripts/lib/t2s.mjs` 的 `SITE_PHRASES` 加詞組並補一條 fixture，不整體換轉換器；只有無法由字形得到的鍵才進 `zh-hans.overrides.json`。
 
@@ -633,7 +635,7 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 ### 5.4 起點分支與跨國結果（2026-11 批 E2 起，路線圖 S4；研究 origin_branch_design.md 方案 B）
 
 起點（第 0 題，`origins.ts`，5 個值不變）之後，各起點先問「前幾題」——**資格**（港澳臺與海外起點）與**範圍**（所有起點）；皆可跳過。它們是「用戶是誰」，與 `candidateProvince`、`origin` 同性質：
-存 `localStorage` 鍵 `unapply.originPrefs.v1`（`{ qualification, scope }`），**不進 `AnswerMap`、不進 `DimensionId`、不進 A+ 學習證據、不送 Function**（`test:origins` 斷言；若站長要讓起點答案進學習證據，是共享契約追加——方案 A——另批並先報站長）。
+存 `localStorage` 鍵 `unapply.originPrefs.v1`（`{ qualification, scope }`），**不進 `AnswerMap`、不進 `DimensionId`、不進 A+ 學習證據、不送 Function**（`test:origins` 斷言；2026-11-08 已裁定維持方案 B，起點答案不進學習證據——`DECISIONS.md` A1）。
 
 **資料與模組**
 

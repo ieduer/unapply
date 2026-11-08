@@ -1,9 +1,9 @@
 {
  "schema": "nope.db.v1.manifest",
  "schemaVersion": 1,
- "version": "7926db10b4c6",
- "generatedAt": "2026-11-07",
- "base": "/db/v1/7926db10b4c6/",
+ "version": "8295ccba5e1e",
+ "generatedAt": "2026-11-08",
+ "base": "/db/v1/8295ccba5e1e/",
  "contract": "https://github.com/ieduer/unapply/blob/master/docs/DB_API.md",
  "schemaDoc": "https://github.com/ieduer/unapply/blob/master/docs/DB_SCHEMA.md",
  "usage": "只讀、公開官方資訊的統一索引；任何欄位都不表示錄取可能或推薦，排名只描述學科分佈。Read-only index of public official information; no field indicates admission chances or a recommendation.",
@@ -17,60 +17,60 @@
  ],
  "datasets": {
   "institutions": {
-   "path": "/db/v1/7926db10b4c6/institutions.json",
+   "path": "/db/v1/8295ccba5e1e/institutions.json",
    "file": "institutions.json",
    "count": 3935,
-   "sha256": "3573af23f5c7b4caa23dc5a2ccadda80f80e8e32b7371ef3bb6d1b81c5d69dcc",
-   "bytes": 1826073,
-   "gzipBytes": 149475
+   "sha256": "23e207c5346dcd6b9221c28f273cf0980588bb877fc6fa2f1709da31bb7ebaa8",
+   "bytes": 1826085,
+   "gzipBytes": 149481
   },
   "crosswalk": {
-   "path": "/db/v1/7926db10b4c6/crosswalk.json",
+   "path": "/db/v1/8295ccba5e1e/crosswalk.json",
    "file": "crosswalk.json",
    "count": 561,
-   "sha256": "e601d492ae1793343a7b4a9b68ca56d1c588639e6b7a36857abad0e4b5dadbc6",
+   "sha256": "5eefac18604d36a91e3afe587dd0cfd701f2ab029a90a7209c7e9eb158a6c0a8",
    "bytes": 138265,
    "gzipBytes": 11088
   },
   "channels": {
-   "path": "/db/v1/7926db10b4c6/channels.json",
+   "path": "/db/v1/8295ccba5e1e/channels.json",
    "file": "channels.json",
    "count": 2051,
-   "sha256": "7f04a7f23133ddfffa2042b8acd2245f1381b6cbe5ffa76176487f4ec42d60b1",
+   "sha256": "cea6c7b25579918e7c4cdba96286d1569ffee9aa5479f3dd0fa471e9bf1fc882",
    "bytes": 1133786,
    "gzipBytes": 141499
   },
   "conditions.index": {
-   "path": "/db/v1/7926db10b4c6/conditions.index.json",
+   "path": "/db/v1/8295ccba5e1e/conditions.index.json",
    "file": "conditions.index.json",
-   "count": 1223,
-   "sha256": "bf22752241774a0f2dd6337898c2b7231eb6686d8108d1a73b48a2eecfc5c273",
-   "bytes": 492890,
-   "gzipBytes": 44051
+   "count": 1214,
+   "sha256": "9795e256ccfc4084dfa2f87c53e2358fda85b98007ce7c2ee016702f74039b1f",
+   "bytes": 489576,
+   "gzipBytes": 43813
   },
   "sources": {
-   "path": "/db/v1/7926db10b4c6/sources.json",
+   "path": "/db/v1/8295ccba5e1e/sources.json",
    "file": "sources.json",
-   "count": 3516,
-   "sha256": "43a4d1a401d60857adbdc8b48275078ee230972b0c532d9530b9a7a39ca2d200",
-   "bytes": 1757502,
-   "gzipBytes": 232907
+   "count": 3511,
+   "sha256": "44ed366a589a1f268ac833fef25e37a7ea33484b2c38b44d38246395b4133e39",
+   "bytes": 1754603,
+   "gzipBytes": 232482
   },
   "validity": {
-   "path": "/db/v1/7926db10b4c6/validity.json",
+   "path": "/db/v1/8295ccba5e1e/validity.json",
    "file": "validity.json",
-   "count": 3274,
-   "sha256": "056f9b378955bf9166c00e33f23071959fbbfcb59454031027db9125a90f95af",
-   "bytes": 572580,
-   "gzipBytes": 16094
+   "count": 3265,
+   "sha256": "1b3df35c686fc679de9bd7d53cc7f1a4dc94806bebf70c2624148cb2e1fed359",
+   "bytes": 570939,
+   "gzipBytes": 16079
   }
  },
  "references": [
   {
    "name": "atlas",
    "path": "/data/atlas/world-atlas.json",
-   "sha256": "e3b033fd17d9676f751e07e28bdb688b6c8d73eabd7e2de063702e51f4de6556",
-   "bytes": 333667,
+   "sha256": "cfab34a06f315306d1caac6f3ed30f9dd6f0d8625f35ed47bb04286e272bc49c",
+   "bytes": 333682,
    "describes": "GRAS 2026 每科前 50 名次、機構座標、陸地輪廓、企業直招條目（世界學科地圖 payload）",
    "entity": "institution+program"
   },
@@ -101,7 +101,7 @@
   {
    "name": "overseas.index",
    "path": "/data/overseas/index.json",
-   "sha256": "a3109657f136ebdac438dc15a99fedb88c538e3cd3681923992af9eec33fcb07",
+   "sha256": "8e2c44a831877fdd7aaae357fc733cb339315b3db68e59229e88a0106ca88aa7",
    "bytes": 178912,
    "describes": "海外可申請學校：每機構摘要與地區列",
    "entity": "institution"
@@ -109,23 +109,23 @@
   {
    "name": "overseas.qualifications",
    "path": "/data/overseas/qualifications.json",
-   "sha256": "bbf364ea4604a4aa40f16593b0521c3ce667aadf108c8cf60cefb781db2f7b9c",
-   "bytes": 19968,
+   "sha256": "2c141cb7cea282f5f9b8455d0e17991f6ffa4d38f0005f8c6803b827aa29172c",
+   "bytes": 19918,
    "describes": "海外層：資格 token → 校方頁寫明接受的機構",
    "entity": "admission_condition"
   },
   {
    "name": "overseas.region.australia",
    "path": "/data/overseas/regions/australia.json",
-   "sha256": "7071f1dda94888a8bf1f9efb87d294ff0e9142f84ef45106bca95692b0b67be1",
-   "bytes": 130627,
+   "sha256": "ac203c3e89442e01dc47d72979de77169ae700354b19f1c326c9ccb5b642f74a",
+   "bytes": 129990,
    "describes": "海外層地區檔（Australia）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
   },
   {
    "name": "overseas.region.austria",
    "path": "/data/overseas/regions/austria.json",
-   "sha256": "a623869c2a626da4c69c505534c876053b1b6e4b0dffa94e95ab12d8b730a53d",
+   "sha256": "9f46f3e8a91115fcb82fef722a2a51394d0dbc70636e27ef41e4da6e64ace74d",
    "bytes": 27274,
    "describes": "海外層地區檔（Austria）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -133,7 +133,7 @@
   {
    "name": "overseas.region.belgium",
    "path": "/data/overseas/regions/belgium.json",
-   "sha256": "0269f787a93d11c8b95a3eb300192e53aab870bb84905b663bcca3248feca060",
+   "sha256": "43eda8f05d92b6ba6de82301050e9ee10e8f503d52ad2966196ead5695933d64",
    "bytes": 19773,
    "describes": "海外層地區檔（Belgium）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -141,7 +141,7 @@
   {
    "name": "overseas.region.brazil",
    "path": "/data/overseas/regions/brazil.json",
-   "sha256": "f7effc801fa773a9b1ce9c995922e6e715fbfa3dd2d0e6b214911d001058ec9f",
+   "sha256": "e1b2c76fab377a7238184fb29defd1258c8fd301e12d2d733ee8f395c8357179",
    "bytes": 10460,
    "describes": "海外層地區檔（Brazil）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -149,7 +149,7 @@
   {
    "name": "overseas.region.canada",
    "path": "/data/overseas/regions/canada.json",
-   "sha256": "cf3aa801d12c061d05d4e7602c9ef363e46bf501e3881b59731db795cbbcef8b",
+   "sha256": "035514e5764f2342442849a0124732b069f7db138b2502e9c5670121eeee68ef",
    "bytes": 122772,
    "describes": "海外層地區檔（Canada）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -157,7 +157,7 @@
   {
    "name": "overseas.region.china-hong-kong",
    "path": "/data/overseas/regions/china-hong-kong.json",
-   "sha256": "a7d7bfa31899a443afc264c6ed3bcd38604b18000fd9b6795dfa03c7cdf339df",
+   "sha256": "46711aebe9dc95597d3f2b21a309454ece1ee69186964690600830f2c75b47a2",
    "bytes": 47251,
    "describes": "海外層地區檔（China-Hong Kong）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -165,7 +165,7 @@
   {
    "name": "overseas.region.china-macau",
    "path": "/data/overseas/regions/china-macau.json",
-   "sha256": "dcbdda5ed47f379fd2035da131777d4271119fa7ba606ad5e2b12072b58857e1",
+   "sha256": "1743650baac215a1ecb9631382b3c34de16a7b10e39080ece67bdff36468b5eb",
    "bytes": 10338,
    "describes": "海外層地區檔（China-Macau）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -173,7 +173,7 @@
   {
    "name": "overseas.region.china-taiwan",
    "path": "/data/overseas/regions/china-taiwan.json",
-   "sha256": "60ebbcd3247a4d2a4d1eba9b848508e7002b5a9724bc4d15ab91fae94fa59c62",
+   "sha256": "e4c6b2f82c7eeb601346ebb81df1043c79bf4408019c810ae36e328e6ea233b1",
    "bytes": 29592,
    "describes": "海外層地區檔（China-Taiwan）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -181,7 +181,7 @@
   {
    "name": "overseas.region.croatia",
    "path": "/data/overseas/regions/croatia.json",
-   "sha256": "5d83740c0aa7b1ea814bf3dd0a0abdab4974f67966045c688e3270c8b930faad",
+   "sha256": "a09a022a4cd7a505f6f77cd3bcf5001ed8bde1513b02e30093a0c609883b05d7",
    "bytes": 4400,
    "describes": "海外層地區檔（Croatia）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -189,7 +189,7 @@
   {
    "name": "overseas.region.czech-republic",
    "path": "/data/overseas/regions/czech-republic.json",
-   "sha256": "16a7e33ef74fe26aee0754e633564a3bed60bc5edbb1905306872228ec5e11a8",
+   "sha256": "cba01af7118702f2626856f1f06376d90d178137ac4a1c462cbbed8361468153",
    "bytes": 7833,
    "describes": "海外層地區檔（Czech Republic）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -197,7 +197,7 @@
   {
    "name": "overseas.region.denmark",
    "path": "/data/overseas/regions/denmark.json",
-   "sha256": "e9822c218e7ffeb29511304ac539d10d211fc66e52782307d24a369b0bdf8873",
+   "sha256": "b187c687f9ac19de6ca40ba4a04420524867764558f41a87a41f10125ecd0010",
    "bytes": 55679,
    "describes": "海外層地區檔（Denmark）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -205,7 +205,7 @@
   {
    "name": "overseas.region.ethiopia",
    "path": "/data/overseas/regions/ethiopia.json",
-   "sha256": "50716bb54d7f8403f6ec1b91dacca374107449e03b5aa33395818ca7e86f783c",
+   "sha256": "e372901becc94e2f09d462d4ac6ab104c076d79917766d146e0314acf1bdf68a",
    "bytes": 2697,
    "describes": "海外層地區檔（Ethiopia）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -213,7 +213,7 @@
   {
    "name": "overseas.region.finland",
    "path": "/data/overseas/regions/finland.json",
-   "sha256": "666ff6e1dc73ad62736a4259c3dc0bbb4e76f9337c385cd626b524d74d863aeb",
+   "sha256": "d84ae96b05a9a1630c05f8e8edeb2dcb3c3b7b2e166d928ac70449ec55bbac83",
    "bytes": 30532,
    "describes": "海外層地區檔（Finland）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -221,15 +221,15 @@
   {
    "name": "overseas.region.france",
    "path": "/data/overseas/regions/france.json",
-   "sha256": "f75a0cc7047ba7f30d39e1206c10a159d1153b150d723c1d78129f1facd3b471",
-   "bytes": 102961,
+   "sha256": "a583f80cdcf586837832aa6df0f9b58d5e7223f82706f71871e9139dee0606f3",
+   "bytes": 98544,
    "describes": "海外層地區檔（France）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
   },
   {
    "name": "overseas.region.germany",
    "path": "/data/overseas/regions/germany.json",
-   "sha256": "0046d176213057f628c2fa652078bd263e675b51b7cf3cfb5d0bfb575a1da890",
+   "sha256": "a95d103624e91a04352afb5e74d9c37ca0efeded6409e6e36ba4973200c8f8b0",
    "bytes": 127661,
    "describes": "海外層地區檔（Germany）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -237,7 +237,7 @@
   {
    "name": "overseas.region.greece",
    "path": "/data/overseas/regions/greece.json",
-   "sha256": "fde0bd6406fee73e141e7c8356649c5c45452b3d3b3f517e3f8918458960cca0",
+   "sha256": "15d5fdfb4b3e1c36970013cbe84024f36964ade85e7974d8336bbeb69d3fcae2",
    "bytes": 7226,
    "describes": "海外層地區檔（Greece）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -245,7 +245,7 @@
   {
    "name": "overseas.region.hungary",
    "path": "/data/overseas/regions/hungary.json",
-   "sha256": "427d62971051e4cb2ad46d52182ee167e9c2decb573c6d193229ad68843c9603",
+   "sha256": "57bd17068d9dde934b80d4189f6137163b38047bd21044025b04e1921ebb457f",
    "bytes": 9638,
    "describes": "海外層地區檔（Hungary）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -253,7 +253,7 @@
   {
    "name": "overseas.region.india",
    "path": "/data/overseas/regions/india.json",
-   "sha256": "a181248779fb1cc0554c264b73e27729de3fdfa3cecf1884d1b4890580500650",
+   "sha256": "bde51fb320e1cf8d778dae145b7c0bcd1ce7a356bdea564a7bcd237adcdd3a1f",
    "bytes": 8180,
    "describes": "海外層地區檔（India）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -261,7 +261,7 @@
   {
    "name": "overseas.region.iran",
    "path": "/data/overseas/regions/iran.json",
-   "sha256": "2015ee0de500ede80f00b0099d052e292277b8926c287c4ef039aed80a7d8c1a",
+   "sha256": "fb504233282ab37bf807474939b3d2808ad8512de3cf83573d3a9efd2f7d4537",
    "bytes": 2620,
    "describes": "海外層地區檔（Iran）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -269,7 +269,7 @@
   {
    "name": "overseas.region.ireland",
    "path": "/data/overseas/regions/ireland.json",
-   "sha256": "423de5241bedbdca88130fff8c95d76085c070d75accee3f8acf0dbd8cfcd973",
+   "sha256": "ac246ef15abbc29b7fc5a4212e438bc43f331086aeed028543e45d064d0b4126",
    "bytes": 9212,
    "describes": "海外層地區檔（Ireland）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -277,7 +277,7 @@
   {
    "name": "overseas.region.israel",
    "path": "/data/overseas/regions/israel.json",
-   "sha256": "6a0aa9c6b2d60008d0a19baf2104bd3bfdb004b097431685f1d3274a605ac32d",
+   "sha256": "507ae60d26a6dfcb58fc9b327954508908a074e323f4f47892ba9ee29a23463f",
    "bytes": 18770,
    "describes": "海外層地區檔（Israel）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -285,7 +285,7 @@
   {
    "name": "overseas.region.italy",
    "path": "/data/overseas/regions/italy.json",
-   "sha256": "7c9642c8344a09513e7fdb438a6875ef04267fb65b2c880847a85c77ff704355",
+   "sha256": "ffbf06a9bd2f7579ef47cf3c0dcc813cac55761c7f68af3ddc910bb15d887ab2",
    "bytes": 79219,
    "describes": "海外層地區檔（Italy）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -293,15 +293,15 @@
   {
    "name": "overseas.region.japan",
    "path": "/data/overseas/regions/japan.json",
-   "sha256": "57719fe678e02c4b881577e2484beba53fb030ff6044709c950a771dc20bb84d",
-   "bytes": 27154,
+   "sha256": "28a1a0958faf32168c56552fc83c1c975313f97f3c27f0f0716d6aabc3c0ce30",
+   "bytes": 27129,
    "describes": "海外層地區檔（Japan）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
   },
   {
    "name": "overseas.region.malaysia",
    "path": "/data/overseas/regions/malaysia.json",
-   "sha256": "1e51a2ab0d8b02ecea4fc3954956334ee9754a48b5ac6f90e479a04831c4733d",
+   "sha256": "d9f9e22bbd06038c15808230e7f672724b8a7e8d9b2d85215ba36c595da4a09a",
    "bytes": 29366,
    "describes": "海外層地區檔（Malaysia）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -309,7 +309,7 @@
   {
    "name": "overseas.region.mexico",
    "path": "/data/overseas/regions/mexico.json",
-   "sha256": "5a2a285bc5068a350a6902abfd14c94bdd0cacc4fc4357062f2f6e88f6446623",
+   "sha256": "33aa4e9219ef10255980340b533927edaf63edbc823e8c5832b3dd2165aafcdb",
    "bytes": 2387,
    "describes": "海外層地區檔（Mexico）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -317,7 +317,7 @@
   {
    "name": "overseas.region.netherlands",
    "path": "/data/overseas/regions/netherlands.json",
-   "sha256": "496b05bbef0b21f5785d2db2e6a0d9d4dc5dfb95225c249ace877b7333c6d6c2",
+   "sha256": "53059f7b33c6b6b87331c6fffbdc49229d7104af79f1c17c0eafbb51b5ae03a2",
    "bytes": 78218,
    "describes": "海外層地區檔（Netherlands）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -325,7 +325,7 @@
   {
    "name": "overseas.region.new-zealand",
    "path": "/data/overseas/regions/new-zealand.json",
-   "sha256": "ac92254c203d17787fa516bba5fec44a654240ba9e496fc914e606218aa70e6a",
+   "sha256": "40842fc6469d2694aac8ded523c6e9333dd7dbb08ae14be05a97194718c16649",
    "bytes": 24791,
    "describes": "海外層地區檔（New Zealand）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -333,7 +333,7 @@
   {
    "name": "overseas.region.norway",
    "path": "/data/overseas/regions/norway.json",
-   "sha256": "905bd120c33cbd84edb7a39b89b2f3ad42251ef04b625138646f65487c5ebb42",
+   "sha256": "0cb225e2a25e701c63a775017eaf2c8d0cd936aa9cbe11d99d4a1da126b916c7",
    "bytes": 50208,
    "describes": "海外層地區檔（Norway）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -341,7 +341,7 @@
   {
    "name": "overseas.region.pakistan",
    "path": "/data/overseas/regions/pakistan.json",
-   "sha256": "430a0245ad1244eeaf6f88171cd9e33f79ac433588a375739c65daa6f786218b",
+   "sha256": "8fe175a7d52a0d9bab7bb8f01048b6b98b29ff158f30fc36b7dfeac324de8c2b",
    "bytes": 3419,
    "describes": "海外層地區檔（Pakistan）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -349,7 +349,7 @@
   {
    "name": "overseas.region.poland",
    "path": "/data/overseas/regions/poland.json",
-   "sha256": "8f11c9b34598c8214c06fabc963f53ff1f5cbbbd86156bc4c8f091282b099afa",
+   "sha256": "83fec7d3fa23f8bc2f619361e2ce1203a400c19aafd05976bc6813fe8b17ce1b",
    "bytes": 11667,
    "describes": "海外層地區檔（Poland）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -357,7 +357,7 @@
   {
    "name": "overseas.region.portugal",
    "path": "/data/overseas/regions/portugal.json",
-   "sha256": "ad3694c2e3a18199494659d1df270d961a2c8fac18a02f1939674d87511a600b",
+   "sha256": "554318d30899df5357b660fa7ea51222c01adfb76291e2a054e7a2705e678ea1",
    "bytes": 8750,
    "describes": "海外層地區檔（Portugal）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -365,7 +365,7 @@
   {
    "name": "overseas.region.saudi-arabia",
    "path": "/data/overseas/regions/saudi-arabia.json",
-   "sha256": "f9a872eca6ef8aefec64dadd2efaba2c9377c4d309000a9624023e3affd07d0b",
+   "sha256": "2356301a3381d2818a665bd48e59b036c4a7ae65a00bfb14c9e89e1de628baf2",
    "bytes": 8799,
    "describes": "海外層地區檔（Saudi Arabia）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -373,7 +373,7 @@
   {
    "name": "overseas.region.singapore",
    "path": "/data/overseas/regions/singapore.json",
-   "sha256": "672a32340f29e2f3f3e3fdf960ff80530b187580bbb3ef75e9a44058f45a197b",
+   "sha256": "62313dcccd55a52328fac31f06cfe772786ac40cd8523de73ef3c7beb092f0ba",
    "bytes": 20394,
    "describes": "海外層地區檔（Singapore）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -381,7 +381,7 @@
   {
    "name": "overseas.region.south-africa",
    "path": "/data/overseas/regions/south-africa.json",
-   "sha256": "d0a99be92349c1f560eb34958d970a57ed8844d2cfa52c5fb866d842d93b1341",
+   "sha256": "1b484a44fe51f392ac05623b18b74a086872b92b80e2ea16e397cbb1d45e79d8",
    "bytes": 10003,
    "describes": "海外層地區檔（South Africa）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -389,15 +389,15 @@
   {
    "name": "overseas.region.south-korea",
    "path": "/data/overseas/regions/south-korea.json",
-   "sha256": "190c497cc705fc7db43dc87205babeb73b5a6e6f8d46f52d6281fd06185ff16e",
-   "bytes": 23163,
+   "sha256": "d985cd87d51e971d2a6efede60a5e19cee372e076e19a20df3915d337aeb8b9d",
+   "bytes": 23144,
    "describes": "海外層地區檔（South Korea）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
   },
   {
    "name": "overseas.region.spain",
    "path": "/data/overseas/regions/spain.json",
-   "sha256": "f96740a72ad5cd9fd3a1e94540741a81952eda58d7db525f1a2813e802a3c9b2",
+   "sha256": "407995cac2bf108a787b8a7e6031f73b36696eaad2472912c01102412de0f038",
    "bytes": 40808,
    "describes": "海外層地區檔（Spain）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -405,15 +405,15 @@
   {
    "name": "overseas.region.sweden",
    "path": "/data/overseas/regions/sweden.json",
-   "sha256": "4e4a982656e2154f260ae50ee11449a7517f5e34edc0d329c3c791600c0e878c",
-   "bytes": 60686,
+   "sha256": "28d0e34ad231a72cf6042bf66994fd4bdf1e1e0db470b67af584521473b74bfd",
+   "bytes": 57036,
    "describes": "海外層地區檔（Sweden）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
   },
   {
    "name": "overseas.region.switzerland",
    "path": "/data/overseas/regions/switzerland.json",
-   "sha256": "3ceb5e0795153b62c60b1fb37e5cb9c07cca9a9adab1e0b1b23bf0921784435a",
+   "sha256": "d9a721520cf893272539a3fbcca5853eeaca79b5842c78d4a3fa5e4b51faddcb",
    "bytes": 22189,
    "describes": "海外層地區檔（Switzerland）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -421,7 +421,7 @@
   {
    "name": "overseas.region.thailand",
    "path": "/data/overseas/regions/thailand.json",
-   "sha256": "690a32dd2c5e515d477923e5e9e6685ba5b126a6c18e3e3b5405a0bd3d420cb5",
+   "sha256": "952f7c7e214643ce15adf8d45785717c98bf0a3250e83d8e09f8158ca94e2e2a",
    "bytes": 2919,
    "describes": "海外層地區檔（Thailand）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -429,7 +429,7 @@
   {
    "name": "overseas.region.tunisia",
    "path": "/data/overseas/regions/tunisia.json",
-   "sha256": "4ffa5a601f34a8bf363299704660e7858b34d1cc9671f91408561aeea988f004",
+   "sha256": "0dc12c437033769bbdf69492472aa6d2e8e11f0fc1c92f1ffe2be650ab6df209",
    "bytes": 2000,
    "describes": "海外層地區檔（Tunisia）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -437,7 +437,7 @@
   {
    "name": "overseas.region.turkiye",
    "path": "/data/overseas/regions/turkiye.json",
-   "sha256": "9521f20c27e78904995be3ac1755aa3133b2cdc62dce73ad9fe4db0c2eac0ef0",
+   "sha256": "e01f6333a7f202c6b120e0c8fb72f90f666eb6dda0fc6625074cfd7390b72098",
    "bytes": 8283,
    "describes": "海外層地區檔（Türkiye）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -445,7 +445,7 @@
   {
    "name": "overseas.region.united-arab-emirates",
    "path": "/data/overseas/regions/united-arab-emirates.json",
-   "sha256": "748f432483e3ee700dcac4660aa039c261096a218315cdc5a06d35cbbd9980a4",
+   "sha256": "db34a10b3e6d6268205a8604191251eb39e41c3175e5dd7dc5630fbfa8c6605b",
    "bytes": 8417,
    "describes": "海外層地區檔（United Arab Emirates）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
@@ -453,16 +453,16 @@
   {
    "name": "overseas.region.united-kingdom",
    "path": "/data/overseas/regions/united-kingdom.json",
-   "sha256": "86af4915b495bdf604e140db78db8a5532874a2c40d5a22e39e0aab5eb32ce27",
-   "bytes": 229750,
+   "sha256": "fce37827657eb940a43d6821ba302ab427a0385e404b9743ce64147d553ee5f2",
+   "bytes": 229778,
    "describes": "海外層地區檔（United Kingdom）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
   },
   {
    "name": "overseas.region.united-states",
    "path": "/data/overseas/regions/united-states.json",
-   "sha256": "6f1126a331098780a15d3bda0cf1d1563dbc534ee6fac8589b59c70d5717d86f",
-   "bytes": 766907,
+   "sha256": "7deb16c5903e8810df4efad14dbd2cc3c8d35b99c913bafbb1415873564de54c",
+   "bytes": 766913,
    "describes": "海外層地區檔（United States）：機構招生頁原文片段、申請平台、簽證主管機關頁",
    "entity": "admission_condition+admission_channel"
   },
@@ -752,8 +752,8 @@
   "visaFile": "overseas_visa_policies.2026-11-07.csv",
   "originFile": "origin_sources.2026-11-07.json",
   "a6File": "admission_channels.2026-09-08.csv",
-  "atlasVersion": "2ee64d95a443",
-  "overseasVersion": "23c590c30412",
+  "atlasVersion": "0877e87ab4e3",
+  "overseasVersion": "09a9949bf121",
   "programsVersion": "3d0cc7ed3c79",
   "jointCounts": {
    "listed": 1834,
@@ -830,11 +830,11 @@
   "institutions": 3935,
   "crosswalk": 561,
   "channels": 2051,
-  "conditions": 1223,
-  "sources": 3516,
-  "sourcesLinkable": 3411,
-  "validity": 3274,
+  "conditions": 1214,
+  "sources": 3511,
+  "sourcesLinkable": 3420,
+  "validity": 3265,
   "references": 84,
-  "referenceBytes": 29949309
+  "referenceBytes": 29940560
  }
 }

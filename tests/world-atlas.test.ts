@@ -161,7 +161,8 @@ test('權威分級：規則表由 CSV 生成、無重複、prefix→host→regis
   assert.equal(tierOf('https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202606/t20260618_1441074.html'), 'P0')
   assert.equal(tierOf('https://www.crs.jsj.edu.cn/aproval/detail/111'), 'P0')
   assert.equal(tierOf('https://gaokao.chsi.com.cn/'), 'P1')
-  assert.equal(tierOf('https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/'), 'P1')
+  assert.equal(tierOf('https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/'), 'P0') // 2026-11-08 裁定 B4：教育部學位中心升 P0
+  assert.equal(tierOf('https://www.findyou2026.com/'), 'P0') // 2026-11-08 裁定 B4：主辦方計劃專站
   assert.equal(tierOf('https://www.shanghairanking.com/rankings/gras/2026'), 'P1')
   assert.equal(tierOf('https://www.camet.org.cn/xytj/tjxx/'), 'P1')
   assert.equal(tierOf('https://www.yicai.com/topic/'), 'P2')

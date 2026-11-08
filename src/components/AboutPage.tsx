@@ -143,6 +143,7 @@ export function AboutPage({ onBack }: Props) {
             <Li k="ui.about.tiers.p1" />
             <Li k="ui.about.tiers.p2" />
           </ul>
+          <p className="mt-3 text-sm" data-tier-footer-note>{t('ui.about.tiers.footer')}</p>
           <p className="mt-3 text-sm"><Rich k="ui.about.tiers.rule" slots={{ a1: ext('https://github.com/ieduer/unapply/blob/master/docs/MAINTENANCE_MANUAL.md') }} /></p>
           <p className="mt-2 text-sm text-fog-500">
             <Rich

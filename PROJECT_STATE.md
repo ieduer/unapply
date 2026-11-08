@@ -2,42 +2,42 @@
 
 Last updated: 2026-11-08 UTC
 Current version: 987c934（已部署 46a33556，生效 2026-11-08T01:21:33Z；批 F2 疊加於批 F1 2d3323c／8385ac10）
-Current objective: **路線圖 S0–S5 全部上線（2026-11-07；S5 生效時間為 UTC 2026-11-08T01:21:33Z），剩餘為待站長項與年度維護。** 全球化路線圖（docs/GLOBAL_ROADMAP.md）S0、S1 全批、S2 兩半、S3、S4 兩批、橫切項（批 F1）與 S5 只讀資料庫（批 F2）皆已上線並登記 accepted；年度維護照 `docs/ANNUAL_UPDATE.md`（各層 `nextReviewDue` 見 `/db/v1` 的 validity.calendar；各省 2028 選考表依慣例應已公布，下一次維護先核）。待站長審核項分列於各批 `PENDING_OWNER_REVIEW.md`（S2、S3、E1、E2、F1、F2），彙整索引在 `reports/operations/nope-global-roadmap-20261107/OWNER_REVIEW.md`；原 43 維效度缺口仍列後續。
+Current objective: **路線圖 S0–S5 全部上線（2026-11-07；S5 生效時間為 UTC 2026-11-08T01:21:33Z），原待審事項 2026-11-08 已全部裁定，落地批 G1–G4 進行中，其餘為年度維護。** 全球化路線圖（docs/GLOBAL_ROADMAP.md）S0、S1 全批、S2 兩半、S3、S4 兩批、橫切項（批 F1）與 S5 只讀資料庫（批 F2）皆已上線並登記 accepted；年度維護照 `docs/ANNUAL_UPDATE.md`（各層 `nextReviewDue` 見 `/db/v1` 的 validity.calendar；各省 2028 選考表依慣例應已公布，下一次維護先核）。原待審項（各批 `PENDING_OWNER_REVIEW.md`：S2、S3、E1、E2、F1、F2；彙整 `reports/operations/nope-global-roadmap-20261107/OWNER_REVIEW.md`）站長 2026-11-08 授權主會話裁定，裁定與執行批次見 `reports/operations/nope-global-roadmap-20261107/DECISIONS.md`（A1 維持方案 B、A3 不改五面導航、B1 conflict 照列不排除、D1 學徒制算直招、D3／D4 不建、F2-1 CORS 接受、F2-2 不開）；原 43 維效度缺口仍列後續。
 
 ## 2026-11-07／08 批 F2：路線圖 S5——只讀全球高校資料庫 `/db/v1`（已上線，當前權威）
 
 正式部署 `46a33556-daee-42ea-9f10-0c75cc5843e8`，來源 `987c934`，生效 `2026-11-08T01:21:33Z`；回滾 `8385ac10`／`2d3323c`。Status `20261107-nope-s5-db-f2` r1。
 - `https://nope.bdfz.net/db/v1/latest.json` → 版本 `7926db10b4c6`：機構 3,935、對照 561、管道 2,051、條件 1,223、來源 3,516（全 https、帶分級）、有效期 3,274、引用既有 payload 84 檔；`/db/*` CORS GET、版本目錄 immutable、latest 300 秒；未新增 Cloudflare 資源。
 - 文件：`docs/DB_SCHEMA.md`、`docs/DB_API.md`（對 path／gk 的只讀契約與「不得暗示錄取可能」規範）、`docs/ANNUAL_UPDATE.md`；手冊 §3.10；閘門 `test:db`；About「資料庫開放只讀」。
-- 十八道閘門於 `987c934`；候選 `a8799d46` 與正式 138/138；三語 × 兩色系 × 1440／390 About 對比 0 低於 4.5。待站長：`reports/operations/nope-s5-db-xcut-20261107/nope-f2/PENDING_OWNER_REVIEW.md`。
+- 十八道閘門於 `987c934`；候選 `a8799d46` 與正式 138/138；三語 × 兩色系 × 1440／390 About 對比 0 低於 4.5。待審事項（2026-11-08 已裁定，見 DECISIONS.md）：`reports/operations/nope-s5-db-xcut-20261107/nope-f2/PENDING_OWNER_REVIEW.md`。
 
 ## 2026-11-07 批 F1：路線圖橫切項——企業直招擴充、壞鏈修正、權威分級標籤、鏈接年檢工具（歷史；批 F2 疊加於其上）
 
 正式部署 `8385ac10-f587-44c8-ac43-f0dece8fc60f`，來源 `2d3323c`，生效 `2026-11-07T14:08:23Z`；回滾 `9753bdc3`／`55eb014`。Status `20261107-nope-xcut-directhire-links-f1` r1。
 - 直招層 24 條上線（既有 10 重核＋14 核過候選；含在職學位者標示，沿用既有口徑）、8 條 `unverified` 只留檔；壞鏈 6 處＋school_websites 轉址 5 處已修，GRAS 兩所轉址因是 S3 錨點暫緩。
 - 權威分級規則表 106 條 → 鏈接旁「官方／權威平台／第三方」標籤＋About 說明；鏈接年檢基線（6,139 URL）入庫，`npm run audit:links` 為年度工具（不進閘門）。
-- 十七道閘門於 `2d3323c`；候選 `c8336b80` 與正式 130/130；三語 × 兩色系 × 1440／390 對比 0 低於 4.5。待站長：`reports/operations/nope-s5-db-xcut-20261107/nope-f1/PENDING_OWNER_REVIEW.md`。
+- 十七道閘門於 `2d3323c`；候選 `c8336b80` 與正式 130/130；三語 × 兩色系 × 1440／390 對比 0 低於 4.5。待審事項（2026-11-08 已裁定，見 DECISIONS.md）：`reports/operations/nope-s5-db-xcut-20261107/nope-f1/PENDING_OWNER_REVIEW.md`。
 
 ## 2026-11-07 批 E2：起點分支（資格／範圍）＋官方進大陸管道＋海外層資格標示＋結果頁跨國並列（歷史；批 F1 疊加於其上）
 
 正式部署 `9753bdc3-ebe9-4488-80a4-32db2fbcb728`，來源 `55eb014`，生效 `2026-11-07T12:56:17Z`；回滾 `460b9fcb`／`84c0fcd`。Status `20261107-nope-s4-origins-e2` r1。
 - 方案 B 展示層（手冊 §5.4）：港澳臺／海外起點先答資格（18 種）與範圖（只本地／只海外／都考慮，可跳過），只存 `unapply.originPrefs.v1`，不進 AnswerMap／學習證據／Function；A+ 證據仍只有 45 題。
 - 港澳臺起點附 7 條官方進大陸管道（只鏈 verified 來源，blocked／needs_review 顯示「官方頁本站未讀到」）；海外層按資格保留式標示「校方頁面寫明接受」與分國計數（`qualifications.json` `efbab412ac6e`：403 所、32 token、gaokaoAccepted 4）；結果頁按範圍並列港澳臺院校池與海外層（local 收成一行）；A6 港澳臺提示。
-- i18n 新增 96 鍵（1,296 鍵，`9891b7f7178f`）；十七道閘門於 `55eb014`（新增 `test:origins` 7）；候選 `42982ad7` 與正式 129/129；三語 × 兩色系 × 1440／390 逐路由對比 0 低於 4.5。待站長：`reports/operations/nope-s4-i18n-origins-20261107/nope-e2/PENDING_OWNER_REVIEW.md`。
+- i18n 新增 96 鍵（1,296 鍵，`9891b7f7178f`）；十七道閘門於 `55eb014`（新增 `test:origins` 7）；候選 `42982ad7` 與正式 129/129；三語 × 兩色系 × 1440／390 逐路由對比 0 低於 4.5。待審事項（2026-11-08 已裁定，見 DECISIONS.md）：`reports/operations/nope-s4-i18n-origins-20261107/nope-e2/PENDING_OWNER_REVIEW.md`。
 
 ## 2026-11-07 批 E1：三語介面 zh-Hant／zh-Hans／en（歷史；批 E2 疊加於其上）
 
 正式部署 `460b9fcb-e6b8-4576-aa8f-e3b3d5381f53`，來源 `84c0fcd`，生效 `2026-11-07T11:52:24Z`；回滾 `41a45cad`／`7443bb5`。Status `20261107-nope-s4-i18n-e1` r1。
 - 翻譯層 1,200 鍵（手冊 §5.3）：zh-Hant 來源打包進主包；zh-Hans 由 `data:i18n` 以 vendored OpenCC t2s 字級字典＋站內例外表生成（只轉字形不換用詞，140 條 fixtures 閘門）；en 站方翻譯；兩者自 `public/i18n/` 懶載（manifest `457977554cc4`）。頭部切換存 `unapply.locale.v1`，首次依瀏覽器語言，同步 `<html lang>`／title／description；hash 路由不帶語言。
 - 引擎保持語言中立（機器欄＋展示層翻譯）；gk 交接、用戶中心紀錄、GitHub issue 文字固定 zh-Hant；資料驅動名稱不翻譯、官方名稱原文保留；題集／契約／Function／shared-ui／UC 不變；無付費、無新 Cloudflare 資源。
-- 十六道閘門於 `84c0fcd`（新增 `test:i18n` 10）；候選 `959207b8` 與正式 128/128；三語 × 兩色系 × 1440／390 逐路由對比 0 低於 4.5。待站長：`reports/operations/nope-s4-i18n-origins-20261107/nope-e1/PENDING_OWNER_REVIEW.md`。
+- 十六道閘門於 `84c0fcd`（新增 `test:i18n` 10）；候選 `959207b8` 與正式 128/128；三語 × 兩色系 × 1440／390 逐路由對比 0 低於 4.5。待審事項（2026-11-08 已裁定，見 DECISIONS.md）：`reports/operations/nope-s4-i18n-origins-20261107/nope-e1/PENDING_OWNER_REVIEW.md`。
 
 ## 2026-11-07 批 S3：海外可申請學校層 #/overseas（歷史；批 E1 疊加於其上）
 
 正式部署 `41a45cad-b152-4a16-9f38-3db892008648`，來源 `7443bb5`，生效 `2026-11-07T10:24:43Z`；回滾 `26154a49`／`893667b`。Status `20261107-nope-s3-overseas-admissions` r1。
 - 研究會話三張 CSV 入庫（403 所非大陸 GRAS 前 50 機構、91 條申請平台、90 條簽證頁；零付費、電郵已去識別）→ `build_overseas_layer.mjs` fail-closed → index（gzip 17 KiB）＋44 個地區檔懶載，manifest `23c590c30412`：官方頁已讀到 343（high 336／medium 7）、被擋 42、未找到 16、純 JS 2；招生頁上鏈接 336、平台 63/91、簽證 47/90；高考採認原句 35。
 - 只抄官方頁原文、不解讀、不代表錄取可能；鏈接規則 verified＋high／平台需機構頁佐證／簽證 verified；不改題集／契約／UC；不進引擎。入口：首頁「其他國家或地區」主按鈕、世界地圖機構面板、結果頁頁尾、About。
-- 十五道閘門於 `7443bb5`（新增 `test:overseas` 9）；候選 `f8fc27da` 與正式 126/126；真實路徑與候選一致。待站長：`reports/operations/nope-s3-overseas-20261107/nope-s3/PENDING_OWNER_REVIEW.md`。
+- 十五道閘門於 `7443bb5`（新增 `test:overseas` 9）；候選 `f8fc27da` 與正式 126/126；真實路徑與候選一致。待審事項（2026-11-08 已裁定，見 DECISIONS.md）：`reports/operations/nope-s3-overseas-20261107/nope-s3/PENDING_OWNER_REVIEW.md`。
 
 ## 2026-11-07 批 D2：中外合作辦學機構／項目資料層（歷史；批 S3 疊加於其上）
 
@@ -110,7 +110,7 @@ Current objective: **路線圖 S0–S5 全部上線（2026-11-07；S5 生效時�
   正式站真實路徑：物生政 → 起點條件劃掉 7 所（與稽核模擬一致）、中國科學技術大學詳情 56 專業／強基／6 個官方來源。
 - 已知限制：陽光高考對腳本回 412 挑戰（章程層、分省計劃、專項名單只能人工）；bjeea.cn 本機不通；選科單獨生效時詳情文案缺一空格（下版修）；
   `officialSchools.ts` 把上海體育大學標成普通本科（A3，需另批）；已登入 A+ 路徑本次未改未測。
-- 下一步（待站長定序）：擴到全部 2,952 校（`data:s1-build --scope all`）→ 專項計劃名單（人工）→ 中外合作專業收費→A4 → 章程層錄取條件；選科／專業要不要成為新題（改契約）另議。
+- 下一步（當時待站長定序；2026-11-08 起依 DECISIONS.md）：擴到全部 2,952 校（`data:s1-build --scope all`）→ 專項計劃名單（人工）→ 中外合作專業收費→A4 → 章程層錄取條件；選科／專業要不要成為新題（改契約）另議。
 - 報告：`/Users/ylsuen/CF/reports/operations/nope-s1-programs-admission-20261106/RELEASE.md`、`REPORT.md`。
 
 ## 2026-11-06 全球化立項與 S0 世界學科地圖（歷史；S0 內容仍在線）

@@ -140,10 +140,13 @@ const MANUAL_REVIEW = {
   RI02940: { url: 'https://www.utsouthwestern.edu/', evidence: 'sr swmed.edu 轉址到 utsouthwestern.edu（.edu 學術網域，UT Southwestern 官網）；wd utswmedicine.org 為其醫療品牌網域；GET 200', reviewedAt: '2026-11-07' },
   RI03812: { url: 'https://mbzuai.ac.ae/', evidence: 'sr 單一來源 .ac.ae 學術網域；對腳本回 403（反爬），以內建瀏覽器開啟確認為 MBZUAI 官網', reviewedAt: '2026-11-07', allowBlocked: true },
   // 2026-11-07 鏈接年檢（reports/operations/nope-xcut-directhire-links-20261107/research/link_check_summary.md §4）：原官網跨網域轉址，最終網域仍明顯是該校（.ac.kr／.edu）。
-  // 暫不套用（批 F1 決定，見 reports/operations/nope-s5-db-xcut-20261107/nope-f1/link_fixes.md）：S0 官網是海外層 S3 的錨點（officialWebsite／officialDomain 決定招生頁能否上鏈接），
-  // 改網域會連帶改變 S3 判定（CU Denver 招生頁在 ucdenver.edu 會由 high 降 medium；POSTECH 招生頁在 postech.ac.kr 會由 medium 升 high，屬 S3 待站長項）。
-  // 下一輪 S3 重抓時與 overseas_admissions 同批套用：取消註解後跑 --from <CSV> --recheck --only RI02126,RI02976。
-  // RI02126: { url: 'https://www.postech.ac.kr/kor/index.do', evidence: 'sr＋wd 同為 postech.edu，2026-11-07 鏈接年檢見其跨網域轉址至 postech.ac.kr/kor/index.do（韓國學術網域，頁面標題「가치창출대학 POSTECH」；根路徑 / 回 404，故記最終網址）；改為最終網址', reviewedAt: '2026-11-07' },
+  // 批 F1 暫緩（S0 官網是海外層 S3 的錨點，見 reports/operations/nope-s5-db-xcut-20261107/nope-f1/link_fixes.md）；
+  // **2026-11-08 已套用（批 G1，裁定 reports/operations/nope-global-roadmap-20261107/DECISIONS.md C2／F1-7）**：POSTECH 與 Institute of Science Tokyo 與
+  // overseas_admissions 同批更新（--from gras_institution_websites.2026-11-07.csv --recheck --only RI01434,RI02126 → gras_institution_websites.2026-11-08.csv）；
+  // keepUrl：記根網址（GET 經同網域轉址到語言頁，仍收根網址）；confidence：人工指定（兩來源網域不一致時不升 high）。
+  RI01434: { url: 'https://www.isct.ac.jp/', evidence: 'wd P856 為 isct.ac.jp；sr 仍登記舊東京工業大學網域 titech.ac.jp（2026-11-08 GET 200，標題「Science Tokyo 旧・東京工業大学」，頁面直接鏈出 isct.ac.jp）；東京工業大學與東京醫科齒科大學 2024-10 合併為 Institute of Science Tokyo，isct.ac.jp 為合併後新官方網域；2026-11-08 GET https://www.isct.ac.jp/ 200（同網域轉址至 /en，標題「Science Tokyo」）；兩來源網域不一致，維持 medium', reviewedAt: '2026-11-08', keepUrl: true, confidence: 'medium' },
+  RI02126: { url: 'https://www.postech.ac.kr/kor/index.do', evidence: 'sr＋wd 同為 postech.edu，2026-11-07 鏈接年檢見其跨網域轉址至 postech.ac.kr/kor/index.do（韓國學術網域，頁面標題「가치창출대학 POSTECH」）；根路徑 https://www.postech.ac.kr/ 對 Node fetch 回 404（curl 經兩次同網域轉址 200，2026-11-08），故照 F1 記最終網址', reviewedAt: '2026-11-08' },
+  // CU Denver 不動（2026-11-08 裁定 F1-7：維持 ucdenver.edu，等國際招生頁搬到 cudenver.edu 再與 overseas_admissions 同批改）：
   // RI02976: { url: 'https://www.cudenver.edu/', evidence: 'sr＋wd 同為 ucdenver.edu，2026-11-07 鏈接年檢見其跨網域轉址至 cudenver.edu（.edu 學術網域，University of Colorado Denver 官網）；改為最終網址', reviewedAt: '2026-11-07' },
 }
 
@@ -213,7 +216,8 @@ async function recheckFrom(csvPath) {
       }
       const domain = registrableDomain(new URL(review.url).hostname)
       const sources = (r.candidates || '').split(' | ').filter(Boolean).map((c) => c.slice(0, c.indexOf(':'))).sort().join('+') || 'manual'
-      if (check.ok) out.push({ ...r, website: check.finalUrl, domain, sources, confidence: /\+/.test(sources) ? 'high' : 'medium', status: 'verified', http: check.status, note: `manual review ${review.reviewedAt}: ${review.evidence}`, verifiedAt: review.reviewedAt })
+      const website = review.keepUrl && check.ok && registrableDomain(new URL(check.finalUrl).hostname) === domain ? review.url : check.finalUrl
+      if (check.ok) out.push({ ...r, website, domain, sources, confidence: review.confidence || (/\+/.test(sources) ? 'high' : 'medium'), status: 'verified', http: check.status, note: `manual review ${review.reviewedAt}: ${review.evidence}`, verifiedAt: review.reviewedAt })
       else if (review.allowBlocked && [401, 403, 412, 429, 503].includes(check.status)) out.push({ ...r, website: review.url, domain, sources, confidence: 'medium', status: 'verified', http: check.status, note: `manual review ${review.reviewedAt}: ${review.evidence}（腳本連通被擋 ${check.status}）`, verifiedAt: review.reviewedAt })
       else out.push({ ...r, status: 'unreachable', http: check.status, note: `manual review candidate failed: ${check.status} ${check.error || ''}`.trim() })
       await sleep(300)

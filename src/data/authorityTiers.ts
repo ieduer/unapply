@@ -3,7 +3,7 @@
 export type AuthorityTier = 'P0' | 'P1' | 'P2' | 'OWN'
 export type AuthorityTierMatch = 'prefix' | 'host' | 'registrable'
 export interface AuthorityTierRule { domain: string; match: AuthorityTierMatch; tier: AuthorityTier; nameZh: string }
-export const authorityTiersSource = {"file":"authority_tiers.2026-11-07.csv","checkedAt":"2026-11-07","counts":{"rules":106,"byTier":{"P0":71,"P1":15,"P2":14,"OWN":6},"byMatch":{"prefix":5,"host":9,"registrable":92}}} as const
+export const authorityTiersSource = {"file":"authority_tiers.2026-11-07.csv","checkedAt":"2026-11-08","counts":{"rules":107,"byTier":{"P0":74,"P1":13,"P2":14,"OWN":6},"byMatch":{"prefix":5,"host":9,"registrable":93}}} as const
 export const authorityTierRules: readonly AuthorityTierRule[] = [
   {
     "domain": "https://github.com/ieduer/unapply",
@@ -168,6 +168,12 @@ export const authorityTierRules: readonly AuthorityTierRule[] = [
     "nameZh": "Mercedes-Benz Group"
   },
   {
+    "domain": "mitadmissions.org",
+    "match": "registrable",
+    "tier": "P0",
+    "nameZh": "MIT 官方招生站（MIT Admissions）"
+  },
+  {
     "domain": "ea.hainan.gov.cn",
     "match": "registrable",
     "tier": "P0",
@@ -188,13 +194,13 @@ export const authorityTierRules: readonly AuthorityTierRule[] = [
   {
     "domain": "chinadegrees.cn",
     "match": "registrable",
-    "tier": "P1",
+    "tier": "P0",
     "nameZh": "教育部學位與研究生教育發展中心"
   },
   {
     "domain": "findyou2026.com",
     "match": "registrable",
-    "tier": "P1",
+    "tier": "P0",
     "nameZh": "吉利「跨時代躍遷人才培養計劃」專站"
   },
   {

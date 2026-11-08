@@ -229,6 +229,7 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
       <footer className="w-full max-w-5xl pt-6 border-t border-ink-800">
         <div className="grid gap-3 sm:gap-2">
           <FooterGroup
+            group="sister"
             label={t('ui.landing.footer.sisterSites')}
             items={[
               { href: 'https://path.bdfz.net', text: t('ui.landing.footer.path') },
@@ -236,17 +237,26 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
               { href: 'https://my.bdfz.net', text: t('ui.landing.footer.my') },
             ]}
           />
+          {/* 2026-11-08 裁定 B3：分區名與權威分級一致——官方與權威來源（P0／P1）、第三方參考（P2）；鏈接旁 tier 標籤保留 */}
           <FooterGroup
-            label={t('ui.landing.footer.authoritative')}
+            group="official"
+            label={t('ui.landing.footer.officialSources')}
             items={[
               { href: 'https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202606/t20260618_1441074.html', text: t('ui.landing.footer.moe') },
               { href: 'https://www.cma.gov.cn/', text: t('ui.landing.footer.cma') },
-              { href: 'https://www.yicai.com/topic/', text: t('ui.landing.footer.yicai') },
               { href: 'https://www.chinadegrees.cn/xwyyjsjyxx/xkpgjg/', text: t('ui.landing.footer.disciplineEval') },
               { href: 'https://www.shanghairanking.com/rankings/gras/2026', text: t('ui.landing.footer.gras') },
             ]}
           />
           <FooterGroup
+            group="third-party"
+            label={t('ui.landing.footer.thirdParty')}
+            items={[
+              { href: 'https://www.yicai.com/topic/', text: t('ui.landing.footer.yicai') },
+            ]}
+          />
+          <FooterGroup
+            group="open-source"
             label={t('ui.landing.footer.openSource')}
             items={[
               { href: 'https://github.com/ieduer/unapply', text: 'ieduer/unapply' },
@@ -273,14 +283,16 @@ function MetricCard({ label, value, detail }: { label: string; value: string; de
 }
 
 function FooterGroup({
+  group,
   label,
   items,
 }: {
+  group?: string
   label: string
   items: { href: string; text: string }[]
 }) {
   return (
-    <section className="border border-ink-800 sm:border-0 bg-ink-900/65 sm:bg-transparent px-4 py-3 sm:px-0 sm:py-0">
+    <section data-footer-group={group} className="border border-ink-800 sm:border-0 bg-ink-900/65 sm:bg-transparent px-4 py-3 sm:px-0 sm:py-0">
       <p className="mono text-xs uppercase tracking-[0.18em] text-fog-300">{label}</p>
       <div className="mt-2 flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-x-3 sm:gap-y-1 text-xs mono text-fog-500 leading-relaxed">
         {items.map((item) => (

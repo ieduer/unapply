@@ -499,6 +499,7 @@ function InstitutionDetail({ inst }: { inst: OverseasInstitutionDetail }) {
           <>
             <p><a className="underline text-fog-100 hover:text-accent-500 break-words" href={a.url} target="_blank" rel="noreferrer noopener">{a.title || a.url} ↗</a></p>
             <SourceLine url={a.url} live date={inst.fetchedAt} />
+            {a.reviewedAt && a.externalDomain && <p className="text-xs text-fog-500" data-admissions-reviewed>{t('ui.overseas.inst.reviewedExternal', { domain: a.externalDomain, date: a.reviewedAt })}</p>}
           </>
         ) : a.confidence === 'medium' ? (
           <>
