@@ -144,11 +144,11 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
                 k="ui.overseas.originNote"
                 params={{
                   origin: t(`origin.${originOption.id}.label`),
-                  hkmotw: (origin === 'hk' || origin === 'mo' || origin === 'tw') ? <Rich k="ui.overseas.originNote.hkmotw" slots={{ a3: (children) => <button onClick={onHkMoTw} className="underline hover:text-accent-500">{children}</button> }} /> : '',
+                  hkmotw: (origin === 'hk' || origin === 'mo' || origin === 'tw') ? <Rich k="ui.overseas.originNote.hkmotw" slots={{ a3: (children) => <button onClick={onHkMoTw} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{children}</button> }} /> : '',
                 }}
                 slots={{
-                  a1: (children) => <button onClick={onWorld} className="underline hover:text-accent-500">{children}</button>,
-                  a2: (children) => <button onClick={onStartMainland} className="underline hover:text-accent-500">{children}</button>,
+                  a1: (children) => <button onClick={onWorld} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{children}</button>,
+                  a2: (children) => <button onClick={onStartMainland} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{children}</button>,
                 }}
               />
             </div>

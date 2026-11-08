@@ -89,8 +89,8 @@ export function HkMoTwPage({ origin, originPrefs, onBack, onAbout, onWorld, onSt
                 k="ui.hkmotw.originNote"
                 params={{ origin: t(`origin.${originOption.id}.label`) }}
                 slots={{
-                  a1: (children) => <button onClick={onWorld} className="underline hover:text-accent-500">{children}</button>,
-                  a2: (children) => <button onClick={onStartMainland} className="underline hover:text-accent-500">{children}</button>,
+                  a1: (children) => <button onClick={onWorld} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{children}</button>,
+                  a2: (children) => <button onClick={onStartMainland} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{children}</button>,
                 }}
               />
               {originPrefs.qualification && <p className="mt-1 text-xs mono text-fog-500">{t('ui.overseas.qual.selector')}{t('ui.common.colon')}{t(`origin.qual.${originPrefs.qualification}.label`)}</p>}

@@ -171,12 +171,12 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
                 params={{
                   origin: t(`origin.${originOption.id}.label`),
                   pools: (origin === 'hk' || origin === 'mo' || origin === 'tw')
-                    ? <Rich k="ui.world.originNote.poolHkmotw" slots={{ a2: (children) => <button onClick={onHkMoTw} className="underline hover:text-accent-500">{children}</button> }} />
+                    ? <Rich k="ui.world.originNote.poolHkmotw" slots={{ a2: (children) => <button onClick={onHkMoTw} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{children}</button> }} />
                     : origin === 'overseas'
-                      ? <Rich k="ui.world.originNote.poolOverseas" slots={{ a3: (children) => <button onClick={() => onOverseas(null, null)} className="underline hover:text-accent-500">{children}</button> }} />
+                      ? <Rich k="ui.world.originNote.poolOverseas" slots={{ a3: (children) => <button onClick={() => onOverseas(null, null)} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{children}</button> }} />
                       : '',
                 }}
-                slots={{ a1: (children) => <button onClick={onStartMainland} className="underline hover:text-accent-500 ml-1">{children}</button> }}
+                slots={{ a1: (children) => <button onClick={onStartMainland} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500 ml-1">{children}</button> }}
               />
             </div>
           )}
