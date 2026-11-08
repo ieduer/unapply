@@ -234,7 +234,7 @@ export function SearchPage({ onBack }: { onBack: () => void }) {
                   <span>{t('ui.search.major.sources', { year: majorData.index.admissionYear })}</span>
                   {Object.entries(majorData.index.provinceSources).map(([code, s]) => {
                     const src = majorData.index.sources[s.sourceId]
-                    return <a key={code} href={src?.url} target="_blank" rel="noreferrer noopener" className="underline hover:text-accent-500">{provinceLabel(s.nameZh)} ↗</a>
+                    return <a key={code} href={src?.url} target="_blank" rel="noreferrer noopener" className="tap underline hover:text-accent-500">{provinceLabel(s.nameZh)} ↗</a>
                   })}
                 </p>
                 <ul className="flex flex-col gap-2">

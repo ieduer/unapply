@@ -38,8 +38,8 @@ export function DirectHireCard({ program, expanded, onOpen, onClose }: { program
         </>
       )}
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs mono text-fog-500 mt-auto pt-1">
-        {program.officialUrl && <span className="inline-flex items-center gap-1"><a className="underline hover:text-accent-500" href={program.officialUrl} target="_blank" rel="noreferrer noopener">{t('ui.world.program.officialPage')}</a><TierBadge url={program.officialUrl} /></span>}
-        <span className="inline-flex items-center gap-1"><a className="underline hover:text-accent-500" href={program.sourceUrl} target="_blank" rel="noreferrer noopener">{t('ui.world.program.source')}</a><TierBadge url={program.sourceUrl} /></span>
+        {program.officialUrl && <span className="inline-flex items-center gap-1"><a className="tap underline hover:text-accent-500" href={program.officialUrl} target="_blank" rel="noreferrer noopener">{t('ui.world.program.officialPage')}</a><TierBadge url={program.officialUrl} /></span>}
+        <span className="inline-flex items-center gap-1"><a className="tap underline hover:text-accent-500" href={program.sourceUrl} target="_blank" rel="noreferrer noopener">{t('ui.world.program.source')}</a><TierBadge url={program.sourceUrl} /></span>
         <span>{t('ui.world.program.verified', { verifiedAt: program.verifiedAt, confidence: t(`ui.world.confidence.${program.confidence}`) })}</span>
       </div>
     </article>
