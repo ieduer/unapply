@@ -2,7 +2,7 @@
 // 六條效度標準（來源、覆蓋、區分力、準確、疑罪從無、題數與順序）＋池規模；不同起點／目的地出不同題；
 // 被捨棄的候選題（英語、學費、澳門公私立、香港 GRAS）有可重算的理由；分享只含選項鍵；與學習證據無交集。
 import assert from 'node:assert/strict'
-import { readFileSync, readdirSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 import test from 'node:test'
 import { buildGlobalPool, poolFor, type GlobalPoolItem } from '../src/engine/globalFilter.ts'
 import {
@@ -10,9 +10,10 @@ import {
   type BankContext, type BankId,
 } from '../src/engine/regionBanks.ts'
 import { questionEvidence } from '../src/data/questionEvidence.ts'
+import { bankEvidence } from '../src/lib/bankEvidence.ts'
 import { tierOf } from '../src/lib/authorityTier.ts'
 import type { OriginRegion } from '../src/data/origins.ts'
-import type { OverseasIndexPayload, OverseasRegionPayload } from '../src/data/overseasTypes.ts'
+import type { OverseasIndexPayload } from '../src/data/overseasTypes.ts'
 import type { HkMoTwPoolPayload } from '../src/data/hkmotwTypes.ts'
 import type { WorldAtlasPayload } from '../src/data/worldAtlasTypes.ts'
 
@@ -28,17 +29,21 @@ const ctxFor = (origin: OriginRegion | null): BankContext => ({
   familyOrder: atlas.families.map((f) => f.code),
   subjectOrder: atlas.subjects.map((s) => s.code),
   origin,
-  ugcFunded: new Set<string>(questionEvidence.ugcFunded.ids),
-  confirmedChannels: new Set<string>(questionEvidence.channelChecks.confirmed),
+  ...bankEvidence(),
 })
 const planFor = (bank: BankId, origin: OriginRegion | null) => evaluateBank(bank, poolFor(items, [bank], origin), ctxFor(origin))
 const ids = (bank: BankId, origin: OriginRegion | null) => planFor(bank, origin).questions.map((q) => q.id)
 
 test('各題庫最終題目（當時值）：海外 3、香港對大陸起點 2／其他起點 1、澳門 0、臺灣 0', () => {
   for (const origin of ORIGINS) assert.deepEqual(ids('overseas', origin), ['wanted', 'families', 'regions'], origin)
-  assert.deepEqual(ids('hk', 'cn-mainland'), ['hkFunding', 'channels'])
-  for (const origin of ['hk', 'mo', 'tw', 'overseas'] as const) assert.deepEqual(ids('hk', origin), ['hkFunding'], origin)
-  for (const origin of ORIGINS) { assert.deepEqual(ids('mo', origin), [], origin); assert.deepEqual(ids('tw', origin), [], origin) }
+  // 批 G8：香港年學費題（非香港起點）、澳門公立／私立題（大陸起點的澳門池扣掉只招研究生的聖若瑟後剩 9 所 < 10，不出題）
+  assert.deepEqual(ids('hk', 'cn-mainland'), ['hkFunding', 'hkTuitionCap', 'channels'])
+  assert.deepEqual(ids('hk', 'hk'), ['hkFunding'])
+  for (const origin of ['mo', 'tw', 'overseas'] as const) assert.deepEqual(ids('hk', origin), ['hkFunding', 'hkTuitionCap'], origin)
+  assert.deepEqual(ids('mo', 'cn-mainland'), [])
+  assert.equal(planFor('mo', 'cn-mainland').pool, 9)
+  for (const origin of ['hk', 'mo', 'tw', 'overseas'] as const) assert.deepEqual(ids('mo', origin), ['moOwnership'], origin)
+  for (const origin of ORIGINS) assert.deepEqual(ids('tw', origin), [], origin)
   // 不同起點／目的地出不同題
   assert.notDeepEqual(ids('hk', 'cn-mainland'), ids('hk', 'hk'))
   assert.notDeepEqual(ids('hk', 'cn-mainland'), ids('overseas', 'cn-mainland'))
@@ -69,7 +74,14 @@ test('標準 2 覆蓋 ≥60%、標準 3 區分力：沒有單選就劃光全池�
   assert.equal(hkCn.rejected.find((r) => r.id === 'wanted')?.reason, 'coverage') // GRAS 7/16
   assert.equal(hkCn.rejected.find((r) => r.id === 'regions')?.reason, 'no_effect') // 只有一個地區
   const moCn = planFor('mo', 'cn-mainland')
-  assert.equal(moCn.rejected.find((r) => r.id === 'channels')?.reason, 'coverage') // 原句確認 3/10
+  assert.equal(moCn.rejected.find((r) => r.id === 'channels')?.reason, 'pool_small') // 批 G8：聖若瑟對內地只招研究生，池 9 所
+  const moHk = planFor('mo', 'hk')
+  const own = moHk.questions.find((q) => q.id === 'moOwnership')!
+  assert.deepEqual([own.known, moHk.pool, own.options.map((o) => `${o.value}:${o.crossed}`).join(',')], [6, 10, 'public:3,private:3'])
+  const hkTw = planFor('hk', 'tw')
+  const cap = hkTw.questions.find((q) => q.id === 'hkTuitionCap')!
+  assert.deepEqual([cap.known, hkTw.pool, cap.single, cap.options.map((o) => `${o.value}:${o.crossed}`).join(',')], [14, 16, true, '150000:9,200000:7,250000:1'])
+  assert.equal(planFor('hk', 'hk').rejected.find((r) => r.id === 'hkTuitionCap')?.reason, 'coverage') // 只對非香港起點
   assert.equal(planFor('tw', 'cn-mainland').rejected[0].reason, 'pool_small')
 })
 
@@ -120,14 +132,16 @@ test('標準 6 題數與順序：每個題庫 ≤8 題，按「預期劃掉數 �
   }
 })
 
-test('被捨棄的候選（不進引擎）：英語總分、國際生學費覆蓋不足——以海外層地區檔重算', () => {
-  const dir = `${root}/public/data/overseas/regions/`
-  const inst = readdirSync(dir).flatMap((f) => (JSON.parse(readFileSync(dir + f, 'utf8')) as OverseasRegionPayload).institutions).filter((i) => !/^China-/.test(i.region))
-  assert.equal(inst.length, 388)
-  const overall = inst.filter((i) => i.english.quotes.some((q) => /IELTS/i.test(q.text) && /overall[^0-9.]{0,40}?[4-8](?:\.[05])?\b|[4-8]\.[05]\s*overall/i.test(q.text.replace(/<[^>]+>/g, ' '))))
-  assert.ok(overall.length / inst.length < VALIDITY.minCoverage, `IELTS overall ${overall.length}/${inst.length}`)
-  const tuition = inst.filter((i) => i.tuition.quotes.length > 0)
-  assert.ok(tuition.length / inst.length < VALIDITY.minCoverage, `tuition ${tuition.length}/${inst.length}`)
+test('被捨棄的候選（不進引擎）：英語總分、國際生學費覆蓋不足——批 G8 起以 R1 研究資料重算（海外題庫池）', () => {
+  const pool = new Set(poolFor(items, ['overseas'], 'cn-mainland').map((i) => i.id))
+  assert.equal(pool.size, 388)
+  const rows = (p: string) => readFileSync(`${root}/${p}`, 'utf8').trim().split('\n').slice(1)
+  const english = JSON.parse(read('public/data/overseas/requirements.json')) as { institutions: Record<string, { english?: unknown; tuition?: unknown }> }
+  const withEnglish = Object.entries(english.institutions).filter(([id, r]) => pool.has(id) && r.english).length
+  const withTuition = Object.entries(english.institutions).filter(([id, r]) => pool.has(id) && r.tuition).length
+  assert.deepEqual([withEnglish, withTuition], [47, 20])
+  assert.ok(withEnglish / pool.size < VALIDITY.minCoverage && withTuition / pool.size < VALIDITY.minCoverage)
+  assert.equal(rows('data/research/overseas_english.2026-11-08.csv').length >= 403, true)
 })
 
 test('作答正規化與分享：只留出題計畫裡的題與選項；分享只含選項鍵並可往返；舊 G2 鏈接 p＝換算成目的地', () => {
@@ -191,4 +205,60 @@ test('直招題作答：不考慮＝不列；海外去掉已劃掉的國家；�
   assert.deepEqual(decoded.answers.overseas?.directHire, ['consider'])
   const zhHant = JSON.parse(read('src/i18n/locales/zh-Hant.json')) as Record<string, string>
   for (const k of ['ui.global.q.directHire.title', 'ui.global.q.directHire.hint', 'ui.paths.answer.consider', 'ui.paths.answer.no']) assert.ok(zhHant[k], k)
+})
+
+// ---- 批 G8：R2 入庫（澳門公私立、香港學費、澳門管道與聖若瑟、參與名單）
+import { notRecruitingFor } from '../src/engine/globalFilter.ts'
+import { participationLists } from '../src/data/participationLists.ts'
+
+test('聖若瑟大學：對內地考生只招研究生（官方：目前不招內地本科，不算進池）；對港澳與其他起點照常', () => {
+  const usj = items.find((i) => i.id === 'mo-usj')!
+  assert.deepEqual([...usj.postgradOnlyFor], ['mainland_gaokao'])
+  assert.equal(usj.noUndergrad, false)
+  assert.equal(notRecruitingFor(usj, 'cn-mainland'), true)
+  for (const o of ['hk', 'mo', 'tw', 'overseas', null] as const) assert.equal(notRecruitingFor(usj, o), false, String(o))
+  assert.equal(poolFor(items, ['mo'], 'cn-mainland').some((i) => i.id === 'mo-usj'), false)
+  assert.equal(poolFor(items, ['mo'], 'hk').some((i) => i.id === 'mo-usj'), true)
+  // 陸生聯招會照舊（招生委員會，全部只招碩博）
+  assert.deepEqual(items.filter((i) => i.noUndergrad).map((i) => i.id), ['tw-rusen'])
+})
+
+test('澳門管道（R2 原句）：旅遊大學獨立招生、理工與城大單獨招生、鏡湖與中西網上報名系統直接報名，皆 confirmed；公私立只用逐校原句', () => {
+  const confirmed = new Set<string>(questionEvidence.channelChecks.confirmed)
+  for (const k of ['mo-utm|independent', 'mo-mpu|mainland_gaokao_separate', 'mo-cityu|mainland_gaokao_separate', 'mo-kwnc|direct_online_application', 'mo-mmc|direct_online_application', 'mo-um|independent', 'mo-must|independent']) assert.ok(confirmed.has(k), k)
+  assert.ok(questionEvidence.channelChecks.notBachelor.includes('mo-usj|postgraduate_only'))
+  assert.deepEqual([...questionEvidence.macauOwnership.public].sort(), ['mo-mpu', 'mo-um', 'mo-utm'])
+  assert.deepEqual([...questionEvidence.macauOwnership.private].sort(), ['mo-mim', 'mo-mmc', 'mo-usj'])
+  assert.equal(questionEvidence.macauOwnership.unknown.length, 4)
+  // 未寫明的 4 所永不劃掉
+  const plan = planFor('mo', 'hk')
+  const pool = poolFor(items, ['mo'], 'hk')
+  for (const v of ['public', 'private']) {
+    const r = computeBank(plan, pool, { mo: { moOwnership: [v] } }, ctxFor('hk'))
+    for (const id of questionEvidence.macauOwnership.unknown) assert.ok(r.kept.some((k) => k.item.id === id && k.unknown.includes('ownership_unstated')), `${v} ${id}`)
+  }
+})
+
+test('香港年學費題：最低年學費高於門檻才劃掉；讀不到（都會、聖方濟各）保留；學費全量 14 筆原句含金額；單選', () => {
+  assert.equal(questionEvidence.hkTuition.rows.length, 14)
+  assert.deepEqual([...questionEvidence.hkTuition.blocked], ['hk-hkmu'])
+  assert.deepEqual([...questionEvidence.hkTuition.notApplicable], ['hk-sfu'])
+  const plan = planFor('hk', 'tw')
+  const pool = poolFor(items, ['hk'], 'tw')
+  const r = computeBank(plan, pool, { hk: { hkTuitionCap: ['200000'] } }, ctxFor('tw'))
+  const minOf = new Map(questionEvidence.hkTuition.rows.map((x) => [x.id, x.min]))
+  for (const c of r.crossed) assert.ok((minOf.get(c.item.id) ?? 0) > 200000, c.item.id)
+  for (const k of r.kept) assert.ok(!minOf.has(k.item.id) || minOf.get(k.item.id)! <= 200000, k.item.id)
+  assert.ok(r.kept.some((k) => k.item.id === 'hk-hkmu' && k.unknown.includes('tuition_unread')))
+  assert.deepEqual(normalizeBankAnswers({ hk: { hkTuitionCap: ['150000', '250000'] } }, [plan]).hk?.hkTuitionCap, ['150000'])
+})
+
+test('參與名單（R2）：澳門＝聯招平台院校目錄（只收本科 320 列 → 316 校）、臺灣＝學測名單（450 列 → 448 校）；全部對到教育部 2026 名單', () => {
+  const gatzs = participationLists['gatzs-current'], gsat = participationLists['tw-gsat-2026']
+  assert.deepEqual([gatzs.origin, gatzs.channel, gatzs.listed, gatzs.count], ['mo', 'joint-admission', 320, 316])
+  assert.deepEqual([gsat.origin, gsat.channel, gsat.listed, gsat.count], ['tw', 'tw-gsat', 450, 448])
+  const schools = new Set((JSON.parse(read('public/data/runtime/schools.json')) as { id: string }[]).map((s) => s.id))
+  for (const l of [gatzs, gsat]) { for (const id of l.schoolIds) assert.ok(schools.has(id), id); assert.equal(new Set(l.schoolIds).size, l.schoolIds.length) }
+  const zhHant = JSON.parse(read('src/i18n/locales/zh-Hant.json')) as Record<string, string>
+  for (const id of Object.keys(participationLists)) for (const k of ['name', 'year', 'link']) assert.ok(zhHant[`ui.result.route.list.${id}.${k}`], `${id} ${k}`)
 })

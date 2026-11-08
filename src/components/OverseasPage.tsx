@@ -10,6 +10,7 @@ import type {
   OverseasVisa,
 } from '../data/overseasTypes'
 import { loadOverseasIndex, loadOverseasRegion } from '../lib/overseasData'
+import { OverseasRequirements } from './OverseasRequirements'
 import { getOriginOption, type OriginRegion } from '../data/origins'
 import { QUALIFICATION_OPTIONS, isQualification, offeredQualifications, qualificationTokens, type OriginPrefs } from '../data/originBranch'
 import { countListed, loadQualificationsIndex, markInstitution, type QualificationsPayload } from '../lib/originLayer'
@@ -514,6 +515,11 @@ function InstitutionDetail({ inst }: { inst: OverseasInstitutionDetail }) {
       <Field label={t('ui.overseas.field.qualifications')}>
         <Chips items={inst.qualifications.listed} />
         <Quotes quotes={inst.qualifications.quotes} />
+      </Field>
+
+      {/* 批 G8：研究抽出並核對過的英語要求與國際生年學費（官方原文） */}
+      <Field label={t('ui.req.title')}>
+        <OverseasRequirements id={inst.id} />
       </Field>
 
       <Field label={t('ui.overseas.field.english')}>

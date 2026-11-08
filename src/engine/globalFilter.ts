@@ -43,8 +43,10 @@ export interface GlobalPoolItem {
   overseasId: string | null
   /** 海外層的官方頁核查狀態（只供資格標示；不作劃掉依據）。 */
   status: OverseasStatus | null
-  /** 官方已明確目前不招本科（已記錄管道全部是非本科管道）。 */
+  /** 官方已明確目前不招本科（聯合招生委員會且已記錄管道全部是非本科管道：陸生聯招會）。 */
   noUndergrad: boolean
+  /** 一般院校：某類考生的已記錄管道全部是非本科管道（例：聖若瑟大學對內地高考生只招碩博，批 G8 主會話裁定 1）——只對那類考生不算進池。 */
+  postgradOnlyFor: readonly ChannelAudience[]
   /** 聯合招生委員會（臺灣陸生聯招會／海外聯招會）：是管道彙整，不是單一院校。 */
   committee: boolean
 }
@@ -91,13 +93,14 @@ export function buildGlobalPool(overseas: Pick<OverseasIndexPayload, 'institutio
     items.push({
       key: `hkmotw:${inst.id}`, pool: 'hkmotw', id: inst.id, region: HKMOTW_REGION_CODE[inst.region], destination: HKMOTW_DESTINATION[inst.region],
       subjects: gras(inst.atlasId ?? twin?.id ?? null), channels, overseasId: twin?.id ?? null, status: twin?.status ?? null,
-      noUndergrad: channels.length > 0 && channels.every((c) => NON_UNDERGRAD_CHANNELS.includes(c.code)),
+      noUndergrad: inst.kind === 'joint_admission_committee' && channels.length > 0 && channels.every((c) => NON_UNDERGRAD_CHANNELS.includes(c.code)),
+      postgradOnlyFor: inst.kind === 'joint_admission_committee' ? [] : CHANNEL_AUDIENCES.filter((a) => { const own = channels.filter((c) => c.audience === a); return own.length > 0 && own.every((c) => NON_UNDERGRAD_CHANNELS.includes(c.code)) }),
       committee: inst.kind === 'joint_admission_committee',
     })
   }
   for (const inst of overseas.institutions) {
     if (merged.has(inst.id)) continue
-    items.push({ key: `overseas:${inst.id}`, pool: 'overseas', id: inst.id, region: inst.region, destination: DESTINATION_OF_REGION[inst.region] ?? 'overseas', subjects: gras(inst.id), channels: null, overseasId: inst.id, status: inst.status, noUndergrad: false, committee: false })
+    items.push({ key: `overseas:${inst.id}`, pool: 'overseas', id: inst.id, region: inst.region, destination: DESTINATION_OF_REGION[inst.region] ?? 'overseas', subjects: gras(inst.id), channels: null, overseasId: inst.id, status: inst.status, noUndergrad: false, postgradOnlyFor: [], committee: false })
   }
   return items
 }
@@ -112,10 +115,17 @@ export function relevantTo(item: GlobalPoolItem, origin: OriginRegion | null | u
   return !audience || item.channels.some((c) => c.audience === audience)
 }
 
-/** 所選目的地的池（不含「目前不招本科」的條目；給了起點時也不含只服務別類考生的招生委員會）。 */
+/** 對這個起點「官方：目前不招本科」：招生委員會全部只招碩博，或一般院校對你這類考生只招碩博。 */
+export function notRecruitingFor(item: GlobalPoolItem, origin: OriginRegion | null | undefined): boolean {
+  if (item.noUndergrad) return true
+  const audience = origin === undefined ? null : audienceForOrigin(origin)
+  return audience !== null && item.postgradOnlyFor.includes(audience)
+}
+
+/** 所選目的地的池（不含對你這個起點「目前不招本科」的條目；給了起點時也不含只服務別類考生的招生委員會）。 */
 export function poolFor(items: readonly GlobalPoolItem[], destinations: readonly GlobalDestination[], origin?: OriginRegion | null): GlobalPoolItem[] {
   const set = new Set(destinations)
-  return items.filter((i) => set.has(i.destination) && !i.noUndergrad && relevantTo(i, origin))
+  return items.filter((i) => set.has(i.destination) && !notRecruitingFor(i, origin) && relevantTo(i, origin))
 }
 
 /** 資格標示（保留語義，永不劃掉）：有海外層招生頁的 verified 機構命中 token → listed；其餘有海外層頁的 → unread（保留）；沒有海外層頁 → na。 */

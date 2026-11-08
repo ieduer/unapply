@@ -1,9 +1,9 @@
 {
  "schema": "nope.db.v1.manifest",
  "schemaVersion": 1,
- "version": "11bdc13613b3",
+ "version": "b13acbf01ca1",
  "generatedAt": "2026-11-08",
- "base": "/db/v1/11bdc13613b3/",
+ "base": "/db/v1/b13acbf01ca1/",
  "contract": "https://github.com/ieduer/unapply/blob/master/docs/DB_API.md",
  "schemaDoc": "https://github.com/ieduer/unapply/blob/master/docs/DB_SCHEMA.md",
  "usage": "只讀、公開官方資訊的統一索引；任何欄位都不表示錄取可能或推薦，排名只描述學科分佈。Read-only index of public official information; no field indicates admission chances or a recommendation.",
@@ -17,7 +17,7 @@
  ],
  "datasets": {
   "institutions": {
-   "path": "/db/v1/11bdc13613b3/institutions.json",
+   "path": "/db/v1/b13acbf01ca1/institutions.json",
    "file": "institutions.json",
    "count": 3935,
    "sha256": "f0f43ec2bb800ddfc8830b2ce2239ae7098a5f1480d2042d3e95ad800e463267",
@@ -25,7 +25,7 @@
    "gzipBytes": 149473
   },
   "crosswalk": {
-   "path": "/db/v1/11bdc13613b3/crosswalk.json",
+   "path": "/db/v1/b13acbf01ca1/crosswalk.json",
    "file": "crosswalk.json",
    "count": 561,
    "sha256": "5eefac18604d36a91e3afe587dd0cfd701f2ab029a90a7209c7e9eb158a6c0a8",
@@ -33,36 +33,36 @@
    "gzipBytes": 11088
   },
   "channels": {
-   "path": "/db/v1/11bdc13613b3/channels.json",
+   "path": "/db/v1/b13acbf01ca1/channels.json",
    "file": "channels.json",
-   "count": 2066,
-   "sha256": "870249963a368034b7c5575ba32cc6f078e7a0b7e4a82011eaf5bdbe531d41ed",
-   "bytes": 1139523,
-   "gzipBytes": 142498
+   "count": 2068,
+   "sha256": "670adc4ca0823e7718413d673e4a7c29287fdafff23ae45afe9df5731be0e4ec",
+   "bytes": 1140074,
+   "gzipBytes": 142525
   },
   "conditions.index": {
-   "path": "/db/v1/11bdc13613b3/conditions.index.json",
+   "path": "/db/v1/b13acbf01ca1/conditions.index.json",
    "file": "conditions.index.json",
-   "count": 1351,
-   "sha256": "8b2c7b94462df0a1b3190cd42d20ffb5aa82aee20407474d83fb8fec04bed789",
-   "bytes": 541188,
-   "gzipBytes": 48211
+   "count": 1359,
+   "sha256": "bbfe4ecabbec61429c0fdb1dcb2f9e6cdf182ba4bd909de369b316cd3809b2a1",
+   "bytes": 543932,
+   "gzipBytes": 48714
   },
   "sources": {
-   "path": "/db/v1/11bdc13613b3/sources.json",
+   "path": "/db/v1/b13acbf01ca1/sources.json",
    "file": "sources.json",
-   "count": 3564,
-   "sha256": "e8169788de0467ca1928826a33ddfbab6e4a29422dbc068133998b936a197fc9",
-   "bytes": 1775600,
-   "gzipBytes": 236813
+   "count": 3566,
+   "sha256": "7dde920648a3cb001d61bec51c3386a2d9c1c7796609f97260b338dc310f6ad8",
+   "bytes": 1776694,
+   "gzipBytes": 237431
   },
   "validity": {
-   "path": "/db/v1/11bdc13613b3/validity.json",
+   "path": "/db/v1/b13acbf01ca1/validity.json",
    "file": "validity.json",
-   "count": 3417,
-   "sha256": "1caa281b480495930fec34ff4c32506bb6ebd151e02ebfab37c46b354f6db3b8",
-   "bytes": 599271,
-   "gzipBytes": 17391
+   "count": 3427,
+   "sha256": "2ab828334ecba7cda848c1ca0a9190ec43ac8e6fefa67ede111437eaf0eab03e",
+   "bytes": 601068,
+   "gzipBytes": 17446
   }
  },
  "references": [
@@ -77,8 +77,8 @@
   {
    "name": "hkmotw.pool",
    "path": "/data/hkmotw/pool.json",
-   "sha256": "2505fb0a15afab3625b080a5c1927008289fab354dc80a6b66b24803e816821c",
-   "bytes": 32228,
+   "sha256": "60a7bf73432d3c664dd8384ccd88eef6c820a53373784985230ed15d3ed842ce",
+   "bytes": 37058,
    "describes": "港澳臺院校池（只含 verified 的機構與管道）",
    "entity": "institution+admission_channel"
   },
@@ -747,7 +747,7 @@
   "geoFile": "gras_institutions_geo.2026-11-06.csv",
   "jointFile": "joint_programs.2026-11-07.csv",
   "hkInstFile": "hkmotw_institutions.2026-11-07.csv",
-  "hkChFile": "hkmotw_admission_channels.2026-11-07.csv",
+  "hkChFile": "hkmotw_admission_channels.2026-11-08.csv",
   "portalsFile": "overseas_national_portals.2026-11-07.csv",
   "visaFile": "overseas_visa_policies.2026-11-07.csv",
   "originFile": "origin_sources.2026-11-07.json",
@@ -829,12 +829,12 @@
  "counts": {
   "institutions": 3935,
   "crosswalk": 561,
-  "channels": 2066,
-  "conditions": 1351,
-  "sources": 3564,
-  "sourcesLinkable": 3462,
-  "validity": 3417,
+  "channels": 2068,
+  "conditions": 1359,
+  "sources": 3566,
+  "sourcesLinkable": 3465,
+  "validity": 3427,
   "references": 84,
-  "referenceBytes": 30046169
+  "referenceBytes": 30050999
  }
 }

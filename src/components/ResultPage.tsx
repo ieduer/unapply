@@ -173,9 +173,13 @@ export function ResultPage({
 }: Props) {
   const { t } = useLocale()
   // 「參與你這條管道」的官方名單（批 G6）：只對香港起點（文憑試或未答資格）；展示層，不改剩餘計數與學習證據
+  // 批 G8：香港＝文憑試收生計劃（資格為文憑試或未答）；澳門＝港澳臺聯招平台院校目錄（標本科者）；臺灣＝學測招生院校（資格為學測或未答）
   const routeList = useMemo<ParticipationList | null>(() => {
-    if (origin !== 'hk' || (originPrefs.qualification && originPrefs.qualification !== 'hkdse')) return null
-    return Object.values(participationLists).find((list) => list.origin === 'hk') ?? null
+    if (origin !== 'hk' && origin !== 'mo' && origin !== 'tw') return null
+    const q = originPrefs.qualification
+    if (origin === 'hk' && q && q !== 'hkdse') return null
+    if (origin === 'tw' && q && q !== 'gsat-ast') return null
+    return Object.values(participationLists).find((list) => list.origin === origin) ?? null
   }, [origin, originPrefs.qualification])
   const listedIds = useMemo(() => new Set(routeList?.schoolIds ?? []), [routeList])
   // 「只看名單內」是本分頁的檢視偏好：返回／前進、重新載入後保持（sessionStorage）
@@ -344,7 +348,7 @@ export function ResultPage({
             </div>
             {routeList && (
               <div className="flex flex-wrap items-center gap-3 border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-route-list={routeList.id}>
-                <p className="text-sm text-fog-300 leading-relaxed flex-1 min-w-[12rem]">{t('ui.result.route.listLine', { year: routeList.year, count: routeList.count, kept: finalKept.length, listed: listedKept.length })}</p>
+                <p className="text-sm text-fog-300 leading-relaxed flex-1 min-w-[12rem]">{t('ui.result.route.listLine', { name: t(`ui.result.route.list.${routeList.id}.name`), year: t(`ui.result.route.list.${routeList.id}.year`), count: routeList.count, kept: finalKept.length, listed: listedKept.length })}</p>
                 <button type="button" aria-pressed={onlyListed} onClick={() => setOnlyListed((v) => !v)} data-route-only-listed
                   className={['px-4 min-h-[44px] rounded-full border text-sm', onlyListed ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')}>
                   {t('ui.result.route.onlyListed')}
@@ -365,7 +369,7 @@ export function ResultPage({
                         {cityTierBadge(school.cityTier)}
                       </span>
                     </div>
-                    {routeList && listedIds.has(school.id) && <p className="mt-2 text-xs text-fog-100" data-route-listed>{t('ui.result.route.badge', { year: routeList.year })}</p>}
+                    {routeList && listedIds.has(school.id) && <p className="mt-2 text-xs text-fog-100" data-route-listed>{t('ui.result.route.badge', { name: t(`ui.result.route.list.${routeList.id}.name`), year: t(`ui.result.route.list.${routeList.id}.year`) })}</p>}
                     <p className="mt-2 text-xs text-fog-500">{explainKeptLocalized(school)}</p>
                     {programLine(school) && <p className="mt-1 text-xs text-fog-300">{programLine(school)}</p>}
                     {jointLine(school) && <p className="mt-1 text-xs text-fog-500">{jointLine(school)}</p>}
@@ -571,15 +575,17 @@ function YourRoute({ origin, list }: { origin: 'hk' | 'mo' | 'tw'; list: Partici
       <ul className="flex flex-col gap-2">
         {MAINLAND_CHANNELS[origin].map((channel) => {
           const links = liveSourceLinks(channel.sources)
-          const hasList = list && list.channel === channel.id
+          // 一條管道有官方名單就列（香港考生的「聯招」也列平台院校目錄）；結果頁的標示與切換只用起點的主名單
+          const channelList = Object.values(participationLists).find((l) => l.channel === channel.id) ?? (list && list.channel === channel.id ? list : null)
+          const hasList = Boolean(channelList)
           return (
             <li key={channel.id} className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 flex flex-col gap-1" data-route-channel={channel.id}>
               <p className="text-sm text-fog-100 leading-snug">{t(`ui.channels.${channel.key}.title`)}</p>
-              <p className="text-xs text-fog-500 leading-relaxed">{hasList ? t('ui.result.route.listed', { year: list.year, count: list.count }) : t('ui.result.route.noList')}</p>
+              <p className="text-xs text-fog-500 leading-relaxed">{channelList ? t('ui.result.route.listed', { name: t(`ui.result.route.list.${channelList.id}.name`), year: t(`ui.result.route.list.${channelList.id}.year`), count: channelList.count }) : t('ui.result.route.noList')}</p>
               {(links.length > 0 || hasList) && (
                 <p className="text-xs mono text-fog-500 flex flex-wrap items-center gap-x-2">
                   <span>{t('ui.branch.officialInfo')}</span>
-                  {hasList && <a className="inline-flex items-center min-h-[40px] underline hover:text-accent-500" href={list.source.url} target="_blank" rel="noreferrer noopener">{t('ui.result.route.listPdf', { publisher: t(`ui.source.${list.source.publisher}`) })} ↗</a>}
+                  {channelList && <a className="inline-flex items-center min-h-[40px] underline hover:text-accent-500" href={channelList.source.url} target="_blank" rel="noreferrer noopener" data-route-list-link={channelList.id}>{t(`ui.result.route.list.${channelList.id}.link`, { publisher: t(`ui.source.${channelList.source.publisher}`) })} ↗</a>}
                   {links.map(({ url, org }) => <a key={url} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{t(`ui.source.${org}`)} ↗</a>)}
                 </p>
               )}

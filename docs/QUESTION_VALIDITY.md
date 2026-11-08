@@ -26,18 +26,27 @@
 - 資格（含高考）只作標示（「校方頁面寫明接受」），永不劃掉。
 - 「官方頁未讀到」永遠不是劃掉的理由。
 
-## 目前結果（當時值，2026-11-08）
+## 目前結果（當時值，2026-11-08 批 G8 後）
 
 | 題庫 | 起點 | 題數 | 題目 |
 | --- | --- | --- | --- |
 | 海外（池 388） | 全部 | 3 | 只想讀哪些學科（GRAS 57 學科，requires）→ 哪些學科門類一定不讀（GRAS 五門類）→ 哪些國家／地區一定不去 |
-| 香港（池 16） | 中國大陸 | 2 | 哪類香港院校一定不考（教資會資助／其他，官方名單 8 所）→ 哪類招生管道你不會走（只用原句 confirmed 的內地生管道，覆蓋 11/16） |
-| 香港（池 16） | 港澳臺、海外 | 1 | 哪類香港院校一定不考 |
-| 澳門（池 10） | 全部 | 0 | 官方公私立名單未取得；管道與 GRAS 覆蓋不足 |
+| 香港（池 16） | 中國大陸 | 3 | 哪類香港院校一定不考（教資會資助／其他，官方名單 8 所）→ 年學費哪一檔以上一定不考（批 G8）→ 哪類招生管道你不會走（只用原句 confirmed 的內地生管道，覆蓋 11/16） |
+| 香港（池 16） | 澳門、臺灣、海外 | 2 | 哪類香港院校一定不考 → 年學費哪一檔以上一定不考 |
+| 香港（池 16） | 香港 | 1 | 哪類香港院校一定不考（學費題只對非香港起點） |
+| 澳門（池 10） | 港澳臺、海外 | 1 | 哪類澳門院校一定不考（公立 3／私立 3，未寫明 4 所保留；批 G8） |
+| 澳門（池 9） | 中國大陸 | 0 | 聖若瑟大學對內地只招研究生，不算進池；池少於 10 所 |
 | 臺灣（池 4–5） | 全部 | 0 | 池少於 10 所 |
 | 中國大陸 | 非大陸起點 | 43 | 自動略過 S1、A6（`NON_MAINLAND_AUTO_SKIP`） |
 
-逐題覆蓋、各選項劃掉數、抽樣準確率、捨棄理由：`reports/operations/nope-global-roadmap-20261107/nope-g6/validity-audit.md`。重新產生表格：
+批 G8 的兩題：
+
+- **澳門公立／私立**：來源是教青局「在澳學習・院校資訊」逐校原句（P0）。明寫 6/10，恰為 60%；不用「4 公 6 私」總數推斷其餘 4 所。
+- **香港年學費**：來源是各校官方學費頁原句，港幣。全量 14 筆核對原句含金額。固定門檻港幣 15 萬／20 萬／25 萬，單選；最低年學費都高於門檻才劃掉，讀不到的保留。
+
+仍不出題：海外英語總分 47/388、國際生學費 20/388（R1）、澳門元學費 4/10（R2）。這些只在海外機構詳情與 `#/search` 結果以「錄取條件（官方原文）」顯示。
+
+逐題覆蓋、各選項劃掉數、抽樣準確率、捨棄理由：`reports/operations/nope-global-roadmap-20261107/nope-g6/validity-audit.md`（批 G8 節）。重新產生表格：
 
 ```bash
 npm run -s audit:regions -- --md /path/to/tables.md
@@ -73,6 +82,7 @@ npm run -s audit:regions -- --md /path/to/tables.md
 | `data/research/official/ugc_fund_inst.{big5,eng}.2026-11-08.html` | 教資會「資助大學」頁存檔；SHA-256 釘在 `scripts/build_question_evidence.mjs` |
 | `data/research/question_validity/hk_ugc_funded.2026-11-08.csv` | 8 所官方名稱 → 院校池 id |
 | `data/research/question_validity/hkmotw_channel_checks.2026-11-08.csv` | 港澳院校池 21 筆內地生管道逐筆判讀（confirmed 14／unconfirmed 6／not_bachelor 1），含原句依據 |
+| `data/research/question_validity/macau_institution_types.2026-11-08.csv`、`hk_tuition.2026-11-08.csv` | 批 G8（R2 真實瀏覽器補讀）：澳門逐校公私立原句、香港內地／非本地生本科年學費原句；`hkmotw_channel_checks.2026-11-08-r2.csv` 為 R2 後的管道判讀修訂版（confirmed 18／24） |
 | `src/data/questionEvidence.ts` | 由 `npm run data:validity`（build 鏈在 `data:hkmotw` 之後）產生；fail-closed：雜湊不符、名單不是 8 所、名稱不在頁面正文、id 不在池、判讀值不合法都會停 |
 
 ## 加一道題

@@ -659,7 +659,15 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
   - 點唯一已選的目的地時，首頁與 `#/global` 結果頁顯示短暫 `aria-live` 提示「至少保留一個目的地。」（`useTransientNotice`）。
   - 資格說明只在目的地含海外時出現。
   - 頁頭與可見文字一律不顯示 manifest／版本雜湊（版本只放在 `data-*` 屬性或 `/db/v1/latest.json`）。
-- **參與你這條管道的官方名單**（展示層，不改剩餘計數與學習證據）：香港起點（資格為文憑試或未答）結果頁標「在文憑試收生計劃名單內（2026/27）」並可「只看名單內」。名單＝教育局 PDF `data/research/participation/edb_hk_dse_scheme_2026_27_list.pdf`（SHA-256 `c8bf73cb…92da` 釘在 `scripts/build_participation_lists.mjs`）→ 開發期 `node scripts/extract_hk_dse_participation.mjs`（需 pdftotext）轉 CSV（165 所，20 所新增；兩所寫法不同已人工對到教育部 id：紹興文理學院→绍兴大学、廈門華夏學院→厦门华厦学院）→ `npm run data:participation`（build 鏈第一步之一）產生 `src/data/participationLists.ts`。全國聯招招生院校、依學測招收臺灣學生院校兩份名單官方頁為動態頁或回「访问出错」，**未取得**，結果頁「你這條管道」只放官方說明鏈接並註明。
+- **批 G8 資料（R1／R2 研究入庫，2026-11-08）**：
+  - 澳門管道照 R2 原句更新（`hkmotw_admission_channels.2026-11-08.csv`；舊檔保留）：旅遊大學改為獨立招生；理工、城大改為單獨招生（理工轉 verified）；鏡湖、中西新增管道類型 `direct_online_application`（校方網上報名系統直接報名，原文未寫獨立或統招）。
+  - 中西另並列兩個官方事實：教青局內地本科名單未列它，但校方有 2027/28 內地簡章。
+  - 學費幣別照原文（城大、科大、中西為港幣）。澳大學費為 4 年全期，照原文不換算。
+  - **聖若瑟大學**：對內地只招碩博。`globalFilter` 的 `postgradOnlyFor` 讓它只對大陸起點算「官方：目前不招內地本科」，不算進池；港澳與其他起點照常。陸生聯招會仍以 `noUndergrad`（招生委員會）處理。
+  - 新題（`docs/QUESTION_VALIDITY.md`）：澳門公立／私立 `moOwnership`、香港年學費門檻 `hkTuitionCap`（單選，只對非香港起點）。證據在 `npm run data:validity`。
+  - 香港院校卡片對非香港起點列年學費原文。
+  - 海外英語要求與國際生年學費（R1，`npm run data:requirements` → `public/data/overseas/requirements.json`）只在海外機構詳情與 `#/search` 顯示，不出題。
+- **參與你這條管道的官方名單**（展示層，不改剩餘計數與學習證據）：香港起點（資格為文憑試或未答）結果頁標「在文憑試收生計劃參與院校名單內（2026/27 學年）」並可「只看名單內」；批 G8 起澳門起點用港澳臺聯招平台院校目錄（只收「本科生招生」320 列 → 316 校；頁面未標學年，記「平台現行目錄，2026-11-08 讀取」），臺灣起點（資格為學測或未答）用學測招生院校名單（450 列 → 448 校，學年依 2026-02-26 公告記 2026）；名稱對教育部名單：括號全半形統一 → 舊名 → 站方校區／學部對照 `data/research/participation/campus_parent_map.2026-11-08.csv`；「你這條管道」每條管道有名單就列（香港考生的聯招也列平台目錄）。名單＝教育局 PDF `data/research/participation/edb_hk_dse_scheme_2026_27_list.pdf`（SHA-256 `c8bf73cb…92da` 釘在 `scripts/build_participation_lists.mjs`）→ 開發期 `node scripts/extract_hk_dse_participation.mjs`（需 pdftotext）轉 CSV（165 所，20 所新增；兩所寫法不同已人工對到教育部 id：紹興文理學院→绍兴大学、廈門華夏學院→厦门华厦学院）→ `npm run data:participation`（build 鏈第一步之一）產生 `src/data/participationLists.ts`。全國聯招招生院校、依學測招收臺灣學生院校兩份名單官方頁為動態頁或回「访问出错」，**未取得**，結果頁「你這條管道」只放官方說明鏈接並註明。
 - **官方頁鏈接文字**：一律用乾淨機構名（`SOURCE_ORG_BY_DOMAIN` → 三語鍵 `ui.source.<slug>`；`liveSourceLinks` 只留 live、同網域只留一個），不再用原始網頁標題；選項提示與管道摘要不含內部核查備註（被擋、robots、連線重置、403、JavaScript、待人工覆核…，`test:origins` 斷言三語）。資料卡的來源行只寫一次「官方頁本站未讀到」；港澳臺院校池的資料備註經 `src/lib/publicNote.ts` 去掉內部核查子句後顯示（資料檔照留完整紀錄）。方法論仍在 About。
 - **About 在頁尾**：`src/components/SiteFooter.tsx`（三行頁尾，第一行末端「關於」）用於所有頁面；頁頭不再有 about。
 - **互動**：站內導航捲到頂部、瀏覽器返回／前進還原離開時的捲動位置（`src/lib/router.ts`；`history.scrollRestoration='manual'`）；路由變化後焦點移到頁面主標題，換題時移到題目標題（`tabindex=-1`，不畫焦點框）；大陸題作答與「走完大陸階段」存 `sessionStorage`（`unapply.answers.v1`、`unapply.mainlandDone.v1`；重新載入後從第一題未答處接著做，關分頁即清）；「重做」只清該階段；換語言、換色系不丟狀態。

@@ -24,7 +24,7 @@
     "audit:questions": "node scripts/audit_question_rules.mjs",
     "audit:values": "tsx scripts/audit_dimension_values.mjs",
     "audit:data": "tsx scripts/audit_data_coverage.mjs",
-    "build": "npm run data:tiers && npm run data:participation && npm run data:runtime && npm run data:atlas && npm run data:programs && npm run data:hkmotw && npm run data:validity && npm run data:joint && npm run data:overseas && npm run data:origins && npm run data:i18n && npm run data:db && npm run data:search && tsc -b && vite build",
+    "build": "npm run data:tiers && npm run data:participation && npm run data:runtime && npm run data:atlas && npm run data:programs && npm run data:hkmotw && npm run data:validity && npm run data:joint && npm run data:overseas && npm run data:requirements && npm run data:origins && npm run data:i18n && npm run data:db && npm run data:search && tsc -b && vite build",
     "lint": "eslint .",
     "test:evidence": "node --experimental-strip-types --test tests/learning-evidence.test.ts",
     "test:filters": "tsx --test tests/admission-channel.test.ts tests/evidence-threshold.test.ts tests/filter-validity.test.ts",
@@ -60,6 +60,7 @@
     "test:regions": "tsx --test tests/region-banks.test.ts",
     "test:search": "tsx --test tests/search.test.ts",
     "data:search": "node scripts/build_search_layer.mjs",
+    "data:requirements": "node scripts/build_overseas_requirements.mjs",
     "audit:regions": "tsx scripts/audit_region_questions.mjs"
   },
   "dependencies": {

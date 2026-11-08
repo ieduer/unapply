@@ -56,6 +56,8 @@ const CHANNEL_ZH = {
   mainland_students_admitted: '招收內地學生（報名方式待人工覆核）',
   joint_admission_overseas: '海外聯招（聯合分發／各校單獨招生）',
   postgraduate_only: '目前只招碩博士班；學士班未招生',
+  // 2026-11-08 批 G8（主會話裁定 4）：原句只寫經校方網上報名系統報名，未寫「獨立／單獨招生」或「統招」
+  direct_online_application: '校方網上報名系統直接報名（原文未寫獨立或統招）',
   unknown: '待人工覆核',
 }
 

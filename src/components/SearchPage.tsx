@@ -18,6 +18,7 @@ import { useLocale } from '../i18n/react'
 import type { Locale } from '../i18n/core'
 import { SiteHeader } from './SiteHeader'
 import { SiteFooter } from './SiteFooter'
+import { OverseasRequirements } from './OverseasRequirements'
 
 /**
  * 查詢（2026-11-08 批 G7，路線圖目標第 4 條「可檢索招生等情況，尤其是專業」）：只讀、即時、三語。
@@ -172,6 +173,8 @@ export function SearchPage({ onBack }: { onBack: () => void }) {
                       {g.members.map((m) => <span key={m.id} className="border border-ink-700 rounded-full px-2 py-0.5" data-search-layer={m.scheme}>{t(`ui.search.layer.${m.scheme}`)}</span>)}
                       {hit.via !== 'name' && <span data-search-via={hit.via}>{t(`ui.search.via.${hit.via}`, { name: hit.matched })}</span>}
                     </p>
+                    {/* 批 G8：海外機構有研究抽出的英語要求／國際生年學費時，列出原文摘要 */}
+                    {gras && slug && <OverseasRequirements id={gras.id.replace(/^gras:/, '')} compact />}
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs mono">
                       {moe?.siteRoute && <button type="button" onClick={() => go(moe.siteRoute!)} className="tap underline hover:text-accent-500" data-search-open="school">{t('ui.search.open.school')}</button>}
                       {hk && <button type="button" onClick={() => go('#/hkmotw')} className="tap underline hover:text-accent-500" data-search-open="hkmotw">{t('ui.search.open.hkmotw')}</button>}

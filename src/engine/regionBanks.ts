@@ -17,7 +17,7 @@ export type BankId = GlobalDestination
 /** 題庫順序＝目的地順序。 */
 export const BANKS: readonly BankId[] = ['hk', 'mo', 'tw', 'overseas']
 
-export type RegionQuestionId = 'wanted' | 'regions' | 'families' | 'hkFunding' | 'channels'
+export type RegionQuestionId = 'wanted' | 'regions' | 'families' | 'hkFunding' | 'channels' | 'moOwnership' | 'hkTuitionCap'
 export type QuestionKind = 'strike' | 'requires'
 
 export const VALIDITY = { minCoverage: 0.6, minPool: 10, maxQuestions: 8, minAccuracy: 0.95, minSample: 20 } as const
@@ -33,7 +33,16 @@ export interface BankContext {
   ugcFunded: ReadonlySet<string>
   /** 原句人工判讀為 confirmed 的管道（`${institutionId}|${channelCode}`）。 */
   confirmedChannels: ReadonlySet<string>
+  /** 批 G8：教青局逐校原句寫明的公立／私立（未寫明者兩邊都不在＝未知）。 */
+  macauPublic?: ReadonlySet<string>
+  macauPrivate?: ReadonlySet<string>
+  /** 批 G8：香港院校內地／非本地生本科最低年學費（港幣，官方原句）；讀不到的不在。 */
+  hkTuitionMin?: ReadonlyMap<string, number>
 }
+
+/** 香港年學費題的固定門檻（港幣）：選了 T＝最低年學費都高於 T 的一定不考。 */
+export const HK_TUITION_CAPS: readonly string[] = ['150000', '200000', '250000']
+const OVER_ALL_CAPS = 'over'
 
 export interface CandidateDef {
   id: RegionQuestionId
@@ -47,6 +56,10 @@ export interface CandidateDef {
   order?: (ctx: BankContext) => readonly string[]
   /** 是否需要原句抽樣核對（準確度標準 4）。 */
   sampled: boolean
+  /** 選項只用 order 給的（取值裡可能有不作選項的哨兵值）。 */
+  closedOptions?: boolean
+  /** 單選（門檻題）。 */
+  single?: boolean
 }
 
 const GRAS = { tier: 'P1' as const, ref: '軟科世界一流學科排名 GRAS 2026', url: 'https://www.shanghairanking.com/rankings/gras/2026' }
@@ -80,12 +93,32 @@ export const CANDIDATES: readonly CandidateDef[] = [
       return confirmed.length ? confirmed : null
     },
   },
+  {
+    // 批 G8：教青局「在澳學習・院校資訊」逐校原句（公立 3、私立 3；4 所未寫明＝未知、永不劃掉）
+    id: 'moOwnership', kind: 'strike', banks: ['mo'], source: { tier: 'P0', ref: '教育及青年發展局「在澳學習・院校資訊」逐校原句', url: 'https://portal.dsedj.gov.mo/webdsejspace/site/studyinmacau/tc/macau-university-details.html' }, sampled: true,
+    values: (item, ctx) => (item.destination !== 'mo' ? null : ctx.macauPublic?.has(item.id) ? ['public'] : ctx.macauPrivate?.has(item.id) ? ['private'] : null),
+    order: () => ['public', 'private'],
+  },
+  {
+    // 批 G8：香港院校內地／非本地生本科年學費（官方原句全量核對）；只對非香港起點；選門檻 T＝最低年學費都高於 T 的劃掉，讀不到的保留
+    id: 'hkTuitionCap', kind: 'requires', banks: ['hk'], source: { tier: 'P0', ref: '各院校官方學費頁（內地／非本地生本科年學費，港幣，原句全量核對）', url: '' }, sampled: true, closedOptions: true, single: true,
+    values: (item, ctx) => {
+      if (ctx.origin === 'hk' || item.destination !== 'hk') return null
+      const min = ctx.hkTuitionMin?.get(item.id)
+      if (min === undefined) return null
+      const within = HK_TUITION_CAPS.filter((cap) => min <= Number(cap))
+      return within.length ? within : [OVER_ALL_CAPS]
+    },
+    order: () => HK_TUITION_CAPS,
+  },
 ]
 
 export interface EvaluatedOption { value: string; crossed: number }
 export interface EvaluatedQuestion {
   id: RegionQuestionId
   kind: QuestionKind
+  /** 單選題（門檻）。 */
+  single?: boolean
   source: CandidateDef['source']
   known: number
   coverage: number
@@ -116,7 +149,7 @@ export function evaluateBank(bank: BankId, pool: readonly GlobalPoolItem[], ctx:
     if (coverage < VALIDITY.minCoverage) { rejected.push({ id: def.id, reason: 'coverage', known, coverage }); continue }
     const present = new Set(vals.flatMap((v) => v ?? []))
     const order = def.order ? def.order(ctx).filter((v) => present.has(v)) : []
-    const rest = [...present].filter((v) => !order.includes(v))
+    const rest = def.closedOptions ? [] : [...present].filter((v) => !order.includes(v))
     const counts = new Map<string, number>()
     for (const v of vals) for (const x of v ?? []) counts.set(x, (counts.get(x) ?? 0) + 1)
     rest.sort((a, b) => (counts.get(b) ?? 0) - (counts.get(a) ?? 0) || a.localeCompare(b, 'en'))
@@ -125,7 +158,7 @@ export function evaluateBank(bank: BankId, pool: readonly GlobalPoolItem[], ctx:
       .filter((o) => o.crossed > 0 && o.crossed < pool.length)
     if (!options.length) { rejected.push({ id: def.id, reason: 'no_effect', known, coverage }); continue }
     const expectedCrossed = options.reduce((s, o) => s + o.crossed, 0) / options.length
-    passed.push({ id: def.id, kind: def.kind, source: def.source, known, coverage, options, expectedCrossed, score: expectedCrossed * coverage })
+    passed.push({ id: def.id, kind: def.kind, ...(def.single ? { single: true } : {}), source: def.source, known, coverage, options, expectedCrossed, score: expectedCrossed * coverage })
   }
   passed.sort((a, b) => b.score - a.score || a.id.localeCompare(b.id))
   for (const q of passed.slice(VALIDITY.maxQuestions)) rejected.push({ id: q.id, reason: 'over_limit', known: q.known, coverage: q.coverage })
@@ -145,7 +178,7 @@ export function normalizeBankAnswers(answers: BankAnswers | null | undefined, pl
     for (const q of plan.questions) {
       const allowed = new Set(q.options.map((o) => o.value))
       const picked = [...new Set((given[q.id] ?? []).filter((v) => typeof v === 'string' && allowed.has(v)))].sort()
-      if (picked.length) bankOut[q.id] = picked
+      if (picked.length) bankOut[q.id] = q.single ? picked.slice(0, 1) : picked
     }
     // 非大學路徑題只在該題庫出題時保留，值只能是 consider／no 其一
     const path = given.directHire?.[0]
@@ -156,7 +189,7 @@ export function normalizeBankAnswers(answers: BankAnswers | null | undefined, pl
 }
 
 export interface BankReason { question: RegionQuestionId; values: string[] }
-export type BankUnknown = 'subjects_no_gras' | 'channels_unconfirmed' | 'channels_none_applicable'
+export type BankUnknown = 'subjects_no_gras' | 'channels_unconfirmed' | 'channels_none_applicable' | 'ownership_unstated' | 'tuition_unread'
 export interface BankKept { item: GlobalPoolItem; unknown: BankUnknown[] }
 export interface BankCrossed { item: GlobalPoolItem; reasons: BankReason[] }
 export interface BankResult { bank: BankId; pool: number; kept: BankKept[]; crossed: BankCrossed[] }
@@ -179,6 +212,8 @@ export function computeBank(plan: BankPlan, pool: readonly GlobalPoolItem[], ans
       else if (!values || !values.length) {
         if (q.id === 'wanted' || q.id === 'families') unknown.add('subjects_no_gras')
         if (q.id === 'channels') unknown.add((applicableChannels(item, ctx.origin)?.length ?? 0) > 0 ? 'channels_unconfirmed' : 'channels_none_applicable')
+        if (q.id === 'moOwnership') unknown.add('ownership_unstated')
+        if (q.id === 'hkTuitionCap') unknown.add('tuition_unread')
       }
     }
     if (reasons.length) crossed.push({ item, reasons })

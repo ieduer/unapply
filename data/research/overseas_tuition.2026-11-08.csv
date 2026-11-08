@@ -1,0 +1,404 @@
+institutionId,nameEn,region,s3Status,tuitionStatus,reason,pageKind,tuitionMin,tuitionMax,currency,academicYear,tuitionBasis,tuitionQuote,tuitionQuoteMax,tuitionContext,tuitionSourceUrl,tuitionSourceSha256,tuitionPageTitle,fetchedAt,origin,amountsOnPage,otherPagesWithValues,rulesVersion
+RG00002,The Chinese University of Hong Kong,China-Hong Kong,verified,extracted,,general,230000,,HKD,2027/28,per-year,"The tuition fee for non-local students for 2027-2028 is HK$230,000 per annum. Any yearly fee adjustment for the 2027 cohort will be capped at 3%. The tuition fees for dual undergraduate degree programmes may vary. A caution fee of HK$450 must be paid upon enrolment. This is…",,Overseas / › Tuition Fees,https://admission.cuhk.edu.hk/application/overseas-other-qualifications-non-local-international-team/fees-calculator/,cb56227f97dd58adbe639e4426ecc7d3d9ceade00176a95e04effed1cb3406ab,Fees Calculator - CUHK Undergraduate Admissions,2026-11-08T14:15:36.429Z,r1-crawl,1,0,r1-2026-11-08u
+RG00007,The Hong Kong Polytechnic University,China-Hong Kong,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×15；未寫明每年／學年×8；未寫明本科×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RG00008,The Hong Kong University of Science and Technology,China-Hong Kong,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×30；只讀到本地／歐盟學生學費×8；按學分計價（不換算）×8,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RG00009,Hong Kong Baptist University,China-Hong Kong,verified,extracted,,general,240000,,HKD,2027/28,academic-year-label," Tuition fees for academic year 2027/28 Local students*: HK$49,500 Non-local students: HK$240,000 ""}}"" id=""text-0373bd407a"" class=""c-text ignore-font-size-new none noHighlightColor "" style=""color: #07004f;;…",,Fees and Scholarships,https://admissions.hkbu.edu.hk/fees-and-scholarships.html,de864f0336b7afbc7328b360386666db09f94a16607ac89d4db3400d3a0f7583,Fees & Scholarships | HKBU Undergraduate Admissions,2026-11-08T14:15:41.672Z,r1-crawl,1,0,r1-2026-11-08u
+RG00010,The Education University of Hong Kong,China-Hong Kong,verified,no_qualifying_quote,只讀到本地／歐盟學生學費×9；金額是申請費／押金／生活費／獎學金等×3；非學士（證書／文憑）×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RG00012,The University of Hong Kong,China-Hong Kong,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×9；只讀到本地／歐盟學生學費×6；本地與國際生混在同一層×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RG00013,City University of Hong Kong,China-Hong Kong,verified,blocked,HTTP 200 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RG00015,City University of Macau,China-Macau,not_found,not_crawled_not_found,入庫狀態 not_found（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RG00017,Macao University of Tourism,China-Macau,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RG00018,Macau University of Science and Technology,China-Macau,verified,no_amount_on_pages,已讀 11 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RG00019,University of Macau,China-Macau,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RG00041,National Taiwan Normal University,China-Taiwan,verified,no_amount_on_pages,已讀 3 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RG00047,National Taiwan University,China-Taiwan,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RG00049,Taipei Medical University,China-Taiwan,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RG00068,Kaohsiung Medical University,China-Taiwan,verified,no_amount_on_pages,已讀 8 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00038,Australian Catholic University,Australia,blocked,not_crawled_blocked,入庫狀態 blocked（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00045,Curtin University,Australia,verified,no_qualifying_quote,未寫明每年／學年×17；按學分計價（不換算）×12；金額是申請費／押金／生活費／獎學金等×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00046,Deakin University,Australia,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00047,Edith Cowan University,Australia,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00049,Flinders University,Australia,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×59；未寫明每年／學年×8,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00050,Griffith University,Australia,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00051,James Cook University,Australia,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00053,La Trobe University,Australia,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00054,Macquarie University,Australia,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00055,Monash University,Australia,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00056,Murdoch University,Australia,verified,extracted,,general,36720,71880,AUD,2027,per-year,"Course Code | Course Title | Indicative First Year Course Fee | Indicative Total Course Fee ⏎ B1356 | BACHELOR OF ARTS | $36,720 | $110,160","Course Code | Course Title | Indicative First Year Course Fee | Indicative Total Course Fee ⏎ B1402 | BACHELOR OF SCIENCE / DOCTOR OF VETERINARY MEDICINE | $71,880 | $431,280",2027 International Course Fees,https://www.murdoch.edu.au/study/fees/course-fees/2027-fees,37b8a13519c3c3861a8a1ade7b4bbdb823002079ad23e19eec947716f0b31605,2027 International Fees,2026-11-08T14:16:09.697Z,r1-crawl,49,0,r1-2026-11-08u
+RI00057,Queensland University of Technology,Australia,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00058,RMIT University,Australia,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×24；泛指某國學費的說明×14；非學士（證書／文憑）×9,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00060,Swinburne University of Technology,Australia,verified,extracted,,general,35590,47700,AUD,2027,per-year,"Study area | Course type | Indicative course fees for 2027 (A$) ⏎ Education | Bachelor degree | $35,590–$39,800 (annual)","Study area | Course type | Indicative course fees for 2027 (A$) ⏎ Built environment and architecture | Bachelor degree | $47,700 (annual)",Fees for international students › Understanding your fees › Find a specific course fee › Undergraduate,https://www.swinburne.edu.au/courses/fees/fees-for-international-students/,2e1d081c6f90fbaaaa7e5ab477ad8470e5b63a1ff985e409bc1defaca74bf53d,Fees for international students | Swinburne,2026-11-08T14:16:13.671Z,r1-crawl,13,0,r1-2026-11-08u
+RI00061,The Australian National University,Australia,verified,no_qualifying_quote,未寫明每年／學年×20；金額是申請費／押金／生活費／獎學金等×10,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00062,Adelaide University,Australia,verified,no_qualifying_quote,未寫明每年／學年×46；金額是申請費／押金／生活費／獎學金等×22；原句與上下文未寫明國際生×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00063,The University of Melbourne,Australia,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00064,The University of New South Wales,Australia,verified,no_qualifying_quote,按學分計價（不換算）×180；未寫明每年／學年×4；金額是申請費／押金／生活費／獎學金等×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00065,"The University of Newcastle, Australia",Australia,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00067,The University of Queensland,Australia,verified,no_qualifying_quote,原句與上下文未寫明國際生×25；未寫明每年／學年×11；金額是申請費／押金／生活費／獎學金等×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00068,The University of Western Australia,Australia,verified,not_adopted_basis,只讀到按學分計價（不換算）的本科國際生學費，依規則不換算、不採,,,,AUD,,per-credit,"Course Code | Course Name | Total Course Credit Points | Annual Credit Points | 2022 annual fee | Fee per credit point ⏎ BP001 | Bachelor of Arts | 144 | 48 | $34,200 | $712",,,https://www.fees.uwa.edu.au/Calculator,,,2026-11-08T14:16:28.851Z,,,,r1-2026-11-08u
+RI00073,University of Sydney,Australia,verified,extracted,,general,51700,69200,AUD,2027,academic-year-label,"Course level | Full-time fees (guide for 2026 entry) | Full-time fees (guide for 2027 entry) | ⏎ Undergraduate | A$49,200 – A$56,300 | A$51,700 – A$59,100 | ","Course level | Full-time fees (guide for 2026 entry) | Full-time fees (guide for 2027 entry) | ⏎ Undergraduate | A$60,600 – A$65,900 | A$63,600 – A$69,200 | ",Tuition by study area › Indicative only › Arts and social sciences,https://www.sydney.edu.au/study/fees-and-loans/international-student-tuition-fees.html,a34036dd921fc203e3684aa596ba6769259016bb4aa1e0caf6a069f222d32cc5,International student tuition fees - The University of Sydney,2026-11-08T14:16:30.314Z,r1-crawl,16,0,r1-2026-11-08u
+RI00074,University of Tasmania,Australia,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00075,University of Technology Sydney,Australia,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×2；未寫明每年／學年×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00077,University of Wollongong,Australia,verified,no_qualifying_quote,未寫明每年／學年×4；金額旁無學費字樣×3；獎學金／折扣減免額或附加費×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00080,Western Sydney University,Australia,verified,no_qualifying_quote,未寫明每年／學年×116；金額是申請費／押金／生活費／獎學金等×25；原句與上下文未寫明國際生×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00086,Medical University of Vienna,Austria,verified,no_qualifying_quote,按學期計價（不換算）×10；未寫明每年／學年×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00094,Technical University of Leoben,Austria,verified,no_qualifying_quote,按學期計價（不換算）×6；只讀到預科／語言課／交換生要求×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00097,"University of Natural Resources and Life Sciences, Vienna",Austria,verified,no_amount_on_pages,已讀 12 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00099,"University of Veterinary Medicine, Vienna",Austria,not_found,not_crawled_not_found,入庫狀態 not_found（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00100,University of Vienna,Austria,verified,no_qualifying_quote,未寫明每年／學年×5；金額旁無學費字樣×2；按學期計價（不換算）×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00101,Vienna University of Technology,Austria,verified,no_amount_on_pages,已讀 2 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00124,Ghent University,Belgium,verified,no_qualifying_quote,只讀到預科／語言課／交換生要求×10；非學士（證書／文憑）×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00126,KU Leuven,Belgium,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00128,University of Antwerp,Belgium,verified,not_adopted_basis,只讀到按學分計價（不換算）的本科國際生學費，依規則不換算、不採,,,,EUR,,per-credit,"in the case of a bachelor, at least 45 EUR per credit and having already paid minimum 1500 EUR of your tuition fee (visible in SisA),",,,https://www.uantwerpen.be/en/study/admission-and-enrolment/enrolment/tuition-fees/,,,2026-11-08T14:17:00.315Z,,,,r1-2026-11-08u
+RI00150,Federal University of Minas Gerais,Brazil,verified,no_amount_on_pages,已讀 6 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00271,University of Campinas,Brazil,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00275,University of Sao Paulo,Brazil,verified,no_amount_on_pages,已讀 3 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00292,Concordia University,Canada,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×71；按學分計價（不換算）×34；按學期計價（不換算）×10,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00293,Dalhousie University,Canada,verified,no_qualifying_quote,按學期計價（不換算）×18；未寫明每年／學年×12；金額是申請費／押金／生活費／獎學金等×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00302,McGill University,Canada,verified,no_qualifying_quote,未寫明每年／學年×43；金額是申請費／押金／生活費／獎學金等×27；非學士（證書／文憑）×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00303,McMaster University,Canada,verified,no_qualifying_quote,金額旁無學費字樣×1；金額是申請費／押金／生活費／獎學金等×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00304,Memorial University of Newfoundland,Canada,verified,not_adopted_basis,只讀到按學分計價（不換算）的本科國際生學費，依規則不換算、不採,,,,CAD,,per-credit," | Fall 2022 | Fall 2023 | Fall 2024 | Fall 2025 | Fall 2026 (original) | Fall 2026 ⏎ International students | $2,000 | $2,079 | $2,163 | $2,250 | $2,340 | $2,250",,,https://www.mun.ca/undergrad/money-matters/new-tuition-framework/,,,2026-11-08T14:17:36.506Z,,,,r1-2026-11-08u
+RI00313,Simon Fraser University,Canada,verified,not_adopted_basis,只讀到按學期計價（不換算）的本科國際生學費，依規則不換算、不採,,,,CAD,,per-semester,"Expense type | 2026/27 per term costs (4 months) ⏎ Tuition (based on 5 courses, 15 units of normal fees) | $18,943.20 1",,,https://www.sfu.ca/students/financial-aid/plan/typical-costs.html,,,2026-11-08T14:17:39.632Z,,,,r1-2026-11-08u
+RI00315,The University of Calgary,Canada,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×12；金額旁無學費字樣×1；獎學金／折扣減免額或附加費×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00317,University of Alberta,Canada,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00318,University of British Columbia,Canada,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×5；金額旁無學費字樣×2；獎學金／折扣減免額或附加費×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00319,University of Guelph,Canada,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×7；未寫明每年／學年×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00323,University of Montreal,Canada,verified,no_qualifying_quote,按學分計價（不換算）×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00326,University of Ottawa,Canada,verified,not_adopted_basis,只讀到按學期計價（不換算）的本科國際生學費，依規則不換算、不採,,,,CAD,,per-semester,"Progress in your program | Tuition per term for current year | Increase | Tuition per term the following year ⏎ 33 or fewer units (around 11 or fewer courses) | (A1) $22,000 | (A1) + 10% | (A2) $24,200",,,https://www.uottawa.ca/study/fees-financial-support/university-fees/tuition-international,,,2026-11-08T14:18:24.583Z,,,,r1-2026-11-08u
+RI00334,University of Saskatchewan,Canada,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×50；未寫明每年／學年×28；非學士（證書／文憑）×25,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00336,University of Toronto,Canada,verified,no_amount_on_pages,已讀 12 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00337,University of Victoria,Canada,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00338,University of Waterloo,Canada,verified,no_qualifying_quote,獎學金／折扣減免額或附加費×6；未寫明每年／學年×3；金額旁無學費字樣×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00342,Western University,Canada,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×18；金額旁無學費字樣×3；未寫明每年／學年×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00344,York University,Canada,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×11；未寫明每年／學年×10,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00394,University of Zagreb,Croatia,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00407,Czech University of Life Sciences Prague,Czech Republic,verified,no_qualifying_quote,未寫明每年／學年×4；金額旁無學費字樣×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00422,Aalborg University,Denmark,verified,no_qualifying_quote,未寫明每年／學年×4；金額是申請費／押金／生活費／獎學金等×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00424,Aarhus University,Denmark,verified,no_qualifying_quote,金額旁無學費字樣×4；金額是申請費／押金／生活費／獎學金等×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00425,Copenhagen Business School,Denmark,verified,no_qualifying_quote,金額旁無學費字樣×19；金額是申請費／押金／生活費／獎學金等×18；按學期計價（不換算）×18,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00428,Roskilde University,Denmark,verified,extracted,,general,16000,,EUR,2026,per-year,"Fee per year (60 ECTS): 16,000 Euro",,Step 4: Application fee and tuition fees › Tuition fee rates for bachelor programmes for entry from September 2026 › Fees for International Bachelor in Natural Sciences,https://ruc.dk/en/step-4-application-fee-and-tuition-fees,b6ee101b7a04d62741ffb119f0742d07387a24ed67057fa607233eb364fd6dad,Step 4: Application fee and tuition fees | Roskilde University,2026-11-08T14:19:06.223Z,r1-crawl,1,0,r1-2026-11-08u
+RI00433,Technical University of Denmark,Denmark,verified,no_amount_on_pages,已讀 2 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00435,University of Copenhagen,Denmark,verified,no_amount_on_pages,已讀 5 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00485,Aalto University,Finland,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×9；原句與上下文未寫明國際生×9；金額旁無學費字樣×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00494,University of Helsinki,Finland,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×4；原句與上下文未寫明國際生×3；未寫明每年／學年×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00496,University of Oulu,Finland,verified,programme_specific_only,只在單一課程頁讀到 1–2 筆學費，不能代表全校本科學費範圍,programme,10000,,EUR,,per-year,10 000 € per year (for non-EU/EEA students),,Bachelor's in International Business Management › International Business Management › Tuition fee,https://www.oulu.fi/en/apply/bachelors-international-business-management,1c23243bd7f18c91660d1b76e9608c21317b1fa1286445e5019e6584156cc3c3,Bachelor's in International Business Management | University of Oulu,2026-11-08T14:19:36.884Z,r1-crawl,1,0,r1-2026-11-08u
+RI00499,University of Turku,Finland,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00502,Institut Agro,France,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×6；金額旁無學費字樣×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00503,Aix Marseille University,France,verified,extracted,,general,2902,,EUR,2026/27,academic-year-label,Licence : 2 902€,,Droits d'inscription différenciés pour les étudiants hors Union Européenne › Montant des droits différenciés pour 2026-27 :,https://www.univ-amu.fr/fr/etudiants-internationaux/etudiants-internationaux-formation-diplomante/droits-dinscription-differencies-etudiants-union-europeenne,6b2733cf7f2892cc4f614e05bc9bb9ffe23ecfa42ae3c1cd7d2fc2a12c579f75,Droits d'inscription différenciés pour les étudiants hors Union Européenne | Aix Marseille Université - amU,2026-11-08T14:19:26.386Z,r1-crawl,1,0,r1-2026-11-08u
+RI00505,Audencia Business School,France,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×38；未寫明每年／學年×7；原句與上下文未寫明國際生×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00555,HEC Paris,France,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×19；原句與上下文未寫明國際生×8；幣別無法確定×8,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00560,Institut Mines-Telecom,France,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00562,INSA Lyon,France,verified,no_qualifying_quote,未寫明每年／學年×10；金額是申請費／押金／生活費／獎學金等×6；金額旁無學費字樣×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00564,INSEAD,France,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00599,The University of Toulouse,France,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00602,PSL University,France,verified,no_qualifying_quote,金額旁無學費字樣×90；未寫明每年／學年×46；金額是申請費／押金／生活費／獎學金等×9,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00605,Sorbonne University,France,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00624,Université Grenoble Alpes,France,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00644,University of Lille,France,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×11；原句與上下文未寫明國際生×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00652,University of Montpellier,France,verified,no_qualifying_quote,金額旁無學費字樣×4；原句與上下文未寫明國際生×3；本科研究生混在同一層×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00654,Nantes University,France,verified,extracted,,general,2902,,EUR,2026/27,per-year,En licence : 2 902 € par an (contre 178 € pour les frais nationaux),,FAQ frais d'inscription et frais différenciés - Rentrée 2026/2027 › Frais différenciés : de quoi s'agit-il ? › Les montants pour 2026-2027 ont été fixés par arrêté ministériel :,https://www.univ-nantes.fr/international/venir-a-nantes/faq-frais-differencies-rentree-2026-2027,6806efa861a79d5898bb822f9d3596860caee3ed4d388aa5738579403ab7ec25,FAQ frais d'inscription et frais différenciés - Rentrée 2026/2027 - Nantes Université,2026-11-08T14:20:06.836Z,r1-crawl,1,0,r1-2026-11-08u
+RI00657,Université Paris Cité,France,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00661,Paris-Saclay University,France,verified,no_qualifying_quote,金額旁無學費字樣×6；原句與上下文未寫明國際生×3；只讀到本地／歐盟學生學費×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00675,Toulouse Capitole University,France,verified,no_qualifying_quote,未寫明每年／學年×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00678,University of Western Brittany,France,verified,extracted,,general,2902,,EUR,2026/27,per-year,"Enrolment in a Bachelor’s degree, BUT or Professional Bachelor’s degree: €2,902",,Differentiated tuiton fees › Non-EU students: differentiated tuition fees and exemptions for 2026/2027 › The annual tuition fees applicable for 2026/2027 are as follows:,https://www.univ-brest.fr/en/actualite/differentiated-tuiton-fees,99d14155fde1d9db97f6eeb2df9f9419830a0d0944eb0d449382e609fb55135d,Differentiated tuiton fees | Université de Bretagne Occidentale,2026-11-08T14:20:23.553Z,r1-crawl,2,0,r1-2026-11-08u
+RI00701,Frankfurt School of Finance and Management,Germany,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×3；只讀到預科／語言課／交換生要求×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00702,Free University Berlin,Germany,verified,no_amount_on_pages,已讀 2 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00708,Heidelberg University,Germany,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00717,Humboldt University of Berlin,Germany,blocked,not_crawled_blocked,入庫狀態 blocked（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00720,Karlsruhe Institute of Technology (KIT),Germany,verified,no_qualifying_quote,金額旁無學費字樣×19；按學期計價（不換算）×12；金額是申請費／押金／生活費／獎學金等×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00725,RWTH Aachen University,Germany,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×70；按學期計價（不換算）×3；金額旁無學費字樣×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00726,Saarland University,Germany,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×14；按學期計價（不換算）×5；未寫明每年／學年×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00732,Technical University of Munich,Germany,verified,not_adopted_basis,只讀到按學期計價（不換算）的本科國際生學費，依規則不換算、不採,,,,EUR,,per-semester,"…The amount depends on your degree program. For bachelor’s degree programs, tuition fees are usually 2,000 or 3,000 euros per semester. For master’s degree programs, they are usually 4,000 or 6,000 euros per semester.",,,https://www.tum.de/en/studies/fees/tuition,,,2026-11-08T14:20:37.470Z,,,,r1-2026-11-08u
+RI00740,University of Bonn,Germany,verified,no_qualifying_quote,金額旁無學費字樣×18,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00741,University of Bremen,Germany,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×8；未寫明每年／學年×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00743,University of Duisburg-Essen,Germany,verified,no_qualifying_quote,金額旁無學費字樣×12；「免學費」未寫明本科×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00746,University of Freiburg,Germany,verified,no_qualifying_quote,按學期計價（不換算）×11；未寫明每年／學年×11；金額是申請費／押金／生活費／獎學金等×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00748,University of Goettingen,Germany,verified,no_amount_on_pages,已讀 2 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00752,University of Hamburg,Germany,verified,no_qualifying_quote,未寫明每年／學年×3；金額旁無學費字樣×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00757,Kiel University,Germany,blocked,not_crawled_blocked,入庫狀態 blocked（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00758,University of Konstanz,Germany,verified,robots_disallowed,robots.txt 不允許,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00762,Johannes Gutenberg University Mainz,Germany,not_found,not_crawled_not_found,入庫狀態 not_found（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00766,LMU Munich,Germany,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00771,University of Potsdam,Germany,verified,no_qualifying_quote,金額旁無學費字樣×5；未寫明每年／學年×1；金額是申請費／押金／生活費／獎學金等×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00776,University of Tuebingen,Germany,verified,not_adopted_basis,只讀到按學期計價（不換算）的本科國際生學費，依規則不換算、不採,,,,EUR,,per-semester,(Studiengebühren in Baden-Württemberg in Höhe von 1.500 Euro/Semester für Nicht-EU-Bürger*innen sind bei den Ausgaben nicht berücksichtigt.),,,https://uni-tuebingen.de/international/studierende-aus-dem-ausland/degree-seeking-students/bewerbung-fuer-internationale-studierende/bachelor-und-staatsexamen,,,2026-11-08T14:21:01.212Z,,,,r1-2026-11-08u
+RI00778,University of Veterinary Medicine Hannover,Germany,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×2；未寫明每年／學年×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00779,University of Wuerzburg,Germany,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×12；按學期計價（不換算）×8；「免學費」未寫明本科×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00794,National and Kapodistrian University of Athens,Greece,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×6；獎學金／折扣減免額或附加費×2；金額旁無學費字樣×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00812,Semmelweis University,Hungary,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×4；未寫明每年／學年×4；按學期計價（不換算）×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI00910,Indian Institute of Technology Delhi,India,verified,no_amount_on_pages,已讀 5 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01041,Vellore Institute of Technology,India,verified,no_qualifying_quote,幣別無法確定×28；金額是申請費／押金／生活費／獎學金等×1；未寫明每年／學年×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01135,University of Tehran,Iran,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01155,Trinity College Dublin,Ireland,verified,no_qualifying_quote,原句與上下文未寫明國際生×14；金額是申請費／押金／生活費／獎學金等×11；未寫明每年／學年×9,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01157,University College Dublin,Ireland,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01168,Technion-Israel Institute of Technology,Israel,verified,no_qualifying_quote,幣別無法確定×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01170,The Hebrew University of Jerusalem,Israel,verified,extracted,,general,12017,,ILS,2025/26,per-year,"NIS 12,017 (approximately 3,750 US$, according to January 2025 exchange rates)",,Financial Information › Annual Fees › Undergraduate Tuition (2025/26),https://info-overseas.huji.ac.il/financial-information,acbc5f0721d596f92b04568c60e892bdb955d72c3097d922cd61464e887a1185,Financial Information | Overseas Admission,2026-11-08T14:23:59.070Z,r1-crawl,1,0,r1-2026-11-08u
+RI01171,University of Haifa,Israel,verified,no_amount_on_pages,已讀 12 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01173,Weizmann Institute of Science,Israel,verified,no_qualifying_quote,幣別無法確定×5,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01179,Bocconi University,Italy,verified,no_qualifying_quote,原句與上下文未寫明國際生×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01186,European University Institute,Italy,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01203,Polytechnic University of Milan,Italy,verified,fetch_failed,host unreachable at robots: ECONNRESET,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01204,Polytechnic University of Turin,Italy,verified,no_qualifying_quote,未寫明每年／學年×4；金額是申請費／押金／生活費／獎學金等×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01206,Sapienza University of Rome,Italy,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×46；金額旁無學費字樣×4；原句與上下文未寫明國際生×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01208,Sant'Anna School of Advanced Studies - Pisa,Italy,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01222,University of Bologna,Italy,verified,no_qualifying_quote,未寫明每年／學年×90；金額是申請費／押金／生活費／獎學金等×7；原句與上下文未寫明國際生×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01231,University of Florence,Italy,verified,no_qualifying_quote,未寫明每年／學年×9；金額是申請費／押金／生活費／獎學金等×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01237,University of Milan,Italy,verified,no_qualifying_quote,未寫明每年／學年×34；原句與上下文未寫明國際生×25；金額是申請費／押金／生活費／獎學金等×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01241,University of Naples Federico II,Italy,verified,no_qualifying_quote,金額旁無學費字樣×5；未寫明本科×3；金額是申請費／押金／生活費／獎學金等×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01242,University of Padua,Italy,verified,no_qualifying_quote,未寫明每年／學年×29；獎學金／折扣減免額或附加費×11；原句與上下文未寫明國際生×10,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01247,University of Pisa,Italy,verified,no_qualifying_quote,原句與上下文未寫明國際生×56；未寫明每年／學年×43；金額是申請費／押金／生活費／獎學金等×33,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01254,University of Trento,Italy,verified,no_qualifying_quote,未寫明每年／學年×18；金額是申請費／押金／生活費／獎學金等×5,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01256,University of Turin,Italy,verified,no_qualifying_quote,未寫明每年／學年×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01352,Kyoto University,Japan,verified,no_qualifying_quote,金額旁無學費字樣×35；原句與上下文未寫明國際生×18；金額是申請費／押金／生活費／獎學金等×9,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01369,Nagoya University,Japan,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×23；未寫明本科×2；未寫明每年／學年×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01396,Osaka University,Japan,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01425,The University of Tokyo,Japan,verified,no_qualifying_quote,未寫明每年／學年×30；原句與上下文未寫明國際生×10；金額是申請費／押金／生活費／獎學金等×8,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01428,Tohoku University,Japan,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×65；原句與上下文未寫明國際生×8；未寫明每年／學年×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01434,Institute of Science Tokyo,Japan,verified,no_amount_on_pages,已讀 5 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01532,Taylor's University,Malaysia,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×67；未寫明每年／學年×11；金額旁無學費字樣×10,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01541,Universiti Teknologi Malaysia,Malaysia,verified,not_adopted_basis,只讀到按學分計價（不換算）的本科國際生學費，依規則不換算、不採,,,,MYR,,per-credit,NO | FEES | CHARGES ⏎ 3. | Short Semester | Study fee chargeable based on field of study. Engineering: RM160 per credit Science & Technology: RM150 per credit Social Science: RM130 per,,,https://admission.utm.my/programme-fees-ug-international/,,,2026-11-08T14:25:00.068Z,,,,r1-2026-11-08u
+RI01550,"University of Science, Malaysia",Malaysia,verified,fetch_failed,host unreachable at robots: ECONNRESET/ECONNRESET/TimeoutError,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01551,University Putra Malaysia,Malaysia,verified,no_amount_on_pages,已讀 12 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01566,National Autonomous University of Mexico,Mexico,not_found,not_crawled_not_found,入庫狀態 not_found（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01604,Delft University of Technology,Netherlands,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01606,Eindhoven University of Technology,Netherlands,verified,no_qualifying_quote,原句與上下文未寫明國際生×21；金額是申請費／押金／生活費／獎學金等×12；只讀到本地／歐盟學生學費×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01608,Erasmus University Rotterdam,Netherlands,verified,no_qualifying_quote,原句與上下文未寫明國際生×24；未寫明本科×24；金額是申請費／押金／生活費／獎學金等×11,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01613,Leiden University,Netherlands,verified,no_amount_on_pages,已讀 12 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01615,Maastricht University,Netherlands,verified,no_qualifying_quote,原句與上下文未寫明國際生×30；只讀到預科／語言課／交換生要求×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01618,Radboud University Nijmegen,Netherlands,verified,no_qualifying_quote,原句與上下文未寫明國際生×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01621,Tilburg University,Netherlands,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01623,University of Amsterdam,Netherlands,verified,no_qualifying_quote,原句與上下文未寫明國際生×136；未寫明每年／學年×4；金額是申請費／押金／生活費／獎學金等×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01624,University of Groningen,Netherlands,verified,extracted,,general,14400,32000,EUR,2027/28,academic-year-label,"Faculty | Academic year 2026-2027 | Academic year 2027-2028 ⏎ Economics and Business | € 14,000 | € 14,400","Faculty | Academic year 2026-2027 | Academic year 2027-2028 ⏎ - Medicine and Dentistry | € 32,000 | € 32,000",Tuition fees Bachelor's degree programmes › University tuition fees II for non-EU/EER students,https://www.rug.nl/education/application-enrolment-tuition-fees/tuition-fee/bachelor,803d63edc550c519f01560dff39e9eac9ebf07add5ba948b37aaf45ee8ec3fa2,Tuition fees Bachelor's degree programmes | Tuition fees | University of Groningen,2026-11-08T14:25:50.763Z,r1-crawl,11,0,r1-2026-11-08u
+RI01625,University of Twente,Netherlands,verified,no_qualifying_quote,原句與上下文未寫明國際生×17；金額是申請費／押金／生活費／獎學金等×11；未寫明每年／學年×10,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01627,Utrecht University,Netherlands,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×4；兼讀制學費×4；只讀到本地／歐盟學生學費×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01629,Vrije Universiteit Amsterdam,Netherlands,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01630,Wageningen University & Research,Netherlands,verified,extracted,,general,18840,,EUR,2027/28,per-year,"Then your tuition fee for the academic year 2026-2027 is € 18,300 and € 18.840 for 2027-2028.",,Tuition fees and study finances bachelor › Are you a non-EU student**?,https://www.wur.nl/en/education/bachelor/study-expenses-bachelors/tuition-fees-and-study-finances,8f5dbb413057921ec3d2a642e8dca50805d19fb22d6b816030051290cc913c36,Tuition fees and study finances bachelor | WUR,2026-11-08T14:25:56.885Z,r1-crawl,1,0,r1-2026-11-08u
+RI01631,Auckland University of Technology,New Zealand,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01633,Massey University,New Zealand,verified,extracted,,general,35250,117780,NZD,2027,academic-year-label,"Qualification | Estimate of fees for 2027 ⏎ Qualification Bachelor of Arts | Estimate of fees for 2027 $35,250 – $43,570","Qualification | Estimate of fees for 2027 ⏎ Qualification Bachelor of Aviation | Estimate of fees for 2027 $117,780",Tuition fees for international students - Utu ako mō ngā tauira kei whenua kē › Bachelor's degrees › Bachelor's degrees,https://www.massey.ac.nz/study/fees-and-funding/tuition-fees-for-international-students/,e07702c51b470e5429ff40f8533992dae0cb36c5f07083f29149011771e867a1,Tuition fees for international students - Massey University,2026-11-08T14:26:13.042Z,r1-crawl,28,0,r1-2026-11-08u
+RI01634,The University of Auckland,New Zealand,verified,no_qualifying_quote,獎學金／折扣減免額或附加費×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01636,University of Canterbury,New Zealand,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×21；獎學金／折扣減免額或附加費×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01637,University of Otago,New Zealand,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01647,BI Norwegian Business School,Norway,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×2；按學分計價（不換算）×1；原句與上下文未寫明國際生×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01655,NTNU - Norwegian University of Science and Technology,Norway,verified,no_qualifying_quote,原句與上下文未寫明國際生×11；未寫明每年／學年×2；獎學金／折扣減免額或附加費×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01664,University of Bergen,Norway,verified,no_qualifying_quote,未寫明本科×18；金額是申請費／押金／生活費／獎學金等×2；金額旁無學費字樣×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01665,University of Oslo,Norway,verified,no_qualifying_quote,原句與上下文未寫明國際生×6；本地與國際生混在同一層×2；未寫明每年／學年×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01666,University of Stavanger,Norway,verified,no_qualifying_quote,未寫明每年／學年×11；金額是申請費／押金／生活費／獎學金等×5；金額旁無學費字樣×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01738,AGH University of Krakow,Poland,verified,not_adopted_basis,只讀到按學期計價（不換算）的本科國際生學費，依規則不換算、不採,,,,EUR,,per-semester,"Recruitment | Start of studies | Duration of studies | Tuition fee | Programme of studies ⏎ June - September | October 1 | 7 semesters (3,5 years) | EUR 2000/semester | AGH Syllabus",,,https://www.international.agh.edu.pl/en/studies/education-offer-bachelor-studies,,,2026-11-08T14:26:19.201Z,,,,r1-2026-11-08u
+RI01822,University of Lisbon,Portugal,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×4；原句與上下文未寫明國際生×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01824,University of Porto,Portugal,verified,no_qualifying_quote,金額旁無學費字樣×2；原句與上下文未寫明國際生×2；學年早於 2025×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01986,King Abdulaziz University,Saudi Arabia,verified,no_amount_on_pages,已讀 6 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01990,King Khalid University,Saudi Arabia,verified,no_qualifying_quote,未寫明每年／學年×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI01992,King Saud University,Saudi Arabia,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02009,Nanyang Technological University,Singapore,verified,no_qualifying_quote,原句與上下文未寫明國際生×19；兼讀制學費×18；金額是申請費／押金／生活費／獎學金等×14,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02012,National University of Singapore,Singapore,verified,blocked,HTTP 200 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02014,Singapore Management University,Singapore,verified,blocked,HTTP 200 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02015,Singapore University of Technology and Design,Singapore,verified,not_adopted_basis,只讀到按學期計價（不換算）的本科國際生學費，依規則不換算、不採,,,,SGD,,per-semester,Compulsory Miscellaneous Fees | Singapore Citizens (SC) and Singapore Permanent Residents (SPR) (Inclusive of prevailing GST) | International Students (IS) (Inclusive of prevailing GST) ⏎ Compulsory Miscellaneous Fee per term | S$165.00 | S$232.00,,,https://www.sutd.edu.sg/admissions/undergraduate/education-expenses/fees/tuition-fees/,,,2026-11-08T14:27:05.546Z,,,,r1-2026-11-08u
+RI02043,University of Cape Town,South Africa,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02045,University of Johannesburg,South Africa,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02048,University of Pretoria,South Africa,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02092,Hanyang University,South Korea,blocked,not_crawled_blocked,入庫狀態 blocked（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02106,Korea Advanced Institute of Science and Technology,South Korea,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×7；未寫明每年／學年×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02114,Korea University,South Korea,not_found,not_crawled_not_found,入庫狀態 not_found（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02120,Kyung Hee University,South Korea,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02126,Pohang University of Science and Technology,South Korea,verified,no_amount_on_pages,已讀 12 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02131,Sejong University,South Korea,verified,no_amount_on_pages,已讀 4 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02133,Seoul National University,South Korea,verified,no_amount_on_pages,已讀 4 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02141,Sungkyunkwan University,South Korea,verified,no_amount_on_pages,已讀 10 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02142,Ulsan National Institute of Science and Technology,South Korea,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02148,Yonsei University,South Korea,verified,no_amount_on_pages,已讀 12 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02150,Autonomous University of Barcelona,Spain,verified,no_qualifying_quote,金額旁無學費字樣×25；按學分計價（不換算）×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02157,Complutense University of Madrid,Spain,verified,no_amount_on_pages,已讀 11 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02173,Polytechnic University of Valencia,Spain,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×3；金額旁無學費字樣×3；未寫明每年／學年×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02174,Pompeu Fabra University,Spain,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02181,University of Las Palmas de Gran Canaria,Spain,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02201,University of Cordoba,Spain,blocked,not_crawled_blocked,入庫狀態 blocked（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02203,University of Extremadura,Spain,verified,no_amount_on_pages,已讀 10 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02214,University of Santiago Compostela,Spain,verified,no_qualifying_quote,金額旁無學費字樣×19；金額是申請費／押金／生活費／獎學金等×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02218,University of Valencia,Spain,verified,no_qualifying_quote,未寫明每年／學年×2；按學分計價（不換算）×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02220,University of Vigo,Spain,verified,no_qualifying_quote,金額旁無學費字樣×7；未寫明每年／學年×3；原句與上下文未寫明國際生×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02221,University of Zaragoza,Spain,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02230,Chalmers University of Technology,Sweden,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×9；按學期計價（不換算）×8；按學分計價（不換算）×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02235,Karolinska Institute,Sweden,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02238,KTH Royal Institute of Technology,Sweden,verified,no_qualifying_quote,未寫明每年／學年×1；金額是申請費／押金／生活費／獎學金等×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02240,Linnaeus University,Sweden,verified,no_qualifying_quote,未寫明每年／學年×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02241,Lulea University of Technology,Sweden,verified,no_qualifying_quote,按學期計價（不換算）×18；金額是申請費／押金／生活費／獎學金等×2；獎學金／折扣減免額或附加費×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02242,Lund University,Sweden,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×6；未寫明每年／學年×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02251,Stockholm School of Economics,Sweden,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×10；未寫明每年／學年×4；「免學費」不適用國際生×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02252,Stockholm University,Sweden,verified,no_amount_on_pages,已讀 2 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02254,Swedish University of Agricultural Sciences,Sweden,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02259,University of Gothenburg,Sweden,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×19；未寫明每年／學年×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02262,Uppsala University,Sweden,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×2；金額旁無學費字樣×1；按學期計價（不換算）×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02269,ETH Zurich,Switzerland,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×3；未寫明每年／學年×3；金額旁無學費字樣×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02282,Swiss Federal Institute of Technology Lausanne,Switzerland,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×6；只讀到預科／語言課／交換生要求×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02287,University of Bern,Switzerland,verified,no_amount_on_pages,已讀 2 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02289,University of Geneva,Switzerland,not_found,not_crawled_not_found,入庫狀態 not_found（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02294,University of Zurich,Switzerland,verified,no_amount_on_pages,已讀 2 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02304,Chulalongkorn University,Thailand,verified,blocked,HTTP 200 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02326,Universite de Monastir,Tunisia,not_found,not_crawled_not_found,入庫狀態 not_found（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02366,Ege University,Türkiye,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02386,Istanbul Technical University,Türkiye,verified,no_qualifying_quote,幣別無法確定×1；金額旁無學費字樣×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02448,Khalifa University,United Arab Emirates,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×34；按學分計價（不換算）×4；原句與上下文未寫明國際生×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02465,Bournemouth University,United Kingdom,blocked,not_crawled_blocked,入庫狀態 blocked（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02470,Cardiff University,United Kingdom,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02473,Cranfield University,United Kingdom,verified,no_qualifying_quote,兼讀制學費×491；原句與上下文未寫明國際生×482；金額是申請費／押金／生活費／獎學金等×42,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02475,Durham University,United Kingdom,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02487,Imperial College London,United Kingdom,verified,no_qualifying_quote,只讀到本地／歐盟學生學費×2；金額是申請費／押金／生活費／獎學金等×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02491,King's College London,United Kingdom,verified,no_amount_on_pages,已讀 2 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02493,Lancaster University,United Kingdom,verified,no_qualifying_quote,原句與上下文未寫明國際生×5；金額是申請費／押金／生活費／獎學金等×3；未寫明每年／學年×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02496,Liverpool John Moores University,United Kingdom,blocked,not_crawled_blocked,入庫狀態 blocked（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02498,London Business School,United Kingdom,not_found,not_crawled_not_found,入庫狀態 not_found（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02501,The London School of Economics and Political Science,United Kingdom,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02502,London School of Hygiene & Tropical Medicine,United Kingdom,not_found,not_crawled_not_found,入庫狀態 not_found（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02504,Loughborough University,United Kingdom,verified,extracted,,general,25500,35000,GBP,2027,academic-year-label,"Band 1 courses: £25,500","Band 4 courses: £35,000",Undergraduate tuition fees › International undergraduate fees for 2027 entry › Undergraduate courses,https://www.lboro.ac.uk/study/undergraduate/fees-funding/fees/,f107be828abb79efce2bbf9f9b485641969f10eb008655812e01be27b356eff9,Tuition fees | Undergraduate study | Loughborough University,2026-11-08T14:29:35.403Z,r1-crawl,6,0,r1-2026-11-08u
+RI02505,Manchester Metropolitan University,United Kingdom,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×7；未寫明每年／學年×6；只讀到研究生要求×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02508,Newcastle University,United Kingdom,verified,fetch_failed,host unreachable at robots: ECONNRESET,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02513,Queen Mary University of London,United Kingdom,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×9；未寫明每年／學年×4；只讀到預科／語言課／交換生要求×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02514,Queen's University Belfast,United Kingdom,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02524,"Royal Holloway, University of London",United Kingdom,verified,no_qualifying_quote,未寫明每年／學年×10；金額是申請費／押金／生活費／獎學金等×5；泛指某國學費的說明×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02536,The Open University,United Kingdom,blocked,not_crawled_blocked,入庫狀態 blocked（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02537,The Royal Veterinary College,United Kingdom,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02539,The University of Edinburgh,United Kingdom,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02540,University of Glasgow,United Kingdom,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02541,The University of Manchester,United Kingdom,verified,programme_specific_only,只在單一課程頁讀到 1–2 筆學費，不能代表全校本科學費範圍,programme,34800,,GBP,2027/28,academic-year-label,"Tuition fees for international students will be £34,800 for the 2027/28 academic year. For subsequent academic years, the University reserves the right to increase the tuition fee by up to 7% each year, including to reflect rising costs associated with delivering our education…",,"BSc International Business, Finance and Economics with Industrial/Professional Experience / Overview › Fees",https://www.alliancembs.manchester.ac.uk/study/undergraduate/bsc-hons-international-business-finance-and-economics-with-industrialprofessional-experience/,07e5fc1a5890c28624281c6c87ec827ed18da17d4524a6c0ba591f976fb3b941,BSc International Business & Finance with Experience | Alliance MBS,2026-11-08T14:30:02.029Z,r1-crawl,1,0,r1-2026-11-08u
+RI02542,The University of Reading,United Kingdom,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×18；只讀到本地／歐盟學生學費×6；只讀到預科／語言課／交換生要求×5,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02543,The University of Sheffield,United Kingdom,verified,extracted,,general,27650,55000,GBP,2027/28,per-year,"For the 2027/28 academic year, the University of Sheffield will charge new full-time overseas undergraduates, tuition fees between £27,650 and £34,670 (except for Medicine and Dentistry courses, see below).","Dentistry students will pay £55,000 per year for five years",Tuition fees for undergraduate overseas students › Your tuition fee,https://sheffield.ac.uk/new-students/tuition-fees/undergraduate-overseas,458768a1084eb0337d69b5b8555acdb3150fb8e7cd7afc292f099fd71e0ba733,Tuition fees for undergraduate overseas students | Support for new students | The University of Sheffield,2026-11-08T14:30:07.091Z,r1-crawl,3,0,r1-2026-11-08u
+RI02548,University College London,United Kingdom,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02551,University of Bath,United Kingdom,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×40；舊生（已入學者）學費頁×22；只讀到本地／歐盟學生學費×7,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02553,University of Birmingham,United Kingdom,verified,no_qualifying_quote,未寫明每年／學年×9；金額是申請費／押金／生活費／獎學金等×4；學年早於 2025×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02556,University of Bristol,United Kingdom,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×7；只讀到本地／歐盟學生學費×6；未寫明每年／學年×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02557,University of Cambridge,United Kingdom,verified,no_qualifying_quote,只讀到本地／歐盟學生學費×1；金額是申請費／押金／生活費／獎學金等×1；未寫明每年／學年×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02563,University of East Anglia,United Kingdom,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02566,University of Exeter,United Kingdom,verified,no_qualifying_quote,金額旁無學費字樣×15；金額是申請費／押金／生活費／獎學金等×9；未寫明每年／學年×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02574,University of Leeds,United Kingdom,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×46；獎學金／折扣減免額或附加費×2；未寫明每年／學年×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02575,University of Leicester,United Kingdom,blocked,not_crawled_blocked,入庫狀態 blocked（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02577,University of Liverpool,United Kingdom,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×29；未寫明每年／學年×9；學年早於 2025×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02580,University of Nottingham,United Kingdom,verified,extracted,,general,26200,33500,GBP,2027/28,academic-year-label,"Code | Qualification | Title | UK home fee ( see fees note ) | International fee ⏎ V117 | BAJH | Ancient History and History BA Hons | £10,050 | £26,200","Code | Qualification | Title | UK home fee ( see fees note ) | International fee ⏎ H402 | BENGH | Aerospace Engineering BEng Hons | £10,050 | £33,500",Undergraduate courses 2027/28 › Tuition fees 2027/28,https://www.nottingham.ac.uk/fees/tuitionfees/202728/undergraduate.aspx,cffd2a0a71961111c619aec8a7b6f6378ac14fc8203369fc20eb1e606ba6d5d8,Undergraduate courses 2027/28 - The University of Nottingham,2026-11-08T14:30:32.438Z,r1-crawl,73,0,r1-2026-11-08u
+RI02581,University of Oxford,United Kingdom,blocked,not_crawled_blocked,入庫狀態 blocked（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02583,University of Portsmouth,United Kingdom,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×13；只讀到本地／歐盟學生學費×10；獎學金／折扣減免額或附加費×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02586,University of Southampton,United Kingdom,verified,no_qualifying_quote,未寫明每年／學年×105；金額是申請費／押金／生活費／獎學金等×44；只讀到預科／語言課／交換生要求×20,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02589,University of Strathclyde,United Kingdom,verified,no_qualifying_quote,金額旁無學費字樣×6；金額是申請費／押金／生活費／獎學金等×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02591,University of Surrey,United Kingdom,verified,extracted,,general,15200,50300,GBP,2027,academic-year-label,"Overseas £15,200","Overseas £50,300",Undergraduate course fees 2027 entry › Tuition fee increases › International Airline and Airport Management,https://www.surrey.ac.uk/fees-and-funding/tuition-fees/undergraduate-2027-entry,2a1861c62c6e57e0f451f5884ba0eb1dbe054b9a77e25550c3b565bdfbf870ab,Undergraduate course fees 2027 entry| University of Surrey,2026-11-08T14:30:44.045Z,r1-crawl,14,0,r1-2026-11-08u
+RI02592,University of Sussex,United Kingdom,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×96；原句與上下文未寫明國際生×25；學年早於 2025×7,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02597,The University of Warwick,United Kingdom,verified,extracted,,general,21950,29260,GBP,2027/28,per-year,"Band 0 - £21,950","Band 1 – £29,260 per year (classroom-based courses, including Humanities and most Social Science courses)","Fees and course costs › Tuition fees › Undergraduate fees › If you are an overseas student enrolling in 2027-28, your annual tuition fees will be as follows:",https://warwick.ac.uk/study/undergraduate/fees-and-funding/course-costs/,bd0d08f85b26615c33530b7a4deb8ddbc5736cf9b2572f5171dafa12e58efa67,Fees and course costs at University of Warwick,2026-11-08T14:30:48.552Z,r1-crawl,2,0,r1-2026-11-08u
+RI02612,American University,United States,blocked,not_crawled_blocked,入庫狀態 blocked（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02615,Arizona State University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×40；未寫明每年／學年×9；只讀到本地／歐盟學生學費×5,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02620,Babson College,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×29；原句與上下文未寫明國際生×10；金額旁無學費字樣×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02623,Baylor College of Medicine,United States,not_found,not_crawled_not_found,入庫狀態 not_found（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02628,Boston College,United States,verified,extracted,,general,75075,,USD,2026/27,academic-year-label,"Item | Cost ⏎ Undergraduate Tuition | $75,075",,Applying as an International Student › Breakdown of expenses for the 2026-2027 academic year,https://www.bc.edu/content/bc-web/admission/apply/international.html,233756ed51e24b582ff27d4a8fda4faf615c1fc3f7a7dc8045779aef77f1a084,International Applicants - Admission - Boston College,2026-11-08T14:30:45.425Z,r1-crawl,1,0,r1-2026-11-08u
+RI02629,Boston University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×36；未寫明每年／學年×18；原句與上下文未寫明國際生×16,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02635,Brown University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×27；未寫明每年／學年×9；金額旁無學費字樣×9,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02640,California Institute of Technology,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×2；金額旁無學費字樣×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02653,Carnegie Mellon University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×36；原句與上下文未寫明國際生×31；學年早於 2025×9,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02656,Case Western Reserve University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×38；原句與上下文未寫明國際生×15；未寫明每年／學年×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02670,College of William and Mary,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×8；金額旁無學費字樣×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02676,Colorado State University,United States,verified,not_adopted_basis,只讀到按學分計價（不換算）的本科國際生學費，依規則不換算、不採,,,,USD,,per-credit,"Estimated Fees for 2026-2027 Academic Year (Fall+Spring) | Graduate Students Enrolled in 9 Credits | Undergraduate Students Enrolled in 15 Credits ⏎ General Fees | $2,020 USD | $2,020 USD",,,https://international.colostate.edu/isss/resources/finances/estimated-expenses/,,,2026-11-08T14:31:02.969Z,,,,r1-2026-11-08u
+RI02677,Columbia University,United States,blocked,not_crawled_blocked,入庫狀態 blocked（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02680,Cornell University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×34；原句與上下文未寫明國際生×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02688,Dartmouth College,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×13；原句與上下文未寫明國際生×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02692,Drexel University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×12；金額旁無學費字樣×11；未寫明每年／學年×8,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02693,Duke University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×21；原句與上下文未寫明國際生×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02703,Emory University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×19；按學期計價（不換算）×13；原句與上下文未寫明國際生×9,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02709,Florida Atlantic University,United States,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02712,Florida State University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×420；按學期計價（不換算）×95；原句與上下文未寫明國際生×66,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02716,George Mason University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×28；原句與上下文未寫明國際生×5；只讀到本地／歐盟學生學費×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02717,Georgetown University,United States,verified,no_qualifying_quote,金額旁無學費字樣×42；金額是申請費／押金／生活費／獎學金等×29；按學分計價（不換算）×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02719,Georgia Institute of Technology,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02722,Georgia State University,United States,verified,no_qualifying_quote,金額旁無學費字樣×43；金額是申請費／押金／生活費／獎學金等×2；按學分計價（不換算）×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02727,Harvard University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×33；金額旁無學費字樣×11；原句與上下文未寫明國際生×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02736,Icahn School of Medicine at Mount Sinai,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02743,"Indiana University, Bloomington",United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×28；按學分計價（不換算）×5；未寫明每年／學年×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02745,"Indiana University, Indianapolis",United States,verified,not_adopted_basis,只讀到按學分計價（不換算）的本科國際生學費，依規則不換算、不採,,,,USD,,per-credit,"…than 18 credit hours will be charged at a per-credit rate. For 2026–2027 the undergraduate tuition rate is $1,144.10 per credit hour above 18 credits.",,,https://indianapolis.iu.edu/cost-aid/cost-of-attendance/international-cost-attendance.html,,,2026-11-08T14:32:11.007Z,,,,r1-2026-11-08u
+RI02748,Iowa State University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×54；未寫明每年／學年×27；原句與上下文未寫明國際生×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02756,Johns Hopkins University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×34；獎學金／折扣減免額或附加費×9；原句與上下文未寫明國際生×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02760,Kent State University,United States,verified,not_adopted_basis,只讀到按學分計價（不換算）的本科國際生學費，依規則不換算、不採,,,,USD,,per-credit, | International Undergraduate (Full time for immigration purposes - 12-18 credit hours) | International Graduate (Full time for immigration purposes - 9 credit hours) | ESL (Based on 18 credit hours per semester) | American Academy | Aeronautics w/PROFESSIONAL PILOT | Master of…,,,https://www.kent.edu/admissions/international-student-aid-tuition,,,2026-11-08T14:32:11.183Z,,,,r1-2026-11-08u
+RI02779,Massachusetts Institute of Technology,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×29；金額旁無學費字樣×2；原句與上下文未寫明國際生×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02781,Mayo Clinic College of Medicine and Science,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×12；原句與上下文未寫明國際生×2；未寫明每年／學年×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02790,Michigan State University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×26；金額旁無學費字樣×10；未寫明每年／學年×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02796,Mississippi State University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×66；只讀到本地／歐盟學生學費×22；原句與上下文未寫明國際生×21,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02816,New York University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×48；未寫明每年／學年×7；原句與上下文未寫明國際生×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02819,North Carolina State University at Raleigh,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×74；未寫明每年／學年×16；原句與上下文未寫明國際生×7,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02822,Northeastern University (Boston),United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×29；未寫明每年／學年×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02826,Northwestern University,United States,verified,no_qualifying_quote,未寫明每年／學年×29；金額是申請費／押金／生活費／獎學金等×19；金額旁無學費字樣×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02833,Oklahoma State University,United States,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02834,Old Dominion University,United States,verified,extracted,,general,35400,,USD,2026/27,academic-year-label,"Item | Undergraduate | Graduate ⏎ Tuition & Fees | $35,400 | $28,500",,Estimated Costs/Fees › Estimated 2026/2027 Costs for F-1 & J-1 Students › Required funding for I-20 & DS-2019 issuance,https://www.odu.edu/admission/international/estimated-costs-fees,bd181a340df415fd73238a31447f115457ed19396360c37a914a5e056b467760,Estimated Costs/Fees | Old Dominion University,2026-11-08T14:32:42.789Z,r1-crawl,1,0,r1-2026-11-08u
+RI02835,Oregon Health & Science University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×267；按學分計價（不換算）×42；未寫明每年／學年×42,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02836,Oregon State University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×60；未寫明每年／學年×17；獎學金／折扣減免額或附加費×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02841,"Pennsylvania State University, University Park",United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02848,Princeton University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×17；金額旁無學費字樣×10；獎學金／折扣減免額或附加費×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02849,"Purdue University, West Lafayette",United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02856,Rockefeller University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02864,"Rutgers University, Newark",United States,verified,no_qualifying_quote,未寫明每年／學年×25；金額是申請費／押金／生活費／獎學金等×25；兼讀制學費×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02865,"Rutgers, The State University of New Jersey - New Brunswick",United States,verified,no_qualifying_quote,未寫明每年／學年×117；金額是申請費／押金／生活費／獎學金等×63；學年早於 2025×5,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02870,Sam Houston State University,United States,verified,not_adopted_basis,只讀到按學期計價（不換算）的本科國際生學費，依規則不換算、不採,,,,USD,,per-semester,…semester credit hour during academic year 2027-28. Nonresident students (out-of-state and international) pay $455 tuition per semester credit hour during academic year 2026-27 and $455 per semester credit hour during academic year 2027-28. The Texas Higher Education…,,,https://catalog.shsu.edu/undergraduate/financial-information/tuition-fees/,,,2026-11-08T14:33:12.209Z,,,,r1-2026-11-08u
+RI02892,Stanford University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×12；未寫明每年／學年×4；按學期計價（不換算）×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02896,Stony Brook University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×54；金額旁無學費字樣×25；未寫明每年／學年×24,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02903,Syracuse University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×36；按學分計價（不換算）×8；未寫明每年／學年×5,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02905,Temple University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×35；未寫明每年／學年×11；金額旁無學費字樣×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02907,Texas A&M University,United States,verified,no_qualifying_quote,按學分計價（不換算）×35；未寫明每年／學年×30；按學期計價（不換算）×23,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02917,George Washington University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×3；金額旁無學費字樣×3；獎學金／折扣減免額或附加費×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02921,"Ohio State University, Columbus",United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×15；原句與上下文未寫明國際生×3；未寫明本科×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02926,The University of Georgia,United States,verified,no_qualifying_quote,金額旁無學費字樣×4；金額是申請費／押金／生活費／獎學金等×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02933,The University of Texas at Austin,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×82；原句與上下文未寫明國際生×20；未寫明每年／學年×18,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02934,The University of Texas at Dallas,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×29；原句與上下文未寫明國際生×5,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02935,The University of Texas at San Antonio,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×21；原句與上下文未寫明國際生×4；未寫明每年／學年×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02938,The University of Texas MD Anderson Cancer Center,United States,verified,no_qualifying_quote,未寫明每年／學年×9；金額是申請費／押金／生活費／獎學金等×5,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02940,University of Texas Southwestern Medical Center,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×282；原句與上下文未寫明國際生×140；兼讀制學費×12,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02945,Tufts University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×30；原句與上下文未寫明國際生×11；獎學金／折扣減免額或附加費×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02950,University at Albany,United States,verified,not_adopted_basis,只讀到按學期計價（不換算）的本科國際生學費，依規則不換算、不採,,,,USD,,per-semester,"Type of Student | Fall 2026 Tuition | Fall 2026 Fees | Total for Fall 2026 Semester | Total for Fall 2026 & Spring 2027 Semesters ⏎ Undergraduate | $14,565 | $2,989.73 | $17,554.73 | $35,109.46",,,https://www.albany.edu/cost-aid/tuition-fees/international-students,,,2026-11-08T14:33:55.859Z,,,,r1-2026-11-08u
+RI02951,"University at Buffalo, the State University of New York",United States,verified,no_qualifying_quote,未寫明每年／學年×21；金額是申請費／押金／生活費／獎學金等×20；金額旁無學費字樣×7,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02957,University of Arizona,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×77；原句與上下文未寫明國際生×28；未寫明每年／學年×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02958,University of Arkansas at Fayetteville,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×34；未寫明每年／學年×15；金額旁無學費字樣×9,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02962,"University of California, Berkeley",United States,verified,no_qualifying_quote,原句與上下文未寫明國際生×104；金額是申請費／押金／生活費／獎學金等×34；未寫明每年／學年×10,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02963,"University of California, Davis",United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×41；原句與上下文未寫明國際生×16,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02964,"University of California, Irvine",United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×30；金額旁無學費字樣×18；原句與上下文未寫明國際生×8,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02965,"University of California, Los Angeles",United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×37；學年早於 2025×24；未寫明每年／學年×13,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02967,"University of California, San Diego",United States,verified,no_qualifying_quote,原句與上下文未寫明國際生×67；金額是申請費／押金／生活費／獎學金等×51；學年早於 2025×10,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02968,"University of California, San Francisco",United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02969,"University of California, Santa Barbara",United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×13,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02970,"University of California, Santa Cruz",United States,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02972,University of Central Florida,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×217；未寫明每年／學年×69；原句與上下文未寫明國際生×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02973,University of Chicago,United States,verified,no_amount_on_pages,已讀 3 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02974,University of Cincinnati,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×18；學年早於 2025×3；未寫明每年／學年×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02975,University of Colorado Boulder,United States,verified,not_adopted_basis,只讀到按學期計價（不換算）的本科國際生學費，依規則不換算、不採,,,,USD,,per-semester,2 A one-time New Student Fee of $500 for new international degree students and new transfers and the Immigration Compliance Fee of $40 per semester are not included here.,,,https://www.colorado.edu/bursar/costs/undergraduate,,,2026-11-08T14:34:39.266Z,,,,r1-2026-11-08u
+RI02976,University of Colorado at Denver,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×49；只有學年標籤且該頁另有按學期／學分計價×9,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02979,University of Connecticut,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×154；只讀到預科／語言課／交換生要求×54；金額旁無學費字樣×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02984,University of Florida,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×27；只讀到本地／歐盟學生學費×19；未寫明每年／學年×9,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02985,University of Hawaii at Manoa,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×119；原句與上下文未寫明國際生×90；只讀到本地／歐盟學生學費×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02986,University of Houston,United States,verified,no_qualifying_quote,按學期計價（不換算）×37；按學分計價（不換算）×28；原句與上下文未寫明國際生×18,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02988,University of Illinois Chicago,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×72；學年早於 2025×7；未寫明每年／學年×5,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02989,"University of Illinois Urbana, Champaign",United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×24；未寫明每年／學年×6；按學期計價（不換算）×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI02991,University of Iowa,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×62；原句與上下文未寫明國際生×43；未寫明每年／學年×15,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03001,"University of Maryland, Baltimore",United States,verified,no_qualifying_quote,未寫明每年／學年×41；金額是申請費／押金／生活費／獎學金等×18；按學期計價（不換算）×7,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03003,"University of Maryland, College Park",United States,verified,not_adopted_basis,只讀到按學期計價（不換算）的本科國際生學費，依規則不換算、不採,,,,USD,,per-semester,"The University of Maryland (UMD) charges a fee of $125 each semester for enrolled students requiring an I-20 or or DS-2019 (for degree seeking students in J-1 status) issued by the University. Students enrolled in an academic program operating on the 12-week calendar, who…",,,https://billpay.umd.edu/UndergraduateTuition,,,2026-11-08T14:35:03.806Z,,,,r1-2026-11-08u
+RI03005,"University of Massachusetts, Amherst",United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×5；金額旁無學費字樣×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03008,University of Massachusetts Chan Medical School,United States,not_found,not_crawled_not_found,入庫狀態 not_found（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03011,University of Miami,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×26；原句與上下文未寫明國際生×6；未寫明每年／學年×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03012,"University of Michigan, Ann Arbor",United States,verified,blocked,HTTP 403 或挑戰頁,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03014,"University of Minnesota, Twin Cities",United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×10；獎學金頁的舉例金額×2；未寫明每年／學年×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03017,"University of Missouri, Columbia",United States,verified,extracted,,general,39688,43816,USD,,per-year,"EXPENSE | FALL 2026 | SPRING 2027 | Annual ⏎ Tuition and Fees | $19,844 – $21,908 | $19,844 – $21,908 | $39,688 – $43,816",,Costs › Estimated Costs of Undergraduate Attendance › International Students,https://admissions.missouri.edu/costs-aid/costs/,d29368a81a278c6e6bd9570102239a6d1e6cc3a7a6da944c44f99421b3fac205,Costs - Mizzou Admissions,2026-11-08T14:35:34.426Z,r1-crawl,1,0,r1-2026-11-08u
+RI03021,"University of Nebraska, Lincoln",United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×13；金額旁無學費字樣×10；未寫明每年／學年×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03025,"University of Nevada, Las Vegas",United States,verified,no_amount_on_pages,已讀 2 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03029,University of North Carolina at Chapel Hill,United States,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03036,University of North Texas,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×18；原句與上下文未寫明國際生×12；只讀到本地／歐盟學生學費×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03040,University of Notre Dame,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×10；金額旁無學費字樣×6；獎學金／折扣減免額或附加費×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03041,"University of Oklahoma, Norman",United States,verified,no_qualifying_quote,金額旁無學費字樣×44；金額是申請費／押金／生活費／獎學金等×16；未寫明每年／學年×11,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03045,University of Pennsylvania,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×5；金額旁無學費字樣×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03046,University of Pittsburgh,United States,verified,not_adopted_basis,只讀到按學期計價（不換算）的本科國際生學費，依規則不換算、不採,,,,USD,,per-semester,"…undergraduate students enrolled full-time at the Pittsburgh campus are assessed the International Services Fee of $500 per term for fall and spring terms. For summer term, the Student Activity fee is $7 for part-time enrollment and $14 for full-time enrollment. Tuition and…",,,https://admissions.pitt.edu/international/,,,2026-11-08T14:35:43.047Z,,,,r1-2026-11-08u
+RI03052,University of Rochester,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×60；金額旁無學費字樣×8；未寫明每年／學年×4,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03057,"University of South Carolina, Columbia",United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×170；只讀到本地／歐盟學生學費×35；原句與上下文未寫明國際生×12,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03059,University of South Florida,United States,verified,no_qualifying_quote,按學期計價（不換算）×6；金額是申請費／押金／生活費／獎學金等×1；獎學金／折扣減免額或附加費×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03060,University of Southern California,United States,verified,not_adopted_basis,只讀到按學期計價（不換算）的本科國際生學費，依規則不換算、不採,,,,USD,,per-semester,"…awards are applied to tuition only. For example, if you have a Presidential award (a USC half-tuition award) of $18,846 per semester and your overseas tuition charge is $19,000, you can receive $18,846 toward the overseas tuition cost.",,,https://financialaid.usc.edu/undergraduate-financial-aid/admitted-and-continuing-students/special-programs/overseas-programs/,,,2026-11-08T14:36:10.965Z,,,,r1-2026-11-08u
+RI03062,"The University of Tennessee, Knoxville",United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×50；按學期計價（不換算）×16；原句與上下文未寫明國際生×8,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03070,University of Utah,United States,verified,extracted,,general,32932,,USD,2026/27,academic-year-label," | Undergraduate ⏎ Tuition & Fees | $32,932",,Inter&shy;national Fresh&shy;man Admis&shy;sions & Under&shy;graduate Costs › Estimated Inter­national Under­graduate Expenses for I-20 Purposes,https://admissions.utah.edu/apply/international/international-freshman-admissions-undergraduate-costs/,4c2109b7bc95d07c30c1b25b6a5afbe93c7278f2581564a8ae1fc2637eede32c,Inter&shy;national Fresh&shy;man Admis&shy;sions & Under&shy;graduate Costs | Admissions - The University of Utah,2026-11-08T14:36:11.037Z,r1-crawl,1,0,r1-2026-11-08u
+RI03072,University of Virginia,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×5；未寫明每年／學年×2,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03073,University of Washington,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×44；原句與上下文未寫明國際生×9；只讀到本地／歐盟學生學費×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03074,"University of Wisconsin, Madison",United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×156；原句與上下文未寫明國際生×85；未寫明每年／學年×14,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03084,Vanderbilt University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×23；金額旁無學費字樣×3；未寫明每年／學年×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03090,Virginia Polytechnic Institute and State University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03091,Wake Forest University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×33；金額旁無學費字樣×12；原句與上下文未寫明國際生×9,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03094,Washington State University,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×39；未寫明每年／學年×16；兼讀制學費×6,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03095,Washington University in St Louis,United States,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×22；金額旁無學費字樣×1,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03109,Yale University,United States,verified,no_qualifying_quote,金額旁無學費字樣×43；金額是申請費／押金／生活費／獎學金等×6；未寫明每年／學年×3,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03228,Institut Polytechnique de Paris,France,verified,no_amount_on_pages,已讀 2 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03329,Bahir Dar University,Ethiopia,verified,no_amount_on_pages,已讀 1 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03464,National Textile University,Pakistan,verified,no_amount_on_pages,已讀 9 頁，未見學費金額,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI03812,Mohamed Bin Zayed University of Artificial Intelligence,United Arab Emirates,blocked,not_crawled_blocked,入庫狀態 blocked（S3／瀏覽器覆核未讀到官方招生頁），依任務不抓,,,,,,,,,,,,,,,,,r1-2026-11-08u
+RI21001,Central School of Lille,France,verified,no_qualifying_quote,金額是申請費／押金／生活費／獎學金等×6；金額旁無學費字樣×5,,,,,,,,,,,,,,,,,r1-2026-11-08u

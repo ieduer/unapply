@@ -1,55 +1,55 @@
 {
  "schema": "nope.db.latest.v1",
  "schemaVersion": 1,
- "version": "11bdc13613b3",
+ "version": "b13acbf01ca1",
  "generatedAt": "2026-11-08",
- "base": "/db/v1/11bdc13613b3/",
+ "base": "/db/v1/b13acbf01ca1/",
  "manifest": {
-  "path": "/db/v1/11bdc13613b3/manifest.json",
-  "sha256": "a48d7ba14b39f4e559ed191c0275056a90134af099d8ef2f82062486d860696f",
+  "path": "/db/v1/b13acbf01ca1/manifest.json",
+  "sha256": "a8eef1f98b89e144101b1aba73bd79eec689cb0e022584840ba16829f7bb956b",
   "bytes": 33505
  },
  "datasets": {
   "institutions": {
-   "path": "/db/v1/11bdc13613b3/institutions.json",
+   "path": "/db/v1/b13acbf01ca1/institutions.json",
    "count": 3935,
    "sha256": "f0f43ec2bb800ddfc8830b2ce2239ae7098a5f1480d2042d3e95ad800e463267",
    "bytes": 1826078
   },
   "crosswalk": {
-   "path": "/db/v1/11bdc13613b3/crosswalk.json",
+   "path": "/db/v1/b13acbf01ca1/crosswalk.json",
    "count": 561,
    "sha256": "5eefac18604d36a91e3afe587dd0cfd701f2ab029a90a7209c7e9eb158a6c0a8",
    "bytes": 138265
   },
   "channels": {
-   "path": "/db/v1/11bdc13613b3/channels.json",
-   "count": 2066,
-   "sha256": "870249963a368034b7c5575ba32cc6f078e7a0b7e4a82011eaf5bdbe531d41ed",
-   "bytes": 1139523
+   "path": "/db/v1/b13acbf01ca1/channels.json",
+   "count": 2068,
+   "sha256": "670adc4ca0823e7718413d673e4a7c29287fdafff23ae45afe9df5731be0e4ec",
+   "bytes": 1140074
   },
   "conditions.index": {
-   "path": "/db/v1/11bdc13613b3/conditions.index.json",
-   "count": 1351,
-   "sha256": "8b2c7b94462df0a1b3190cd42d20ffb5aa82aee20407474d83fb8fec04bed789",
-   "bytes": 541188
+   "path": "/db/v1/b13acbf01ca1/conditions.index.json",
+   "count": 1359,
+   "sha256": "bbfe4ecabbec61429c0fdb1dcb2f9e6cdf182ba4bd909de369b316cd3809b2a1",
+   "bytes": 543932
   },
   "sources": {
-   "path": "/db/v1/11bdc13613b3/sources.json",
-   "count": 3564,
-   "sha256": "e8169788de0467ca1928826a33ddfbab6e4a29422dbc068133998b936a197fc9",
-   "bytes": 1775600
+   "path": "/db/v1/b13acbf01ca1/sources.json",
+   "count": 3566,
+   "sha256": "7dde920648a3cb001d61bec51c3386a2d9c1c7796609f97260b338dc310f6ad8",
+   "bytes": 1776694
   },
   "validity": {
-   "path": "/db/v1/11bdc13613b3/validity.json",
-   "count": 3417,
-   "sha256": "1caa281b480495930fec34ff4c32506bb6ebd151e02ebfab37c46b354f6db3b8",
-   "bytes": 599271
+   "path": "/db/v1/b13acbf01ca1/validity.json",
+   "count": 3427,
+   "sha256": "2ab828334ecba7cda848c1ca0a9190ec43ac8e6fefa67ede111437eaf0eab03e",
+   "bytes": 601068
   }
  },
  "references": {
   "count": 84,
-  "bytes": 30046169
+  "bytes": 30050999
  },
  "contract": "https://github.com/ieduer/unapply/blob/master/docs/DB_API.md",
  "usage": "只讀、公開官方資訊的統一索引；任何欄位都不表示錄取可能或推薦，排名只描述學科分佈。Read-only index of public official information; no field indicates admission chances or a recommendation."

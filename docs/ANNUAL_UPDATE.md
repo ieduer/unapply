@@ -37,6 +37,9 @@ Owner: suen。目的：每一層資料按官方發布節奏重核、入庫、重
 | 起點 | 來源狀態合法、只有 verified 上鏈接 | `test:origins` |
 | 參與院校名單（批 G6） | 教育局文憑試收生計劃名單 PDF SHA-256 釘定、CSV 列數、每所對回教育部名單、無重複；每年 10 月前後教育局公布下一學年名單：新 PDF 另存新檔名 → 改 `extract_hk_dse_participation.mjs` 路徑 → 跑抽取（需 pdftotext）→ 改 `build_participation_lists.mjs` 的 sha256／rows／year → `data:participation` | `test:flow` |
 | 題目效度（批 G6 擴充） | 教資會「資助大學」頁存檔 SHA-256 釘定、名單 8 所且每所在頁面正文、id 在池、管道判讀值合法；各題庫按六條標準重算（`docs/QUESTION_VALIDITY.md`）。每年隨港澳臺池更新：重抓教資會頁另存新日期檔 → 改 `build_question_evidence.mjs` 雜湊 → 管道判讀表逐筆對原句 → `data:validity`；題數變化時改 `tests/region-banks.test.ts` 的最終題目斷言 | `test:regions`、`audit:regions` |
+| 港澳臺參與名單（批 G8） | 聯招平台目錄與學測名單 CSV SHA-256 釘定、列數與本科列數釘定、每列對到教育部名單（含舊名與站方校區對照）；每年重抄後另存新日期檔 → 改 `build_participation_lists.mjs` 的路徑、雜湊、列數 → `data:participation` | `test:regions`、`test:flow` |
+| 澳門公私立、香港學費（批 G8） | 逐校原句須含所記的公立／私立字樣與金額；每年隨港澳臺池重讀官方頁 → 新日期 CSV → 改 `build_question_evidence.mjs` 路徑 → `data:validity` → `audit:regions` | `test:regions`、`audit:regions` |
+| 海外英語要求與學費原文（批 G8） | 兩檔 SHA-256、列數、抽取列數、規則版本、數值與原句、https；年度重跑 R1 規則須重新抽樣（研究寫明目前準確率是樣本內） → 改 `build_overseas_requirements.mjs` 的檔名與雜湊 → `data:requirements` | `test:regions` |
 | 權威分級 | 規則表欄位、枚舉、無重複 | `test:atlas` |
 | 資料庫 `/db/v1` | 來源全 https 且有分級、id 格式、crosswalk 端點存在、每筆 channel／condition 有 validity、latest ≤10 KiB、institutions gzip ≤500 KiB、無電郵 | `test:db` |
 | 三語 | 鍵集合相等、佔位符一致、zh-Hans fixtures | `test:i18n` |

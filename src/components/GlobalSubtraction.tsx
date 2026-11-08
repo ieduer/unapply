@@ -5,12 +5,14 @@ import type { WorldAtlasPayload } from '../data/worldAtlasTypes'
 import type { OriginRegion } from '../data/origins'
 import { LOCAL_ENTRY_SOURCES, liveSourceLinks, qualificationTokens, type OriginPrefs } from '../data/originBranch'
 import { questionEvidence } from '../data/questionEvidence'
+import { bankEvidence } from '../lib/bankEvidence'
 import {
   GLOBAL_DESTINATIONS,
   LEGACY_GLOBAL_STORAGE_KEYS,
   applicableChannels,
   audienceForOrigin,
   buildGlobalPool,
+  notRecruitingFor,
   poolFor,
   qualificationMark,
   type GlobalDestination,
@@ -175,8 +177,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
     familyOrder: data.atlas.families.map((f) => f.code),
     subjectOrder: data.atlas.subjects.map((s) => s.code),
     origin,
-    ugcFunded: new Set<string>(questionEvidence.ugcFunded.ids),
-    confirmedChannels: new Set<string>(questionEvidence.channelChecks.confirmed),
+    ...bankEvidence(),
   } : null), [data, origin])
   const pools = useMemo(() => new Map(destinations.map((d) => [d, poolFor(items, [d], origin)])), [items, destinations, origin])
   const plans = useMemo<BankPlan[]>(() => (ctx ? destinations.map((d) => evaluateBank(d, pools.get(d) ?? [], ctx)) : []), [ctx, destinations, pools])
@@ -233,7 +234,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
   const noUndergradByBank = useMemo(() => {
     const audience = audienceForOrigin(origin)
     const out = new Map<BankId, GlobalPoolItem[]>()
-    for (const d of destinations) out.set(d, items.filter((i) => i.destination === d && i.noUndergrad && (!i.committee || audience === null || Boolean(i.channels?.some((c) => c.audience === audience)))))
+    for (const d of destinations) out.set(d, items.filter((i) => i.destination === d && notRecruitingFor(i, origin) && (!i.committee || audience === null || Boolean(i.channels?.some((c) => c.audience === audience)))))
     return out
   }, [items, destinations, origin])
 
@@ -247,7 +248,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
   const subjectLabel = (code: string) => { const s = subjectByCode.get(code); if (!s) return code; return locale === 'en' ? s.nameEn : locale === 'zh-Hans' ? s.nameZhHans || s.nameZh : s.nameZh }
   const familyLabel = (code: string) => { const f = familyByCode.get(code); if (!f) return code; return locale === 'en' ? f.nameEn : f.nameZh }
   const channelLabel = (code: string) => t(`ui.global.channel.${code}`)
-  const optionLabel = (q: RegionQuestionId, value: string) => (q === 'regions' ? regionLabel(value) : q === 'families' ? familyLabel(value) : q === 'wanted' ? subjectLabel(value) : q === 'channels' ? channelLabel(value) : t(`ui.global.funding.${value}`))
+  const optionLabel = (q: RegionQuestionId, value: string) => (q === 'regions' ? regionLabel(value) : q === 'families' ? familyLabel(value) : q === 'wanted' ? subjectLabel(value) : q === 'channels' ? channelLabel(value) : q === 'moOwnership' ? t(`ui.global.ownership.${value}`) : q === 'hkTuitionCap' ? t('ui.global.tuitionCap.option', { amount: n(Number(value)) }) : t(`ui.global.funding.${value}`))
   const joiner = t('ui.common.listJoiner')
 
   if (loadError) {
@@ -285,7 +286,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
     const chosen = effectiveAnswers[plan.bank]?.[qid] ?? []
     const live = computeBank(plan, pools.get(plan.bank) ?? [], effectiveAnswers, ctx, isPath ? Infinity : index + 1)
     // 路徑題單選：再點一次＝取消
-    const pick = (value: string) => setAnswers({ ...effectiveAnswers, [plan.bank]: { ...(effectiveAnswers[plan.bank] ?? {}), [qid]: isPath ? (chosen[0] === value ? [] : [value]) : toggle(chosen, value) } })
+    const pick = (value: string) => setAnswers({ ...effectiveAnswers, [plan.bank]: { ...(effectiveAnswers[plan.bank] ?? {}), [qid]: isPath || q.single ? (chosen[0] === value ? [] : [value]) : toggle(chosen, value) } })
     const isLast = currentStep === steps.length - 1
     const next = () => goStep(isLast ? 'result' : currentStep + 1)
     const skip = () => { setAnswers({ ...effectiveAnswers, [plan.bank]: { ...(effectiveAnswers[plan.bank] ?? {}), [qid]: [] } }); next() }
@@ -347,7 +348,11 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
     const en = hk?.nameEn ?? os?.nameEn ?? item.id
     return locale === 'en' ? en : hk?.nameZh ?? os?.nameZh ?? en
   }
-  const reasonText = (reason: BankReason): string => t('ui.global.reason.short', { question: t(`ui.global.q.${reason.question}.title`), value: reason.values.map((v) => optionLabel(reason.question, v)).join(joiner) })
+  const tuitionOf = (id: string) => questionEvidence.hkTuition.rows.find((r) => r.id === id)
+  const tuitionText = (id: string) => { const r = tuitionOf(id); return r ? t(`ui.global.tuition.${r.basis}`, { min: n(r.min), max: n(r.max), range: r.max > r.min ? `${n(r.min)}–${n(r.max)}` : n(r.min), year: r.academicYear }) : '' }
+  const reasonText = (reason: BankReason, item?: GlobalPoolItem): string => (reason.question === 'hkTuitionCap' && item
+    ? t('ui.global.reason.short', { question: t('ui.global.q.hkTuitionCap.title'), value: tuitionText(item.id) })
+    : t('ui.global.reason.short', { question: t(`ui.global.q.${reason.question}.title`), value: reason.values.map((v) => optionLabel(reason.question, v)).join(joiner) }))
   const redo = () => { setAnswers({}); saveStoredAnswers(null, origin); setKeptLimit({}); goStep(steps.length ? 0 : 'result') }
   const syncDestinations = (next: readonly GlobalDestination[]) => {
     setSharedLoaded(true)
@@ -435,7 +440,18 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
                 <ul className="flex flex-col gap-2">
                   {keptSorted.slice(0, limit).map(({ item, unknown }) => itemRow(item, {
                     qual: qualificationMark(item, qualHits),
-                    children: unknown.length > 0 ? <p className="text-xs text-fog-500">{unknown.map((u) => t(`ui.global.unknown.${u}`)).join(joiner)}</p> : null,
+                    children: (
+                      <>
+                        {/* 批 G8：香港院校內地／非本地生年學費（官方原文；本地考生不顯示） */}
+                        {item.destination === 'hk' && origin !== 'hk' && tuitionOf(item.id) && (
+                          <p className="text-xs text-fog-300 leading-relaxed" data-global-tuition={item.id}>
+                            {t('ui.global.tuition.label')}{tuitionText(item.id)}{' '}
+                            <a className="tap underline hover:text-accent-500" href={tuitionOf(item.id)!.url} target="_blank" rel="noreferrer noopener">{t('ui.global.tuition.source')} ↗</a>
+                          </p>
+                        )}
+                        {unknown.length > 0 ? <p className="text-xs text-fog-500">{unknown.map((u) => t(`ui.global.unknown.${u}`)).join(joiner)}</p> : null}
+                      </>
+                    ),
                   }))}
                 </ul>
               )}
@@ -459,7 +475,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
               )}
               {noUndergrad.length > 0 && (
                 <details className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-global-no-undergrad={noUndergrad.length}>
-                  <summary className="cursor-pointer serif text-lg min-h-[44px] flex items-center">{t('ui.global.noUndergrad.title', { n: n(noUndergrad.length) })}</summary>
+                  <summary className="cursor-pointer serif text-lg min-h-[44px] flex items-center">{t(origin === 'cn-mainland' ? 'ui.global.noUndergrad.titleMainland' : 'ui.global.noUndergrad.title', { n: n(noUndergrad.length) })}</summary>
                   <p className="mt-2 text-xs text-fog-500 leading-relaxed">{t('ui.global.noUndergrad.note')}</p>
                   <ul className="mt-3 flex flex-col gap-2">
                     {noUndergrad.map((item) => {
@@ -475,7 +491,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
                   <ul className="mt-3 flex flex-col gap-2">
                     {result.crossed.map(({ item, reasons }) => itemRow(item, {
                       crossed: true,
-                      children: <ul className="flex flex-col gap-1 text-xs text-fog-300 leading-relaxed" data-global-reasons={reasons.length}>{reasons.map((reason, i) => <li key={i} data-global-reason={reason.question}>{reasonText(reason)}</li>)}</ul>,
+                      children: <ul className="flex flex-col gap-1 text-xs text-fog-300 leading-relaxed" data-global-reasons={reasons.length}>{reasons.map((reason, i) => <li key={i} data-global-reason={reason.question}>{reasonText(reason, item)}</li>)}</ul>,
                     }))}
                   </ul>
                 </details>
@@ -596,7 +612,7 @@ function ItemRow({ item, locale, origin, overseas, hkmotw, regionLabel, channelL
         </p>
       ) : item.pool === 'overseas' && item.destination !== 'overseas' && audienceForOrigin(origin) ? (
         <p className="text-xs text-fog-500 leading-relaxed" data-global-channels="none">{t('ui.global.item.channelsNone')}</p>
-      ) : item.pool === 'hkmotw' && !item.noUndergrad ? (
+      ) : item.pool === 'hkmotw' && !notRecruitingFor(item, origin) ? (
         <div className="text-xs text-fog-300 leading-relaxed flex flex-col gap-1" data-global-channels={own && own.length ? own.join('|') : 'none'}>
           {own && own.length > 0
             ? <p>{t('ui.global.item.channels', { channels: own.map(channelLabel).join(t('ui.common.listJoiner')) })}</p>
