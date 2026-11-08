@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Git branch: `master`; deployed source `893667b`; documentation HEAD is separately recorded by Git
+- Git branch: `master`; deployed source `18bf5f2` (batch G1, deployment `01022627`); documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -35,7 +35,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 
 | Resource | Live type | Readback | Detail |
 | --- | --- | --- | --- |
-| `unapply` | Pages | verified 2026-11-07 | production branch `master`; canonical deployment `df4540a2-5657-4676-bd83-9026fa232579` (source `26bad8c`) |
+| `unapply` | Pages | verified 2026-11-08 | production branch `master`; canonical deployment `01022627-65fe-4987-ac32-15b78c6d913c` (source `18bf5f2`, batch G1) |
 
 ## Authority and dependencies
 
@@ -57,7 +57,7 @@ Catalog backup evidence:
 - Cloudflare immutable Pages deployments: current=df4540a2-5657-4676-bd83-9026fa232579 (source 26bad8c, batch D3), previous=c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782, batch D1), earlier=b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1, batch C), 8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
 
 Catalog restore evidence:
-- restore previous code/assets by rolling back to production deployment c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782)
+- restore previous code/assets by rolling back to production deployment 46a33556-daee-42ea-9f10-0c75cc5843e8 (source 987c934, batch F2) through the reviewed rollback transaction
 
 Before deleting any local resource, satisfy the workspace path-preserving archive, remote readback, isolated restore, receipt, handbook, and project-state gates.
 
@@ -132,7 +132,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after batch F2: `8385ac10-f587-44c8-ac43-f0dece8fc60f`, source `2d3323c`, batch F1), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after batch G1: `46a33556-daee-42ea-9f10-0c75cc5843e8`, source `987c934`, batch F2), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -159,7 +159,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-11-08 UTC — production `46a33556` from `987c934` (batch F2, roadmap S5); eighteen gates on the release commit (`test:db` added), 138 of 138 served assets (139 with the `_headers` control file) on candidate, custom and immutable hosts; `/db/v1/latest.json` and version files readable with one `access-control-allow-origin: *` and the designed Cache-Control; cross-origin fetch from nope.bdfz.net to the candidate verified with Web Crypto SHA-256; health active. Exact evidence in the batch F2 section below.
+8. Last verified: 2026-11-08 UTC — production `01022627` from `18bf5f2` (batch G1, owner rulings 2026-11-08); eighteen gates on the release commit, 138 of 138 served assets (139 with `_headers`) on candidate, custom and immutable hosts; real path in three languages × two schemes × 1440／390 on the candidate; health active. Exact evidence in the batch G1 section below.
 
 ## Synchronized documentation and handoff
 
@@ -518,7 +518,7 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 
 **回滾**：`9753bdc3`／`55eb014`（批 E2），受審回滾交易；只切 Pages 版本，無資料庫遷移；學習記錄不受影響。回滾後直招層回到 10 條、標籤與 About 分級段消失，失效鏈接回到舊值。證據：`reports/operations/nope-s5-db-xcut-20261107/nope-f1/`；資源 `nope-f1/resources.md`；待站長 `nope-f1/PENDING_OWNER_REVIEW.md`。
 
-## 2026-11-07／08 批 F2：路線圖 S5——只讀全球高校資料庫 `/db/v1`（已上線，當前權威）
+## 2026-11-07／08 批 F2：路線圖 S5——只讀全球高校資料庫 `/db/v1`（已上線；批 G1 疊加於其上）
 
 **授權**：同批 F1（站長 2026-11-07 睡前裁定）。靜態、版本化、只讀；**不新增任何 Cloudflare 資源或綁定**（檔案隨既有 Pages 專案發布，回應頭在倉庫 `public/_headers`，只匹配 `/db/*`）。不改既有 payload 形狀／題集／DimensionId／AnswerMap／learning manifest／Function／shared-ui；無 UC 或共享樞紐寫入；無付費或計量資源；不改導航／門戶／Pulse／UC 登記；不改 path／gk 倉庫（消費端整合是它們的後續）。需站長裁定的只寫入 `nope-f2/PENDING_OWNER_REVIEW.md`。
 
@@ -529,3 +529,15 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 **驗證**：本機（`local-browser.json`）；候選 `a8799d46`（`candidate-browser.json`：真實點擊 正體 與 墨色；三語 × 紙色／墨色 × 1440／390 共 12 輪 About，0 低於 4.5，最低 6.94（紙）／7.93（墨）；latest.json 在瀏覽器可讀；從 nope.bdfz.net 跨域 `fetch` 候選 latest／manifest／crosswalk 成功並以 Web Crypto 核對 SHA-256；`candidate-db-headers.txt`：`/db/*` 單一 `access-control-allow-origin: *`＋`access-control-allow-methods: GET`、latest `public, max-age=300`、版本檔 `public, max-age=31536000, immutable`，`/data/` 與 `/` 不變、`/api/learning/health` GET 200（HEAD 405 與正式相同））；正式（三語 × 紙色 × 1440，主控台無錯誤；custom domain `cf-cache-status: DYNAMIC`，無區域瀏覽器 TTL 覆寫）。候選驗收從 14:32Z 開始、會話暫停後於 01:20Z 完成，`candidate-browser.json` 內 `at` 為暫停前預填值（檔案時間為準，已記於 `nope-f2/resources.md`）。
 
 **回滾**：`8385ac10`／`2d3323c`（批 F1），受審回滾交易；只切 Pages 版本，無資料庫遷移；回滾後 `/db/` 路徑消失（F1 尚無資料庫），學習記錄不受影響。證據：`reports/operations/nope-s5-db-xcut-20261107/nope-f2/`；資源 `nope-f2/resources.md`；待站長 `nope-f2/PENDING_OWNER_REVIEW.md`。
+
+## 2026-11-08 批 G1：站長 11-08 裁定落地——英文站名、頁尾分區、權威分級、海外層 medium 7 所人工確認（已上線，當前權威）
+
+**授權**：站長 2026-11-08 於主會話「Items for the owner都不那麼重要，你直接判斷做選擇即可，推進到goal，部署」；主會話裁定記錄 `reports/operations/nope-global-roadmap-20261107/DECISIONS.md`（B2／B3／B4／B5／C2／F1-7 由本批落地；A1 方案 B、A3 不改五面導航、B1、D1、D3、D4、F2-1、F2-2 為「無需動作」，文件已改為已裁定）。葉子資料／介面更新走登記的發布交易。不改題集／DimensionId／AnswerMap／option key／learning manifest／Function／shared-ui；無 UC 或共享樞紐寫入；無付費或計量資源；無新 Cloudflare 資源或綁定；不改導航／門戶／Pulse／UC 登記。
+
+**正式部署**：`01022627-65fe-4987-ac32-15b78c6d913c`，來源 `18bf5f2c68e44dcceccbcb58865cb7d682da16f5`，生效 `2026-11-08T03:00:32Z`（Cloudflare `ended_on` 03:00:32.541Z）；候選 `5ec20b57`、正式 nope.bdfz.net 與不可變網址 138/138 一致（139 含 `_headers`）；health active（manifest `unapply-result-v1` 不變）；正式真實路徑（`nope-g1/production-browser.json`）與候選一致。登記簿 accepted → `01022627`／`18bf5f2`，rollback → `46a33556`／`987c934`。Status `20261108-nope-rulings-g1` r1（improvement，已發布並讀回 `status-readback-g1.txt`）。收據 `20261108-nope-rulings-g1`（2 個 reviewed_changes：Landing、AboutPage；HTTP 10/40）。
+
+**實作**（手冊 §3.3／§3.7／§3.8／§3.9）：B2 en `meta.title`「nope · Universities You Won’t Apply To」、`ui.share.title`「Universities I won’t apply to」（其他英文鍵無站名）；B3 頁尾「權威數據」拆為「官方與權威來源」（P0／P1：教育部、氣象局、學位中心學科評估、軟科 GRAS）與「第三方參考」（P2：第一財經），`data-footer-group`（sister／official／third-party／open-source），tier 標籤保留，About 分級段加 `ui.about.tiers.footer` 一句、P0／P1 說明同步；B4 `authority_tiers` chinadegrees.cn、findyou2026.com 升 P0（理由照裁定，checkedAt 2026-11-08），C2 新增 mitadmissions.org P0 → 107 條（P0 74／P1 13／P2 14／OWN 6）；B5 手冊 §3.9 口徑改「2026-11-08 已裁定」（`check_links.mjs` 預設不變）。C2：`overseas_admissions.2026-11-07.csv` 追加人工確認三欄 `reviewedBy`（角色代碼 `owner-ruling`）／`reviewedAt`／`reviewNote`，meta 寫 `revisions`（研究原檔 SHA-256 記 `researchSha256`）；`build_overseas_layer.mjs`：`official-external` 只有 `reviewedAt` 非空才允許 high、`reviewNote` 須寫出招生頁網域、該網域下片段與來源才上鏈接，非 verified 列不得帶抽取欄位；MIT（mitadmissions.org）、Lancaster（lancaster.ac.uk）升 high 並加註「人工確認屬該校後上鏈接」；Institute of Science Tokyo、POSTECH 的 S0 官網經 `verify_institution_websites.mjs` `MANUAL_REVIEW` `--recheck --only RI01434,RI02126` 更新為 `https://www.isct.ac.jp/`（2026-11-08 GET 200，標題 Science Tokyo；兩來源網域不一致維持 medium）與 `https://www.postech.ac.kr/kor/index.do`（根路徑對 Node fetch 回 404，照 F1 記最終網址）→ `gras_institution_websites.2026-11-08.csv`（544/544 verified），招生頁落回官網網域內為 high；UTAS、HEC Paris、Gothenburg 改 `not_found`（招生頁落在 UAC／Bocconi／antagning.se，抽取欄位移出、研究原檔保留）；CU Denver 不動（F1-7）。結果 verified 340／needs_review 2／blocked 42／not_found 19、high 340／medium 0、招生頁鏈接 340（manifest `09a9949bf121`）；世界地圖 `0877e87ab4e3`、qualifications `cd756893c46f`、i18n 1,339 鍵 `80ad6019780e`、`/db/v1` `8295ccba5e1e`（條件 1,214、來源 3,511、可上鏈接 3,420、有效期 3,265；海外條件 validity.reviewedAt 取人工確認日）。十八道閘門於 `18bf5f2`（`nope-g1/check.txt`，dist 139 檔）；`test:overseas` 10（新增人工確認一項）、`test:atlas` 斷言 chinadegrees／findyou2026 為 P0。
+
+**驗證**：候選 `5ec20b57`（`nope-g1/candidate-browser.json`：真實點擊 正體、色系面板 墨色、Lancaster「招生條件」展開；頁尾兩組與 tier 標籤三語；MIT／ISCT／POSTECH 深鏈上鏈接、UTAS／HEC／Gothenburg「官方頁本站未讀到」；三語 × 紙色／墨色 × 1440／390 × 5 路由，0 低於 4.5，最低 4.57（紙）／4.93（墨）＝既有強調色按鈕，最小字 12px，無橫向溢出；兩次切色系後首個樣本讀到 header「about」按鈕過渡中顏色 2.48／2.17，靜置重測 7.93／正常，已記錄）；正式（`production-browser.json`：三語 × 紙色 × 1440，主控台無錯誤）。
+
+**回滾**：`46a33556`／`987c934`（批 F2），受審回滾交易；只切 Pages 版本，無資料庫遷移；回滾後頁尾回到「權威數據」一組、海外層回到 medium 7／high 336、`/db/v1` 回到 `7926db10b4c6`，學習記錄不受影響。證據：`reports/operations/nope-global-roadmap-20261107/nope-g1/`；資源 `nope-g1/resources.md`。

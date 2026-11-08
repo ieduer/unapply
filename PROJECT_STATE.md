@@ -1,10 +1,17 @@
 # Project State
 
 Last updated: 2026-11-08 UTC
-Current version: 987c934（已部署 46a33556，生效 2026-11-08T01:21:33Z；批 F2 疊加於批 F1 2d3323c／8385ac10）
+Current version: 18bf5f2（已部署 01022627，生效 2026-11-08T03:00:32Z；批 G1 疊加於批 F2 987c934／46a33556）
 Current objective: **路線圖 S0–S5 全部上線（2026-11-07；S5 生效時間為 UTC 2026-11-08T01:21:33Z），原待審事項 2026-11-08 已全部裁定，落地批 G1–G4 進行中，其餘為年度維護。** 全球化路線圖（docs/GLOBAL_ROADMAP.md）S0、S1 全批、S2 兩半、S3、S4 兩批、橫切項（批 F1）與 S5 只讀資料庫（批 F2）皆已上線並登記 accepted；年度維護照 `docs/ANNUAL_UPDATE.md`（各層 `nextReviewDue` 見 `/db/v1` 的 validity.calendar；各省 2028 選考表依慣例應已公布，下一次維護先核）。原待審項（各批 `PENDING_OWNER_REVIEW.md`：S2、S3、E1、E2、F1、F2；彙整 `reports/operations/nope-global-roadmap-20261107/OWNER_REVIEW.md`）站長 2026-11-08 授權主會話裁定，裁定與執行批次見 `reports/operations/nope-global-roadmap-20261107/DECISIONS.md`（A1 維持方案 B、A3 不改五面導航、B1 conflict 照列不排除、D1 學徒制算直招、D3／D4 不建、F2-1 CORS 接受、F2-2 不開）；原 43 維效度缺口仍列後續。
 
-## 2026-11-07／08 批 F2：路線圖 S5——只讀全球高校資料庫 `/db/v1`（已上線，當前權威）
+## 2026-11-08 批 G1：站長 11-08 裁定落地——英文站名、頁尾分區、權威分級、海外層 medium 7 所人工確認（已上線，當前權威）
+
+正式部署 `01022627-65fe-4987-ac32-15b78c6d913c`，來源 `18bf5f2`，生效 `2026-11-08T03:00:32Z`；回滾 `46a33556`／`987c934`。Status `20261108-nope-rulings-g1` r1。裁定 `reports/operations/nope-global-roadmap-20261107/DECISIONS.md`。
+- B2 英文站名「nope · Universities You Won’t Apply To」、分享卡「Universities I won’t apply to」；B3 頁尾「官方與權威來源」（P0／P1）＋「第三方參考」（P2）；B4 chinadegrees.cn、findyou2026.com 升 P0（＋mitadmissions.org P0，107 條）；B5 年檢口徑已裁定。
+- C2 海外層：MIT、Lancaster 人工確認升 high（新欄 reviewedBy／reviewedAt／reviewNote；official-external 須 reviewedAt 才 high）；ISCT、POSTECH S0 官網更新（`gras_institution_websites.2026-11-08.csv`）後 high；UTAS、HEC Paris、Gothenburg 改 not_found → verified 340、not_found 19、high 340、medium 0、鏈接 340；`/db/v1` `8295ccba5e1e`。
+- 十八道閘門於 `18bf5f2`；候選 `5ec20b57` 與正式 138/138；三語 × 兩色系 × 1440／390 對比 0 低於 4.5。證據 `reports/operations/nope-global-roadmap-20261107/nope-g1/`。
+
+## 2026-11-07／08 批 F2：路線圖 S5——只讀全球高校資料庫 `/db/v1`（歷史；批 G1 疊加於其上）
 
 正式部署 `46a33556-daee-42ea-9f10-0c75cc5843e8`，來源 `987c934`，生效 `2026-11-08T01:21:33Z`；回滾 `8385ac10`／`2d3323c`。Status `20261107-nope-s5-db-f2` r1。
 - `https://nope.bdfz.net/db/v1/latest.json` → 版本 `7926db10b4c6`：機構 3,935、對照 561、管道 2,051、條件 1,223、來源 3,516（全 https、帶分級）、有效期 3,274、引用既有 payload 84 檔；`/db/*` CORS GET、版本目錄 immutable、latest 300 秒；未新增 Cloudflare 資源。

@@ -1,6 +1,6 @@
 # nope.bdfz.net 全球化路線圖（2026-11-06 立項）
 
-Owner: suen　｜　Status: **S0–S5 全部上線**（S0 2026-11-06；S1–S4 與橫切項 2026-11-07；S5 生效 UTC 2026-11-08T01:21:33Z）；原待審事項已於 2026-11-08 全部裁定（`reports/operations/nope-global-roadmap-20261107/DECISIONS.md`），剩餘為裁定落地批 G1–G4 與年度維護（`docs/ANNUAL_UPDATE.md`）　｜　上次更新：2026-11-08（UTC）
+Owner: suen　｜　Status: **S0–S5 全部上線**（S0 2026-11-06；S1–S4 與橫切項 2026-11-07；S5 生效 UTC 2026-11-08T01:21:33Z）；原待審事項已於 2026-11-08 全部裁定（`reports/operations/nope-global-roadmap-20261107/DECISIONS.md`），剩餘為裁定落地批 G1–G4 與年度維護（`docs/ANNUAL_UPDATE.md`）　｜　上次更新：2026-11-08（UTC，批 G1 後）
 
 本文件是站點的**最終目標與分階段計劃**的權威記錄。目標一次寫清楚，實作一步一步來；
 每一階段完成後只更新本文的「階段狀態」與 `PROJECT_STATE.md`，不改寫目標本身。
@@ -31,6 +31,11 @@ Owner: suen　｜　Status: **S0–S5 全部上線**（S0 2026-11-06；S1–S4 �
 | S3 | 海外可申請學校：澳洲、英國、美國、加拿大、歐陸、日韓新等；以**學科**為主索引（沿用 S0 的 GRAS 骨架），逐校補錄取條件（A-Level／IB／SAT／高考成績採認、語言）、國際生名額與學費、簽證政策 | S0 地圖資料結構穩定 | 每所入池學校至少有官方招生頁、年度、條件三元組；缺失維持未知 | **已上線 2026-11-07**：批 S3（`7443bb5`／`41a45cad`，生效 10:24:43Z，回滾 `26154a49`／`893667b`，Status `20261107-nope-s3-overseas-admissions`）——`#/overseas`：GRAS 前 50 非大陸 403 所逐校官方國際本科招生頁原文（官方頁已讀到 343：同官網網域 336／另一官方網域 7；被擋 42、未找到 16、純 JS 待覆核 2）、44 個地區 91 條官方申請平台（上鏈接 63）與 90 條簽證主管機關頁（上鏈接 47）；只抄原文、不解讀、不代表錄取可能；缺的保持未知；2026-11-08 裁定：medium 7 所中 MIT、Lancaster、Institute of Science Tokyo、POSTECH 人工確認升 high 上鏈接，UTAS、HEC Paris、Gothenburg 改 not_found（C2，批 G1）；被擋／純 JS 機構與國家層頁以真實瀏覽器覆核（C1／C3，覆核會話＋批 G4）；國際生名額不建（D4，官方頁多不公布）；年度隨 GRAS 重核 |
 | S4 | 多語言與多起點：介面與題庫 zh-Hant／zh-Hans／en 起步；用戶所在地分支（各地考試制度決定前幾題）；跨國選擇在結果頁並列本地與海外路徑 | S2、S3 有可用池 | 任一起點都能走完減法並得到可追溯的剩餘集合 | **批 E1 已上線 2026-11-07**（`84c0fcd`／`460b9fcb`，生效 11:52:24Z，回滾 `41a45cad`／`7443bb5`，Status `20261107-nope-s4-i18n-e1`）：三語介面——1,200 鍵覆蓋 45 題與選項、維度與取值、省名、起點、全部頁面；zh-Hant 來源、zh-Hans 建置期字級轉換（140 條 fixtures 閘門）、en 站方翻譯懶載；頭部切換存 `unapply.locale.v1`，首次依瀏覽器語言；資料驅動名稱不翻譯、官方名稱原文保留；引擎／契約／shared-ui 不變（shared-ui 9 條字串 2026-11-08 裁定兩站同批改，A2，批 G3）。**批 E2 已上線 2026-11-07**（`55eb014`／`9753bdc3`，生效 12:56:17Z，回滾 `460b9fcb`／`84c0fcd`，Status `20261107-nope-s4-origins-e2`）：起點分支——港澳臺／海外起點先答資格（18 種）與範圍（只本地／只海外／都考慮，可跳過；展示層，只存 `unapply.originPrefs.v1`，不進 AnswerMap）；港澳臺起點附 7 條官方進大陸管道（只鏈 verified）；海外層按資格保留式標示「校方頁面寫明接受」與分國計數；結果頁按範圍並列港澳臺院校池與海外層（local 收成一行）。2026-11-08 裁定：起點／資格／範圍不進學習證據，維持方案 B（A1）；未核官方頁以真實瀏覽器覆核（C5，批 G4） |
 | S5 | 全球高校權威資料庫服務化：統一 schema（機構／專業／招生管道／條件／來源／有效期），年度更新作業化，對站內其他產品（path、gk）開放只讀 | S3 | 資料庫有版本、來源與有效期欄位；年度更新可由手冊重現 | **已上線（生效 UTC 2026-11-08T01:21:33Z）**：批 F2（`987c934`／`46a33556`，回滾 `8385ac10`／`2d3323c`，Status `20261107-nope-s5-db-f2`）——只讀資料庫 `https://nope.bdfz.net/db/v1/latest.json`：統一 schema 六類實體（`docs/DB_SCHEMA.md`）：機構 3,935（教育部 2,952／GRAS 544／合作辦學機構 411／港澳臺 28）＋跨層對照 561、招生管道 2,051、條件索引 1,223（大檔以既有 payload 的 URL＋sha256 引用 84 檔）、來源 3,516（全 https、P0／P1／P2 分級、抓取證據）、有效期 3,274（每筆含 `nextReviewDue`）；版本 `7926db10b4c6`＝內容雜湊；`public/_headers` 只對 `/db/*` 加 CORS GET 與快取頭；使用契約 `docs/DB_API.md`、年度作業 `docs/ANNUAL_UPDATE.md`；未新增任何 Cloudflare 資源。2026-11-08 裁定：`/db/*` CORS 全開接受（F2-1，全為公開官方資訊索引）；path／gk 消費端整合不在本目標內（F2-2） |
+
+裁定落地批（站長 2026-11-08 授權主會話裁定，`reports/operations/nope-global-roadmap-20261107/DECISIONS.md`；當時值）：
+
+- **G1 已上線**（`18bf5f2`／`01022627`，生效 2026-11-08T03:00:32Z，回滾 `46a33556`／`987c934`，Status `20261108-nope-rulings-g1`）：英文站名、頁尾「官方與權威來源／第三方參考」、chinadegrees.cn／findyou2026.com 升 P0、年檢口徑已裁定；海外層 medium 7 所——MIT、Lancaster 人工確認升 high，ISCT、POSTECH S0 官網更新後 high，UTAS、HEC Paris、Gothenburg 改 not_found（verified 340、鏈接 340）。
+- G2 全球池減法流程（S4 完成定義）、G3 shared-ui 兩站多語標籤、G4 瀏覽器覆核結果入庫：待續。
 
 橫切項（每一階段都要遵守）：
 
