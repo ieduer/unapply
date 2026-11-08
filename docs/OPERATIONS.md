@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Git branch: `master`; deployed source `f7f3484` (batch G2, deployment `79c3c1b2`); documentation HEAD is separately recorded by Git
+- Git branch: `master`; deployed source `9f8f500` (batch G3, deployment `5ac934ec`); documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -35,7 +35,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 
 | Resource | Live type | Readback | Detail |
 | --- | --- | --- | --- |
-| `unapply` | Pages | verified 2026-11-08 | production branch `master`; canonical deployment `79c3c1b2-6ec2-4320-95e3-6f74a51f04a4` (source `f7f3484`, batch G2) |
+| `unapply` | Pages | verified 2026-11-08 | production branch `master`; canonical deployment `5ac934ec-f693-4788-abdd-c5fd32dd2932` (source `9f8f500`, batch G3) |
 
 ## Authority and dependencies
 
@@ -57,7 +57,7 @@ Catalog backup evidence:
 - Cloudflare immutable Pages deployments: current=df4540a2-5657-4676-bd83-9026fa232579 (source 26bad8c, batch D3), previous=c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782, batch D1), earlier=b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1, batch C), 8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
 
 Catalog restore evidence:
-- restore previous code/assets by rolling back to production deployment 01022627-65fe-4987-ac32-15b78c6d913c (source 18bf5f2, batch G1) through the reviewed rollback transaction
+- restore previous code/assets by rolling back to production deployment 79c3c1b2-6ec2-4320-95e3-6f74a51f04a4 (source f7f3484, batch G2) through the reviewed rollback transaction
 
 Before deleting any local resource, satisfy the workspace path-preserving archive, remote readback, isolated restore, receipt, handbook, and project-state gates.
 
@@ -134,7 +134,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after batch G2: `01022627-65fe-4987-ac32-15b78c6d913c`, source `18bf5f2`, batch G1), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after batch G3: `79c3c1b2-6ec2-4320-95e3-6f74a51f04a4`, source `f7f3484`, batch G2), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -161,7 +161,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-11-08 UTC — production `79c3c1b2` from `f7f3484` (batch G2, `#/global`); nineteen gates on the release commit (`test:global` added), 140 of 140 served assets (141 with `_headers`) on candidate, custom and immutable hosts; both origin flows and three languages × two schemes × 1440／390 on the candidate; health active. Exact evidence in the batch G2 section below.
+8. Last verified: 2026-11-08 UTC — production `5ac934ec` from `9f8f500` (batch G3, shared-ui labels; path.bdfz.net same batch `fef18140`); nineteen gates on the release commit, 140 of 140 served assets on candidate, custom and immutable hosts; three languages × two schemes × 1440／390 with the panel open; health active. Exact evidence in the batch G3 section below.
 
 ## Synchronized documentation and handoff
 
@@ -544,7 +544,7 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 
 **回滾**：`46a33556`／`987c934`（批 F2），受審回滾交易；只切 Pages 版本，無資料庫遷移；回滾後頁尾回到「權威數據」一組、海外層回到 medium 7／high 336、`/db/v1` 回到 `7926db10b4c6`，學習記錄不受影響。證據：`reports/operations/nope-global-roadmap-20261107/nope-g1/`；資源 `nope-g1/resources.md`。
 
-## 2026-11-08 批 G2：全球池減法 `#/global`（路線圖 S4 完成定義；已上線，當前權威）
+## 2026-11-08 批 G2：全球池減法 `#/global`（路線圖 S4 完成定義；已上線；批 G3 疊加於其上）
 
 **授權**：同批 G1（站長 2026-11-08 授權主會話裁定；`DECISIONS.md`「尚未達成的目標項」）。展示層：不進 AnswerMap／DimensionId／learning manifest／Function／A+ 證據；不改題集與任何資料層；無 UC 或共享樞紐寫入；無付費或計量資源；無新 Cloudflare 資源或綁定；不改導航／門戶／Pulse／UC 登記。
 
@@ -555,3 +555,15 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 **驗證**：候選 `c80a22db`（`519be12`）發現換起點沿用舊選擇 → `2ba3b70` 綁起點；候選 `2f0ad650` 發現分享卡未答題寫「沒有劃掉」→ `f7f3484` 改「未選」；最終候選 `cb242317`（`nope-g2/candidate-browser.json`）：香港起點→HKDSE→開始全球減法→劃澳洲、日本、社會科學→330/430、100 所逐條原因、分享往返一致；其他國家起點→英國 A-Level→403/403（只海外層）→劃美國、德國、工學→199/403、204 所逐條原因、分享往返一致；兩組都與引擎離線計算相同；三語 × 紙色／墨色 × 1440／390 × 三路由（`#/`、`#/global` 展開劃掉清單與學科清單、`#/about`）0 低於 4.5（最低 6.27／7.14），最小字 12px，無橫向溢出；正式（`production-browser.json`：三語 × 紙色 × 1440，主控台無錯誤）。
 
 **回滾**：`01022627`／`18bf5f2`（批 G1），受審回滾交易；只切 Pages 版本，無資料庫遷移；回滾後 `#/global` 路由消失（回首頁）、首頁主按鈕回到「看港澳臺院校池／看海外可申請學校」，`unapply.globalSubtraction.v1` 殘留無害（舊版不讀它），學習記錄不受影響。證據：`reports/operations/nope-global-roadmap-20261107/nope-g2/`；資源 `nope-g2/resources.md`。
+
+## 2026-11-08 批 G3：shared-ui 色系面板與同步提示多語標籤（兩站同批；已上線，當前權威）
+
+**授權**：同批 G1（`DECISIONS.md` A2：shared-ui 9 條字串兩站同批改）。不改題集／AnswerMap／learning manifest／Function；無 UC 或共享樞紐寫入；無付費或計量資源；無新 Cloudflare 資源；不改導航／門戶／Pulse／UC 登記。
+
+**正式部署**：nope `5ac934ec-f693-4788-abdd-c5fd32dd2932`，來源 `9f8f5002a8c4c79ba47cca5cb6b90b42b3cb27d8`，生效 `2026-11-08T04:33:27Z`；候選 `d68a1b0d`、正式與不可變網址 140/140；health active。登記簿 accepted → `5ac934ec`／`9f8f500`，rollback → `79c3c1b2`／`f7f3484`。Status `20261108-nope-shared-ui-labels-g3` r1（improvement）。同批 path.bdfz.net：`fef18140-4319-4af5-bcc2-7349fc717a02`，來源 `3affc0d`（ieduer/minus-life），生效 `2026-11-08T04:33:45Z`，回滾 `8771ae93`／`fb4b95b`，Status `20261108-path-shared-ui-labels-g3` r1（「行為不變，僅共用元件支援多語標籤」）；path 的發布記錄在其 `docs/OPERATIONS.md`。
+
+**實作**（手冊 §5.3）：`src/shared-ui/ThemeCustomizer.tsx`、`SyncNotice.tsx` 加可選 `labels` prop，預設值＝原字串逐字不變；`App.tsx` 傳入 `ui.theme.title`／`ui.common.close`／`ui.theme.text`／`ui.theme.<preset>.label`／`.hint` 與 `ui.sync.verified`／`error`／`syncing`（字典既有鍵，無新增）；`check_shared_ui.mjs --write` 更新 manifest；同一份 `src/shared-ui/` 逐位元組複製到 minus-life（不傳 props）。十九道閘門於 `9f8f500`（`nope-g3/check.txt`）；path 八道閘門於 `3affc0d`（`nope-g3/path/check.txt`）；兩站 `check:shared-ui` 互相比對通過。
+
+**驗證**：nope 候選（`nope-g3/candidate-browser.json`）：真實點擊色系面板與墨色；三語下面板文字隨語言（en「Colour scheme · Paper」等；zh-Hant 與舊字串逐字相同）；同步提示以本機注入的 verified 狀態顯示（en「Verified」），檢查期間零 `/api/learning/` 請求；三語 × 紙色／墨色 × 1440／390：面板與提示最低 9.06／10.43，頁面最低 4.57／4.93（切色系後首個樣本的過渡色凍結已靜置重測），無溢出。path（`nope-g3/path/candidate-browser.json`）：候選與上一版不可變網址 `8771ae93` 同一腳本、兩色系 × 兩寬度，首頁／第 1 題／15 題後結果頁文字雜湊與面板、按鈕 outerHTML 雜湊全部相同；正式站只讀首頁與面板，雜湊與上一版相同。
+
+**回滾**：nope `79c3c1b2`／`f7f3484`（批 G2），path `8771ae93`／`fb4b95b`，各自受審回滾交易；兩站的 shared-ui 檔回滾後仍需一致（`check:shared-ui` 比對姊妹倉庫工作樹）。證據：`reports/operations/nope-global-roadmap-20261107/nope-g3/`；資源 `nope-g3/resources.md`。

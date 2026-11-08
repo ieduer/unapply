@@ -1,10 +1,15 @@
 # Project State
 
 Last updated: 2026-11-08 UTC
-Current version: f7f3484（已部署 79c3c1b2，生效 2026-11-08T03:56:02Z；批 G2 疊加於批 G1 18bf5f2／01022627）
-Current objective: **路線圖 S0–S5 全部上線（2026-11-07；S5 生效時間為 UTC 2026-11-08T01:21:33Z），原待審事項 2026-11-08 已全部裁定，落地批 G1–G4 進行中，其餘為年度維護。** 全球化路線圖（docs/GLOBAL_ROADMAP.md）S0、S1 全批、S2 兩半、S3、S4 兩批、橫切項（批 F1）與 S5 只讀資料庫（批 F2）皆已上線並登記 accepted；年度維護照 `docs/ANNUAL_UPDATE.md`（各層 `nextReviewDue` 見 `/db/v1` 的 validity.calendar；各省 2028 選考表依慣例應已公布，下一次維護先核）。原待審項（各批 `PENDING_OWNER_REVIEW.md`：S2、S3、E1、E2、F1、F2；彙整 `reports/operations/nope-global-roadmap-20261107/OWNER_REVIEW.md`）站長 2026-11-08 授權主會話裁定，裁定與執行批次見 `reports/operations/nope-global-roadmap-20261107/DECISIONS.md`（A1 維持方案 B、A3 不改五面導航、B1 conflict 照列不排除、D1 學徒制算直招、D3／D4 不建、F2-1 CORS 接受、F2-2 不開）；原 43 維效度缺口仍列後續。
+Current version: 9f8f500（已部署 5ac934ec，生效 2026-11-08T04:33:27Z；批 G3 疊加於批 G2 f7f3484／79c3c1b2）
+Current objective: **路線圖 S0–S5 全部上線（2026-11-07；S5 生效時間為 UTC 2026-11-08T01:21:33Z），原待審事項 2026-11-08 已全部裁定，落地批 G1–G3 已上線（G1 01022627、G2 79c3c1b2、G3 5ac934ec＋path fef18140），G4（瀏覽器覆核結果入庫）待覆核會話交付，其餘為年度維護。** 全球化路線圖（docs/GLOBAL_ROADMAP.md）S0、S1 全批、S2 兩半、S3、S4 兩批、橫切項（批 F1）與 S5 只讀資料庫（批 F2）皆已上線並登記 accepted；年度維護照 `docs/ANNUAL_UPDATE.md`（各層 `nextReviewDue` 見 `/db/v1` 的 validity.calendar；各省 2028 選考表依慣例應已公布，下一次維護先核）。原待審項（各批 `PENDING_OWNER_REVIEW.md`：S2、S3、E1、E2、F1、F2；彙整 `reports/operations/nope-global-roadmap-20261107/OWNER_REVIEW.md`）站長 2026-11-08 授權主會話裁定，裁定與執行批次見 `reports/operations/nope-global-roadmap-20261107/DECISIONS.md`（A1 維持方案 B、A3 不改五面導航、B1 conflict 照列不排除、D1 學徒制算直招、D3／D4 不建、F2-1 CORS 接受、F2-2 不開）；原 43 維效度缺口仍列後續。
 
-## 2026-11-08 批 G2：全球池減法 `#/global`（路線圖 S4 完成定義；已上線，當前權威）
+## 2026-11-08 批 G3：shared-ui 色系面板與同步提示多語標籤（兩站同批；已上線，當前權威）
+
+正式部署 `5ac934ec-f693-4788-abdd-c5fd32dd2932`，來源 `9f8f500`，生效 `2026-11-08T04:33:27Z`；回滾 `79c3c1b2`／`f7f3484`。Status `20261108-nope-shared-ui-labels-g3` r1。同批 path.bdfz.net `fef18140`／`3affc0d`（生效 04:33:45Z，回滾 `8771ae93`／`fb4b95b`，Status `20261108-path-shared-ui-labels-g3`）。
+- `ThemeCustomizer`／`SyncNotice` 可選 `labels` prop（預設＝原字串）；nope 傳三語值，path 不傳（候選與上一版文字及面板 HTML 雜湊逐一相同）。裁定 A2。英文與簡體介面不再夾雜色系與同步提示原文。
+
+## 2026-11-08 批 G2：全球池減法 `#/global`（路線圖 S4 完成定義；歷史；批 G3 疊加於其上）
 
 正式部署 `79c3c1b2-6ec2-4320-95e3-6f74a51f04a4`，來源 `f7f3484`（feat `519be12`＋fix `2ba3b70`、`f7f3484`），生效 `2026-11-08T03:56:02Z`；回滾 `01022627`／`18bf5f2`。Status `20261108-nope-global-subtraction-g2` r1。
 - 展示層（手冊 §5.5）：池＝海外層 403＋港澳臺院校池 27（依起點與範圍預設）；4 題可跳過——地區、GRAS 門類（所有前 50 學科都在被劃門類才劃）、只想讀學科、港澳臺管道對象（已記錄管道全劃且含你這類考生的管道才劃）；申請平台只作說明；未知永不劃、資格只標示；每所劃掉的機構有逐條原因；分享只含選項鍵；狀態 `unapply.globalSubtraction.v1`（綁起點），不進 AnswerMap／學習證據／Function。
