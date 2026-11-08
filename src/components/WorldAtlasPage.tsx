@@ -458,7 +458,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
                 {keptList.slice(0, 60).map(({ institution, seats }) => (
                   <tr key={institution.id} className="border-b border-ink-800 last:border-b-0 align-top">
                     <td className="px-3 py-2">
-                      <button onClick={() => { setSelectedId(institution.id); setSelectedProgramId(null); window.scrollTo({ top: 0, behavior: 'instant' }) }} className="text-left text-fog-100 hover:text-accent-500">
+                      <button onClick={() => { setSelectedId(institution.id); setSelectedProgramId(null); window.scrollTo({ top: 0, behavior: 'instant' }) }} className="block w-full min-h-[40px] text-left text-fog-100 hover:text-accent-500">
                         {primaryName(institution)}
                         {secondaryName(institution) && <span className="block text-xs text-fog-500">{secondaryName(institution)}</span>}
                       </button>
