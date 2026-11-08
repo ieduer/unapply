@@ -1,10 +1,16 @@
 # Project State
 
 Last updated: 2026-11-08 UTC
-Current version: 647525f（已部署 b5b74217，生效 2026-11-08T07:14:26Z；批 G3 後續疊加於批 G3 9f8f500／5ac934ec）
-Current objective: **路線圖 S0–S5 全部上線（2026-11-07；S5 生效時間為 UTC 2026-11-08T01:21:33Z），原待審事項 2026-11-08 已全部裁定，落地批 G1–G3 已上線（G1 01022627、G2 79c3c1b2、G3 5ac934ec＋path fef18140；G3 後續頁頭重疊與手機版面 b5b74217＋path a2719f97），G4（瀏覽器覆核結果入庫）待覆核會話交付，其餘為年度維護。** 全球化路線圖（docs/GLOBAL_ROADMAP.md）S0、S1 全批、S2 兩半、S3、S4 兩批、橫切項（批 F1）與 S5 只讀資料庫（批 F2）皆已上線並登記 accepted；年度維護照 `docs/ANNUAL_UPDATE.md`（各層 `nextReviewDue` 見 `/db/v1` 的 validity.calendar；各省 2028 選考表依慣例應已公布，下一次維護先核）。原待審項（各批 `PENDING_OWNER_REVIEW.md`：S2、S3、E1、E2、F1、F2；彙整 `reports/operations/nope-global-roadmap-20261107/OWNER_REVIEW.md`）站長 2026-11-08 授權主會話裁定，裁定與執行批次見 `reports/operations/nope-global-roadmap-20261107/DECISIONS.md`（A1 維持方案 B、A3 不改五面導航、B1 conflict 照列不排除、D1 學徒制算直招、D3／D4 不建、F2-1 CORS 接受、F2-2 不開）；原 43 維效度缺口仍列後續。
+Current version: 3c22aae（已部署 d0f6b69e，生效 2026-11-08T07:54:28Z；批 G4 疊加於批 G3 後續 647525f／b5b74217）
+Current objective: **路線圖 S0–S5 全部上線（2026-11-07；S5 生效時間為 UTC 2026-11-08T01:21:33Z），原待審事項 2026-11-08 已全部裁定，落地批 G1–G3 已上線（G1 01022627、G2 79c3c1b2、G3 5ac934ec＋path fef18140；G3 後續頁頭重疊與手機版面 b5b74217＋path a2719f97），G4（瀏覽器覆核結果入庫）2026-11-08 已上線（d0f6b69e），其餘為年度維護。** 全球化路線圖（docs/GLOBAL_ROADMAP.md）S0、S1 全批、S2 兩半、S3、S4 兩批、橫切項（批 F1）與 S5 只讀資料庫（批 F2）皆已上線並登記 accepted；年度維護照 `docs/ANNUAL_UPDATE.md`（各層 `nextReviewDue` 見 `/db/v1` 的 validity.calendar；各省 2028 選考表依慣例應已公布，下一次維護先核）。原待審項（各批 `PENDING_OWNER_REVIEW.md`：S2、S3、E1、E2、F1、F2；彙整 `reports/operations/nope-global-roadmap-20261107/OWNER_REVIEW.md`）站長 2026-11-08 授權主會話裁定，裁定與執行批次見 `reports/operations/nope-global-roadmap-20261107/DECISIONS.md`（A1 維持方案 B、A3 不改五面導航、B1 conflict 照列不排除、D1 學徒制算直招、D3／D4 不建、F2-1 CORS 接受、F2-2 不開）；原 43 維效度缺口仍列後續。
 
-## 2026-11-08 批 G3 後續：頁頭重疊與手機版面（兩站同批；已上線，當前權威）
+## 2026-11-08 批 G4：真實瀏覽器覆核結果入庫＋問卷頁說明移到頁頭下方（已上線，當前權威）
+
+正式部署 `d0f6b69e-4363-4822-8a86-97dd9e535db3`，來源 `3c22aae`，生效 `2026-11-08T07:54:28Z`；回滾 `b5b74217`／`647525f`。Status `20261108-nope-browser-review-g4` r1。`/db/v1` `e37642910355`。
+- 覆核 165 項、讀到 86 項入庫：海外機構 verified 340→379、平台 63→77、簽證 47→61、港澳臺池 28 所（都會大學上線、港城大改「內地高考單獨招生」）、起點官方頁 +12、企業直招 +5（29 條）；`moe.gov.et` 標 `unsafe` 全站不出網址；文憑試收生辦法摘要改為 2026 原文「3、3、2、A」。仍讀不到：機構 24、平台 13、簽證 29。
+- 問卷頁頁頭在最上，生活回報說明在其下、手機收成一行。
+
+## 2026-11-08 批 G3 後續：頁頭重疊與手機版面（兩站同批；歷史；批 G4 疊加於其上）
 
 正式部署 `b5b74217-4cd5-49a8-90bc-2a0f8f95d6bc`，來源 `647525f`（feat `3d5f0be`＋fix `647525f`），生效 `2026-11-08T07:14:26Z`；回滾 `5ac934ec`／`9f8f500`。Status `20261108-nope-header-mobile-g3b` r1（fix）。同批 path.bdfz.net `a2719f97`／`c907611`（生效 05:35:14Z，回滾 `fef18140`／`3affc0d`，Status `20261108-path-shared-ui-placement-g3b`）。
 - 站長回報右上角色系與頁頭重疊、手機需整體優化：全站統一 `SiteHeader`，色系改頁頭內彈層（shared-ui `placement="inline"`；path 不傳、畫面不變）；手機站名縮為 nope、語言切換不折行；獨立控制項 ≥40px；`#/world` 手機改卡片；頁尾留白避開導航圓標。11 路由 × 三語 × 兩色系 × 360–1440 六寬 396 樣本全過（手冊 §5.1a；作廢候選 `1631d3ca` 因桌面表格按鈕 36px）。
