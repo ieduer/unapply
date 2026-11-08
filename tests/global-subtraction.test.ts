@@ -34,8 +34,11 @@ const all = GLOBAL_DESTINATIONS
 test('池：院校池 28＋海外層 403 去重（院校池 atlasId＝海外層 id 只算一所）；目的地由地區決定；海外＝去掉港澳臺三地區', () => {
   assert.equal(hkmotw.institutions.length, 28)
   assert.equal(overseas.institutions.length, 403)
-  const twins = hkmotw.institutions.filter((i) => i.atlasId && overseas.institutions.some((o) => o.id === i.atlasId)).length
-  assert.equal(twins, 10)
+  // 10 所以 atlasId 對上；澳門城市大學沒有連到 GRAS，以同地區英文名對上（批 G6）
+  const twins = items.filter((i) => i.pool === 'hkmotw' && i.overseasId).length
+  assert.equal(twins, 11)
+  assert.equal(items.find((i) => i.id === 'mo-cityu')?.overseasId, 'RG00015')
+  assert.equal(items.filter((i) => i.pool === 'overseas' && i.destination === 'mo').length, 0)
   assert.equal(items.length, 28 + 403 - twins)
   assert.equal(new Set(items.map((i) => i.key)).size, items.length)
   for (const item of items) {
@@ -63,7 +66,7 @@ test('只選港澳臺或海外：池裡沒有任何中國大陸院校；目的�
     assert.equal(pool.some((i) => i.region === 'China'), false)
   }
   assert.equal(poolFor(items, ['hk']).length, 16)
-  assert.equal(poolFor(items, ['mo']).length, 10 + 1) // 院校池 10＋海外層澳門 1 所未重複
+  assert.equal(poolFor(items, ['mo']).length, 10) // 院校池 10；海外層澳門 4 所都與院校池重複
   assert.equal(poolFor(items, ['tw']).length, 1 + 4)
 })
 

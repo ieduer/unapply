@@ -163,7 +163,7 @@ function CatalogLoading({
 }) {
   const { t } = useLocale()
   return (
-    <main className="min-h-screen app-canvas text-fog-100 flex items-center justify-center px-5">
+    <main className="min-h-screen app-canvas text-fog-100 flex items-center justify-center px-5" data-loading={error ? undefined : ''}>
       <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-xl p-6 flex flex-col gap-4">
         <p className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">{t('ui.app.catalogKicker')}</p>
         <h1 className="serif text-2xl">{error ? t('ui.app.catalogLoadFailed') : t('ui.app.catalogLoading')}</h1>
@@ -274,7 +274,8 @@ export default function App() {
     // 懶載頁面與資料載入後才有主標題：最多等 3 秒；使用者已經把焦點移走就不搶
     let tries = 0
     const focusHeading = () => {
-      const heading = document.querySelector<HTMLElement>('main h1') ?? document.querySelector<HTMLElement>('main h2')
+      // 載入畫面（data-loading）的標題不算：它馬上會被頁面換掉
+      const heading = document.querySelector<HTMLElement>('main:not([data-loading]) h1') ?? document.querySelector<HTMLElement>('main:not([data-loading]) h2')
       const idle = !document.activeElement || document.activeElement === document.body
       if (heading && idle) {
         if (!heading.hasAttribute('tabindex')) heading.setAttribute('tabindex', '-1')

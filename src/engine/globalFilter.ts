@@ -141,10 +141,13 @@ export function buildGlobalPool(overseas: Pick<OverseasIndexPayload, 'institutio
     return subjects && subjects.length > 0 ? [...subjects].sort() : null
   }
   const overseasById = new Map(overseas.institutions.map((i) => [i.id, i]))
+  // 院校池與海外層同一所：先看 atlasId；沒有連到 GRAS 的再看同地區英文名（去掉冠詞與標點後相等），例：澳門城市大學
+  const nameKey = (region: string, nameEn: string) => `${region}|${nameEn.toLowerCase().replace(/^the\s+/, '').replace(/[^a-z0-9]+/g, ' ').trim()}`
+  const overseasByName = new Map(overseas.institutions.map((i) => [nameKey(i.region, i.nameEn), i]))
   const merged = new Set<string>()
   const items: GlobalPoolItem[] = []
   for (const inst of hkmotw.institutions) {
-    const twin = inst.atlasId ? overseasById.get(inst.atlasId) : undefined
+    const twin = (inst.atlasId ? overseasById.get(inst.atlasId) : undefined) ?? overseasByName.get(nameKey(HKMOTW_REGION_CODE[inst.region], inst.nameEn))
     if (twin) merged.add(twin.id)
     const channels: GlobalChannel[] = inst.channels
       .filter((c): c is typeof c & { audience: ChannelAudience } => (CHANNEL_AUDIENCES as readonly string[]).includes(c.audience))
@@ -152,7 +155,7 @@ export function buildGlobalPool(overseas: Pick<OverseasIndexPayload, 'institutio
       .sort((a, b) => a.code.localeCompare(b.code) || a.audience.localeCompare(b.audience))
     items.push({
       key: `hkmotw:${inst.id}`, pool: 'hkmotw', id: inst.id, region: HKMOTW_REGION_CODE[inst.region], destination: HKMOTW_DESTINATION[inst.region],
-      subjects: gras(inst.atlasId), channels, overseasId: twin?.id ?? null, status: twin?.status ?? null,
+      subjects: gras(inst.atlasId ?? twin?.id ?? null), channels, overseasId: twin?.id ?? null, status: twin?.status ?? null,
       noUndergrad: channels.length > 0 && channels.every((c) => !c.undergrad),
       committee: inst.kind === 'joint_admission_committee',
     })

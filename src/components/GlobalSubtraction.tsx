@@ -9,6 +9,7 @@ import {
   GLOBAL_STORAGE_KEY,
   LEGACY_GLOBAL_STORAGE_KEY,
   applicableChannels,
+  audienceForOrigin,
   buildGlobalPool,
   computeGlobal,
   decodeGlobalSelection,
@@ -521,9 +522,12 @@ function ItemRow({ item, locale, origin, overseas, hkmotw, regionLabel, channelL
           {localLinks.length > 0
             ? <a className="tap underline hover:text-accent-500" href={localLinks[0].url} target="_blank" rel="noreferrer noopener">{t(`ui.global.localEntry.${localEntry}`)} ↗</a>
             : <span>{t(`ui.global.localEntry.${localEntry}`)}</span>}
-          {localLinks.slice(1).map(({ url, org }) => <a key={url} className="tap underline hover:text-accent-500 ml-2" href={url} target="_blank" rel="noreferrer noopener">{t(`ui.source.${org}`)} ↗</a>)}
           <span>{t(`ui.global.localEntry.${localEntry}.more`)}</span>
+          {localLinks.slice(1).map(({ url, org }) => <span key={url} className="inline-flex items-center gap-x-1"><span aria-hidden="true">·</span><a className="tap underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{t(`ui.source.${org}`)} ↗</a></span>)}
         </p>
+      ) : item.pool === 'overseas' && item.destination !== 'overseas' && audienceForOrigin(origin) ? (
+        // 港澳臺地區的海外層機構（國際生招生頁）：大陸與港澳考生有各自的管道，本站沒有這所的記錄
+        <p className="text-xs text-fog-500 leading-relaxed" data-global-channels="none">{t('ui.global.item.channelsNone')}</p>
       ) : item.pool === 'hkmotw' && !item.noUndergrad ? (
         <div className="text-xs text-fog-300 leading-relaxed flex flex-col gap-1" data-global-channels={own && own.length ? own.join('|') : 'none'}>
           {own && own.length > 0
