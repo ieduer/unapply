@@ -1,10 +1,17 @@
 # Project State
 
 Last updated: 2026-11-08 UTC
-Current version: 18bf5f2（已部署 01022627，生效 2026-11-08T03:00:32Z；批 G1 疊加於批 F2 987c934／46a33556）
+Current version: f7f3484（已部署 79c3c1b2，生效 2026-11-08T03:56:02Z；批 G2 疊加於批 G1 18bf5f2／01022627）
 Current objective: **路線圖 S0–S5 全部上線（2026-11-07；S5 生效時間為 UTC 2026-11-08T01:21:33Z），原待審事項 2026-11-08 已全部裁定，落地批 G1–G4 進行中，其餘為年度維護。** 全球化路線圖（docs/GLOBAL_ROADMAP.md）S0、S1 全批、S2 兩半、S3、S4 兩批、橫切項（批 F1）與 S5 只讀資料庫（批 F2）皆已上線並登記 accepted；年度維護照 `docs/ANNUAL_UPDATE.md`（各層 `nextReviewDue` 見 `/db/v1` 的 validity.calendar；各省 2028 選考表依慣例應已公布，下一次維護先核）。原待審項（各批 `PENDING_OWNER_REVIEW.md`：S2、S3、E1、E2、F1、F2；彙整 `reports/operations/nope-global-roadmap-20261107/OWNER_REVIEW.md`）站長 2026-11-08 授權主會話裁定，裁定與執行批次見 `reports/operations/nope-global-roadmap-20261107/DECISIONS.md`（A1 維持方案 B、A3 不改五面導航、B1 conflict 照列不排除、D1 學徒制算直招、D3／D4 不建、F2-1 CORS 接受、F2-2 不開）；原 43 維效度缺口仍列後續。
 
-## 2026-11-08 批 G1：站長 11-08 裁定落地——英文站名、頁尾分區、權威分級、海外層 medium 7 所人工確認（已上線，當前權威）
+## 2026-11-08 批 G2：全球池減法 `#/global`（路線圖 S4 完成定義；已上線，當前權威）
+
+正式部署 `79c3c1b2-6ec2-4320-95e3-6f74a51f04a4`，來源 `f7f3484`（feat `519be12`＋fix `2ba3b70`、`f7f3484`），生效 `2026-11-08T03:56:02Z`；回滾 `01022627`／`18bf5f2`。Status `20261108-nope-global-subtraction-g2` r1。
+- 展示層（手冊 §5.5）：池＝海外層 403＋港澳臺院校池 27（依起點與範圍預設）；4 題可跳過——地區、GRAS 門類（所有前 50 學科都在被劃門類才劃）、只想讀學科、港澳臺管道對象（已記錄管道全劃且含你這類考生的管道才劃）；申請平台只作說明；未知永不劃、資格只標示；每所劃掉的機構有逐條原因；分享只含選項鍵；狀態 `unapply.globalSubtraction.v1`（綁起點），不進 AnswerMap／學習證據／Function。
+- 入口：港澳臺／海外起點主按鈕「開始全球減法」、結果頁跨國並列段、About。十九道閘門於 `f7f3484`（新增 `test:global` 11）；候選 `cb242317` 與正式 140/140；兩條起點流程與引擎離線計算一致；三語 × 兩色系 × 1440／390 對比 0 低於 4.5。
+- 發布時另一工作階段的登記簿寫入覆蓋了本批 consumed 旗標，已在同一把鎖下依交易結果還原並註記（`docs/OPERATIONS.md` 批 G2 節）。
+
+## 2026-11-08 批 G1：站長 11-08 裁定落地——英文站名、頁尾分區、權威分級、海外層 medium 7 所人工確認（歷史；批 G2 疊加於其上）
 
 正式部署 `01022627-65fe-4987-ac32-15b78c6d913c`，來源 `18bf5f2`，生效 `2026-11-08T03:00:32Z`；回滾 `46a33556`／`987c934`。Status `20261108-nope-rulings-g1` r1。裁定 `reports/operations/nope-global-roadmap-20261107/DECISIONS.md`。
 - B2 英文站名「nope · Universities You Won’t Apply To」、分享卡「Universities I won’t apply to」；B3 頁尾「官方與權威來源」（P0／P1）＋「第三方參考」（P2）；B4 chinadegrees.cn、findyou2026.com 升 P0（＋mitadmissions.org P0，107 條）；B5 年檢口徑已裁定。
