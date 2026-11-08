@@ -1,15 +1,22 @@
 # Project State
 
 Last updated: 2026-11-08 UTC
-Current version: 9dab1bd（已部署 bec50ec9，生效 2026-11-08T12:14:14Z；批 G6 疊加於批 G5 7ba4882／ec5dc3aa）
-Current objective: **路線圖 S0–S5 全部上線（2026-11-07；S5 生效時間為 UTC 2026-11-08T01:21:33Z），原待審事項 2026-11-08 已全部裁定，落地批 G1–G3 已上線（G1 01022627、G2 79c3c1b2、G3 5ac934ec＋path fef18140；G3 後續頁頭重疊與手機版面 b5b74217＋path a2719f97），G4（瀏覽器覆核結果入庫）2026-11-08 已上線（d0f6b69e），G5（精簡說明文字、頁尾三行、色系一鍵切換）2026-11-08 已上線（ec5dc3aa），G6（起點與目的地流程重做、互動糾錯、about 移到頁尾）2026-11-08 已上線（bec50ec9），其餘為年度維護。** 全球化路線圖（docs/GLOBAL_ROADMAP.md）S0、S1 全批、S2 兩半、S3、S4 兩批、橫切項（批 F1）與 S5 只讀資料庫（批 F2）皆已上線並登記 accepted；年度維護照 `docs/ANNUAL_UPDATE.md`（各層 `nextReviewDue` 見 `/db/v1` 的 validity.calendar；各省 2028 選考表依慣例應已公布，下一次維護先核）。原待審項（各批 `PENDING_OWNER_REVIEW.md`：S2、S3、E1、E2、F1、F2；彙整 `reports/operations/nope-global-roadmap-20261107/OWNER_REVIEW.md`）站長 2026-11-08 授權主會話裁定，裁定與執行批次見 `reports/operations/nope-global-roadmap-20261107/DECISIONS.md`（A1 維持方案 B、A3 不改五面導航、B1 conflict 照列不排除、D1 學徒制算直招、D3／D4 不建、F2-1 CORS 接受、F2-2 不開）；原 43 維效度缺口仍列後續。
+Current version: e82e643（已部署 0c801d21，生效 2026-11-08T13:26:15Z；批 G6 擴充疊加於批 G6 9dab1bd／bec50ec9）
+Current objective: **路線圖 S0–S5 全部上線（2026-11-07；S5 生效時間為 UTC 2026-11-08T01:21:33Z），原待審事項 2026-11-08 已全部裁定，落地批 G1–G3 已上線（G1 01022627、G2 79c3c1b2、G3 5ac934ec＋path fef18140；G3 後續頁頭重疊與手機版面 b5b74217＋path a2719f97），G4（瀏覽器覆核結果入庫）2026-11-08 已上線（d0f6b69e），G5（精簡說明文字、頁尾三行、色系一鍵切換）2026-11-08 已上線（ec5dc3aa），G6（起點與目的地流程重做、互動糾錯、about 移到頁尾）2026-11-08 已上線（bec50ec9），G6 擴充（題目按目的地分題庫、以效度篩選，`docs/QUESTION_VALIDITY.md`）2026-11-08 已上線（0c801d21），其餘為年度維護。** 全球化路線圖（docs/GLOBAL_ROADMAP.md）S0、S1 全批、S2 兩半、S3、S4 兩批、橫切項（批 F1）與 S5 只讀資料庫（批 F2）皆已上線並登記 accepted；年度維護照 `docs/ANNUAL_UPDATE.md`（各層 `nextReviewDue` 見 `/db/v1` 的 validity.calendar；各省 2028 選考表依慣例應已公布，下一次維護先核）。原待審項（各批 `PENDING_OWNER_REVIEW.md`：S2、S3、E1、E2、F1、F2；彙整 `reports/operations/nope-global-roadmap-20261107/OWNER_REVIEW.md`）站長 2026-11-08 授權主會話裁定，裁定與執行批次見 `reports/operations/nope-global-roadmap-20261107/DECISIONS.md`（A1 維持方案 B、A3 不改五面導航、B1 conflict 照列不排除、D1 學徒制算直招、D3／D4 不建、F2-1 CORS 接受、F2-2 不開）；原 43 維效度缺口仍列後續。
 
-## 2026-11-08 批 G6：起點與目的地流程重做、全面互動糾錯、about 移到頁尾（已上線，當前權威）
+## 2026-11-08 批 G6 擴充：題目按目的地分題庫、以效度篩選（已上線，當前權威）
+
+正式部署 `0c801d21-d5f0-4773-9f99-584c7bbb7b13`，來源 `e82e643`，生效 `2026-11-08T13:26:15Z`；回滾 `bec50ec9`／`9dab1bd`。Status `20261108-nope-region-banks-g6b` r1。
+- 站長「徹底優化題目，不同地區可以不一樣，以效度為準」：港澳臺與海外分四個題庫，每題先過六條效度標準才出現（`docs/QUESTION_VALIDITY.md`，閘門 `audit:regions`、`test:regions`）。當時題數：海外 3、香港 2（大陸起點）／1（其他起點）、澳門 0、臺灣 0；大陸 45（非大陸起點 43，S1、A6 略過）。
+- `#/global` 一題一頁，有進度、跳過、實時剩餘數；結果按目的地分組。資格選項只列資料裡出現的。#31 焦點問題已結清（ux-audit #39）。
+- 證據：`reports/operations/nope-global-roadmap-20261107/nope-g6/validity-audit.md`、`nope-g6/region-banks/`。
+
+## 2026-11-08 批 G6：起點與目的地流程重做、全面互動糾錯、about 移到頁尾（歷史；批 G6 擴充疊加於其上）
 
 正式部署 `bec50ec9-a137-46cc-9c12-8ff1338395a1`，來源 `9dab1bd`，生效 `2026-11-08T12:14:14Z`；回滾 `ec5dc3aa`／`7ba4882`。Status `20261108-nope-flow-ux-g6` r1。
 - 站長回報的錯已修：起點中國大陸、只選港澳臺或海外時直接進全球減法，不再出現「哪些地區你一定不去？」。起點之後只問資格（非大陸起點）與「你考慮去哪裡讀？」；流程由 `planFlow` 決定；非大陸起點做大陸題略過選考科目組合。
 - 全球減法依目的地組池、問了劃得動才出題、只列適用你的本科管道；陸生聯招會（2026 只招碩博）另列不算進剩下；香港起點結果頁標教育局文憑試收生計劃 2026/27 參與院校 165 所。
-- about 移到所有頁面的頁尾；官方鏈接用機構名、介面無內部核查備註；捲動還原、作答於本分頁保留。已知後續：懶載頁由按鈕進入時焦點未移到標題（`nope-g6/ux-audit.md` #31）。
+- about 移到所有頁面的頁尾；官方鏈接用機構名、介面無內部核查備註；捲動還原、作答於本分頁保留。懶載頁焦點（`nope-g6/ux-audit.md` #31）已於批 G6 擴充結清（#39）。
 
 ## 2026-11-08 批 G5：首頁與各頁精簡說明文字、頁尾合併三行、色系改為一鍵切換（歷史；批 G6 疊加於其上）
 

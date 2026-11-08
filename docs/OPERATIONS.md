@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Git branch: `master`; deployed source `9dab1bd` (batch G6, deployment `bec50ec9`); documentation HEAD is separately recorded by Git
+- Git branch: `master`; deployed source `e82e643` (batch G6 extension, deployment `0c801d21`); documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -35,7 +35,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 
 | Resource | Live type | Readback | Detail |
 | --- | --- | --- | --- |
-| `unapply` | Pages | verified 2026-11-08 | production branch `master`; canonical deployment `bec50ec9-a137-46cc-9c12-8ff1338395a1` (source `9dab1bd`, batch G6) |
+| `unapply` | Pages | verified 2026-11-08 | production branch `master`; canonical deployment `0c801d21-d5f0-4773-9f99-584c7bbb7b13` (source `e82e643`, batch G6 extension) |
 
 ## Authority and dependencies
 
@@ -54,7 +54,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - External/local build inputs, archived paths, receipts, retention, and hydrate commands not stated below are `review_required` and block deletion.
 
 Catalog backup evidence:
-- Cloudflare immutable Pages deployments: current=bec50ec9-a137-46cc-9c12-8ff1338395a1 (source 9dab1bd, batch G6), previous=ec5dc3aa-b97b-4d96-b1ff-5f1916bb4b40 (source 7ba4882, batch G5), earlier=d0f6b69e-4363-4822-8a86-97dd9e535db3 (source 3c22aae, batch G4), b5b74217-4cd5-49a8-90bc-2a0f8f95d6bc (source 647525f, batch G3 follow-up), 5ac934ec-f693-4788-abdd-c5fd32dd2932 (source 9f8f500, batch G3), 79c3c1b2-6ec2-4320-95e3-6f74a51f04a4 (source f7f3484, batch G2), 01022627-65fe-4987-ac32-15b78c6d913c (source 18bf5f2, batch G1), df4540a2-5657-4676-bd83-9026fa232579 (source 26bad8c, batch D3), c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782, batch D1), earlier=b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1, batch C), 8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
+- Cloudflare immutable Pages deployments: current=0c801d21-d5f0-4773-9f99-584c7bbb7b13 (source e82e643, batch G6 extension), previous=bec50ec9-a137-46cc-9c12-8ff1338395a1 (source 9dab1bd, batch G6), earlier=ec5dc3aa-b97b-4d96-b1ff-5f1916bb4b40 (source 7ba4882, batch G5), d0f6b69e-4363-4822-8a86-97dd9e535db3 (source 3c22aae, batch G4), b5b74217-4cd5-49a8-90bc-2a0f8f95d6bc (source 647525f, batch G3 follow-up), 5ac934ec-f693-4788-abdd-c5fd32dd2932 (source 9f8f500, batch G3), 79c3c1b2-6ec2-4320-95e3-6f74a51f04a4 (source f7f3484, batch G2), 01022627-65fe-4987-ac32-15b78c6d913c (source 18bf5f2, batch G1), df4540a2-5657-4676-bd83-9026fa232579 (source 26bad8c, batch D3), c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782, batch D1), earlier=b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1, batch C), 8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
 
 Catalog restore evidence:
 - restore previous code/assets by rolling back to production deployment ec5dc3aa-b97b-4d96-b1ff-5f1916bb4b40 (source 7ba4882, batch G5) through the reviewed rollback transaction
@@ -134,7 +134,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after batch G6: `ec5dc3aa-b97b-4d96-b1ff-5f1916bb4b40`, source `7ba4882`, batch G5), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after batch G6 extension: `bec50ec9-a137-46cc-9c12-8ff1338395a1`, source `9dab1bd`, batch G6), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -161,7 +161,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-11-08 UTC — production `bec50ec9` from `9dab1bd` (batch G6: origin／destination flow — mainland questions only when mainland China is a destination, S1 auto-skip for non-mainland origins, global stage by destination with applicable channels, HK DSE 2026/27 participation list, about in the footer; /db/v1 `11bdc13613b3` unchanged); twenty gates on the release commit (incl. new `test:flow`), 139 of 139 served assets on candidate, custom and immutable hosts; candidate real-click matrix of 11 origin × destination flows plus deep links, reload and origin-switch checks, and 132 layout samples (2 schemes × 3 languages × 390／1440 × 11 routes) with zero failures; owner path re-clicked on the immutable production URL; health active. Exact evidence in the batch G6 section below.
+8. Last verified: 2026-11-08 UTC — production `0c801d21` from `e82e643` (batch G6 extension: per-destination question banks filtered by validity — overseas 3, Hong Kong 2 for mainland origin／1 otherwise, Macao 0, Taiwan 0; `#/global` one question per page; non-mainland origins skip S1 and A6; /db/v1 `11bdc13613b3` unchanged); twenty-two gates on the release commit (incl. new `test:regions`, `audit:regions`), 139 of 139 served assets on candidate, custom and immutable hosts; candidate real-click acceptance of 12 flows plus deep links with every option's crossed count equal to `validity-audit.md` (21 step pages), 144 layout samples with zero failures; owner path re-clicked on the immutable production URL; health active. Exact evidence in the batch G6 extension section below.
 
 ## Synchronized documentation and handoff
 
@@ -556,7 +556,37 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 
 **回滾**：`01022627`／`18bf5f2`（批 G1），受審回滾交易；只切 Pages 版本，無資料庫遷移；回滾後 `#/global` 路由消失（回首頁）、首頁主按鈕回到「看港澳臺院校池／看海外可申請學校」，`unapply.globalSubtraction.v1` 殘留無害（舊版不讀它），學習記錄不受影響。證據：`reports/operations/nope-global-roadmap-20261107/nope-g2/`；資源 `nope-g2/resources.md`。
 
-## 2026-11-08 批 G6：起點與目的地流程重做、全面互動糾錯、about 移到頁尾（已上線，當前權威）
+## 2026-11-08 批 G6 擴充：題目按目的地分題庫、以效度篩選；`#/global` 一題一頁（已上線，當前權威）
+
+**授權**：主會話 2026-11-08 擴大 G6 範圍，轉述站長原話「徹底優化題目，不同地區可以不一樣，以效度為準」（同 `DECISIONS.md` 站長授權；本會話仍是唯一寫入者）。不改 45 題題文／AnswerMap／DimensionId／選項鍵／learning manifest／Function／`src/shared-ui`；A+ 證據仍只來自大陸題（S1、A6 自動略過用既有的 `'skip'` 值）；無 UC 或共享樞紐寫入；無付費或計量資源；無新 Cloudflare 資源；不改導航／門戶／Pulse／UC 登記。
+
+**正式部署**：`0c801d21-d5f0-4773-9f99-584c7bbb7b13`，來源 `e82e64396fa7043835a7bfa1cd7243b43cf0d285`（feat `0710db3`＋修正 `e82e643`），生效 `2026-11-08T13:26:15Z`。候選為 `efeeca04`；`0bdb61dc` 已作廢，原因是沒有題目的目的地直接打開結果頁時焦點掉回 body（`nope-g6/ux-audit.md` #39）。正式與不可變網址各 139/139；health active；`/db/v1` `11bdc13613b3` 不變。登記簿 accepted → `0c801d21`／`e82e643`，rollback → `bec50ec9`／`9dab1bd`。Status `20261108-nope-region-banks-g6b` r1（fix）。
+
+**改動**（標準見 `docs/QUESTION_VALIDITY.md`，細節見 `docs/MAINTENANCE_MANUAL.md` §5.3a）：
+- `src/engine/regionBanks.ts` 把港澳臺與海外分成四個題庫，依起點出題。每題須過六條標準：P0／P1 來源、覆蓋 ≥60%、區分力、判讀抽樣 ≥95% 且只用 confirmed、未知永不劃、每庫 ≤8 題依「預期劃掉 × 覆蓋」排序；池少於 10 所不出題。
+- 當時結果：海外 3 題，即只想讀學科→門類→國家／地區（GRAS P1）。香港對大陸起點 2 題：教資會資助與否，用官方名單存檔、雜湊釘定、8/8 對上；內地生管道，原句判讀 14/21 confirmed、覆蓋 11/16。香港對其他起點 1 題。澳門 0 題、臺灣 0 題。
+- 被捨棄的候選：英語成績（8%）、學費（46%）、香港 GRAS（44%）、港幣學費（25%）、澳門公私立（官方名單未取得）、澳門管道（30%）、臺灣（池 <10）。
+- `#/global` 改為一題一頁，有進度、上一題、跳過、實時剩餘數；結果按目的地分組。
+- 非大陸起點另略過 A6。
+- 資格選項只列資料裡出現的。
+- 焦點等待在懶載換頁後聚焦新頁標題。
+- 新閘門：`test:regions`、`audit:regions`；新資料：`data:validity`。
+
+**驗證**：二十二道閘門於 `e82e643`（`nope-g6/region-banks/check.txt`）。候選見 `nope-g6/region-banks/candidate-browser.json`，原始紀錄為 `candidate-browser-raw.json`、`candidate-header-and-kept.json`；以無頭 Chrome（可信滑鼠事件）走完 12 條流程與深鏈：
+- 21 個題頁的題目與各選項單選劃掉數，逐一等於 `nope-g6/validity-audit.md`。
+- 第一次選擇後剩餘數＝池 − 該選項劃掉數，共 5 例。
+- 「其他＋獨立招生」後嶺南（管道未確認）保留。
+- 站長回報情境（大陸起點選港澳臺＋海外）走 5 題、不出現任何大陸題。
+- 非大陸起點大陸題 15 題（S1、A6 略過）。
+- 重新載入續題、上一題、修改作答都正常。
+- 焦點：題頁 20/20 在題目標題，結果頁 12/12 在「剩下的院校」。
+- 版面矩陣 144 樣本（2 色系 × 3 語 × 390／1440 × 12 路由，含步驟頁與分組結果）零失敗。頁頭 about 的文字檢查只因 About 頁本身的頁頭標籤（非控制項，正式站亦同）在桌面標記 6 筆；改以按鈕／鏈接重量後 18/18 無 about 控制項、頁尾皆有。
+
+正式站只讀載入四路由，bundle 相符；站長路徑在不可變網址 `0c801d21` 重點，結果 418/418 分組。
+
+**回滾**：`bec50ec9`／`9dab1bd`（批 G6），走受審回滾交易。回滾會回到單頁全球減法與舊題目規則。`unapply.regionBanks.v1`、`unapply.regionStep.v1` 留在瀏覽器但舊版不讀；新版載入時已刪掉的 `unapply.globalSubtraction.v1/v2` 不會回來（舊版回到預設選擇）。不影響學習證據。證據：`reports/operations/nope-global-roadmap-20261107/nope-g6/region-banks/`、`nope-g6/validity-audit.md`；資源 `nope-g6/region-banks/resources.md`。
+
+## 2026-11-08 批 G6：起點與目的地流程重做、全面互動糾錯、about 移到頁尾（已上線；批 G6 擴充疊加於其上）
 
 **授權**：主會話 2026-11-08 G6 指令轉述站長原話（「選擇中國大陸，港澳台，出來的題目還是大陸的哪些地區你一定不去？全面核查這類問題和全部細節，糾錯，基於用戶體驗優化前端和全部互動邏輯，部署新版。」「右上角about移動到頁面底部區域」），主會話裁定 A–F（同 `DECISIONS.md` 站長授權）。不改題集／AnswerMap／DimensionId／選項鍵／learning manifest／Function／`src/shared-ui`；A+ 證據仍只來自大陸題（S1 自動略過用既有的 `'skip'` 值）；無 UC 或共享樞紐寫入；無付費或計量資源；無新 Cloudflare 資源；不改導航／門戶／Pulse／UC 登記。
 
