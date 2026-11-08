@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Git branch: `master`; deployed source `e82e643` (batch G6 extension, deployment `0c801d21`); documentation HEAD is separately recorded by Git
+- Git branch: `master`; deployed source `290e4ef` (batch G6c, deployment `f5f28048`); documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -35,7 +35,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 
 | Resource | Live type | Readback | Detail |
 | --- | --- | --- | --- |
-| `unapply` | Pages | verified 2026-11-08 | production branch `master`; canonical deployment `0c801d21-d5f0-4773-9f99-584c7bbb7b13` (source `e82e643`, batch G6 extension) |
+| `unapply` | Pages | verified 2026-11-08 | production branch `master`; canonical deployment `f5f28048-7340-4206-836d-7def826265c0` (source `290e4ef`, batch G6c) |
 
 ## Authority and dependencies
 
@@ -54,7 +54,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - External/local build inputs, archived paths, receipts, retention, and hydrate commands not stated below are `review_required` and block deletion.
 
 Catalog backup evidence:
-- Cloudflare immutable Pages deployments: current=0c801d21-d5f0-4773-9f99-584c7bbb7b13 (source e82e643, batch G6 extension), previous=bec50ec9-a137-46cc-9c12-8ff1338395a1 (source 9dab1bd, batch G6), earlier=ec5dc3aa-b97b-4d96-b1ff-5f1916bb4b40 (source 7ba4882, batch G5), d0f6b69e-4363-4822-8a86-97dd9e535db3 (source 3c22aae, batch G4), b5b74217-4cd5-49a8-90bc-2a0f8f95d6bc (source 647525f, batch G3 follow-up), 5ac934ec-f693-4788-abdd-c5fd32dd2932 (source 9f8f500, batch G3), 79c3c1b2-6ec2-4320-95e3-6f74a51f04a4 (source f7f3484, batch G2), 01022627-65fe-4987-ac32-15b78c6d913c (source 18bf5f2, batch G1), df4540a2-5657-4676-bd83-9026fa232579 (source 26bad8c, batch D3), c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782, batch D1), earlier=b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1, batch C), 8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
+- Cloudflare immutable Pages deployments: current=f5f28048-7340-4206-836d-7def826265c0 (source 290e4ef, batch G6c), previous=0c801d21-d5f0-4773-9f99-584c7bbb7b13 (source e82e643, batch G6 extension), earlier=bec50ec9-a137-46cc-9c12-8ff1338395a1 (source 9dab1bd, batch G6), ec5dc3aa-b97b-4d96-b1ff-5f1916bb4b40 (source 7ba4882, batch G5), d0f6b69e-4363-4822-8a86-97dd9e535db3 (source 3c22aae, batch G4), b5b74217-4cd5-49a8-90bc-2a0f8f95d6bc (source 647525f, batch G3 follow-up), 5ac934ec-f693-4788-abdd-c5fd32dd2932 (source 9f8f500, batch G3), 79c3c1b2-6ec2-4320-95e3-6f74a51f04a4 (source f7f3484, batch G2), 01022627-65fe-4987-ac32-15b78c6d913c (source 18bf5f2, batch G1), df4540a2-5657-4676-bd83-9026fa232579 (source 26bad8c, batch D3), c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782, batch D1), earlier=b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1, batch C), 8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
 
 Catalog restore evidence:
 - restore previous code/assets by rolling back to production deployment ec5dc3aa-b97b-4d96-b1ff-5f1916bb4b40 (source 7ba4882, batch G5) through the reviewed rollback transaction
@@ -134,7 +134,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after batch G6 extension: `bec50ec9-a137-46cc-9c12-8ff1338395a1`, source `9dab1bd`, batch G6), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after batch G6c: `0c801d21-d5f0-4773-9f99-584c7bbb7b13`, source `e82e643`, batch G6 extension), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -161,7 +161,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-11-08 UTC — production `0c801d21` from `e82e643` (batch G6 extension: per-destination question banks filtered by validity — overseas 3, Hong Kong 2 for mainland origin／1 otherwise, Macao 0, Taiwan 0; `#/global` one question per page; non-mainland origins skip S1 and A6; /db/v1 `11bdc13613b3` unchanged); twenty-two gates on the release commit (incl. new `test:regions`, `audit:regions`), 139 of 139 served assets on candidate, custom and immutable hosts; candidate real-click acceptance of 12 flows plus deep links with every option's crossed count equal to `validity-audit.md` (21 step pages), 144 layout samples with zero failures; owner path re-clicked on the immutable production URL; health active. Exact evidence in the batch G6 extension section below.
+8. Last verified: 2026-11-08 UTC — production `f5f28048` from `290e4ef` (batch G6c: five interaction fixes — non-local admissions link, no version hash in headers, one-sentence local entry, keep-one notice, overseas-only qualification note; candidate 6 rounds × 5 fixes plus the full G6-extension acceptance re-run, zero failures; see the batch G6c section). Before that `0c801d21` from `e82e643` (batch G6 extension: per-destination question banks filtered by validity — overseas 3, Hong Kong 2 for mainland origin／1 otherwise, Macao 0, Taiwan 0; `#/global` one question per page; non-mainland origins skip S1 and A6; /db/v1 `11bdc13613b3` unchanged); twenty-two gates on the release commit (incl. new `test:regions`, `audit:regions`), 139 of 139 served assets on candidate, custom and immutable hosts; candidate real-click acceptance of 12 flows plus deep links with every option's crossed count equal to `validity-audit.md` (21 step pages), 144 layout samples with zero failures; owner path re-clicked on the immutable production URL; health active. Exact evidence in the batch G6 extension section below.
 
 ## Synchronized documentation and handoff
 
@@ -556,7 +556,27 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 
 **回滾**：`01022627`／`18bf5f2`（批 G1），受審回滾交易；只切 Pages 版本，無資料庫遷移；回滾後 `#/global` 路由消失（回首頁）、首頁主按鈕回到「看港澳臺院校池／看海外可申請學校」，`unapply.globalSubtraction.v1` 殘留無害（舊版不讀它），學習記錄不受影響。證據：`reports/operations/nope-global-roadmap-20261107/nope-g2/`；資源 `nope-g2/resources.md`。
 
-## 2026-11-08 批 G6 擴充：題目按目的地分題庫、以效度篩選；`#/global` 一題一頁（已上線，當前權威）
+## 2026-11-08 批 G6c：全球減法互動細節 5 處修正（已上線，當前權威）
+
+**授權**：主會話 2026-11-08 在 Chrome 對正式 `0c801d21` 實走（en 介面）後交辦的 5 處（同 `DECISIONS.md` 站長授權）。不改題庫、AnswerMap、DimensionId、選項鍵、learning manifest、Function 或 `src/shared-ui`；無 UC 或共享樞紐寫入；無付費資源；無新 Cloudflare 資源。
+
+**正式部署**：`f5f28048-7340-4206-836d-7def826265c0`，來源 `290e4efc8c11667c500b51007d1c8acc06d6e7c0`，生效 `2026-11-08T14:11:57Z`。候選 `a9ca2d18`。正式與不可變網址各 139/139；health active。登記簿 accepted → `f5f28048`／`290e4ef`，rollback → `0c801d21`／`e82e643`。Status `20261108-nope-ux-fixes-g6c` r1（fix）。
+
+**改動**（`nope-g6/ux-audit.md` #40–#44；規則見 `docs/MAINTENANCE_MANUAL.md` §5.3a「卡片與提示的細則」）：
+- #40：港澳臺機構卡上的海外層頁是非本地生國際招生頁。本地考生不顯示這條鏈接與它帶來的資格標示；其他起點標「非本地生招生條件（官方原文）」。
+- #41：頁頭與可見文字不再顯示版本雜湊（海外、港澳臺池、About 資料庫一行）。
+- #42：本地入學改為一句話，鏈接嵌在句中。
+- #43：點唯一已選的目的地時出現 aria-live 短暫提示「至少保留一個目的地。」，首頁與 `#/global` 結果頁都有。
+- #44：資格說明只在目的地含海外時顯示。
+
+**驗證**：
+- 二十二道閘門於 `290e4ef`（`nope-g6c/check.txt`）。
+- 候選（`nope-g6c/candidate-browser.json`）以無頭 Chrome 真實點擊驗證：5 處 × 三語 × 390／1440 共 6 輪全過；提示在紙／墨兩色系顯示時頁面最低對比 6.27／7.14；並重跑批 G6 擴充的全部驗收（12 流程、選項劃掉數對 validity-audit、版面 144 樣本）零失敗。
+- 正式站只讀：頁頭無雜湊。不可變網址 `f5f28048` 點擊香港本地路徑：0 條非本地生鏈接、本地入學一句、提示出現。
+
+**回滾**：`0c801d21`／`e82e643`（批 G6 擴充），走受審回滾交易；只回到 5 處修正前的介面，資料與學習證據不受影響。證據：`reports/operations/nope-global-roadmap-20261107/nope-g6c/`。
+
+## 2026-11-08 批 G6 擴充：題目按目的地分題庫、以效度篩選；`#/global` 一題一頁（已上線；批 G6c 疊加於其上）
 
 **授權**：主會話 2026-11-08 擴大 G6 範圍，轉述站長原話「徹底優化題目，不同地區可以不一樣，以效度為準」（同 `DECISIONS.md` 站長授權；本會話仍是唯一寫入者）。不改 45 題題文／AnswerMap／DimensionId／選項鍵／learning manifest／Function／`src/shared-ui`；A+ 證據仍只來自大陸題（S1、A6 自動略過用既有的 `'skip'` 值）；無 UC 或共享樞紐寫入；無付費或計量資源；無新 Cloudflare 資源；不改導航／門戶／Pulse／UC 登記。
 
