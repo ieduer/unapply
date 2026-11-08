@@ -1,6 +1,6 @@
 # nope.bdfz.net 全球化路線圖（2026-11-06 立項）
 
-Owner: suen　｜　Status: **S0–S5 全部上線**（S0 2026-11-06；S1–S4 與橫切項 2026-11-07；S5 生效 UTC 2026-11-08T01:21:33Z）；原待審事項已於 2026-11-08 全部裁定（`reports/operations/nope-global-roadmap-20261107/DECISIONS.md`），剩餘為裁定落地批 G1–G4 與年度維護（`docs/ANNUAL_UPDATE.md`）　｜　上次更新：2026-11-08（UTC，批 G3 後）
+Owner: suen　｜　Status: **S0–S5 全部上線**（S0 2026-11-06；S1–S4 與橫切項 2026-11-07；S5 生效 UTC 2026-11-08T01:21:33Z）；原待審事項已於 2026-11-08 全部裁定（`reports/operations/nope-global-roadmap-20261107/DECISIONS.md`），剩餘為裁定落地批 G1–G4 與年度維護（`docs/ANNUAL_UPDATE.md`）　｜　上次更新：2026-11-08（UTC，批 G3 後續後）
 
 本文件是站點的**最終目標與分階段計劃**的權威記錄。目標一次寫清楚，實作一步一步來；
 每一階段完成後只更新本文的「階段狀態」與 `PROJECT_STATE.md`，不改寫目標本身。
@@ -37,6 +37,7 @@ Owner: suen　｜　Status: **S0–S5 全部上線**（S0 2026-11-06；S1–S4 �
 - **G1 已上線**（`18bf5f2`／`01022627`，生效 2026-11-08T03:00:32Z，回滾 `46a33556`／`987c934`，Status `20261108-nope-rulings-g1`）：英文站名、頁尾「官方與權威來源／第三方參考」、chinadegrees.cn／findyou2026.com 升 P0、年檢口徑已裁定；海外層 medium 7 所——MIT、Lancaster 人工確認升 high，ISCT、POSTECH S0 官網更新後 high，UTAS、HEC Paris、Gothenburg 改 not_found（verified 340、鏈接 340）。
 - **G2 已上線**（`f7f3484`／`79c3c1b2`，生效 2026-11-08T03:56:02Z，回滾 `01022627`／`18bf5f2`，Status `20261108-nope-global-subtraction-g2`）：全球池減法 `#/global`——港澳臺與海外起點在海外層 403＋港澳臺院校池 27 上用地區、GRAS 門類／學科、港澳臺管道對象做減法，逐條原因可追溯，可分享；S4 完成定義達成。
 - **G3 已上線**（nope `9f8f500`／`5ac934ec`，生效 2026-11-08T04:33:27Z，回滾 `79c3c1b2`；path.bdfz.net `3affc0d`／`fef18140`，生效 04:33:45Z，回滾 `8771ae93`；Status `20261108-nope-shared-ui-labels-g3`、`20261108-path-shared-ui-labels-g3`）：shared-ui 色系面板與同步提示多語標籤，兩站同批，path 行為不變。
+- **G3 後續已上線**（站長回報頁頭重疊與手機版面；nope `647525f`／`b5b74217`，生效 2026-11-08T07:14:26Z，回滾 `5ac934ec`；path.bdfz.net `c907611`／`a2719f97`，生效 05:35:14Z，回滾 `fef18140`；Status `20261108-nope-header-mobile-g3b`、`20261108-path-shared-ui-placement-g3b`）：全站統一頁頭、色系改頁頭內彈層、手機版面整體優化，path 行為不變。
 - G4 瀏覽器覆核結果入庫：待覆核會話交付後進行。
 
 橫切項（每一階段都要遵守）：

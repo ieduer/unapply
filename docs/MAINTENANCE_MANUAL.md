@@ -588,7 +588,7 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 - 色系不再是全域右上角浮鈕：`App.tsx` 不再渲染 `<ThemeCustomizer />`，改由 SiteHeader 以 `placement="inline"` 放在頁頭裡（shared-ui；彈層錨定觸發鈕、點外部或 Esc 關閉、焦點回到觸發鈕、四邊至少留 12px；窄螢幕只顯示色點，名稱在 `aria-label`）。path.bdfz.net 不傳 `placement`，維持 floating。
 - 觸控區：獨立的鏈接／按鈕至少 40px 高（`src/index.css` 的 `.tap`；頁頭控制項 44px）；段落文字中的行內鏈接維持行內。
 - 手機底部留白：各頁主欄加 `page-end-space`（<640px 末尾留 7rem＋安全區），讓最後的內容捲出右下角 BDFZ 共用導航圓標（`site-auth.js`，`data-mobile-inset-bottom="92"`，不改它）；問卷頁在固定底欄上方另留 6rem。
-- `#/world` 剩餘機構：<640px 改堆疊卡片（機構、地區、席位、最強學科），≥640px 維持表格。
+- `#/world` 剩餘機構：<640px 改堆疊卡片（機構、地區、席位、最強學科），≥640px 維持表格，表格校名按鈕 `block w-full min-h-[40px]`（1024／1440 量到 36px 後補）。
 - 驗收量測（每次動頁頭或版面都要跑）：全部路由 × 360／390／430／1024／1280／1440 × 兩色系 × 三語，頁頭控制項與任何文字矩形（`getBoundingClientRect`／Range client rects，排除 aria-hidden 與未展開的 `<details>` 內容）零相交、無橫向溢出、獨立控制項 ≥40px、最小字 12px、對比 ≥4.5、語言切換不折行、色系彈層完整在視窗內。量測輔助見批 G3 後續的發布證據。
 
 ### 5.2 問題頁與結果頁

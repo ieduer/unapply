@@ -1,10 +1,15 @@
 # Project State
 
 Last updated: 2026-11-08 UTC
-Current version: 9f8f500（已部署 5ac934ec，生效 2026-11-08T04:33:27Z；批 G3 疊加於批 G2 f7f3484／79c3c1b2）
-Current objective: **路線圖 S0–S5 全部上線（2026-11-07；S5 生效時間為 UTC 2026-11-08T01:21:33Z），原待審事項 2026-11-08 已全部裁定，落地批 G1–G3 已上線（G1 01022627、G2 79c3c1b2、G3 5ac934ec＋path fef18140），G4（瀏覽器覆核結果入庫）待覆核會話交付，其餘為年度維護。** 全球化路線圖（docs/GLOBAL_ROADMAP.md）S0、S1 全批、S2 兩半、S3、S4 兩批、橫切項（批 F1）與 S5 只讀資料庫（批 F2）皆已上線並登記 accepted；年度維護照 `docs/ANNUAL_UPDATE.md`（各層 `nextReviewDue` 見 `/db/v1` 的 validity.calendar；各省 2028 選考表依慣例應已公布，下一次維護先核）。原待審項（各批 `PENDING_OWNER_REVIEW.md`：S2、S3、E1、E2、F1、F2；彙整 `reports/operations/nope-global-roadmap-20261107/OWNER_REVIEW.md`）站長 2026-11-08 授權主會話裁定，裁定與執行批次見 `reports/operations/nope-global-roadmap-20261107/DECISIONS.md`（A1 維持方案 B、A3 不改五面導航、B1 conflict 照列不排除、D1 學徒制算直招、D3／D4 不建、F2-1 CORS 接受、F2-2 不開）；原 43 維效度缺口仍列後續。
+Current version: 647525f（已部署 b5b74217，生效 2026-11-08T07:14:26Z；批 G3 後續疊加於批 G3 9f8f500／5ac934ec）
+Current objective: **路線圖 S0–S5 全部上線（2026-11-07；S5 生效時間為 UTC 2026-11-08T01:21:33Z），原待審事項 2026-11-08 已全部裁定，落地批 G1–G3 已上線（G1 01022627、G2 79c3c1b2、G3 5ac934ec＋path fef18140；G3 後續頁頭重疊與手機版面 b5b74217＋path a2719f97），G4（瀏覽器覆核結果入庫）待覆核會話交付，其餘為年度維護。** 全球化路線圖（docs/GLOBAL_ROADMAP.md）S0、S1 全批、S2 兩半、S3、S4 兩批、橫切項（批 F1）與 S5 只讀資料庫（批 F2）皆已上線並登記 accepted；年度維護照 `docs/ANNUAL_UPDATE.md`（各層 `nextReviewDue` 見 `/db/v1` 的 validity.calendar；各省 2028 選考表依慣例應已公布，下一次維護先核）。原待審項（各批 `PENDING_OWNER_REVIEW.md`：S2、S3、E1、E2、F1、F2；彙整 `reports/operations/nope-global-roadmap-20261107/OWNER_REVIEW.md`）站長 2026-11-08 授權主會話裁定，裁定與執行批次見 `reports/operations/nope-global-roadmap-20261107/DECISIONS.md`（A1 維持方案 B、A3 不改五面導航、B1 conflict 照列不排除、D1 學徒制算直招、D3／D4 不建、F2-1 CORS 接受、F2-2 不開）；原 43 維效度缺口仍列後續。
 
-## 2026-11-08 批 G3：shared-ui 色系面板與同步提示多語標籤（兩站同批；已上線，當前權威）
+## 2026-11-08 批 G3 後續：頁頭重疊與手機版面（兩站同批；已上線，當前權威）
+
+正式部署 `b5b74217-4cd5-49a8-90bc-2a0f8f95d6bc`，來源 `647525f`（feat `3d5f0be`＋fix `647525f`），生效 `2026-11-08T07:14:26Z`；回滾 `5ac934ec`／`9f8f500`。Status `20261108-nope-header-mobile-g3b` r1（fix）。同批 path.bdfz.net `a2719f97`／`c907611`（生效 05:35:14Z，回滾 `fef18140`／`3affc0d`，Status `20261108-path-shared-ui-placement-g3b`）。
+- 站長回報右上角色系與頁頭重疊、手機需整體優化：全站統一 `SiteHeader`，色系改頁頭內彈層（shared-ui `placement="inline"`；path 不傳、畫面不變）；手機站名縮為 nope、語言切換不折行；獨立控制項 ≥40px；`#/world` 手機改卡片；頁尾留白避開導航圓標。11 路由 × 三語 × 兩色系 × 360–1440 六寬 396 樣本全過（手冊 §5.1a；作廢候選 `1631d3ca` 因桌面表格按鈕 36px）。
+
+## 2026-11-08 批 G3：shared-ui 色系面板與同步提示多語標籤（兩站同批；歷史；批 G3 後續疊加於其上）
 
 正式部署 `5ac934ec-f693-4788-abdd-c5fd32dd2932`，來源 `9f8f500`，生效 `2026-11-08T04:33:27Z`；回滾 `79c3c1b2`／`f7f3484`。Status `20261108-nope-shared-ui-labels-g3` r1。同批 path.bdfz.net `fef18140`／`3affc0d`（生效 04:33:45Z，回滾 `8771ae93`／`fb4b95b`，Status `20261108-path-shared-ui-labels-g3`）。
 - `ThemeCustomizer`／`SyncNotice` 可選 `labels` prop（預設＝原字串）；nope 傳三語值，path 不傳（候選與上一版文字及面板 HTML 雜湊逐一相同）。裁定 A2。英文與簡體介面不再夾雜色系與同步提示原文。

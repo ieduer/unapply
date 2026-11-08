@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Git branch: `master`; deployed source `9f8f500` (batch G3, deployment `5ac934ec`); documentation HEAD is separately recorded by Git
+- Git branch: `master`; deployed source `647525f` (batch G3 follow-up, deployment `b5b74217`); documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -35,7 +35,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 
 | Resource | Live type | Readback | Detail |
 | --- | --- | --- | --- |
-| `unapply` | Pages | verified 2026-11-08 | production branch `master`; canonical deployment `5ac934ec-f693-4788-abdd-c5fd32dd2932` (source `9f8f500`, batch G3) |
+| `unapply` | Pages | verified 2026-11-08 | production branch `master`; canonical deployment `b5b74217-4cd5-49a8-90bc-2a0f8f95d6bc` (source `647525f`, batch G3 follow-up) |
 
 ## Authority and dependencies
 
@@ -54,10 +54,10 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - External/local build inputs, archived paths, receipts, retention, and hydrate commands not stated below are `review_required` and block deletion.
 
 Catalog backup evidence:
-- Cloudflare immutable Pages deployments: current=df4540a2-5657-4676-bd83-9026fa232579 (source 26bad8c, batch D3), previous=c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782, batch D1), earlier=b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1, batch C), 8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
+- Cloudflare immutable Pages deployments: current=b5b74217-4cd5-49a8-90bc-2a0f8f95d6bc (source 647525f, batch G3 follow-up), previous=5ac934ec-f693-4788-abdd-c5fd32dd2932 (source 9f8f500, batch G3), earlier=79c3c1b2-6ec2-4320-95e3-6f74a51f04a4 (source f7f3484, batch G2), 01022627-65fe-4987-ac32-15b78c6d913c (source 18bf5f2, batch G1), df4540a2-5657-4676-bd83-9026fa232579 (source 26bad8c, batch D3), c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782, batch D1), earlier=b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1, batch C), 8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
 
 Catalog restore evidence:
-- restore previous code/assets by rolling back to production deployment 79c3c1b2-6ec2-4320-95e3-6f74a51f04a4 (source f7f3484, batch G2) through the reviewed rollback transaction
+- restore previous code/assets by rolling back to production deployment 5ac934ec-f693-4788-abdd-c5fd32dd2932 (source 9f8f500, batch G3) through the reviewed rollback transaction
 
 Before deleting any local resource, satisfy the workspace path-preserving archive, remote readback, isolated restore, receipt, handbook, and project-state gates.
 
@@ -134,7 +134,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after batch G3: `79c3c1b2-6ec2-4320-95e3-6f74a51f04a4`, source `f7f3484`, batch G2), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after the batch G3 follow-up: `5ac934ec-f693-4788-abdd-c5fd32dd2932`, source `9f8f500`, batch G3), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -161,7 +161,7 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-11-08 UTC — production `5ac934ec` from `9f8f500` (batch G3, shared-ui labels; path.bdfz.net same batch `fef18140`); nineteen gates on the release commit, 140 of 140 served assets on candidate, custom and immutable hosts; three languages × two schemes × 1440／390 with the panel open; health active. Exact evidence in the batch G3 section below.
+8. Last verified: 2026-11-08 UTC — production `b5b74217` from `647525f` (batch G3 follow-up: shared SiteHeader with the inline colour popover, mobile layout; path.bdfz.net same batch `a2719f97`); nineteen gates on the release commit, 140 of 140 served assets on candidate, custom and immutable hosts; all 11 routes × three languages × two schemes × 360／390／430／1024／1280／1440 with the layout checks; health active. Exact evidence in the batch G3 follow-up section below.
 
 ## Synchronized documentation and handoff
 
@@ -556,7 +556,21 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 
 **回滾**：`01022627`／`18bf5f2`（批 G1），受審回滾交易；只切 Pages 版本，無資料庫遷移；回滾後 `#/global` 路由消失（回首頁）、首頁主按鈕回到「看港澳臺院校池／看海外可申請學校」，`unapply.globalSubtraction.v1` 殘留無害（舊版不讀它），學習記錄不受影響。證據：`reports/operations/nope-global-roadmap-20261107/nope-g2/`；資源 `nope-g2/resources.md`。
 
-## 2026-11-08 批 G3：shared-ui 色系面板與同步提示多語標籤（兩站同批；已上線，當前權威）
+## 2026-11-08 批 G3 後續：頁頭重疊與手機版面（兩站同批；已上線，當前權威）
+
+**緣由與授權**：站長 2026-11-08 回報「前端右上角色系和其他部分的佈局有重疊，移動端也需要整體優化」；主會話裁定修法併入 G3 同批（shared-ui 兩站）。不改題集／AnswerMap／DimensionId／選項鍵／learning manifest／Function；無 UC 或共享樞紐寫入；無付費或計量資源；無新 Cloudflare 資源；不改導航／門戶／Pulse／UC 登記；不改導航 js。
+
+**正式部署**：nope `b5b74217-4cd5-49a8-90bc-2a0f8f95d6bc`，來源 `647525f7b7d5f08ef1e552b18fcce403d61449ea`（feat `3d5f0be`＋fix `647525f`），生效 `2026-11-08T07:14:26Z`；候選 `c8d7b5e0`（作廢候選 `1631d3ca` 見下）；候選、正式與不可變網址各 140/140；health active。登記簿 accepted → `b5b74217`／`647525f`，rollback → `5ac934ec`／`9f8f500`。Status `20261108-nope-header-mobile-g3b` r1（fix，文字寫明修正頁頭重疊與手機版面）。同批 path.bdfz.net：`a2719f97-2597-4e8b-a1c1-86add70b3ddd`，來源 `c907611`（ieduer/minus-life），生效 `2026-11-08T05:35:14Z`，回滾 `fef18140`／`3affc0d`，Status `20261108-path-shared-ui-placement-g3b` r1（improvement，「行為不變」）；path 的發布記錄在其 `docs/OPERATIONS.md`。
+
+**實作**（手冊 §5.1a）：shared-ui `ThemeCustomizer` 加可選 `placement`（`floating` 預設不變；`inline`＝頁頭內觸發鈕＋錨定彈層，點外部或 Esc 關閉、焦點回觸發鈕、四邊留 12px、窄螢幕只顯示色點、觸控 44px），`check_shared_ui.mjs --write` 後逐位元組複製到 minus-life；`App.tsx` 拿掉全域右上角色系浮鈕；新增 `src/components/SiteHeader.tsx` 取代十個頁面各自的頁頭（<640px 站名縮為 nope、隱藏版本號、語言切換不折行，放不下時只有語言切換換到第二行）；獨立鏈接／按鈕 ≥40px（`.tap`、各頁 `min-h-[40px]`）；`#/world` 剩餘名單 <640px 改堆疊卡片、≥640px 表格校名按鈕 40px（`647525f`）；各頁主欄 `page-end-space`（手機末尾留白避開右下角導航圓標）、問卷頁固定底欄上方留白。i18n 無新增鍵。
+
+**驗證**：十九道閘門於 `647525f`（`nope-g3/followup-layout/check.txt`）。候選 `c8d7b5e0`（`candidate-browser.json`）：真實點擊頁頭色系鈕開彈層（360 寬完整在視窗內）、真實點選墨色、點外部關閉；11 條路由 × 正體／简体／EN × 紙色／墨色 × 360／390／430／1024／1280／1440 共 396 個樣本：頁頭控制項與文字矩形 0 相交、語言切換 0 折行、彈層在視窗內＋Esc 關閉＋焦點回觸發鈕、0 橫向溢出、0 個 <40px 獨立控制項、對比最低 4.57（紙）／4.93（墨）、最小字 12px；唯一首樣本失敗是新來源上問卷路由程式塊尚未載入，重測通過。正式站（`production-browser.json`）只讀 7 條靜態路由 × 390／1440，同樣全過，未改來源儲存的色系與語言。path 候選與上一版逐寬度比對 12/12 相同（見 path 手冊）。
+
+**作廢候選** `1631d3ca`（`3d5f0be`）：1024／1440 寬 `#/world` 表格校名按鈕 36px，其餘全過（`superseded-1631d3ca-candidate-browser.json`）；修正 `647525f` 後重跑全部閘門、新候選與整個量測矩陣。
+
+**回滾**：nope `5ac934ec`／`9f8f500`（批 G3），path `fef18140`／`3affc0d`，各自受審回滾交易；回滾 nope 會回到右上角浮鈕與舊頁頭；兩站 shared-ui 回滾後仍須一致（`check:shared-ui` 比對姊妹倉庫工作樹）。證據：`reports/operations/nope-global-roadmap-20261107/nope-g3/followup-layout/`；資源 `nope-g3/followup-layout/resources.md`。
+
+## 2026-11-08 批 G3：shared-ui 色系面板與同步提示多語標籤（兩站同批；已上線；批 G3 後續疊加於其上）
 
 **授權**：同批 G1（`DECISIONS.md` A2：shared-ui 9 條字串兩站同批改）。不改題集／AnswerMap／learning manifest／Function；無 UC 或共享樞紐寫入；無付費或計量資源；無新 Cloudflare 資源；不改導航／門戶／Pulse／UC 登記。
 
