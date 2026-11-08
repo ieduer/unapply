@@ -214,7 +214,7 @@ export function QuestionRunner({
       {/* 頁頭在最上；生活回報說明在頁頭下方，手機收成一行（2026-11-08 批 G4） */}
       <div className="max-w-2xl w-full mx-auto px-4 sm:px-6 pt-3 sm:pt-4 flex flex-col gap-2">
         <EvidenceNotice collapseOnMobile />
-        {autoSkip.includes('S1') && <p className="text-xs text-fog-500 leading-relaxed" data-runner-autoskip="S1">{t('ui.runner.autoSkipS1')}</p>}
+        {autoSkip.length > 0 && <p className="text-xs text-fog-500 leading-relaxed" data-runner-autoskip={autoSkip.join('|')}>{t('ui.runner.autoSkip')}</p>}
       </div>
       <section className="flex-1 max-w-2xl w-full mx-auto px-4 sm:px-6 pt-5 pb-32 sm:pt-8 sm:pb-10 flex flex-col gap-8 sm:gap-10">
         <div key={q.id} className="question-enter flex flex-col gap-3 sm:gap-4">

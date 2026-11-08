@@ -11,7 +11,7 @@ import type {
 } from '../data/overseasTypes'
 import { loadOverseasIndex, loadOverseasRegion } from '../lib/overseasData'
 import { getOriginOption, type OriginRegion } from '../data/origins'
-import { QUALIFICATION_OPTIONS, QUALIFICATIONS_BY_ORIGIN, isQualification, qualificationTokens, type OriginPrefs } from '../data/originBranch'
+import { QUALIFICATION_OPTIONS, isQualification, offeredQualifications, qualificationTokens, type OriginPrefs } from '../data/originBranch'
 import { countListed, loadQualificationsIndex, markInstitution, type QualificationsPayload } from '../lib/originLayer'
 import { useLocale, type Locale } from '../i18n/react'
 import { Rich } from '../i18n/rich'
@@ -59,7 +59,7 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
     loadQualificationsIndex().then((payload) => { if (alive) setQualIndex(payload) }).catch(() => undefined)
     return () => { alive = false }
   }, [markingActive, qualIndex])
-  const qualificationChoices = origin && origin !== 'cn-mainland' ? QUALIFICATIONS_BY_ORIGIN[origin] : QUALIFICATIONS_BY_ORIGIN.overseas
+  const qualificationChoices = offeredQualifications(origin && origin !== 'cn-mainland' ? origin : 'overseas')
 
   useEffect(() => {
     let alive = true

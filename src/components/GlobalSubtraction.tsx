@@ -4,27 +4,33 @@ import type { OverseasIndexPayload, OverseasInstitutionSummary } from '../data/o
 import type { WorldAtlasPayload } from '../data/worldAtlasTypes'
 import type { OriginRegion } from '../data/origins'
 import { LOCAL_ENTRY_SOURCES, liveSourceLinks, qualificationTokens, type OriginPrefs } from '../data/originBranch'
+import { questionEvidence } from '../data/questionEvidence'
 import {
   GLOBAL_DESTINATIONS,
-  GLOBAL_STORAGE_KEY,
-  LEGACY_GLOBAL_STORAGE_KEY,
+  LEGACY_GLOBAL_STORAGE_KEYS,
   applicableChannels,
   audienceForOrigin,
   buildGlobalPool,
-  computeGlobal,
-  decodeGlobalSelection,
-  emptyGlobalSelection,
-  encodeGlobalSelection,
-  globalOptions,
-  globalQuestionPlan,
-  normalizeGlobalSelection,
   poolFor,
   qualificationMark,
   type GlobalDestination,
   type GlobalPoolItem,
-  type GlobalReason,
-  type GlobalSelection,
 } from '../engine/globalFilter'
+import {
+  BANK_STORAGE_KEY,
+  computeBank,
+  decodeBankAnswers,
+  encodeBankAnswers,
+  evaluateBank,
+  normalizeBankAnswers,
+  type BankAnswers,
+  type BankContext,
+  type BankId,
+  type BankPlan,
+  type BankReason,
+  type EvaluatedQuestion,
+  type RegionQuestionId,
+} from '../engine/regionBanks'
 import { loadHkMoTwPool } from '../lib/hkmotwData'
 import { loadOverseasIndex } from '../lib/overseasData'
 import { loadWorldAtlas } from '../lib/atlasData'
@@ -39,9 +45,9 @@ import { SiteFooter } from './SiteFooter'
 interface Props {
   origin: OriginRegion | null
   originPrefs: OriginPrefs
-  /** 在本頁改目的地時同步回首頁的選擇（保留中國大陸是否在內）。 */
+  /** 在結果頁改目的地時同步回首頁的選擇（保留中國大陸是否在內）。 */
   onOriginPrefsChange: (prefs: OriginPrefs) => void
-  /** 流程含中國大陸階段時：回到大陸結果（已作答）或去做大陸題（未作答）。 */
+  /** 流程含中國大陸階段時：回到大陸結果（已走完）或去做大陸題（未走完）。 */
   mainlandStage: 'answered' | 'unanswered' | null
   onBackToMainland: () => void
   onBack: () => void
@@ -52,26 +58,46 @@ interface Props {
 interface Loaded { overseas: OverseasIndexPayload; hkmotw: HkMoTwPoolPayload; atlas: WorldAtlasPayload }
 
 const KEPT_PAGE = 60
+const STEP_STORAGE_KEY = 'unapply.regionStep.v1'
 
-/** 存的選擇綁定起點：換了起點（App 會清掉）或起點不同就不沿用。 */
-function readStored(origin: OriginRegion | null): Partial<GlobalSelection> | null {
+function readStoredAnswers(origin: OriginRegion | null): BankAnswers | null {
   try {
-    window.localStorage.removeItem(LEGACY_GLOBAL_STORAGE_KEY)
-    const raw = window.localStorage.getItem(GLOBAL_STORAGE_KEY)
+    for (const key of LEGACY_GLOBAL_STORAGE_KEYS) window.localStorage.removeItem(key)
+    const raw = window.localStorage.getItem(BANK_STORAGE_KEY)
     if (!raw) return null
-    const parsed = JSON.parse(raw) as { v?: number; origin?: string | null; selection?: Partial<GlobalSelection> }
-    return parsed?.v === 2 && (parsed.origin ?? null) === origin ? parsed.selection ?? null : null
+    const parsed = JSON.parse(raw) as { v?: number; origin?: string | null; answers?: BankAnswers }
+    return parsed?.v === 1 && (parsed.origin ?? null) === origin ? parsed.answers ?? null : null
   } catch {
     return null
   }
 }
 
-function saveStored(selection: GlobalSelection | null, origin: OriginRegion | null) {
+function saveStoredAnswers(answers: BankAnswers | null, origin: OriginRegion | null) {
   try {
-    if (!selection) window.localStorage.removeItem(GLOBAL_STORAGE_KEY)
-    else window.localStorage.setItem(GLOBAL_STORAGE_KEY, JSON.stringify({ v: 2, origin, selection }))
+    if (!answers) window.localStorage.removeItem(BANK_STORAGE_KEY)
+    else window.localStorage.setItem(BANK_STORAGE_KEY, JSON.stringify({ v: 1, origin, answers }))
   } catch {
     // 存不下就算了，本次會話仍然生效
+  }
+}
+
+function readStoredStep(): number | 'result' | null {
+  try {
+    const raw = window.sessionStorage.getItem(STEP_STORAGE_KEY)
+    if (raw === 'result') return 'result'
+    const n = raw === null ? NaN : Number(raw)
+    return Number.isInteger(n) && n >= 0 ? n : null
+  } catch {
+    return null
+  }
+}
+
+function saveStoredStep(step: number | 'result' | null) {
+  try {
+    if (step === null) window.sessionStorage.removeItem(STEP_STORAGE_KEY)
+    else window.sessionStorage.setItem(STEP_STORAGE_KEY, String(step))
+  } catch {
+    // 存不下就算了
   }
 }
 
@@ -85,22 +111,21 @@ function shareQueryFromHash(): string {
 const toggle = <T extends string>(list: readonly T[], value: T): T[] => (list.includes(value) ? list.filter((v) => v !== value) : [...list, value])
 
 /**
- * 全球池減法（路線圖 S4 完成定義，批 G2；2026-11-08 批 G6 依目的地重做）。展示層：池只含所選目的地；
- * 題目只在「問了劃得動」時出現（globalQuestionPlan）；機構卡只列適用你起點的管道；官方明確不招本科的另列一節。
- * 選擇只存 localStorage（unapply.globalSubtraction.v2），不進 AnswerMap、不進 A+ 學習證據、不送 Function；分享只含選項鍵。
+ * 全球減法（批 G2；2026-11-08 批 G6 依目的地重做；批 G6 擴充：按目的地分題庫、題目以效度篩選，一題一頁）。
+ * 題目由 src/engine/regionBanks.ts 依池與起點逐題核效度後才出；作答只存 localStorage（unapply.regionBanks.v1），
+ * 不進 AnswerMap、不進 A+ 學習證據、不送 Function；分享只含選項鍵。
  */
 export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, mainlandStage, onBackToMainland, onBack, onHkMoTw, onOverseas }: Props) {
   const { t, locale, n } = useLocale()
   const [data, setData] = useState<Loaded | null>(null)
   const [loadError, setLoadError] = useState<string | null>(null)
   const [reloadToken, setReloadToken] = useState(0)
-  // 使用者改過的選擇；null＝沿用初始（分享鏈接 > 已存 > 依目的地）
-  const [edited, setEdited] = useState<GlobalSelection | null>(null)
-  const [sharedDismissed, setSharedDismissed] = useState(false)
   const [shareQuery] = useState(() => shareQueryFromHash())
+  const [answers, setAnswersState] = useState<BankAnswers | null>(null)
+  const [step, setStepState] = useState<number | 'result' | null>(() => (shareQueryFromHash() ? 'result' : readStoredStep()))
+  const [sharedLoaded, setSharedLoaded] = useState(false)
   const [qualPayload, setQualPayload] = useState<QualificationsPayload | null>(null)
-  const [showSubjects, setShowSubjects] = useState(false)
-  const [keptLimit, setKeptLimit] = useState(KEPT_PAGE)
+  const [keptLimit, setKeptLimit] = useState<Record<string, number>>({})
   const [copied, setCopied] = useState(false)
   const shareRef = useRef<HTMLDivElement>(null)
 
@@ -131,64 +156,73 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
     return hit
   }, [needQual, qualPayload, tokenKey, gaokao])
 
-  const items = useMemo(() => (data ? buildGlobalPool(data.overseas, data.hkmotw, data.atlas) : []), [data])
-  const familyOf = useMemo(() => new Map((data?.atlas.subjects ?? []).map((s) => [s.code, s.family])), [data])
-  const options = useMemo(() => (data ? globalOptions(data.atlas) : null), [data])
-  // 目的地：首頁選的非大陸目的地；沒有（深鏈、未選起點或只選了中國大陸）→ 港澳臺與海外全部
+  // 分享鏈接：目的地同步回首頁（保留中國大陸是否在內）、作答存成自己的，網址收回 #/global
+  const shared = useMemo(() => (shareQuery ? decodeBankAnswers(shareQuery) : null), [shareQuery])
   const prefKey = originPrefs.destinations.filter((d) => d !== 'cn-mainland').join('|')
-  const fallbackDestinations = useMemo<GlobalDestination[]>(() => (prefKey ? (prefKey.split('|') as GlobalDestination[]) : [...GLOBAL_DESTINATIONS]), [prefKey])
-  const usedFallback = prefKey === ''
+  const destinations = useMemo<GlobalDestination[]>(() => {
+    if (shared?.destinations.length && !sharedLoaded) return shared.destinations
+    return prefKey ? (prefKey.split('|') as GlobalDestination[]) : [...GLOBAL_DESTINATIONS]
+  }, [prefKey, shared, sharedLoaded])
+  const usedFallback = prefKey === '' && !shared?.destinations.length
 
-  // 初始選擇：分享鏈接 > 已存（同起點、目的地照首頁）> 空（由資料與起點推出，不在 effect 裡 setState）
-  const initial = useMemo(() => {
-    if (!data || !options) return null
-    const shared = decodeGlobalSelection(shareQuery, items, origin, options, familyOf)
-    if (shared) return { selection: shared, shared: true }
-    const stored = readStored(origin)
-    return { selection: normalizeGlobalSelection({ ...(stored ?? {}), destinations: fallbackDestinations }, items, origin, options, familyOf, fallbackDestinations), shared: false }
-  }, [data, options, items, familyOf, fallbackDestinations, shareQuery, origin])
-  const selection = edited ?? initial?.selection ?? null
-  const sharedLoaded = Boolean(initial?.shared) && !sharedDismissed && !edited
+  const items = useMemo(() => (data ? buildGlobalPool(data.overseas, data.hkmotw, data.atlas) : []), [data])
+  const ctx = useMemo<BankContext | null>(() => (data ? {
+    familyOf: new Map(data.atlas.subjects.map((s) => [s.code, s.family])),
+    familyOrder: data.atlas.families.map((f) => f.code),
+    subjectOrder: data.atlas.subjects.map((s) => s.code),
+    origin,
+    ugcFunded: new Set<string>(questionEvidence.ugcFunded.ids),
+    confirmedChannels: new Set<string>(questionEvidence.channelChecks.confirmed),
+  } : null), [data, origin])
+  const pools = useMemo(() => new Map(destinations.map((d) => [d, poolFor(items, [d], origin)])), [items, destinations, origin])
+  const plans = useMemo<BankPlan[]>(() => (ctx ? destinations.map((d) => evaluateBank(d, pools.get(d) ?? [], ctx)) : []), [ctx, destinations, pools])
+  const steps = useMemo(() => plans.flatMap((plan) => plan.questions.map((q, i) => ({ plan, q, index: i }))), [plans])
+
+  // 作答初始化：自己改過的 > 分享鏈接 > 已存（同起點）> 空（由資料推出，不在 render 裡 setState）
+  const effectiveAnswers = useMemo<BankAnswers>(() => {
+    if (!plans.length) return {}
+    if (answers) return normalizeBankAnswers(answers, plans)
+    if (shared && !sharedLoaded) return normalizeBankAnswers(shared.answers, plans)
+    return normalizeBankAnswers(readStoredAnswers(origin), plans)
+  }, [answers, plans, shared, sharedLoaded, origin])
+
   useEffect(() => {
-    // 分享鏈接載入後：存成自己的選擇、目的地同步回首頁，並把網址收回 #/global（只含選項鍵，存著也無害）
-    if (!initial?.shared) return
-    saveStored(initial.selection, origin)
-    try { window.history.replaceState(null, '', '#/global') } catch { /* 留著查詢串也無害 */ }
-  }, [initial, origin])
-
-  const syncDestinations = useCallback((destinations: readonly GlobalDestination[]) => {
+    if (!shared || sharedLoaded || !plans.length) return
     const keepMainland = originPrefs.destinations.includes('cn-mainland')
-    const next = [...(keepMainland ? ['cn-mainland' as const] : []), ...destinations]
-    if (next.join('|') !== originPrefs.destinations.join('|')) onOriginPrefsChange({ ...originPrefs, destinations: next })
-  }, [originPrefs, onOriginPrefsChange])
+    if (shared.destinations.length) onOriginPrefsChange({ ...originPrefs, destinations: [...(keepMainland ? ['cn-mainland' as const] : []), ...shared.destinations] })
+    saveStoredAnswers(normalizeBankAnswers(shared.answers, plans), origin)
+    try { window.history.replaceState(null, '', '#/global') } catch { /* 留著查詢串也無害 */ }
+    // 只做一次：分享的目的地寫回首頁後，prefKey 就等於分享的目的地
+  }, [shared, sharedLoaded, plans]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const update = useCallback((next: Partial<GlobalSelection>) => {
-    if (!options || !selection) return
-    const normalized = normalizeGlobalSelection({ ...selection, ...next }, items, origin, options, familyOf, selection.destinations)
-    setEdited(normalized)
-    saveStored(normalized, origin)
-    setKeptLimit(KEPT_PAGE)
-    if (next.destinations) syncDestinations(normalized.destinations)
-  }, [options, selection, items, origin, familyOf, syncDestinations])
+  const setAnswers = useCallback((next: BankAnswers) => {
+    const normalized = normalizeBankAnswers(next, plans)
+    setAnswersState(normalized)
+    setSharedLoaded(true)
+    saveStoredAnswers(normalized, origin)
+  }, [plans, origin])
 
-  const redo = () => {
-    if (!options || !selection) return
-    // 「重做」只清本階段的選擇（目的地保留；大陸 45 題與首頁選擇不動）
-    const fresh = normalizeGlobalSelection(emptyGlobalSelection(selection.destinations), items, origin, options, familyOf, selection.destinations)
-    setEdited(fresh)
-    saveStored(null, origin)
-    setSharedDismissed(true)
-    setKeptLimit(KEPT_PAGE)
-  }
+  const currentStep: number | 'result' = step === 'result' || !steps.length ? 'result' : Math.min(step ?? 0, steps.length - 1)
+  const goStep = useCallback((next: number | 'result') => {
+    setStepState(next)
+    saveStoredStep(next)
+    window.scrollTo(0, 0)
+  }, [])
+  // 換題：焦點移到題目標題（第一次由 App 處理）
+  const firstStep = useRef(true)
+  useEffect(() => {
+    if (firstStep.current) { firstStep.current = false; return }
+    const heading = document.querySelector<HTMLElement>('main h1, main [data-question-title]')
+    if (heading) { heading.setAttribute('tabindex', '-1'); heading.focus({ preventScroll: true }) }
+  }, [currentStep])
 
-  const result = useMemo(() => (selection ? computeGlobal(items, selection, { familyOf, origin }) : null), [items, selection, familyOf, origin])
-  const plan = useMemo(() => (selection ? globalQuestionPlan(poolFor(items, selection.destinations, origin), origin) : null), [items, selection, origin])
-  // 展示順序：你所在地的機構在前；院校池（有管道資料）在前；同組保持資料原序
-  const keptSorted = useMemo(() => {
-    if (!result) return []
-    const local: GlobalDestination | null = origin === 'hk' || origin === 'mo' || origin === 'tw' ? origin : null
-    return result.kept.map((k, i) => ({ k, i })).sort((a, b) => Number(a.k.item.destination !== local) - Number(b.k.item.destination !== local) || Number(a.k.item.pool !== 'hkmotw') - Number(b.k.item.pool !== 'hkmotw') || a.i - b.i).map(({ k }) => k)
-  }, [result, origin])
+  const results = useMemo(() => (ctx ? plans.map((plan) => computeBank(plan, pools.get(plan.bank) ?? [], effectiveAnswers, ctx)) : []), [ctx, plans, pools, effectiveAnswers])
+  const noUndergradByBank = useMemo(() => {
+    const audience = audienceForOrigin(origin)
+    const out = new Map<BankId, GlobalPoolItem[]>()
+    for (const d of destinations) out.set(d, items.filter((i) => i.destination === d && i.noUndergrad && (!i.committee || audience === null || Boolean(i.channels?.some((c) => c.audience === audience)))))
+    return out
+  }, [items, destinations, origin])
 
   const overseasById = useMemo(() => new Map((data?.overseas.institutions ?? []).map((i) => [i.id, i])), [data])
   const hkmotwById = useMemo(() => new Map((data?.hkmotw.institutions ?? []).map((i) => [i.id, i])), [data])
@@ -200,6 +234,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
   const subjectLabel = (code: string) => { const s = subjectByCode.get(code); if (!s) return code; return locale === 'en' ? s.nameEn : locale === 'zh-Hans' ? s.nameZhHans || s.nameZh : s.nameZh }
   const familyLabel = (code: string) => { const f = familyByCode.get(code); if (!f) return code; return locale === 'en' ? f.nameEn : f.nameZh }
   const channelLabel = (code: string) => t(`ui.global.channel.${code}`)
+  const optionLabel = (q: RegionQuestionId, value: string) => (q === 'regions' ? regionLabel(value) : q === 'families' ? familyLabel(value) : q === 'wanted' ? subjectLabel(value) : q === 'channels' ? channelLabel(value) : t(`ui.global.funding.${value}`))
   const joiner = t('ui.common.listJoiner')
 
   if (loadError) {
@@ -216,36 +251,76 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
       </main>
     )
   }
-  if (!data || !selection || !result || !plan) {
+  if (!data || !ctx) {
     return (
-      <main className="min-h-screen app-canvas text-fog-100 flex items-center justify-center px-5">
+      <main className="min-h-screen app-canvas text-fog-100 flex items-center justify-center px-5" data-loading="">
         <p className="mono text-xs uppercase tracking-[0.2em] text-fog-500">{t('ui.global.loading')}</p>
       </main>
     )
   }
 
-  const struckFamilies = new Set(selection.struckFamilies)
-  const shareUrl = `${window.location.origin}${window.location.pathname}#/global${(() => { const q = encodeGlobalSelection(selection); return q ? `?${q}` : '' })()}`
   const qualificationLabel = origin === 'cn-mainland' ? t('ui.overseas.qual.gaokaoOption') : originPrefs.qualification ? t(`origin.qual.${originPrefs.qualification}.label`) : ''
-  const includesOverseas = selection.destinations.includes('overseas')
-  const platformRegions = includesOverseas ? Object.keys(plan.regionCounts).filter((code) => (regionRows.get(code)?.portalsLive ?? 0) > 0 && !selection.struckRegions.includes(code)) : []
-  const places = selection.destinations.map((d) => t(`ui.dest.${d}`)).join(joiner)
-  // 題號只算出現的題
-  const shownQuestions = [plan.regions ? 'regions' : '', plan.subjects ? 'families' : '', plan.subjects ? 'wanted' : '', plan.channels ? 'channels' : ''].filter(Boolean)
-  const numberOf = (question: string) => shownQuestions.indexOf(question) + 1
-  const anyQuestion = Boolean(plan.regions || plan.subjects || plan.channels)
+  const totalPool = results.reduce((s, r) => s + r.pool, 0)
+  const totalKept = results.reduce((s, r) => s + r.kept.length, 0)
+  const totalCrossed = totalPool - totalKept
 
-  const reasonText = (reason: GlobalReason): string => {
-    const question = t(`ui.global.q.${reason.question}.title`)
-    const rule = t(`ui.global.reason.rule.${reason.rule}`)
-    let value = ''
-    if (reason.question === 'regions') value = regionLabel(reason.region)
-    else if (reason.question === 'families') value = t('ui.global.reason.value.families', { families: reason.families.map(familyLabel).join(joiner), subjects: reason.subjects.map(subjectLabel).join(joiner) })
-    else if (reason.question === 'wanted') value = t('ui.global.reason.value.wanted', { subjects: reason.subjects.map(subjectLabel).join(joiner), wanted: reason.wanted.map(subjectLabel).join(joiner) })
-    else value = reason.channels.map(channelLabel).join(joiner)
-    return t('ui.global.reason.line', { question, rule, value })
+  // ---------------- 一題一頁 ----------------
+  if (currentStep !== 'result') {
+    const { plan, q, index } = steps[currentStep]
+    const chosen = effectiveAnswers[plan.bank]?.[q.id] ?? []
+    const live = computeBank(plan, pools.get(plan.bank) ?? [], effectiveAnswers, ctx, index + 1)
+    const pick = (value: string) => setAnswers({ ...effectiveAnswers, [plan.bank]: { ...(effectiveAnswers[plan.bank] ?? {}), [q.id]: toggle(chosen, value) } })
+    const isLast = currentStep === steps.length - 1
+    const next = () => goStep(isLast ? 'result' : currentStep + 1)
+    const skip = () => { setAnswers({ ...effectiveAnswers, [plan.bank]: { ...(effectiveAnswers[plan.bank] ?? {}), [q.id]: [] } }); next() }
+    const prev = () => (currentStep === 0 ? onBack() : goStep(currentStep - 1))
+    const progress = t('ui.global.step.progress', { bank: t(`ui.dest.${plan.bank}`), index: index + 1, total: plan.questions.length })
+    return (
+      <main className="min-h-screen app-canvas text-fog-100 flex flex-col">
+        <SiteHeader
+          sticky
+          width="max-w-2xl"
+          brand={t('ui.global.brand')}
+          back={{ label: currentStep === 0 ? t('ui.global.step.back') : t('ui.global.step.prev'), onClick: prev }}
+          center={<span className="mono text-fog-500">{progress}</span>}
+          actions={[{ label: t('ui.global.step.skip'), onClick: skip }]}
+          footer={
+            <>
+              <p className="sm:hidden px-3 pb-1.5 text-xs mono text-fog-500">{progress}</p>
+              <div className="h-[2px] bg-ink-800"><div className="h-full bg-accent-500 transition-all duration-500" style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }} /></div>
+            </>
+          }
+        />
+        <section className="flex-1 max-w-2xl w-full mx-auto px-4 sm:px-6 pt-6 pb-10 flex flex-col gap-6" data-global-step={`${plan.bank}:${q.id}`}>
+          <div key={`${plan.bank}:${q.id}`} className="question-enter flex flex-col gap-3">
+            <p className="mono text-xs uppercase tracking-[0.2em] text-accent-500">{t(`ui.dest.${plan.bank}`)}</p>
+            <h2 className="serif text-2xl sm:text-3xl leading-snug" data-question-title>{t(`ui.global.q.${q.id}.title`)}</h2>
+            <p className="text-sm text-fog-500 leading-relaxed">{t(`ui.global.q.${q.id}.hint`)}</p>
+          </div>
+          <QuestionOptions q={q} chosen={chosen} pick={pick} optionLabel={optionLabel} familyOf={ctx.familyOf} familyOrder={ctx.familyOrder} familyLabel={familyLabel} />
+        </section>
+        <div className="sticky bottom-0 z-30 border-t border-ink-800 bg-ink-950/95 backdrop-blur" data-global-step-bar>
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+            <p className="text-sm text-fog-300" data-global-live={`${live.kept.length}/${live.pool}`}>{t('ui.global.step.remaining', { bank: t(`ui.dest.${plan.bank}`), kept: n(live.kept.length), pool: n(live.pool) })}</p>
+            <button type="button" onClick={next} className="px-6 min-h-[48px] rounded-xl bg-accent-500 text-ink-950 font-semibold text-base hover:bg-accent-400 shrink-0" data-global-next>
+              {isLast ? t('ui.global.step.results') : t('ui.global.step.next')}
+            </button>
+          </div>
+        </div>
+        <SiteFooter width="max-w-2xl" />
+      </main>
+    )
   }
 
+  // ---------------- 結果 ----------------
+  const shareUrl = `${window.location.origin}${window.location.pathname}#/global${(() => { const q = encodeBankAnswers(destinations, effectiveAnswers); return q ? `?${q}` : '' })()}`
+  const reasonText = (reason: BankReason): string => t('ui.global.reason.short', { question: t(`ui.global.q.${reason.question}.title`), value: reason.values.map((v) => optionLabel(reason.question, v)).join(joiner) })
+  const redo = () => { setAnswers({}); saveStoredAnswers(null, origin); setKeptLimit({}); goStep(steps.length ? 0 : 'result') }
+  const syncDestinations = (next: readonly GlobalDestination[]) => {
+    setSharedLoaded(true)
+    const keepMainland = originPrefs.destinations.includes('cn-mainland')
+    onOriginPrefsChange({ ...originPrefs, destinations: [...(keepMainland ? ['cn-mainland' as const] : []), ...GLOBAL_DESTINATIONS.filter((d) => next.includes(d))] })
+  }
   const copyShare = async () => {
     try { await navigator.clipboard.writeText(shareUrl); setCopied(true); window.setTimeout(() => setCopied(false), 2000) } catch { setCopied(false) }
   }
@@ -253,14 +328,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
     if (!shareRef.current) return
     await generateShareImage(shareRef.current, `unapply-global-${Date.now()}.png`)
   }
-
-  const chip = (active: boolean, struckStyle: boolean) => [
-    'px-3 min-h-[44px] rounded-full border text-sm text-left',
-    active
-      ? struckStyle ? 'border-accent-500 bg-accent-500/10 text-fog-100 line-through decoration-accent-500' : 'border-accent-500 bg-accent-500/10 text-fog-100'
-      : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100',
-  ].join(' ')
-
+  const chip = (active: boolean) => ['px-3 min-h-[44px] rounded-full border text-sm text-left', active ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')
   const itemRow = (item: GlobalPoolItem, extra: { crossed?: boolean; children?: ReactNode; qual?: ReturnType<typeof qualificationMark> }) => (
     <ItemRow key={item.key} item={item} locale={locale} origin={origin} overseas={item.overseasId ? overseasById.get(item.overseasId) : undefined} hkmotw={item.pool === 'hkmotw' ? hkmotwById.get(item.id) : undefined}
       regionLabel={regionLabel} channelLabel={channelLabel} qual={extra.qual ?? null} qualificationLabel={qualificationLabel} crossed={extra.crossed}
@@ -272,185 +340,115 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
   return (
     <main className="min-h-screen app-canvas text-fog-100">
       <SiteHeader brand={t('ui.global.brand')} back={{ label: t('ui.global.backHome'), onClick: onBack }} />
-
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-16 flex flex-col gap-8" data-global-page>
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-16 flex flex-col gap-8" data-global-page data-global-result>
         <div className="max-w-3xl flex flex-col gap-3">
-          <h1 className="serif text-3xl sm:text-5xl leading-tight">{t('ui.global.title')}</h1>
-          <p className="text-sm sm:text-base text-fog-300 leading-relaxed">{t('ui.global.lede')}</p>
+          <h1 className="serif text-3xl sm:text-5xl leading-tight">{t('ui.global.result.title')}</h1>
           {origin
             ? <p className="text-xs mono text-fog-500">{t('ui.global.origin', { origin: t(`origin.${origin}.label`) })}{qualificationLabel ? ` · ${t('ui.overseas.qual.selector')}${t('ui.common.colon')}${qualificationLabel}` : ''}</p>
             : <p className="text-sm text-fog-300" data-global-no-origin><button type="button" onClick={onBack} className="underline hover:text-accent-500 min-h-[40px]">{t('ui.global.noOrigin')}</button></p>}
-          {sharedLoaded && <p className="text-sm text-fog-100 border border-accent-500/40 bg-accent-500/10 rounded-xl px-4 py-3" data-global-shared>{t('ui.global.share.loaded')}</p>}
+          {shared && !sharedLoaded && <p className="text-sm text-fog-100 border border-accent-500/40 bg-accent-500/10 rounded-xl px-4 py-3" data-global-shared>{t('ui.global.share.loaded')}</p>}
         </div>
 
-        <div className="px-4 sm:px-5 py-3 border border-ink-800 bg-ink-900 rounded-xl flex flex-wrap items-center justify-between gap-3" data-global-counts={`${result.counts.kept}/${result.counts.pool}`}>
-          <p className="text-sm sm:text-base text-fog-100"><Rich k="ui.global.counts" params={{ kept: n(result.counts.kept), pool: n(result.counts.pool), crossed: n(result.counts.crossed) }} /></p>
+        <div className="px-4 sm:px-5 py-3 border border-ink-800 bg-ink-900 rounded-xl flex flex-wrap items-center justify-between gap-3" data-global-counts={`${totalKept}/${totalPool}`}>
+          <p className="text-sm sm:text-base text-fog-100"><Rich k="ui.global.counts" params={{ kept: n(totalKept), pool: n(totalPool), crossed: n(totalCrossed) }} /></p>
           <div className="flex flex-wrap gap-2">
             {mainlandStage && (
               <button type="button" onClick={onBackToMainland} className="px-4 min-h-[44px] rounded-full border border-accent-500/40 bg-accent-500/10 text-accent-600 text-sm hover:bg-accent-500/15" data-global-back-mainland={mainlandStage}>
                 {mainlandStage === 'answered' ? t('ui.global.backToMainland') : t('ui.global.doMainland')}
               </button>
             )}
+            {steps.length > 0 && <button type="button" onClick={() => goStep(0)} className="px-4 min-h-[44px] rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500" data-global-edit>{t('ui.global.result.edit')}</button>}
             <button type="button" onClick={redo} className="px-4 min-h-[44px] rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500" data-global-redo>{t('ui.global.redo')}</button>
           </div>
         </div>
 
-        <Block title={t('ui.global.dest.title')} hint={usedFallback && !edited ? t('ui.global.dest.fallback') : t('ui.global.dest.note')} data="destinations">
+        <section className="flex flex-col gap-3" data-global-question="destinations">
+          <h2 className="serif text-xl">{t('ui.global.dest.title')}</h2>
+          <p className="text-xs sm:text-sm text-fog-500 leading-relaxed">{usedFallback ? t('ui.global.dest.fallback') : t('ui.global.dest.note')}</p>
           <div className="flex flex-wrap gap-2" role="group" aria-label={t('ui.global.dest.title')}>
             {GLOBAL_DESTINATIONS.map((destination) => {
-              const active = selection.destinations.includes(destination)
-              const last = active && selection.destinations.length === 1
+              const active = destinations.includes(destination)
+              const last = active && destinations.length === 1
               return (
-                <button key={destination} type="button" aria-pressed={active} data-global-destination={destination} className={chip(active, false)}
+                <button key={destination} type="button" aria-pressed={active} data-global-destination={destination} className={chip(active)}
                   aria-label={last ? t('ui.branch.destLastAria', { place: t(`ui.dest.${destination}`) }) : t(`ui.dest.${destination}`)}
-                  onClick={() => { if (!last) update({ destinations: toggle(selection.destinations, destination) }) }}>
+                  onClick={() => { if (!last) syncDestinations(toggle(destinations, destination)) }}>
                   <span aria-hidden="true" className="mono text-xs mr-1">{active ? '✓' : '+'}</span>{t(`ui.dest.${destination}`)}
                 </button>
               )
             })}
           </div>
-        </Block>
-
-        {!anyQuestion && <p className="text-sm text-fog-300 border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-global-no-questions>{t('ui.global.noQuestions', { places })}</p>}
-
-        {plan.regions && (
-          <Block index={numberOf('regions')} title={t('ui.global.q.regions.title')} hint={t('ui.global.q.regions.hint')} data="regions">
-            <div className="flex flex-wrap gap-2" role="group" aria-label={t('ui.global.q.regions.title')}>
-              {plan.regions.map((code) => {
-                const active = selection.struckRegions.includes(code)
-                return (
-                  <button key={code} type="button" aria-pressed={active} data-global-region={code} className={chip(active, true)} onClick={() => update({ struckRegions: toggle(selection.struckRegions, code) })}>
-                    {active ? t('ui.world.struckPrefix') : ''}{regionLabel(code)} <span className="mono text-xs text-fog-500">{plan.regionCounts[code]}</span>
-                  </button>
-                )
-              })}
-            </div>
-          </Block>
-        )}
-
-        {plan.subjects && (
-          <>
-            <Block index={numberOf('families')} title={t('ui.global.q.families.title')} hint={t('ui.global.q.families.hint')} data="families">
-              <div className="flex flex-wrap gap-2" role="group" aria-label={t('ui.global.q.families.title')}>
-                {data.atlas.families.map((family) => {
-                  const active = selection.struckFamilies.includes(family.code)
-                  return (
-                    <button key={family.code} type="button" aria-pressed={active} data-global-family={family.code} className={chip(active, true)} onClick={() => update({ struckFamilies: toggle(selection.struckFamilies, family.code) })}>
-                      {active ? t('ui.world.struckPrefix') : ''}{familyLabel(family.code)}
-                    </button>
-                  )
-                })}
-              </div>
-            </Block>
-
-            <Block index={numberOf('wanted')} title={t('ui.global.q.wanted.title')} hint={t('ui.global.q.wanted.hint')} data="wanted">
-              {selection.wantedSubjects.length > 0 && <p className="text-sm text-fog-300">{t('ui.global.q.wanted.chosen', { subjects: selection.wantedSubjects.map(subjectLabel).join(joiner) })}</p>}
-              <button type="button" aria-expanded={showSubjects} onClick={() => setShowSubjects((v) => !v)} className="self-start px-4 min-h-[44px] rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500" data-global-wanted-toggle>
-                {showSubjects ? t('ui.global.q.wanted.collapse') : t('ui.global.q.wanted.toggle', { n: selection.wantedSubjects.length })}
-              </button>
-              {showSubjects && (
-                <div className="flex flex-col gap-3">
-                  {data.atlas.families.filter((f) => !struckFamilies.has(f.code)).map((family) => (
-                    <div key={family.code} className="flex flex-col gap-2">
-                      <p className="mono text-xs uppercase tracking-[0.18em] text-fog-500">{familyLabel(family.code)}</p>
-                      <div className="flex flex-wrap gap-2" role="group" aria-label={familyLabel(family.code)}>
-                        {data.atlas.subjects.filter((s) => s.family === family.code).map((subject) => {
-                          const active = selection.wantedSubjects.includes(subject.code)
-                          return (
-                            <button key={subject.code} type="button" aria-pressed={active} data-global-subject={subject.code} className={chip(active, false)} onClick={() => update({ wantedSubjects: toggle(selection.wantedSubjects, subject.code) })}>
-                              {subjectLabel(subject.code)}
-                            </button>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </Block>
-          </>
-        )}
-
-        {plan.channels && (
-          <Block index={numberOf('channels')} title={t('ui.global.q.channels.title')} hint={t('ui.global.q.channels.hint')} data="channels">
-            <div className="flex flex-wrap gap-2" role="group" aria-label={t('ui.global.q.channels.title')}>
-              {plan.channels.map((code) => {
-                const active = selection.struckChannels.includes(code)
-                return (
-                  <button key={code} type="button" aria-pressed={active} data-global-channel={code} className={chip(active, true)} onClick={() => update({ struckChannels: toggle(selection.struckChannels, code) })}>
-                    {active ? t('ui.world.struckPrefix') : ''}{channelLabel(code)} <span className="mono text-xs text-fog-500">{plan.channelCounts[code]}</span>
-                  </button>
-                )
-              })}
-            </div>
-          </Block>
-        )}
-
-        {includesOverseas && platformRegions.length > 0 && (
-          <Block title={t('ui.global.platforms.title')} hint={t('ui.global.platforms.note')} data="platforms">
-            <p className="text-sm text-fog-300 leading-relaxed flex flex-wrap gap-x-3 gap-y-1">
-              {platformRegions.map((code) => (
-                <button key={code} type="button" onClick={() => onOverseas(regionRows.get(code)!.slug)} className="underline hover:text-accent-500 min-h-[40px]">
-                  {t('ui.global.platforms.item', { region: regionLabel(code), n: regionRows.get(code)!.portalsLive })}
-                </button>
-              ))}
-            </p>
-          </Block>
-        )}
+        </section>
 
         {qualHits && qualificationLabel && <p className="text-sm text-fog-300 border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-global-qual-note>{t('ui.global.qual.note', { qualification: qualificationLabel })}</p>}
 
-        <section className="flex flex-col gap-3" data-global-kept={result.counts.kept}>
-          <h2 className="serif text-2xl">{t('ui.global.kept.title', { n: n(result.counts.kept) })}</h2>
-          {result.kept.length === 0 ? (
-            <div className="flex flex-col gap-3 border border-ink-800 bg-ink-900 rounded-xl px-4 py-4" data-global-empty>
-              <p className="text-sm text-fog-300">{result.counts.pool === 0 ? t('ui.global.kept.emptyPool') : t('ui.global.kept.empty')}</p>
-              {result.counts.pool > 0 && <button type="button" onClick={redo} className="self-start px-4 min-h-[44px] rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">{t('ui.global.redo')}</button>}
-            </div>
-          ) : (
-            <ul className="flex flex-col gap-2">
-              {keptSorted.slice(0, keptLimit).map(({ item, unknown }) => itemRow(item, {
-                qual: qualificationMark(item, qualHits),
-                children: unknown.length > 0 ? <p className="text-xs text-fog-500">{unknown.map((u) => t(`ui.global.unknown.${u}`)).join(joiner)}</p> : null,
-              }))}
-            </ul>
-          )}
-          {result.kept.length > keptLimit && (
-            <button type="button" onClick={() => setKeptLimit(result.kept.length)} className="self-start px-4 min-h-[44px] rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500" data-global-more>
-              {t('ui.global.kept.more', { n: n(result.kept.length) })}
-            </button>
-          )}
-        </section>
-
-        {result.noUndergrad.length > 0 && (
-          <details className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-global-no-undergrad={result.counts.noUndergrad}>
-            <summary className="cursor-pointer serif text-lg min-h-[44px] flex items-center">{t('ui.global.noUndergrad.title', { n: n(result.counts.noUndergrad) })}</summary>
-            <p className="mt-2 text-xs text-fog-500 leading-relaxed">{t('ui.global.noUndergrad.note')}</p>
-            <ul className="mt-3 flex flex-col gap-2">
-              {result.noUndergrad.map((item) => {
-                const inst = hkmotwById.get(item.id)
-                const source = inst?.channels.find((c) => c.channel === 'postgraduate_only')?.source.url
-                return itemRow(item, { children: source ? <p className="text-xs mono"><a className="tap underline text-fog-300 hover:text-accent-500" href={source} target="_blank" rel="noreferrer noopener">{t('ui.global.noUndergrad.source')} ↗</a></p> : null })
-              })}
-            </ul>
-          </details>
-        )}
-
-        {result.crossed.length > 0 && (
-          <details className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-global-crossed={result.counts.crossed}>
-            <summary className="cursor-pointer serif text-lg min-h-[44px] flex items-center">{t('ui.global.crossed.title', { n: n(result.counts.crossed) })}</summary>
-            <ul className="mt-3 flex flex-col gap-2">
-              {result.crossed.map(({ item, reasons }) => itemRow(item, {
-                crossed: true,
-                children: (
-                  <ul className="flex flex-col gap-1 text-xs text-fog-300 leading-relaxed" data-global-reasons={reasons.length}>
-                    {reasons.map((reason, i) => <li key={i} data-global-reason={reason.rule}>{reasonText(reason)}</li>)}
+        {results.map((result) => {
+          const plan = plans.find((p) => p.bank === result.bank)!
+          const noUndergrad = noUndergradByBank.get(result.bank) ?? []
+          const limit = keptLimit[result.bank] ?? KEPT_PAGE
+          const keptSorted = [...result.kept].sort((a, b) => Number(a.item.pool !== 'hkmotw') - Number(b.item.pool !== 'hkmotw'))
+          const platformRegions = result.bank === 'overseas' ? [...new Set(result.kept.map((k) => k.item.region))].filter((code) => (regionRows.get(code)?.portalsLive ?? 0) > 0) : []
+          return (
+            <section key={result.bank} className="flex flex-col gap-3" data-global-bank={result.bank} data-global-kept={result.kept.length}>
+              <h2 className="serif text-2xl">{t('ui.global.result.bank', { bank: t(`ui.dest.${result.bank}`), kept: n(result.kept.length), pool: n(result.pool) })}</h2>
+              {plan.questions.length === 0 && <p className="text-sm text-fog-500" data-global-no-questions>{t('ui.global.result.noQuestions')}</p>}
+              {result.pool === 0 ? <p className="text-sm text-fog-300" data-global-empty>{t('ui.global.kept.emptyPool')}</p> : result.kept.length === 0 ? (
+                <div className="flex flex-col gap-3 border border-ink-800 bg-ink-900 rounded-xl px-4 py-4" data-global-empty>
+                  <p className="text-sm text-fog-300">{t('ui.global.kept.empty')}</p>
+                  <button type="button" onClick={redo} className="self-start px-4 min-h-[44px] rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">{t('ui.global.redo')}</button>
+                </div>
+              ) : (
+                <ul className="flex flex-col gap-2">
+                  {keptSorted.slice(0, limit).map(({ item, unknown }) => itemRow(item, {
+                    qual: qualificationMark(item, qualHits),
+                    children: unknown.length > 0 ? <p className="text-xs text-fog-500">{unknown.map((u) => t(`ui.global.unknown.${u}`)).join(joiner)}</p> : null,
+                  }))}
+                </ul>
+              )}
+              {result.kept.length > limit && (
+                <button type="button" onClick={() => setKeptLimit((m) => ({ ...m, [result.bank]: result.kept.length }))} className="self-start px-4 min-h-[44px] rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500" data-global-more>
+                  {t('ui.global.kept.more', { n: n(result.kept.length) })}
+                </button>
+              )}
+              {platformRegions.length > 0 && (
+                <details className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-global-platforms>
+                  <summary className="cursor-pointer serif text-lg min-h-[44px] flex items-center">{t('ui.global.platforms.title')}</summary>
+                  <p className="mt-2 text-xs text-fog-500 leading-relaxed">{t('ui.global.platforms.note')}</p>
+                  <p className="mt-2 text-sm text-fog-300 leading-relaxed flex flex-wrap gap-x-3 gap-y-1">
+                    {platformRegions.map((code) => (
+                      <button key={code} type="button" onClick={() => onOverseas(regionRows.get(code)!.slug)} className="underline hover:text-accent-500 min-h-[40px]">
+                        {t('ui.global.platforms.item', { region: regionLabel(code), n: regionRows.get(code)!.portalsLive })}
+                      </button>
+                    ))}
+                  </p>
+                </details>
+              )}
+              {noUndergrad.length > 0 && (
+                <details className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-global-no-undergrad={noUndergrad.length}>
+                  <summary className="cursor-pointer serif text-lg min-h-[44px] flex items-center">{t('ui.global.noUndergrad.title', { n: n(noUndergrad.length) })}</summary>
+                  <p className="mt-2 text-xs text-fog-500 leading-relaxed">{t('ui.global.noUndergrad.note')}</p>
+                  <ul className="mt-3 flex flex-col gap-2">
+                    {noUndergrad.map((item) => {
+                      const source = hkmotwById.get(item.id)?.channels.find((c) => c.channel === 'postgraduate_only')?.source.url
+                      return itemRow(item, { children: source ? <p className="text-xs mono"><a className="tap underline text-fog-300 hover:text-accent-500" href={source} target="_blank" rel="noreferrer noopener">{t('ui.global.noUndergrad.source')} ↗</a></p> : null })
+                    })}
                   </ul>
-                ),
-              }))}
-            </ul>
-          </details>
-        )}
+                </details>
+              )}
+              {result.crossed.length > 0 && (
+                <details className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-global-crossed={result.crossed.length}>
+                  <summary className="cursor-pointer serif text-lg min-h-[44px] flex items-center">{t('ui.global.crossed.title', { n: n(result.crossed.length) })}</summary>
+                  <ul className="mt-3 flex flex-col gap-2">
+                    {result.crossed.map(({ item, reasons }) => itemRow(item, {
+                      crossed: true,
+                      children: <ul className="flex flex-col gap-1 text-xs text-fog-300 leading-relaxed" data-global-reasons={reasons.length}>{reasons.map((reason, i) => <li key={i} data-global-reason={reason.question}>{reasonText(reason)}</li>)}</ul>,
+                    }))}
+                  </ul>
+                </details>
+              )}
+            </section>
+          )
+        })}
 
         <section className="flex flex-col gap-3 border border-ink-800 bg-ink-900 rounded-xl p-4" data-global-share>
           <h2 className="serif text-xl">{t('ui.global.share.title')}</h2>
@@ -463,12 +461,10 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
           <div className="overflow-hidden">
             <div ref={shareRef} className="rounded-2xl bg-ink-900 border border-ink-800 p-6 flex flex-col gap-3 max-w-xl" data-global-share-card>
               <p className="text-xs mono uppercase tracking-[0.3em] text-fog-500">{t('ui.share.brand')} · {t('ui.global.share.card.title')}</p>
-              <p className="serif text-2xl text-fog-100">{t('ui.global.share.card.counts', { kept: n(result.counts.kept), pool: n(result.counts.pool) })}</p>
-              <ShareLine label={t('ui.global.dest.title')} values={selection.destinations.map((d) => t(`ui.dest.${d}`))} />
-              {plan.regions && <ShareLine label={t('ui.global.q.regions.title')} values={selection.struckRegions.map(regionLabel)} />}
-              {plan.subjects && <ShareLine label={t('ui.global.q.families.title')} values={selection.struckFamilies.map(familyLabel)} />}
-              {plan.subjects && <ShareLine label={t('ui.global.q.wanted.title')} values={selection.wantedSubjects.map(subjectLabel)} />}
-              {plan.channels && <ShareLine label={t('ui.global.q.channels.title')} values={selection.struckChannels.map(channelLabel)} />}
+              <p className="serif text-2xl text-fog-100">{t('ui.global.share.card.counts', { kept: n(totalKept), pool: n(totalPool) })}</p>
+              {plans.flatMap((plan) => plan.questions.map((q) => (
+                <ShareLine key={`${plan.bank}:${q.id}`} label={`${t(`ui.dest.${plan.bank}`)} · ${t(`ui.global.q.${q.id}.title`)}`} values={(effectiveAnswers[plan.bank]?.[q.id] ?? []).map((v) => optionLabel(q.id, v))} />
+              )))}
               <p className="text-xs mono text-fog-500">nope.bdfz.net · {new Date().toISOString().slice(0, 10)}</p>
             </div>
           </div>
@@ -481,14 +477,39 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
   )
 }
 
-function Block({ index, title, hint, data, children }: { index?: number; title: string; hint: string; data: string; children: ReactNode }) {
-  return (
-    <section className="flex flex-col gap-3" data-global-question={data}>
-      <h2 className="serif text-xl sm:text-2xl leading-snug">{index ? <span className="mono text-accent-500 text-base mr-2">{index}</span> : null}{title}</h2>
-      <p className="text-xs sm:text-sm text-fog-500 leading-relaxed max-w-3xl">{hint}</p>
-      {children}
-    </section>
-  )
+/** 一題的選項：多選；「只想讀哪些學科」按門類分組。數字＝單選這一項會劃掉幾所。 */
+function QuestionOptions({ q, chosen, pick, optionLabel, familyOf, familyOrder, familyLabel }: {
+  q: EvaluatedQuestion; chosen: readonly string[]; pick: (value: string) => void; optionLabel: (q: RegionQuestionId, value: string) => string
+  familyOf: ReadonlyMap<string, string>; familyOrder: readonly string[]; familyLabel: (code: string) => string
+}) {
+  const { t } = useLocale()
+  const button = (value: string, crossed: number) => {
+    const active = chosen.includes(value)
+    const struck = q.kind === 'strike'
+    return (
+      <button key={value} type="button" aria-pressed={active} data-global-option={value} onClick={() => pick(value)}
+        className={['px-3 min-h-[44px] rounded-full border text-sm text-left', active ? ['border-accent-500 bg-accent-500/10 text-fog-100', struck ? 'line-through decoration-accent-500' : ''].join(' ') : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')}>
+        {active && struck ? t('ui.world.struckPrefix') : ''}{optionLabel(q.id, value)} <span className="mono text-xs text-fog-500">{crossed}</span>
+      </button>
+    )
+  }
+  if (q.id === 'wanted') {
+    return (
+      <div className="flex flex-col gap-4" data-global-options={q.id}>
+        {familyOrder.map((family) => {
+          const opts = q.options.filter((o) => familyOf.get(o.value) === family)
+          if (!opts.length) return null
+          return (
+            <div key={family} className="flex flex-col gap-2">
+              <p className="mono text-xs uppercase tracking-[0.18em] text-fog-500">{familyLabel(family)}</p>
+              <div className="flex flex-wrap gap-2" role="group" aria-label={familyLabel(family)}>{opts.map((o) => button(o.value, o.crossed))}</div>
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
+  return <div className="flex flex-wrap gap-2" role="group" aria-label={t(`ui.global.q.${q.id}.title`)} data-global-options={q.id}>{q.options.map((o) => button(o.value, o.crossed))}</div>
 }
 
 function ShareLine({ label, values }: { label: string; values: string[] }) {
@@ -507,7 +528,7 @@ function ItemRow({ item, locale, origin, overseas, hkmotw, regionLabel, channelL
   const secondary = locale === 'en' ? nameZh : nameZh ? nameEn : null
   const website = hkmotw?.website ?? overseas?.website ?? null
   const own = applicableChannels(item, origin)
-  // 港澳臺考生看自己所在地的院校（聯合招生委員會這類管道彙整除外）：本地入學入口（JUPAS／四校聯考／甄選與分發），只有官方頁 live 才上鏈接
+  // 港澳臺考生看自己所在地的院校（聯合招生委員會這類管道彙整除外）：本地入學入口，只有官方頁 live 才上鏈接
   const localEntry = (origin === 'hk' || origin === 'mo' || origin === 'tw') && item.destination === origin && !item.committee ? origin : null
   const localLinks = localEntry ? liveSourceLinks(LOCAL_ENTRY_SOURCES[localEntry]) : []
   return (
@@ -526,7 +547,6 @@ function ItemRow({ item, locale, origin, overseas, hkmotw, regionLabel, channelL
           {localLinks.slice(1).map(({ url, org }) => <span key={url} className="inline-flex items-center gap-x-1"><span aria-hidden="true">·</span><a className="tap underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{t(`ui.source.${org}`)} ↗</a></span>)}
         </p>
       ) : item.pool === 'overseas' && item.destination !== 'overseas' && audienceForOrigin(origin) ? (
-        // 港澳臺地區的海外層機構（國際生招生頁）：大陸與港澳考生有各自的管道，本站沒有這所的記錄
         <p className="text-xs text-fog-500 leading-relaxed" data-global-channels="none">{t('ui.global.item.channelsNone')}</p>
       ) : item.pool === 'hkmotw' && !item.noUndergrad ? (
         <div className="text-xs text-fog-300 leading-relaxed flex flex-col gap-1" data-global-channels={own && own.length ? own.join('|') : 'none'}>

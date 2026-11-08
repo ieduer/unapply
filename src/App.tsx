@@ -16,7 +16,7 @@ import type { CandidateProvince } from './data/admissionAuthorities'
 import { readStoredOrigin, saveOrigin, type OriginRegion } from './data/origins'
 import { normalizeOriginPrefs, originPrefsFor, readStoredOriginPrefs, saveOriginPrefs, type OriginPrefs } from './data/originBranch'
 import { mainlandAutoSkip, planFlow } from './engine/flowPlan'
-import { GLOBAL_STORAGE_KEY } from './engine/globalFilter'
+import { BANK_STORAGE_KEY } from './engine/regionBanks'
 import { consumeExplicitNavigation, hashOf, markExplicitNavigation, recallScroll, rememberScroll } from './lib/router'
 import type { ProgramIndexPayload } from './data/programsTypes'
 import { loadProgramIndex } from './lib/programsData'
@@ -273,10 +273,12 @@ export default function App() {
     const restore = window.setTimeout(() => { if (top > 0) window.scrollTo(0, top) }, 120)
     // 懶載頁面與資料載入後才有主標題：最多等 9 秒；使用者已經把焦點移走就不搶
     let tries = 0
+    // 點擊導航時被點的按鈕可能還握著焦點（舊頁還沒卸載）：它或 body 都算「使用者還沒自己移走焦點」
+    const before = document.activeElement
     const focusHeading = () => {
       // 載入畫面（data-loading）的標題不算：它馬上會被頁面換掉
       const heading = document.querySelector<HTMLElement>('main:not([data-loading]) h1') ?? document.querySelector<HTMLElement>('main:not([data-loading]) h2')
-      const idle = !document.activeElement || document.activeElement === document.body
+      const idle = !document.activeElement || document.activeElement === document.body || document.activeElement === before
       if (heading && idle) {
         if (!heading.hasAttribute('tabindex')) heading.setAttribute('tabindex', '-1')
         heading.focus({ preventScroll: true })
@@ -314,7 +316,7 @@ export default function App() {
     const fresh = originPrefsFor(next)
     setOriginPrefsState(fresh)
     saveOriginPrefs(fresh)
-    try { window.localStorage.removeItem(GLOBAL_STORAGE_KEY) } catch { /* 存不下就算了 */ }
+    try { window.localStorage.removeItem(BANK_STORAGE_KEY); window.sessionStorage.removeItem('unapply.regionStep.v1') } catch { /* 存不下就算了 */ }
   }, [origin])
 
   const setOriginPrefs = useCallback((next: OriginPrefs) => {

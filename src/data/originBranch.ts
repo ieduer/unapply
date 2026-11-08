@@ -150,9 +150,17 @@ function sortDestinations(values: readonly unknown[]): Destination[] {
   return DESTINATIONS.filter((d) => values.includes(d))
 }
 
+/**
+ * 實際提供的資格選項（批 G6 擴充，效度）：只留 token 在海外層 qualificationsListed 實際出現的資格（tokens 非空；test:origins 斷言每個 token 都在 S3 資料）。
+ * 沒有 token 的（四校聯考、加拿大省級文憑、其他）標示不了任何機構，不再列為選項；使用者可跳過。
+ */
+export function offeredQualifications(origin: OriginRegion): Qualification[] {
+  return QUALIFICATIONS_BY_ORIGIN[origin].filter((q) => QUALIFICATION_OPTIONS[q].tokens.length > 0)
+}
+
 /** 依起點把無效的資格歸零（大陸起點沒有資格題）；目的地去掉無效值、排序，空＝起點預設。 */
 export function normalizeOriginPrefs(origin: OriginRegion | null, prefs: Partial<OriginPrefs> | null | undefined): OriginPrefs {
-  const qualification = origin && prefs?.qualification && QUALIFICATIONS_BY_ORIGIN[origin].includes(prefs.qualification) ? prefs.qualification : null
+  const qualification = origin && prefs?.qualification && offeredQualifications(origin).includes(prefs.qualification) ? prefs.qualification : null
   const destinations = sortDestinations(Array.isArray(prefs?.destinations) ? prefs!.destinations.filter(isDestination) : [])
   return { qualification, destinations: destinations.length ? destinations : defaultDestinations(origin) }
 }

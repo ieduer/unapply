@@ -1,9 +1,9 @@
 import type { OriginRegion } from '../data/origins'
 import {
   DESTINATIONS,
-  QUALIFICATIONS_BY_ORIGIN,
   QUALIFICATION_OPTIONS,
   liveSourceLinks,
+  offeredQualifications,
   type Destination,
   type OriginPrefs,
   type Qualification,
@@ -24,7 +24,7 @@ interface Props {
  */
 export function OriginBranch({ origin, prefs, onChange }: Props) {
   const { t } = useLocale()
-  const qualifications = QUALIFICATIONS_BY_ORIGIN[origin]
+  const qualifications = offeredQualifications(origin)
   const pick = (qualification: Qualification) => onChange({ ...prefs, qualification: prefs.qualification === qualification ? null : qualification })
   const toggleDestination = (destination: Destination) => {
     const on = prefs.destinations.includes(destination)

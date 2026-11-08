@@ -14,8 +14,12 @@ export type GlobalDestination = Exclude<Destination, 'cn-mainland'>
 const ORDER: readonly Destination[] = ['cn-mainland', 'hk', 'mo', 'tw', 'overseas']
 export const GLOBAL_DESTINATIONS: readonly GlobalDestination[] = ['hk', 'mo', 'tw', 'overseas']
 
-/** 非大陸起點在大陸階段自動略過的題（不是以高考選科報考）。 */
-export const NON_MAINLAND_AUTO_SKIP: readonly string[] = ['S1']
+/**
+ * 非大陸起點在大陸階段自動略過的題（批 G6 擴充，逐題判斷「只適用高考考生」）：
+ *   S1 選考科目組合（新高考選科）；A6 另外報名／校測（藝體特長、綜合評價、軍警航海飛行等高考招生類型，依考生省份的招生管道表判定）。
+ * 其餘 43 題講地區、城市、層次、學費、校區、環境、生活、專業開設，任何起點都適用。
+ */
+export const NON_MAINLAND_AUTO_SKIP: readonly string[] = ['S1', 'A6']
 
 /** 進大陸階段（任何入口：首頁、瀏覽頁的「進中國大陸題庫」、深鏈 #/filter）時自動略過的題：只看起點。 */
 export function mainlandAutoSkip(origin: OriginRegion | null): readonly string[] {

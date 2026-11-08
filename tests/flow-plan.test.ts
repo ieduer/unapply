@@ -7,13 +7,9 @@ import { readFileSync } from 'node:fs'
 import test from 'node:test'
 import { GLOBAL_DESTINATIONS, NON_MAINLAND_AUTO_SKIP, isAutoSkipped, mainlandAutoSkip, normalizeDestinations, planFlow } from '../src/engine/flowPlan.ts'
 import { DESTINATIONS, migrateOriginPrefsV1, normalizeOriginPrefs, originPrefsFor, type Destination } from '../src/data/originBranch.ts'
-import { originOptions, type OriginRegion } from '../src/data/origins.ts'
+import { originOptions } from '../src/data/origins.ts'
 import { allQuestions } from '../src/data/questions.ts'
 import { participationLists } from '../src/data/participationLists.ts'
-import { buildGlobalPool, globalQuestionPlan, poolFor } from '../src/engine/globalFilter.ts'
-import type { OverseasIndexPayload } from '../src/data/overseasTypes.ts'
-import type { HkMoTwPoolPayload } from '../src/data/hkmotwTypes.ts'
-import type { WorldAtlasPayload } from '../src/data/worldAtlasTypes.ts'
 
 const root = new URL('..', import.meta.url).pathname
 const read = (p: string) => readFileSync(`${root}/${p}`, 'utf8')
@@ -46,16 +42,16 @@ test('5 起點 × 31 種目的地組合：不含中國大陸就不進大陸題�
   }
 })
 
-test('非大陸起點走大陸階段時自動略過 S1（選考科目組合）；大陸起點不略過；略過的題真的存在', () => {
-  assert.deepEqual([...NON_MAINLAND_AUTO_SKIP], ['S1'])
-  assert.ok(allQuestions.some((q) => q.id === 'S1'))
+test('非大陸起點走大陸階段時自動略過只適用高考考生的題（S1 選考科目組合、A6 另外報名／校測）；大陸起點不略過；略過的題真的存在', () => {
+  assert.deepEqual([...NON_MAINLAND_AUTO_SKIP], ['S1', 'A6'])
+  for (const id of NON_MAINLAND_AUTO_SKIP) assert.ok(allQuestions.some((q) => q.id === id), id)
   for (const origin of ORIGINS) {
     const plan = planFlow(origin, ['cn-mainland'], null)
     if (origin === 'cn-mainland') assert.deepEqual(plan.autoSkip, [])
-    else { assert.deepEqual(plan.autoSkip, ['S1']); assert.ok(isAutoSkipped(plan, 'S1')); assert.equal(isAutoSkipped(plan, 'A1'), false) }
+    else { assert.deepEqual(plan.autoSkip, ['S1', 'A6']); assert.ok(isAutoSkipped(plan, 'S1') && isAutoSkipped(plan, 'A6')); assert.equal(isAutoSkipped(plan, 'A1'), false) }
   }
   // 任何入口進大陸題（瀏覽頁的「進中國大陸題庫」、深鏈）都按起點略過：與目的地無關
-  assert.deepEqual(mainlandAutoSkip('hk'), ['S1'])
+  assert.deepEqual(mainlandAutoSkip('hk'), ['S1', 'A6'])
   assert.deepEqual(mainlandAutoSkip('cn-mainland'), [])
   assert.deepEqual(mainlandAutoSkip(null), [])
   assert.ok(/autoSkip=\{mainlandAutoSkip\(origin\)\}/.test(read('src/App.tsx')), 'QuestionRunner 用起點決定略過')
@@ -89,28 +85,6 @@ test('站長回報的錯：大陸起點只選港澳臺與海外 → 不出現 A1
   // 換起點重設：澳門的「只看本地」不會帶到香港
   assert.deepEqual(originPrefsFor('hk'), { qualification: null, destinations: ['hk'] })
   assert.deepEqual(normalizeOriginPrefs('hk', migrateOriginPrefsV1('mo', { scope: 'local' })).destinations, ['mo'])
-})
-
-test('全球階段題目出現條件（每個起點 × 每個非大陸目的地單選）', () => {
-  const overseas = JSON.parse(read('public/data/overseas/index.json')) as OverseasIndexPayload
-  const hkmotw = JSON.parse(read('public/data/hkmotw/pool.json')) as HkMoTwPoolPayload
-  const atlas = JSON.parse(read('public/data/atlas/world-atlas.json')) as WorldAtlasPayload
-  const items = buildGlobalPool(overseas, hkmotw, atlas)
-  const rows: string[] = []
-  for (const origin of ORIGINS) {
-    for (const d of GLOBAL_DESTINATIONS) {
-      const pool = poolFor(items, [d])
-      const plan = globalQuestionPlan(pool, origin as OriginRegion)
-      assert.equal(Boolean(plan.regions), new Set(pool.map((i) => i.region)).size >= 2, `${origin}/${d} regions`)
-      assert.equal(plan.subjects, pool.filter((i) => i.subjects).length >= 5, `${origin}/${d} subjects`)
-      rows.push(`${origin}/${d}:${plan.regions ? 'R' : '-'}${plan.subjects ? 'S' : '-'}${plan.channels ? 'C' : '-'}`)
-    }
-  }
-  // 單一港澳臺地區永遠不問地區題；非大陸起點看港澳臺永遠不問管道題（院校池沒有記錄適用他們的兩種以上本科管道）
-  for (const row of rows) if (/\/(hk|mo|tw):/.test(row)) assert.equal(row.split(':')[1][0], '-', row)
-  for (const row of rows) if (/^(hk|mo|tw|overseas)\//.test(row)) assert.equal(row.split(':')[1][2], '-', row)
-  assert.ok(rows.includes('cn-mainland/hk:-SC'), rows.join(' '))
-  assert.ok(rows.includes('overseas/overseas:RS-'), rows.join(' '))
 })
 
 test('planFlow 純函式：不匯入 AnswerMap／filter／學習記錄／i18n；不改題目與選項鍵', () => {

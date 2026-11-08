@@ -8,7 +8,7 @@ import { gzipSync } from 'node:zlib'
 import { originManifest } from '../src/data/originManifest.ts'
 import { originSources } from '../src/data/originSources.ts'
 import {
-  DESTINATIONS, GAOKAO_TOKEN, LEGACY_ORIGIN_PREFS_STORAGE_KEY, LOCAL_ENTRY_SOURCES, MAINLAND_CHANNELS, MAINLAND_ORIGIN_SOURCES, ORIGIN_PREFS_STORAGE_KEY, QUALIFICATIONS_BY_ORIGIN, QUALIFICATION_OPTIONS,
+  DESTINATIONS, GAOKAO_TOKEN, offeredQualifications, LEGACY_ORIGIN_PREFS_STORAGE_KEY, LOCAL_ENTRY_SOURCES, MAINLAND_CHANNELS, MAINLAND_ORIGIN_SOURCES, ORIGIN_PREFS_STORAGE_KEY, QUALIFICATIONS_BY_ORIGIN, QUALIFICATION_OPTIONS,
   SOURCE_ORG_BY_DOMAIN, defaultDestinations, emptyOriginPrefs, isQualification, liveSourceLinks, migrateOriginPrefsV1, normalizeOriginPrefs, originPrefsFor, qualificationTokens, type Qualification,
 } from '../src/data/originBranch.ts'
 import { originOptions } from '../src/data/origins.ts'
@@ -58,6 +58,13 @@ test('起點集合不變（5 個）；資格只對非大陸起點；目的地多
   assert.equal(QUALIFICATIONS_BY_ORIGIN.overseas.length, 13)
   assert.equal(Object.keys(QUALIFICATION_OPTIONS).length, 18)
   for (const q of Object.keys(QUALIFICATION_OPTIONS)) assert.ok(isQualification(q))
+  // 批 G6 擴充（效度）：實際提供的資格只留 token 在 S3 資料出現的；沒有 token 的（四校聯考、加拿大、其他）不列
+  for (const o of originOptions) for (const q of offeredQualifications(o.id)) assert.ok(QUALIFICATION_OPTIONS[q].tokens.length > 0, `${o.id} ${q}`)
+  assert.deepEqual(offeredQualifications('mo'), ['hkdse-or-intl'])
+  assert.deepEqual(offeredQualifications('hk'), ['hkdse', 'ib-or-alevel'])
+  assert.equal(offeredQualifications('overseas').length, 11)
+  assert.deepEqual(offeredQualifications('cn-mainland'), [])
+  assert.equal(normalizeOriginPrefs('mo', { qualification: 'four-univ-jae', destinations: ['mo'] }).qualification, null)
   // 預設＝起點本地；未選起點＝中國大陸
   for (const o of originOptions) assert.deepEqual(defaultDestinations(o.id), [o.id])
   assert.deepEqual(defaultDestinations(null), ['cn-mainland'])
@@ -81,7 +88,7 @@ test('起點集合不變（5 個）；資格只對非大陸起點；目的地多
   // 澳門的 local 不會被帶到香港起點：換起點一律重設（App.setOrigin 用 originPrefsFor）
   const app = read('src/App.tsx')
   assert.ok(/const fresh = originPrefsFor\(next\)/.test(app), 'setOrigin 重設資格與目的地')
-  assert.ok(/removeItem\(GLOBAL_STORAGE_KEY\)/.test(app), 'setOrigin 重設全球減法選擇')
+  assert.ok(/removeItem\(BANK_STORAGE_KEY\)/.test(app), 'setOrigin 重設全球減法作答')
 })
 
 test('資格 token 全部存在於 S3 資料（qualifications.json 與地區檔），大陸起點以高考 token＋gaokaoPolicy=accepted', () => {
@@ -204,7 +211,7 @@ test('三語鍵齊：資格、目的地、官方管道、海外層標示、結�
   keys.push('ui.overseas.qual.listed', 'ui.overseas.qual.listedGaokao', 'ui.overseas.qual.unread', 'ui.overseas.qual.counts', 'ui.overseas.qual.selector', 'ui.overseas.qual.none', 'ui.overseas.qual.gaokaoOption', 'ui.overseas.qual.rule')
   keys.push('ui.result.next.title', 'ui.result.next.note', 'ui.result.next.go', 'ui.result.next.goPool', 'ui.result.next.onlyMainland', 'ui.result.next.addDestinations')
   keys.push('ui.result.route.title', 'ui.result.route.listed', 'ui.result.route.noList', 'ui.result.route.listPdf', 'ui.result.route.listLine', 'ui.result.route.onlyListed', 'ui.result.route.listedEmpty', 'ui.result.route.badge', 'ui.runner.a6.hkmotwNote')
-  keys.push('ui.landing.plan.mainland', 'ui.landing.plan.both', 'ui.landing.plan.global', 'ui.landing.plan.pickOrigin', 'ui.landing.browse', 'ui.landing.browse.world', 'ui.landing.browse.hkmotw', 'ui.landing.browse.overseas', 'ui.runner.autoSkipS1')
+  keys.push('ui.landing.plan.mainland', 'ui.landing.plan.both', 'ui.landing.plan.global', 'ui.landing.plan.pickOrigin', 'ui.landing.browse', 'ui.landing.browse.world', 'ui.landing.browse.hkmotw', 'ui.landing.browse.overseas', 'ui.runner.autoSkip')
   for (const k of keys) {
     assert.ok(k in zhHant && k in en && k in zhHans, k)
     assert.ok(zhHant[k].trim() && en[k].trim() && zhHans[k].trim(), k)
