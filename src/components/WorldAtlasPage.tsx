@@ -19,6 +19,7 @@ import { Rich } from '../i18n/rich'
 import { SiteHeader } from './SiteHeader'
 import { SiteFooter } from './SiteFooter'
 import { DirectHireCard as ProgramCard } from './DirectHireCard'
+import { CycleButton } from './CycleButton'
 import { worldAtlasManifest } from '../data/worldAtlasManifest'
 
 interface Props {
@@ -123,7 +124,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
   if (loadError || !payload || !view) {
     return (
       <main className="min-h-screen app-canvas text-fog-100 flex items-center justify-center px-5">
-        <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-xl p-6 flex flex-col gap-4">
+        <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-panel p-6 flex flex-col gap-4">
           <p className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">{t('ui.world.kicker')}</p>
           <h1 className="serif text-2xl">{loadError ? t('ui.world.loadFailed') : t('ui.world.loading')}</h1>
           <p className="text-sm text-fog-500 leading-relaxed">
@@ -131,11 +132,11 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
           </p>
           <div className="flex flex-wrap gap-3">
             {loadError && (
-              <button onClick={retryLoad} className="px-5 py-3 rounded-full bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">
+              <button onClick={retryLoad} className="px-5 py-3 rounded-ctl bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">
                 {t('ui.common.retryLoad')}
               </button>
             )}
-            <button onClick={onBack} className="px-5 py-3 rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">
+            <button onClick={onBack} className="px-5 py-3 rounded-ctl border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">
               {t('ui.common.backHome')}
             </button>
           </div>
@@ -158,14 +159,14 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
     <main className="min-h-screen app-canvas text-fog-100">
       <SiteHeader sticky brand={t('ui.world.brand')} back={{ label: t('ui.common.back'), onClick: onBack }} />
 
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-5 sm:pt-8 pb-24 flex flex-col gap-8">
         <div className="max-w-3xl flex flex-col gap-3">
           <h1 className="serif text-3xl sm:text-5xl leading-tight">{t('ui.world.title')}</h1>
           <p className="text-sm sm:text-base text-fog-300 leading-relaxed">
             {t('ui.world.lede', { ranking: locale === 'en' ? payload.ranking.name : payload.ranking.nameZh, year: payload.ranking.year, subjects: payload.subjects.length, topN: selection.topN })}
           </p>
           {originOption && !originOption.hasLocalPool && (
-            <div className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 text-sm text-fog-300 leading-relaxed">
+            <div className="border border-ink-800 bg-ink-900 rounded-panel px-4 py-3 text-sm text-fog-300 leading-relaxed">
               <Rich
                 k="ui.world.originNote"
                 params={{
@@ -184,34 +185,21 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
 
         <div className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center gap-3 text-xs mono">
-            <span className="uppercase tracking-[0.2em] text-fog-500">{t('ui.world.topN')}</span>
-            <div className="inline-flex rounded-full border border-ink-700 bg-ink-900 overflow-hidden">
-              {atlasTopNOptions.map((option) => (
-                <button
-                  key={option}
-                  onClick={() => setTopN(option)}
-                  aria-pressed={selection.topN === option}
-                  className={[
-                    'px-4 min-h-[40px] text-sm font-semibold',
-                    selection.topN === option ? 'bg-accent-500 text-ink-950' : 'text-fog-300 hover:text-fog-100',
-                  ].join(' ')}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
+            {/* 批 G9：每科取前 10／25／50 改為單鍵循環 */}
+            <CycleButton name={t('ui.world.topN')} prefix={t('ui.world.topN')} data="atlas-topn" value={selection.topN} onChange={setTopN}
+              options={atlasTopNOptions.map((option) => ({ value: option, label: String(option) }))} />
             <button
               onClick={() => setShowPrograms((value) => !value)}
               aria-pressed={showPrograms}
               className={[
-                'px-4 min-h-[40px] rounded-full border text-sm',
+                'px-4 min-h-[40px] rounded-ctl border text-sm',
                 showPrograms ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-900 text-fog-300 hover:text-fog-100',
               ].join(' ')}
             >
               {t('ui.world.programsToggle', { n: payload.programs.length })}
             </button>
             {struckCount > 0 && (
-              <button onClick={resetSelection} className="px-4 min-h-[40px] rounded-full border border-ink-700 bg-ink-900 text-sm text-fog-300 hover:text-fog-100">
+              <button onClick={resetSelection} className="px-4 min-h-[40px] rounded-ctl border border-ink-700 bg-ink-900 text-sm text-fog-300 hover:text-fog-100">
                 {t('ui.world.reset', { n: struckCount })}
               </button>
             )}
@@ -226,7 +214,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
                   onClick={() => toggleFamily(family.code)}
                   aria-pressed={struck}
                   className={[
-                    'px-4 py-2 rounded-full border text-sm min-h-[40px]',
+                    'px-4 py-2 rounded-ctl border text-sm min-h-[40px]',
                     struck ? 'border-ink-800 bg-ink-950 text-fog-500 line-through' : 'border-ink-700 bg-ink-900 text-fog-100 hover:border-accent-500',
                   ].join(' ')}
                 >
@@ -237,7 +225,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
           </div>
         </div>
 
-        <div className="relative border border-ink-800 bg-ink-900 rounded-2xl overflow-hidden">
+        <div className="relative border border-ink-800 bg-ink-900 rounded-panel overflow-hidden">
           <svg
             viewBox={`0 0 ${width} ${height}`}
             className="block w-full h-auto"
@@ -299,7 +287,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
           </svg>
           {tooltipEntry && (
             <div
-              className="hidden sm:block absolute pointer-events-none border border-ink-700 bg-ink-950 rounded-lg px-3 py-2 text-xs leading-relaxed max-w-xs"
+              className="hidden sm:block absolute pointer-events-none border border-ink-700 bg-ink-950 rounded-panel px-3 py-2 text-xs leading-relaxed max-w-xs"
               style={{
                 left: `${(tooltipEntry.institution.x / width) * 100}%`,
                 top: `${(tooltipEntry.institution.y / height) * 100}%`,
@@ -320,7 +308,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
         </div>
 
         {(selected || selectedProgram) && (
-          <div className="border border-accent-500/40 bg-ink-900 rounded-2xl px-4 sm:px-6 py-5 flex flex-col gap-3">
+          <div className="border border-accent-500/40 bg-ink-900 rounded-panel px-4 sm:px-6 py-5 flex flex-col gap-3">
             {selected && <SelectedInstitution entry={selected} regionName={regionLabel(selected.institution.region)} primaryName={primaryName} secondaryName={secondaryName} seatText={seatText} onSchool={onSchool} onToggleRegion={toggleRegion} onClose={() => setSelectedId(null)} inHkMoTwPool={poolAtlasIds.has(selected.institution.id)} onHkMoTw={onHkMoTw} overseasRegion={overseasRegionById.get(selected.institution.id) ?? null} onOverseas={onOverseas} />}
             {selectedProgram && <ProgramCard program={selectedProgram} expanded onClose={() => setSelectedProgramId(null)} />}
           </div>
@@ -350,7 +338,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
                           aria-pressed={struck}
                           title={locale === 'en' ? subject.nameZh : subject.nameEn}
                           className={[
-                            'px-3 py-2 rounded-lg border text-sm min-h-[40px]',
+                            'px-3 py-2 rounded-ctl border text-sm min-h-[40px]',
                             struck ? 'border-ink-800 bg-ink-950 text-fog-500 line-through' : 'border-ink-700 bg-ink-900 text-fog-100 hover:border-accent-500',
                             familyStruck ? 'cursor-not-allowed' : '',
                           ].join(' ')}
@@ -377,7 +365,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
                     onClick={() => toggleRegion(region.code)}
                     aria-pressed={struck}
                     className={[
-                      'w-full text-left rounded-lg border px-3 py-2 flex flex-col gap-1 min-h-[44px]',
+                      'w-full text-left rounded-ctl border px-3 py-2 flex flex-col gap-1 min-h-[44px]',
                       struck ? 'border-ink-800 bg-ink-950' : 'border-ink-700 bg-ink-900 hover:border-accent-500',
                     ].join(' ')}
                   >
@@ -389,7 +377,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
                     </span>
                     {!struck && (
                       <span className="block h-1.5 w-full bg-ink-800 rounded-full">
-                        <span className="block h-full bg-accent-500 rounded-full" style={{ width: `${Math.max(2, (seats / maxRegionSeats) * 100)}%` }} />
+                        <span className="block h-full bg-accent-500 rounded-panel" style={{ width: `${Math.max(2, (seats / maxRegionSeats) * 100)}%` }} />
                       </span>
                     )}
                   </button>
@@ -432,7 +420,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
                 <button
                   type="button"
                   onClick={() => { setSelectedId(institution.id); setSelectedProgramId(null); window.scrollTo({ top: 0, behavior: 'instant' }) }}
-                  className="w-full text-left border border-ink-800 rounded-xl bg-ink-900 px-4 py-3 flex flex-col gap-1 min-h-[44px] hover:border-accent-500"
+                  className="w-full text-left border border-ink-800 rounded-ctl bg-ink-900 px-4 py-3 flex flex-col gap-1 min-h-[44px] hover:border-accent-500"
                 >
                   <span className="text-sm text-fog-100">{primaryName(institution)}</span>
                   {secondaryName(institution) && <span className="text-xs text-fog-500">{secondaryName(institution)}</span>}
@@ -443,7 +431,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
             ))}
             {keptList.length === 0 && <li className="px-3 py-6 text-center text-sm text-fog-500">{t('ui.world.table.empty')}</li>}
           </ul>
-          <div className="hidden sm:block overflow-x-auto border border-ink-800 rounded-xl bg-ink-900">
+          <div className="hidden sm:block overflow-x-auto border border-ink-800 rounded-panel bg-ink-900">
             <table className="w-full text-sm">
               <thead>
                 <tr className="text-left mono text-xs uppercase tracking-[0.16em] text-fog-500 border-b border-ink-800">
@@ -539,7 +527,7 @@ function SelectedInstitution({
         {seats.map((seat) => (
           <li key={seat.subject.code}>
             <a
-              className="inline-block rounded-full border border-ink-700 bg-ink-950 px-3 py-1 text-sm text-fog-100 hover:border-accent-500"
+              className="inline-block rounded-ctl border border-ink-700 bg-ink-950 px-3 py-1 text-sm text-fog-100 hover:border-accent-500"
               href={seat.subject.sourceUrl}
               target="_blank"
               rel="noreferrer noopener"
@@ -552,23 +540,23 @@ function SelectedInstitution({
       </ul>
       <div className="flex flex-wrap items-center gap-3 text-sm">
         {institution.schoolId && (
-          <button onClick={() => onSchool(institution.schoolId!)} className="px-4 py-2 rounded-full bg-accent-500 text-ink-950 font-semibold hover:bg-accent-400 min-h-[40px]">
+          <button onClick={() => onSchool(institution.schoolId!)} className="px-4 py-2 rounded-ctl bg-accent-500 text-ink-950 font-semibold hover:bg-accent-400 min-h-[40px]">
             {t('ui.world.selected.schoolDetail')}
           </button>
         )}
         {inHkMoTwPool && (
-          <button onClick={onHkMoTw} className="px-4 py-2 rounded-full border border-accent-500/40 bg-accent-500/10 text-accent-600 hover:bg-accent-500/15 min-h-[40px]">
+          <button onClick={onHkMoTw} className="px-4 py-2 rounded-ctl border border-accent-500/40 bg-accent-500/10 text-accent-600 hover:bg-accent-500/15 min-h-[40px]">
             {t('ui.world.selected.hkmotw')}
           </button>
         )}
         {overseasRegion && (
-          <button onClick={() => onOverseas(overseasRegion, institution.id)} className="px-4 py-2 rounded-full border border-accent-500/40 bg-accent-500/10 text-accent-600 hover:bg-accent-500/15 min-h-[40px]" title={t('ui.world.selected.overseasTitle')}>
+          <button onClick={() => onOverseas(overseasRegion, institution.id)} className="px-4 py-2 rounded-ctl border border-accent-500/40 bg-accent-500/10 text-accent-600 hover:bg-accent-500/15 min-h-[40px]" title={t('ui.world.selected.overseasTitle')}>
             {t('ui.world.selected.overseas')}
           </button>
         )}
         {institution.website && (
           <a
-            className="px-4 py-2 rounded-full border border-ink-700 text-fog-100 hover:border-accent-500 min-h-[40px] inline-flex items-center"
+            className="px-4 py-2 rounded-ctl border border-ink-700 text-fog-100 hover:border-accent-500 min-h-[40px] inline-flex items-center"
             href={institution.website.url}
             target="_blank"
             rel="noreferrer noopener"

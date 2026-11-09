@@ -10,7 +10,7 @@ export function TierBadge({ url, className }: { url?: string | null; className?:
   return (
     <span
       data-tier={tier}
-      className={['inline-block align-middle rounded border border-ink-700 bg-ink-950 px-1.5 py-px text-xs mono text-fog-300 leading-tight whitespace-nowrap', className ?? ''].join(' ')}
+      className={['inline-block align-middle rounded-ctl border border-ink-700 bg-ink-950 px-1.5 py-px text-xs mono text-fog-300 leading-tight whitespace-nowrap', className ?? ''].join(' ')}
       aria-label={t('ui.tier.aria', { tier: label })}
       title={t('ui.tier.aria', { tier: label })}
     >

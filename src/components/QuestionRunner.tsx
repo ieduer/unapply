@@ -102,14 +102,14 @@ export function QuestionRunner({
   if (!q) {
     return (
       <main className="min-h-screen app-canvas text-fog-100 flex items-center justify-center px-5">
-        <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-xl p-6 flex flex-col gap-4">
+        <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-panel p-6 flex flex-col gap-4">
           <h1 className="serif text-2xl">{t('ui.runner.cannotStart')}</h1>
           <p className="text-sm text-fog-500 leading-relaxed">
             {t('ui.runner.cannotStartNote')}
           </p>
           <button
             onClick={onBack}
-            className="self-start px-5 py-3 rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500"
+            className="self-start px-5 py-3 rounded-ctl border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500"
           >
             {t('ui.common.backHome')}
           </button>
@@ -192,6 +192,7 @@ export function QuestionRunner({
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex flex-col">
       <SiteHeader
+          search={false}
         sticky
         width="max-w-2xl"
         brand={t('ui.landing.brand')}
@@ -223,12 +224,12 @@ export function QuestionRunner({
               <p className="text-sm text-fog-500 leading-relaxed">{subtitle}</p>
             )}
             {q.id === 'A6' && (
-              <label className="flex flex-wrap items-center gap-2 text-xs mono text-fog-500 border border-ink-700 bg-ink-900 rounded-xl px-3 py-3">
+              <label className="flex flex-wrap items-center gap-2 text-xs mono text-fog-500 border border-ink-700 bg-ink-900 rounded-ctl px-3 py-3">
                 <span className="uppercase tracking-[0.2em] shrink-0">{t('ui.common.candidateProvince')}</span>
                 <select
                   value={candidateProvince}
                   onChange={(event) => onCandidateProvinceChange(event.target.value as CandidateProvince)}
-                  className="bg-ink-950 border border-ink-700 rounded-lg px-2 py-2 text-fog-200 min-h-[40px]"
+                  className="bg-ink-950 border border-ink-700 rounded-ctl px-2 py-2 text-fog-200 min-h-[40px]"
                 >
                   {candidateProvinceOptions.map((province) => (
                     <option key={province} value={province}>{provinceLabel(province)}</option>
@@ -256,7 +257,7 @@ export function QuestionRunner({
                     aria-pressed={pressed}
                     disabled={disabled}
                     className={[
-                      'rounded-xl border px-3 py-3 min-h-[56px] text-base serif',
+                      'rounded-ctl border px-3 py-3 min-h-[56px] text-base serif',
                       pressed
                         ? 'border-accent-500 bg-accent-500/10 text-fog-100'
                         : disabled
@@ -283,7 +284,7 @@ export function QuestionRunner({
               <select
                 value={activeDiscipline}
                 onChange={(event) => { setPending({ qid: q.id, subjects: [], discipline: event.target.value }); if (currentClass) onAnswerChange({ ...answers, [q.id]: null }, q.id) }}
-                className="bg-ink-950 border border-ink-700 rounded-lg px-2 py-2 text-sm text-fog-200 min-h-[48px]"
+                className="bg-ink-950 border border-ink-700 rounded-ctl px-2 py-2 text-sm text-fog-200 min-h-[48px]"
               >
                 <option value="">{t('ui.runner.s2.disciplinePlaceholder')}</option>
                 {programDisciplines.filter((d) => programClasses.some((c) => c.discipline === d.code)).map((d) => <option key={d.code} value={d.code}>{d.code} {d.name}</option>)}
@@ -295,7 +296,7 @@ export function QuestionRunner({
                 value={currentClass ?? ''}
                 disabled={!activeDiscipline}
                 onChange={(event) => { if (event.target.value) setAnswer(event.target.value) }}
-                className="bg-ink-950 border border-ink-700 rounded-lg px-2 py-2 text-sm text-fog-200 min-h-[48px]"
+                className="bg-ink-950 border border-ink-700 rounded-ctl px-2 py-2 text-sm text-fog-200 min-h-[48px]"
               >
                 <option value="">{t('ui.runner.s2.classPlaceholder')}</option>
                 {classesInDiscipline.map((c) => <option key={c.code} value={c.code}>{c.code} {c.name}</option>)}
@@ -318,7 +319,7 @@ export function QuestionRunner({
                 key={opt.key}
                 onClick={() => (q.type === 'single' ? setAnswer(opt.key) : toggleMulti(opt.key))}
                 className={[
-                  'text-left px-4 sm:px-5 py-4 rounded-xl border transition-all min-h-[56px]',
+                  'text-left px-4 sm:px-5 py-4 rounded-ctl border transition-all min-h-[56px]',
                   active
                     ? 'border-accent-500 bg-accent-500/10 text-fog-100'
                     : 'border-ink-700 bg-ink-900 text-fog-300 hover:border-fog-500 hover:text-fog-100 active:border-fog-500',
@@ -342,7 +343,7 @@ export function QuestionRunner({
         </div>
 
         {showShortlistPanel && (
-          <div className="rounded-2xl border border-accent-500/30 bg-ink-900/80 px-4 py-4 flex flex-col gap-2">
+          <div className="rounded-panel border border-accent-500/30 bg-ink-900/80 px-4 py-4 flex flex-col gap-2">
             <p className="serif text-lg text-fog-100">{t('ui.runner.shortlist.title', { n: liveResult.stats.keptCount })}</p>
             <p className="text-sm text-fog-300 leading-relaxed">
               {t('ui.runner.shortlist.note')}
@@ -358,7 +359,7 @@ export function QuestionRunner({
             onClick={next}
             disabled={!shortlistReached && !canProceed()}
             className={[
-              'px-6 py-3 rounded-full font-semibold text-base transition-all min-h-[48px]',
+              'px-6 py-3 rounded-ctl font-semibold text-base transition-all min-h-[48px]',
               shortlistReached || canProceed()
                 ? 'bg-accent-500 text-ink-950 hover:bg-accent-400'
                 : 'bg-ink-800 text-fog-500 cursor-not-allowed',
@@ -379,7 +380,7 @@ export function QuestionRunner({
           onClick={next}
           disabled={!shortlistReached && !canProceed()}
           className={[
-            'px-5 py-3 rounded-full font-semibold text-sm transition-all min-h-[44px] shrink-0',
+            'px-5 py-3 rounded-ctl font-semibold text-sm transition-all min-h-[44px] shrink-0',
             shortlistReached || canProceed()
               ? 'bg-accent-500 text-ink-950'
               : 'bg-ink-800 text-fog-500 cursor-not-allowed',

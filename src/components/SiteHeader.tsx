@@ -1,6 +1,8 @@
 import { type ReactNode } from 'react'
 import { ThemeToggle } from './ThemeToggle'
 import { LocaleSwitcher } from './LocaleSwitcher'
+import { navigateHash } from '../lib/router'
+import { useLocale } from '../i18n/react'
 
 export interface SiteHeaderAction {
   label: ReactNode
@@ -23,6 +25,8 @@ interface Props {
   width?: 'max-w-2xl' | 'max-w-3xl' | 'max-w-5xl'
   /** 頁頭底部附加（問卷進度條）。 */
   footer?: ReactNode
+  /** 批 G9：頁頭的「查詢」圖示按鈕（進 #/search）；查詢頁本身與逐題頁不顯示。 */
+  search?: boolean
 }
 
 const actionClass = 'inline-flex items-center min-h-[44px] px-2 whitespace-nowrap hover:text-accent-500 transition-colors'
@@ -33,7 +37,8 @@ const actionClass = 'inline-flex items-center min-h-[44px] px-2 whitespace-nowra
  * 放不下時只有最後的語言切換換到第二行（flex-wrap 從尾端換行），控制項之間不重疊。
  * 窄螢幕（<640px）站名縮為「nope」、版本號隱藏、語言切換不折行。
  */
-export function SiteHeader({ brand, back, center, actions = [], sticky = false, width = 'max-w-5xl', footer }: Props) {
+export function SiteHeader({ brand, back, center, actions = [], sticky = false, width = 'max-w-5xl', footer, search = true }: Props) {
+  const { t } = useLocale()
   return (
     <header
       data-site-header
@@ -54,6 +59,12 @@ export function SiteHeader({ brand, back, center, actions = [], sticky = false, 
         </span>
         {center && <span className="max-sm:hidden inline-flex items-center min-h-[44px] whitespace-nowrap normal-case tracking-normal">{center}</span>}
         <span className="flex-1 min-w-0" aria-hidden="true" />
+        {search && (
+          <button type="button" onClick={() => navigateHash('#/search')} aria-label={t('ui.header.search')} title={t('ui.header.search')} data-header-search
+            className="shrink-0 inline-flex items-center justify-center min-h-[44px] min-w-[44px] rounded-ctl border border-ink-700 bg-ink-900 text-fog-200 hover:border-accent-500">
+            <svg aria-hidden="true" viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="8.5" cy="8.5" r="5.5" /><path d="M12.6 12.6 17 17" strokeLinecap="square" /></svg>
+          </button>
+        )}
         <ThemeToggle />
         {actions.map((action, index) => (
           <button key={index} type="button" onClick={action.onClick} className={[actionClass, action.wideOnly ? 'max-sm:hidden' : ''].join(' ')}>

@@ -20,6 +20,7 @@ import type { Locale } from '../i18n/core'
 import { SiteHeader } from './SiteHeader'
 import { SiteFooter } from './SiteFooter'
 import { OverseasRequirements } from './OverseasRequirements'
+import { CycleButton } from './CycleButton'
 
 /**
  * 查詢（2026-11-08 批 G7，路線圖目標第 4 條「可檢索招生等情況，尤其是專業」）：只讀、即時、三語。
@@ -120,33 +121,28 @@ export function SearchPage({ onBack }: { onBack: () => void }) {
   const provinces = useMemo(() => (schoolData ? sortProvinces(new Set([...schoolData.byId.values()].filter((r) => r.scheme === 'moe' && r.province).map((r) => r.province!))) : []), [schoolData])
 
   const toggleSubject = (code: SubjectCode) => setCombo((c) => (c.includes(code) ? c.filter((x) => x !== code) : c.length >= 3 ? c : [...c, code]))
-  const tab = (value: Mode, label: string) => (
-    <button type="button" role="tab" aria-selected={mode === value} onClick={() => { setMode(value); setPicked(null) }} data-search-mode={value}
-      className={['px-4 min-h-[44px] rounded-full border text-sm', mode === value ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-900 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')}>
-      {label}
-    </button>
-  )
   const go = (hash: string) => navigateHash(hash)
 
   return (
     <main className="min-h-screen app-canvas text-fog-100">
-      <SiteHeader brand={t('ui.search.brand')} back={{ label: t('ui.common.backHome'), onClick: onBack }} />
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 pb-16 flex flex-col gap-6" data-search-page>
+      <SiteHeader brand={t('ui.search.brand')} back={{ label: t('ui.common.backHome'), onClick: onBack }} search={false} />
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-5 sm:pt-8 pb-16 flex flex-col gap-6" data-search-page>
         <div className="flex flex-col gap-2">
           <h1 className="serif text-3xl sm:text-4xl leading-tight">{t('ui.search.title')}</h1>
           <p className="text-sm text-fog-500 leading-relaxed">{t('ui.search.lede')}</p>
         </div>
-        <div className="flex flex-wrap gap-2" role="tablist" aria-label={t('ui.search.title')}>
-          {tab('school', t('ui.search.mode.school'))}
-          {tab('major', t('ui.search.mode.major'))}
+        {/* 批 G9：「查學校／查專業」改為單鍵循環 */}
+        <div className="flex flex-wrap items-center gap-2">
+          <CycleButton name={t('ui.search.modeName')} data="search-mode" value={mode} onChange={(next) => { setMode(next); setPicked(null) }}
+            options={[{ value: 'school' as Mode, label: t('ui.search.mode.school') }, { value: 'major' as Mode, label: t('ui.search.mode.major') }]} />
         </div>
         <label className="flex flex-col gap-2">
           <span className="text-sm text-fog-300">{mode === 'school' ? t('ui.search.school.label') : t('ui.search.major.label')}</span>
           <input type="search" value={query} onChange={(e) => { setQuery(e.target.value); setPicked(null); setMainlandLimit(30) }} autoComplete="off" spellCheck={false}
             placeholder={mode === 'school' ? t('ui.search.school.placeholder') : t('ui.search.major.placeholder')}
-            className="w-full rounded-xl border border-ink-700 bg-ink-950 px-4 min-h-[48px] text-base text-fog-100 placeholder:text-fog-500 focus:border-accent-500 focus:outline-none" data-search-input />
+            className="w-full rounded-ctl border border-ink-700 bg-ink-950 px-4 min-h-[48px] text-base text-fog-100 placeholder:text-fog-500 focus:border-accent-500 focus:outline-none" data-search-input />
         </label>
-        {error && <p className="text-sm text-fog-300 border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" role="alert">{t('ui.search.loadFailed')}</p>}
+        {error && <p className="text-sm text-fog-300 border border-ink-800 bg-ink-900 rounded-panel px-4 py-3" role="alert">{t('ui.search.loadFailed')}</p>}
         {!error && ((mode === 'school' && !schoolData) || (mode === 'major' && !majorData)) && <p className="mono text-xs text-fog-500" data-search-loading>{t('ui.search.loading')}</p>}
 
         {mode === 'school' && schoolData && schoolResult && (
@@ -165,13 +161,13 @@ export function SearchPage({ onBack }: { onBack: () => void }) {
                 const slug = gras ? schoolData.overseasSlug.get(gras.id.replace(/^gras:/, '')) : undefined
                 const place = moe?.province ? provinceLabel(moe.province) : regionLabel(g.primary.region)
                 return (
-                  <li key={g.key} className="border border-ink-800 bg-ink-900/78 rounded-xl px-4 py-3 flex flex-col gap-2" data-search-hit={g.members.map((m) => m.id).join(' ')}>
+                  <li key={g.key} className="border border-ink-800 bg-ink-900/78 rounded-ctl px-4 py-3 flex flex-col gap-2" data-search-hit={g.members.map((m) => m.id).join(' ')}>
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1">
                       <h2 className="serif text-lg leading-snug">{primaryName}{others.length ? <span className="text-fog-500 text-sm"> · {others.join(' · ')}</span> : null}</h2>
                       <p className="text-xs mono text-fog-500">{place}</p>
                     </div>
                     <p className="text-xs text-fog-500 flex flex-wrap gap-x-2 gap-y-1">
-                      {g.members.map((m) => <span key={m.id} className="border border-ink-700 rounded-full px-2 py-0.5" data-search-layer={m.scheme}>{t(`ui.search.layer.${m.scheme}`)}</span>)}
+                      {g.members.map((m) => <span key={m.id} className="border border-ink-700 rounded-ctl px-2 py-0.5" data-search-layer={m.scheme}>{t(`ui.search.layer.${m.scheme}`)}</span>)}
                       {hit.via !== 'name' && <span data-search-via={hit.via}>{t(`ui.search.via.${hit.via}`, { name: hit.matched })}</span>}
                     </p>
                     {/* 批 G8：海外機構有研究抽出的英語要求／國際生年學費時，列出原文摘要 */}
@@ -201,7 +197,7 @@ export function SearchPage({ onBack }: { onBack: () => void }) {
                   const active = target && hitKey(h) === (target.kind === 'program' ? `p:${target.programCode}` : `c:${target.classCode}`)
                   return (
                     <button key={hitKey(h)} type="button" aria-pressed={Boolean(active)} onClick={() => { setPicked(hitKey(h)); setMainlandLimit(30) }} data-major-hit={hitKey(h)}
-                      className={['px-3 min-h-[44px] rounded-full border text-sm text-left', active ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')}>
+                      className={['px-3 min-h-[44px] rounded-ctl border text-sm text-left', active ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')}>
                       {h.target.name} <span className="mono text-xs text-fog-500">{h.target.kind === 'class' ? t('ui.search.major.kind.class') : h.target.programCode}</span>
                     </button>
                   )
@@ -214,7 +210,7 @@ export function SearchPage({ onBack }: { onBack: () => void }) {
                 <div className="flex flex-wrap items-center gap-2 text-sm">
                   <label className="inline-flex items-center gap-2">
                     <span className="text-fog-500">{t('ui.search.major.province')}</span>
-                    <select value={province} onChange={(e) => { setProvince(e.target.value); setMainlandLimit(30) }} className="rounded-lg border border-ink-700 bg-ink-950 px-2 min-h-[44px] text-fog-100" data-search-province>
+                    <select value={province} onChange={(e) => { setProvince(e.target.value); setMainlandLimit(30) }} className="rounded-ctl border border-ink-700 bg-ink-950 px-2 min-h-[44px] text-fog-100" data-search-province>
                       <option value="">{t('ui.search.major.allProvinces')}</option>
                       {provinces.map((p) => <option key={p} value={p}>{provinceLabel(p)}</option>)}
                     </select>
@@ -225,7 +221,7 @@ export function SearchPage({ onBack }: { onBack: () => void }) {
                   <div className="flex flex-wrap gap-2">
                     {SUBJECT_OPTIONS.map(({ code }) => (
                       <button key={code} type="button" aria-pressed={combo.includes(code)} onClick={() => toggleSubject(code)} data-search-subject={code}
-                        className={['px-3 min-h-[44px] rounded-full border text-sm', combo.includes(code) ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500'].join(' ')}>
+                        className={['px-3 min-h-[44px] rounded-ctl border text-sm', combo.includes(code) ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500'].join(' ')}>
                         {subjectLabel(code)}
                       </button>
                     ))}
@@ -245,7 +241,7 @@ export function SearchPage({ onBack }: { onBack: () => void }) {
                   {mainland.rows.slice(0, mainlandLimit).map((row) => {
                     const rec = schoolData?.byId.get(`moe:${row.moeCode}`)
                     return (
-                      <li key={row.moeCode} className="border border-ink-800 bg-ink-900/78 rounded-xl px-4 py-3 flex flex-col gap-1" data-major-school={row.moeCode}>
+                      <li key={row.moeCode} className="border border-ink-800 bg-ink-900/78 rounded-ctl px-4 py-3 flex flex-col gap-1" data-major-school={row.moeCode}>
                         <div className="flex flex-wrap items-baseline justify-between gap-x-3">
                           {rec?.siteRoute
                             ? <button type="button" onClick={() => go(rec.siteRoute!)} className="serif text-base text-left underline decoration-ink-700 hover:text-accent-500 min-h-[40px]">{rec ? displayName(rec, locale) : row.moeCode}</button>
@@ -259,7 +255,7 @@ export function SearchPage({ onBack }: { onBack: () => void }) {
                   })}
                 </ul>
                 {mainland.rows.length > mainlandLimit && (
-                  <button type="button" onClick={() => setMainlandLimit((x) => x + 30)} className="self-start px-4 min-h-[44px] rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500" data-major-more>
+                  <button type="button" onClick={() => setMainlandLimit((x) => x + 30)} className="self-start px-4 min-h-[44px] rounded-ctl border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500" data-major-more>
                     {t('ui.search.major.more', { n: fmt(mainland.rows.length - mainlandLimit) })}
                   </button>
                 )}
@@ -280,7 +276,7 @@ export function SearchPage({ onBack }: { onBack: () => void }) {
                           const slug = schoolData?.overseasSlug.get(row.id)
                           const name = inst ? (locale === 'en' ? inst.nameEn : inst.nameZh || inst.nameEn) : row.id
                           return (
-                            <li key={row.id} className="border border-ink-800 bg-ink-900/78 rounded-xl px-3 py-2 flex flex-col gap-1" data-major-overseas-row={row.id}>
+                            <li key={row.id} className="border border-ink-800 bg-ink-900/78 rounded-ctl px-3 py-2 flex flex-col gap-1" data-major-overseas-row={row.id}>
                               {slug
                                 ? <button type="button" onClick={() => go(`#/overseas/${encodeURIComponent(slug)}/${encodeURIComponent(row.id)}`)} className="text-left text-sm underline decoration-ink-700 hover:text-accent-500 min-h-[40px]">{name}</button>
                                 : <span className="text-sm">{name}</span>}

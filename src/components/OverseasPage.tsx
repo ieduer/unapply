@@ -76,13 +76,13 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
   if (loadError) {
     return (
       <main className="min-h-screen app-canvas text-fog-100 flex items-center justify-center px-5">
-        <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-xl p-6 flex flex-col gap-4">
+        <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-panel p-6 flex flex-col gap-4">
           <p className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">{t('ui.overseas.kicker')}</p>
           <h1 className="serif text-2xl">{t('ui.overseas.loadFailed')}</h1>
           <p className="text-sm text-fog-500 leading-relaxed">{loadError}</p>
           <div className="flex flex-wrap gap-3">
-            <button onClick={() => { setLoadError(null); setReloadToken((token) => token + 1) }} className="px-5 py-3 rounded-full bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">{t('ui.common.retryLoad')}</button>
-            <button onClick={onBack} className="px-5 py-3 rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">{t('ui.common.backHome')}</button>
+            <button onClick={() => { setLoadError(null); setReloadToken((token) => token + 1) }} className="px-5 py-3 rounded-ctl bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">{t('ui.common.retryLoad')}</button>
+            <button onClick={onBack} className="px-5 py-3 rounded-ctl border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">{t('ui.common.backHome')}</button>
           </div>
         </section>
       </main>
@@ -110,7 +110,7 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
     <main className="min-h-screen app-canvas text-fog-100">
       <SiteHeader brand={t('ui.overseas.brand')} back={{ label: t('ui.hkmotw.backHome'), onClick: onBack }} />
 
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-5 sm:pt-8 pb-24 flex flex-col gap-8">
         <div className="max-w-3xl flex flex-col gap-3">
           <h1 className="serif text-3xl sm:text-5xl leading-tight">{t('ui.overseas.title')}</h1>
           <p className="text-sm sm:text-base text-fog-300 leading-relaxed">
@@ -119,7 +119,7 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
           <p className="text-xs mono text-fog-500 leading-relaxed">
             {t('ui.overseas.totals', { ...totals, date: index.generatedAt })}
           </p>
-          <div className="border border-ink-800 bg-ink-950/60 rounded-xl px-4 py-3 flex flex-col gap-2 text-sm" data-qualification-marking={markingActive ? 'on' : 'off'}>
+          <div className="border border-ink-800 bg-ink-950/60 rounded-panel px-4 py-3 flex flex-col gap-2 text-sm" data-qualification-marking={markingActive ? 'on' : 'off'}>
             <label className="flex flex-wrap items-center gap-2 text-xs mono text-fog-500">
               <span className="uppercase tracking-[0.2em] shrink-0">{t('ui.overseas.qual.selector')}</span>
               {origin === 'cn-mainland' ? (
@@ -128,7 +128,7 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
                 <select
                   value={originPrefs.qualification ?? ''}
                   onChange={(event) => onOriginPrefsChange({ ...originPrefs, qualification: isQualification(event.target.value) ? event.target.value : null })}
-                  className="bg-ink-950 border border-ink-700 rounded-lg px-2 py-2 text-fog-200 min-h-[40px] max-w-full"
+                  className="bg-ink-950 border border-ink-700 rounded-ctl px-2 py-2 text-fog-200 min-h-[40px] max-w-full"
                 >
                   <option value="">{t('ui.overseas.qual.none')}</option>
                   {qualificationChoices.map((qualification) => <option key={qualification} value={qualification}>{t(`origin.qual.${qualification}.label`)}</option>)}
@@ -140,7 +140,7 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
             <p className="text-xs text-fog-500 leading-relaxed">{t('ui.overseas.qual.rule')}</p>
           </div>
           {originOption && !originOption.hasLocalPool && (
-            <div className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 text-sm text-fog-300 leading-relaxed">
+            <div className="border border-ink-800 bg-ink-900 rounded-panel px-4 py-3 text-sm text-fog-300 leading-relaxed">
               <Rich
                 k="ui.overseas.originNote"
                 params={{
@@ -157,7 +157,7 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
         </div>
 
         {regionSlug && !regionRow && (
-          <div className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 text-sm text-fog-300 leading-relaxed">
+          <div className="border border-ink-800 bg-ink-900 rounded-panel px-4 py-3 text-sm text-fog-300 leading-relaxed">
             <Rich k="ui.overseas.regionNotFound" params={{ slug: regionSlug }} slots={{ a1: (children) => <button onClick={() => onNavigate(null)} className="underline hover:text-accent-500">{children}</button> }} />
           </div>
         )}
@@ -200,7 +200,7 @@ function RegionList({ regions, onOpen }: { regions: OverseasRegionRow[]; onOpen:
           <li key={r.slug}>
             <button
               onClick={() => onOpen(r.slug)}
-              className="w-full text-left border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-xl p-4 flex flex-col gap-2 hover:border-accent-500 min-h-[96px]"
+              className="w-full text-left border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-ctl p-4 flex flex-col gap-2 hover:border-accent-500 min-h-[96px]"
             >
               <span className="flex items-baseline justify-between gap-2">
                 <span className="serif text-xl leading-snug">{regionName(r, locale)}</span>
@@ -257,9 +257,9 @@ function RegionSection({ row, index, institutionId, onBackToList, onWorld, marki
       </div>
 
       {error && (
-        <div className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 text-sm text-fog-300 leading-relaxed flex flex-wrap items-center gap-3">
+        <div className="border border-ink-800 bg-ink-900 rounded-panel px-4 py-3 text-sm text-fog-300 leading-relaxed flex flex-wrap items-center gap-3">
           <span>{error}</span>
-          <button onClick={() => { setError(null); setReloadToken((token) => token + 1) }} className="px-4 py-2 rounded-full bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">{t('ui.common.retryLoad')}</button>
+          <button onClick={() => { setError(null); setReloadToken((token) => token + 1) }} className="px-4 py-2 rounded-ctl bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">{t('ui.common.retryLoad')}</button>
         </div>
       )}
       {!payload && !error && <p className="mono text-xs uppercase tracking-[0.2em] text-fog-500">{t('ui.overseas.region.loading', { slug: row.slug })}</p>}
@@ -310,7 +310,7 @@ function Empty({ text }: { text: string }) {
 }
 
 function StatusBadge({ text }: { text: string }) {
-  return <span className="inline-block rounded-full border border-ink-700 bg-ink-950 px-2.5 py-0.5 text-xs text-fog-300 leading-5">{text}</span>
+  return <span className="inline-block rounded-ctl border border-ink-700 bg-ink-950 px-2.5 py-0.5 text-xs text-fog-300 leading-5">{text}</span>
 }
 
 function SourceLine({ url, live, date, prefixKey = 'ui.overseas.source' }: { url: string; live: boolean; date?: string; prefixKey?: string }) {
@@ -364,7 +364,7 @@ function PortalCard({ portal }: { portal: OverseasPortal }) {
   const unread = t('ui.overseas.unread')
   const hasQuotes = portal.quotes.audience.length + portal.quotes.fees.length + portal.quotes.timeline.length + portal.quotes.other.length > 0
   return (
-    <li className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-xl p-4 flex flex-col gap-2">
+    <li className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-panel p-4 flex flex-col gap-2">
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
         <div className="flex flex-col gap-1">
           <h4 className="text-base text-fog-100 font-semibold leading-snug">{portal.name}</h4>
@@ -394,7 +394,7 @@ function VisaCard({ visa }: { visa: OverseasVisa }) {
   const q = visa.quotes
   const hasQuotes = q.financial.length + q.language.length + q.insurance.length + q.fee.length + q.timeline.length + q.other.length > 0
   return (
-    <li className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-xl p-4 flex flex-col gap-2">
+    <li className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-panel p-4 flex flex-col gap-2">
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
         <div className="flex flex-col gap-1">
           <h4 className="text-base text-fog-100 font-semibold leading-snug">{visa.category}</h4>
@@ -434,7 +434,7 @@ function InstitutionRow({ inst, open, onToggle, autoScroll, marking }: { inst: O
     if (autoScroll && ref.current) ref.current.scrollIntoView({ block: 'start' })
   }, [autoScroll])
   return (
-    <li ref={ref} className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-xl p-4 sm:p-5 flex flex-col gap-3">
+    <li ref={ref} className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-panel p-4 sm:p-5 flex flex-col gap-3">
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
         <div className="flex flex-col gap-1 min-w-0">
           <h4 className="serif text-xl leading-snug break-words">
@@ -444,7 +444,7 @@ function InstitutionRow({ inst, open, onToggle, autoScroll, marking }: { inst: O
         </div>
         <div className="flex flex-wrap items-center gap-2 shrink-0">
           {marking && (inst.status === 'verified' || mark?.listed) && (
-            <span data-qual-mark={mark?.listed ? 'listed' : 'unread'} className={['inline-block rounded-full border px-2.5 py-0.5 text-xs leading-5', mark?.listed ? 'border-accent-500/40 bg-accent-500/10 text-accent-600' : 'border-ink-700 bg-ink-950 text-fog-300'].join(' ')}>
+            <span data-qual-mark={mark?.listed ? 'listed' : 'unread'} className={['inline-block rounded-ctl border px-2.5 py-0.5 text-xs leading-5', mark?.listed ? 'border-accent-500/40 bg-accent-500/10 text-accent-600' : 'border-ink-700 bg-ink-950 text-fog-300'].join(' ')}>
               {mark?.listed ? (mark.gaokao && mark.matched.length === 0 ? t('ui.overseas.qual.listedGaokao') : t('ui.overseas.qual.listed', { tokens: mark.matched.join(' · ') })) : t('ui.overseas.qual.unread')}
             </span>
           )}
@@ -471,7 +471,7 @@ function Chips({ items }: { items: string[] }) {
   if (items.length === 0) return null
   return (
     <ul className="flex flex-wrap gap-1.5">
-      {items.map((item) => <li key={item} className="rounded-full border border-ink-700 bg-ink-950 px-2.5 py-0.5 text-xs text-fog-300 leading-5">{item}</li>)}
+      {items.map((item) => <li key={item} className="rounded-ctl border border-ink-700 bg-ink-950 px-2.5 py-0.5 text-xs text-fog-300 leading-5">{item}</li>)}
     </ul>
   )
 }
@@ -579,7 +579,7 @@ function UnreadNote({ institutions }: { institutions: OverseasInstitutionSummary
   const name = (i: OverseasInstitutionSummary) => (locale === 'en' ? i.nameEn : i.nameZh ?? i.nameEn)
   const joiner = t('ui.common.listJoiner')
   return (
-    <div className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 text-xs text-fog-500 leading-relaxed flex flex-col gap-1">
+    <div className="border border-ink-800 bg-ink-900 rounded-panel px-4 py-3 text-xs text-fog-500 leading-relaxed flex flex-col gap-1">
       {unread.length > 0 && <p>{t('ui.overseas.unreadNote.unread', { n: unread.length, names: unread.map(name).join(joiner) })}</p>}
       {medium.length > 0 && <p>{t('ui.overseas.unreadNote.medium', { n: medium.length, names: medium.map(name).join(joiner) })}</p>}
     </div>

@@ -31,7 +31,7 @@ export function ThemeToggle() {
       data-theme-toggle={current.id}
       aria-label={t('ui.theme.toggleAria', { current: label(current.id), next: label(next.id) })}
       title={t('ui.theme.toggleAria', { current: label(current.id), next: label(next.id) })}
-      className="shrink-0 inline-flex items-center gap-2 min-h-[44px] min-w-[44px] justify-center rounded-full border border-ink-700 bg-ink-900 px-3 text-xs text-fog-200 normal-case tracking-normal font-sans hover:border-accent-500"
+      className="shrink-0 inline-flex items-center gap-2 min-h-[44px] min-w-[44px] justify-center rounded-ctl border border-ink-700 bg-ink-900 px-3 text-xs text-fog-200 normal-case tracking-normal font-sans hover:border-accent-500"
     >
       <span aria-hidden="true" className="h-3.5 w-3.5 rounded-full border border-ink-700" style={{ backgroundColor: current.palette.accent500 }} />
       <span className="hidden sm:inline whitespace-nowrap">{label(current.id)}</span>

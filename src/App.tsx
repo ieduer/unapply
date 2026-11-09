@@ -168,7 +168,7 @@ function CatalogLoading({
   const { t } = useLocale()
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex items-center justify-center px-5" data-loading={error ? undefined : ''}>
-      <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-xl p-6 flex flex-col gap-4">
+      <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-panel p-6 flex flex-col gap-4">
         <p className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">{t('ui.app.catalogKicker')}</p>
         <h1 className="serif text-2xl">{error ? t('ui.app.catalogLoadFailed') : t('ui.app.catalogLoading')}</h1>
         <p className="text-sm text-fog-500 leading-relaxed">
@@ -178,14 +178,14 @@ function CatalogLoading({
           {error && (
             <button
               onClick={onRetry}
-              className="px-5 py-3 rounded-full bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400"
+              className="px-5 py-3 min-h-[44px] rounded-ctl bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400"
             >
               {t('ui.common.retryLoad')}
             </button>
           )}
           <button
             onClick={onBack}
-            className="px-5 py-3 rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500"
+            className="px-5 py-3 min-h-[44px] rounded-ctl border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500"
           >
             {t('ui.common.backHome')}
           </button>

@@ -232,13 +232,13 @@ export function ContributePage({ schools, onBack }: Props) {
     window.open(url.toString(), '_blank', 'noopener,noreferrer')
   }
 
-  const inputClass = 'w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm min-h-[44px]'
+  const inputClass = 'w-full bg-ink-900 border border-ink-700 rounded-ctl px-3 py-3 text-sm min-h-[44px]'
 
   return (
     <main className="min-h-screen app-canvas text-fog-100">
       <SiteHeader sticky width="max-w-2xl" brand={t('ui.contribute.kicker')} back={{ label: t('ui.common.back'), onClick: onBack }} />
 
-      <section className="max-w-2xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-6">
+      <section className="max-w-2xl mx-auto px-4 sm:px-6 pt-5 sm:pt-8 pb-24 flex flex-col gap-6">
         <div className="flex flex-col gap-3">
           <h1 className="serif text-2xl sm:text-3xl">{t('ui.contribute.title')}</h1>
           <p className="text-sm text-fog-500 leading-relaxed">
@@ -389,7 +389,7 @@ export function ContributePage({ schools, onBack }: Props) {
             maxLength={1000}
             rows={5}
             placeholder={t('ui.contribute.placeholder.evidence')}
-            className="w-full bg-ink-900 border border-ink-700 rounded-lg px-3 py-3 text-sm"
+            className="w-full bg-ink-900 border border-ink-700 rounded-ctl px-3 py-3 text-sm"
           />
         </Field>
 
@@ -402,7 +402,7 @@ export function ContributePage({ schools, onBack }: Props) {
         <div className="flex flex-col sm:flex-row gap-3 pt-2">
           <button
             onClick={submit}
-            className="px-6 py-3 bg-accent-500 text-ink-950 rounded-full font-semibold text-sm hover:bg-accent-400 min-h-[48px]"
+            className="px-6 py-3 bg-accent-500 text-ink-950 rounded-ctl font-semibold text-sm hover:bg-accent-400 min-h-[48px]"
           >
             {t('ui.contribute.submit')}
           </button>
@@ -410,7 +410,7 @@ export function ContributePage({ schools, onBack }: Props) {
             href={`https://github.com/${REPO}/issues?q=is%3Aissue+label%3Adata-contribution`}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 border border-ink-700 text-fog-300 rounded-full text-sm hover:text-fog-100 hover:border-fog-500 text-center min-h-[48px] flex items-center justify-center"
+            className="px-6 py-3 border border-ink-700 text-fog-300 rounded-ctl text-sm hover:text-fog-100 hover:border-fog-500 text-center min-h-[48px] flex items-center justify-center"
           >
             {t('ui.contribute.viewAll')}
           </a>

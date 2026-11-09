@@ -13,13 +13,13 @@ export function DirectHireCard({ program, expanded, onOpen, onClose }: { program
   const country = tOr(`ui.world.program.country.${program.regionKey}`, en ? program.country : program.regionZh)
   const kind = tOr(`ui.world.program.kind.${program.kind}`, en ? program.kind : program.kindZh)
   return (
-    <article className={['rounded-xl border px-4 py-3 flex flex-col gap-2 h-full', expanded ? 'border-accent-500/40 bg-ink-900' : 'border-ink-800 bg-ink-900'].join(' ')} data-program={program.id} data-degree={program.degree}>
+    <article className={['rounded-panel border px-4 py-3 flex flex-col gap-2 h-full', expanded ? 'border-accent-500/40 bg-ink-900' : 'border-ink-800 bg-ink-900'].join(' ')} data-program={program.id} data-degree={program.degree}>
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="mono text-xs uppercase tracking-[0.2em] text-fog-500">{`${country} · ${en ? program.city : program.cityZh} · ${kind}`}</p>
           <h3 className="serif text-lg text-fog-100 mt-1">{en ? `${program.orgEn}: ${program.programEn}` : `${program.orgZh}：${program.programZh}`}</h3>
           <p className="text-xs text-fog-500">{en ? `${program.orgZh} · ${program.programZh}` : `${program.orgEn} · ${program.programEn}`}</p>
-          {degreeBadge && <p className="mt-1"><span className="inline-block rounded border border-accent-500/40 bg-accent-500/10 px-2 py-px text-xs mono text-accent-600" data-degree-badge={program.degree}>{degreeBadge}</span></p>}
+          {degreeBadge && <p className="mt-1"><span className="inline-block rounded-ctl border border-accent-500/40 bg-accent-500/10 px-2 py-px text-xs mono text-accent-600" data-degree-badge={program.degree}>{degreeBadge}</span></p>}
         </div>
         {expanded
           ? <button onClick={onClose} className="text-xs mono uppercase tracking-[0.2em] text-fog-500 hover:text-accent-500 min-h-[44px] px-2">{t('ui.common.close')}</button>

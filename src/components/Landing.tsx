@@ -11,6 +11,7 @@ import type { OriginPrefs } from '../data/originBranch'
 import { planFlow } from '../engine/flowPlan'
 import { OriginBranch } from './OriginBranch'
 import { useLocale } from '../i18n/react'
+import { atlasThumb } from '../data/atlasThumb'
 
 interface Props {
   origin: OriginRegion | null
@@ -37,20 +38,23 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
   return (
     <div className="min-h-screen app-canvas text-fog-100 flex flex-col">
     <SiteHeader brand={t('ui.landing.brand')} />
-    <main className="flex-1 text-fog-100 flex flex-col items-center justify-between px-5 sm:px-6 py-6 sm:py-10">
+    <main className="flex-1 text-fog-100 px-4 sm:px-6 pt-4 sm:pt-8 pb-10">
 
-      <section className="w-full max-w-5xl flex flex-1 flex-col justify-center gap-8 sm:gap-12 py-10 sm:py-16">
-        {/* 2026-11-08 批 G5：首頁只留大標、校數、起點題與按鈕；方法與說明在 About */}
-        <div className="max-w-3xl">
-          <h1 className="serif text-5xl sm:text-7xl leading-none text-fog-100">
-            {t('ui.landing.title')}
-          </h1>
-          <p className="mt-5 mono text-sm text-fog-500">
-            {t('ui.landing.counts', { total: n(officialSchoolCount), undergrad: n(officialUndergraduateCount), vocational: n(officialVocationalCount) })}
-          </p>
+      <section className="w-full max-w-5xl mx-auto flex flex-col gap-6 sm:gap-8">
+        {/* 2026-11-08 批 G9：收緊頁頭下的留白（不再垂直置中、去掉大 padding）；桌面兩欄——左大標與校數、右「全球學科地圖」特色卡；手機特色卡在起點題之前 */}
+        <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,27rem)] lg:items-start lg:gap-8">
+          <div className="max-w-3xl">
+            <h1 className="serif text-4xl sm:text-6xl lg:text-7xl leading-none text-fog-100">
+              {t('ui.landing.title')}
+            </h1>
+            <p className="mt-4 mono text-sm text-fog-500">
+              {t('ui.landing.counts', { total: n(officialSchoolCount), undergrad: n(officialUndergraduateCount), vocational: n(officialVocationalCount) })}
+            </p>
+          </div>
+          <WorldMapFeature onWorld={onWorld} />
         </div>
 
-        <div className="border border-ink-800 bg-ink-900/78 p-5 sm:p-6 flex flex-col gap-4 backdrop-blur-xl">
+        <div className="border border-ink-800 bg-ink-900/78 rounded-panel p-5 sm:p-6 flex flex-col gap-4 backdrop-blur-xl" data-landing-origin>
           <h2 className="serif text-2xl" id="landing-origin-title">{t('ui.landing.originTitle')}</h2>
           <div className="grid gap-2 sm:grid-cols-5" role="group" aria-labelledby="landing-origin-title">
             {originOptions.map((option) => {
@@ -65,7 +69,7 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
                   aria-label={label}
                   data-origin-card={option.id}
                   className={[
-                    'text-left rounded-xl border px-3 py-3 min-h-[52px] flex items-center',
+                    'text-left rounded-ctl border px-3 py-3 min-h-[52px] flex items-center',
                     active
                       ? 'border-accent-500 bg-accent-500/10 text-fog-100'
                       : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100',
@@ -87,7 +91,7 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
                 disabled={!plan}
                 data-landing-start={plan?.entry ?? 'none'}
                 className={[
-                  'px-7 py-4 sm:py-3 rounded-xl font-semibold text-base transition-colors min-h-[52px]',
+                  'px-7 py-4 sm:py-3 rounded-ctl font-semibold text-base transition-colors min-h-[52px]',
                   plan ? 'bg-accent-500 text-ink-950 hover:bg-accent-400' : 'bg-ink-800 text-fog-500 cursor-not-allowed',
                 ].join(' ')}
               >
@@ -95,18 +99,19 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
               </button>
               <p className="text-sm text-fog-300 leading-relaxed" data-landing-plan aria-live="polite">{plan ? planLine : t('ui.landing.plan.pickOrigin')}</p>
             </div>
-            <p className="text-sm text-fog-500 flex flex-wrap items-center gap-x-2" data-landing-browse>
-              <span>{t('ui.landing.browse')}</span>
-              <button type="button" onClick={onSearch} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500" data-landing-search>{t('ui.landing.browse.search')}</button>
-              <span aria-hidden="true">·</span>
-              <button type="button" onClick={onWorld} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{t('ui.landing.browse.world')}</button>
-              <span aria-hidden="true">·</span>
-              <button type="button" onClick={onHkMoTw} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{t('ui.landing.browse.hkmotw')}</button>
-              <span aria-hidden="true">·</span>
-              <button type="button" onClick={onOverseas} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{t('ui.landing.browse.overseas')}</button>
-            </p>
           </div>
         </div>
+
+        {/* 批 G9：其餘三個入口改為一排方角連結磚（手機一欄、桌面三欄）；原「只瀏覽：」那行刪除 */}
+        <nav aria-label={t('ui.landing.tiles.aria')} className="grid gap-px sm:grid-cols-3 border border-ink-800 bg-ink-800 rounded-panel overflow-hidden" data-landing-tiles>
+          {([['search', onSearch], ['hkmotw', onHkMoTw], ['overseas', onOverseas]] as const).map(([key, onClick]) => (
+            <button key={key} type="button" onClick={onClick} data-landing-tile={key} {...(key === 'search' ? { 'data-landing-search': '' } : {})}
+              className="text-left bg-ink-900 hover:bg-ink-950 px-4 py-4 min-h-[76px] flex flex-col gap-1">
+              <span className="serif text-lg text-fog-100">{t(`ui.landing.tile.${key}.title`)} <span aria-hidden="true" className="text-accent-500">→</span></span>
+              <span className="text-xs text-fog-500 leading-relaxed">{t(`ui.landing.tile.${key}.desc`)}</span>
+            </button>
+          ))}
+        </nav>
 
         <div className="grid border-y border-ink-800 bg-ink-900/70 backdrop-blur-xl sm:grid-cols-3">
           <MetricCard
@@ -123,7 +128,7 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
           />
         </div>
 
-        <div className="border border-ink-800 bg-ink-900/78 p-5 sm:p-6 flex flex-col gap-4 backdrop-blur-xl">
+        <div className="border border-ink-800 bg-ink-900/78 rounded-panel p-5 sm:p-6 flex flex-col gap-4 backdrop-blur-xl">
           <div className="flex flex-col gap-2">
             <h2 className="serif text-2xl">{t('ui.landing.contribTitle')}</h2>
             <p className="text-sm text-fog-400 leading-relaxed">{t('ui.landing.contribLede')}</p>
@@ -131,7 +136,7 @@ export function Landing({ origin, originPrefs, onOriginChange, onOriginPrefsChan
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={onContribute}
-              className="px-5 py-3 rounded-xl border border-accent-500/40 bg-accent-500/10 text-accent-600 text-sm hover:bg-accent-500/15 min-h-[48px]"
+              className="px-5 py-3 rounded-ctl border border-accent-500/40 bg-accent-500/10 text-accent-600 text-sm hover:bg-accent-500/15 min-h-[48px]"
             >
               {t('ui.landing.contribCta')}
             </button>
@@ -159,5 +164,30 @@ function MetricCard({ label, value }: { label: string; value: string }) {
       <p className="mono text-xs uppercase tracking-[0.22em] text-fog-500">{label}</p>
       <p className="serif text-3xl text-fog-100">{value}</p>
     </div>
+  )
+}
+
+/**
+ * 首頁「全球學科地圖」特色卡（批 G9）：建置期由 atlas 生成的靜態縮圖（陸地輪廓＋機構點，scripts/build_atlas_thumb.mjs），
+ * 用色系變數著色；只有一個主按鈕進地圖。手機高度控制在一屏的三分之一內。
+ */
+function WorldMapFeature({ onWorld }: { onWorld: () => void }) {
+  const { t, n } = useLocale()
+  const dots = atlasThumb.dots.split(' ').map((p) => p.split(',').map(Number))
+  const dotPath = dots.map(([x, y]) => `M${x - 2.6} ${y}a2.6 2.6 0 1 0 5.2 0a2.6 2.6 0 1 0 -5.2 0`).join('')
+  return (
+    <section className="border border-ink-800 bg-ink-900/78 rounded-panel p-4 sm:p-5 flex flex-col gap-2 sm:gap-3 backdrop-blur-xl" data-landing-world>
+      <div className="flex items-center justify-between gap-3">
+        <h2 className="serif text-xl sm:text-2xl text-fog-100">{t('ui.landing.world.title')}</h2>
+        <button type="button" onClick={onWorld} data-landing-world-go className="shrink-0 inline-flex items-center gap-2 min-h-[44px] px-4 rounded-ctl bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">
+          {t('ui.landing.world.go')} <span aria-hidden="true">→</span>
+        </button>
+      </div>
+      <p className="text-sm text-fog-300 leading-snug">{t('ui.landing.world.lede', { subjects: n(atlasThumb.subjects) })} <span className="mono text-xs text-fog-500 whitespace-nowrap">{t('ui.landing.world.meta', { institutions: n(atlasThumb.institutions) })}</span></p>
+      <svg viewBox={`0 0 ${atlasThumb.width} ${atlasThumb.height}`} preserveAspectRatio="xMidYMid meet" className="w-full h-auto max-h-[18vh] lg:max-h-none border border-ink-800 rounded-panel bg-ink-950" role="img" aria-label={t('ui.landing.world.mapAria')} data-landing-world-map>
+        <path d={atlasThumb.land} className="atlas-land" />
+        <path d={dotPath} className="atlas-dot" />
+      </svg>
+    </section>
   )
 }

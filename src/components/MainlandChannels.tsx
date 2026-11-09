@@ -19,7 +19,7 @@ export function MainlandChannels({ region }: { region: 'hk' | 'mo' | 'tw' }) {
         {channels.map((channel) => {
           const links = liveSourceLinks(channel.sources)
           return (
-            <li key={channel.id} className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-xl p-4 flex flex-col gap-2">
+            <li key={channel.id} className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-panel p-4 flex flex-col gap-2">
               <h3 className="text-base text-fog-100 font-semibold leading-snug">{t(`ui.channels.${channel.key}.title`)}</h3>
               <p className="text-sm text-fog-300 leading-relaxed">{t(`ui.channels.${channel.key}.summary`)}</p>
               <p className="text-xs mono text-fog-500 break-words leading-relaxed flex flex-wrap items-center gap-x-2">

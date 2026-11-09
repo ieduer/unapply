@@ -28,7 +28,7 @@ export function MajorSummary<S extends { id: string; moeCode?: string | null }>(
   if (!programsIndex || rows.length === 0) return null
   const withData = new Set(rows.flatMap((r) => r.schools)).size
   return (
-    <details className="border border-ink-800 bg-ink-900 rounded-2xl px-5 py-4" data-major-summary={rows.length}>
+    <details className="border border-ink-800 bg-ink-900 rounded-panel px-5 py-4" data-major-summary={rows.length}>
       <summary className="cursor-pointer min-h-[44px] flex items-center serif text-xl">{t('ui.majors.title')}</summary>
       <p className="text-sm text-fog-500 leading-relaxed mt-2">{t('ui.majors.lede', { schools: n(withData), classes: n(rows.length), kept: n(kept.length) })}{combo ? '' : ` ${t('ui.majors.noCombo')}`}</p>
       <ul className="mt-3 flex flex-col">
@@ -79,7 +79,7 @@ export function GrasSummary<I extends { key: string; subjects: readonly string[]
   if (!rows.length) return null
   const label = (code: string) => { const s = subjects.find((x) => x.code === code); return s ? (locale === 'en' ? s.nameEn : locale === 'zh-Hans' ? s.nameZhHans || s.nameZh : s.nameZh) : code }
   return (
-    <details className="border border-ink-800 bg-ink-900 rounded-2xl px-5 py-4" data-gras-summary={rows.length}>
+    <details className="border border-ink-800 bg-ink-900 rounded-panel px-5 py-4" data-gras-summary={rows.length}>
       <summary className="cursor-pointer min-h-[44px] flex items-center serif text-xl">{t('ui.majors.gras.title')}</summary>
       <p className="text-sm text-fog-500 leading-relaxed mt-2">{t('ui.majors.gras.lede', { n: n(new Set(rows.flatMap((r) => r.items.map((i) => i.key))).size), subjects: n(rows.length) })}</p>
       <ul className="mt-3 flex flex-col">
@@ -132,7 +132,7 @@ export function NonUniversityPaths({ destinations, answers, struckCountries, inl
   if (!plans.length) return null
   const answerOf = (d: PathDestination) => (inlineQuestion ? local[d] ?? null : answers?.[d] ?? null)
   const setAnswer = (d: PathDestination, a: PathAnswer | null) => { if (inlineQuestion) { setLocal((x) => ({ ...x, [d]: a })); savePathAnswer(d, a) } onAnswer?.(d, a) }
-  const chip = (active: boolean) => ['px-3 min-h-[44px] rounded-full border text-sm', active ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')
+  const chip = (active: boolean) => ['px-3 min-h-[44px] rounded-ctl border text-sm', active ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')
   return (
     <section className="flex flex-col gap-4" data-paths={plans.map((p) => p.destination).join('|')}>
       <div className="flex flex-col gap-1">

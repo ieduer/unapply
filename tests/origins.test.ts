@@ -211,7 +211,7 @@ test('三語鍵齊：資格、目的地、官方管道、海外層標示、結�
   keys.push('ui.overseas.qual.listed', 'ui.overseas.qual.listedGaokao', 'ui.overseas.qual.unread', 'ui.overseas.qual.counts', 'ui.overseas.qual.selector', 'ui.overseas.qual.none', 'ui.overseas.qual.gaokaoOption', 'ui.overseas.qual.rule')
   keys.push('ui.result.next.title', 'ui.result.next.note', 'ui.result.next.go', 'ui.result.next.goPool', 'ui.result.next.onlyMainland', 'ui.result.next.addDestinations')
   keys.push('ui.result.route.title', 'ui.result.route.listed', 'ui.result.route.noList', 'ui.result.route.listPdf', 'ui.result.route.listLine', 'ui.result.route.onlyListed', 'ui.result.route.listedEmpty', 'ui.result.route.badge', 'ui.runner.a6.hkmotwNote')
-  keys.push('ui.landing.plan.mainland', 'ui.landing.plan.both', 'ui.landing.plan.global', 'ui.landing.plan.pickOrigin', 'ui.landing.browse', 'ui.landing.browse.world', 'ui.landing.browse.hkmotw', 'ui.landing.browse.overseas', 'ui.runner.autoSkip')
+  keys.push('ui.landing.plan.mainland', 'ui.landing.plan.both', 'ui.landing.plan.global', 'ui.landing.plan.pickOrigin', 'ui.landing.tiles.aria', 'ui.landing.tile.search.title', 'ui.landing.tile.hkmotw.title', 'ui.landing.tile.overseas.title', 'ui.landing.world.title', 'ui.landing.world.go', 'ui.runner.autoSkip')
   for (const k of keys) {
     assert.ok(k in zhHant && k in en && k in zhHans, k)
     assert.ok(zhHant[k].trim() && en[k].trim() && zhHans[k].trim(), k)

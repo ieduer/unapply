@@ -282,7 +282,7 @@ export function ResultPage({
     <main className="min-h-screen app-canvas text-fog-100">
       <SiteHeader sticky width="max-w-3xl" brand={t('ui.result.brand')} actions={[{ label: t('ui.common.contribute'), onClick: onContribute }]} />
 
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 pb-24 sm:pt-12 flex flex-col gap-10 sm:gap-14">
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-5 sm:pt-8 pb-24 flex flex-col gap-10 sm:gap-14">
         <EvidenceNotice />
         <div className="flex flex-col gap-4">
           <p className="mono text-xs text-fog-500 uppercase tracking-[0.3em]">{t('ui.result.kicker')}</p>
@@ -294,14 +294,14 @@ export function ResultPage({
             {result.stats.answeredCount === 0 && t('ui.result.nothingAnswered')}
           </p>
           {shortlistReached && (
-            <div className="max-w-2xl rounded-2xl border border-accent-500/30 bg-ink-900/80 px-4 py-4 text-sm text-fog-300 leading-relaxed">
+            <div className="max-w-2xl rounded-panel border border-accent-500/30 bg-ink-900/80 px-4 py-4 text-sm text-fog-300 leading-relaxed">
               {zero ? t('ui.result.shortlist.zero') : t('ui.result.shortlist.few', { kept: result.stats.keptCount })}
             </div>
           )}
         </div>
 
         {zero && (
-          <div className="bg-ink-900 border border-accent-600/50 rounded-2xl p-6 flex flex-col gap-3">
+          <div className="bg-ink-900 border border-accent-600/50 rounded-panel p-6 flex flex-col gap-3">
             <p className="serif text-lg">{t('ui.result.zero.title')}</p>
             <p className="text-sm text-fog-300">
               {t('ui.result.zero.note')}
@@ -311,7 +311,7 @@ export function ResultPage({
             </p>
             <button
               onClick={onRestart}
-              className="self-start px-5 py-2 rounded-full bg-accent-500 text-ink-950 font-semibold text-sm hover:bg-accent-400"
+              className="self-start px-5 py-2 rounded-ctl bg-accent-500 text-ink-950 font-semibold text-sm hover:bg-accent-400"
             >
               {t('ui.common.restart')}
             </button>
@@ -339,7 +339,7 @@ export function ResultPage({
                 <select
                   value={candidateProvince}
                   onChange={(e) => setCandidateProvince(e.target.value as CandidateProvince)}
-                  className="bg-ink-900 border border-ink-700 rounded-full px-3 py-2 text-xs text-fog-200 min-h-[40px]"
+                  className="bg-ink-900 border border-ink-700 rounded-ctl px-3 py-2 text-xs text-fog-200 min-h-[40px]"
                 >
                   {candidateProvinceOptions.map((province) => (
                     <option key={province} value={province}>{provinceLabel(province)}</option>
@@ -348,10 +348,10 @@ export function ResultPage({
               </div>
             </div>
             {routeList && (
-              <div className="flex flex-wrap items-center gap-3 border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-route-list={routeList.id}>
+              <div className="flex flex-wrap items-center gap-3 border border-ink-800 bg-ink-900 rounded-panel px-4 py-3" data-route-list={routeList.id}>
                 <p className="text-sm text-fog-300 leading-relaxed flex-1 min-w-[12rem]">{t('ui.result.route.listLine', { name: t(`ui.result.route.list.${routeList.id}.name`), year: t(`ui.result.route.list.${routeList.id}.year`), count: routeList.count, kept: finalKept.length, listed: listedKept.length })}</p>
                 <button type="button" aria-pressed={onlyListed} onClick={() => setOnlyListed((v) => !v)} data-route-only-listed
-                  className={['px-4 min-h-[44px] rounded-full border text-sm', onlyListed ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')}>
+                  className={['px-4 min-h-[44px] rounded-ctl border text-sm', onlyListed ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')}>
                   {t('ui.result.route.onlyListed')}
                 </button>
               </div>
@@ -361,7 +361,7 @@ export function ResultPage({
               {topKept.map((school) => (
                 <div
                   key={school.id}
-                  className="bg-ink-900 border border-ink-700 rounded-xl p-4 flex flex-col gap-4 hover:border-accent-500 transition-colors"
+                  className="bg-ink-900 border border-ink-700 rounded-panel p-4 flex flex-col gap-4 hover:border-accent-500 transition-colors"
                 >
                   <button onClick={() => onSchool(school.id)} className="text-left">
                     <div className="flex items-start justify-between gap-3">
@@ -384,7 +384,7 @@ export function ResultPage({
                         target="_blank"
                         rel="noreferrer noopener"
                         className={[
-                          'px-3 py-2 rounded-full text-xs mono min-h-[40px] inline-flex items-center',
+                          'px-3 py-2 rounded-ctl text-xs mono min-h-[40px] inline-flex items-center',
                           link.kind === 'official'
                             ? 'bg-accent-500/12 text-accent-400 border border-accent-500/30'
                             : 'bg-ink-950 text-fog-300 border border-ink-700 hover:border-fog-500',
@@ -412,7 +412,7 @@ export function ResultPage({
 
         <NextStage plan={plan} origin={origin} onGlobal={onGlobal} onHome={onHome} />
 
-        <div className="bg-ink-900 border border-ink-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-4">
+        <div className="bg-ink-900 border border-ink-800 rounded-panel p-5 sm:p-6 flex flex-col gap-4">
           <div>
             <h2 className="serif text-xl">{t('ui.result.lookup.title')}</h2>
             <p className="mt-2 text-sm text-fog-500 leading-relaxed">
@@ -423,7 +423,7 @@ export function ResultPage({
             value={schoolQuery}
             onChange={(e) => setSchoolQuery(e.target.value)}
             placeholder={t('ui.result.lookup.placeholder')}
-            className="w-full bg-ink-950 border border-ink-700 rounded-xl px-4 py-3 text-sm text-fog-100 placeholder:text-fog-500"
+            className="w-full bg-ink-950 border border-ink-700 rounded-ctl px-4 py-3 text-sm text-fog-100 placeholder:text-fog-500"
           />
           {!schoolQuery.trim() && (
             <p className="text-xs text-fog-500 leading-relaxed">
@@ -440,7 +440,7 @@ export function ResultPage({
               {lookupResults.map((entry) => (
                 <div
                   key={`${entry.kind}-${entry.school.id}`}
-                  className="rounded-xl border border-ink-700 bg-ink-950/70 p-4 flex flex-col gap-3"
+                  className="rounded-panel border border-ink-700 bg-ink-950/70 p-4 flex flex-col gap-3"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
@@ -451,7 +451,7 @@ export function ResultPage({
                     </div>
                     <span
                       className={[
-                        'shrink-0 rounded-full px-3 py-1 text-xs mono border',
+                        'shrink-0 rounded-ctl px-3 py-1 text-xs mono border',
                         entry.kind === 'kept'
                           ? 'border-accent-500/40 text-accent-400 bg-accent-500/10'
                           : 'border-ink-700 text-fog-300 bg-ink-900',
@@ -483,7 +483,7 @@ export function ResultPage({
           )}
         </div>
 
-        <div className="bg-ink-900 border border-ink-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-4">
+        <div className="bg-ink-900 border border-ink-800 rounded-panel p-5 sm:p-6 flex flex-col gap-4">
           <div>
             <p className="mono text-xs uppercase tracking-[0.24em] text-fog-500">{t('ui.result.ai.kicker')}</p>
             <h2 className="serif text-xl">{t('ui.result.ai.title')}</h2>
@@ -496,7 +496,7 @@ export function ResultPage({
               href={handoff.gkUrl}
               target="_blank"
               rel="noreferrer noopener"
-              className="px-5 py-4 border border-accent-500/40 bg-accent-500/10 text-accent-600 rounded-xl text-sm hover:bg-accent-500/15 min-h-[56px] flex items-center justify-between gap-3"
+              className="px-5 py-4 border border-accent-500/40 bg-accent-500/10 text-accent-600 rounded-ctl text-sm hover:bg-accent-500/15 min-h-[56px] flex items-center justify-between gap-3"
             >
               <span>{t('ui.result.ai.cta')}</span>
               <span className="mono text-xs">gk.rdfzer.com ↗</span>
@@ -515,27 +515,27 @@ export function ResultPage({
             <button
               onClick={share}
               disabled={downloading}
-              className="px-6 py-3 bg-accent-500 text-ink-950 rounded-full font-semibold text-sm hover:bg-accent-400 disabled:opacity-50 min-h-[48px]"
+              className="px-6 py-3 bg-accent-500 text-ink-950 rounded-ctl font-semibold text-sm hover:bg-accent-400 disabled:opacity-50 min-h-[48px]"
             >
               {downloading ? t('ui.result.share.generating') : t('ui.result.share.download')}
             </button>
             {showRelaxAction && (
               <button
                 onClick={onRelax}
-                className="px-6 py-3 border border-fog-500 text-fog-100 rounded-full text-sm hover:border-accent-500 hover:text-accent-500 min-h-[48px]"
+                className="px-6 py-3 border border-fog-500 text-fog-100 rounded-ctl text-sm hover:border-accent-500 hover:text-accent-500 min-h-[48px]"
               >
                 {t('ui.result.relax')}
               </button>
             )}
             <button
               onClick={onContribute}
-              className="px-6 py-3 border border-ink-700 text-fog-300 rounded-full text-sm hover:text-fog-100 min-h-[48px]"
+              className="px-6 py-3 border border-ink-700 text-fog-300 rounded-ctl text-sm hover:text-fog-100 min-h-[48px]"
             >
               {t('ui.common.contributeData')}
             </button>
             <button
               onClick={onRestart}
-              className="px-6 py-3 border border-ink-700 text-fog-500 rounded-full text-sm hover:text-fog-100 min-h-[48px]"
+              className="px-6 py-3 border border-ink-700 text-fog-500 rounded-ctl text-sm hover:text-fog-100 min-h-[48px]"
             >
               {t('ui.common.restart')}
             </button>
@@ -580,7 +580,7 @@ function YourRoute({ origin, list }: { origin: 'hk' | 'mo' | 'tw'; list: Partici
           const channelList = Object.values(participationLists).find((l) => l.channel === channel.id) ?? (list && list.channel === channel.id ? list : null)
           const hasList = Boolean(channelList)
           return (
-            <li key={channel.id} className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 flex flex-col gap-1" data-route-channel={channel.id}>
+            <li key={channel.id} className="border border-ink-800 bg-ink-900 rounded-ctl px-4 py-3 flex flex-col gap-1" data-route-channel={channel.id}>
               <p className="text-sm text-fog-100 leading-snug">{t(`ui.channels.${channel.key}.title`)}</p>
               <p className="text-xs text-fog-500 leading-relaxed">{channelList ? t('ui.result.route.listed', { name: t(`ui.result.route.list.${channelList.id}.name`), year: t(`ui.result.route.list.${channelList.id}.year`), count: channelList.count }) : t('ui.result.route.noList')}</p>
               {(links.length > 0 || hasList) && (
@@ -628,10 +628,10 @@ function NextStage({ plan, origin, onGlobal, onHome }: { plan: FlowPlan; origin:
     )
   }
   return (
-    <section className="border border-accent-500/40 bg-accent-500/10 rounded-2xl p-5 flex flex-col gap-3" data-next-stage="global">
+    <section className="border border-accent-500/40 bg-accent-500/10 rounded-panel p-5 flex flex-col gap-3" data-next-stage="global">
       <h2 className="serif text-xl">{t('ui.result.next.title', { places })}</h2>
       <p className="text-xs text-fog-500 leading-relaxed">{t('ui.result.next.note')}</p>
-      <button type="button" onClick={onGlobal} data-next-stage-go className="self-start px-6 min-h-[48px] rounded-xl bg-accent-500 text-ink-950 font-semibold text-base hover:bg-accent-400">
+      <button type="button" onClick={onGlobal} data-next-stage-go className="self-start px-6 min-h-[48px] rounded-ctl bg-accent-500 text-ink-950 font-semibold text-base hover:bg-accent-400">
         {pool === null ? t('ui.result.next.go') : t('ui.result.next.goPool', { n: n(pool) })} →
       </button>
     </section>
@@ -641,7 +641,7 @@ function NextStage({ plan, origin, onGlobal, onHome }: { plan: FlowPlan; origin:
 function DistCard({ title, kind, items }: { title: string; kind: keyof KeptDistribution; items: { label: string; code: string; count: number }[] }) {
   const max = items[0]?.count ?? 1
   return (
-    <div className="bg-ink-900 border border-ink-800 rounded-xl p-5">
+    <div className="bg-ink-900 border border-ink-800 rounded-panel p-5">
       <h3 className="serif text-base mb-4">{title}</h3>
       <ul className="flex flex-col gap-2">
         {items.map((it) => (
@@ -668,7 +668,7 @@ function TagRail({ tags }: { tags: string[] }) {
       {tags.map((tag) => (
         <span
           key={tag}
-          className="rounded-full border border-ink-700 bg-ink-950 px-3 py-1 text-xs text-fog-300"
+          className="rounded-ctl border border-ink-700 bg-ink-950 px-3 py-1 text-xs text-fog-300"
         >
           {tag}
         </span>

@@ -36,7 +36,7 @@ export function ShareCard({ result }: { result: FilterResult }) {
           {top.map((s) => (
             <span
               key={s.id}
-              className="text-xs border border-ink-700 px-3 py-1.5 rounded-full text-fog-300"
+              className="text-xs border border-ink-700 px-3 py-1.5 rounded-ctl text-fog-300"
             >
               {schoolDisplayName(s)}
             </span>

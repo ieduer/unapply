@@ -46,7 +46,7 @@ export function AboutPage({ onBack }: Props) {
     <main className="min-h-screen app-canvas text-fog-100">
       <SiteHeader sticky width="max-w-3xl" brand={t('ui.about.brand')} back={{ label: t('ui.common.back'), onClick: onBack }} />
 
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8 sm:gap-10 text-fog-300 leading-relaxed text-sm sm:text-base">
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-5 sm:pt-8 pb-24 flex flex-col gap-8 sm:gap-10 text-fog-300 leading-relaxed text-sm sm:text-base">
         <div>
           <h1 className="serif text-3xl text-fog-100 mb-4">{t('ui.about.why.title')}</h1>
           <p>{t('ui.about.why.p1', { total: n(officialSchoolCount) })}</p>
@@ -216,7 +216,7 @@ export function AboutPage({ onBack }: Props) {
           </ul>
         </div>
 
-        <div className="border border-ink-800 bg-ink-900/60 rounded-xl px-4 py-4">
+        <div className="border border-ink-800 bg-ink-900/60 rounded-panel px-4 py-4">
           <h2 className="serif text-xl text-fog-100 mb-3">{t('ui.about.useful.title')}</h2>
           <p className="text-sm text-fog-400 leading-relaxed">{t('ui.about.useful.text')}</p>
         </div>

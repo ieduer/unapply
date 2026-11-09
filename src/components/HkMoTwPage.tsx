@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { CycleButton } from './CycleButton'
 import type { HkMoTwChannel, HkMoTwInstitution, HkMoTwPoolPayload, HkMoTwRegion } from '../data/hkmotwTypes'
 import { loadHkMoTwPool } from '../lib/hkmotwData'
 import { getOriginOption, type OriginRegion } from '../data/origins'
@@ -53,13 +54,13 @@ export function HkMoTwPage({ origin, originPrefs, onBack, onAbout, onWorld, onSt
   if (loadError) {
     return (
       <main className="min-h-screen app-canvas text-fog-100 flex items-center justify-center px-5">
-        <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-xl p-6 flex flex-col gap-4">
+        <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-panel p-6 flex flex-col gap-4">
           <p className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">{t('ui.hkmotw.kicker')}</p>
           <h1 className="serif text-2xl">{t('ui.hkmotw.loadFailed')}</h1>
           <p className="text-sm text-fog-500 leading-relaxed">{loadError}</p>
           <div className="flex flex-wrap gap-3">
-            <button onClick={() => { setLoadError(null); setReloadToken((t) => t + 1) }} className="px-5 py-3 rounded-full bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">{t('ui.common.retryLoad')}</button>
-            <button onClick={onBack} className="px-5 py-3 rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">{t('ui.common.backHome')}</button>
+            <button onClick={() => { setLoadError(null); setReloadToken((t) => t + 1) }} className="px-5 py-3 rounded-ctl bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">{t('ui.common.retryLoad')}</button>
+            <button onClick={onBack} className="px-5 py-3 rounded-ctl border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">{t('ui.common.backHome')}</button>
           </div>
         </section>
       </main>
@@ -77,14 +78,14 @@ export function HkMoTwPage({ origin, originPrefs, onBack, onAbout, onWorld, onSt
     <main className="min-h-screen app-canvas text-fog-100">
       <SiteHeader brand={t('ui.hkmotw.brand')} back={{ label: t('ui.hkmotw.backHome'), onClick: onBack }} />
 
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-8">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-5 sm:pt-8 pb-24 flex flex-col gap-8">
         <div className="max-w-3xl flex flex-col gap-3">
           <h1 className="serif text-3xl sm:text-5xl leading-tight">{t('ui.hkmotw.title')}</h1>
           <p className="text-sm sm:text-base text-fog-300 leading-relaxed">
             <Rich k="ui.hkmotw.lede" />
           </p>
           {originOption && !originOption.hasLocalPool && ORIGIN_REGION[origin!] && (
-            <div className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 text-sm text-fog-300 leading-relaxed">
+            <div className="border border-ink-800 bg-ink-900 rounded-panel px-4 py-3 text-sm text-fog-300 leading-relaxed">
               <Rich
                 k="ui.hkmotw.originNote"
                 params={{ origin: t(`origin.${originOption.id}.label`) }}
@@ -98,26 +99,15 @@ export function HkMoTwPage({ origin, originPrefs, onBack, onAbout, onWorld, onSt
           )}
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 text-sm" role="group" aria-label={t('ui.hkmotw.regionGroupAria')}>
-          {(['all', ...payload.regions.map((r) => r.code)] as (HkMoTwRegion | 'all')[]).map((code) => {
-            const active = region === code
-            const label = code === 'all' ? t('ui.hkmotw.regionAll', { n: payload.institutions.length }) : t('ui.hkmotw.regionCount', { region: payload.regions.find((r) => r.code === code)?.nameZh ?? code, n: counts.get(code) ?? 0 })
-            return (
-              <button
-                key={code}
-                onClick={() => setRegion(code)}
-                aria-pressed={active}
-                className={['px-4 min-h-[40px] rounded-full border', active ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')}
-              >
-                {label}
-              </button>
-            )
-          })}
+        {/* 批 G9：地區篩選（全部 → 香港 → 澳門 → 臺灣）改為單鍵循環 */}
+        <div className="flex flex-wrap items-center gap-2 text-sm">
+          <CycleButton name={t('ui.hkmotw.regionGroupAria')} data="hkmotw-region" value={region} onChange={setRegion}
+            options={(['all', ...payload.regions.map((r) => r.code)] as (HkMoTwRegion | 'all')[]).map((code) => ({ value: code, label: code === 'all' ? t('ui.hkmotw.regionAll', { n: payload.institutions.length }) : t('ui.hkmotw.regionCount', { region: payload.regions.find((r) => r.code === code)?.nameZh ?? code, n: counts.get(code) ?? 0 }) }))} />
         </div>
 
         <ul className="flex flex-col gap-3">
           {shown.map((inst) => (
-            <li key={inst.id} className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-xl p-4 sm:p-5 flex flex-col gap-3">
+            <li key={inst.id} className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-panel p-4 sm:p-5 flex flex-col gap-3">
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                 <div className="flex flex-col gap-1">
                   <h2 className="serif text-xl leading-snug">
@@ -173,7 +163,7 @@ function ChannelRow({ channel, open, onToggle }: { channel: HkMoTwChannel; open:
   const notes = publicNote(channel.notes)
   const hasDetails = Boolean(c.score || c.english || c.tuition || c.applicationWindow || notes)
   return (
-    <li className="border border-ink-800 bg-ink-950 rounded-lg px-3 py-3 flex flex-col gap-2">
+    <li className="border border-ink-800 bg-ink-950 rounded-ctl px-3 py-3 flex flex-col gap-2">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
         <span className="text-fog-100 font-semibold">{channel.audienceZh}</span>
         <span className="text-fog-300">{t(`ui.global.channel.${channel.channel}`)}</span>
@@ -216,7 +206,7 @@ function ReviewNote({ payload }: { payload: HkMoTwPoolPayload }) {
   const nameById = new Map(payload.institutions.map((i) => [i.id, i.nameZh]))
   const names = [...institutions.map((i) => i.nameZh), ...channels.map((c) => nameById.get(c.institutionId) ?? c.institutionId)]
   return (
-    <div className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3 text-xs text-fog-500 leading-relaxed">
+    <div className="border border-ink-800 bg-ink-900 rounded-panel px-4 py-3 text-xs text-fog-500 leading-relaxed">
       {t('ui.hkmotw.review', { institutions: institutions.length, channels: channels.length, names: names.join(t('ui.common.listJoiner')) })}
     </div>
   )

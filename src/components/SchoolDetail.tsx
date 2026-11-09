@@ -175,7 +175,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
     <main className="min-h-screen app-canvas text-fog-100">
       <SiteHeader sticky width="max-w-3xl" brand={t('ui.detail.header')} back={{ label: t('ui.common.back'), onClick: onBack }} />
 
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 pb-24 flex flex-col gap-10">
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-5 sm:pt-8 pb-24 flex flex-col gap-10">
         <div className="flex flex-col gap-3">
           <div className="flex flex-wrap items-center gap-2 text-xs mono text-fog-500 uppercase tracking-[0.2em]">
             <span>{levelText}</span>
@@ -195,7 +195,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
           {school.tags?.length ? (
             <div className="flex flex-wrap gap-2 mt-2">
               {school.tags.map(tag => (
-                <span key={tag} className="text-xs text-fog-500 border border-ink-700 px-2 py-1 rounded-full">{tag}</span>
+                <span key={tag} className="text-xs text-fog-500 border border-ink-700 px-2 py-1 rounded-ctl">{tag}</span>
               ))}
             </div>
           ) : null}
@@ -214,7 +214,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
               <select
                 value={candidateProvince}
                 onChange={(e) => setCandidateProvince(e.target.value as CandidateProvince)}
-                className="bg-ink-900 border border-ink-700 rounded-full px-3 py-2 text-xs text-fog-200 min-h-[40px]"
+                className="bg-ink-900 border border-ink-700 rounded-ctl px-3 py-2 text-xs text-fog-200 min-h-[40px]"
               >
                 {candidateProvinceOptions.map((province) => (
                   <option key={province} value={province}>{provinceLabel(province)}</option>
@@ -230,7 +230,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                 target="_blank"
                 rel="noreferrer noopener"
                 className={[
-                  'px-3 py-2 rounded-full text-xs mono min-h-[40px] inline-flex items-center',
+                  'px-3 py-2 rounded-ctl text-xs mono min-h-[40px] inline-flex items-center',
                   link.kind === 'official'
                     ? 'bg-accent-500/12 text-accent-400 border border-accent-500/30'
                     : 'bg-ink-900 text-fog-300 border border-ink-700 hover:border-fog-500',
@@ -310,7 +310,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                 </a>
               )}
               {programPrefsActive(programs.prefs) && programVerdict && (
-                <div className="rounded-xl border border-ink-700 bg-ink-900 px-4 py-3 text-sm text-fog-200 leading-relaxed flex flex-col gap-1">
+                <div className="rounded-panel border border-ink-700 bg-ink-900 px-4 py-3 text-sm text-fog-200 leading-relaxed flex flex-col gap-1">
                   <span className="mono text-xs uppercase tracking-[0.2em] text-fog-500">{t('ui.detail.programs.verdict.kicker')}</span>
                   {programVerdict.state === 'kept' && (
                     <span>
@@ -338,7 +338,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                         {visible.map((program) => {
                           const admissible = chosenSubjects && program.l === 'u' ? isAdmissible(program.r, chosenSubjects) : null
                           return (
-                            <li key={`${program.c}-${program.n}`} className="rounded-lg border border-ink-800 bg-ink-900 px-3 py-2 text-xs flex flex-col gap-1">
+                            <li key={`${program.c}-${program.n}`} className="rounded-ctl border border-ink-800 bg-ink-900 px-3 py-2 text-xs flex flex-col gap-1">
                               <span className="text-fog-100 text-sm">{program.n}</span>
                               <span className="text-fog-500">
                                 {requirementLabel(program.r)}
@@ -357,7 +357,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                 {!showAllPrograms && programGroups.some((g) => g.programs.length > programLimit) && (
                   <button
                     onClick={() => setShowAllPrograms(true)}
-                    className="self-start px-4 py-2 rounded-full border border-ink-700 text-xs text-fog-300 hover:text-fog-100 hover:border-fog-500 min-h-[44px]"
+                    className="self-start px-4 py-2 rounded-ctl border border-ink-700 text-xs text-fog-300 hover:text-fog-100 hover:border-fog-500 min-h-[44px]"
                   >
                     {t('ui.detail.programs.showAll', { n: currentList?.length ?? 0 })}
                   </button>
@@ -416,7 +416,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
               {campusList.map((campus) => (
                 <div
                   key={`${school.id}-${campus.campusName}-${campus.campusAddress ?? ''}`}
-                  className="bg-ink-900 border border-ink-800 rounded-lg p-4 flex flex-col gap-2"
+                  className="bg-ink-900 border border-ink-800 rounded-panel p-4 flex flex-col gap-2"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="serif text-sm">{campus.campusName}</span>
@@ -482,7 +482,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
               return (
                 <div
                   key={d}
-                  className="bg-ink-900 border border-ink-800 rounded-lg p-4 block hover:border-accent-600 transition-colors group"
+                  className="bg-ink-900 border border-ink-800 rounded-panel p-4 block hover:border-accent-600 transition-colors group"
                 >
                   <div className="flex items-baseline justify-between gap-2">
                     <span className="serif text-sm">{dimensionLabel(d)}</span>
@@ -527,7 +527,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
         </footer>
       </section>
       {school.moeCode && (jointItems === null ? null : (jointItems.length > 0 || jointError) && (
-        <section className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-xl p-5 sm:p-6 flex flex-col gap-4">
+        <section className="border border-ink-800 bg-ink-900/78 backdrop-blur-xl rounded-panel p-5 sm:p-6 flex flex-col gap-4">
           <div>
             <h2 className="serif text-xl">{t('ui.detail.joint.title')}</h2>
             <p className="mt-2 text-xs text-fog-500 leading-relaxed">
@@ -538,10 +538,10 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
           {jointItems.length > 0 && (
             <ul className="flex flex-col gap-3">
               {jointItems.map((item) => (
-                <li key={item.id} className="border border-ink-800 bg-ink-950 rounded-lg px-3 py-3 flex flex-col gap-1.5 text-sm">
+                <li key={item.id} className="border border-ink-800 bg-ink-950 rounded-ctl px-3 py-3 flex flex-col gap-1.5 text-sm">
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                     <span className="mono text-xs uppercase tracking-[0.16em] text-fog-500">{item.kind === 'institution' ? t('ui.detail.joint.institution') : t('ui.detail.joint.project')}{item.coop === 'mainland_hkmotw' ? t('ui.detail.joint.hkmotw') : item.coop === 'foreign_independent' ? t('ui.detail.joint.foreignIndependent') : ''}</span>
-                    {item.status !== 'listed' && <span className="rounded-full border border-ink-700 px-2 py-0.5 text-xs text-fog-300">{item.annotation || item.status}</span>}
+                    {item.status !== 'listed' && <span className="rounded-ctl border border-ink-700 px-2 py-0.5 text-xs text-fog-300">{item.annotation || item.status}</span>}
                   </div>
                   <p className="text-fog-100 leading-snug">{item.name}</p>
                   <p className="text-xs text-fog-300 leading-relaxed">
@@ -567,7 +567,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
 
 function EnvChip({ label }: { label: string }) {
   return (
-    <div className="bg-ink-900 border border-ink-800 rounded-lg px-3 py-2 text-xs text-fog-300 text-center">
+    <div className="bg-ink-900 border border-ink-800 rounded-panel px-3 py-2 text-xs text-fog-300 text-center">
       {label}
     </div>
   )
@@ -575,7 +575,7 @@ function EnvChip({ label }: { label: string }) {
 
 function EvidenceChip({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-ink-700 bg-ink-900 px-3 py-2 text-xs text-fog-300">
+    <span className="inline-flex items-center rounded-ctl border border-ink-700 bg-ink-900 px-3 py-2 text-xs text-fog-300">
       {label}
     </span>
   )
@@ -593,7 +593,7 @@ function EvidenceRow({ label, items }: { label: string; items: ResearchEvidence[
             href={item.url}
             target="_blank"
             rel="noreferrer noopener"
-            className="inline-flex max-w-full items-center min-h-[40px] rounded-full border border-ink-700 bg-ink-900 px-3 py-2 text-xs text-fog-300 hover:border-fog-500"
+            className="inline-flex max-w-full items-center min-h-[40px] rounded-ctl border border-ink-700 bg-ink-900 px-3 py-2 text-xs text-fog-300 hover:border-fog-500"
             title={item.note}
           >
             <span className="truncate">

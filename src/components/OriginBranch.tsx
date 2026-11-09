@@ -39,7 +39,7 @@ export function OriginBranch({ origin, prefs, onChange }: Props) {
   const chosen = prefs.qualification ? QUALIFICATION_OPTIONS[prefs.qualification] : null
   const links = chosen ? liveSourceLinks(chosen.sources) : []
   return (
-    <div className="border border-ink-800 bg-ink-950/60 rounded-xl p-4 flex flex-col gap-5" data-origin-branch={origin}>
+    <div className="border border-ink-800 bg-ink-950/60 rounded-panel p-4 flex flex-col gap-5" data-origin-branch={origin}>
       {qualifications.length > 0 && (
         <fieldset className="flex flex-col gap-2" data-branch-question="qualification">
           <legend className="serif text-lg mb-2">{t('ui.branch.qualTitle')}</legend>
@@ -54,7 +54,7 @@ export function OriginBranch({ origin, prefs, onChange }: Props) {
                   aria-pressed={active}
                   data-branch-qualification={qualification}
                   className={[
-                    'text-left rounded-xl border px-3 py-3 min-h-[56px] flex flex-col gap-1',
+                    'text-left rounded-ctl border px-3 py-3 min-h-[56px] flex flex-col gap-1',
                     active ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-900 text-fog-300 hover:border-fog-500 hover:text-fog-100',
                   ].join(' ')}
                 >
@@ -94,7 +94,7 @@ export function OriginBranch({ origin, prefs, onChange }: Props) {
                 aria-label={last ? t('ui.branch.destLastAria', { place: t(`ui.dest.${destination}`) }) : t(`ui.dest.${destination}`)}
                 data-branch-destination={destination}
                 className={[
-                  'px-4 min-h-[44px] rounded-full border text-sm inline-flex items-center gap-2',
+                  'px-4 min-h-[44px] rounded-ctl border text-sm inline-flex items-center gap-2',
                   active ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-900 text-fog-300 hover:border-fog-500 hover:text-fog-100',
                 ].join(' ')}
               >
@@ -120,7 +120,7 @@ function SkipButton({ active, onClick, label }: { active: boolean; onClick: () =
       aria-pressed={active}
       data-branch-skip
       className={[
-        'px-4 min-h-[44px] rounded-full border text-sm justify-self-start',
+        'px-4 min-h-[44px] rounded-ctl border text-sm justify-self-start',
         active ? 'border-fog-500 bg-ink-800 text-fog-100' : 'border-ink-700 bg-ink-900 text-fog-300 hover:border-fog-500 hover:text-fog-100',
       ].join(' ')}
     >

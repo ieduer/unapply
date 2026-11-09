@@ -123,7 +123,7 @@ test('引擎語言中立、不碰 AnswerMap／學習證據；三語鍵齊；首�
   const zhHant = JSON.parse(read('src/i18n/locales/zh-Hant.json')) as Record<string, string>
   const en = JSON.parse(read('src/i18n/locales/en.json')) as Record<string, string>
   const zhHans = JSON.parse(read('public/i18n/zh-Hans.json')) as Record<string, string>
-  const keys = Object.keys(zhHant).filter((k) => /^ui\.(search|majors|paths)\./.test(k) || k === 'ui.landing.browse.search' || k.startsWith('ui.global.q.directHire'))
+  const keys = Object.keys(zhHant).filter((k) => /^ui\.(search|majors|paths)\./.test(k) || k === 'ui.landing.tile.search.title' || k === 'ui.header.search' || k.startsWith('ui.global.q.directHire'))
   assert.ok(keys.length >= 70)
   for (const k of keys) for (const d of [en, zhHans]) assert.ok(d[k]?.trim(), k)
   for (const scheme of SCHEME_ORDER) assert.ok(zhHant[`ui.search.layer.${scheme}`] && en[`ui.search.layer.${scheme}`], scheme)

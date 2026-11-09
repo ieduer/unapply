@@ -254,12 +254,12 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
   if (loadError) {
     return (
       <main className="min-h-screen app-canvas text-fog-100 flex items-center justify-center px-5">
-        <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-xl p-6 flex flex-col gap-4">
+        <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-panel p-6 flex flex-col gap-4">
           <h1 className="serif text-2xl">{t('ui.global.loadFailed')}</h1>
           <p className="text-sm text-fog-500 leading-relaxed">{loadError}</p>
           <div className="flex flex-wrap gap-3">
-            <button type="button" onClick={() => { setLoadError(null); setReloadToken((v) => v + 1) }} className="px-5 min-h-[44px] rounded-full bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">{t('ui.common.retryLoad')}</button>
-            <button type="button" onClick={onBack} className="px-5 min-h-[44px] rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">{t('ui.common.backHome')}</button>
+            <button type="button" onClick={() => { setLoadError(null); setReloadToken((v) => v + 1) }} className="px-5 min-h-[44px] rounded-ctl bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">{t('ui.common.retryLoad')}</button>
+            <button type="button" onClick={onBack} className="px-5 min-h-[44px] rounded-ctl border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">{t('ui.common.backHome')}</button>
           </div>
         </section>
       </main>
@@ -295,6 +295,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
     return (
       <main className="min-h-screen app-canvas text-fog-100 flex flex-col">
         <SiteHeader
+          search={false}
           sticky
           width="max-w-2xl"
           brand={t('ui.global.brand')}
@@ -319,7 +320,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
               <div className="flex flex-wrap gap-2" role="group" aria-label={t('ui.global.q.directHire.title')} data-global-options={DIRECT_HIRE_QUESTION}>
                 {(['consider', 'no'] as const).map((value) => (
                   <button key={value} type="button" aria-pressed={chosen.includes(value)} data-global-option={value} onClick={() => pick(value)}
-                    className={['px-4 min-h-[44px] rounded-full border text-sm text-left', chosen.includes(value) ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')}>
+                    className={['px-4 min-h-[44px] rounded-ctl border text-sm text-left', chosen.includes(value) ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')}>
                     {t(`ui.paths.answer.${value}`, { n: n(pathPlans.get(plan.bank)?.verified.length ?? 0) })}
                   </button>
                 ))}
@@ -330,7 +331,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
         <div className="sticky bottom-0 z-30 border-t border-ink-800 bg-ink-950/95 backdrop-blur" data-global-step-bar>
           <div className="max-w-2xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
             <p className="text-sm text-fog-300" data-global-live={`${live.kept.length}/${live.pool}`}>{t('ui.global.step.remaining', { bank: t(`ui.dest.${plan.bank}`), kept: n(live.kept.length), pool: n(live.pool) })}</p>
-            <button type="button" onClick={next} className="px-6 min-h-[48px] rounded-xl bg-accent-500 text-ink-950 font-semibold text-base hover:bg-accent-400 shrink-0" data-global-next>
+            <button type="button" onClick={next} className="px-6 min-h-[48px] rounded-ctl bg-accent-500 text-ink-950 font-semibold text-base hover:bg-accent-400 shrink-0" data-global-next>
               {isLast ? t('ui.global.step.results') : t('ui.global.step.next')}
             </button>
           </div>
@@ -366,7 +367,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
     if (!shareRef.current) return
     await generateShareImage(shareRef.current, `unapply-global-${Date.now()}.png`)
   }
-  const chip = (active: boolean) => ['px-3 min-h-[44px] rounded-full border text-sm text-left', active ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')
+  const chip = (active: boolean) => ['px-3 min-h-[44px] rounded-ctl border text-sm text-left', active ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')
   const itemRow = (item: GlobalPoolItem, extra: { crossed?: boolean; children?: ReactNode; qual?: ReturnType<typeof qualificationMark> }) => (
     <ItemRow key={item.key} item={item} locale={locale} origin={origin} overseas={item.overseasId ? overseasById.get(item.overseasId) : undefined} hkmotw={item.pool === 'hkmotw' ? hkmotwById.get(item.id) : undefined}
       regionLabel={regionLabel} channelLabel={channelLabel} qual={extra.qual ?? null} qualificationLabel={qualificationLabel} crossed={extra.crossed}
@@ -378,25 +379,25 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
   return (
     <main className="min-h-screen app-canvas text-fog-100">
       <SiteHeader brand={t('ui.global.brand')} back={{ label: t('ui.global.backHome'), onClick: onBack }} />
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-16 flex flex-col gap-8" data-global-page data-global-result>
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-5 sm:pt-8 pb-16 flex flex-col gap-8" data-global-page data-global-result>
         <div className="max-w-3xl flex flex-col gap-3">
           <h1 className="serif text-3xl sm:text-5xl leading-tight">{t('ui.global.result.title')}</h1>
           {origin
             ? <p className="text-xs mono text-fog-500">{t('ui.global.origin', { origin: t(`origin.${origin}.label`) })}{qualificationLabel ? ` · ${t('ui.overseas.qual.selector')}${t('ui.common.colon')}${qualificationLabel}` : ''}</p>
             : <p className="text-sm text-fog-300" data-global-no-origin><button type="button" onClick={onBack} className="underline hover:text-accent-500 min-h-[40px]">{t('ui.global.noOrigin')}</button></p>}
-          {shared && !sharedLoaded && <p className="text-sm text-fog-100 border border-accent-500/40 bg-accent-500/10 rounded-xl px-4 py-3" data-global-shared>{t('ui.global.share.loaded')}</p>}
+          {shared && !sharedLoaded && <p className="text-sm text-fog-100 border border-accent-500/40 bg-accent-500/10 rounded-panel px-4 py-3" data-global-shared>{t('ui.global.share.loaded')}</p>}
         </div>
 
-        <div className="px-4 sm:px-5 py-3 border border-ink-800 bg-ink-900 rounded-xl flex flex-wrap items-center justify-between gap-3" data-global-counts={`${totalKept}/${totalPool}`}>
+        <div className="px-4 sm:px-5 py-3 border border-ink-800 bg-ink-900 rounded-panel flex flex-wrap items-center justify-between gap-3" data-global-counts={`${totalKept}/${totalPool}`}>
           <p className="text-sm sm:text-base text-fog-100"><Rich k="ui.global.counts" params={{ kept: n(totalKept), pool: n(totalPool), crossed: n(totalCrossed) }} /></p>
           <div className="flex flex-wrap gap-2">
             {mainlandStage && (
-              <button type="button" onClick={onBackToMainland} className="px-4 min-h-[44px] rounded-full border border-accent-500/40 bg-accent-500/10 text-accent-600 text-sm hover:bg-accent-500/15" data-global-back-mainland={mainlandStage}>
+              <button type="button" onClick={onBackToMainland} className="px-4 min-h-[44px] rounded-ctl border border-accent-500/40 bg-accent-500/10 text-accent-600 text-sm hover:bg-accent-500/15" data-global-back-mainland={mainlandStage}>
                 {mainlandStage === 'answered' ? t('ui.global.backToMainland') : t('ui.global.doMainland')}
               </button>
             )}
-            {steps.length > 0 && <button type="button" onClick={() => goStep(0)} className="px-4 min-h-[44px] rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500" data-global-edit>{t('ui.global.result.edit')}</button>}
-            <button type="button" onClick={redo} className="px-4 min-h-[44px] rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500" data-global-redo>{t('ui.global.redo')}</button>
+            {steps.length > 0 && <button type="button" onClick={() => goStep(0)} className="px-4 min-h-[44px] rounded-ctl border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500" data-global-edit>{t('ui.global.result.edit')}</button>}
+            <button type="button" onClick={redo} className="px-4 min-h-[44px] rounded-ctl border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500" data-global-redo>{t('ui.global.redo')}</button>
           </div>
         </div>
 
@@ -419,7 +420,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
           <p className="text-xs text-accent-600 leading-relaxed min-h-[1.25rem]" role="status" aria-live="polite" data-dest-keep-one={keepOne ? 'shown' : ''}>{keepOne ? t('ui.branch.destKeepOne') : ''}</p>
         </section>
 
-        {qualHits && qualificationLabel && destinations.includes('overseas') && <p className="text-sm text-fog-300 border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-global-qual-note>{t('ui.global.qual.note', { qualification: qualificationLabel })}</p>}
+        {qualHits && qualificationLabel && destinations.includes('overseas') && <p className="text-sm text-fog-300 border border-ink-800 bg-ink-900 rounded-panel px-4 py-3" data-global-qual-note>{t('ui.global.qual.note', { qualification: qualificationLabel })}</p>}
 
         {results.map((result) => {
           const plan = plans.find((p) => p.bank === result.bank)!
@@ -432,9 +433,9 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
               <h2 className="serif text-2xl">{t('ui.global.result.bank', { bank: t(`ui.dest.${result.bank}`), kept: n(result.kept.length), pool: n(result.pool) })}</h2>
               {plan.questions.length === 0 && <p className="text-sm text-fog-500" data-global-no-questions>{t('ui.global.result.noQuestions')}</p>}
               {result.pool === 0 ? <p className="text-sm text-fog-300" data-global-empty>{t('ui.global.kept.emptyPool')}</p> : result.kept.length === 0 ? (
-                <div className="flex flex-col gap-3 border border-ink-800 bg-ink-900 rounded-xl px-4 py-4" data-global-empty>
+                <div className="flex flex-col gap-3 border border-ink-800 bg-ink-900 rounded-panel px-4 py-4" data-global-empty>
                   <p className="text-sm text-fog-300">{t('ui.global.kept.empty')}</p>
-                  <button type="button" onClick={redo} className="self-start px-4 min-h-[44px] rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">{t('ui.global.redo')}</button>
+                  <button type="button" onClick={redo} className="self-start px-4 min-h-[44px] rounded-ctl border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">{t('ui.global.redo')}</button>
                 </div>
               ) : (
                 <ul className="flex flex-col gap-2">
@@ -456,12 +457,12 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
                 </ul>
               )}
               {result.kept.length > limit && (
-                <button type="button" onClick={() => setKeptLimit((m) => ({ ...m, [result.bank]: result.kept.length }))} className="self-start px-4 min-h-[44px] rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500" data-global-more>
+                <button type="button" onClick={() => setKeptLimit((m) => ({ ...m, [result.bank]: result.kept.length }))} className="self-start px-4 min-h-[44px] rounded-ctl border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500" data-global-more>
                   {t('ui.global.kept.more', { n: n(result.kept.length) })}
                 </button>
               )}
               {platformRegions.length > 0 && (
-                <details className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-global-platforms>
+                <details className="border border-ink-800 bg-ink-900 rounded-panel px-4 py-3" data-global-platforms>
                   <summary className="cursor-pointer serif text-lg min-h-[44px] flex items-center">{t('ui.global.platforms.title')}</summary>
                   <p className="mt-2 text-xs text-fog-500 leading-relaxed">{t('ui.global.platforms.note')}</p>
                   <p className="mt-2 text-sm text-fog-300 leading-relaxed flex flex-wrap gap-x-3 gap-y-1">
@@ -474,7 +475,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
                 </details>
               )}
               {noUndergrad.length > 0 && (
-                <details className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-global-no-undergrad={noUndergrad.length}>
+                <details className="border border-ink-800 bg-ink-900 rounded-panel px-4 py-3" data-global-no-undergrad={noUndergrad.length}>
                   <summary className="cursor-pointer serif text-lg min-h-[44px] flex items-center">{t(origin === 'cn-mainland' ? 'ui.global.noUndergrad.titleMainland' : 'ui.global.noUndergrad.title', { n: n(noUndergrad.length) })}</summary>
                   <p className="mt-2 text-xs text-fog-500 leading-relaxed">{t('ui.global.noUndergrad.note')}</p>
                   <ul className="mt-3 flex flex-col gap-2">
@@ -486,7 +487,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
                 </details>
               )}
               {result.crossed.length > 0 && (
-                <details className="border border-ink-800 bg-ink-900 rounded-xl px-4 py-3" data-global-crossed={result.crossed.length}>
+                <details className="border border-ink-800 bg-ink-900 rounded-panel px-4 py-3" data-global-crossed={result.crossed.length}>
                   <summary className="cursor-pointer serif text-lg min-h-[44px] flex items-center">{t('ui.global.crossed.title', { n: n(result.crossed.length) })}</summary>
                   <ul className="mt-3 flex flex-col gap-2">
                     {result.crossed.map(({ item, reasons }) => itemRow(item, {
@@ -508,16 +509,16 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
           struckCountries={new Set(effectiveAnswers.overseas?.regions ?? [])}
         />
 
-        <section className="flex flex-col gap-3 border border-ink-800 bg-ink-900 rounded-xl p-4" data-global-share>
+        <section className="flex flex-col gap-3 border border-ink-800 bg-ink-900 rounded-panel p-4" data-global-share>
           <h2 className="serif text-xl">{t('ui.global.share.title')}</h2>
           <p className="text-xs text-fog-500 leading-relaxed">{t('ui.global.share.note')}</p>
-          <input readOnly value={shareUrl} aria-label={t('ui.global.share.title')} className="w-full max-w-full rounded-lg border border-ink-700 bg-ink-950 px-3 py-2 text-xs mono text-fog-300 min-h-[40px]" onFocus={(e) => e.currentTarget.select()} data-global-share-url />
+          <input readOnly value={shareUrl} aria-label={t('ui.global.share.title')} className="w-full max-w-full rounded-ctl border border-ink-700 bg-ink-950 px-3 py-2 text-xs mono text-fog-300 min-h-[40px]" onFocus={(e) => e.currentTarget.select()} data-global-share-url />
           <div className="flex flex-wrap gap-2">
-            <button type="button" onClick={copyShare} className="px-4 min-h-[44px] rounded-full bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">{copied ? t('ui.global.share.copied') : t('ui.global.share.copy')}</button>
-            <button type="button" onClick={downloadShare} className="px-4 min-h-[44px] rounded-full border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">{t('ui.global.share.image')}</button>
+            <button type="button" onClick={copyShare} className="px-4 min-h-[44px] rounded-ctl bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">{copied ? t('ui.global.share.copied') : t('ui.global.share.copy')}</button>
+            <button type="button" onClick={downloadShare} className="px-4 min-h-[44px] rounded-ctl border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">{t('ui.global.share.image')}</button>
           </div>
           <div className="overflow-hidden">
-            <div ref={shareRef} className="rounded-2xl bg-ink-900 border border-ink-800 p-6 flex flex-col gap-3 max-w-xl" data-global-share-card>
+            <div ref={shareRef} className="rounded-panel bg-ink-900 border border-ink-800 p-6 flex flex-col gap-3 max-w-xl" data-global-share-card>
               <p className="text-xs mono uppercase tracking-[0.3em] text-fog-500">{t('ui.share.brand')} · {t('ui.global.share.card.title')}</p>
               <p className="serif text-2xl text-fog-100">{t('ui.global.share.card.counts', { kept: n(totalKept), pool: n(totalPool) })}</p>
               {plans.flatMap((plan) => plan.questions.map((q) => (
@@ -546,7 +547,7 @@ function QuestionOptions({ q, chosen, pick, optionLabel, familyOf, familyOrder, 
     const struck = q.kind === 'strike'
     return (
       <button key={value} type="button" aria-pressed={active} data-global-option={value} onClick={() => pick(value)}
-        className={['px-3 min-h-[44px] rounded-full border text-sm text-left', active ? ['border-accent-500 bg-accent-500/10 text-fog-100', struck ? 'line-through decoration-accent-500' : ''].join(' ') : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')}>
+        className={['px-3 min-h-[44px] rounded-ctl border text-sm text-left', active ? ['border-accent-500 bg-accent-500/10 text-fog-100', struck ? 'line-through decoration-accent-500' : ''].join(' ') : 'border-ink-700 bg-ink-950 text-fog-300 hover:border-fog-500 hover:text-fog-100'].join(' ')}>
         {active && struck ? t('ui.world.struckPrefix') : ''}{optionLabel(q.id, value)} <span className="mono text-xs text-fog-500">{crossed}</span>
       </button>
     )
@@ -594,7 +595,7 @@ function ItemRow({ item, locale, origin, overseas, hkmotw, regionLabel, channelL
   const localStudent = item.destination !== 'overseas' && item.destination === origin
   const nonLocalPage = item.destination !== 'overseas'
   return (
-    <li className={['border rounded-xl px-4 py-3 flex flex-col gap-2', crossed ? 'border-ink-800 bg-ink-950' : 'border-ink-800 bg-ink-900/78'].join(' ')} data-global-item={item.key}>
+    <li className={['border rounded-ctl px-4 py-3 flex flex-col gap-2', crossed ? 'border-ink-800 bg-ink-950' : 'border-ink-800 bg-ink-900/78'].join(' ')} data-global-item={item.key}>
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1">
         <h3 className="serif text-lg leading-snug">{primary}{secondary ? <span className="text-fog-500 text-sm"> · {secondary}</span> : null}</h3>
         <p className="text-xs mono text-fog-500">{regionLabel(item.region)}</p>
@@ -629,7 +630,7 @@ function ItemRow({ item, locale, origin, overseas, hkmotw, regionLabel, channelL
           </button>
         )}
         {item.pool === 'hkmotw' && <button type="button" onClick={onHkMoTw} className="tap text-fog-300 hover:text-accent-500 underline">{t('ui.global.item.hkmotw.open')}</button>}
-        {qual === 'listed' && !localStudent && <span className="text-fog-100 border border-accent-500/40 rounded-full px-2 py-0.5" data-global-qual="listed">{t('ui.global.qual.listed', { qualification: qualificationLabel })}</span>}
+        {qual === 'listed' && !localStudent && <span className="text-fog-100 border border-accent-500/40 rounded-ctl px-2 py-0.5" data-global-qual="listed">{t('ui.global.qual.listed', { qualification: qualificationLabel })}</span>}
         {qual === 'unread' && item.status === 'verified' && !localStudent && <span className="text-fog-500" data-global-qual="unread">{t('ui.global.qual.unread')}</span>}
       </div>
       {children}

@@ -4,6 +4,13 @@
 
 /* 以下是本站自己的樣式。 */
 
+/* 2026-11-08 批 G9 設計記號（手冊 §5.1b）：方角。按鈕、可點標籤、輸入框圓角 2px（rounded-ctl）；卡片與面板 4px（rounded-panel）。
+   不用膠囊與橢圓；只有純裝飾的色點、進度條可保留圓形。BDFZ 共用導航圓標不是本站元件，不動。 */
+@theme {
+  --radius-ctl: 2px;
+  --radius-panel: 4px;
+}
+
 /* 簡體介面（<html lang="zh-Hans">，批 E1）：襯線字型優先用 Noto Serif SC，避免簡體字以臺標筆形呈現；色系變數不動。 */
 :root[lang="zh-Hans"] {
   --font-serif: "HuWenMingChao", "Noto Serif SC", "Noto Serif TC", "Songti SC", "Songti TC", serif;

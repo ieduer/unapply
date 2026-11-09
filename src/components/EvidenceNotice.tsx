@@ -10,7 +10,7 @@ export function EvidenceNotice({ collapseOnMobile = false }: { collapseOnMobile?
   const { t } = useLocale()
   const dimensions = <p className="mt-2">{DIMENSION_GROUPS.B.map((id) => dimensionLabel(id)).join(t('ui.common.listJoiner'))}。</p>
   const full = (
-    <aside className="rounded-lg border border-amber-500/20 bg-ink-900 px-4 py-3 text-xs text-fog-300 leading-relaxed">
+    <aside className="rounded-panel border border-amber-500/20 bg-ink-900 px-4 py-3 text-xs text-fog-300 leading-relaxed">
       <p className="text-fog-100 font-medium">{t('ui.evidence.title')}</p>
       <p className="mt-1">{t('ui.evidence.note')}</p>
       <details className="mt-2">
@@ -23,7 +23,7 @@ export function EvidenceNotice({ collapseOnMobile = false }: { collapseOnMobile?
   if (!collapseOnMobile) return full
   return (
     <>
-      <details className="group sm:hidden rounded-lg border border-amber-500/20 bg-ink-900 px-4 text-xs text-fog-300 leading-relaxed" data-evidence-notice="compact">
+      <details className="group sm:hidden rounded-panel border border-amber-500/20 bg-ink-900 px-4 text-xs text-fog-300 leading-relaxed" data-evidence-notice="compact">
         <summary className="cursor-pointer py-3 text-fog-100 font-medium truncate group-open:whitespace-normal">{t('ui.evidence.title')}</summary>
         <div className="pb-3">
           <p>{t('ui.evidence.note')}</p>
