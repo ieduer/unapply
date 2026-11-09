@@ -74,5 +74,5 @@ test('頁頭 ≥640px 一行（站名截斷、按鈕不縮）；手機獨立控�
     const src = read(`src/components/${f}`)
     assert.equal(/min-h-\[40px\](?!\S)/.test(src.replace(/sm:min-h-\[40px\]/g, '')), false, `${f}: phone controls need min-h-[44px] sm:min-h-[40px]`)
   }
-  assert.match(read('src/index.css'), /\.tap \{\n  display: inline-flex;\n  align-items: center;\n  min-height: 44px;/)
+  assert.match(read('src/index.css'), /\.tap \{\s+display: inline-flex;\s+align-items: center;\s+min-height: 44px;/)
 })
