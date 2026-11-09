@@ -297,7 +297,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
         <SiteHeader
           search={false}
           sticky
-          width="max-w-2xl"
+          width="max-w-5xl"
           brand={t('ui.global.brand')}
           back={{ label: currentStep === 0 ? t('ui.global.step.back') : t('ui.global.step.prev'), onClick: prev }}
           center={<span className="mono text-fog-500">{progress}</span>}
@@ -384,7 +384,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
           <h1 className="serif text-3xl sm:text-5xl leading-tight">{t('ui.global.result.title')}</h1>
           {origin
             ? <p className="text-xs mono text-fog-500">{t('ui.global.origin', { origin: t(`origin.${origin}.label`) })}{qualificationLabel ? ` · ${t('ui.overseas.qual.selector')}${t('ui.common.colon')}${qualificationLabel}` : ''}</p>
-            : <p className="text-sm text-fog-300" data-global-no-origin><button type="button" onClick={onBack} className="underline hover:text-accent-500 min-h-[40px]">{t('ui.global.noOrigin')}</button></p>}
+            : <p className="text-sm text-fog-300" data-global-no-origin><button type="button" onClick={onBack} className="underline hover:text-accent-500 min-h-[44px] sm:min-h-[40px]">{t('ui.global.noOrigin')}</button></p>}
           {shared && !sharedLoaded && <p className="text-sm text-fog-100 border border-accent-500/40 bg-accent-500/10 rounded-panel px-4 py-3" data-global-shared>{t('ui.global.share.loaded')}</p>}
         </div>
 
@@ -467,7 +467,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
                   <p className="mt-2 text-xs text-fog-500 leading-relaxed">{t('ui.global.platforms.note')}</p>
                   <p className="mt-2 text-sm text-fog-300 leading-relaxed flex flex-wrap gap-x-3 gap-y-1">
                     {platformRegions.map((code) => (
-                      <button key={code} type="button" onClick={() => onOverseas(regionRows.get(code)!.slug)} className="underline hover:text-accent-500 min-h-[40px]">
+                      <button key={code} type="button" onClick={() => onOverseas(regionRows.get(code)!.slug)} className="underline hover:text-accent-500 min-h-[44px] sm:min-h-[40px]">
                         {t('ui.global.platforms.item', { region: regionLabel(code), n: regionRows.get(code)!.portalsLive })}
                       </button>
                     ))}
@@ -512,7 +512,7 @@ export function GlobalSubtraction({ origin, originPrefs, onOriginPrefsChange, ma
         <section className="flex flex-col gap-3 border border-ink-800 bg-ink-900 rounded-panel p-4" data-global-share>
           <h2 className="serif text-xl">{t('ui.global.share.title')}</h2>
           <p className="text-xs text-fog-500 leading-relaxed">{t('ui.global.share.note')}</p>
-          <input readOnly value={shareUrl} aria-label={t('ui.global.share.title')} className="w-full max-w-full rounded-ctl border border-ink-700 bg-ink-950 px-3 py-2 text-xs mono text-fog-300 min-h-[40px]" onFocus={(e) => e.currentTarget.select()} data-global-share-url />
+          <input readOnly value={shareUrl} aria-label={t('ui.global.share.title')} className="w-full max-w-full rounded-ctl border border-ink-700 bg-ink-950 px-3 py-2 text-xs mono text-fog-300 min-h-[44px] sm:min-h-[40px]" onFocus={(e) => e.currentTarget.select()} data-global-share-url />
           <div className="flex flex-wrap gap-2">
             <button type="button" onClick={copyShare} className="px-4 min-h-[44px] rounded-ctl bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">{copied ? t('ui.global.share.copied') : t('ui.global.share.copy')}</button>
             <button type="button" onClick={downloadShare} className="px-4 min-h-[44px] rounded-ctl border border-ink-700 text-sm text-fog-300 hover:text-fog-100 hover:border-accent-500">{t('ui.global.share.image')}</button>

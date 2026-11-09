@@ -29,13 +29,13 @@ interface Props {
   search?: boolean
 }
 
-const actionClass = 'inline-flex items-center min-h-[44px] px-2 whitespace-nowrap hover:text-accent-500 transition-colors'
+const actionClass = 'shrink-0 inline-flex items-center min-h-[44px] px-2 whitespace-nowrap hover:text-accent-500 transition-colors'
 
 /**
  * 全站共用頁頭（2026-11-08 批 G3 後續：修右上角色系浮鈕與頁頭重疊、手機版面）。
  * 一行：返回 · 站名 · 中間資訊 ·（彈性空白）· 色系切換按鈕（2026-11-08 批 G5：一鍵切換，不再有面板）· 動作 · 語言切換；
- * 放不下時只有最後的語言切換換到第二行（flex-wrap 從尾端換行），控制項之間不重疊。
- * 窄螢幕（<640px）站名縮為「nope」、版本號隱藏、語言切換不折行。
+ * 窄螢幕（<640px）站名縮為「nope」、版本號隱藏；放不下時只有最後的語言切換換到第二行（flex-wrap 從尾端換行），控制項之間不重疊。
+ * 批 G9 起 ≥640px 一律一行（flex-nowrap）：放不下時站名以省略號截斷，進度、按鈕不縮，頁頭不再長成兩行。
  */
 export function SiteHeader({ brand, back, center, actions = [], sticky = false, width = 'max-w-5xl', footer, search = true }: Props) {
   const { t } = useLocale()
@@ -47,17 +47,17 @@ export function SiteHeader({ brand, back, center, actions = [], sticky = false, 
         'z-40 w-full border-b border-ink-800 bg-ink-950/90 backdrop-blur',
       ].join(' ')}
     >
-      <div className={[width, 'mx-auto px-3 sm:px-6 py-2 sm:py-3 flex flex-wrap items-center gap-x-2 sm:gap-x-3 gap-y-1 text-xs mono uppercase tracking-[0.16em] sm:tracking-[0.2em] text-fog-500'].join(' ')}>
+      <div className={[width, 'mx-auto px-3 sm:px-6 py-2 sm:py-3 flex flex-wrap sm:flex-nowrap items-center gap-x-2 sm:gap-x-3 gap-y-1 text-xs mono uppercase tracking-[0.16em] lg:tracking-[0.2em] text-fog-500'].join(' ')}>
         {back && (
           <button type="button" onClick={back.onClick} className={actionClass} data-site-header-back>
             {back.label}
           </button>
         )}
-        <span className="inline-flex items-center min-h-[44px] whitespace-nowrap" data-site-header-brand>
+        <span className="inline-flex items-center min-h-[44px] whitespace-nowrap min-w-0" data-site-header-brand>
           <span className="sm:hidden">nope</span>
-          <span className="hidden sm:inline">{brand}</span>
+          <span className="hidden sm:block min-w-0 truncate">{brand}</span>
         </span>
-        {center && <span className="max-sm:hidden inline-flex items-center min-h-[44px] whitespace-nowrap normal-case tracking-normal">{center}</span>}
+        {center && <span className="max-sm:hidden shrink-0 inline-flex items-center min-h-[44px] whitespace-nowrap normal-case tracking-normal">{center}</span>}
         <span className="flex-1 min-w-0" aria-hidden="true" />
         {search && (
           <button type="button" onClick={() => navigateHash('#/search')} aria-label={t('ui.header.search')} title={t('ui.header.search')} data-header-search

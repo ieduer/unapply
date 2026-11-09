@@ -339,7 +339,7 @@ export function ResultPage({
                 <select
                   value={candidateProvince}
                   onChange={(e) => setCandidateProvince(e.target.value as CandidateProvince)}
-                  className="bg-ink-900 border border-ink-700 rounded-ctl px-3 py-2 text-xs text-fog-200 min-h-[40px]"
+                  className="bg-ink-900 border border-ink-700 rounded-ctl px-3 py-2 text-xs text-fog-200 min-h-[44px] sm:min-h-[40px]"
                 >
                   {candidateProvinceOptions.map((province) => (
                     <option key={province} value={province}>{provinceLabel(province)}</option>
@@ -384,7 +384,7 @@ export function ResultPage({
                         target="_blank"
                         rel="noreferrer noopener"
                         className={[
-                          'px-3 py-2 rounded-ctl text-xs mono min-h-[40px] inline-flex items-center',
+                          'px-3 py-2 rounded-ctl text-xs mono min-h-[44px] sm:min-h-[40px] inline-flex items-center',
                           link.kind === 'official'
                             ? 'bg-accent-500/12 text-accent-400 border border-accent-500/30'
                             : 'bg-ink-950 text-fog-300 border border-ink-700 hover:border-fog-500',
@@ -586,8 +586,8 @@ function YourRoute({ origin, list }: { origin: 'hk' | 'mo' | 'tw'; list: Partici
               {(links.length > 0 || hasList) && (
                 <p className="text-xs mono text-fog-500 flex flex-wrap items-center gap-x-2">
                   <span>{t('ui.branch.officialInfo')}</span>
-                  {channelList && <a className="inline-flex items-center min-h-[40px] underline hover:text-accent-500" href={channelList.source.url} target="_blank" rel="noreferrer noopener" data-route-list-link={channelList.id}>{t(`ui.result.route.list.${channelList.id}.link`, { publisher: t(`ui.source.${channelList.source.publisher}`) })} ↗</a>}
-                  {links.map(({ url, org }) => <a key={url} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{t(`ui.source.${org}`)} ↗</a>)}
+                  {channelList && <a className="inline-flex items-center min-h-[44px] sm:min-h-[40px] underline hover:text-accent-500" href={channelList.source.url} target="_blank" rel="noreferrer noopener" data-route-list-link={channelList.id}>{t(`ui.result.route.list.${channelList.id}.link`, { publisher: t(`ui.source.${channelList.source.publisher}`) })} ↗</a>}
+                  {links.map(({ url, org }) => <a key={url} className="inline-flex items-center min-h-[44px] sm:min-h-[40px] underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{t(`ui.source.${org}`)} ↗</a>)}
                 </p>
               )}
             </li>
@@ -621,7 +621,7 @@ function NextStage({ plan, origin, onGlobal, onHome }: { plan: FlowPlan; origin:
       <div className="flex flex-col gap-2" data-next-stage="none">
         <p className="text-sm text-fog-300 leading-relaxed">
           {t('ui.result.next.onlyMainland')}{' '}
-          <button type="button" onClick={onHome} className="underline hover:text-accent-500 min-h-[40px]">{t('ui.result.next.addDestinations')}</button>
+          <button type="button" onClick={onHome} className="underline hover:text-accent-500 min-h-[44px] sm:min-h-[40px]">{t('ui.result.next.addDestinations')}</button>
         </p>
         <p className="text-xs text-fog-500 leading-relaxed">{t('ui.result.next.note')}</p>
       </div>

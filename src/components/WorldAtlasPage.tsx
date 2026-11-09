@@ -172,12 +172,12 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
                 params={{
                   origin: t(`origin.${originOption.id}.label`),
                   pools: (origin === 'hk' || origin === 'mo' || origin === 'tw')
-                    ? <Rich k="ui.world.originNote.poolHkmotw" slots={{ a2: (children) => <button onClick={onHkMoTw} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{children}</button> }} />
+                    ? <Rich k="ui.world.originNote.poolHkmotw" slots={{ a2: (children) => <button onClick={onHkMoTw} className="inline-flex items-center min-h-[44px] sm:min-h-[40px] underline hover:text-accent-500">{children}</button> }} />
                     : origin === 'overseas'
-                      ? <Rich k="ui.world.originNote.poolOverseas" slots={{ a3: (children) => <button onClick={() => onOverseas(null, null)} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{children}</button> }} />
+                      ? <Rich k="ui.world.originNote.poolOverseas" slots={{ a3: (children) => <button onClick={() => onOverseas(null, null)} className="inline-flex items-center min-h-[44px] sm:min-h-[40px] underline hover:text-accent-500">{children}</button> }} />
                       : '',
                 }}
-                slots={{ a1: (children) => <button onClick={onStartMainland} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500 ml-1">{children}</button> }}
+                slots={{ a1: (children) => <button onClick={onStartMainland} className="inline-flex items-center min-h-[44px] sm:min-h-[40px] underline hover:text-accent-500 ml-1">{children}</button> }}
               />
             </div>
           )}
@@ -192,14 +192,14 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
               onClick={() => setShowPrograms((value) => !value)}
               aria-pressed={showPrograms}
               className={[
-                'px-4 min-h-[40px] rounded-ctl border text-sm',
+                'px-4 min-h-[44px] sm:min-h-[40px] rounded-ctl border text-sm',
                 showPrograms ? 'border-accent-500 bg-accent-500/10 text-fog-100' : 'border-ink-700 bg-ink-900 text-fog-300 hover:text-fog-100',
               ].join(' ')}
             >
               {t('ui.world.programsToggle', { n: payload.programs.length })}
             </button>
             {struckCount > 0 && (
-              <button onClick={resetSelection} className="px-4 min-h-[40px] rounded-ctl border border-ink-700 bg-ink-900 text-sm text-fog-300 hover:text-fog-100">
+              <button onClick={resetSelection} className="px-4 min-h-[44px] sm:min-h-[40px] rounded-ctl border border-ink-700 bg-ink-900 text-sm text-fog-300 hover:text-fog-100">
                 {t('ui.world.reset', { n: struckCount })}
               </button>
             )}
@@ -214,7 +214,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
                   onClick={() => toggleFamily(family.code)}
                   aria-pressed={struck}
                   className={[
-                    'px-4 py-2 rounded-ctl border text-sm min-h-[40px]',
+                    'px-4 py-2 rounded-ctl border text-sm min-h-[44px] sm:min-h-[40px]',
                     struck ? 'border-ink-800 bg-ink-950 text-fog-500 line-through' : 'border-ink-700 bg-ink-900 text-fog-100 hover:border-accent-500',
                   ].join(' ')}
                 >
@@ -338,7 +338,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
                           aria-pressed={struck}
                           title={locale === 'en' ? subject.nameZh : subject.nameEn}
                           className={[
-                            'px-3 py-2 rounded-ctl border text-sm min-h-[40px]',
+                            'px-3 py-2 rounded-ctl border text-sm min-h-[44px] sm:min-h-[40px]',
                             struck ? 'border-ink-800 bg-ink-950 text-fog-500 line-through' : 'border-ink-700 bg-ink-900 text-fog-100 hover:border-accent-500',
                             familyStruck ? 'cursor-not-allowed' : '',
                           ].join(' ')}
@@ -445,7 +445,7 @@ export function WorldAtlasPage({ origin, onBack, onAbout, onSchool, onStartMainl
                 {keptList.slice(0, 60).map(({ institution, seats }) => (
                   <tr key={institution.id} className="border-b border-ink-800 last:border-b-0 align-top">
                     <td className="px-3 py-2">
-                      <button onClick={() => { setSelectedId(institution.id); setSelectedProgramId(null); window.scrollTo({ top: 0, behavior: 'instant' }) }} className="block w-full min-h-[40px] text-left text-fog-100 hover:text-accent-500">
+                      <button onClick={() => { setSelectedId(institution.id); setSelectedProgramId(null); window.scrollTo({ top: 0, behavior: 'instant' }) }} className="block w-full min-h-[44px] sm:min-h-[40px] text-left text-fog-100 hover:text-accent-500">
                         {primaryName(institution)}
                         {secondaryName(institution) && <span className="block text-xs text-fog-500">{secondaryName(institution)}</span>}
                       </button>
@@ -540,23 +540,23 @@ function SelectedInstitution({
       </ul>
       <div className="flex flex-wrap items-center gap-3 text-sm">
         {institution.schoolId && (
-          <button onClick={() => onSchool(institution.schoolId!)} className="px-4 py-2 rounded-ctl bg-accent-500 text-ink-950 font-semibold hover:bg-accent-400 min-h-[40px]">
+          <button onClick={() => onSchool(institution.schoolId!)} className="px-4 py-2 rounded-ctl bg-accent-500 text-ink-950 font-semibold hover:bg-accent-400 min-h-[44px] sm:min-h-[40px]">
             {t('ui.world.selected.schoolDetail')}
           </button>
         )}
         {inHkMoTwPool && (
-          <button onClick={onHkMoTw} className="px-4 py-2 rounded-ctl border border-accent-500/40 bg-accent-500/10 text-accent-600 hover:bg-accent-500/15 min-h-[40px]">
+          <button onClick={onHkMoTw} className="px-4 py-2 rounded-ctl border border-accent-500/40 bg-accent-500/10 text-accent-600 hover:bg-accent-500/15 min-h-[44px] sm:min-h-[40px]">
             {t('ui.world.selected.hkmotw')}
           </button>
         )}
         {overseasRegion && (
-          <button onClick={() => onOverseas(overseasRegion, institution.id)} className="px-4 py-2 rounded-ctl border border-accent-500/40 bg-accent-500/10 text-accent-600 hover:bg-accent-500/15 min-h-[40px]" title={t('ui.world.selected.overseasTitle')}>
+          <button onClick={() => onOverseas(overseasRegion, institution.id)} className="px-4 py-2 rounded-ctl border border-accent-500/40 bg-accent-500/10 text-accent-600 hover:bg-accent-500/15 min-h-[44px] sm:min-h-[40px]" title={t('ui.world.selected.overseasTitle')}>
             {t('ui.world.selected.overseas')}
           </button>
         )}
         {institution.website && (
           <a
-            className="px-4 py-2 rounded-ctl border border-ink-700 text-fog-100 hover:border-accent-500 min-h-[40px] inline-flex items-center"
+            className="px-4 py-2 rounded-ctl border border-ink-700 text-fog-100 hover:border-accent-500 min-h-[44px] sm:min-h-[40px] inline-flex items-center"
             href={institution.website.url}
             target="_blank"
             rel="noreferrer noopener"

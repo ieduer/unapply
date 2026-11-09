@@ -214,7 +214,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
               <select
                 value={candidateProvince}
                 onChange={(e) => setCandidateProvince(e.target.value as CandidateProvince)}
-                className="bg-ink-900 border border-ink-700 rounded-ctl px-3 py-2 text-xs text-fog-200 min-h-[40px]"
+                className="bg-ink-900 border border-ink-700 rounded-ctl px-3 py-2 text-xs text-fog-200 min-h-[44px] sm:min-h-[40px]"
               >
                 {candidateProvinceOptions.map((province) => (
                   <option key={province} value={province}>{provinceLabel(province)}</option>
@@ -230,7 +230,7 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                 target="_blank"
                 rel="noreferrer noopener"
                 className={[
-                  'px-3 py-2 rounded-ctl text-xs mono min-h-[40px] inline-flex items-center',
+                  'px-3 py-2 rounded-ctl text-xs mono min-h-[44px] sm:min-h-[40px] inline-flex items-center',
                   link.kind === 'official'
                     ? 'bg-accent-500/12 text-accent-400 border border-accent-500/30'
                     : 'bg-ink-900 text-fog-300 border border-ink-700 hover:border-fog-500',
@@ -593,7 +593,7 @@ function EvidenceRow({ label, items }: { label: string; items: ResearchEvidence[
             href={item.url}
             target="_blank"
             rel="noreferrer noopener"
-            className="inline-flex max-w-full items-center min-h-[40px] rounded-ctl border border-ink-700 bg-ink-900 px-3 py-2 text-xs text-fog-300 hover:border-fog-500"
+            className="inline-flex max-w-full items-center min-h-[44px] sm:min-h-[40px] rounded-ctl border border-ink-700 bg-ink-900 px-3 py-2 text-xs text-fog-300 hover:border-fog-500"
             title={item.note}
           >
             <span className="truncate">

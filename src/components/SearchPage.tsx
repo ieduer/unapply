@@ -244,7 +244,7 @@ export function SearchPage({ onBack }: { onBack: () => void }) {
                       <li key={row.moeCode} className="border border-ink-800 bg-ink-900/78 rounded-ctl px-4 py-3 flex flex-col gap-1" data-major-school={row.moeCode}>
                         <div className="flex flex-wrap items-baseline justify-between gap-x-3">
                           {rec?.siteRoute
-                            ? <button type="button" onClick={() => go(rec.siteRoute!)} className="serif text-base text-left underline decoration-ink-700 hover:text-accent-500 min-h-[40px]">{rec ? displayName(rec, locale) : row.moeCode}</button>
+                            ? <button type="button" onClick={() => go(rec.siteRoute!)} className="serif text-base text-left underline decoration-ink-700 hover:text-accent-500 min-h-[44px] sm:min-h-[40px]">{rec ? displayName(rec, locale) : row.moeCode}</button>
                             : <span className="serif text-base">{row.moeCode}</span>}
                           <span className="text-xs mono text-fog-500">{rec?.province ? provinceLabel(rec.province) : ''}</span>
                         </div>
@@ -278,7 +278,7 @@ export function SearchPage({ onBack }: { onBack: () => void }) {
                           return (
                             <li key={row.id} className="border border-ink-800 bg-ink-900/78 rounded-ctl px-3 py-2 flex flex-col gap-1" data-major-overseas-row={row.id}>
                               {slug
-                                ? <button type="button" onClick={() => go(`#/overseas/${encodeURIComponent(slug)}/${encodeURIComponent(row.id)}`)} className="text-left text-sm underline decoration-ink-700 hover:text-accent-500 min-h-[40px]">{name}</button>
+                                ? <button type="button" onClick={() => go(`#/overseas/${encodeURIComponent(slug)}/${encodeURIComponent(row.id)}`)} className="text-left text-sm underline decoration-ink-700 hover:text-accent-500 min-h-[44px] sm:min-h-[40px]">{name}</button>
                                 : <span className="text-sm">{name}</span>}
                               <span className="text-xs mono text-fog-500">{regionLabel(row.region)} · {row.ranks.map(([, rank]) => t('ui.search.major.overseas.rank', { rank })).join(' / ')}</span>
                             </li>

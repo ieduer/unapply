@@ -71,7 +71,7 @@ export function OriginBranch({ origin, prefs, onChange }: Props) {
               {links.map(({ url, org }, index) => (
                 <span key={url} className="inline-flex items-center gap-x-2">
                   {index > 0 && <span aria-hidden="true">·</span>}
-                  <a className="inline-flex items-center min-h-[40px] underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{t(`ui.source.${org}`)} ↗</a>
+                  <a className="inline-flex items-center min-h-[44px] sm:min-h-[40px] underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{t(`ui.source.${org}`)} ↗</a>
                 </span>
               ))}
             </p>

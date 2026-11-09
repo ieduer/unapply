@@ -178,13 +178,13 @@ function WorldMapFeature({ onWorld }: { onWorld: () => void }) {
   return (
     <section className="border border-ink-800 bg-ink-900/78 rounded-panel p-4 sm:p-5 flex flex-col gap-2 sm:gap-3 backdrop-blur-xl" data-landing-world>
       <div className="flex items-center justify-between gap-3">
-        <h2 className="serif text-xl sm:text-2xl text-fog-100">{t('ui.landing.world.title')}</h2>
+        <h2 className="serif text-lg sm:text-2xl text-fog-100 min-w-0">{t('ui.landing.world.title')}</h2>
         <button type="button" onClick={onWorld} data-landing-world-go className="shrink-0 inline-flex items-center gap-2 min-h-[44px] px-4 rounded-ctl bg-accent-500 text-ink-950 text-sm font-semibold hover:bg-accent-400">
           {t('ui.landing.world.go')} <span aria-hidden="true">→</span>
         </button>
       </div>
-      <p className="text-sm text-fog-300 leading-snug">{t('ui.landing.world.lede', { subjects: n(atlasThumb.subjects) })} <span className="mono text-xs text-fog-500 whitespace-nowrap">{t('ui.landing.world.meta', { institutions: n(atlasThumb.institutions) })}</span></p>
-      <svg viewBox={`0 0 ${atlasThumb.width} ${atlasThumb.height}`} preserveAspectRatio="xMidYMid meet" className="w-full h-auto max-h-[18vh] lg:max-h-none border border-ink-800 rounded-panel bg-ink-950" role="img" aria-label={t('ui.landing.world.mapAria')} data-landing-world-map>
+      <p className="text-sm text-fog-300 leading-snug">{t('ui.landing.world.lede', { subjects: n(atlasThumb.subjects) })} <span className="hidden sm:inline mono text-xs text-fog-500 whitespace-nowrap">{t('ui.landing.world.meta', { institutions: n(atlasThumb.institutions) })}</span></p>
+      <svg viewBox={`0 0 ${atlasThumb.width} ${atlasThumb.height}`} preserveAspectRatio="xMidYMid meet" className="w-full h-auto max-h-[16vh] sm:max-h-[18vh] lg:max-h-none border border-ink-800 rounded-panel bg-ink-950" role="img" aria-label={t('ui.landing.world.mapAria')} data-landing-world-map>
         <path d={atlasThumb.land} className="atlas-land" />
         <path d={dotPath} className="atlas-dot" />
       </svg>

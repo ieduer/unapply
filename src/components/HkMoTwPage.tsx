@@ -90,8 +90,8 @@ export function HkMoTwPage({ origin, originPrefs, onBack, onAbout, onWorld, onSt
                 k="ui.hkmotw.originNote"
                 params={{ origin: t(`origin.${originOption.id}.label`) }}
                 slots={{
-                  a1: (children) => <button onClick={onWorld} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{children}</button>,
-                  a2: (children) => <button onClick={onStartMainland} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{children}</button>,
+                  a1: (children) => <button onClick={onWorld} className="inline-flex items-center min-h-[44px] sm:min-h-[40px] underline hover:text-accent-500">{children}</button>,
+                  a2: (children) => <button onClick={onStartMainland} className="inline-flex items-center min-h-[44px] sm:min-h-[40px] underline hover:text-accent-500">{children}</button>,
                 }}
               />
               {originPrefs.qualification && <p className="mt-1 text-xs mono text-fog-500">{t('ui.overseas.qual.selector')}{t('ui.common.colon')}{t(`origin.qual.${originPrefs.qualification}.label`)}</p>}
@@ -169,7 +169,7 @@ function ChannelRow({ channel, open, onToggle }: { channel: HkMoTwChannel; open:
         <span className="text-fog-300">{t(`ui.global.channel.${channel.channel}`)}</span>
         <span className="text-xs mono text-fog-500">{channel.level}{channel.validFor ? ` · ${channel.validFor}` : t('ui.hkmotw.channel.yearMissing')}</span>
         {hasDetails && (
-          <button onClick={onToggle} aria-expanded={open} className="ml-auto text-xs mono text-accent-500 hover:text-accent-400 min-h-[40px]">
+          <button onClick={onToggle} aria-expanded={open} className="ml-auto text-xs mono text-accent-500 hover:text-accent-400 min-h-[44px] sm:min-h-[40px]">
             {open ? t('ui.hkmotw.channel.collapse') : t('ui.hkmotw.channel.expand')}
           </button>
         )}

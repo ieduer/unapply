@@ -194,7 +194,7 @@ export function QuestionRunner({
       <SiteHeader
           search={false}
         sticky
-        width="max-w-2xl"
+        width="max-w-5xl"
         brand={t('ui.landing.brand')}
         back={{ label: <>← {activeIdx === 0 ? t('ui.runner.back') : t('ui.runner.prev')}</>, onClick: prev }}
         center={<span className="mono text-fog-500">{t('ui.runner.progress', { section: sectionLabel(q.section), index: activeIdx + 1, total })}</span>}
@@ -229,7 +229,7 @@ export function QuestionRunner({
                 <select
                   value={candidateProvince}
                   onChange={(event) => onCandidateProvinceChange(event.target.value as CandidateProvince)}
-                  className="bg-ink-950 border border-ink-700 rounded-ctl px-2 py-2 text-fog-200 min-h-[40px]"
+                  className="bg-ink-950 border border-ink-700 rounded-ctl px-2 py-2 text-fog-200 min-h-[44px] sm:min-h-[40px]"
                 >
                   {candidateProvinceOptions.map((province) => (
                     <option key={province} value={province}>{provinceLabel(province)}</option>

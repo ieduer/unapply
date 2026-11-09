@@ -54,13 +54,13 @@ export function MajorSummary<S extends { id: string; moeCode?: string | null }>(
                     const school = byCode.get(code)!
                     return (
                       <li key={code}>
-                        <button type="button" onClick={() => onSchool(school.id)} className="underline decoration-ink-700 hover:text-accent-500 min-h-[40px]" data-major-class-school={code}>
+                        <button type="button" onClick={() => onSchool(school.id)} className="underline decoration-ink-700 hover:text-accent-500 min-h-[44px] sm:min-h-[40px]" data-major-class-school={code}>
                           {schoolName(school)}{combo && !admissible.has(code) ? <span className="text-fog-500 text-xs"> {t('ui.majors.notAdmissible')}</span> : null}
                         </button>
                       </li>
                     )
                   })}
-                  {row.schools.length > limit && <li><button type="button" onClick={() => setLimit((x) => x + 80)} className="text-fog-300 underline min-h-[40px]">{t('ui.majors.more', { n: n(row.schools.length - limit) })}</button></li>}
+                  {row.schools.length > limit && <li><button type="button" onClick={() => setLimit((x) => x + 80)} className="text-fog-300 underline min-h-[44px] sm:min-h-[40px]">{t('ui.majors.more', { n: n(row.schools.length - limit) })}</button></li>}
                 </ul>
               )}
             </li>

@@ -62,3 +62,17 @@ test('地圖縮圖：由 atlas 決定性生成（版本＝內容雜湊）；點�
   assert.equal(atlasThumb.dots.split(' ').length, new Set(atlas.institutions.map((i) => `${Math.round(i.x)},${Math.round(i.y)}`)).size)
   assert.ok(atlasThumb.land.length < 20000)
 })
+
+test('頁頭 ≥640px 一行（站名截斷、按鈕不縮）；手機獨立控制項 44px', () => {
+  const header = read('src/components/SiteHeader.tsx')
+  assert.match(header, /flex-wrap sm:flex-nowrap/)
+  assert.match(header, /hidden sm:block min-w-0 truncate/)
+  assert.match(header, /const actionClass = 'shrink-0 /)
+  assert.match(read('src/components/QuestionRunner.tsx'), /width="max-w-5xl"/)
+  assert.match(read('src/components/GlobalSubtraction.tsx'), /width="max-w-5xl"/)
+  for (const f of readdirSync('src/components').filter((x) => x.endsWith('.tsx'))) {
+    const src = read(`src/components/${f}`)
+    assert.equal(/min-h-\[40px\](?!\S)/.test(src.replace(/sm:min-h-\[40px\]/g, '')), false, `${f}: phone controls need min-h-[44px] sm:min-h-[40px]`)
+  }
+  assert.match(read('src/index.css'), /\.tap \{\n  display: inline-flex;\n  align-items: center;\n  min-height: 44px;/)
+})

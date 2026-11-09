@@ -25,7 +25,7 @@ export function MainlandChannels({ region }: { region: 'hk' | 'mo' | 'tw' }) {
               <p className="text-xs mono text-fog-500 break-words leading-relaxed flex flex-wrap items-center gap-x-2">
                 <span>{t('ui.branch.officialInfo')}</span>
                 {links.length > 0
-                  ? links.map(({ url, org }) => <a key={url} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{t(`ui.source.${org}`)} ↗</a>)
+                  ? links.map(({ url, org }) => <a key={url} className="inline-flex items-center min-h-[44px] sm:min-h-[40px] underline hover:text-accent-500" href={url} target="_blank" rel="noreferrer noopener">{t(`ui.source.${org}`)} ↗</a>)
                   : <span>{t('ui.overseas.unreadPrefix')}</span>}
               </p>
             </li>

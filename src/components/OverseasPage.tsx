@@ -128,7 +128,7 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
                 <select
                   value={originPrefs.qualification ?? ''}
                   onChange={(event) => onOriginPrefsChange({ ...originPrefs, qualification: isQualification(event.target.value) ? event.target.value : null })}
-                  className="bg-ink-950 border border-ink-700 rounded-ctl px-2 py-2 text-fog-200 min-h-[40px] max-w-full"
+                  className="bg-ink-950 border border-ink-700 rounded-ctl px-2 py-2 text-fog-200 min-h-[44px] sm:min-h-[40px] max-w-full"
                 >
                   <option value="">{t('ui.overseas.qual.none')}</option>
                   {qualificationChoices.map((qualification) => <option key={qualification} value={qualification}>{t(`origin.qual.${qualification}.label`)}</option>)}
@@ -145,11 +145,11 @@ export function OverseasPage({ origin, originPrefs, onOriginPrefsChange, regionS
                 k="ui.overseas.originNote"
                 params={{
                   origin: t(`origin.${originOption.id}.label`),
-                  hkmotw: (origin === 'hk' || origin === 'mo' || origin === 'tw') ? <Rich k="ui.overseas.originNote.hkmotw" slots={{ a3: (children) => <button onClick={onHkMoTw} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{children}</button> }} /> : '',
+                  hkmotw: (origin === 'hk' || origin === 'mo' || origin === 'tw') ? <Rich k="ui.overseas.originNote.hkmotw" slots={{ a3: (children) => <button onClick={onHkMoTw} className="inline-flex items-center min-h-[44px] sm:min-h-[40px] underline hover:text-accent-500">{children}</button> }} /> : '',
                 }}
                 slots={{
-                  a1: (children) => <button onClick={onWorld} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{children}</button>,
-                  a2: (children) => <button onClick={onStartMainland} className="inline-flex items-center min-h-[40px] underline hover:text-accent-500">{children}</button>,
+                  a1: (children) => <button onClick={onWorld} className="inline-flex items-center min-h-[44px] sm:min-h-[40px] underline hover:text-accent-500">{children}</button>,
+                  a2: (children) => <button onClick={onStartMainland} className="inline-flex items-center min-h-[44px] sm:min-h-[40px] underline hover:text-accent-500">{children}</button>,
                 }}
               />
             </div>
@@ -244,7 +244,7 @@ function RegionSection({ row, index, institutionId, onBackToList, onWorld, marki
   return (
     <section className="flex flex-col gap-6" aria-label={t('ui.overseas.region.aria', { region: regionName(row, locale) })}>
       <div className="flex flex-col gap-2">
-        <button onClick={onBackToList} className="self-start text-xs mono uppercase tracking-[0.2em] text-fog-500 hover:text-accent-500 min-h-[40px]">{t('ui.overseas.region.allRegions')}</button>
+        <button onClick={onBackToList} className="self-start text-xs mono uppercase tracking-[0.2em] text-fog-500 hover:text-accent-500 min-h-[44px] sm:min-h-[40px]">{t('ui.overseas.region.allRegions')}</button>
         <h2 className="serif text-3xl leading-tight">{regionName(row, locale)} {locale !== 'en' && <span className="text-fog-500 text-xl">· {row.code}</span>}</h2>
         <p className="text-sm text-fog-300 leading-relaxed">
           <Rich
@@ -450,7 +450,7 @@ function InstitutionRow({ inst, open, onToggle, autoScroll, marking }: { inst: O
           )}
           <StatusBadge text={t(institutionBadgeKey(inst))} />
           <a className="tap text-xs mono text-accent-500 hover:text-accent-400" href={inst.website} target="_blank" rel="noreferrer noopener">{t('ui.overseas.inst.website')}</a>
-          <button onClick={onToggle} aria-expanded={open} className="text-xs mono text-accent-500 hover:text-accent-400 min-h-[40px] px-1">{open ? t('ui.overseas.inst.collapse') : t('ui.overseas.inst.expand')}</button>
+          <button onClick={onToggle} aria-expanded={open} className="text-xs mono text-accent-500 hover:text-accent-400 min-h-[44px] sm:min-h-[40px] px-1">{open ? t('ui.overseas.inst.collapse') : t('ui.overseas.inst.expand')}</button>
         </div>
       </div>
       {open && <InstitutionDetail inst={inst} />}

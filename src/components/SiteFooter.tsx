@@ -22,7 +22,7 @@ export function SiteFooter({ width = 'max-w-5xl' }: { width?: 'max-w-2xl' | 'max
         <Dot />
         <FooterLink href="https://my.bdfz.net" title={t('ui.landing.footer.my')}>my</FooterLink>
         <Dot />
-        <a className="inline-flex items-center min-h-[40px] hover:text-accent-500 text-fog-300" href="#/about" onClick={toAbout} data-footer-about>{t('ui.common.about')}</a>
+        <a className="inline-flex items-center min-h-[44px] sm:min-h-[40px] hover:text-accent-500 text-fog-300" href="#/about" onClick={toAbout} data-footer-about>{t('ui.common.about')}</a>
       </p>
       <p className="flex flex-wrap items-center gap-x-2" data-footer-line="sources">
         <span className="text-fog-300">{t('ui.landing.footer.sources')}</span>
@@ -48,7 +48,7 @@ export function SiteFooter({ width = 'max-w-5xl' }: { width?: 'max-w-2xl' | 'max
 
 function FooterLink({ href, title, children }: { href: string; title: string; children: ReactNode }) {
   return (
-    <a className="inline-flex items-center min-h-[40px] hover:text-accent-500" href={href} title={title} aria-label={title} target="_blank" rel="noreferrer noopener">
+    <a className="inline-flex items-center min-h-[44px] sm:min-h-[40px] hover:text-accent-500" href={href} title={title} aria-label={title} target="_blank" rel="noreferrer noopener">
       {children}
     </a>
   )
