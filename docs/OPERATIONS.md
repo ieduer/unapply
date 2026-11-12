@@ -10,7 +10,7 @@ Documentation status: generated from local source, Git/GitHub audit, project cat
 
 - Canonical local path: `/Users/ylsuen/CF/sites/interactive/unapply`
 - Git authority: `ieduer/unapply`
-- Git branch: `master`; deployed source `3250214` (batch H1, deployment `cc82b611`); documentation HEAD is separately recorded by Git
+- Git branch: `master`; deployed source `f8257bf` (batch H2, deployment `f828793e`); documentation HEAD is separately recorded by Git
 - Runtime config: `unapply/wrangler.jsonc` (name `unapply`)
 - Current state: [PROJECT_STATE.md](../PROJECT_STATE.md)
 - Workspace resource routing: [project resource index](../../../../reports/operations/project_resource_index.md)
@@ -35,7 +35,7 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 
 | Resource | Live type | Readback | Detail |
 | --- | --- | --- | --- |
-| `unapply` | Pages | verified 2026-11-12 | production branch `master`; canonical deployment `cc82b611-c76f-4ad7-86d6-e1caa29149f0` (source `3250214`, batch H1) |
+| `unapply` | Pages | verified 2026-11-12 | production branch `master`; canonical deployment `f828793e-cba7-43d2-a2ff-8817ca810acf` (source `f8257bf`, batch H2) |
 
 ## Authority and dependencies
 
@@ -54,10 +54,10 @@ Live Cloudflare matching is metadata-only and does not prove application health:
 - External/local build inputs, archived paths, receipts, retention, and hydrate commands not stated below are `review_required` and block deletion.
 
 Catalog backup evidence:
-- Cloudflare immutable Pages deployments: current=cc82b611-c76f-4ad7-86d6-e1caa29149f0 (source 3250214, batch H1), previous=cdc53cad-8e7c-4c2d-83c5-d5eb941407fa (source 7c3d29e, batch G9), earlier=1effaee3-eddd-4e37-9d66-82092e094c1c (source 7bdf253, batch G8b), be766ef2-1b9d-45c3-be56-33c0c6f3dc4e (source 46e3528, batch G8), 1bf7627b-72b4-44d1-a05d-56c2a2c6b1bb (source 49efd96, batch G7), f5f28048-7340-4206-836d-7def826265c0 (source 290e4ef, batch G6c), 0c801d21-d5f0-4773-9f99-584c7bbb7b13 (source e82e643, batch G6 extension), bec50ec9-a137-46cc-9c12-8ff1338395a1 (source 9dab1bd, batch G6), ec5dc3aa-b97b-4d96-b1ff-5f1916bb4b40 (source 7ba4882, batch G5), d0f6b69e-4363-4822-8a86-97dd9e535db3 (source 3c22aae, batch G4), b5b74217-4cd5-49a8-90bc-2a0f8f95d6bc (source 647525f, batch G3 follow-up), 5ac934ec-f693-4788-abdd-c5fd32dd2932 (source 9f8f500, batch G3), 79c3c1b2-6ec2-4320-95e3-6f74a51f04a4 (source f7f3484, batch G2), 01022627-65fe-4987-ac32-15b78c6d913c (source 18bf5f2, batch G1), df4540a2-5657-4676-bd83-9026fa232579 (source 26bad8c, batch D3), c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782, batch D1), earlier=b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1, batch C), 8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
+- Cloudflare immutable Pages deployments: current=f828793e-cba7-43d2-a2ff-8817ca810acf (source f8257bf, batch H2), previous=cc82b611-c76f-4ad7-86d6-e1caa29149f0 (source 3250214, batch H1), earlier=cdc53cad-8e7c-4c2d-83c5-d5eb941407fa (source 7c3d29e, batch G9), 1effaee3-eddd-4e37-9d66-82092e094c1c (source 7bdf253, batch G8b), be766ef2-1b9d-45c3-be56-33c0c6f3dc4e (source 46e3528, batch G8), 1bf7627b-72b4-44d1-a05d-56c2a2c6b1bb (source 49efd96, batch G7), f5f28048-7340-4206-836d-7def826265c0 (source 290e4ef, batch G6c), 0c801d21-d5f0-4773-9f99-584c7bbb7b13 (source e82e643, batch G6 extension), bec50ec9-a137-46cc-9c12-8ff1338395a1 (source 9dab1bd, batch G6), ec5dc3aa-b97b-4d96-b1ff-5f1916bb4b40 (source 7ba4882, batch G5), d0f6b69e-4363-4822-8a86-97dd9e535db3 (source 3c22aae, batch G4), b5b74217-4cd5-49a8-90bc-2a0f8f95d6bc (source 647525f, batch G3 follow-up), 5ac934ec-f693-4788-abdd-c5fd32dd2932 (source 9f8f500, batch G3), 79c3c1b2-6ec2-4320-95e3-6f74a51f04a4 (source f7f3484, batch G2), 01022627-65fe-4987-ac32-15b78c6d913c (source 18bf5f2, batch G1), df4540a2-5657-4676-bd83-9026fa232579 (source 26bad8c, batch D3), c26a1b75-ae96-47f9-8dd8-7c2d931cf423 (source df6c782, batch D1), earlier=b3e0f4c8-4fe5-4e83-863f-476cd41ce836 (source 5b18cd1, batch C), 8cb266cb-2eb2-409d-915b-a90a28447448 (source ccf1770), 021e1a3d-164b-408b-a2af-fcec41712d31 (source 6b70522), 7aa5e5b5-345e-403b-8cd6-d3d0076178d1 (source 2e79f9b), 0ec6d42f-3b93-4859-bd22-813e7f000c3e (source d4ae514), d7a7924d-dfa2-49b8-ae19-52054b56266c (source 6fa8a4e), 84a4afd1-0602-4c1c-af4c-d5173c94da94 (source f2aa606), 321e6e06-3841-4e8c-b218-ab37924dffb4 (source 0b02a20), 94090cd4-d483-4782-abfc-0146f7bc96d8 (source c6c0410), 7a066074-c3ac-4efc-979c-f65f583f40df (source 74f225e, MOE 2026 with old palette), 5df11243-e7b1-48b1-9c2f-902f9757f0ea (source 0352320, MOE 2025)
 
 Catalog restore evidence:
-- restore previous code/assets by rolling back to production deployment cdc53cad-8e7c-4c2d-83c5-d5eb941407fa (source 7c3d29e, batch G9) through the reviewed rollback transaction
+- restore previous code/assets by rolling back to production deployment cc82b611-c76f-4ad7-86d6-e1caa29149f0 (source 3250214, batch H1) through the reviewed rollback transaction
 
 Before deleting any local resource, satisfy the workspace path-preserving archive, remote readback, isolated restore, receipt, handbook, and project-state gates.
 
@@ -134,7 +134,7 @@ Catalog deploy commands (not authorization; fresh preflight remains mandatory):
 - npm --prefix "/Users/ylsuen/CF/sites/interactive/unapply" run pages:deploy
 
 Rollback/failback authorities:
-- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after batch H1: `cdc53cad-8e7c-4c2d-83c5-d5eb941407fa`, source `7c3d29e`, batch G9), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
+- Reviewed rollback transaction under `runbooks/release_authority_governance.md` to the deployment recorded as `rollback` in `platform/release-authority.json` (after batch H2: `cc82b611-c76f-4ad7-86d6-e1caa29149f0`, source `3250214`, batch H1), after a fresh live baseline readback; the newest batch section below names what a rollback removes. Direct API rollback without a registered transaction is not release authority.
 
 For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Queue state. Use backup/restore or backward-compatible forward-fix procedures verified for the exact resource.
 
@@ -161,7 +161,8 @@ For data-backed projects, immutable code rollback does not restore D1/KV/R2/DO/Q
 5. Dependency regression: matrix fan-out, shared hubs, clone family, App/VPS as applicable.
 6. Backup/restore: catalog evidence above; missing exact evidence is blocking for writes/deletion.
 7. Rollback/failback: catalog authority above, refreshed live before release.
-8. Last verified: 2026-11-12 UTC — production `cc82b611` from `3250214` (batch H1: slim catalogue, stall-timeout downloads with retry and progress, idle prefetch, shared HuWen font slices loaded after the questionnaire data, bounded locale wait; `_headers`, Function and canonical `schools.json` unchanged); 26 gates including the new `test:runtime-core`; 174 of 174 assets on candidate, custom and immutable hosts; 31 functional checks with trusted clicks on the candidate and on the immutable deployment; batch G9 regression tool on the candidate: 15 flows／73 steps, 29 bank checks and 168 layout samples all identical to the accepted G9 run; production under the same throttled profiles as before: first question reached at 150 KB/s (6.1 s) and 60 KB/s (13.9 s) where the previous version failed with “signal timed out”; health active. Evidence: `/Users/ylsuen/CF/reports/operations/nope-perf-catalog-20261112/`.
+8. Last verified: 2026-11-12 UTC — production `f828793e` from `f8257bf` (batch H2: non-landing pages as lazy chunks with retrying importers and a page error boundary, early locale dictionary request from an inline script, site font subset `public/fonts/huwen-nope.*` inserted before the shared slices, loading percentage registered up front; `_headers`, Function, shared-ui and canonical `schools.json` unchanged); 27 gates including the new `test:first-screen`; 206 of 206 assets on candidate, custom and immutable hosts; 38 functional checks with trusted clicks on the candidate (three runs) and on the immutable deployment (two runs), including a returning-visitor (cached reload) check; batch G9 regression tool on the final candidate: 73 flow steps, 29 bank checks and 168 layout rows identical to the accepted G9 run; production under the same throttled profiles as batch H1: landing title 3.1 → 2.5 s (150 KB/s) and 6.5 → 5.6 s (60 KB/s), landing body font 1.52 MB → 0.21 MB; health active. Evidence: `/Users/ylsuen/CF/reports/operations/nope-perf-catalog-20261112/nope-h2/`.
+   Previous verification: 2026-11-12 UTC — production `cc82b611` from `3250214` (batch H1: slim catalogue, stall-timeout downloads with retry and progress, idle prefetch, shared HuWen font slices loaded after the questionnaire data, bounded locale wait; `_headers`, Function and canonical `schools.json` unchanged); 26 gates including the new `test:runtime-core`; 174 of 174 assets on candidate, custom and immutable hosts; 31 functional checks with trusted clicks on the candidate and on the immutable deployment; batch G9 regression tool on the candidate: 15 flows／73 steps, 29 bank checks and 168 layout samples all identical to the accepted G9 run; production under the same throttled profiles as before: first question reached at 150 KB/s (6.1 s) and 60 KB/s (13.9 s) where the previous version failed with “signal timed out”; health active. Evidence: `/Users/ylsuen/CF/reports/operations/nope-perf-catalog-20261112/`.
    Previous verification: 2026-11-09 UTC — production `cdc53cad` from `7c3d29e` (batch G9: square controls, one-click cycle buttons, tighter top spacing, featured global subject map, phone touch targets 44 px, one-row header from 640 px; twenty-five gates; candidate 14 checks incl. 12 first screens and the full earlier acceptance with 168 layout samples now scanning corners, phone targets and header gap, zero failures; production read-only plus the full G9 acceptance re-clicked on the immutable URL). Before that `1effaee3` from `7bdf253` (batch G8b: province lists in administrative-division code order; twenty-four gates; candidate 4 checks × 6 rounds plus the full earlier acceptance and 168 layout samples, zero failures). Before that `be766ef2` from `46e3528` (batch G8: R1／R2 research ingested — Macao public／private and Hong Kong tuition questions, Saint Joseph not counted for mainland students, Macao channel rulings, GATZS／GSAT participation lists, overseas English／tuition wording; /db/v1 `b13acbf01ca1`; candidate 6 rounds × 6 checks plus the full earlier acceptance and 168 layout samples, zero failures; see the batch G8 section). Before that `1bf7627b` from `49efd96` (batch G7: #/search for schools and majors, majors-by-class and GRAS-subject summaries, direct hire as a non-university path with its validity-ruled question; twenty-three gates; candidate 6 rounds × 10 checks plus the full earlier acceptance re-run and 168 layout samples, zero failures; see the batch G7 section). Before that `f5f28048` from `290e4ef` (batch G6c: five interaction fixes — non-local admissions link, no version hash in headers, one-sentence local entry, keep-one notice, overseas-only qualification note; candidate 6 rounds × 5 fixes plus the full G6-extension acceptance re-run, zero failures; see the batch G6c section). Before that `0c801d21` from `e82e643` (batch G6 extension: per-destination question banks filtered by validity — overseas 3, Hong Kong 2 for mainland origin／1 otherwise, Macao 0, Taiwan 0; `#/global` one question per page; non-mainland origins skip S1 and A6; /db/v1 `11bdc13613b3` unchanged); twenty-two gates on the release commit (incl. new `test:regions`, `audit:regions`), 139 of 139 served assets on candidate, custom and immutable hosts; candidate real-click acceptance of 12 flows plus deep links with every option's crossed count equal to `validity-audit.md` (21 step pages), 144 layout samples with zero failures; owner path re-clicked on the immutable production URL; health active. Exact evidence in the batch G6 extension section below.
 
 ## Synchronized documentation and handoff
@@ -557,7 +558,36 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 
 **回滾**：`01022627`／`18bf5f2`（批 G1），受審回滾交易；只切 Pages 版本，無資料庫遷移；回滾後 `#/global` 路由消失（回首頁）、首頁主按鈕回到「看港澳臺院校池／看海外可申請學校」，`unapply.globalSubtraction.v1` 殘留無害（舊版不讀它），學習記錄不受影響。證據：`reports/operations/nope-global-roadmap-20261107/nope-g2/`；資源 `nope-g2/resources.md`。
 
-## 2026-11-12 批 H1：載入效能與「目錄載入失敗」修復（兩站同批；已上線，當前權威）
+## 2026-11-12 批 H2：首屏瘦身——主包只帶首頁、字典提早下載、本站字型小子集（已上線，當前權威）
+
+**授權**：批 H1 收尾時問站長「要不要繼續把 nope 首屏再瘦身（拆主包、字型小子集）？」，站長 2026-11-12 選「繼續瘦身」。限制同批 H1：不涉付費、不新增 Cloudflare 資源、不寫 User Center、不改題目／AnswerMap／learning manifest／Function；本批也不動 `src/shared-ui`（path.bdfz.net 不發布）。
+
+**正式部署**：`f828793e-cba7-43d2-a2ff-8817ca810acf`，來源 `f8257bfeea9492cb9bb8a393ca362c8a8efa3124`（`6caee5d` 三項瘦身＋`97c3e88` 進度條不倒退＋`f8257bf` 字型插入順序），生效 `2026-11-12T14:09:12Z`（Cloudflare `ended_on`）；最終候選 `5d0de85f`。作廢候選：`c32e3041`／`6caee5d`（載入進度條偶爾倒退一格，H1 就有）、`e4da2027`／`97c3e88`（回訪者有快取的重新載入會把二十多片共用字型分片全抓回來）。
+
+**改動**（規則全文在 `docs/MAINTENANCE_MANUAL.md` §5.6「批 H2」）：
+- `src/App.tsx`：首頁以外十個頁面都是 `React.lazy`，importer 以 `src/lib/lazyImport.ts` 的 `retryingImport` 包住（失敗再試 2 次）；`importRoutePage` 讓問卷／結果／詳情頁的 chunk 與資料同時下載，`importLikelyNextPages` 在空閒時預取下一頁；`src/components/PageErrorBoundary.tsx` 接住載不下來的頁面。主 chunk 482 → 311 KB（gzip 146 → 99 KB，正式站 br 141 → 98 KB）。
+- `index.html` 的 `<script data-early-locale>`：介面語言不是正體時，在主包下載期間先發出字典請求；`src/i18n/core.ts` 的 `takeEarlyLocale` 接手。版本佔位符 `%NOPE_I18N_VERSION%` 由 `vite.config.ts` 的外掛在建置時填入（讀 `src/data/i18nManifest.ts`）。
+- `public/fonts/huwen-nope.*`（七個 woff2＋一份樣式表，共約 620 KB；`scripts/build_site_font.py` 手動產生，來源字型 `https://mx.bdfz.net/data/fonts/HuWenMingChaoTi.woff2`，解壓後 ttf sha256 `8cebba4e…`）：首頁與作答流程的用字，字族 `HuWenMingChaoNope` 在 `--font-serif` 排第一（`src/index.css`）。`src/lib/fontLoading.ts` 的插入順序固定為：資料下載結束 → 本站小子集樣式表 → 等畫面上的字載完 → 共用分片與 Google Fonts。清單 `src/data/siteFont.ts`（只給測試）、路徑 `src/data/siteFontCss.ts`（執行期）。
+- `src/lib/runtimeData.ts`、`src/lib/programsData.ts`：開始下載前先登記總量，合併百分比不再倒退。
+- 三語字串 +2 鍵（`ui.app.pageLoadFailed`、`ui.common.reloadPage`；1,572 → 1,574；i18n 版本 `7ba297a6ed6b`）。runtime 資料版本 `a8df31dfd3da`、專業摘要版本 `3d0cc7ed3c79`、`/db/v1` `b13acbf01ca1` 都不變；canonical `schools.json` sha256 仍是 `db18bfaf…`。
+
+**驗收**：27 道閘門於 `f8257bf`（`nope-h2/check.txt`；新增 `test:first-screen` 9 項）。候選、正式與不可變網址 206/206。功能檢查 38 項（可信點擊）在候選連跑三次、不可變部署連跑兩次全過，新增項目：首頁字形來自本站小子集（共用分片至多 2 片）、回訪者（有快取的重新載入）共用分片仍至多 2 片、問卷 chunk 空閒預取、字典由行內腳本發出且只請求一次、封鎖頁面 chunk 時出現錯誤卡且「返回首頁」可用。批 G9 回歸工具跑最終候選：73 步流程、29 項題庫核對、168 個版面列與 G9 已接受的那次逐項相同。錯誤卡兩色系 × 390／1440：對比最低 6.27、按鈕 50 px、2 px 方角。正式站只讀載入 7 路由 × 2 寬度：新包、無例外；以逐文件網路位元組確認冷啟動首頁只下載 3 個本站字型檔（144 KB）＋1 片共用分片（25 KB），同一瀏覽器再開首頁字型下載量為 0。health active。
+
+**同條件前後對比**（正式網域，批 H1 `cc82b611` → 批 H2 `f828793e`；無頭 Chrome 限速、冷快取、瀏覽器語言 zh-CN、390×844）：
+
+| 網路 | 首頁標題出現 | 開頁到第一題（首頁出現後立刻按開始） | 冷啟動直接進問卷 | 再次造訪 | 首頁字型位元組 | 首頁字型到位 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 不限速 | 1.3 → 1.1 s | 2.6 → 2.2 s | 2.7 → 2.3 s | 1.6 → 1.5 s | 1.52 → 0.21 MB | 2.7 → 3.2 s（候選 2.1 s；單次量測受網路抖動影響） |
+| 150 KB/s＋200 ms | 3.1 → 2.5 s | 9.3 → 8.2 s | 9.6 → 8.2 s | 2.0 → 1.7 s | 1.52 → 0.21 MB | 20.1 → 11.2 s |
+| 60 KB/s＋300 ms | 6.5 → 5.6 s | 20.4 → 20.4 s | 20.5 → 20.4 s | 3.1 → 2.0 s | 1.52 → 0.21 MB | 47.2 → 25.0 s |
+
+正體介面（zh-TW，150 KB/s）：首頁字型 1.78 → 0.22 MB，到位 21.6 → 11.1 秒。首頁整體傳輸（含預載的問卷資料）2.8 → 1.5 MB。
+
+**要知道的兩件事**：（1）本站的「首次內容繪製」是共用導航圓標，不是頁面本體（那一刻 `#root` 還是空的，H1、H2 皆然）；60 KB/s 下它由約 2.7 秒變成約 3.3 秒，因為提早下載的字典分走頻寬，頁面本體則早了約 0.9 秒。看頁面快慢以「首頁標題出現」為準。（2）直接開問卷網址的時間沒有變（那條路徑要用的程式與資料沒有變少）；本批的收益在首頁、字型與回訪。
+
+**回滾**：`cc82b611-c76f-4ad7-86d6-e1caa29149f0`／`3250214`（批 H1），受審回滾交易；只切 Pages 版本。回滾後首頁回到 H1 的大小與共用分片字型，功能不受影響；`src/shared-ui` 兩批都沒有再動，不影響 path。證據：`/Users/ylsuen/CF/reports/operations/nope-perf-catalog-20261112/nope-h2/`。CAPABILITY_FIT: no-new-capability；葉子站。
+
+## 2026-11-12 批 H1：載入效能與「目錄載入失敗」修復（兩站同批；已上線；批 H2 疊加於其上）
 
 **授權**：站長 2026-11-12「用戶反饋 https://nope.bdfz.net/ 加載慢，目錄載入失敗，全面梳理解決，授權你處理」。不涉付費、不新增 Cloudflare 資源或綁定、不寫 User Center；不改題目／DimensionId／AnswerMap／選項鍵／learning manifest／Function。
 

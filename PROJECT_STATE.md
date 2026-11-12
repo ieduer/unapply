@@ -1,10 +1,21 @@
 # Project State
 
 Last updated: 2026-11-09 UTC
-Current version: 3250214（已部署 cc82b611，生效 2026-11-12T12:32:55Z；批 H1 載入效能與「目錄載入失敗」修復，疊加於批 G9 7c3d29e／cdc53cad）
+Current version: f8257bf（已部署 f828793e，生效 2026-11-12T14:09:12Z；批 H2 首屏瘦身，疊加於批 H1 3250214／cc82b611）
 Current objective: **路線圖 S0–S5 全部上線（2026-11-07；S5 生效時間為 UTC 2026-11-08T01:21:33Z），原待審事項 2026-11-08 已全部裁定，落地批 G1–G3 已上線（G1 01022627、G2 79c3c1b2、G3 5ac934ec＋path fef18140；G3 後續頁頭重疊與手機版面 b5b74217＋path a2719f97），G4（瀏覽器覆核結果入庫）2026-11-08 已上線（d0f6b69e），G5（精簡說明文字、頁尾三行、色系一鍵切換）2026-11-08 已上線（ec5dc3aa），G6（起點與目的地流程重做、互動糾錯、about 移到頁尾）2026-11-08 已上線（bec50ec9），G6 擴充（題目按目的地分題庫、以效度篩選，`docs/QUESTION_VALIDITY.md`）2026-11-08 已上線（0c801d21），G6c（全球減法互動細節 5 處）2026-11-08 已上線（f5f28048），G7（查詢頁、結果頁按專業彙總、企業直招列入減法；路線圖目標第 2、4、5 條）2026-11-08 已上線（1bf7627b），G8（R1／R2 研究入庫：澳門公私立與香港學費題、聖若瑟只招內地研究生、澳門管道裁定、聯招與學測參與名單、海外錄取條件原文）2026-11-08 已上線（be766ef2），G8b（省份清單照行政區劃代碼排序）2026-11-08 已上線（1effaee3），G9（方角按鈕、語言與多處切換改單鍵循環、收緊頂部留白、首頁突出全球學科地圖、手機觸控 44px、寬屏頁頭一行）2026-11-09 已上線（cdc53cad），其餘為年度維護。** 全球化路線圖（docs/GLOBAL_ROADMAP.md）S0、S1 全批、S2 兩半、S3、S4 兩批、橫切項（批 F1）與 S5 只讀資料庫（批 F2）皆已上線並登記 accepted；年度維護照 `docs/ANNUAL_UPDATE.md`（各層 `nextReviewDue` 見 `/db/v1` 的 validity.calendar；各省 2028 選考表依慣例應已公布，下一次維護先核）。原待審項（各批 `PENDING_OWNER_REVIEW.md`：S2、S3、E1、E2、F1、F2；彙整 `reports/operations/nope-global-roadmap-20261107/OWNER_REVIEW.md`）站長 2026-11-08 授權主會話裁定，裁定與執行批次見 `reports/operations/nope-global-roadmap-20261107/DECISIONS.md`（A1 維持方案 B、A3 不改五面導航、B1 conflict 照列不排除、D1 學徒制算直招、D3／D4 不建、F2-1 CORS 接受、F2-2 不開）；原 43 維效度缺口仍列後續。
 
-## 2026-11-12 批 H1：載入效能與「目錄載入失敗」修復（已上線，當前權威）
+## 2026-11-12 批 H2：首屏瘦身——主包只帶首頁、字典提早下載、本站字型小子集（已上線，當前權威）
+
+正式部署 `f828793e-cba7-43d2-a2ff-8817ca810acf`，來源 `f8257bf`（`6caee5d`＋`97c3e88`＋`f8257bf`），生效 `2026-11-12T14:09:12Z`；回滾 `cc82b611`／`3250214`（批 H1）。Status `20261112-nope-first-screen-h2` r1（improvement）。path 不受影響（沒有動 `src/shared-ui`）。
+
+- 緣由：批 H1 報告後站長選擇「繼續瘦身」（拆主包、字型小子集）。
+- 改動：首頁以外十個頁面改懶載（主 chunk gzip 146 → 99 KB），chunk 與資料同時下載、空閒預取下一頁、載不下來有錯誤卡；簡體／英文字典由 `index.html` 行內腳本與主包同時下載；`public/fonts/huwen-nope.*` 七個小字型檔（首頁每種文字約 150 KB，取代約 1.5 MB 的共用分片），先載小子集、等字載完才接共用分片；載入進度條不再倒退。
+- 上線後同條件實測（正式網域，H1 → H2）：首頁標題 150 KB/s 3.1 → 2.5 秒、60 KB/s 6.5 → 5.6 秒；首頁字型位元組 1.52 MB → 0.21 MB，字型到位 60 KB/s 47 → 25 秒；首頁整體傳輸 2.8 → 1.5 MB；再次造訪 60 KB/s 3.1 → 2.0 秒。直接進問卷的時間持平（約 20 秒，那條路徑要用的程式與資料沒有變少）。
+- 沒有改：題目、DimensionId、AnswerMap、選項鍵、learning manifest、Function、UC 契約、`public/_headers`、`src/shared-ui`。i18n +2 鍵（1,574，版本 `7ba297a6ed6b`）。
+- 規則：`docs/MAINTENANCE_MANUAL.md` §5.6「批 H2」；新閘門 `npm run test:first-screen`（共 27 道）。字型小子集的產生器 `scripts/build_site_font.py` 不在建置鏈裡，介面文字大改後才需要重跑。
+- 未做：正體字典仍在主包（簡體／英文使用者多下載約 36 KB）；題目與篩選引擎仍在主包。要拆需要改字典載入方式或 `App.tsx` 的狀態結構。
+
+## 2026-11-12 批 H1：載入效能與「目錄載入失敗」修復（已上線；批 H2 疊加於其上）
 
 正式部署 `cc82b611-c76f-4ad7-86d6-e1caa29149f0`，來源 `3250214`（`273a70a`＋`e221d29`＋`3250214`），生效 `2026-11-12T12:32:55Z`；回滾 `cdc53cad`／`7c3d29e`（批 G9）。Status `20261112-nope-load-performance-h1` r1（fix）。姊妹站 path 同批 `7cab7465`／`1d2bfe4`（共用 `shared-ui/theme.css`）。
 
