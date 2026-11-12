@@ -203,7 +203,10 @@ test('字型小子集的接法：字族排在共用分片之前（兩種語言�
   assert.equal(families.length, 2)
   for (const value of families) assert.ok(value.startsWith(`"${SITE_FONT_FAMILY}", "HuWenMingChao", `), value)
   const loader = readText('src/lib/fontLoading.ts')
-  assert.match(loader, /whenCriticalLoadsSettle\(\)\.then\(\(\) => \{[\s\S]*insertStylesheet\('site', SITE_FONT_CSS, false\)[\s\S]*insertStylesheet\('huwen', HUWEN_FONT_CSS, true\)/)
+  // 順序：資料下載結束 → 本站小子集的樣式表載完 → 畫面上用到的字載完 → 才插入共用分片與 Google Fonts。
+  // 共用分片的樣式表有長效快取、回訪時瞬間生效；同時插入的話瀏覽器會先把首頁的二十多片共用分片全抓回來。
+  assert.match(loader, /whenCriticalLoadsSettle\(\)\s*\.then\(\(\) => insertStylesheet\('site', SITE_FONT_CSS, false\)\)\s*\.then\(\(\) => pendingFontsSettle\(SITE_SUBSET_WAIT_MS\)\)\s*\.then\(\(\) => \{\s*void insertStylesheet\('huwen', HUWEN_FONT_CSS, true\)\s*void insertStylesheet\('google', GOOGLE_FONT_CSS, false\)/)
+  assert.match(loader, /document\.fonts\.ready\.then\(done, done\)/)
   // 執行期只匯入樣式表路徑，不把整份清單（unicode-range 字串）帶進前端包
   assert.equal(/from '\.\.\/data\/siteFont'/.test(loader), false)
   // 共用樣式（與 path 共用）不提這個字族

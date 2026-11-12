@@ -839,7 +839,8 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
   - 行內腳本判斷語言的規則必須與 `core.ts` 的 `readStoredLocale`／`detectLocale` 相同；測試把腳本抽出來在沙箱裡跑 160 多個組合逐一比對。改其中一邊就要改另一邊。
   - 網址裡的版本是佔位符 `%NOPE_I18N_VERSION%`，`vite.config.ts` 的 `earlyLocaleVersion` 外掛在建置時換成 `src/data/i18nManifest.ts` 的版本（`data:i18n` 在 `vite build` 之前跑）；讀不到版本或佔位符不見了會讓建置失敗。
 - **本站常用字的字型小子集**（`public/fonts/huwen-nope.*`，共約 620 KB，七個檔）。共用分片是按多個站的字頻排的，本站首頁的三百多個字散在二十多片裡（約 1.5 MB）。`scripts/build_site_font.py` 把首頁與作答流程會出現的字切成小檔：符號一片、首頁三片（兩種文字共用／只有正體／只有簡體）、作答流程三片。字族 `HuWenMingChaoNope` 在 `--font-serif` 排第一（`src/index.css`，兩處），子集沒有的字自動落到後面的 `HuWenMingChao`（共用分片）。首頁每種文字只抓兩片＋符號（正體 158 KB、簡體 143 KB）＋共用分片第 00 片（拉丁字母）。
-  - 樣式表也是內容雜湊檔名的靜態檔，執行期只匯入它的路徑（`src/data/siteFontCss.ts`）；完整清單 `src/data/siteFont.ts` 只給測試用，不進前端包。`fontLoading.ts` 把它和共用分片、Google Fonts 一起排在資料之後插入。
+  - 樣式表也是內容雜湊檔名的靜態檔，執行期只匯入它的路徑（`src/data/siteFontCss.ts`）；完整清單 `src/data/siteFont.ts` 只給測試用，不進前端包。
+  - **插入順序不能改**（`fontLoading.ts`）：資料下載結束 → 插入本站小子集的樣式表並等它載完 → 等畫面上用到的字載完（`document.fonts.ready`，最多 15 秒）→ 才插入共用分片與 Google Fonts。共用分片的樣式表有一年快取、回訪時瞬間生效，本站樣式表卻要先向伺服器確認；兩份同時插入時，那一小段時間瀏覽器只看得到共用分片，會把首頁的二十多片全抓回來（候選 `e4da2027` 以有快取的重新載入實測到 23–25 片）。驗收要包含「有快取的第二次載入」。
   - 子集**不含**共用分片第 00 片的基本字元（ASCII 與常用標點），英文介面才不會為了拉丁字母去抓中文字的檔；各層 unicode-range 互不重疊（測試會擋）。
   - **不在 `npm run build` 鏈裡**，產物進版本庫。介面文字小改不必重跑：新出現的字會落到共用分片，只是多抓一兩片。測試要求首頁與作答流程用字的覆蓋率 ≥ 95%，掉到以下才需要重跑。重跑步驟寫在腳本檔頭（需要 fontTools 與 woff2 工具；來源字型從 mx.bdfz.net 下載後先 `woff2_decompress`）；重跑是決定性的，相同輸入得到相同檔名。重跑後 `public/fonts/` 的舊檔會被清掉，`siteFontCss.ts` 的路徑跟著變。
   - 字型檔沿用 Pages 預設快取（網域設定 4 小時＋ETag 確認），沒有長效快取，理由同上一條。
