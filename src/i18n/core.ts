@@ -74,15 +74,34 @@ export function subscribeLocale(listener: () => void): () => void {
   return () => { listeners.delete(listener) }
 }
 
+/**
+ * index.html 行內腳本提早發出的字典請求（`window.__nopeEarlyLocale`）：語言與網址都相符才用，而且只用一次。
+ * 網址含內容版本；行內腳本裡的版本是建置時由 vite.config.ts 填入的，與這裡的 manifest 同源。
+ */
+function takeEarlyLocale(locale: Locale, url: string): Promise<Dict> | null {
+  if (typeof window === 'undefined') return null
+  const holder = window as Window & { __nopeEarlyLocale?: { locale?: string; url?: string; promise?: Promise<unknown> } | null }
+  const early = holder.__nopeEarlyLocale
+  if (!early || early.locale !== locale || early.url !== url || !early.promise) return null
+  holder.__nopeEarlyLocale = null
+  return early.promise as Promise<Dict>
+}
+
 /** 載入某語言的字典（zh-Hant 已在主包；其餘自 public/i18n/<locale>.json 懶載並核對鍵數）。 */
 export function loadLocale(locale: Locale): Promise<Dict> {
   const ready = dicts[locale]
   if (ready) return Promise.resolve(ready)
   const pending = loading.get(locale)
   if (pending) return pending
-  const promise = fetchJson<Dict>(`${i18nManifest.basePath}/${locale}.json?v=${encodeURIComponent(i18nManifest.version)}`)
+  const url = `${i18nManifest.basePath}/${locale}.json?v=${encodeURIComponent(i18nManifest.version)}`
+  const accept = (dict: Dict) => {
+    if (!dict || typeof dict !== 'object' || Object.keys(dict).length !== i18nManifest.counts.keys) throw new Error(`i18n payload for ${locale} is incomplete`)
+    return dict
+  }
+  // index.html 的小段行內腳本會在主包還在下載時就先去抓這份字典（批 H2）；有就接手，沒有、失敗或內容不對就照常下載。
+  const early = takeEarlyLocale(locale, url)
+  const promise = (early ? early.then(accept).catch(() => fetchJson<Dict>(url).then(accept)) : fetchJson<Dict>(url).then(accept))
     .then((dict) => {
-      if (!dict || typeof dict !== 'object' || Object.keys(dict).length !== i18nManifest.counts.keys) throw new Error(`i18n payload for ${locale} is incomplete`)
       dicts[locale] = dict
       return dict
     })

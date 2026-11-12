@@ -9,11 +9,14 @@
 @theme {
   --radius-ctl: 2px;
   --radius-panel: 4px;
+  /* 批 H2：本站常用字的小子集 HuWenMingChaoNope 排在共用分片 HuWenMingChao 之前（同一套字形；子集沒有的字自動用後者）。
+     兩個字族的 @font-face 都由 src/lib/fontLoading.ts 在資料載完後才加入。path.bdfz.net 沒有這個子集，所以不寫在 shared-ui。 */
+  --font-serif: "HuWenMingChaoNope", "HuWenMingChao", "Noto Serif TC", "Songti TC", "Songti SC", serif;
 }
 
 /* 簡體介面（<html lang="zh-Hans">，批 E1）：襯線字型優先用 Noto Serif SC，避免簡體字以臺標筆形呈現；色系變數不動。 */
 :root[lang="zh-Hans"] {
-  --font-serif: "HuWenMingChao", "Noto Serif SC", "Noto Serif TC", "Songti SC", "Songti TC", serif;
+  --font-serif: "HuWenMingChaoNope", "HuWenMingChao", "Noto Serif SC", "Noto Serif TC", "Songti SC", "Songti TC", serif;
 }
 
 .scroll-fade-mask {

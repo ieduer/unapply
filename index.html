@@ -31,6 +31,41 @@
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@500;600;700&family=Noto+Serif+TC:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap"
       />
     </noscript>
+    <!--
+      語言字典提早下載（批 H2）：介面語言不是正體時，字典是首繪前一定要有的檔。主包跑起來才去抓會多一趟往返，
+      所以在這裡就先發出請求，src/i18n/core.ts 的 loadLocale 會接手（語言與網址都相符才用）。
+      判斷語言的規則必須與 core.ts 的 readStoredLocale／detectLocale 相同（tests/first-screen.test.ts 逐例比對）。
+      %NOPE_I18N_VERSION% 由 vite.config.ts 在建置與開發伺服器輸出時換成 src/data/i18nManifest.ts 的版本。
+    -->
+    <script data-early-locale>
+      (function () {
+        try {
+          var stored = null
+          try { stored = window.localStorage.getItem('unapply.locale.v1') } catch (e) { stored = null }
+          var locale = stored === 'zh-Hant' || stored === 'zh-Hans' || stored === 'en' ? stored : null
+          if (!locale) {
+            locale = 'zh-Hant'
+            var list = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language]
+            for (var i = 0; i < list.length; i += 1) {
+              var tag = String(list[i] || '').toLowerCase()
+              if (!tag) continue
+              if (/^zh(-hant|-tw|-hk|-mo)(-|$)/.test(tag)) { locale = 'zh-Hant'; break }
+              if (/^zh(-hans|-cn|-sg)(-|$)/.test(tag)) { locale = 'zh-Hans'; break }
+              if (/^en(-|$)/.test(tag)) { locale = 'en'; break }
+              if (tag === 'zh') { locale = 'zh-Hant'; break }
+            }
+          }
+          if (locale === 'zh-Hant' || typeof window.fetch !== 'function') return
+          var url = '/i18n/' + locale + '.json?v=%NOPE_I18N_VERSION%'
+          var promise = window.fetch(url, { credentials: 'same-origin' }).then(function (response) {
+            if (!response.ok) throw new Error('early locale ' + response.status)
+            return response.json()
+          })
+          promise.catch(function () {})
+          window.__nopeEarlyLocale = { locale: locale, url: url, promise: promise }
+        } catch (e) { /* 提早下載只是加速；任何問題都交回主包照常處理 */ }
+      })()
+    </script>
     <script
       defer
       src="https://my.bdfz.net/site-auth.js"

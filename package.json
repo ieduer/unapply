@@ -62,6 +62,7 @@
     "test:provinces": "tsx --test tests/province-order.test.ts",
     "test:ui": "tsx --test tests/ui-tokens.test.ts",
     "test:runtime-core": "tsx --test tests/runtime-core.test.ts",
+    "test:first-screen": "tsx --test tests/first-screen.test.ts",
     "data:search": "node scripts/build_search_layer.mjs",
     "data:requirements": "node scripts/build_overseas_requirements.mjs",
     "data:atlas-thumb": "node scripts/build_atlas_thumb.mjs",

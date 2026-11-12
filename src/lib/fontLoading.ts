@@ -5,6 +5,7 @@
 // 所以字型樣式表不寫在 index.html（那樣一開頁就開始下載），而是由這裡在
 // 「首屏已經畫出來、而且問卷前置資料沒有在下載」時才插入；之前文字用系統襯線字顯示（font-display: swap）。
 // 省流量模式（Save-Data）與 2G 連線不載網路字型。沒有 JavaScript 時走 index.html 的 <noscript>。
+import { SITE_FONT_CSS } from '../data/siteFontCss'
 import { whenCriticalLoadsSettle } from './loadProgress'
 
 /** 湖文明朝體共用分片（mx.bdfz.net；90 片 unicode-range，瀏覽器只抓畫面上用到的字）。v1 不可變；換字形時 mx 出 v2 再改這裡。 */
@@ -40,6 +41,9 @@ export function scheduleWebFonts() {
   scheduled = true
   if (prefersSystemFonts()) return
   void whenCriticalLoadsSettle().then(() => {
+    // 本站常用字的小子集（批 H2；scripts/build_site_font.py 產生，public/fonts/）：首頁與作答流程會出現的字各自切成小檔，
+    // 字族 HuWenMingChaoNope 在 --font-serif 排第一（src/index.css），子集沒有的字自動落到後面的 HuWenMingChao（共用分片）。
+    insertStylesheet('site', SITE_FONT_CSS, false)
     insertStylesheet('huwen', HUWEN_FONT_CSS, true)
     insertStylesheet('google', GOOGLE_FONT_CSS, false)
   })

@@ -43,21 +43,50 @@ import type { UnapplyAPlusSyncStatus } from './lib/trustedAPlus'
 import { useLocale } from './i18n/react'
 
 import { Landing } from './components/Landing'
-import { QuestionRunner } from './components/QuestionRunner'
-import { ResultPage } from './components/ResultPage'
-import { AboutPage } from './components/AboutPage'
-import { SchoolDetail } from './components/SchoolDetail'
-import { ContributePage } from './components/ContributePage'
+import { PageErrorBoundary } from './components/PageErrorBoundary'
+import { retryingImport } from './lib/lazyImport'
 
+// 首頁以外的頁面都是懶載 chunk（批 H2）：主包只帶首頁，首屏要下載的 JavaScript 才小。
+// 每個頁面一個 importer：React.lazy 與「預取」共用它（瀏覽器只會下載一次），失敗會自動重試；
+// 真的載不下來時由 PageErrorBoundary 顯示可讀的說明與「重新載入頁面」，不會整頁空白。
+const importQuestionRunner = retryingImport(() => import('./components/QuestionRunner'))
+const importResultPage = retryingImport(() => import('./components/ResultPage'))
+const importSchoolDetail = retryingImport(() => import('./components/SchoolDetail'))
+const importContributePage = retryingImport(() => import('./components/ContributePage'))
+const importAboutPage = retryingImport(() => import('./components/AboutPage'))
+const QuestionRunner = lazy(() => importQuestionRunner().then((module) => ({ default: module.QuestionRunner })))
+const ResultPage = lazy(() => importResultPage().then((module) => ({ default: module.ResultPage })))
+const SchoolDetail = lazy(() => importSchoolDetail().then((module) => ({ default: module.SchoolDetail })))
+const ContributePage = lazy(() => importContributePage().then((module) => ({ default: module.ContributePage })))
+const AboutPage = lazy(() => importAboutPage().then((module) => ({ default: module.AboutPage })))
 // 世界學科地圖只在進入 #/world 時載入，首頁與問卷的主包不帶它。
-const WorldAtlasPage = lazy(() => import('./components/WorldAtlasPage').then((module) => ({ default: module.WorldAtlasPage })))
+const WorldAtlasPage = lazy(retryingImport(() => import('./components/WorldAtlasPage').then((module) => ({ default: module.WorldAtlasPage }))))
 // 港澳臺院校池同樣只在進入 #/hkmotw 時載入。
-const HkMoTwPage = lazy(() => import('./components/HkMoTwPage').then((module) => ({ default: module.HkMoTwPage })))
+const HkMoTwPage = lazy(retryingImport(() => import('./components/HkMoTwPage').then((module) => ({ default: module.HkMoTwPage }))))
 // 海外可申請學校（S3）只在進入 #/overseas 時載入；地區檔再按需載。
-const OverseasPage = lazy(() => import('./components/OverseasPage').then((module) => ({ default: module.OverseasPage })))
+const OverseasPage = lazy(retryingImport(() => import('./components/OverseasPage').then((module) => ({ default: module.OverseasPage }))))
 // 全球池減法（批 G2，展示層）只在進入 #/global 時載入。
-const GlobalSubtraction = lazy(() => import('./components/GlobalSubtraction').then((module) => ({ default: module.GlobalSubtraction })))
-const SearchPage = lazy(() => import('./components/SearchPage').then((module) => ({ default: module.SearchPage })))
+const GlobalSubtraction = lazy(retryingImport(() => import('./components/GlobalSubtraction').then((module) => ({ default: module.GlobalSubtraction }))))
+const SearchPage = lazy(retryingImport(() => import('./components/SearchPage').then((module) => ({ default: module.SearchPage }))))
+
+/** 進這條路由一定會用到的頁面 chunk：和資料同時開始下載，不要等資料載完才去要。 */
+function importRoutePage(name: Route['name']): Promise<unknown> | null {
+  if (name === 'filter') return importQuestionRunner()
+  if (name === 'result') return importResultPage()
+  if (name === 'school') return importSchoolDetail()
+  if (name === 'contribute') return importContributePage()
+  if (name === 'about') return importAboutPage()
+  return null
+}
+
+/** 使用者下一步最可能去的頁面：瀏覽器空閒時先取回來，換頁時不必等。 */
+function importLikelyNextPages(name: Route['name'], mainlandNext: boolean): void {
+  const quiet = (pending: Promise<unknown>) => { pending.catch(() => undefined) }
+  if (name === 'landing' && mainlandNext) quiet(importQuestionRunner())
+  else if (name === 'filter') quiet(importResultPage())
+  else if (name === 'result') { quiet(importSchoolDetail()); quiet(importQuestionRunner()) }
+  else if (name === 'school') quiet(importResultPage())
+}
 
 type Route =
   | { name: 'landing' }
@@ -397,6 +426,11 @@ export default function App() {
     }
   }, [route.name])
 
+  // 頁面 chunk 與資料同時開始下載（批 H2）：問卷／結果／詳情頁要等資料載完才渲染，chunk 不能等到那時才去要。
+  useEffect(() => {
+    importRoutePage(route.name)?.catch(() => undefined)
+  }, [route.name])
+
   // 每校招生專業摘要（約 150 KiB gzip）與學校目錄一起作為問卷／結果／詳情的前置資料；完整清單在詳情頁按省分桶再載。
   useEffect(() => {
     if (!routeNeedsSchools(route) || programsIndex || programsError) return
@@ -422,6 +456,8 @@ export default function App() {
         loadSchools().catch(() => undefined)
         loadProgramIndex().catch(() => undefined)
       }
+      // 下一步最可能去的頁面 chunk（很小），省流量模式不預取
+      if (!connection?.saveData) importLikelyNextPages(route.name, wantsMainlandCatalog)
       scheduleWebFonts()
     }
     const idle = (window as Window & { requestIdleCallback?: (cb: () => void, options?: { timeout: number }) => number; cancelIdleCallback?: (id: number) => void })
@@ -633,9 +669,11 @@ export default function App() {
 
   return (
     <>
-      <Suspense fallback={<PageLoading />}>
-        {page}
-      </Suspense>
+      <PageErrorBoundary resetKey={routeKey} onHome={() => go({ name: 'landing' })}>
+        <Suspense fallback={<PageLoading />}>
+          {page}
+        </Suspense>
+      </PageErrorBoundary>
       {/* 色系切換改在各頁共用頁頭 SiteHeader 內（inline），不再全域浮在右上角（2026-11-08 修頁頭重疊） */}
       <EvidenceSyncNotice status={evidenceStatus} />
     </>

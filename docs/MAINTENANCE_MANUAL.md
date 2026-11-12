@@ -40,6 +40,9 @@ src/lib/runtimeData.ts        runtime payload 載入器（瀏覽器載瘦身目�
 src/data/runtimeCore.ts       瘦身目錄的編解碼（建置腳本、載入器、測試共用）
 src/lib/fetchJson.ts          所有資料檔的下載：斷流逾時＋自動重試＋進度（§5.6）
 src/lib/loadProgress.ts       問卷前置資料的下載進度（載入畫面的百分比）
+src/lib/fontLoading.ts        網路字型排在資料之後才載（§5.6）
+src/lib/lazyImport.ts         懶載頁面 chunk 的重試包裝；src/components/PageErrorBoundary.tsx 接住載不下來的頁面
+scripts/build_site_font.py    本站常用字的字型小子集產生器（手動；產物在 public/fonts/，§5.6）
 ```
 
 ## 2. 日常命令
@@ -65,6 +68,7 @@ npm run data:i18n
 npm run test:origins
 npm run test:i18n
 npm run test:runtime-core
+npm run test:first-screen
 npm run lint
 npm run build
 npm run dev
@@ -824,6 +828,22 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
   - `/db/v1/:version/*` 既有的一年 `immutable` 有同樣的理論風險（版本目錄在回滾後消失又重現），流量低、屬對外契約（`docs/DB_API.md`），本批不動；要改先讀這一段。
   - 以後若要加長效快取，先解決「不存在的路徑回 200 HTML」（例如加 `404.html`，但那會改變全站未知路徑的行為，且 404 帶 `max-age` 一樣會被瀏覽器快取），並讓載入器在內容核對失敗時以 `cache: 'reload'` 重抓。
   - 新增資料載入器時仍然**一定要帶 `?v=<內容版本>`**（Function 與 `/db` 以外的資料檔都這樣）：它讓新版程式不會用到舊版內容。
+
+**批 H2（2026-11-12，站長選擇繼續瘦身）：首屏再做小**。閘門 `npm run test:first-screen`。
+
+- **主包只帶首頁**。`App.tsx` 裡首頁以外的十個頁面都是 `React.lazy`，各有一個以 `retryingImport`（`src/lib/lazyImport.ts`，失敗自動再試 2 次）包住的 importer；`React.lazy` 與預取共用同一個 importer。主 chunk 由 482 KB 降到 311 KB（gzip 146 → 99 KB）。
+  - 問卷／結果／詳情頁要等資料載完才渲染，所以它們的 chunk 由 `importRoutePage(route.name)` **和資料同時**開始下載；瀏覽器空閒時 `importLikelyNextPages` 預取下一步最可能去的頁面（省流量模式不預取）。新增頁面時兩處都要想一下。
+  - `PageErrorBoundary` 包住整個 `<Suspense>`：chunk 真的載不下來時顯示「頁面載入失敗」與「重新載入頁面」「返回首頁」，不會整頁空白。`React.lazy` 失敗後會一直記住失敗，所以主要動作是重新載入。
+  - **不要把頁面元件改回靜態匯入**（測試會擋）。還留在主包的大塊：正體字典（約 36 KB gzip）、題目與篩選引擎、學習記錄模組；要再拆需要改 `App.tsx` 的狀態結構或字典載入方式，另案評估。
+- **語言字典提早下載**。介面語言不是正體時，字典是首繪前一定要有的檔。`index.html` 的 `<script data-early-locale>` 在主包還在下載時就發出請求（結果放在 `window.__nopeEarlyLocale`），`src/i18n/core.ts` 的 `loadLocale` 以 `takeEarlyLocale` 接手（語言與網址都相符才用，只用一次；失敗或鍵數不對就照常下載）。
+  - 行內腳本判斷語言的規則必須與 `core.ts` 的 `readStoredLocale`／`detectLocale` 相同；測試把腳本抽出來在沙箱裡跑 160 多個組合逐一比對。改其中一邊就要改另一邊。
+  - 網址裡的版本是佔位符 `%NOPE_I18N_VERSION%`，`vite.config.ts` 的 `earlyLocaleVersion` 外掛在建置時換成 `src/data/i18nManifest.ts` 的版本（`data:i18n` 在 `vite build` 之前跑）；讀不到版本或佔位符不見了會讓建置失敗。
+- **本站常用字的字型小子集**（`public/fonts/huwen-nope.*`，共約 620 KB，七個檔）。共用分片是按多個站的字頻排的，本站首頁的三百多個字散在二十多片裡（約 1.5 MB）。`scripts/build_site_font.py` 把首頁與作答流程會出現的字切成小檔：符號一片、首頁三片（兩種文字共用／只有正體／只有簡體）、作答流程三片。字族 `HuWenMingChaoNope` 在 `--font-serif` 排第一（`src/index.css`，兩處），子集沒有的字自動落到後面的 `HuWenMingChao`（共用分片）。首頁每種文字只抓兩片＋符號（正體 158 KB、簡體 143 KB）＋共用分片第 00 片（拉丁字母）。
+  - 樣式表也是內容雜湊檔名的靜態檔，執行期只匯入它的路徑（`src/data/siteFontCss.ts`）；完整清單 `src/data/siteFont.ts` 只給測試用，不進前端包。`fontLoading.ts` 把它和共用分片、Google Fonts 一起排在資料之後插入。
+  - 子集**不含**共用分片第 00 片的基本字元（ASCII 與常用標點），英文介面才不會為了拉丁字母去抓中文字的檔；各層 unicode-range 互不重疊（測試會擋）。
+  - **不在 `npm run build` 鏈裡**，產物進版本庫。介面文字小改不必重跑：新出現的字會落到共用分片，只是多抓一兩片。測試要求首頁與作答流程用字的覆蓋率 ≥ 95%，掉到以下才需要重跑。重跑步驟寫在腳本檔頭（需要 fontTools 與 woff2 工具；來源字型從 mx.bdfz.net 下載後先 `woff2_decompress`）；重跑是決定性的，相同輸入得到相同檔名。重跑後 `public/fonts/` 的舊檔會被清掉，`siteFontCss.ts` 的路徑跟著變。
+  - 字型檔沿用 Pages 預設快取（網域設定 4 小時＋ETag 確認），沒有長效快取，理由同上一條。
+  - path.bdfz.net 沒有這個子集（`src/shared-ui/theme.css` 不提 `HuWenMingChaoNope`）。
 
 **驗收口徑**（改動載入路徑、資料檔、字型或 `_headers` 後都要做；工具在 `reports/operations/nope-perf-catalog-20261112/tools/`）：
 
