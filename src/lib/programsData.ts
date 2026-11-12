@@ -36,6 +36,8 @@ export function loadProgramCatalog(): Promise<ProgramCatalogPayload> {
 /** 每校摘要（2,952 校中有資料的）：結果頁的起點條件層、卡片計數用；約 150 KiB gzip。 */
 export function loadProgramIndex(): Promise<ProgramIndexPayload> {
   if (!indexPromise) {
+    // 一開始就登記總量（理由見 runtimeData.ts 的 loadSchools）
+    reportCatalogProgress(INDEX_PROGRESS_KEY, 0, programsManifest.indexBytes, 0)
     indexPromise = trackCriticalLoad(fetchPayload<ProgramIndexPayload>(programsManifest.indexPath, {
       onProgress: ({ loaded, attempt }) => reportCatalogProgress(INDEX_PROGRESS_KEY, loaded, programsManifest.indexBytes, attempt),
     }))

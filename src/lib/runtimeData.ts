@@ -28,6 +28,8 @@ export function loadSchools(): Promise<School[]> {
   if (!schoolsPromise) {
     const progressKey = 'schools'
     const total = runtimeDataManifest.schoolsCoreBytes
+    // 一開始就登記總量：兩個檔的進度是合併計算的，等到第一筆資料到了才登記的話，另一個檔一開始回報分母就變大、百分比會倒退
+    reportCatalogProgress(progressKey, 0, total, 0)
     schoolsPromise = trackCriticalLoad(fetchRuntimeJson<SchoolsCorePayload>(runtimeDataManifest.schoolsCorePath, `.${runtimeDataManifest.schoolsCoreFormat}`, {
       onProgress: ({ loaded, attempt }) => reportCatalogProgress(progressKey, loaded, total, attempt),
     })).then((payload) => {

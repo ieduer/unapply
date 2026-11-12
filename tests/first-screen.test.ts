@@ -209,3 +209,24 @@ test('字型小子集的接法：字族排在共用分片之前（兩種語言�
   // 共用樣式（與 path 共用）不提這個字族
   assert.equal(readText('src/shared-ui/theme.css').includes(SITE_FONT_FAMILY), false)
 })
+
+test('載入進度不倒退：兩個檔一開始就登記總量，交錯回報時百分比只增不減', async () => {
+  const { getCatalogProgress, reportCatalogProgress, resetCatalogProgress } = await import('../src/lib/loadProgress.ts')
+  resetCatalogProgress('schools'); resetCatalogProgress('programs')
+  // 載入器的做法：開始下載前各自登記 0／總量
+  reportCatalogProgress('schools', 0, 2500, 0)
+  reportCatalogProgress('programs', 0, 1000, 0)
+  const seen: number[] = [getCatalogProgress().percent ?? -1]
+  for (const [key, loaded, total] of [['schools', 500, 2500], ['programs', 100, 1000], ['schools', 1500, 2500], ['programs', 900, 1000], ['schools', 2500, 2500], ['programs', 1000, 1000]] as const) {
+    reportCatalogProgress(key, loaded, total, 0)
+    seen.push(getCatalogProgress().percent ?? -1)
+  }
+  assert.deepEqual(seen, [0, 14, 17, 45, 68, 97, 100])
+  assert.ok(seen.every((value, index) => index === 0 || value >= seen[index - 1]))
+  resetCatalogProgress('schools'); resetCatalogProgress('programs')
+  // 兩個載入器都在發出請求之前登記
+  const schools = readText('src/lib/runtimeData.ts')
+  assert.ok(schools.indexOf('reportCatalogProgress(progressKey, 0, total, 0)') > 0 && schools.indexOf('reportCatalogProgress(progressKey, 0, total, 0)') < schools.indexOf('schoolsPromise = trackCriticalLoad('))
+  const programs = readText('src/lib/programsData.ts')
+  assert.ok(programs.indexOf('reportCatalogProgress(INDEX_PROGRESS_KEY, 0, programsManifest.indexBytes, 0)') > 0 && programs.indexOf('reportCatalogProgress(INDEX_PROGRESS_KEY, 0, programsManifest.indexBytes, 0)') < programs.indexOf('indexPromise = trackCriticalLoad('))
+})
