@@ -1,6 +1,6 @@
 {
   "files": {
-    "src/shared-ui/theme.css": "07148b34cbdbaa08cd65480ad749ecff073023555abcb012d2f3991fb65e2424",
+    "src/shared-ui/theme.css": "99cf21a11846a992d7f1a57f17e00cff99765abf7d4fff3c191158e634e1e311",
     "src/shared-ui/theme.ts": "529f32cb586342b97f8ece64a154813bd164a41ab998e8ff8923498ffb0baa5a",
     "src/shared-ui/ThemeCustomizer.tsx": "a2d21d3f32470a4c02be27b8121901e36419d4b52c48e9463db5e29b763cd143",
     "src/shared-ui/SyncNotice.tsx": "44f6721478b4295b725b8a0f3785b6ad3adec0247aba77f7eadcb02a25aa605a",

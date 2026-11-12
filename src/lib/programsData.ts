@@ -1,19 +1,18 @@
 import { t } from '../i18n/core'
 import { programsManifest } from '../data/programsManifest'
 import type { ProgramBucket, ProgramCatalogPayload, ProgramIndexPayload } from '../data/programsTypes'
+import { fetchJson, type FetchJsonOptions } from './fetchJson'
+import { completeCatalogProgress, reportCatalogProgress, resetCatalogProgress } from './loadProgress'
 
 let catalogPromise: Promise<ProgramCatalogPayload> | null = null
 let indexPromise: Promise<ProgramIndexPayload> | null = null
 const bucketPromises = new Map<string, Promise<ProgramBucket>>()
 
-async function fetchPayload<T>(path: string): Promise<T> {
-  const response = await fetch(`${path}?v=${encodeURIComponent(programsManifest.version)}`, {
-    credentials: 'same-origin',
-    signal: AbortSignal.timeout(20000),
-  })
-  if (!response.ok) throw new Error(`programs payload request failed: ${response.status} ${response.statusText}`)
-  return response.json() as Promise<T>
+function fetchPayload<T>(path: string, options?: FetchJsonOptions): Promise<T> {
+  return fetchJson<T>(`${path}?v=${encodeURIComponent(programsManifest.version)}`, options)
 }
+
+const INDEX_PROGRESS_KEY = 'programs'
 
 /** 教育部本科專業目錄（883 種）：給起點條件的專業選單用，約 100 KiB。 */
 export function loadProgramCatalog(): Promise<ProgramCatalogPayload> {
@@ -37,7 +36,9 @@ export function loadProgramCatalog(): Promise<ProgramCatalogPayload> {
 /** 每校摘要（2,952 校中有資料的）：結果頁的起點條件層、卡片計數用；約 150 KiB gzip。 */
 export function loadProgramIndex(): Promise<ProgramIndexPayload> {
   if (!indexPromise) {
-    indexPromise = fetchPayload<ProgramIndexPayload>(programsManifest.indexPath)
+    indexPromise = fetchPayload<ProgramIndexPayload>(programsManifest.indexPath, {
+      onProgress: ({ loaded, attempt }) => reportCatalogProgress(INDEX_PROGRESS_KEY, loaded, programsManifest.indexBytes, attempt),
+    })
       .then((payload) => {
         const counts = programsManifest.counts
         const entries = payload.schools && typeof payload.schools === 'object' ? Object.values(payload.schools) : []
@@ -53,9 +54,10 @@ export function loadProgramIndex(): Promise<ProgramIndexPayload> {
           || payload.strongBase?.length !== counts.strongBase) {
           throw new Error(t('ui.data.error.programIndex'))
         }
+        completeCatalogProgress(INDEX_PROGRESS_KEY, programsManifest.indexBytes)
         return payload
       })
-      .catch((error: unknown) => { indexPromise = null; throw error })
+      .catch((error: unknown) => { indexPromise = null; resetCatalogProgress(INDEX_PROGRESS_KEY); throw error })
   }
   return indexPromise
 }

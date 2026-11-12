@@ -3,6 +3,7 @@
 // 語言只是展示層：不進 AnswerMap、不進 A+ 證據、不進 hash 路由；存 localStorage `unapply.locale.v1`。
 import zhHant from './locales/zh-Hant.json'
 import { i18nManifest } from '../data/i18nManifest'
+import { fetchJson } from '../lib/fetchJson'
 
 export type Locale = 'zh-Hant' | 'zh-Hans' | 'en'
 export const LOCALES: readonly Locale[] = ['zh-Hant', 'zh-Hans', 'en']
@@ -79,10 +80,8 @@ export function loadLocale(locale: Locale): Promise<Dict> {
   if (ready) return Promise.resolve(ready)
   const pending = loading.get(locale)
   if (pending) return pending
-  const promise = fetch(`${i18nManifest.basePath}/${locale}.json?v=${encodeURIComponent(i18nManifest.version)}`, { credentials: 'same-origin', signal: AbortSignal.timeout(15000) })
-    .then(async (response) => {
-      if (!response.ok) throw new Error(`i18n payload request failed: ${response.status} ${response.statusText}`)
-      const dict = (await response.json()) as Dict
+  const promise = fetchJson<Dict>(`${i18nManifest.basePath}/${locale}.json?v=${encodeURIComponent(i18nManifest.version)}`)
+    .then((dict) => {
       if (!dict || typeof dict !== 'object' || Object.keys(dict).length !== i18nManifest.counts.keys) throw new Error(`i18n payload for ${locale} is incomplete`)
       dicts[locale] = dict
       return dict

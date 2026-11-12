@@ -8,6 +8,8 @@ import { filterSchools, getSchoolDimensionValue } from '../src/engine/filter.ts'
 import { getRegularChannelState } from '../src/lib/schoolProfile.ts'
 import { crowdNormalizers, normalizeCurfew } from '../scripts/build_research_data.mjs'
 import { loadSchools, loadCampusesByProvince } from '../src/lib/runtimeData.ts'
+import { encodeSchoolsCore } from '../src/data/runtimeCore.ts'
+import { runtimeDataManifest } from '../src/data/runtimeManifest.ts'
 const cases: [string, string, string | null][] = [
   ['B1', '三人间', null], ['B1', '三层床', '三層上下鋪'],
   ['B3', '没有独立卫浴', null],
@@ -60,13 +62,16 @@ test('結果理由不用內部學科token', () => {
   }
 })
 test('runtime請求失敗可重試；已知省份404不能冒充空校區', async () => {
+  // 2026-11-12 批 H1：瀏覽器載瘦身目錄（schools.core.json）；5xx 先自動重試（共 3 次），都失敗才拋錯，之後再呼叫會重新下載。
   const previous = globalThis.fetch
   let calls = 0
-  globalThis.fetch = async () => { calls++; return new Response(calls === 1 ? 'error' : JSON.stringify(schools), { status: calls === 1 ? 503 : 200 }) }
+  const corePayload = JSON.stringify(encodeSchoolsCore(schools, runtimeDataManifest.version))
+  globalThis.fetch = async () => { calls++; return new Response(calls <= 3 ? 'error' : corePayload, { status: calls <= 3 ? 503 : 200 }) }
   try {
     await assert.rejects(loadSchools())
+    assert.equal(calls, 3)
     assert.equal((await loadSchools()).length, 2952)
-    assert.equal(calls, 2)
+    assert.equal(calls, 4)
     globalThis.fetch = async () => new Response('missing', { status: 404 })
     await assert.rejects(loadCampusesByProvince(candidateProvinceOptions.find(p => p === '北京')!))
     globalThis.fetch = async () => new Response('{}', { status: 200 })

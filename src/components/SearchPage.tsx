@@ -14,6 +14,7 @@ import { loadProgramCatalog, loadProgramIndex } from '../lib/programsData'
 import { loadOverseasIndex } from '../lib/overseasData'
 import { loadWorldAtlas } from '../lib/atlasData'
 import { navigateHash } from '../lib/router'
+import { fetchJson } from '../lib/fetchJson'
 import { provinceLabel, requirementLabel, subjectLabel } from '../lib/i18nLabels'
 import { useLocale } from '../i18n/react'
 import type { Locale } from '../i18n/core'
@@ -36,9 +37,7 @@ interface SchoolData { groups: SchoolGroup[]; byId: Map<string, SearchRecord>; o
 interface MajorData { catalog: ProgramCatalogPayload; index: ProgramIndexPayload; atlas: WorldAtlasPayload }
 
 async function fetchDb<T>(file: string, schema: string): Promise<T> {
-  const response = await fetch(`${dbManifest.base}${file}`)
-  if (!response.ok) throw new Error(`${file} ${response.status}`)
-  const body = await response.json() as T & { schema?: string }
+  const body = await fetchJson<T & { schema?: string }>(`${dbManifest.base}${file}`)
   if (body.schema !== schema) throw new Error(`${file}: schema`)
   return body
 }

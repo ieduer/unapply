@@ -7,7 +7,7 @@
 // 由 FilterEngine 疑罪從無處理。
 
 import type { DimensionId } from './dimensions';
-import type { SchoolAdmissionChannels, SchoolQualityEvidenceMap, SchoolResearchEvidenceMap } from './runtimeTypes';
+import type { SchoolAdmissionChannels, SchoolQualityEvidenceCoreMap, SchoolQualityEvidenceMap, SchoolResearchEvidenceMap } from './runtimeTypes';
 import { admissionChannelsByMoeCode } from './admissionChannels';
 import { officialSchoolCatalogMeta } from './officialSchoolMeta';
 import { officialSchools } from './officialSchools';
@@ -52,8 +52,13 @@ export interface School {
   quality?: Partial<Record<DimensionId, string | string[]>>;
   // 每個 quality 值的來源與證據強度。沒有這層，1 個人的匿名回答會和 40 個人的
   // 一致回答擁有同樣的硬排除權力。引擎據此決定哪些值夠格進硬篩選。
-  qualityEvidence?: SchoolQualityEvidenceMap;
+  // 引擎與頁面拿到的 School 只保證有判定所需的最小欄位（來源／範圍／年份／置信度）；
+  // 票數與分佈見 CanonicalSchool（建置側與 canonical schools.json）與詳情頁按省載入的 evidence 桶。
+  qualityEvidence?: SchoolQualityEvidenceCoreMap;
 }
+
+/** 建置側與 canonical runtime（public/data/runtime/schools.json，Function 重算用）的學校：qualityEvidence 帶完整票數。 */
+export type CanonicalSchool = Omit<School, 'qualityEvidence'> & { qualityEvidence?: SchoolQualityEvidenceMap };
 
 const mk = (
   name: string,
@@ -265,10 +270,11 @@ const curatedByName = new Map(
 );
 
 const officialNameKeys = new Set<string>();
-export const schools: School[] = officialSchools.map((official) => {
+export const schools: CanonicalSchool[] = officialSchools.map((official) => {
   const key = schoolNameKey(official.nameSimplified ?? official.name);
   officialNameKeys.add(key);
-  const mergedBase = mergeOfficialWithCurated(official, curatedByName.get(key));
+  // 官方主表與手工條目都不帶 qualityEvidence（只有研究層有，且是完整票數），所以這裡可以視為 CanonicalSchool。
+  const mergedBase: CanonicalSchool = mergeOfficialWithCurated(official, curatedByName.get(key)) as CanonicalSchool;
   const admissionChannels = mergedBase.moeCode ? admissionChannelsByMoeCode[mergedBase.moeCode] : undefined;
   const merged = admissionChannels ? { ...mergedBase, admissionChannels } : mergedBase;
   const research = merged.moeCode ? schoolResearchProfilesByMoeCode[merged.moeCode] : undefined;

@@ -27,6 +27,8 @@ import { allQuestions } from './data/questions'
 import { getSessionKey, recordUnapplyEvent, syncUnapplyProgress } from './lib/bdfzIdentity'
 import { buildUnapplyResultEvidence } from './lib/learningEvidence'
 import { loadSchools } from './lib/runtimeData'
+import { describeLoadError } from './lib/fetchJson'
+import { getCatalogProgress, subscribeCatalogProgress } from './lib/loadProgress'
 import {
   beginUnapplyAPlusSession,
   completeUnapplyAPlusSession,
@@ -156,24 +158,50 @@ function routeNeedsSchools(route: Route): boolean {
   return route.name === 'filter' || route.name === 'result' || route.name === 'school' || route.name === 'contribute'
 }
 
+/** 載入失敗的說明：下載層的錯誤以翻譯鍵表示（跟著語言走），其餘（資料不完整等）已經是翻譯好的文字。 */
+type LoadFailure = { key: string; params?: Record<string, string | number> } | { text: string }
+
+function toLoadFailure(err: unknown): LoadFailure {
+  return describeLoadError(err) ?? { text: err instanceof Error ? err.message : String(err) }
+}
+
 function CatalogLoading({
   error,
   onBack,
   onRetry,
 }: {
-  error: string | null;
+  error: LoadFailure | null;
   onBack: () => void;
   onRetry: () => void;
 }) {
   const { t } = useLocale()
+  const progress = useSyncExternalStore(subscribeCatalogProgress, getCatalogProgress, getCatalogProgress)
+  const errorText = error ? ('key' in error ? t(error.key, error.params) : error.text) : null
   return (
     <main className="min-h-screen app-canvas text-fog-100 flex items-center justify-center px-5" data-loading={error ? undefined : ''}>
       <section className="w-full max-w-md border border-ink-800 bg-ink-900 rounded-panel p-6 flex flex-col gap-4">
         <p className="mono text-xs text-fog-500 uppercase tracking-[0.2em]">{t('ui.app.catalogKicker')}</p>
         <h1 className="serif text-2xl">{error ? t('ui.app.catalogLoadFailed') : t('ui.app.catalogLoading')}</h1>
-        <p className="text-sm text-fog-500 leading-relaxed">
-          {error ?? t('ui.app.catalogLoadingNote')}
+        <p className="text-sm text-fog-500 leading-relaxed" role={error ? 'alert' : undefined}>
+          {errorText ?? t('ui.app.catalogLoadingNote')}
         </p>
+        {!error && (
+          <div className="flex flex-col gap-2" data-catalog-progress={progress.percent ?? ''}>
+            <div
+              className="h-2 border border-ink-700 rounded-ctl overflow-hidden"
+              role="progressbar"
+              aria-label={t('ui.app.catalogLoading')}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={progress.percent ?? undefined}
+            >
+              <div className="h-full bg-accent-500" style={{ width: `${progress.percent ?? 0}%` }} />
+            </div>
+            <p className="mono text-xs text-fog-500 min-h-[1.25rem]" aria-live="polite">
+              {progress.retrying ? t('ui.app.catalogRetrying') : progress.percent !== null ? t('ui.app.catalogProgress', { percent: progress.percent }) : ''}
+            </p>
+          </div>
+        )}
         <div className="flex flex-wrap gap-3">
           {error && (
             <button
@@ -245,9 +273,9 @@ export default function App() {
   const [originPrefs, setOriginPrefsState] = useState<OriginPrefs>(() => readStoredOriginPrefs(readStoredOrigin()))
   // 逐校招生專業摘要：S1／S2 兩題的學校取值由它算，所以和學校目錄一樣是問卷的前置資料（Function 重算用同一份）。
   const [programsIndex, setProgramsIndex] = useState<ProgramIndexPayload | null>(null)
-  const [programsError, setProgramsError] = useState<string | null>(null)
+  const [programsError, setProgramsError] = useState<LoadFailure | null>(null)
   const [schools, setSchools] = useState<School[] | null>(null)
-  const [schoolLoadError, setSchoolLoadError] = useState<string | null>(null)
+  const [schoolLoadError, setSchoolLoadError] = useState<LoadFailure | null>(null)
   const evidenceStatus = useSyncExternalStore(
     subscribeUnapplyAPlusStatus,
     getUnapplyAPlusStatus,
@@ -355,7 +383,7 @@ export default function App() {
       })
       .catch((err: unknown) => {
         if (!alive) return
-        setSchoolLoadError(err instanceof Error ? err.message : String(err))
+        setSchoolLoadError(toLoadFailure(err))
       })
     return () => {
       alive = false
@@ -375,9 +403,30 @@ export default function App() {
     // loadProgramIndex 內部快取同一個 promise，重複進入不會重抓。
     loadProgramIndex()
       .then((payload) => { if (alive) setProgramsIndex(payload) })
-      .catch((err: unknown) => { if (alive) setProgramsError(err instanceof Error ? err.message : String(err)) })
+      .catch((err: unknown) => { if (alive) setProgramsError(toLoadFailure(err)) })
     return () => { alive = false }
   }, [programsError, programsIndex, route])
+
+  // 預載（批 H1）：首頁的主按鈕會進大陸問卷時，瀏覽器空閒後先把學校目錄與招生專業摘要抓下來（共約 0.5 MB 傳輸），
+  // 使用者按「開始減法」時通常已經在記憶體裡。省流量模式（Save-Data）不預載；失敗不提示（進問卷時會照常載入並顯示進度）。
+  // 兩個載入器各自快取同一個 promise，預載與正式載入不會重複下載。
+  const wantsMainlandCatalog = plan.entry === 'filter'
+  useEffect(() => {
+    if (routeNeedsSchools(route) || schools || !wantsMainlandCatalog) return
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
+    if (connection?.saveData) return
+    const warm = () => {
+      loadSchools().catch(() => undefined)
+      loadProgramIndex().catch(() => undefined)
+    }
+    const idle = (window as Window & { requestIdleCallback?: (cb: () => void, options?: { timeout: number }) => number; cancelIdleCallback?: (id: number) => void })
+    if (typeof idle.requestIdleCallback === 'function') {
+      const id = idle.requestIdleCallback(warm, { timeout: 3000 })
+      return () => idle.cancelIdleCallback?.(id)
+    }
+    const timer = window.setTimeout(warm, 1200)
+    return () => window.clearTimeout(timer)
+  }, [route, schools, wantsMainlandCatalog])
 
   // 篩選上下文：考生省份（A6）＋逐校招生專業摘要（S1／S2）。Function 重算時用同一份釘定的 payload 建同樣的上下文。
   const filterContext = useMemo(() => ({ candidateProvince, programs: programsIndex ?? undefined }), [candidateProvince, programsIndex])

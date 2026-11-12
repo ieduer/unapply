@@ -1,14 +1,13 @@
 import { t } from '../i18n/core'
 import { jointProgramsManifest } from '../data/jointProgramsManifest'
 import type { JointIndexPayload, JointItemsPayload } from '../data/jointTypes'
+import { fetchJson } from './fetchJson'
 
 let indexPromise: Promise<JointIndexPayload> | null = null
 let itemsPromise: Promise<JointItemsPayload> | null = null
 
-async function fetchPayload<T>(path: string): Promise<T> {
-  const response = await fetch(`${path}?v=${encodeURIComponent(jointProgramsManifest.version)}`, { credentials: 'same-origin', signal: AbortSignal.timeout(20000) })
-  if (!response.ok) throw new Error(`joint payload request failed: ${response.status} ${response.statusText}`)
-  return response.json() as Promise<T>
+function fetchPayload<T>(path: string): Promise<T> {
+  return fetchJson<T>(`${path}?v=${encodeURIComponent(jointProgramsManifest.version)}`)
 }
 
 /** 每校中外合作辦學計數（結果卡片用，約 20 KiB）。 */

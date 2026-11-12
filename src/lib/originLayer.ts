@@ -2,6 +2,7 @@
 // 只有保留語義：命中→標示；未命中→未知、不劃掉；永不過濾、永不改變機構數。與 engine/filter.ts 分離（海外池不是 School[]）。
 import { originManifest } from '../data/originManifest'
 import type { GaokaoPolicy } from '../data/overseasTypes'
+import { fetchJson } from './fetchJson'
 
 export interface QualificationsPayload {
   version: string
@@ -18,10 +19,8 @@ let payloadPromise: Promise<QualificationsPayload> | null = null
 
 export function loadQualificationsIndex(): Promise<QualificationsPayload> {
   if (!payloadPromise) {
-    payloadPromise = fetch(`${originManifest.path}?v=${encodeURIComponent(originManifest.version)}`, { credentials: 'same-origin', signal: AbortSignal.timeout(15000) })
-      .then(async (response) => {
-        if (!response.ok) throw new Error(`qualifications payload request failed: ${response.status} ${response.statusText}`)
-        const payload = (await response.json()) as QualificationsPayload
+    payloadPromise = fetchJson<QualificationsPayload>(`${originManifest.path}?v=${encodeURIComponent(originManifest.version)}`)
+      .then((payload) => {
         if (payload.version !== originManifest.version || payload.institutions !== originManifest.counts.institutions || Object.keys(payload.tokens ?? {}).length !== originManifest.counts.tokens || payload.gaokaoAccepted?.length !== originManifest.counts.gaokaoAccepted) {
           throw new Error('qualifications payload incomplete')
         }

@@ -22,15 +22,10 @@
   --color-accent-400: #3d6e6e;
 }
 
-@font-face {
-  font-family: "HuWenMingChao";
-  src:
-    url("https://mx.bdfz.net/data/fonts/HuWenMingChaoTi.woff2") format("woff2"),
-    url("https://mx.bdfz.net/data/fonts/HuWenMingChaoTi.woff") format("woff");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
+/* 正文字體「HuWenMingChao」（湖文明朝體）不在這裡宣告 @font-face：
+   兩站的 index.html 各自以不阻塞首繪的方式連 mx.bdfz.net 的共用分片樣式表
+   （https://mx.bdfz.net/fonts/huwen/v1/HuWenMingChao.4eeeeaf657.css，90 片 unicode-range，只抓畫面上用到的字）。
+   不要在這裡或站點樣式裡再放 8 MB 的整檔字型（2026-11-12：整檔每次首訪都搶頻寬，慢網路下拖垮資料下載）。 */
 
 :root {
   color-scheme: light;

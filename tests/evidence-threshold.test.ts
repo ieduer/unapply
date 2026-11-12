@@ -7,10 +7,11 @@ import { filterSchools, getSchoolDimensionValue, isHardFilterableQuality } from 
 import { chooseCrowdValue } from '../scripts/build_research_data.mjs'
 import { analyzeQuestionCoverage } from '../src/engine/coverage.ts'
 import { researchPipelineMeta } from '../src/data/researchData.ts'
-import type { School } from '../src/data/schools.ts'
+import type { CanonicalSchool, School } from '../src/data/schools.ts'
 import type { DimensionId } from '../src/data/dimensions.ts'
 
-const runtime = JSON.parse(fs.readFileSync(new URL('../public/data/runtime/schools.json', import.meta.url), 'utf8')) as School[]
+// canonical runtime（Function 重算用）帶完整票數；瀏覽器載的瘦身目錄不帶（tests/runtime-core.test.ts 鎖兩者等價）
+const runtime = JSON.parse(fs.readFileSync(new URL('../public/data/runtime/schools.json', import.meta.url), 'utf8')) as CanonicalSchool[]
 const sysu = runtime.find(s => s.moeCode === '4144010558')!
 const jlu = runtime.find(s => s.moeCode === '4122010183')!
 

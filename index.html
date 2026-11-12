@@ -16,12 +16,36 @@
     <meta property="og:url" content="https://nope.bdfz.net/" />
     <meta property="og:image" content="https://nope.bdfz.net/media/background.jpeg" />
     <link rel="canonical" href="https://nope.bdfz.net/" />
+    <!--
+      字型（2026-11-12 批 H1）：兩份字型樣式表都不阻塞首繪——先以 print 媒體載入，載完才套用（font-display: swap，
+      文字先用系統字顯示）。正文字體湖文明朝體用 mx.bdfz.net 的共用分片（90 片，瀏覽器只抓畫面上用到的字），
+      不再下載 8 MB 整檔。改這一段前先讀 docs/MAINTENANCE_MANUAL.md §5.6。
+    -->
+    <link rel="preconnect" href="https://mx.bdfz.net" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@500;600;700&family=Noto+Serif+TC:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap"
       rel="stylesheet"
+      href="https://mx.bdfz.net/fonts/huwen/v1/HuWenMingChao.4eeeeaf657.css"
+      crossorigin
+      media="print"
+      onload="this.media='all'"
+      data-font-css="huwen"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@500;600;700&family=Noto+Serif+TC:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+      data-font-css="google"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://mx.bdfz.net/fonts/huwen/v1/HuWenMingChao.4eeeeaf657.css" crossorigin />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@500;600;700&family=Noto+Serif+TC:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap"
+      />
+    </noscript>
     <script
       defer
       src="https://my.bdfz.net/site-auth.js"

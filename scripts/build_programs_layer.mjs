@@ -150,13 +150,16 @@ indexPayload.version = version
 rmSync(outDir, { recursive: true, force: true })
 mkdirSync(join(outDir, 'schools'), { recursive: true })
 writeFileSync(join(outDir, 'catalog.json'), JSON.stringify(catalog))
-writeFileSync(join(outDir, 'index.json'), JSON.stringify(indexPayload))
+const indexText = JSON.stringify(indexPayload)
+writeFileSync(join(outDir, 'index.json'), indexText)
 let bucketBytes = 0
 for (const [file, text] of bucketEntries) { writeFileSync(join(outDir, 'schools', file), text); bucketBytes += Buffer.byteLength(text) }
 const manifest = {
   version,
   catalogPath: '/data/programs/catalog.json',
   indexPath: '/data/programs/index.json',
+  // 解壓後位元組數：載入畫面的進度百分比用（壓縮傳輸下 Content-Length 不是這個數）。
+  indexBytes: Buffer.byteLength(indexText),
   bucketsBasePath: '/data/programs/schools',
   bucketFileByProvince,
   admissionYear: 2027,

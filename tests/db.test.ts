@@ -163,10 +163,16 @@ test('體積上限：institutions gzip ≤ 500 KiB；latest ≤ 10 KiB；序列�
   for (const m of Object.values(manifest.datasets)) assert.equal(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(readFileSync(pub(m.path), 'utf8')), false, m.path)
 })
 
-test('_headers：只有 /db/* 規則（CORS GET、版本目錄 immutable、latest 300 秒）；不碰 /api/ 與既有資產', () => {
+test('_headers：/db/* 規則（CORS GET、版本目錄 immutable、latest 300 秒）＋站內檔案的瀏覽器快取（批 H1）；CORS 只在 /db/*；不碰 /api/', () => {
   const h = read('public/_headers').toString('utf8')
   const rules = h.split('\n').filter((l) => l && !l.startsWith('#') && !/^\s/.test(l))
-  assert.deepEqual(rules, ['/db/*', '/db/v1/latest.json', '/db/v1/:version/*'])
+  assert.deepEqual(rules, ['/db/*', '/db/v1/latest.json', '/db/v1/:version/*', '/assets/*', '/data/*', '/i18n/*'])
+  // 2026-11-12 批 H1：雜湊檔名的 /assets/* 一年 immutable；帶 ?v= 版本參數的 /data/*、/i18n/* 30 天（不 immutable）
+  assert.match(h, /\n\/assets\/\*\n {2}Cache-Control: public, max-age=31536000, immutable\n/)
+  assert.match(h, /\n\/data\/\*\n {2}Cache-Control: public, max-age=2592000\n/)
+  assert.match(h, /\n\/i18n\/\*\n {2}Cache-Control: public, max-age=2592000\n/)
+  // CORS 仍只給 /db/*：整份檔案只出現一次 Access-Control-Allow-Origin，且在 /db/* 規則下
+  assert.equal(h.match(/Access-Control-Allow-Origin/g)?.length, 1)
   assert.match(h, /\/db\/\*\n {2}Access-Control-Allow-Origin: \*\n {2}Access-Control-Allow-Methods: GET/)
   assert.match(h, /\/db\/v1\/latest\.json\n {2}Cache-Control: public, max-age=300/)
   assert.match(h, /\/db\/v1\/:version\/\*\n {2}Cache-Control: public, max-age=31536000, immutable/)

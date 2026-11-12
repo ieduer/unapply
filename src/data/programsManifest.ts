@@ -3,6 +3,7 @@ export const programsManifest = {
   "version": "3d0cc7ed3c79",
   "catalogPath": "/data/programs/catalog.json",
   "indexPath": "/data/programs/index.json",
+  "indexBytes": 988752,
   "bucketsBasePath": "/data/programs/schools",
   "bucketFileByProvince": {
     "安徽": "programs-01.json",

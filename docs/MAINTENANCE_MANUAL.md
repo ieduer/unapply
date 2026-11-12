@@ -36,7 +36,10 @@ src/engine/filter.ts          排除引擎
 src/engine/coverage.ts        每題覆蓋率與最大排除能力分析
 src/components/*              路由頁面；已做 route-level lazy split
 src/lib/theme.ts              色系預設與本地自定義
-src/lib/runtimeData.ts        runtime payload 載入器
+src/lib/runtimeData.ts        runtime payload 載入器（瀏覽器載瘦身目錄 schools.core.json；§5.6）
+src/data/runtimeCore.ts       瘦身目錄的編解碼（建置腳本、載入器、測試共用）
+src/lib/fetchJson.ts          所有資料檔的下載：斷流逾時＋自動重試＋進度（§5.6）
+src/lib/loadProgress.ts       問卷前置資料的下載進度（載入畫面的百分比）
 ```
 
 ## 2. 日常命令
@@ -61,12 +64,13 @@ npm run data:origins
 npm run data:i18n
 npm run test:origins
 npm run test:i18n
+npm run test:runtime-core
 npm run lint
 npm run build
 npm run dev
 ```
 
-`audit:values` 是 2026-09 新增的死值閘門，說明見 §4.3。`data:i18n`／`test:i18n` 是 2026-11 批 E1 新增的多語言生成與閘門（§5.3）；`data:origins`／`test:origins` 是批 E2 的起點分支資料層與閘門（§5.4）。
+`test:runtime-core` 是 2026-11-12 批 H1 新增的閘門（瘦身目錄與 canonical 的引擎等價、體積上限、載入與字型規則），說明見 §5.6。`audit:values` 是 2026-09 新增的死值閘門，說明見 §4.3。`data:i18n`／`test:i18n` 是 2026-11 批 E1 新增的多語言生成與閘門（§5.3）；`data:origins`／`test:origins` 是批 E2 的起點分支資料層與閘門（§5.4）。
 
 部署：
 
@@ -787,6 +791,37 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 | `tests/global-subtraction.test.ts`（`npm run test:global`） | 閘門 11 項：池規模、每題規則、未知永不劃、狀態與資格永不作劃掉依據、地區全劃剩 0 且原因可追溯、預設池與正規化、分享往返與只含選項鍵、與 AnswerMap／DimensionId／learning manifest／Function／A+ 證據無交集、三語鍵與原因碼一一對應 |
 
 改題或加題：先在引擎加規則與原因碼（一律保留未知）→ 三語鍵 `ui.global.reason.rule.<碼>`／`ui.global.q.<題>.*` → `data:i18n` → `test:global`＋`test:i18n`。資料層更新（GRAS 年版、海外層重抓、院校池年度更新）後本頁自動跟著 payload 走，不需改程式。
+
+### 5.6 載入效能與資料下載（2026-11-12 批 H1：使用者回報「加載慢、目錄載入失敗」）
+
+**事故**：正式站在慢網路（實測限速 60 KB/s、延遲 300 ms）下首屏 8.4 秒，進問卷 15 秒後固定出現「目錄載入失敗 — signal timed out」，重試也一樣。四個原因疊在一起：
+
+1. 學校目錄 `schools.json` 12.9 MB（瀏覽器實際傳輸約 1.1 MB：Cloudflare 即時 brotli 的壓縮率比 gzip 還差），其中 87.7% 是生活維度證據的票數與分佈，答題用不到。
+2. 每個資料載入器都用 `AbortSignal.timeout(15–20 秒)` 當整體時限：檔案還在正常下載就被砍掉；被砍掉的請求不進快取，重試又從零開始。
+3. 正文字體湖文明朝體是 8.3 MB 整檔（`shared-ui/theme.css` 的 `@font-face`），每次首訪都下載，和資料搶頻寬。
+4. Google Fonts 樣式表（傳輸 198 KB、654 條 `@font-face`）在 `<head>` 裡阻塞首繪。
+
+**現在的做法與規則**（改動前先讀；`npm run test:runtime-core` 會擋住大部分倒退）：
+
+- **瘦身目錄**：瀏覽器只載 `public/data/runtime/schools.core.json`（`scripts/export_runtime_payloads.ts` 產生；`src/data/runtimeCore.ts` 編解碼）。它＝canonical `schools.json` 去掉 `qualityEvidence` 的票數欄位（`sampleSize`／`winningVotes`／`classifiedSampleSize`／`unclassifiedResponses`／`valueCounts`），只留引擎判定硬篩選權要讀的 `source`／`scope`／`year`／`confidence`（去重成個位數種「形狀」，每校每維度存一個索引）。約 2.5 MB、傳輸約 0.3 MB。
+  - canonical `schools.json` **不變、不可刪**：Function 重算（`functions/api/learning/[action].ts` 的 `loadCanonicalSchools`）、`/db/v1`、各建置腳本與測試都讀它。
+  - 票數按省分桶在 `public/data/runtime/evidence/evidence-NN.json`（教育部代碼 → 維度 → 完整證據；省份對照 `src/data/evidenceProvinceBuckets.ts`），只有學校詳情頁用 `loadQualityEvidence(province)` 載。詳情頁的匿名回報卡在票數到之前不顯示取值（多於一種取值時是「回報不一致」，先顯示會載完又改口）。
+  - 型別：`School.qualityEvidence` 是最小證據（`QualityEvidenceCore`）；完整票數是 `CanonicalSchool`（建置側與 canonical 檔）。引擎或頁面要讀票數，必須從 evidence 桶拿，不要把票數加回瘦身目錄（測試有 300 KiB gzip 上限）。
+  - 匯出時自我核對三件事，任何一條不成立就不產出：解碼後除證據外與 canonical 逐欄相同；最小證據與 canonical 一致；瘦身目錄＋evidence 桶可完整還原 canonical。`tests/runtime-core.test.ts` 另核對**引擎結果完全相同**（每題每選項＋60 份決定性隨機答卷，保留／排除／理由／統計逐一相等）——前端用瘦身目錄算、Function 用 canonical 重算，兩邊不一致就會讓 A+ 證據對不上。
+  - 改編碼方式（不是改資料）時把 `SCHOOLS_CORE_FORMAT` 加一：網址的 `?v=<版本>.<格式>` 才會變，瀏覽器不會拿到舊快取。
+- **資料下載一律走 `src/lib/fetchJson.ts`**：不設整體時限；只有連續 25 秒完全沒有收到資料才放棄這次嘗試（斷流逾時）；自動重試 2 次（0.7 秒、1.4 秒退避），4xx（408／429 除外）不重試。錯誤是 `DataLoadError`，頁面用 `describeLoadError` 轉成翻譯鍵顯示人話（`ui.data.error.network`／`offline`／`server`／`incomplete`），不要把 `err.message` 原文給使用者看。**不要再對資料下載用 `AbortSignal.timeout`**（測試會擋）。`/api/learning/*` 的請求是另一套（`trustedAPlus.ts` 自己的逾時與復原），不在此列。
+- **進度與預載**：`src/lib/loadProgress.ts` 匯總學校目錄與招生專業摘要的下載進度，`App.tsx` 的載入畫面顯示百分比與「正在自動重試」。總量用 manifest 記的解壓後位元組（`runtimeDataManifest.schoolsCoreBytes`、`programsManifest.indexBytes`），因為壓縮傳輸下 `Content-Length` 不是這個數。首頁的主按鈕會進大陸問卷時（`planFlow(...).entry === 'filter'`），瀏覽器空閒後預載這兩個檔（共約 0.5 MB 傳輸）；省流量模式（`Save-Data`）不預載；預載失敗不提示。
+- **語言檔**：簡體／英文字典仍是首繪前載入，但最多等 3.5 秒（`src/main.tsx` 的 `LOCALE_FIRST_PAINT_BUDGET_MS`）；逾時先用正體首繪，字典到了自動切過去（使用者這段時間自己切過語言就不搶）。
+- **字型**：`index.html` 的兩份字型樣式表（mx.bdfz.net 的湖文明朝體共用分片、Google Fonts）都以 `media="print" onload="this.media='all'"` 載入，不阻塞首繪；`<noscript>` 裡有一般寫法。湖文明朝體**只用共用分片** `https://mx.bdfz.net/fonts/huwen/v1/HuWenMingChao.4eeeeaf657.css`（90 片 unicode-range，瀏覽器只抓畫面上的字；mx 端規則：`v1/` 不可刪改，換字形出 `v2/`）。`src/shared-ui/theme.css` 不再宣告它的 `@font-face`；**任何樣式檔都不准再引用整檔 `HuWenMingChaoTi.woff2`**（測試會擋）。theme.css 是與 path.bdfz.net 共用的檔，這一條兩站同批改。
+- **快取標頭**（`public/_headers`）：`/assets/*`（檔名帶內容雜湊）一年 `immutable`；`/data/*`、`/i18n/*` 30 天（程式一律以 `?v=<內容版本>` 請求，內容變版本就變；不 `immutable`，沒帶 `?v=` 的請求仍能拿到新版）。HTML 維持 `max-age=0, must-revalidate`。新增資料載入器時**一定要帶 `?v=`**，否則使用者會拿到最多 30 天前的舊檔。`tests/db.test.ts` 鎖這份規則清單，CORS 仍只給 `/db/*`。
+
+**驗收口徑**（改動載入路徑、資料檔、字型或 `_headers` 後都要做；工具在 `reports/operations/nope-perf-catalog-20261112/tools/`）：
+
+1. 用無頭 Chrome 的 DevTools 協定限速（`Network.emulateNetworkConditions`：60 KB/s＋300 ms、150 KB/s＋200 ms）對**候選部署**（真實的 Cloudflare 壓縮與標頭；本機 `vite preview` 不壓縮，數字不可比）量首屏（first-contentful-paint）與「進問卷到第一題出現」的時間，和上一版同條件對比。
+2. 請求清單裡不得出現 `HuWenMingChaoTi.woff2` 與 `/data/runtime/schools.json`（瀏覽器只載瘦身目錄）。
+3. 封鎖 `schools.core.json` 後進問卷：應在自動重試後顯示可讀的失敗說明與「重試載入」，解除封鎖按重試能進問卷。
+4. 學校詳情頁的 24 維生活卡要出現「N 條填答 · M 條可歸一」與各取值票數；封鎖 `evidence/` 時顯示「回報票數暫時載入失敗」與重試。
+5. 第二次造訪（不清快取）資料檔應直接來自瀏覽器快取。
 
 ## 6. 部署與驗證
 

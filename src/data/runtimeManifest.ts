@@ -2,10 +2,16 @@
 export const runtimeDataManifest = {
   "version": "a8df31dfd3da",
   "schoolsPath": "/data/runtime/schools.json",
+  "schoolsCorePath": "/data/runtime/schools.core.json",
+  "schoolsCoreFormat": 1,
+  "schoolsCoreBytes": 2493580,
   "campusesBasePath": "/data/runtime/campuses",
+  "evidenceBasePath": "/data/runtime/evidence",
   "counts": {
     "schools": 2952,
     "campusBuckets": 31,
-    "campusRows": 3396
+    "campusRows": 3396,
+    "evidenceBuckets": 31,
+    "evidenceSchools": 2406
   }
 } as const

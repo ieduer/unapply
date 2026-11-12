@@ -3,7 +3,7 @@ import { compareProvinces, sortProvinces } from '../data/provinceOrder'
 import type { School } from '../data/schools'
 import { DIMENSION_GROUPS } from '../data/dimensions'
 import type { DimensionId } from '../data/dimensions'
-import type { CampusResearchRecord, ResearchEvidence } from '../data/runtimeTypes'
+import type { CampusResearchRecord, ResearchEvidence, SchoolQualityEvidenceMap } from '../data/runtimeTypes'
 import {
   candidateProvinceOptions,
   getAdmissionResourceLinks,
@@ -11,7 +11,7 @@ import {
 } from '../data/admissionAuthorities'
 import { getEnvironment } from '../data/environment'
 import { isHardFilterableQuality } from '../engine/filter'
-import { loadCampusesByProvince } from '../lib/runtimeData'
+import { loadCampusesByProvince, loadQualityEvidence } from '../lib/runtimeData'
 import { getRegularChannelState } from '../lib/schoolProfile'
 import { loadProgramBucket } from '../lib/programsData'
 import type { ProgramIndexPayload, ProgramOffering, SubjectCode } from '../data/programsTypes'
@@ -120,6 +120,23 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
   const levelText = school.level ? tOr(`ui.detail.level.${school.level}`, school.level) : t('ui.detail.tierPending')
   const [campusLoadError, setCampusLoadError] = useState(false)
   const [campusRetry, setCampusRetry] = useState(0)
+  // 生活維度的票數與分佈不在瘦身目錄裡（批 H1）：進詳情頁才按省載入；school.qualityEvidence 只有來源／範圍／年份／置信度。
+  // 以教育部代碼記住是哪一所的結果，換校時舊結果自然失效（不必在 effect 裡同步清狀態）。
+  const [fullEvidence, setFullEvidence] = useState<{ moeCode: string; map: SchoolQualityEvidenceMap } | null>(null)
+  const [evidenceFailedFor, setEvidenceFailedFor] = useState<string | null>(null)
+  const [evidenceRetry, setEvidenceRetry] = useState(0)
+  const needsEvidence = Boolean(school.moeCode && school.qualityEvidence && Object.keys(school.qualityEvidence).length > 0)
+  useEffect(() => {
+    if (!needsEvidence || !school.moeCode) return
+    let alive = true
+    const moeCode = school.moeCode
+    loadQualityEvidence(school.province)
+      .then((bucket) => { if (alive) { setFullEvidence({ moeCode, map: bucket[moeCode] ?? {} }); setEvidenceFailedFor(null) } })
+      .catch(() => { if (alive) setEvidenceFailedFor(moeCode) })
+    return () => { alive = false }
+  }, [needsEvidence, school.moeCode, school.province, evidenceRetry])
+  const evidenceMap = fullEvidence && fullEvidence.moeCode === school.moeCode ? fullEvidence.map : null
+  const evidenceFailed = evidenceFailedFor !== null && evidenceFailedFor === school.moeCode && !evidenceMap
   const tierText = school.cityTier ? tOr(`ui.detail.tier.${school.cityTier}`, tOr(`tag.cityTier.${school.cityTier}`, school.cityTier)) : t('ui.detail.cityTierPending')
   const typeText = school.type ? tOr(`tag.type.${school.type}`, school.type) : (school.moeLevel ?? t('ui.detail.typePending'))
   const campusText = school.mainCampusType ? tOr(`ui.detail.campus.${school.mainCampusType}`, school.mainCampusType) : t('ui.detail.campusPending')
@@ -471,13 +488,27 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
           <p className="text-xs text-fog-500 leading-relaxed">
             {t('ui.detail.life.note')}
           </p>
+          {evidenceFailed && (
+            <p role="alert" className="text-xs text-fog-300 flex flex-wrap items-center gap-3">
+              {t('ui.detail.life.countsFailed')}
+              <button
+                onClick={() => { setEvidenceFailedFor(null); setEvidenceRetry((n) => n + 1) }}
+                className="tap px-3 rounded-ctl border border-ink-700 text-fog-300 hover:text-fog-100 hover:border-accent-500"
+              >
+                {t('ui.detail.life.countsRetry')}
+              </button>
+            </p>
+          )}
           <div className="grid sm:grid-cols-2 gap-3">
             {qualityDims.map(d => {
               const rawValue = school.quality?.[d]
               const val = Array.isArray(rawValue) ? rawValue.map((v) => valueLabel(d, v)).join(' / ') : rawValue ? valueLabel(d, rawValue) : undefined
+              // core＝目錄裡的最小證據（決定硬篩選權與顯示哪一種卡）；counts＝按省載入的完整證據（票數與分佈），還沒到時為 undefined
               const evidence = school.qualityEvidence?.[d]
+              const counts = evidenceMap?.[d]
+              const countsPending = evidence?.source === 'crowd' && !counts
               const filterable = val != null && isHardFilterableQuality(school, d)
-              const crowdValues = Object.entries(evidence?.valueCounts ?? {})
+              const crowdValues = Object.entries(counts?.valueCounts ?? {})
               const sources = school.researchEvidence?.[d] ?? []
               return (
                 <div
@@ -488,23 +519,30 @@ export function SchoolDetail({ school, programsIndex, answers, candidateProvince
                     <span className="serif text-sm">{dimensionLabel(d)}</span>
                     <span className="mono text-xs text-fog-500">{d}</span>
                   </div>
-                  <p className={['mt-2 text-sm', val ? 'text-fog-100' : 'text-fog-500 italic'].join(' ')}>
-                    {evidence?.source === 'crowd' && crowdValues.length > 1 ? t('ui.detail.life.inconsistent') : evidence?.source === 'crowd' && val ? t('ui.detail.life.unverified', { value: val }) : val ?? t('ui.detail.life.pending')}
+                  {/* 匿名回報的主文字要等票數到了才定（多於一種取值時是「回報不一致」）：票數沒到之前不先顯示取值，免得載完又改口 */}
+                  <p
+                    className={['mt-2 text-sm', countsPending ? 'text-fog-500' : val ? 'text-fog-100' : 'text-fog-500 italic'].join(' ')}
+                    data-life-counts={countsPending ? (evidenceFailed ? 'failed' : 'loading') : undefined}
+                  >
+                    {countsPending
+                      ? (evidenceFailed ? t('ui.detail.life.countsFailed') : t('ui.detail.life.countsLoading'))
+                      : evidence?.source === 'crowd' && crowdValues.length > 1 ? t('ui.detail.life.inconsistent') : evidence?.source === 'crowd' && val ? t('ui.detail.life.unverified', { value: val }) : val ?? t('ui.detail.life.pending')}
                   </p>
-                  {evidence && (
+                  {evidence && !(evidence.source === 'crowd' && !counts) && (
                     <span
                       className={[
                         'mt-2 inline-block text-xs mono',
                         filterable ? 'text-fog-500' : 'text-fog-300',
                       ].join(' ')}
+                      data-life-counts={evidence.source === 'crowd' ? 'ready' : undefined}
                     >
-                      {evidence.source === 'crowd'
-                        ? t('ui.detail.life.crowdMeta', { n: evidence.sampleSize, classified: evidence.classifiedSampleSize ?? evidence.sampleSize })
+                      {evidence.source === 'crowd' && counts
+                        ? t('ui.detail.life.crowdMeta', { n: counts.sampleSize, classified: counts.classifiedSampleSize ?? counts.sampleSize })
                         : `${evidence.scope === 'school' ? t('ui.detail.life.officialSchoolWide') : t('ui.detail.life.officialCampusOnly')}${evidence.year ? ` · ${evidence.year}` : ''}`}
                     </span>
                   )}
-                  {evidence?.source === 'crowd' && (
-                    <p className="mt-2 text-xs text-fog-500">{crowdValues.map(([value, votes]) => t('ui.detail.life.votes', { value: valueLabel(d, value), votes })).join('；')}{t('ui.detail.life.unclassified', { n: evidence.unclassifiedResponses ?? 0 })}</p>
+                  {evidence?.source === 'crowd' && counts && (
+                    <p className="mt-2 text-xs text-fog-500">{crowdValues.map(([value, votes]) => t('ui.detail.life.votes', { value: valueLabel(d, value), votes })).join('；')}{t('ui.detail.life.unclassified', { n: counts.unclassifiedResponses ?? 0 })}</p>
                   )}
                   {evidence?.source === 'crowd' && <p className="mt-2 text-xs text-fog-500">{t('ui.detail.life.crowdSource')}</p>}
                   {sources.map((source, i) => (
