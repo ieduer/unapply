@@ -197,20 +197,47 @@ test('載入規則：資料下載不設整體時限（一律走 fetchJson）；�
   assert.equal(/runtimeDataManifest\.schoolsPath/.test(loader), false, '瀏覽器不載 canonical schools.json')
 })
 
-test('字型規則：不引用整檔湖文明朝體；index.html 的字型樣式表不阻塞首繪', () => {
+test('字型規則：不引用整檔湖文明朝體；index.html 不直接連字型樣式表（由 fontLoading 在資料之後插入）', async () => {
   for (const file of walk(new URL('src/', root))) {
     const source = fs.readFileSync(file, 'utf8')
     assert.equal(/url\([^)]*HuWenMingChaoTi\.woff/.test(source), false, `${file} 引用了整檔字型`)
   }
   const html = readText('index.html')
-  const head = html.slice(0, html.indexOf('</head>')).replace(/<noscript>[\s\S]*?<\/noscript>/g, '').replace(/<!--[\s\S]*?-->/g, '')
-  const sheets = [...head.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*>/g)].map((match) => match[0])
-  assert.equal(sheets.length, 2)
-  for (const tag of sheets) {
-    assert.match(tag, /media="print"/, tag)
-    assert.match(tag, /onload="this\.media='all'"/, tag)
-  }
-  assert.ok(sheets.some((tag) => tag.includes('https://mx.bdfz.net/fonts/huwen/v1/HuWenMingChao.4eeeeaf657.css')))
+  const head = html.slice(0, html.indexOf('</head>'))
+  const outsideNoscript = head.replace(/<noscript>[\s\S]*?<\/noscript>/g, '').replace(/<!--[\s\S]*?-->/g, '')
+  assert.deepEqual([...outsideNoscript.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*>/g)].map((match) => match[0]), [], '字型樣式表不寫在 <head>（一開頁就會開始下載、和資料搶頻寬）')
+  const { GOOGLE_FONT_CSS, HUWEN_FONT_CSS, prefersSystemFonts } = await import('../src/lib/fontLoading.ts')
+  assert.equal(HUWEN_FONT_CSS, 'https://mx.bdfz.net/fonts/huwen/v1/HuWenMingChao.4eeeeaf657.css')
+  // 沒有 JavaScript 時的後備與程式裡的網址一致
+  const noscript = head.match(/<noscript>[\s\S]*?<\/noscript>/)?.[0] ?? ''
+  assert.ok(noscript.includes(HUWEN_FONT_CSS))
+  assert.ok(noscript.includes(GOOGLE_FONT_CSS))
+  // 省流量與 2G 不載網路字型；沒有連線訊號（Safari、Firefox）照常載
+  assert.equal(prefersSystemFonts({ connection: { saveData: true } }), true)
+  assert.equal(prefersSystemFonts({ connection: { effectiveType: '2g' } }), true)
+  assert.equal(prefersSystemFonts({ connection: { effectiveType: 'slow-2g' } }), true)
+  assert.equal(prefersSystemFonts({ connection: { effectiveType: '3g' } }), false)
+  assert.equal(prefersSystemFonts({ connection: { effectiveType: '4g', saveData: false } }), false)
+  assert.equal(prefersSystemFonts({}), false)
+})
+
+test('問卷前置資料在下載時，字型等裝飾資源要等它們結束（trackCriticalLoad／whenCriticalLoadsSettle）', async () => {
+  const { trackCriticalLoad, whenCriticalLoadsSettle } = await import('../src/lib/loadProgress.ts')
+  await whenCriticalLoadsSettle() // 沒有下載在進行：立刻
+  let releaseFirst!: () => void
+  let failSecond!: (error: Error) => void
+  const first = trackCriticalLoad(new Promise<void>((resolve) => { releaseFirst = resolve }))
+  const second = trackCriticalLoad(new Promise<void>((_, reject) => { failSecond = reject }))
+  second.catch(() => undefined)
+  let settled = false
+  const waiting = whenCriticalLoadsSettle().then(() => { settled = true })
+  releaseFirst(); await first; await Promise.resolve()
+  assert.equal(settled, false, '還有一個在下載')
+  failSecond(new Error('network')); await second.catch(() => undefined); await waiting
+  assert.equal(settled, true, '失敗也算結束，不會讓字型永遠等下去')
+  // 兩個載入器都有登記
+  assert.match(readText('src/lib/runtimeData.ts'), /trackCriticalLoad\(fetchRuntimeJson<SchoolsCorePayload>/)
+  assert.match(readText('src/lib/programsData.ts'), /trackCriticalLoad\(fetchPayload<ProgramIndexPayload>/)
 })
 
 test('fetchJson：5xx 自動重試後成功；4xx 不重試；斷流逾時歸類為 stalled；錯誤轉成翻譯鍵', async () => {

@@ -29,6 +29,7 @@ import { buildUnapplyResultEvidence } from './lib/learningEvidence'
 import { loadSchools } from './lib/runtimeData'
 import { describeLoadError } from './lib/fetchJson'
 import { getCatalogProgress, subscribeCatalogProgress } from './lib/loadProgress'
+import { scheduleWebFonts } from './lib/fontLoading'
 import {
   beginUnapplyAPlusSession,
   completeUnapplyAPlusSession,
@@ -407,24 +408,28 @@ export default function App() {
     return () => { alive = false }
   }, [programsError, programsIndex, route])
 
-  // 預載（批 H1）：首頁的主按鈕會進大陸問卷時，瀏覽器空閒後先把學校目錄與招生專業摘要抓下來（共約 0.5 MB 傳輸），
-  // 使用者按「開始減法」時通常已經在記憶體裡。省流量模式（Save-Data）不預載；失敗不提示（進問卷時會照常載入並顯示進度）。
-  // 兩個載入器各自快取同一個 promise，預載與正式載入不會重複下載。
+  // 瀏覽器空閒後做兩件事（批 H1）：
+  // 1. 預載：首頁的主按鈕會進大陸問卷時，先把學校目錄與招生專業摘要抓下來（共約 0.5 MB 傳輸），使用者按「開始減法」時
+  //    通常已經在記憶體裡。省流量模式（Save-Data）不預載；失敗不提示（進問卷時會照常載入並顯示進度）。
+  //    兩個載入器各自快取同一個 promise，預載與正式載入不會重複下載。
+  // 2. 網路字型：等上面的資料（或問卷頁自己正在載的資料）下載結束才開始載，不和資料搶頻寬（src/lib/fontLoading.ts；只排程一次）。
   const wantsMainlandCatalog = plan.entry === 'filter'
   useEffect(() => {
-    if (routeNeedsSchools(route) || schools || !wantsMainlandCatalog) return
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
-    if (connection?.saveData) return
-    const warm = () => {
-      loadSchools().catch(() => undefined)
-      loadProgramIndex().catch(() => undefined)
+    const prefetch = !routeNeedsSchools(route) && !schools && wantsMainlandCatalog && !connection?.saveData
+    const run = () => {
+      if (prefetch) {
+        loadSchools().catch(() => undefined)
+        loadProgramIndex().catch(() => undefined)
+      }
+      scheduleWebFonts()
     }
     const idle = (window as Window & { requestIdleCallback?: (cb: () => void, options?: { timeout: number }) => number; cancelIdleCallback?: (id: number) => void })
     if (typeof idle.requestIdleCallback === 'function') {
-      const id = idle.requestIdleCallback(warm, { timeout: 3000 })
+      const id = idle.requestIdleCallback(run, { timeout: 3000 })
       return () => idle.cancelIdleCallback?.(id)
     }
-    const timer = window.setTimeout(warm, 1200)
+    const timer = window.setTimeout(run, 1200)
     return () => window.clearTimeout(timer)
   }, [route, schools, wantsMainlandCatalog])
 

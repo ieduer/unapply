@@ -54,3 +54,28 @@ export function subscribeCatalogProgress(listener: () => void): () => void {
 export function getCatalogProgress(): CatalogProgress {
   return snapshot
 }
+
+// —— 問卷前置資料「正在下載」的追蹤：字型等裝飾資源等它們結束才開始載（src/lib/fontLoading.ts）。
+let criticalInFlight = 0
+let criticalWaiters: (() => void)[] = []
+
+/** 登記一個問卷前置資料的下載；結束（成功或失敗）時自動除名。回傳原 promise。 */
+export function trackCriticalLoad<T>(promise: Promise<T>): Promise<T> {
+  criticalInFlight += 1
+  const done = () => {
+    criticalInFlight -= 1
+    if (criticalInFlight === 0) {
+      const waiters = criticalWaiters
+      criticalWaiters = []
+      waiters.forEach((resolve) => resolve())
+    }
+  }
+  promise.then(done, done)
+  return promise
+}
+
+/** 目前登記的下載都結束時 resolve；沒有下載在進行就立刻 resolve。 */
+export function whenCriticalLoadsSettle(): Promise<void> {
+  if (criticalInFlight === 0) return Promise.resolve()
+  return new Promise((resolve) => { criticalWaiters.push(resolve) })
+}

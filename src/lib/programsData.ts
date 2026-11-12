@@ -2,7 +2,7 @@ import { t } from '../i18n/core'
 import { programsManifest } from '../data/programsManifest'
 import type { ProgramBucket, ProgramCatalogPayload, ProgramIndexPayload } from '../data/programsTypes'
 import { fetchJson, type FetchJsonOptions } from './fetchJson'
-import { completeCatalogProgress, reportCatalogProgress, resetCatalogProgress } from './loadProgress'
+import { completeCatalogProgress, reportCatalogProgress, resetCatalogProgress, trackCriticalLoad } from './loadProgress'
 
 let catalogPromise: Promise<ProgramCatalogPayload> | null = null
 let indexPromise: Promise<ProgramIndexPayload> | null = null
@@ -36,9 +36,9 @@ export function loadProgramCatalog(): Promise<ProgramCatalogPayload> {
 /** 每校摘要（2,952 校中有資料的）：結果頁的起點條件層、卡片計數用；約 150 KiB gzip。 */
 export function loadProgramIndex(): Promise<ProgramIndexPayload> {
   if (!indexPromise) {
-    indexPromise = fetchPayload<ProgramIndexPayload>(programsManifest.indexPath, {
+    indexPromise = trackCriticalLoad(fetchPayload<ProgramIndexPayload>(programsManifest.indexPath, {
       onProgress: ({ loaded, attempt }) => reportCatalogProgress(INDEX_PROGRESS_KEY, loaded, programsManifest.indexBytes, attempt),
-    })
+    }))
       .then((payload) => {
         const counts = programsManifest.counts
         const entries = payload.schools && typeof payload.schools === 'object' ? Object.values(payload.schools) : []

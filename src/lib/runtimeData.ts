@@ -6,7 +6,7 @@ import { evidenceBucketFileByProvince } from '../data/evidenceProvinceBuckets'
 import { decodeSchoolsCore, type EvidenceBucket, type SchoolsCorePayload } from '../data/runtimeCore'
 import { runtimeDataManifest } from '../data/runtimeManifest'
 import { fetchJson, type FetchJsonOptions } from './fetchJson'
-import { completeCatalogProgress, reportCatalogProgress, resetCatalogProgress } from './loadProgress'
+import { completeCatalogProgress, reportCatalogProgress, resetCatalogProgress, trackCriticalLoad } from './loadProgress'
 
 type CampusProvinceBucket = Record<string, CampusResearchRecord[]>
 
@@ -28,9 +28,9 @@ export function loadSchools(): Promise<School[]> {
   if (!schoolsPromise) {
     const progressKey = 'schools'
     const total = runtimeDataManifest.schoolsCoreBytes
-    schoolsPromise = fetchRuntimeJson<SchoolsCorePayload>(runtimeDataManifest.schoolsCorePath, `.${runtimeDataManifest.schoolsCoreFormat}`, {
+    schoolsPromise = trackCriticalLoad(fetchRuntimeJson<SchoolsCorePayload>(runtimeDataManifest.schoolsCorePath, `.${runtimeDataManifest.schoolsCoreFormat}`, {
       onProgress: ({ loaded, attempt }) => reportCatalogProgress(progressKey, loaded, total, attempt),
-    }).then((payload) => {
+    })).then((payload) => {
       if (!payload || payload.version !== runtimeDataManifest.version || payload.format !== runtimeDataManifest.schoolsCoreFormat) {
         throw new Error(t('ui.data.error.schools'))
       }
