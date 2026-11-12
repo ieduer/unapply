@@ -817,7 +817,13 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
   - 省流量模式（`Save-Data`）與 `effectiveType` 為 `2g`／`slow-2g` 時不載網路字型（`prefersSystemFonts`；Safari、Firefox 沒有這個訊號，照常載）。
   - 湖文明朝體**只用共用分片** `https://mx.bdfz.net/fonts/huwen/v1/HuWenMingChao.4eeeeaf657.css`（90 片 unicode-range；mx 端規則：`v1/` 不可刪改，換字形出 `v2/` 再改 `fontLoading.ts` 的常數與 `<noscript>`）。`src/shared-ui/theme.css` 不再宣告它的 `@font-face`；**任何樣式檔都不准再引用整檔 `HuWenMingChaoTi.woff2`**（測試會擋）。theme.css 是與 path.bdfz.net 共用的檔，這一條兩站同批改；path 沒有資料下載，它的 `index.html` 用 `media="print" onload="this.media='all'"` 的不阻塞寫法即可。
   - 新增「問卷一定要先有」的資料載入器時，用 `trackCriticalLoad` 登記，字型才會讓路。
-- **快取標頭**（`public/_headers`）：`/assets/*`（檔名帶內容雜湊）一年 `immutable`；`/data/*`、`/i18n/*` 30 天（程式一律以 `?v=<內容版本>` 請求，內容變版本就變；不 `immutable`，沒帶 `?v=` 的請求仍能拿到新版）。HTML 維持 `max-age=0, must-revalidate`。新增資料載入器時**一定要帶 `?v=`**，否則使用者會拿到最多 30 天前的舊檔。`tests/db.test.ts` 鎖這份規則清單，CORS 仍只給 `/db/*`。
+- **瀏覽器快取：不要給站內檔案加長效快取標頭**。`public/_headers` 只有 `/db/*` 的規則（`tests/db.test.ts` 鎖住）。站內其餘檔案維持 Pages 預設：HTML 與資料檔 `max-age=0, must-revalidate`（再次造訪時瀏覽器帶 ETag 向伺服器確認，沒變就回 304、不重傳內容），`/assets/*` 由網域設定給 4 小時。批 H1 的第一個候選曾加上 `/assets/*` 一年 `immutable`、`/data/*` 與 `/i18n/*` 30 天，發布前撤掉，原因：
+  - 本專案沒有 `404.html`，Pages 對**不存在的路徑回傳首頁 HTML、狀態 200**；`_headers` 是按路徑套用的，這個 HTML 也會帶上長效快取標頭（候選版實測：`/assets/不存在.js` 回 200 `text/html`＋一年 `immutable`）。
+  - 發布新版後，還開著舊版分頁的使用者會去要舊檔名的 chunk 或舊 `?v=` 的資料檔，拿到的是首頁 HTML 或新版內容，並被長期存在那個網址底下；之後一旦**回滾**（或某個 chunk 內容回到舊樣、檔名相同），那個網址重新有效，這些使用者卻一直讀到快取裡的錯內容——懶載頁面打不開或「學校目錄不完整」，最長一年。回滾最常發生在剛發布之後，正是舊分頁最多的時候。
+  - 每次確認的代價只是再次造訪時多一個往返（不重傳內容），換來的是任何時候都不會讀到錯的檔案。
+  - `/db/v1/:version/*` 既有的一年 `immutable` 有同樣的理論風險（版本目錄在回滾後消失又重現），流量低、屬對外契約（`docs/DB_API.md`），本批不動；要改先讀這一段。
+  - 以後若要加長效快取，先解決「不存在的路徑回 200 HTML」（例如加 `404.html`，但那會改變全站未知路徑的行為，且 404 帶 `max-age` 一樣會被瀏覽器快取），並讓載入器在內容核對失敗時以 `cache: 'reload'` 重抓。
+  - 新增資料載入器時仍然**一定要帶 `?v=<內容版本>`**（Function 與 `/db` 以外的資料檔都這樣）：它讓新版程式不會用到舊版內容。
 
 **驗收口徑**（改動載入路徑、資料檔、字型或 `_headers` 後都要做；工具在 `reports/operations/nope-perf-catalog-20261112/tools/`）：
 
@@ -825,7 +831,7 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 2. 請求清單裡不得出現 `HuWenMingChaoTi.woff2` 與 `/data/runtime/schools.json`（瀏覽器只載瘦身目錄）。
 3. 封鎖 `schools.core.json` 後進問卷：應在自動重試後顯示可讀的失敗說明與「重試載入」，解除封鎖按重試能進問卷。
 4. 學校詳情頁的 24 維生活卡要出現「N 條填答 · M 條可歸一」與各取值票數；封鎖 `evidence/` 時顯示「回報票數暫時載入失敗」與重試。
-5. 第二次造訪（不清快取）資料檔應直接來自瀏覽器快取。
+5. 第二次造訪（不清快取）資料檔應只做確認（304 或瀏覽器快取），不重傳內容；`curl -I` 一個不存在的 `/assets/x.js`，回應不得帶長效 `Cache-Control`。
 
 ## 6. 部署與驗證
 

@@ -1,6 +1,6 @@
 # Cloudflare Pages response headers (static assets only; Pages Functions under /api/* are not affected).
 # Read-only database /db/v1 (roadmap S5, docs/DB_API.md): cross-origin GET for sister products,
-# immutable versioned files, short-lived latest pointer. CORS applies to /db/* only.
+# immutable versioned files, short-lived latest pointer. Only /db/* paths are matched here.
 /db/*
   Access-Control-Allow-Origin: *
   Access-Control-Allow-Methods: GET
@@ -8,14 +8,3 @@
   Cache-Control: public, max-age=300
 /db/v1/:version/*
   Cache-Control: public, max-age=31536000, immutable
-# Browser caching for the site's own files (batch H1, 2026-11-12; docs/MAINTENANCE_MANUAL.md §5.6).
-# /assets/* file names carry a content hash, so they never change under the same URL.
-/assets/*
-  Cache-Control: public, max-age=31536000, immutable
-# Data and locale files are always requested with ?v=<content version> by the app (the version changes whenever the
-# content does), so a repeat visit can reuse them without asking the server again. 30 days, not immutable: a URL
-# requested without ?v= must still be able to pick up a new release.
-/data/*
-  Cache-Control: public, max-age=2592000
-/i18n/*
-  Cache-Control: public, max-age=2592000
