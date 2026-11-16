@@ -69,6 +69,7 @@ export function scheduleWebFonts() {
     .then(() => pendingFontsSettle(SITE_SUBSET_WAIT_MS))
     .then(() => {
       void insertStylesheet('huwen', HUWEN_FONT_CSS, true)
-      void insertStylesheet('google', GOOGLE_FONT_CSS, false)
+      // Google Fonts 也以 CORS 載入：分享圖要讀它的 @font-face 規則，只內嵌已載入的分片（src/lib/shareFonts.ts）。
+      void insertStylesheet('google', GOOGLE_FONT_CSS, true)
     })
 }

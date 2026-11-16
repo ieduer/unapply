@@ -69,12 +69,13 @@ npm run test:origins
 npm run test:i18n
 npm run test:runtime-core
 npm run test:first-screen
+npm run test:share
 npm run lint
 npm run build
 npm run dev
 ```
 
-`test:runtime-core` 是 2026-11-12 批 H1 新增的閘門（瘦身目錄與 canonical 的引擎等價、體積上限、載入與字型規則），說明見 §5.6。`audit:values` 是 2026-09 新增的死值閘門，說明見 §4.3。`data:i18n`／`test:i18n` 是 2026-11 批 E1 新增的多語言生成與閘門（§5.3）；`data:origins`／`test:origins` 是批 E2 的起點分支資料層與閘門（§5.4）。
+`test:share` 是 2026-11-16 新增的閘門（分享圖只內嵌用得到的字型分片，說明見 §5.2）。`test:runtime-core` 是 2026-11-12 批 H1 新增的閘門（瘦身目錄與 canonical 的引擎等價、體積上限、載入與字型規則），說明見 §5.6。`audit:values` 是 2026-09 新增的死值閘門，說明見 §4.3。`data:i18n`／`test:i18n` 是 2026-11 批 E1 新增的多語言生成與閘門（§5.3）；`data:origins`／`test:origins` 是批 E2 的起點分支資料層與閘門（§5.4）。
 
 部署：
 
@@ -635,6 +636,12 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 - 生活回報暫緩說明（`EvidenceNotice collapseOnMobile`，2026-11-08 批 G4）：問卷頁頁頭在最上、說明在頁頭下方；手機（<640px）收成一行可展開的摘要（標題截斷、展開後完整），桌面維持完整說明。其他頁面頁頭之上沒有內容。
 - 結果頁除了剩餘名單，還必須保留「查一所學校」檢索區，讓用戶能看到某所學校是保留還是被哪幾題排掉。
 - 結果頁應保留「回去改條件」與「清空重來」入口。
+- **分享圖**（結果頁與 `#/global` 結果頁，都走 `src/lib/share.ts` 的 `generateShareImage`；2026-11-16）：
+  - 交給 html-to-image 的 `fontEmbedCSS` 由 `src/lib/shareFonts.ts` 產生，只內嵌「頁面已經載入、而且卡片文字用得到」的字型分片。**不要拿掉 `fontEmbedCSS`、也不要加回 `cacheBust`**：html-to-image 預設會把頁面上每一條 `@font-face` 都下載後內嵌，本站有七百五十多條（本站小子集＋90 片共用分片＋Google Fonts 四個字族），實測每按一次重抓 754 個字型檔、21.7 MB、不限速 13.8 秒；修復後 17 個檔、0.47 MB、0.2–0.4 秒。
+  - 讀得到規則的前提是樣式表以 CORS 載入：`src/lib/fontLoading.ts` 插入共用分片與 Google Fonts 時第三個參數都是 `true`（`crossOrigin = 'anonymous'`）。改回 `false`，那一份的字就內嵌不到，圖上會退回系統字。
+  - 圖的四個角（卡片圓角以外）用目前色系的畫布色 `--color-ink-950`，不寫死顏色。
+  - 省流量／2G 不載網路字型時，`fontEmbedCSS` 是空字串，圖用系統字，照常下載。
+  - 閘門 `test:share`；實測工具 `reports/operations/nope-share-fonts-20261116/tools/verify-share.mjs`（量耗時、字型請求數與位元組、讀出圖的角落像素）。path.bdfz.net 有同一份 `shareFonts.ts`（各站各一份，不在 shared-ui 清單）。
 
 ### 5.3 多語言（2026-11 批 E1 起，路線圖 S4）
 
