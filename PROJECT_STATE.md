@@ -1,10 +1,24 @@
 # Project State
 
-Last updated: 2026-11-09 UTC
-Current version: f8257bf（已部署 f828793e，生效 2026-11-12T14:09:12Z；批 H2 首屏瘦身，疊加於批 H1 3250214／cc82b611）
+Last updated: 2026-11-16 UTC
+Current version: 4489ec1（已部署 4056db16，生效 2026-11-16T10:00:40Z；分享圖字型修復，疊加於批 H2 f8257bf／f828793e）
 Current objective: **路線圖 S0–S5 全部上線（2026-11-07；S5 生效時間為 UTC 2026-11-08T01:21:33Z），原待審事項 2026-11-08 已全部裁定，落地批 G1–G3 已上線（G1 01022627、G2 79c3c1b2、G3 5ac934ec＋path fef18140；G3 後續頁頭重疊與手機版面 b5b74217＋path a2719f97），G4（瀏覽器覆核結果入庫）2026-11-08 已上線（d0f6b69e），G5（精簡說明文字、頁尾三行、色系一鍵切換）2026-11-08 已上線（ec5dc3aa），G6（起點與目的地流程重做、互動糾錯、about 移到頁尾）2026-11-08 已上線（bec50ec9），G6 擴充（題目按目的地分題庫、以效度篩選，`docs/QUESTION_VALIDITY.md`）2026-11-08 已上線（0c801d21），G6c（全球減法互動細節 5 處）2026-11-08 已上線（f5f28048），G7（查詢頁、結果頁按專業彙總、企業直招列入減法；路線圖目標第 2、4、5 條）2026-11-08 已上線（1bf7627b），G8（R1／R2 研究入庫：澳門公私立與香港學費題、聖若瑟只招內地研究生、澳門管道裁定、聯招與學測參與名單、海外錄取條件原文）2026-11-08 已上線（be766ef2），G8b（省份清單照行政區劃代碼排序）2026-11-08 已上線（1effaee3），G9（方角按鈕、語言與多處切換改單鍵循環、收緊頂部留白、首頁突出全球學科地圖、手機觸控 44px、寬屏頁頭一行）2026-11-09 已上線（cdc53cad），其餘為年度維護。** 全球化路線圖（docs/GLOBAL_ROADMAP.md）S0、S1 全批、S2 兩半、S3、S4 兩批、橫切項（批 F1）與 S5 只讀資料庫（批 F2）皆已上線並登記 accepted；年度維護照 `docs/ANNUAL_UPDATE.md`（各層 `nextReviewDue` 見 `/db/v1` 的 validity.calendar；各省 2028 選考表依慣例應已公布，下一次維護先核）。原待審項（各批 `PENDING_OWNER_REVIEW.md`：S2、S3、E1、E2、F1、F2；彙整 `reports/operations/nope-global-roadmap-20261107/OWNER_REVIEW.md`）站長 2026-11-08 授權主會話裁定，裁定與執行批次見 `reports/operations/nope-global-roadmap-20261107/DECISIONS.md`（A1 維持方案 B、A3 不改五面導航、B1 conflict 照列不排除、D1 學徒制算直招、D3／D4 不建、F2-1 CORS 接受、F2-2 不開）；原 43 維效度缺口仍列後續。
 
-## 2026-11-12 批 H2：首屏瘦身——主包只帶首頁、字典提早下載、本站字型小子集（已上線，當前權威）
+## 2026-11-16 分享圖修復：只內嵌用得到的字型分片（已上線，當前權威）
+
+正式部署 `4056db16-ec70-447f-86a3-9e2e1f1d1176`，來源 `4489ec1`，生效 `2026-11-16T10:00:40Z`；回滾 `f828793e`／`f8257bf`（批 H2）。Status `20261116-nope-share-image-fonts` r1（fix）。path 不受影響（沒有動 `src/shared-ui`；path 同日已有同一修法）。
+
+- 緣由：2026-11-16 修 path.bdfz.net 分享圖時發現本站 `src/lib/share.ts` 是同一寫法，站長指示「實測並修 nope」。
+- 實測（修復前，正式部署 `f828793e`，390 px，不限速）：每按一次「下載分享圖」重抓 757 個字型檔、21.5 MB，結果頁 15–22 秒、全球池結果頁約 12 秒。原因是 html-to-image 內嵌頁面上每一條 `@font-face`（本站小子集＋90 片共用分片＋Google Fonts 四個字族，共 751 條），而且 `cacheBust` 讓快取失效。
+- 改動：`src/lib/shareFonts.ts`（只內嵌已載入、且卡片文字用得到的分片）；`share.ts` 用 `fontEmbedCSS`、拿掉 `cacheBust`、四角改用目前色系的畫布色（紙色下原本是四塊黑角）；`fontLoading.ts` 以 CORS 插入 Google Fonts 樣式表（才讀得到規則）。新閘門 `test:share`（共 28 道）。規則在 `docs/MAINTENANCE_MANUAL.md` §5.2。
+- 修復後：17 個字型請求（全走快取），結果頁 0.2–0.6 秒、全球池 0.2–0.4 秒。
+- 驗收：28 道閘門於 `4489ec1`；候選 `1bc8ade4`、不可變網址各 22/22（390／1440 × 紙色／墨色＋全球池一組：5 秒內下載、字型請求 < 80、兩份跨來源樣式表以 CORS 載入、圖的角落像素＝該色系畫布色）；正式網域 10/10；三主機逐檔 206/206；health active。
+- 沒有動、但看到的：分享卡右上角的印章圓會壓到標題「不考大學指南」最後兩個字（所有寬度都是；既有設計）；卡片用 `rounded-3xl`，`test:ui` 的規則沒涵蓋 `3xl`。兩項都留給站長決定。
+- 未驗證：登入作答；iOS Safari／App 內嵌瀏覽器實機；簡體與英文介面（同一個函式）。
+
+發布、驗證與證據：`/Users/ylsuen/CF/reports/operations/nope-share-fonts-20261116/RELEASE.md`。
+
+## 2026-11-12 批 H2：首屏瘦身——主包只帶首頁、字典提早下載、本站字型小子集（已上線；2026-11-16 分享圖修復疊加於其上）
 
 正式部署 `f828793e-cba7-43d2-a2ff-8817ca810acf`，來源 `f8257bf`（`6caee5d`＋`97c3e88`＋`f8257bf`），生效 `2026-11-12T14:09:12Z`；回滾 `cc82b611`／`3250214`（批 H1）。Status `20261112-nope-first-screen-h2` r1（improvement）。path 不受影響（沒有動 `src/shared-ui`）。
 
