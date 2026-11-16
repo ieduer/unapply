@@ -568,7 +568,7 @@ CAPABILITY_FIT: no-new-capability（靜態 JSON，無新 Cloudflare 能力）。
 
 **改動**：`src/components/ShareCard.tsx`（標題區 `flex-wrap`＋`pr-20`、卡片 `rounded-panel`、量測用 data 屬性）；`src/components/ResultPage.tsx`（「考生省份」那一組 `sm:shrink-0`、相鄰說明 `min-w-0`）；`tests/ui-tokens.test.ts`（正則補 `3xl`、鎖定分享卡與省份選單的類別）。規則在 `docs/MAINTENANCE_MANUAL.md` §5.2「分享卡版面」與 §5.1d。出圖邏輯（`share.ts`／`shareFonts.ts`）、題庫、引擎、Function、i18n 字串、`src/shared-ui` 未動。
 
-**驗收**：28 道閘門於 `646092c`（`release/check.txt`）；候選 `27945d5d`、正式網域與不可變網址逐檔 206/206；`tools/verify-card.mjs`：候選 62/62、不可變網址 62/62（三語 × 360／390／768／1440，第一種語言加墨色；每組檢查卡片內沒有任何文字行碰到印章框且同列至少留 8px、圓角 ≤ 4px、文字不出卡片、頁面無橫向溢出；另抽五組下載分享圖作回歸）、正式網域 26/26（正體與英文 × 390／768）。修復前對照在 `evidence/baseline-4056db16.txt`。
+**驗收**：28 道閘門於 `646092c`（`release/check.txt`）；候選 `27945d5d`、正式網域與不可變網址逐檔 206/206；`tools/verify-card.mjs`：候選 62/62、不可變網址 62/62（三語 × 360／390／768／1440，第一種語言加墨色；每組檢查卡片內沒有任何文字行碰到印章框且同列至少留 8px、圓角 ≤ 4px、文字不出卡片、頁面無橫向溢出；另有七組下載分享圖作回歸，皆在 1 秒內）、正式網域 26/26（正體與英文 × 390／768）。修復前對照在 `evidence/baseline-4056db16.txt`。
 
 **回滾**：`4056db16-ec70-447f-86a3-9e2e1f1d1176`／`4489ec1`，受審回滾交易；只切 Pages 版本，回到標題被印章壓住、卡片大圓角的版面，分享圖字型修復保留。
 
