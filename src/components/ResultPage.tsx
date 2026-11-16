@@ -328,13 +328,14 @@ export function ResultPage({
         {!zero && (
           <div className="flex flex-col gap-5">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-              <div>
+              <div className="min-w-0">
                 <h2 className="serif text-xl">{t('ui.result.kept.title')}</h2>
                 <p className="mt-2 text-xs text-fog-500 leading-relaxed">
                   {t('ui.result.kept.note')}
                 </p>
               </div>
-              <div className="flex items-center gap-2">
+              {/* sm:shrink-0：這一組（標籤＋選單）不縮；否則英文介面 768px 上左邊的說明把它擠窄，選單整個伸出頁面右緣。 */}
+              <div className="flex items-center gap-2 sm:shrink-0">
                 <span className="mono text-xs text-fog-500 uppercase tracking-[0.2em] shrink-0">{t('ui.common.candidateProvince')}</span>
                 <select
                   value={candidateProvince}

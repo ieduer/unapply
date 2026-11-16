@@ -9,10 +9,13 @@ export function ShareCard({ result }: { result: FilterResult }) {
   const top = kept.slice(0, 6)
   return (
     <div
-      className="relative rounded-3xl bg-ink-900 border border-ink-800 p-8 overflow-hidden"
+      className="relative rounded-panel bg-ink-900 border border-ink-800 p-8 overflow-hidden"
       style={{ fontFamily: 'var(--font-serif)' }}
+      data-share-card
     >
-      <div className="flex items-center justify-between text-xs mono uppercase tracking-[0.3em] text-fog-500">
+      {/* 右邊留 5rem 給右上角的印章（right-6＋w-14＝距右緣 24–80px），標題不會被它壓到；
+          卡片窄或文字長（英文）時標題換到下一行，仍在印章左側。 */}
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 pr-20 text-xs mono uppercase tracking-[0.3em] text-fog-500" data-share-header>
         <span>{t('ui.share.brand')}</span>
         <span>{t('ui.share.title')}</span>
       </div>
@@ -54,6 +57,8 @@ export function ShareCard({ result }: { result: FilterResult }) {
 
       <div
         className="absolute top-6 right-6 w-14 h-14 rounded-full bg-accent-500/10 border border-accent-500/30 flex items-center justify-center"
+        aria-hidden="true"
+        data-share-stamp
       >
         <div className="w-6 h-[2px] bg-accent-500 rotate-45 absolute" />
         <div className="w-6 h-[2px] bg-accent-500 -rotate-45 absolute" />

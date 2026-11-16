@@ -608,7 +608,7 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
 - 按鈕：主按鈕實心強調色（`bg-accent-500`）；次按鈕 1px 邊框（`border-ink-700`）；文字鏈接按鈕無框。
 - 同一層級的按鈕高度一致：手機 ≥44px，桌面 ≥40px。元件裡獨立的鏈接與按鈕寫 `min-h-[44px] sm:min-h-[40px]`；`.tap` 在 <640px 為 44px、以上 40px。
 - 不用膠囊與橢圓。只有純裝飾的圓形可保留：色點、選項的圓點、進度條、分享圖的印章圓。BDFZ 共用導航圓標不是本站元件，不動。
-- `test:ui` 擋新出現的 `rounded-full／xl／2xl／lg／md`。
+- `test:ui` 擋新出現的 `rounded-full／3xl／2xl／xl／lg／md`（2026-11-16 補 `3xl`：分享卡的 `rounded-3xl` 之前漏掉）。
 - 色系的硬規則（§5.1）不變。
 
 **單鍵循環**：互斥、選項少、有自然順序的單選，一律用 `src/components/CycleButton.tsx`：顯示目前值，點一下換下一個，`aria-label` 寫「名稱：目前值，點擊切換為下一個」（三語）。
@@ -641,6 +641,7 @@ E5（三個方言分片）、B12/B14/B23（歸一化器從未產出）、C1-C4�
   - 讀得到規則的前提是樣式表以 CORS 載入：`src/lib/fontLoading.ts` 插入共用分片與 Google Fonts 時第三個參數都是 `true`（`crossOrigin = 'anonymous'`）。改回 `false`，那一份的字就內嵌不到，圖上會退回系統字。
   - 圖的四個角（卡片圓角以外）用目前色系的畫布色 `--color-ink-950`，不寫死顏色。
   - 省流量／2G 不載網路字型時，`fontEmbedCSS` 是空字串，圖用系統字，照常下載。
+  - **分享卡版面**（`src/components/ShareCard.tsx`，2026-11-16）：右上角的印章圓是 `absolute top-6 right-6 w-14`（距卡片右緣 24–80px）。標題區那一行要留 `pr-20`（80px）並 `flex-wrap`，標題才不會被印章壓住；卡片窄或文字長（英文）時標題換到下一行。印章換位置或換大小，`pr-20` 要跟著改。卡片是方角 `rounded-panel`。`test:ui` 鎖定這三個類別；量測工具 `reports/operations/nope-share-card-20261116/tools/verify-card.mjs` 逐行取文字框與印章框比對（三語 × 360／390／768／1440）。
   - 閘門 `test:share`；實測工具 `reports/operations/nope-share-fonts-20261116/tools/verify-share.mjs`（量耗時、字型請求數與位元組、讀出圖的角落像素）。path.bdfz.net 有同一份 `shareFonts.ts`（各站各一份，不在 shared-ui 清單）。
 
 ### 5.3 多語言（2026-11 批 E1 起，路線圖 S4）

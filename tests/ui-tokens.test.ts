@@ -22,13 +22,13 @@ test('設計記號：@theme 定義 2px（控制項）與 4px（面板）；元�
   ]
   const found: string[] = []
   for (const f of components) for (const line of read(`src/components/${f}`).split('\n')) {
-    for (const m of line.matchAll(/\brounded-(full|2xl|xl|lg|md)\b/g)) {
+    for (const m of line.matchAll(/\brounded-(full|3xl|2xl|xl|lg|md)\b/g)) {
       const ok = allowed.some((a) => { const [file, frag] = a.split(':'); return file === f && line.includes(frag) })
       if (!ok) found.push(`${f}: ${m[0]} ${line.trim().slice(0, 80)}`)
     }
   }
   assert.deepEqual(found, [])
-  for (const f of ['src/App.tsx']) assert.equal(/\brounded-(full|2xl|xl|lg)\b/.test(read(f)), false, f)
+  for (const f of ['src/App.tsx']) assert.equal(/\brounded-(full|3xl|2xl|xl|lg)\b/.test(read(f)), false, f)
 })
 
 test('單鍵循環：語言一顆按鈕循環 正體 → 简体 → EN；查學校／查專業、每科取前、港澳臺地區篩選改為 CycleButton', () => {
@@ -75,4 +75,17 @@ test('頁頭 ≥640px 一行（站名截斷、按鈕不縮）；手機獨立控�
     assert.equal(/min-h-\[40px\](?!\S)/.test(src.replace(/sm:min-h-\[40px\]/g, '')), false, `${f}: phone controls need min-h-[44px] sm:min-h-[40px]`)
   }
   assert.match(read('src/index.css'), /\.tap \{\s+display: inline-flex;\s+align-items: center;\s+min-height: 44px;/)
+})
+
+test('分享卡：方角；標題區右邊留出印章的位置（印章距右緣 24–80px，標題區 pr-20＝80px），放不下時換行而不是被壓住', () => {
+  const card = read('src/components/ShareCard.tsx')
+  assert.match(card, /className="relative rounded-panel bg-ink-900 border border-ink-800 p-8 overflow-hidden"/)
+  assert.match(card, /className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 pr-20 [^"]*" data-share-header/)
+  assert.match(card, /className="absolute top-6 right-6 w-14 h-14 rounded-full [^"]*"\s+aria-hidden="true"\s+data-share-stamp/)
+})
+
+test('結果頁「考生省份」那一組不被左邊的說明擠出頁面（英文介面 768px 曾橫向溢出）', () => {
+  const page = read('src/components/ResultPage.tsx')
+  assert.match(page, /<div className="min-w-0">\s*<h2 className="serif text-xl">\{t\('ui\.result\.kept\.title'\)\}<\/h2>/)
+  assert.match(page, /<div className="flex items-center gap-2 sm:shrink-0">\s*<span className="mono text-xs text-fog-500 uppercase tracking-\[0\.2em\] shrink-0">\{t\('ui\.common\.candidateProvince'\)\}<\/span>/)
 })
